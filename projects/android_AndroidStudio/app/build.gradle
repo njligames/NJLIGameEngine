@@ -1,0 +1,69 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+
+    packagingOptions {
+    }
+    sourceSets {
+        main {
+            jni.srcDirs = ['/src/main/cpp']
+            java.srcDirs = ['src/main/java']
+            jniLibs.srcDirs = ['src/main/jniLibs']
+            res.srcDirs = ['src/main/res']
+            assets.srcDirs = [
+                    '/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/cmake.in/Platform.in/common/'
+            ]
+            manifest.srcFile 'src/main/AndroidManifest.xml'
+
+        }
+    }
+
+    defaultConfig {
+        applicationId "source.android.engine.njligames.com.android_androidstudio"
+        minSdkVersion 19
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+
+        externalNativeBuild {
+            cmake {
+                cppFlags "-std=gnu++11"
+                arguments "-DNJLI_BUILD_PLATFORM=android",
+                        "-DCMAKE_SOURCE_DIR:STRING=${CMAKE_SOURCE_DIR}",
+                        "-DANDROID_STL=c++_shared"
+            }
+        }
+
+        ndk{
+            abiFilters  "armeabi-v7a"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    externalNativeBuild {
+        cmake {
+            path "../../../CMakeLists.txt"
+        }
+    }
+}
+
+dependencies {
+//    compile fileTree(dir: 'assets', include: ['**/*.*'])
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
+    compile project(':fmod')
+}

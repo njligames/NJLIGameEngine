@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "7892AF52589AE2A5778D529FC452769E7BD66D43",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "AF25CE9E566EAE1536793DE1B5D2547B9D491F83" : 9223372036854775807,
+    "7892AF52589AE2A5778D529FC452769E7BD66D43" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "7287F23F-D3C7-46B8-A440-6777EF08435F",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "AF25CE9E566EAE1536793DE1B5D2547B9D491F83" : "External\/thirdparty\/",
+    "7892AF52589AE2A5778D529FC452769E7BD66D43" : "Engine\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "NJLIGameEngine",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "projects\/NJLIGameEngine.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/njligames\/Engine.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "7892AF52589AE2A5778D529FC452769E7BD66D43"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/njligames\/third-party_libs.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "AF25CE9E566EAE1536793DE1B5D2547B9D491F83"
+    }
+  ]
+}
