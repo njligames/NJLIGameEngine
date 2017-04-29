@@ -17,16 +17,16 @@
 #include <memory>
 using namespace std;
 
-SDL_Window* gWindow = nullptr;
-SDL_Renderer *gRenderer = nullptr;
-SDL_GLContext gGlContext;
-SDL_DisplayMode gDisplayMode;
-SDL_MouseMotionEvent gLastEvent;
-int gDone = 0;
+//SDL_Window* gWindow = nullptr;
+//SDL_Renderer *gRenderer = nullptr;
+//SDL_GLContext gGlContext;
+//SDL_DisplayMode gDisplayMode;
+//SDL_MouseMotionEvent gLastEvent;
 
-#include "Game.h"
+
 #include "NJLIInterface.h"
-
+#include "Game.h"
+#include "DeviceUtil.h"
 
 class Graphics
 {
@@ -349,7 +349,7 @@ static void UpdateFrame(void* param)
     graphics->update();
 }
 
-#if !(defined(__EMSCRIPTEN__) && __EMSCRIPTEN__)
+#if (defined(__IPHONEOS__) && __IPHONEOS__)
 
 static int EventFilter(void* userdata, SDL_Event* event)
 {
@@ -385,34 +385,16 @@ static int EventFilter(void* userdata, SDL_Event* event)
             break;
 #else
         case SDL_FINGERMOTION:
-        {
-            SDL_Log("SDL EVENT: Finger: %s touch=%ld, finger=%ld, x=%f, y=%f, dx=%f, dy=%f, pressure=%f",
-                    (event->type == SDL_FINGERDOWN) ? "down" : "up",
-                    (long) event->tfinger.touchId,
-                    (long) event->tfinger.fingerId,
-                    event->tfinger.x, event->tfinger.y,
-                    event->tfinger.dx, event->tfinger.dy, event->tfinger.pressure);
-        }
-            break;
         case SDL_FINGERDOWN:
-        {
-            SDL_Log("SDL EVENT: Finger: %s touch=%ld, finger=%ld, x=%f, y=%f, dx=%f, dy=%f, pressure=%f",
-                    (event->type == SDL_FINGERDOWN) ? "down" : "up",
-                    (long) event->tfinger.touchId,
-                    (long) event->tfinger.fingerId,
-                    event->tfinger.x, event->tfinger.y,
-                    event->tfinger.dx, event->tfinger.dy, event->tfinger.pressure);
-        }
-            break;
         case SDL_FINGERUP:
-        {
-            SDL_Log("SDL EVENT: Finger: %s touch=%ld, finger=%ld, x=%f, y=%f, dx=%f, dy=%f, pressure=%f",
-                    (event->type == SDL_FINGERDOWN) ? "down" : "up",
-                    (long) event->tfinger.touchId,
-                    (long) event->tfinger.fingerId,
-                    event->tfinger.x, event->tfinger.y,
-                    event->tfinger.dx, event->tfinger.dy, event->tfinger.pressure);
-        }
+            NJLI_HandleTouch((int) event->tfinger.touchId,
+                             (int) event->tfinger.fingerId,
+                             event->type,
+                             event->tfinger.x,
+                             event->tfinger.y,
+                             event->tfinger.dx,
+                             event->tfinger.dy,
+                             event->tfinger.pressure);
             break;
 #endif
         default:
@@ -494,57 +476,28 @@ static void handleInput()
         {
 #if !(defined(__IPHONEOS__) && __IPHONEOS__)
             case SDL_MOUSEMOTION:
-            {
-                SDL_Log("SDL EVENT: Mouse: moved to %d,%d (%d,%d) in window %d",
-                        event.motion.x, event.motion.y,
-                        event.motion.xrel, event.motion.yrel,
-                        event.motion.windowID);
-            }
-                break;
             case SDL_MOUSEBUTTONDOWN:
-            {
-                SDL_Log("SDL EVENT: Mouse: button %d pressed at %d,%d with click count %d in window %d",
-                        event.button.button, event.button.x, event.button.y, event.button.clicks,
-                        event.button.windowID);
-            }
-                break;
             case SDL_MOUSEBUTTONUP:
-            {
-                SDL_Log("SDL EVENT: Mouse: button %d released at %d,%d with click count %d in window %d",
-                        event.button.button, event.button.x, event.button.y, event.button.clicks,
-                        event.button.windowID);
-
-            }
+                NJLI_HandleMouse(event.button.button,
+                                 event.type,
+                                 event.button.x,
+                                 event.button.y,
+                                 event.button.clicks);
                 break;
+#endif
+                
+#if !(defined(__MACOSX__) && __MACOSX__)
             case SDL_FINGERMOTION:
-            {
-                SDL_Log("SDL EVENT: Finger: %s touch=%ld, finger=%ld, x=%f, y=%f, dx=%f, dy=%f, pressure=%f",
-                        (event.type == SDL_FINGERDOWN) ? "down" : "up",
-                        (long) event.tfinger.touchId,
-                        (long) event.tfinger.fingerId,
-                        event.tfinger.x, event.tfinger.y,
-                        event.tfinger.dx, event.tfinger.dy, event.tfinger.pressure);
-            }
-                break;
             case SDL_FINGERDOWN:
-            {
-                SDL_Log("SDL EVENT: Finger: %s touch=%ld, finger=%ld, x=%f, y=%f, dx=%f, dy=%f, pressure=%f",
-                        (event.type == SDL_FINGERDOWN) ? "down" : "up",
-                        (long) event.tfinger.touchId,
-                        (long) event.tfinger.fingerId,
-                        event.tfinger.x, event.tfinger.y,
-                        event.tfinger.dx, event.tfinger.dy, event.tfinger.pressure);
-            }
-                break;
             case SDL_FINGERUP:
-            {
-                SDL_Log("SDL EVENT: Finger: %s touch=%ld, finger=%ld, x=%f, y=%f, dx=%f, dy=%f, pressure=%f",
-                        (event.type == SDL_FINGERDOWN) ? "down" : "up",
-                        (long) event.tfinger.touchId,
-                        (long) event.tfinger.fingerId,
-                        event.tfinger.x, event.tfinger.y,
-                        event.tfinger.dx, event.tfinger.dy, event.tfinger.pressure);
-            }
+                NJLI_HandleTouch((int) event.tfinger.touchId,
+                                 (int) event.tfinger.fingerId,
+                                 event.type,
+                                 event.tfinger.x,
+                                 event.tfinger.y,
+                                 event.tfinger.dx,
+                                 event.tfinger.dy,
+                                 event.tfinger.pressure);
                 break;
 #endif
             case SDL_APP_DIDENTERFOREGROUND:
@@ -552,6 +505,7 @@ static void handleInput()
 #if (defined(__IPHONEOS__) && __IPHONEOS__)
                 SDL_iPhoneSetAnimationCallback(gWindow, 1, UpdateFrame, gGraphics.get());
 #endif
+                NJLI_HandleResume();
                 break;
                 
             case SDL_APP_DIDENTERBACKGROUND:
@@ -562,7 +516,8 @@ static void handleInput()
                 
             case SDL_APP_LOWMEMORY:
                 SDL_Log("SDL_APP_LOWMEMORY");
-                njli::NJLIGameEngine::receivedMemoryWarning();
+                NJLI_HandleLowMemory();
+                
                 break;
                 
             case SDL_APP_TERMINATING:
@@ -575,6 +530,7 @@ static void handleInput()
 #if (defined(__IPHONEOS__) && __IPHONEOS__)
                 SDL_iPhoneSetAnimationCallback(gWindow, 1, NULL, gGraphics.get());
 #endif
+                NJLI_HandlePause();
                 break;
                 
             case SDL_APP_WILLENTERFOREGROUND:
@@ -585,17 +541,22 @@ static void handleInput()
             
                 
             case SDL_WINDOWEVENT:
-                switch (event.window.event) {
+                switch (event.window.event)
+                {
+                    case SDL_WINDOWEVENT_RESTORED:
+                        NJLI_HandleResume();
+                        break;
+                    case SDL_WINDOWEVENT_MINIMIZED:
+                        NJLI_HandlePause();
+                        break;
                     case SDL_WINDOWEVENT_RESIZED:
+                    case SDL_WINDOWEVENT_SIZE_CHANGED:
                     {
                         int w, h;
-                        
                         SDL_GL_GetDrawableSize(gWindow, &w, &h);
-                        
-                        njli::NJLIGameEngine::resize(0, 0, w, h, 0);
-                        
-                        break;
+                        NJLI_HandleResize(w, h, gDisplayMode.format, gDisplayMode.refresh_rate);
                     }
+                        break;
                     case SDL_WINDOWEVENT_CLOSE:
                     {
                         SDL_Window *window = SDL_GetWindowFromID(event.window.windowID);
@@ -612,7 +573,12 @@ static void handleInput()
                         break;
                 }
                 break;
+            case SDL_KEYUP:
+                NJLI_HandleKeyUp(event.key.keysym.sym);
+                break;
             case SDL_KEYDOWN: {
+                NJLI_HandleKeyDown(event.key.keysym.sym);
+                
                 bool withControl = !!(event.key.keysym.mod & KMOD_CTRL);
                 bool withShift = !!(event.key.keysym.mod & KMOD_SHIFT);
                 bool withAlt = !!(event.key.keysym.mod & KMOD_ALT);
@@ -851,12 +817,40 @@ static void handleInput()
                 break;
             }
             case SDL_QUIT:
-                gDone = 1;
+                
+                NJLI_HandleQuit();
+                
                 break;
             
             case SDL_MOUSEWHEEL:
                 //SDL_MouseWheelEvent wheel = event.wheel;
                 
+                break;
+            case SDL_DROPFILE:
+            {
+                char *dropped_filedir = event.drop.file;
+                NJLI_HandleDropFile(dropped_filedir);
+                SDL_free(dropped_filedir);
+            }
+                break;
+            case SDL_DROPTEXT:
+            {
+                char *dropped_filedir = event.drop.file;
+                NJLI_HandleDropFile(dropped_filedir);
+                SDL_free(dropped_filedir);
+            }
+                break;
+            case SDL_DROPBEGIN:
+            {
+                printf("Dropped file begin: %u\n", event.drop.windowID);
+            }
+                break;
+            case SDL_DROPCOMPLETE:
+            {
+                printf("Dropped file begin: %u\n", event.drop.windowID);
+            }
+                break;
+            default:
                 break;
         }
     }
@@ -878,9 +872,8 @@ static void mainloop()
 
 #if defined(__EMSCRIPTEN__) || defined(__ANDROID__)
     
-    njli::NJLIGameEngine::resize(SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-                                 gDisplayMode.w, gDisplayMode.h,
-                                 0);
+    NJLI_HandleResize(gDisplayMode.w, gDisplayMode.h, gDisplayMode.format, gDisplayMode.refresh_rate);
+    
 #endif
 
 #if defined(__EMSCRIPTEN__)
@@ -1091,6 +1084,7 @@ int main(int argc, char** argv)
         printf("Could not initialize SDL\n");
         return 1;
     }
+    
 #if !defined (__ANDROID__)
     SDL_GetDesktopDisplayMode(0, &gDisplayMode);
 #endif
@@ -1108,6 +1102,7 @@ int main(int argc, char** argv)
 #if defined(__MACOSX__)
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 2);
     createRenderer();
+    SDL_EventState(SDL_DROPFILE, SDL_ENABLE);
 #endif
     
     /* create window and renderer */
@@ -1144,7 +1139,7 @@ int main(int argc, char** argv)
 #endif
     
     gGlContext = SDL_GL_CreateContext(gWindow);
-    if (!njli::NJLIGameEngine::create(SDL_GetPlatform()))
+    if (!njli::NJLIGameEngine::create(DeviceUtil::hardwareDescription().c_str()))
     {
         cerr << "Error initializing OpenGL" << endl;
         return 1;
@@ -1171,11 +1166,8 @@ int main(int argc, char** argv)
 #endif
     }
     
-    njli::NJLIGameEngine::destroy();
+    NJLI_HandleSurfaceDestroyed();
     
-    SDL_GL_DeleteContext(gGlContext);
-    SDL_DestroyWindow(gWindow);
-    SDL_Quit();
 #endif
     
     return 0;

@@ -3,6 +3,10 @@ In file included from /Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/ext
 #warning redirecting incorrect #include <sys/poll.h> to <poll.h>
  ^
 1 warning generated.
+/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/DeviceUtil.cpp:26:9: warning: unused variable 'errno' [-Wunused-variable]
+    int errno = 0;
+        ^
+1 warning generated.
 /Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/generated/swig/lua/lbullet.cpp:17370:13: warning: unused variable 'temp2' [-Wunused-variable]
   btScalar *temp2 ;
             ^
@@ -26,6 +30,10 @@ In file included from /Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/ext
 /Applications/Developer/emsdk_portable/emscripten/1.37.9/system/include/libc/sys/poll.h:1:2: warning: redirecting incorrect #include <sys/poll.h> to <poll.h> [-W#warnings]
 #warning redirecting incorrect #include <sys/poll.h> to <poll.h>
  ^
+1 warning generated.
+/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/DeviceUtil.cpp:26:9: warning: unused variable 'errno' [-Wunused-variable]
+    int errno = 0;
+        ^
 1 warning generated.
 /Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/generated/swig/lua/lbullet.cpp:17370:13: warning: unused variable 'temp2' [-Wunused-variable]
   btScalar *temp2 ;

@@ -35,8 +35,8 @@ extern "C" {
     void NJLI_HandleKeyDown(int keycode);
     void NJLI_HandleKeyUp(int keycode);
     void NJLI_HandleKeyboardFocusLost();
-    void NJLI_HandleMouse(int button, int action, float x, float y);
-    void NJLI_HandleTouch(int touchDevId, int pointerFingerId, int event, float x, float y, float pressure);
+    void NJLI_HandleMouse(int button, int eventType, float x, float y, int clicks);
+    void NJLI_HandleTouch(int touchDevId, int pointerFingerId, int eventType, float x, float y, float dx, float dy, float pressure);
     void NJLI_HandleAccel(float x, float y, float z);
     void NJLI_HandleSurfaceChanged();
     void NJLI_HandleSurfaceDestroyed();

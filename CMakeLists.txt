@@ -2515,6 +2515,7 @@ IF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" )
             ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/stb/${NJLI_BUILD_PLATFORM}/10.2/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/libstb.a
        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/tinyxml2/${NJLI_BUILD_PLATFORM}/10.2/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/libtinyxml2.a
                  ${NJLI_THIRDPARTY_DIRECTORY}/fmod/lib/${NJLI_BUILD_PLATFORM}/10.2/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/libfmod${NJLI_FMOD_POSTFIX}.${NJLI_FMOD_EXTENSION}
+                 ${NJLI_THIRDPARTY_DIRECTORY}/SDL2/lib/${NJLI_BUILD_PLATFORM}/10.2/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/libSDL2.a
         )
 
     SET ( CMAKE_OSX_ARCHITECTURES ${ARCHS_STANDARD_32_BIT} CACHE string "Build architecture for appletv" )
@@ -2577,6 +2578,7 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
             ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/stb/${NJLI_BUILD_PLATFORM}/10.3/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/libstb.a
        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/tinyxml2/${NJLI_BUILD_PLATFORM}/10.3/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/libtinyxml2.a
                  ${NJLI_THIRDPARTY_DIRECTORY}/fmod/lib/${NJLI_BUILD_PLATFORM}/10.3/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/libfmod${NJLI_FMOD_POSTFIX}.${NJLI_FMOD_EXTENSION}
+                 ${NJLI_THIRDPARTY_DIRECTORY}/SDL2/lib/${NJLI_BUILD_PLATFORM}/10.3/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/libSDL2.a
         )
 
     SET ( CMAKE_OSX_ARCHITECTURES ${ARCHS_STANDARD_32_BIT} CACHE string "Build architecture for iOS" )
@@ -2633,6 +2635,7 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
             ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/stb/${NJLI_BUILD_PLATFORM}/10.12/Release/libstb.a
        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/tinyxml2/${NJLI_BUILD_PLATFORM}/10.12/Release/libtinyxml2.a
                  ${NJLI_THIRDPARTY_DIRECTORY}/fmod/lib/${NJLI_BUILD_PLATFORM}/10.12/Release/libfmod.dylib
+                 ${NJLI_THIRDPARTY_DIRECTORY}/SDL2/lib/${NJLI_BUILD_PLATFORM}/10.12/Release/libSDL2.a
         )
     SET ( CMAKE_OSX_ARCHITECTURES ${ARCHS_STANDARD_32_BIT} CACHE string "Build architecture for macOS" )
     SET ( EXTRA_PLATFORM_LIBS
@@ -2684,6 +2687,7 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
          ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/nanovg/${NJLI_BUILD_PLATFORM}/libnanovg.a 
             ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/stb/${NJLI_BUILD_PLATFORM}/libstb.a
        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/tinyxml2/${NJLI_BUILD_PLATFORM}/libtinyxml2.a
+                 ${NJLI_THIRDPARTY_DIRECTORY}/SDL2/lib/${NJLI_BUILD_PLATFORM}/Release/libSDL2.a
         )
 
     #https://kripken.github.io/emscripten-site/docs/porting/files/packaging_files.html
@@ -2748,6 +2752,7 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "android" )
             ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/stb/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/libstb.a
        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/tinyxml2/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/libtinyxml2.a
                  ${NJLI_THIRDPARTY_DIRECTORY}/fmod/lib/${NJLI_BUILD_PLATFORM}/24/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/libfmod${NJLI_FMOD_POSTFIX}.so
+                                ${NJLI_THIRDPARTY_DIRECTORY}/SDL2/lib/android/23/Release/${ANDROID_ABI}/libSDL2.so 
         )
     #MESSAGE(${NJLIGameEngine_LBY})
 
@@ -3024,7 +3029,7 @@ IF( NOT ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
 ENDIF()
 
 IF( ${NJLI_BUILD_PLATFORM} STREQUAL "android" )
-    ADD_LIBRARY( njli SHARED 
+    ADD_LIBRARY( njli_source SHARED 
         ${NJLIGameEngine_HDRS} 
         ${NJLIGameEngine_SRCS} 
         ${njli_generated} 
@@ -3033,21 +3038,24 @@ IF( ${NJLI_BUILD_PLATFORM} STREQUAL "android" )
         ${NJLI_SOURCE_DIRECTORY}/njli/platform/main.cpp
         ${NJLIGameEngine_THIRDPARTY_INC}
         )
-
-    TARGET_LINK_LIBRARIES( njli ${EXTRA_PLATFORM_LIBS} 
+    TARGET_LINK_LIBRARIES( njli_source ${EXTRA_PLATFORM_LIBS} 
         ${NJLIGameEngine_LBY} 
-        ${NJLI_THIRDPARTY_DIRECTORY}/SDL2/lib/android/23/Release/${ANDROID_ABI}/libSDL2.so 
         )
+
 ELSE()
 
-    ADD_LIBRARY( libnjli_static STATIC ${NJLIGameEngine_SRCS} ${njli_generated} ${njli_generated_swig} ${njli_generated_swig_lua} )
+    ADD_LIBRARY( libnjli_static STATIC 
+        ${NJLIGameEngine_SRCS} ${njli_generated} ${njli_generated_swig} ${njli_generated_swig_lua} 
+        )
     SET_TARGET_PROPERTIES( libnjli_static PROPERTIES OUTPUT_NAME libnjli )
     SET_TARGET_PROPERTIES( libnjli_static PROPERTIES PREFIX "")
     TARGET_LINK_LIBRARIES( libnjli_static ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} )
     INSTALL( TARGETS libnjli_static DESTINATION lib/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE} )
 
     IF( NOT ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
-        ADD_LIBRARY( libnjli_shared SHARED ${NJLIGameEngine_SRCS} ${njli_generated} ${njli_generated_swig} ${njli_generated_swig_lua} )
+        ADD_LIBRARY( libnjli_shared SHARED 
+            ${NJLIGameEngine_SRCS} ${njli_generated} ${njli_generated_swig} ${njli_generated_swig_lua} 
+            )
         SET_TARGET_PROPERTIES( libnjli_shared PROPERTIES OUTPUT_NAME libnjli )
         SET_TARGET_PROPERTIES( libnjli_shared PROPERTIES PREFIX "")
         TARGET_LINK_LIBRARIES( libnjli_shared ${EXTRA_PLATFORM_LIBS} ${NJLIGameEngine_LBY} )
@@ -3101,16 +3109,18 @@ ELSE()
     TARGET_LINK_LIBRARIES( EngineSource
         ${NJLIGameEngine_LBY}
         ${EXTRA_PLATFORM_LIBS}
-        ${NJLI_THIRDPARTY_DIRECTORY}/SDL2/lib/${NJLI_BUILD_DIR}/Release/libSDL2.a
         )
+
+
+
+
 
     IF( NOT ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
         ADD_EXECUTABLE( EngineLibrary
-            ${NJLIGameEngine_SRCS} ${njli_generated} ${njli_generated_swig} ${njli_generated_swig_lua}
             ${NJLI_SOURCE_DIRECTORY}/njli/platform/main.cpp
             ${NJLI_RESOURCES}
-            ${NJLIGameEngine_THIRDPARTY_INC}
             )
+        ADD_DEPENDENCIES( EngineLibrary libnjli_shared)
         
         IF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" OR ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
             SET_TARGET_PROPERTIES (
@@ -3134,13 +3144,87 @@ ELSE()
                 XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER "com.njligames.engine.${NJLI_BUILD_PLATFORM}.source"
                 RESOURCE "${NJLI_RESOURCES}"
                 )
+        ELSE()
+            SET_TARGET_PROPERTIES(
+                EngineLibrary PROPERTIES
+                RESOURCE "${NJLI_RESOURCES}"
+                )
         ENDIF()
 
         TARGET_LINK_LIBRARIES( EngineLibrary
-            libnjli_shared
-            ${EXTRA_PLATFORM_LIBS}
-            ${NJLI_THIRDPARTY_DIRECTORY}/SDL2/lib/${NJLI_BUILD_DIR}/Release/libSDL2.a
+            libnjli_static
             )
+    ENDIF()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    #    IF( NOT ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
+    #        ADD_EXECUTABLE( EngineLibrary
+    #            ${NJLIGameEngine_SRCS} ${njli_generated} ${njli_generated_swig} ${njli_generated_swig_lua}
+    #            ${NJLI_SOURCE_DIRECTORY}/njli/platform/main.cpp
+    #            ${NJLI_RESOURCES}
+    #            ${NJLIGameEngine_THIRDPARTY_INC}
+    #            )
+    #        
+    #        IF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" OR ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
+    #            SET_TARGET_PROPERTIES (
+    #                EngineLibrary PROPERTIES
+    #                XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY "iPhone Developer"
+    #                XCODE_ATTRIBUTE_TARGETED_DEVICE_FAMILY ${NJLI_DEVICE_FAMILY}
+    #                XCODE_ATTRIBUTE_CLANG_ENABLE_OBJC_ARC YES
+    #                XCODE_ATTRIBUTE_INSTALL_PATH "${CMAKE_BINARY_DIR}/ProductRelease"
+    #                XCODE_ATTRIBUTE_COMBINE_HIDPI_IMAGES "NO"
+    #                XCODE_ATTRIBUTE_ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME "LaunchImage"
+    #                )
+    #        ENDIF()
+    #
+    #        IF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" OR ${NJLI_BUILD_PLATFORM} STREQUAL "ios" OR ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
+    #            SET_TARGET_PROPERTIES(
+    #                EngineLibrary PROPERTIES
+    #                MACOSX_BUNDLE YES
+    #                MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/${NJLI_BUILD_PLATFORM}/Info.plist"
+    #                XCODE_ATTRIBUTE_ASSETCATALOG_COMPILER_APPICON_NAME ${NJLI_APPICON_NAME}
+    #                XCODE_ATTRIBUTE_PRODUCT_NAME ${NJLI_BUILD_PLATFORM}
+    #                XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER "com.njligames.engine.${NJLI_BUILD_PLATFORM}.source"
+    #                RESOURCE "${NJLI_RESOURCES}"
+    #                )
+    #        ENDIF()
+    #
+    #        TARGET_LINK_LIBRARIES( EngineLibrary
+    #            libnjli_shared
+    #            ${EXTRA_PLATFORM_LIBS}
+    #            )
+
+
+
+
+
+
+
         #        ADD_EXECUTABLE( EngineLibrary
         #            ${NJLI_SOURCE_DIRECTORY}/njli/platform/main.cpp
         #            ${NJLI_RESOURCES}
@@ -3179,5 +3263,5 @@ ELSE()
         #            ${EXTRA_PLATFORM_LIBS}
         #            ${NJLI_THIRDPARTY_DIRECTORY}/SDL2/lib/${NJLI_BUILD_DIR}/Release/libSDL2.a
         #            )
-    ENDIF()
+    #ENDIF()
 ENDIF()

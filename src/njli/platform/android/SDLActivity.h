@@ -189,7 +189,7 @@ JNIEXPORT void JNICALL Java_source_android_engine_njligames_com_android_1android
  * Signature: (IIFF)V
  */
 JNIEXPORT void JNICALL Java_source_android_engine_njligames_com_android_1androidstudio_SDLActivity_onNativeMouse
-  (JNIEnv *, jclass, jint, jint, jfloat, jfloat);
+  (JNIEnv *, jclass, jint, jint, jfloat, jfloat, jint );
 
 /*
  * Class:     source_android_engine_njligames_com_android_androidstudio_SDLActivity
@@ -197,7 +197,7 @@ JNIEXPORT void JNICALL Java_source_android_engine_njligames_com_android_1android
  * Signature: (IIIFFF)V
  */
 JNIEXPORT void JNICALL Java_source_android_engine_njligames_com_android_1androidstudio_SDLActivity_onNativeTouch
-  (JNIEnv *, jclass, jint, jint, jint, jfloat, jfloat, jfloat);
+  (JNIEnv *, jclass, jint, jint, jint, jfloat, jfloat, jfloat, jfloat, jfloat);
 
 /*
  * Class:     source_android_engine_njligames_com_android_androidstudio_SDLActivity

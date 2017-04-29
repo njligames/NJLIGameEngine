@@ -228,9 +228,9 @@ JNIEXPORT void JNICALL Java_source_android_engine_njligames_com_android_1android
  * Signature: (IIFF)V
  */
 JNIEXPORT void JNICALL Java_source_android_engine_njligames_com_android_1androidstudio_SDLActivity_onNativeMouse
-  (JNIEnv *env, jclass cls, jint button, jint action, jfloat x, jfloat y)
+  (JNIEnv *env, jclass cls, jint button, jint action, jfloat x, jfloat y, jint clicks)
 {
-    NJLI_HandleMouse(button, action, x, y);
+    NJLI_HandleMouse(button, action, x, y, clicks);
 }
 
 
@@ -240,9 +240,9 @@ JNIEXPORT void JNICALL Java_source_android_engine_njligames_com_android_1android
  * Signature: (IIIFFF)V
  */
 JNIEXPORT void JNICALL Java_source_android_engine_njligames_com_android_1androidstudio_SDLActivity_onNativeTouch
-  (JNIEnv *env, jclass cls, jint touchDevId, jint pointerFingerId, jint event, jfloat x, jfloat y, jfloat pressure)
+  (JNIEnv *env, jclass cls, jint touchDevId, jint pointerFingerId, jint event, jfloat x, jfloat y, jfloat dx, jfloat dy, jfloat pressure)
 {
-    NJLI_HandleTouch(touchDevId, pointerFingerId, event, x, y, pressure);
+    NJLI_HandleTouch(touchDevId, pointerFingerId, event, x, y, dx, dy, pressure);
 }
 
 /*
