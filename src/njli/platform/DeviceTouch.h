@@ -130,16 +130,27 @@ public:
         m_scale = scaleFactor;
     }
     
-    void set(SDL_Finger *finger)
+//    void set(SDL_Finger *finger)
+//    {
+//        
+//        setTimeStampFrame(0);
+//        m_prev_xpos = m_xpos;
+//        m_prev_ypos = m_ypos;
+//        m_xpos = finger->x * njli::NJLIGameEngine::width();
+//        m_ypos = finger->y * njli::NJLIGameEngine::height();
+//        m_address = finger->id;
+//        m_pressure = finger->pressure;
+//    }
+    
+    void set(int touchDevId, int pointerFingerId, int eventType, float x, float y, float dx, float dy, float pressure)
     {
-        
         setTimeStampFrame(0);
         m_prev_xpos = m_xpos;
         m_prev_ypos = m_ypos;
-        m_xpos = finger->x * njli::NJLIGameEngine::width();
-        m_ypos = finger->y * njli::NJLIGameEngine::height();
-        m_address = finger->id;
-        m_pressure = finger->pressure;
+        m_xpos = x;
+        m_ypos = y;
+        m_address = pointerFingerId;
+        m_pressure = pressure;
     }
     
     void set(u32 x, u32 y)

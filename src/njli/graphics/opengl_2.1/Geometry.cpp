@@ -1178,6 +1178,8 @@ namespace njli
     
     void Geometry::unLoadGPU_Internal()
     {
+        unLoadGPU();
+        
         SDL_assert(m_UnLoadGPU);
         
         if(m_modelViewBufferID == -1)

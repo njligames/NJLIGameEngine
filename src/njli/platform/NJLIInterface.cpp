@@ -15,6 +15,9 @@ SDL_GLContext gGlContext;
 SDL_DisplayMode gDisplayMode;
 SDL_MouseMotionEvent gLastEvent;
 int gDone = 0;
+int gXOffset = 0;
+int gYOffset = 0;
+int gNumTouches = 1;
 
 void NJLI_HandleLowMemory()
 {
@@ -45,7 +48,7 @@ void NJLI_HandleResize(int width, int height, int sdlFormat, float refreshRate)
     gDisplayMode.h = height;
     gDisplayMode.refresh_rate = refreshRate;
     
-    njli::NJLIGameEngine::resize(0, 0,
+    njli::NJLIGameEngine::resize(gXOffset, gYOffset,
                                  gDisplayMode.w, gDisplayMode.h,
                                  0);
     
@@ -86,55 +89,38 @@ void NJLI_HandleKeyboardFocusLost()
 
 void NJLI_HandleMouse(int button, int eventType, float x, float y, int clicks)
 {
-    switch(eventType)
-    {
-        case SDL_MOUSEMOTION:
-            SDL_Log("SDL EVENT: Mouse: button %d released at %f,%f with click count %d in window %d", button, x, y, clicks, 0);
-            break;
-        case SDL_MOUSEBUTTONDOWN:
-            SDL_Log("SDL EVENT: Mouse: button %d released at %f,%f with click count %d in window %d", button, x, y, clicks, 0);
-            break;
-        case SDL_MOUSEBUTTONUP:
-            SDL_Log("SDL EVENT: Mouse: button %d released at %f,%f with click count %d in window %d", button, x, y, clicks, 0);
-            break;
-        default:
-            break;
-    }
+//    switch(eventType)
+//    {
+//        case SDL_MOUSEMOTION:
+//            SDL_Log("SDL EVENT: Mouse: button %d released at %f,%f with click count %d in window %d", button, x, y, clicks, 0);
+//            break;
+//        case SDL_MOUSEBUTTONDOWN:
+//            SDL_Log("SDL EVENT: Mouse: button %d released at %f,%f with click count %d in window %d", button, x, y, clicks, 0);
+//            break;
+//        case SDL_MOUSEBUTTONUP:
+//            SDL_Log("SDL EVENT: Mouse: button %d released at %f,%f with click count %d in window %d", button, x, y, clicks, 0);
+//            break;
+//        default:
+//            break;
+//    }
+    
+    njli::NJLIGameEngine::mouse(button, eventType, x, y, clicks);
     
 }
 
+void NJLI_HandleStartTouches()
+{
+    njli::NJLIGameEngine::startHandleFingers();
+}
 
 void NJLI_HandleTouch(int touchDevId, int pointerFingerId, int eventType, float x, float y, float dx, float dy, float pressure)
 {
-    switch(eventType)
-    {
-        case SDL_FINGERMOTION:
-            SDL_Log("SDL EVENT: Finger: %s touch=%ld, finger=%ld, x=%f, y=%f, dx=%f, dy=%f, pressure=%f",
-                    (eventType == SDL_FINGERDOWN) ? "down" : "up",
-                    (long) touchDevId,
-                    (long) pointerFingerId,
-                    x, y,
-                    dx, dy, pressure);
-            break;
-        case SDL_FINGERDOWN:
-            SDL_Log("SDL EVENT: Finger: %s touch=%ld, finger=%ld, x=%f, y=%f, dx=%f, dy=%f, pressure=%f",
-                    (eventType == SDL_FINGERDOWN) ? "down" : "up",
-                    (long) touchDevId,
-                    (long) pointerFingerId,
-                    x, y,
-                    dx, dy, pressure);
-            break;
-        case SDL_FINGERUP:
-            SDL_Log("SDL EVENT: Finger: %s touch=%ld, finger=%ld, x=%f, y=%f, dx=%f, dy=%f, pressure=%f",
-                    (eventType == SDL_FINGERDOWN) ? "down" : "up",
-                    (long) touchDevId,
-                    (long) pointerFingerId,
-                    x, y,
-                    dx, dy, pressure);
-            break;
-        default:
-            break;
-    }
+    njli::NJLIGameEngine::handleFinger(touchDevId, pointerFingerId, eventType, x, y, dx, dy, pressure);
+}
+
+void NJLI_HandleFinishTouches()
+{
+    njli::NJLIGameEngine::finishHandleFingers();
 }
 
 void NJLI_HandleAccel(float x, float y, float z)

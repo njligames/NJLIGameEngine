@@ -23,16 +23,22 @@ public:
     static void render();
     static void destroy();
 
-    static void setTouch(const void* touch, const int index, const unsigned long num_touches);
-    static void setTouch(int deviceIndex, int touchIndex, int num_touches);
-    static void setTouch(const int x, const int y);
+//    static void setTouch(const void* touch, const int index, const unsigned long num_touches);
+////    static void setTouch(int deviceIndex, int touchIndex, int num_touches);
+//    static void setTouch(const int x, const int y);
+//    static void setTouch(int touchDevId, int pointerFingerId, int eventType, float x, float y, float dx, float dy, float pressure);
+    static void handleFinger(int touchDevId, int pointerFingerId, int eventType, float x, float y, float dx, float dy, float pressure);
+    static void finishHandleFingers();
+    static void startHandleFingers();
+    
+    static void mouse(int button, int eventType, float x, float y, int clicks);
 
-    static void clearNodeTouches();
-
-    static void touchDown();
-    static void touchUp();
-    static void touchMove();
-    static void touchCancelled();
+//    static void clearNodeTouches();
+//
+//    static void touchDown();
+//    static void touchUp();
+//    static void touchMove();
+//    static void touchCancelled();
 
     static void willResignActive();
     static void didBecomeActive();

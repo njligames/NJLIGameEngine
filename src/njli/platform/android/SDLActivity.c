@@ -7,6 +7,10 @@
 
 #ifdef __ANDROID__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /* Include the SDL main definition header */
 #include "SDL_main.h"
 
@@ -225,7 +229,7 @@ JNIEXPORT void JNICALL Java_source_android_engine_njligames_com_android_1android
 /*
  * Class:     source_android_engine_njligames_com_android_androidstudio_SDLActivity
  * Method:    onNativeMouse
- * Signature: (IIFF)V
+ * Signature: (IIFFI)V
  */
 JNIEXPORT void JNICALL Java_source_android_engine_njligames_com_android_1androidstudio_SDLActivity_onNativeMouse
   (JNIEnv *env, jclass cls, jint button, jint action, jfloat x, jfloat y, jint clicks)
@@ -233,16 +237,35 @@ JNIEXPORT void JNICALL Java_source_android_engine_njligames_com_android_1android
     NJLI_HandleMouse(button, action, x, y, clicks);
 }
 
+/*
+ * Class:     source_android_engine_njligames_com_android_androidstudio_SDLActivity
+ * Method:    onNativeStartTouches
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_source_android_engine_njligames_com_android_1androidstudio_SDLActivity_onNativeStartTouches(JNIEnv *env, jclass cls)
+{
+    NJLI_HandleStartTouches();
+}
 
 /*
  * Class:     source_android_engine_njligames_com_android_androidstudio_SDLActivity
  * Method:    onNativeTouch
- * Signature: (IIIFFF)V
+ * Signature: (IIIFFFFF)V
  */
 JNIEXPORT void JNICALL Java_source_android_engine_njligames_com_android_1androidstudio_SDLActivity_onNativeTouch
   (JNIEnv *env, jclass cls, jint touchDevId, jint pointerFingerId, jint event, jfloat x, jfloat y, jfloat dx, jfloat dy, jfloat pressure)
 {
     NJLI_HandleTouch(touchDevId, pointerFingerId, event, x, y, dx, dy, pressure);
+}
+
+/*
+ * Class:     source_android_engine_njligames_com_android_androidstudio_SDLActivity
+ * Method:    onNativeFinishTouches
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_source_android_engine_njligames_com_android_1androidstudio_SDLActivity_onNativeFinishTouches(JNIEnv *env, jclass cls)
+{
+    NJLI_HandleFinishTouches();
 }
 
 /*
@@ -319,11 +342,19 @@ JNIEXPORT jstring JNICALL Java_source_android_engine_njligames_com_android_1andr
     return (*env)->NewStringUTF(env, _ret);
 }
 
-JNIEXPORT void JNICALL Java_source_android_engine_njligames_com_android_1androidstudio_SDLActivity_initAssetManager(JNIEnv * env, jclass jclazz, jobject java_asset_manager, jstring filesDir) {
-    jboolean iscopy;
+/*
+ * Class:     source_android_engine_njligames_com_android_androidstudio_SDLActivity
+ * Method:    initAssetManager
+ * Signature: (Landroid/content/res/AssetManager;)V
+ */
+void Java_source_android_engine_njligames_com_android_1androidstudio_SDLActivity_initAssetManager(JNIEnv * env, jclass jclazz, jobject java_asset_manager)
+{
 
     initAssetManager(AAssetManager_fromJava(env, java_asset_manager));
 }
 
+#ifdef __cplusplus
+}
 #endif
 
+#endif

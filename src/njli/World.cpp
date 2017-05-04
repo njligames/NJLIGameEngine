@@ -350,15 +350,13 @@ namespace njli
 //        return m_WorldSQLite;
 //    }
     
-    void World::touchDown(DeviceTouch **m_CurrentTouches)
+    void World::touchDown(DeviceTouch **touches)
     {
-//        SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "World::touchDown\n");
-        
         WorldState *currentState = dynamic_cast<WorldState*>(m_stateMachine->getState());
         
         if(currentState)
         {
-            currentState->touchDown(m_CurrentTouches);
+            currentState->touchDown(touches);
         }
         else
         {
@@ -366,20 +364,20 @@ namespace njli
         }
         
         if(getScene())
-            getScene()->touchDown(m_CurrentTouches);
+            getScene()->touchDown(touches);
         
         char buffer[256];
         sprintf(buffer, "%s", "__NJLITouchDown");
-        njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, m_CurrentTouches);
+        njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, touches);
     }
     
-    void World::touchUp(DeviceTouch **m_CurrentTouches)
+    void World::touchUp(DeviceTouch **touches)
     {
         WorldState *currentState = dynamic_cast<WorldState*>(m_stateMachine->getState());
         
         if(currentState)
         {
-            currentState->touchUp(m_CurrentTouches);
+            currentState->touchUp(touches);
         }
         else
         {
@@ -387,20 +385,20 @@ namespace njli
         }
         
         if(getScene())
-            getScene()->touchUp(m_CurrentTouches);
+            getScene()->touchUp(touches);
         
         char buffer[256];
         sprintf(buffer, "%s", "__NJLITouchUp");
-        njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, m_CurrentTouches);
+        njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, touches);
     }
     
-    void World::touchMove(DeviceTouch **m_CurrentTouches)
+    void World::touchMove(DeviceTouch **touches)
     {
         WorldState *currentState = dynamic_cast<WorldState*>(m_stateMachine->getState());
         
         if(currentState)
         {
-            currentState->touchMove(m_CurrentTouches);
+            currentState->touchMove(touches);
         }
         else
         {
@@ -408,20 +406,20 @@ namespace njli
         }
         
         if(getScene())
-            getScene()->touchMove(m_CurrentTouches);
+            getScene()->touchMove(touches);
         
         char buffer[256];
         sprintf(buffer, "%s", "__NJLITouchMove");
-        njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, m_CurrentTouches);
+        njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, touches);
     }
     
-    void World::touchCancelled(DeviceTouch **m_CurrentTouches)
+    void World::touchCancelled(DeviceTouch **touches)
     {
         WorldState *currentState = dynamic_cast<WorldState*>(m_stateMachine->getState());
         
         if(currentState)
         {
-            currentState->touchCancelled(m_CurrentTouches);
+            currentState->touchCancelled(touches);
         }
         else
         {
@@ -429,13 +427,76 @@ namespace njli
         }
         
         if(getScene())
-            getScene()->touchCancelled(m_CurrentTouches);
+            getScene()->touchCancelled(touches);
         
         char buffer[256];
         sprintf(buffer, "%s", "__NJLITouchCancelled");
-        njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, m_CurrentTouches);
+        njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, touches);
     }
     
+    
+    void World::touchDown(const DeviceTouch &touch)
+    {
+//        WorldState *currentState = dynamic_cast<WorldState*>(m_stateMachine->getState());
+//        
+//        if(currentState)
+//        {
+//            currentState->touchDown(touches);
+//        }
+//        else
+//        {
+//            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no WorldState\n");
+//        }
+//        
+//        if(getScene())
+//            getScene()->touchDown(touches);
+//        
+//        char buffer[256];
+//        sprintf(buffer, "%s", "__NJLITouchDown");
+//        njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, touches);
+    }
+    
+    void World::touchUp(const DeviceTouch &touch)
+    {
+//        WorldState *currentState = dynamic_cast<WorldState*>(m_stateMachine->getState());
+//        
+//        if(currentState)
+//        {
+//            currentState->touchUp(touches);
+//        }
+//        else
+//        {
+//            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no WorldState\n");
+//        }
+//        
+//        if(getScene())
+//            getScene()->touchUp(touches);
+//        
+//        char buffer[256];
+//        sprintf(buffer, "%s", "__NJLITouchUp");
+//        njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, touches);
+    }
+    
+    void World::touchMove(const DeviceTouch &touch)
+    {
+//        WorldState *currentState = dynamic_cast<WorldState*>(m_stateMachine->getState());
+//        
+//        if(currentState)
+//        {
+//            currentState->touchMove(touches);
+//        }
+//        else
+//        {
+//            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no WorldState\n");
+//        }
+//        
+//        if(getScene())
+//            getScene()->touchMove(touches);
+//        
+//        char buffer[256];
+//        sprintf(buffer, "%s", "__NJLITouchMove");
+//        njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, touches);
+    }
     
     void World::keyboardShow()
     {
@@ -585,9 +646,9 @@ namespace njli
         
     }
     
-    void World::resize(s32 width, s32 height, s32 orientation)
+    void World::resize(s32 x, s32 y, s32 width, s32 height, s32 orientation)
     {
-        setGLViewSize(0, 0, width, height);
+        setGLViewSize(x, y, width, height);
         m_ViewPortDimensions->setX(width);
         m_ViewPortDimensions->setY(height);
         getWorldInput()->setOrientation(orientation);

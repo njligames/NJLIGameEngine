@@ -304,7 +304,7 @@ SDLTest_PrintEvent(SDL_Event * event)
             break;
             
         case SDL_FINGERDOWN:
-//        case SDL_FINGERUP:
+        case SDL_FINGERUP:
             SDL_Log("SDL EVENT: Finger: %s touch=%ld, finger=%ld, x=%f, y=%f, dx=%f, dy=%f, pressure=%f",
                     (event->type == SDL_FINGERDOWN) ? "down" : "up",
                     (long) event->tfinger.touchId,
@@ -353,13 +353,15 @@ static void UpdateFrame(void* param)
 
 static int EventFilter(void* userdata, SDL_Event* event)
 {
-    njli::NJLIGameEngine::clearNodeTouches();
+#if ((defined(__IPHONEOS__) && __IPHONEOS__) || (defined(__ANDROID__) && __ANDROID__))
+    NJLI_HandleStartTouches();
+#endif
     
     Uint32 eventType = event->type;
     
     switch (eventType)
     {
-#if (defined(__MACOSX__) && __MACOSX__)
+#if ((defined(__MACOSX__) && __MACOSX__) || (defined(__EMSCRIPTEN__) && __EMSCRIPTEN__))
         case SDL_MOUSEMOTION:
         {
             SDL_Log("SDL EVENT: Mouse: moved to %d,%d (%d,%d) in window %d",
@@ -383,7 +385,9 @@ static int EventFilter(void* userdata, SDL_Event* event)
             
         }
             break;
-#else
+#endif
+            
+#if ((defined(__IPHONEOS__) && __IPHONEOS__) || (defined(__ANDROID__) && __ANDROID__))
         case SDL_FINGERMOTION:
         case SDL_FINGERDOWN:
         case SDL_FINGERUP:
@@ -400,6 +404,10 @@ static int EventFilter(void* userdata, SDL_Event* event)
         default:
             break;
     }
+    
+#if ((defined(__IPHONEOS__) && __IPHONEOS__) || (defined(__ANDROID__) && __ANDROID__))
+    NJLI_HandleFinishTouches();
+#endif
     
     return 1;
 }
@@ -474,7 +482,8 @@ static void handleInput()
     {
         switch (event.type)
         {
-#if !(defined(__IPHONEOS__) && __IPHONEOS__)
+                
+#if ((defined(__MACOSX__) && __MACOSX__) || (defined(__EMSCRIPTEN__) && __EMSCRIPTEN__))
             case SDL_MOUSEMOTION:
             case SDL_MOUSEBUTTONDOWN:
             case SDL_MOUSEBUTTONUP:
@@ -486,22 +495,29 @@ static void handleInput()
                 break;
 #endif
                 
-#if !(defined(__MACOSX__) && __MACOSX__)
-            case SDL_FINGERMOTION:
-            case SDL_FINGERDOWN:
-            case SDL_FINGERUP:
-                NJLI_HandleTouch((int) event.tfinger.touchId,
-                                 (int) event.tfinger.fingerId,
-                                 event.type,
-                                 event.tfinger.x,
-                                 event.tfinger.y,
-                                 event.tfinger.dx,
-                                 event.tfinger.dy,
-                                 event.tfinger.pressure);
-                break;
-#endif
+//#if ((defined(__IPHONEOS__) && __IPHONEOS__) || (defined(__ANDROID__) && __ANDROID__))
+//            case SDL_FINGERMOTION:
+//            case SDL_FINGERDOWN:
+//            case SDL_FINGERUP:
+//            {
+//                NJLI_HandleTouch((int) event.tfinger.touchId,
+//                                 (int) event.tfinger.fingerId,
+//                                 event.type,
+//                                 event.tfinger.x,
+//                                 event.tfinger.y,
+//                                 event.tfinger.dx,
+//                                 event.tfinger.dy,
+//                                 event.tfinger.pressure);
+//            }
+//                break;
+//            case SDL_MULTIGESTURE:
+//                SDL_Log("SDL_EVENT: Multi gesture fingers: %d", event.mgesture.numFingers);
+//                gNumTouches = event.mgesture.numFingers;
+//                break;
+//#endif
             case SDL_APP_DIDENTERFOREGROUND:
                 SDL_Log("SDL_APP_DIDENTERFOREGROUND");
+                
 #if (defined(__IPHONEOS__) && __IPHONEOS__)
                 SDL_iPhoneSetAnimationCallback(gWindow, 1, UpdateFrame, gGraphics.get());
 #endif
@@ -553,7 +569,11 @@ static void handleInput()
                     case SDL_WINDOWEVENT_SIZE_CHANGED:
                     {
                         int w, h;
+#if defined(__MACOSX__)
+                        SDL_GetWindowSize(gWindow, &w, &h);
+#else
                         SDL_GL_GetDrawableSize(gWindow, &w, &h);
+#endif
                         NJLI_HandleResize(w, h, gDisplayMode.format, gDisplayMode.refresh_rate);
                     }
                         break;
@@ -823,6 +843,11 @@ static void handleInput()
                 break;
             
             case SDL_MOUSEWHEEL:
+                SDL_Log("SDL EVENT: Mouse: wheel scrolled %d in x and %d in y (reversed: %d) in window %d",
+                        event.wheel.x, event.wheel.y, event.wheel.direction, event.wheel.windowID);
+                gXOffset -= (event.wheel.x * 1);
+                gYOffset -= (event.wheel.y * 1);
+                NJLI_HandleResize(gDisplayMode.w, gDisplayMode.h, gDisplayMode.format, gDisplayMode.refresh_rate);
                 //SDL_MouseWheelEvent wheel = event.wheel;
                 
                 break;
@@ -854,6 +879,10 @@ static void handleInput()
                 break;
         }
     }
+    
+#if !(defined(__MACOSX__) && __MACOSX__)
+#endif
+    
 }
 
 #if !(defined(__IPHONEOS__) && __IPHONEOS__)
@@ -877,8 +906,6 @@ static void mainloop()
 #endif
 
 #if defined(__EMSCRIPTEN__)
-    
-
     
     if(gDone)
     {
@@ -1071,6 +1098,7 @@ static void createRenderer()
         if (SDL_strcasecmp(info.name, "opengl") == 0)
         {
             gRenderer = SDL_CreateRenderer(gWindow, j, 0);
+            return;
         }
     }
 }
@@ -1101,7 +1129,6 @@ int main(int argc, char** argv)
     
 #if defined(__MACOSX__)
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 2);
-    createRenderer();
     SDL_EventState(SDL_DROPFILE, SDL_ENABLE);
 #endif
     
@@ -1112,6 +1139,8 @@ int main(int argc, char** argv)
                                SDL_WINDOW_OPENGL
 #if defined(__MACOSX__)
                                | SDL_WINDOW_MAXIMIZED
+                               | SDL_WINDOW_ALWAYS_ON_TOP
+                               | SDL_WINDOW_UTILITY
 #else
                                | SDL_WINDOW_FULLSCREEN
 #endif
@@ -1120,6 +1149,10 @@ int main(int argc, char** argv)
                                | SDL_WINDOW_ALLOW_HIGHDPI
 #endif
                                );
+    
+#if defined(__MACOSX__)
+    createRenderer();
+#endif
     
     int w, h;
     SDL_GetWindowSize(gWindow, &w, &h);

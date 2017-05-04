@@ -17,6 +17,9 @@ extern SDL_GLContext gGlContext;
 extern SDL_DisplayMode gDisplayMode;
 extern SDL_MouseMotionEvent gLastEvent;
 extern int gDone;
+extern int gXOffset;
+extern int gYOffset;
+extern int gNumTouches;
 
 #ifdef __cplusplus
 extern "C" {
@@ -36,7 +39,11 @@ extern "C" {
     void NJLI_HandleKeyUp(int keycode);
     void NJLI_HandleKeyboardFocusLost();
     void NJLI_HandleMouse(int button, int eventType, float x, float y, int clicks);
+    
+    void NJLI_HandleStartTouches();
     void NJLI_HandleTouch(int touchDevId, int pointerFingerId, int eventType, float x, float y, float dx, float dy, float pressure);
+    void NJLI_HandleFinishTouches();
+    
     void NJLI_HandleAccel(float x, float y, float z);
     void NJLI_HandleSurfaceChanged();
     void NJLI_HandleSurfaceDestroyed();

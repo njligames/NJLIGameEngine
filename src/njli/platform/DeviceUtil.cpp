@@ -35,6 +35,10 @@ std::string DeviceUtil::hardwareString()
     printf("version     = %s\n", buffer.version);
     printf("machine     = %s\n", buffer.machine);
 
+    hardware = std::string(buffer.sysname);
+    hardware += "_";
+    hardware += buffer.machine;
+
     return hardware;
 
 #else

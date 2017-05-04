@@ -58,7 +58,8 @@ bool NJLIGameEngine::create(const char* deviceName, bool initLua)
 void NJLIGameEngine::resize(int x, int y, int width, int height,
     int orientation)
 {
-    njli::World::getInstance()->resize(width, height, orientation);
+    if(njli::World::hasInstance())
+        njli::World::getInstance()->resize(x, y, width, height, orientation);
 }
     int NJLIGameEngine::width()
     {
@@ -145,22 +146,63 @@ void NJLIGameEngine::render() { njli::World::getInstance()->render(); }
 
 void NJLIGameEngine::destroy() { njli::World::destroyInstance(); }
 
-void NJLIGameEngine::setTouch(const void* touch, const int index,
-    const unsigned long num_touches)
-{
-    //    SDL_LogVerbose(SDL_LOG_CATEGORY_TEST, "set_touch(%s)\n", "?");
-    njli::World::getInstance()->getWorldInput()->setTouch(touch,
-                                                          index,
-                                                          num_touches);
-}
-    void NJLIGameEngine::setTouch(int deviceIndex, int touchIndex, int num_touches)
+//void NJLIGameEngine::setTouch(const void* touch, const int index,
+//    const unsigned long num_touches)
+//{
+//    //    SDL_LogVerbose(SDL_LOG_CATEGORY_TEST, "set_touch(%s)\n", "?");
+//    njli::World::getInstance()->getWorldInput()->setTouch(touch,
+//                                                          index,
+//                                                          num_touches);
+//}
+//    void NJLIGameEngine::setTouch(int deviceIndex, int touchIndex, int num_touches)
+//    {
+//        njli::World::getInstance()->getWorldInput()->setTouch(deviceIndex, touchIndex, num_touches);
+//    }
+//    void NJLIGameEngine::setTouch(const int x, const int y)
+//    {
+//        njli::World::getInstance()->getWorldInput()->setTouch(x, y, 0, 1, 1.0);
+//    }
+//    
+//    void NJLIGameEngine::setTouch(int touchDevId, int pointerFingerId, int eventType, float x, float y, float dx, float dy, float pressure)
+//    {
+//        
+//    }
+    
+//    void NJLIGameEngine::finger(int touchDevId, int pointerFingerId, int eventType, float x, float y, float dx, float dy, float pressure)
+//    {
+//        
+//    }
+//    
+//    void NJLIGameEngine::fingers()
+//    {
+//        
+//    }
+//    
+//    void NJLIGameEngine::resetFingers()
+//    {
+//        
+//    }
+    
+    void NJLIGameEngine::handleFinger(int touchDevId, int pointerFingerId, int eventType, float x, float y, float dx, float dy, float pressure)
     {
-        njli::World::getInstance()->getWorldInput()->setTouch(deviceIndex, touchIndex, num_touches);
+        njli::World::getInstance()->getWorldInput()->addFinger(touchDevId, pointerFingerId, eventType, x, y, dx, dy, pressure);
     }
-    void NJLIGameEngine::setTouch(const int x, const int y)
+    
+    void NJLIGameEngine::finishHandleFingers()
     {
-        njli::World::getInstance()->getWorldInput()->setTouch(x, y, 0, 1, 1.0);
+        njli::World::getInstance()->getWorldInput()->finishHandleFingers();
     }
+    
+    void NJLIGameEngine::startHandleFingers()
+    {
+        njli::World::getInstance()->getWorldInput()->startHandleFingers();
+    }
+    
+    void NJLIGameEngine::mouse(int button, int eventType, float x, float y, int clicks)
+    {
+        
+    }
+    
 //void NJLIGameEngine::setTouch(const int x, const int y, const int index,
 //    const unsigned long num_touches, float scaleFactor)
 //{
@@ -181,30 +223,30 @@ void NJLIGameEngine::setTouch(const void* touch, const int index,
 //        xx, yy, index, num_touches, scaleFactor);
 //}
 
-void NJLIGameEngine::clearNodeTouches()
-{
-    njli::World::getInstance()->getWorldInput()->clearNodeTouches();
-}
-
-void NJLIGameEngine::touchDown()
-{
-    //    SDL_LogVerbose(SDL_LOG_CATEGORY_TEST, "touch_down(%s)\n", "");
-    njli::World::getInstance()->getWorldInput()->touchDown();
-}
-void NJLIGameEngine::touchUp()
-{
-    //    SDL_LogVerbose(SDL_LOG_CATEGORY_TEST, "touch_up(%s)\n", "");
-    njli::World::getInstance()->getWorldInput()->touchUp();
-}
-void NJLIGameEngine::touchMove()
-{
-    //    SDL_LogVerbose(SDL_LOG_CATEGORY_TEST, "touch_move(%s)\n", "");
-    njli::World::getInstance()->getWorldInput()->touchMove();
-}
-void NJLIGameEngine::touchCancelled()
-{
-    njli::World::getInstance()->getWorldInput()->touchCancelled();
-}
+//void NJLIGameEngine::clearNodeTouches()
+//{
+//    njli::World::getInstance()->getWorldInput()->clearNodeTouches();
+//}
+//
+//void NJLIGameEngine::touchDown()
+//{
+//    //    SDL_LogVerbose(SDL_LOG_CATEGORY_TEST, "touch_down(%s)\n", "");
+//    njli::World::getInstance()->getWorldInput()->touchDown();
+//}
+//void NJLIGameEngine::touchUp()
+//{
+//    //    SDL_LogVerbose(SDL_LOG_CATEGORY_TEST, "touch_up(%s)\n", "");
+//    njli::World::getInstance()->getWorldInput()->touchUp();
+//}
+//void NJLIGameEngine::touchMove()
+//{
+//    //    SDL_LogVerbose(SDL_LOG_CATEGORY_TEST, "touch_move(%s)\n", "");
+//    njli::World::getInstance()->getWorldInput()->touchMove();
+//}
+//void NJLIGameEngine::touchCancelled()
+//{
+//    njli::World::getInstance()->getWorldInput()->touchCancelled();
+//}
 
     void NJLIGameEngine::willResignActive()
     {

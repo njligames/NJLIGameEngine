@@ -220,29 +220,34 @@ public:
     /**
          *  <#Description#>
          *
-         *  @param m_CurrentTouches <#m_CurrentTouches description#>
+         *  @param touches <#touches description#>
          */
-    void touchDown(DeviceTouch** m_CurrentTouches);
+    void touchDown(DeviceTouch** touches);
     /**
          *  <#Description#>
          *
-         *  @param m_CurrentTouches <#m_CurrentTouches description#>
+         *  @param touches <#touches description#>
          */
-    void touchUp(DeviceTouch** m_CurrentTouches);
+    void touchUp(DeviceTouch** touches);
     /**
          *  <#Description#>
          *
-         *  @param m_CurrentTouches <#m_CurrentTouches description#>
+         *  @param touches <#touches description#>
          */
-    void touchMove(DeviceTouch** m_CurrentTouches);
+    void touchMove(DeviceTouch** touches);
     /**
          *  <#Description#>
          *
-         *  @param m_CurrentTouches <#m_CurrentTouches description#>
+         *  @param touches <#touches description#>
          */
-    void touchCancelled(DeviceTouch** m_CurrentTouches);
+    void touchCancelled(DeviceTouch** touches);
     
     
+    
+    
+    void touchDown(const DeviceTouch &touch);
+    void touchUp(const DeviceTouch &touch);
+    void touchMove(const DeviceTouch &touch);
     
     
     void keyboardShow();
@@ -294,7 +299,7 @@ public:
          *  @param height      <#height description#>
          *  @param orientation <#orientation description#>
          */
-    void resize(s32 width, s32 height, s32 orientation);
+    void resize(s32 x, s32 y, s32 width, s32 height, s32 orientation);
 
     /**
          *  <#Description#>

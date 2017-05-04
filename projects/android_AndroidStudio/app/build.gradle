@@ -8,9 +8,21 @@ android {
     }
     sourceSets {
         main {
-            jni.srcDirs = ['/src/main/cpp']
+            //jni.srcDirs = ['/src/main/cpp']
             java.srcDirs = ['src/main/java']
-            jniLibs.srcDirs = ['src/main/jniLibs']
+            jniLibs.srcDirs = [ 'src/main/jniLibs'
+//                    '${CMAKE_THIRDPARTY_DIR}/BUILD/lib/ImGuizmo/android/19/Release',
+//                    '${CMAKE_THIRDPARTY_DIR}/BUILD/lib/assimp/android/19/Release',
+//                    '${CMAKE_THIRDPARTY_DIR}/BUILD/lib/bullet3/android/19/Release',
+//                    '${CMAKE_THIRDPARTY_DIR}/BUILD/lib/glm/android/19/Release',
+//                    '${CMAKE_THIRDPARTY_DIR}/BUILD/lib/imgui/android/19/Release',
+//                    '${CMAKE_THIRDPARTY_DIR}/BUILD/lib/json/android/19/Release',
+//                    '${CMAKE_THIRDPARTY_DIR}/BUILD/lib/nanovg/android/19/Release',
+//                    '${CMAKE_THIRDPARTY_DIR}/BUILD/lib/stb/android/19/Release',
+//                    '${CMAKE_THIRDPARTY_DIR}/BUILD/lib/tinyxml2/android/19/Release',
+//                    '${CMAKE_THIRDPARTY_DIR}/SDL2/lib/android/23/Release',
+//                    '${CMAKE_THIRDPARTY_DIR}/fmod/lib/android/24'
+            ]
             res.srcDirs = ['src/main/res']
             assets.srcDirs = [
                     '/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/cmake.in/Platform.in/common/'
@@ -65,5 +77,4 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
-    compile project(':fmod')
 }

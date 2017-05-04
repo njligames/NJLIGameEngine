@@ -575,16 +575,29 @@ namespace njli
     
     bool PhysicsBodyRigid::removePhysicsBody()
     {
-        Scene *scene = getParent()->getCurrentScene();
-        if(!scene)
+        Scene *scene = NULL;
+        if(getParent())
         {
-            SDL_LogWarn(SDL_LOG_CATEGORY_TEST, "The scene is NULL\n");
-            return false;
+            scene = getParent()->getCurrentScene();
+            
+            if(scene)
+            {
+                PhysicsWorld *physicsWorld = scene->getPhysicsWorld();
+                if(physicsWorld)
+                    return physicsWorld->removeRigidBody(this);
+            }
+            else
+            {
+                
+                
+                
+                
+                SDL_LogWarn(SDL_LOG_CATEGORY_TEST, "The scene is NULL\n");
+                return false;
+            }
         }
         
-        PhysicsWorld *physicsWorld = scene->getPhysicsWorld();
-        if(physicsWorld)
-            return physicsWorld->removeRigidBody(this);
+        
         return false;
     }
     

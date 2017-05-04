@@ -322,18 +322,17 @@ public class SDLActivity extends Activity {
 
 
         AssetManager assetManager = getAssets();
-        try {
-            String[] imgPath = assetManager.list(".");
-            for (int i = 0; i< imgPath.length; i++)
-            {
-                Log.d(TAG, imgPath[i]);
-            }
-        } catch (IOException e) {
-            Log.e(TAG, e.getMessage());
-        }
+//        try {
+//            String[] imgPath = assetManager.list(".");
+//            for (int i = 0; i< imgPath.length; i++)
+//            {
+//                Log.d(TAG, imgPath[i]);
+//            }
+//        } catch (IOException e) {
+//            Log.e(TAG, e.getMessage());
+//        }
 
-        String filesDir = getContext().getFilesDir().getAbsolutePath() + "/";
-        SDLActivity.initAssetManager(assetManager, filesDir);
+        SDLActivity.initAssetManager(assetManager);
 
         //this.createDirectories("assets", filesDir);
 
@@ -626,10 +625,12 @@ public class SDLActivity extends Activity {
     public static native void onNativeKeyUp(int keycode);
     public static native void onNativeKeyboardFocusLost();
     public static native void onNativeMouse(int button, int action, float x, float y, int clicks);
+    public static native void onNativeStartTouches();
     public static native void onNativeTouch(int touchDevId, int pointerFingerId,
                                             int action, float x,
                                             float y, float dx,
                                             float dy, float p);
+    public static native void onNativeFinishTouches();
     public static native void onNativeAccel(float x, float y, float z);
     public static native void onNativeSurfaceChanged();
     public static native void onNativeSurfaceDestroyed();
@@ -639,7 +640,7 @@ public class SDLActivity extends Activity {
     public static native int nativeRemoveJoystick(int device_id);
     public static native String nativeGetHint(String name);
 
-    public static native void initAssetManager(AssetManager assetManager, String filesDir);
+    public static native void initAssetManager(AssetManager assetManager);
 
     /**
      * This method is called by SDL using JNI.
@@ -1518,6 +1519,7 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback,
         } else {
             switch(action) {
                 case MotionEvent.ACTION_MOVE:
+                    SDLActivity.onNativeStartTouches();
                     for (i = 0; i < pointerCount; i++) {
                         pointerFingerId = event.getPointerId(i);
                         x = event.getX(i) / mWidth;
@@ -1547,6 +1549,7 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback,
 
                         SDLActivity.onNativeTouch(touchDevId, pointerFingerId, action, x, y, dx, dy, p);
                     }
+                    SDLActivity.onNativeFinishTouches();
                     break;
 
                 case MotionEvent.ACTION_UP:
@@ -1560,34 +1563,40 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback,
                         i = event.getActionIndex();
                     }
 
-                    pointerFingerId = event.getPointerId(i);
-                    x = event.getX(i) / mWidth;
-                    y = event.getY(i) / mHeight;
-                    p = event.getPressure(i);
-                    if (p > 1.0f) {
-                        // may be larger than 1.0f on some devices
-                        // see the documentation of getPressure(i)
-                        p = 1.0f;
-                    }
+                    assert(i == 0);
+                    SDLActivity.onNativeStartTouches();
 
-                    m_startX[i] = x;
-                    m_startY[i] = y;
-                    float hx = x;
-                    float hy = y;
-                    float dx = 0;
-                    float dy = 0;
-
-                    if(event.getHistorySize() >  0)
+                    for (; i < pointerCount; i++)
                     {
-                        hx = event.getX(i) / mWidth;
-                        hy = event.getY(i) / mHeight;
-                        dx = (hx - m_startX[i]);
-                        dy = (hy - m_startY[i]);
-                        m_startX[i] = hx;
-                        m_startY[i] = hy;
-                    }
+                        pointerFingerId = event.getPointerId(i);
+                        x = event.getX(i) / mWidth;
+                        y = event.getY(i) / mHeight;
+                        p = event.getPressure(i);
+                        if (p > 1.0f) {
+                            // may be larger than 1.0f on some devices
+                            // see the documentation of getPressure(i)
+                            p = 1.0f;
+                        }
 
-                    SDLActivity.onNativeTouch(touchDevId, pointerFingerId, action, x, y, dx, dy, p);
+                        m_startX[i] = x;
+                        m_startY[i] = y;
+                        float hx = x;
+                        float hy = y;
+                        float dx = 0;
+                        float dy = 0;
+
+                        if (event.getHistorySize() > 0) {
+                            hx = event.getX(i) / mWidth;
+                            hy = event.getY(i) / mHeight;
+                            dx = (hx - m_startX[i]);
+                            dy = (hy - m_startY[i]);
+                            m_startX[i] = hx;
+                            m_startY[i] = hy;
+                        }
+
+                        SDLActivity.onNativeTouch(touchDevId, pointerFingerId, action, x, y, dx, dy, p);
+                    }
+                    SDLActivity.onNativeFinishTouches();
                     break;
 
                 case MotionEvent.ACTION_CANCEL:
@@ -1606,10 +1615,10 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback,
 
                         m_startX[i] = x;
                         m_startY[i] = y;
-                        hx = x;
-                        hy = y;
-                        dx = 0;
-                        dy = 0;
+                        float hx = x;
+                        float hy = y;
+                        float dx = 0;
+                        float    dy = 0;
 
                         if(event.getHistorySize() >  0)
                         {

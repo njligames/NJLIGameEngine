@@ -2726,35 +2726,34 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
 ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "android" )
 
     FILE(GLOB NJLIGameEngine_LBY
-         ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/assimp/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/lib/libassimp${NJLI_ASSIMP_POSTFIX}.a
-        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/lib/libBullet2FileLoader.a
-        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/lib/libBullet3Collision.a
-        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/lib/libBullet3Common.a
-        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/lib/libBullet3Dynamics.a
-        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/lib/libBullet3Geometry.a
-        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/lib/libBullet3OpenCL_clew.a
-        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/lib/libBulletCollision.a
-        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/lib/libBulletDynamics.a
-        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/lib/libBulletFileLoader.a
-        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/lib/libBulletInverseDynamics.a
-        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/lib/libBulletInverseDynamicsUtils.a
-        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/lib/libBulletSoftBody.a
-        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/lib/libBulletWorldImporter.a
-        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/lib/libBulletXmlWorldImporter.a
-        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/lib/libConvexDecomposition.a
-        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/lib/libGIMPACTUtils.a
-        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/lib/libHACD.a
-        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/lib/libLinearMath.a
-          ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/imgui/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/libimgui.a
-       ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/ImGuizmo/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/libImGuizmo.a
-        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/jsoncpp/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/libjsoncpp.a
-         ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/nanovg/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/libnanovg.a
-            ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/stb/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/libstb.a
-       ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/tinyxml2/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/libtinyxml2.a
-                 ${NJLI_THIRDPARTY_DIRECTORY}/fmod/lib/${NJLI_BUILD_PLATFORM}/24/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/libfmod${NJLI_FMOD_POSTFIX}.so
-                                ${NJLI_THIRDPARTY_DIRECTORY}/SDL2/lib/android/23/Release/${ANDROID_ABI}/libSDL2.so 
-        )
-    #MESSAGE(${NJLIGameEngine_LBY})
+    #         ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/assimp/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/lib/libassimp${NJLI_ASSIMP_POSTFIX}.a
+    #        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/lib/libBullet2FileLoader.a
+    #        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/lib/libBullet3Collision.a
+    #        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/lib/libBullet3Common.a
+    #        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/lib/libBullet3Dynamics.a
+    #        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/lib/libBullet3Geometry.a
+    #        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/lib/libBullet3OpenCL_clew.a
+    #        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/lib/libBulletCollision.a
+    #        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/lib/libBulletDynamics.a
+    #        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/lib/libBulletFileLoader.a
+    #        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/lib/libBulletInverseDynamics.a
+    #        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/lib/libBulletInverseDynamicsUtils.a
+    #        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/lib/libBulletSoftBody.a
+    #        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/lib/libBulletWorldImporter.a
+    #        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/lib/libBulletXmlWorldImporter.a
+    #        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/lib/libConvexDecomposition.a
+    #        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/lib/libGIMPACTUtils.a
+    #        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/lib/libHACD.a
+    #        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/lib/libLinearMath.a
+    #          ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/imgui/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/libimgui.a
+    #       ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/ImGuizmo/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/libImGuizmo.a
+    #        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/jsoncpp/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/libjsoncpp.a
+    #         ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/nanovg/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/libnanovg.a
+    #            ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/stb/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/libstb.a
+    #       ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/tinyxml2/${NJLI_BUILD_PLATFORM}/19/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/libtinyxml2.a
+    ${NJLI_THIRDPARTY_DIRECTORY}/fmod/lib/android/24/${ANDROID_ABI}/Release/libfmod.so 
+                                   ${NJLI_THIRDPARTY_DIRECTORY}/SDL2/lib/android/23/Release/${ANDROID_ABI}/libSDL2.so 
+    )
 
     FIND_LIBRARY(log-lib log)
     FIND_LIBRARY(dl-lib dl)
@@ -2765,6 +2764,75 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "android" )
     FIND_LIBRARY(stdc++-lib stdc++)
     FIND_LIBRARY(android-lib android)
 
+    #https://developer.android.com/studio/projects/add-native-code.html
+    ADD_LIBRARY(imported_assimp STATIC IMPORTED )
+    ADD_LIBRARY(imported_Bullet2FileLoader STATIC IMPORTED )
+    ADD_LIBRARY(imported_Bullet3Collision STATIC IMPORTED )
+    ADD_LIBRARY(imported_Bullet3Common STATIC IMPORTED )
+    ADD_LIBRARY(imported_Bullet3Dynamics STATIC IMPORTED )
+    ADD_LIBRARY(imported_Bullet3Geometry STATIC IMPORTED )
+    ADD_LIBRARY(imported_Bullet3OpenCL_clew STATIC IMPORTED )
+    ADD_LIBRARY(imported_BulletCollision STATIC IMPORTED )
+    ADD_LIBRARY(imported_BulletDynamics STATIC IMPORTED )
+    ADD_LIBRARY(imported_BulletFileLoader STATIC IMPORTED )
+    ADD_LIBRARY(imported_BulletInverseDynamics STATIC IMPORTED )
+    ADD_LIBRARY(imported_BulletInverseDynamicsUtils STATIC IMPORTED )
+    ADD_LIBRARY(imported_BulletSoftBody STATIC IMPORTED )
+    ADD_LIBRARY(imported_BulletWorldImporter STATIC IMPORTED )
+    ADD_LIBRARY(imported_BulletXmlWorldImporter STATIC IMPORTED )
+    ADD_LIBRARY(imported_ConvexDecomposition STATIC IMPORTED )
+    ADD_LIBRARY(imported_GIMPACTUtils STATIC IMPORTED )
+    ADD_LIBRARY(imported_HACD STATIC IMPORTED )
+    ADD_LIBRARY(imported_LinearMath STATIC IMPORTED )
+    ADD_LIBRARY(imported_imgui STATIC IMPORTED )
+    ADD_LIBRARY(imported_ImGuizmo STATIC IMPORTED )
+    ADD_LIBRARY(imported_jsoncpp STATIC IMPORTED )
+    ADD_LIBRARY(imported_nanovg STATIC IMPORTED )
+    ADD_LIBRARY(imported_stb STATIC IMPORTED )
+    ADD_LIBRARY(imported_tinyxml2 STATIC IMPORTED )
+    ADD_LIBRARY(imported_fmod SHARED IMPORTED )
+    ADD_LIBRARY(imported_SDL2 SHARED IMPORTED )
+
+    SET_TARGET_PROPERTIES( imported_assimp PROPERTIES IMPORTED_LOCATION                     "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/assimp/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libassimp.a" )
+    #SET_TARGET_PROPERTIES( imported_Bullet2FileLoader PROPERTIES IMPORTED_LOCATION          "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libBullet2FileLoader.a" )
+    #SET_TARGET_PROPERTIES( imported_Bullet3Collision PROPERTIES IMPORTED_LOCATION           "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libBullet3Collision.a" )
+    #SET_TARGET_PROPERTIES( imported_Bullet3Common PROPERTIES IMPORTED_LOCATION              "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libBullet3Common.a" )
+    #SET_TARGET_PROPERTIES( imported_Bullet3Dynamics PROPERTIES IMPORTED_LOCATION            "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libBullet3Dynamics.a" )
+    #SET_TARGET_PROPERTIES( imported_Bullet3Geometry PROPERTIES IMPORTED_LOCATION            "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libBullet3Geometry.a" )
+    #SET_TARGET_PROPERTIES( imported_Bullet3OpenCL_clew PROPERTIES IMPORTED_LOCATION         "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libBullet3OpenCL_clew.a" )
+    SET_TARGET_PROPERTIES( imported_BulletCollision PROPERTIES IMPORTED_LOCATION            "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libBulletCollision.a" )
+    SET_TARGET_PROPERTIES( imported_BulletDynamics PROPERTIES IMPORTED_LOCATION             "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libBulletDynamics.a" )
+    SET_TARGET_PROPERTIES( imported_BulletFileLoader PROPERTIES IMPORTED_LOCATION           "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libBulletFileLoader.a" )
+    #SET_TARGET_PROPERTIES( imported_BulletInverseDynamics PROPERTIES IMPORTED_LOCATION      "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libBulletInverseDynamics.a" )
+    #SET_TARGET_PROPERTIES( imported_BulletInverseDynamicsUtils PROPERTIES IMPORTED_LOCATION "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libBulletInverseDynamicsUtils.a" )
+    SET_TARGET_PROPERTIES( imported_BulletSoftBody PROPERTIES IMPORTED_LOCATION             "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libBulletSoftBody.a" )
+    SET_TARGET_PROPERTIES( imported_BulletWorldImporter PROPERTIES IMPORTED_LOCATION        "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libBulletWorldImporter.a" )
+    SET_TARGET_PROPERTIES( imported_BulletXmlWorldImporter PROPERTIES IMPORTED_LOCATION     "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libBulletXmlWorldImporter.a" )
+    SET_TARGET_PROPERTIES( imported_ConvexDecomposition PROPERTIES IMPORTED_LOCATION        "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libConvexDecomposition.a" )
+    SET_TARGET_PROPERTIES( imported_GIMPACTUtils PROPERTIES IMPORTED_LOCATION               "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libGIMPACTUtils.a" )
+    SET_TARGET_PROPERTIES( imported_HACD PROPERTIES IMPORTED_LOCATION                       "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libHACD.a" )
+    SET_TARGET_PROPERTIES( imported_LinearMath PROPERTIES IMPORTED_LOCATION                 "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libLinearMath.a" )
+    SET_TARGET_PROPERTIES( imported_imgui PROPERTIES IMPORTED_LOCATION                      "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/imgui/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libimgui.a" )
+    SET_TARGET_PROPERTIES( imported_ImGuizmo PROPERTIES IMPORTED_LOCATION                   "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/ImGuizmo/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libImGuizmo.a" )
+    SET_TARGET_PROPERTIES( imported_jsoncpp PROPERTIES IMPORTED_LOCATION                    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/jsoncpp/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libjsoncpp.a")
+    SET_TARGET_PROPERTIES( imported_nanovg PROPERTIES IMPORTED_LOCATION                     "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/nanovg/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libnanovg.a" )
+    SET_TARGET_PROPERTIES( imported_stb PROPERTIES IMPORTED_LOCATION                        "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/stb/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libstb.a" )
+    SET_TARGET_PROPERTIES( imported_tinyxml2 PROPERTIES IMPORTED_LOCATION                   "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/tinyxml2/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libtinyxml2.a" )
+     
+    SET_TARGET_PROPERTIES( imported_fmod PROPERTIES IMPORTED_LOCATION                       "${NJLI_THIRDPARTY_DIRECTORY}/fmod/lib/android/24/${ANDROID_ABI}/libfmod.so" )
+    SET_TARGET_PROPERTIES( imported_SDL2 PROPERTIES IMPORTED_LOCATION                       "${NJLI_THIRDPARTY_DIRECTORY}/SDL2/lib/android/23/Release/${ANDROID_ABI}/libSDL2.so" )
+
+    INCLUDE_DIRECTORIES( "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/assimp" )
+    INCLUDE_DIRECTORIES( "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/bullet3" )
+    INCLUDE_DIRECTORIES( "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/imgui" )
+    INCLUDE_DIRECTORIES( "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/ImGuizmo" )
+    INCLUDE_DIRECTORIES( "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/jsoncpp" )
+    INCLUDE_DIRECTORIES( "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/nanovg" )
+    INCLUDE_DIRECTORIES( "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/stb" )
+    INCLUDE_DIRECTORIES( "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/tinyxml2" )
+    INCLUDE_DIRECTORIES( "${NJLI_THIRDPARTY_DIRECTORY}/fmod/include" )
+    INCLUDE_DIRECTORIES( "${NJLI_THIRDPARTY_DIRECTORY}/SDL2/include" )
+
     SET(EXTRA_PLATFORM_LIBS
         ${log-lib}
         ${dl-lib}
@@ -2774,14 +2842,36 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "android" )
         ${EGL-lib}
         ${stdc++-lib}
         ${android-lib}
+        imported_assimp
+        #imported_Bullet2FileLoader
+        #imported_Bullet3Collision
+        #imported_Bullet3Common
+        #imported_Bullet3Dynamics
+        #imported_Bullet3Geometry
+        #imported_Bullet3OpenCL_clew
+        imported_BulletCollision
+        imported_BulletDynamics
+        imported_BulletFileLoader
+        #imported_BulletInverseDynamics
+        #imported_BulletInverseDynamicsUtils
+        imported_BulletSoftBody
+        imported_BulletWorldImporter
+        imported_BulletXmlWorldImporter
+        imported_ConvexDecomposition
+        imported_GIMPACTUtils
+        imported_HACD
+        imported_LinearMath
+        imported_imgui
+        imported_ImGuizmo
+        imported_jsoncpp
+        imported_nanovg
+        imported_stb
+        imported_tinyxml2
+        imported_fmod
+        imported_SDL2
         )
 
-    ADD_DEFINITIONS(-DHAVE_LRAND48)
-
-    #https://www.systutorials.com/docs/linux/man/7-cmake3-variables/
-
     SET( NJLI_RESOURCES ${GAME_ASSETS} )
-    #SET( CMAKE_ANDROID_ASSETS_DIRECTORIES ${GAME_ASSETS} )
 
 ENDIF()
 
@@ -3029,7 +3119,7 @@ IF( NOT ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
 ENDIF()
 
 IF( ${NJLI_BUILD_PLATFORM} STREQUAL "android" )
-    ADD_LIBRARY( njli_source SHARED 
+    ADD_LIBRARY( njli SHARED 
         ${NJLIGameEngine_HDRS} 
         ${NJLIGameEngine_SRCS} 
         ${njli_generated} 
@@ -3038,7 +3128,7 @@ IF( ${NJLI_BUILD_PLATFORM} STREQUAL "android" )
         ${NJLI_SOURCE_DIRECTORY}/njli/platform/main.cpp
         ${NJLIGameEngine_THIRDPARTY_INC}
         )
-    TARGET_LINK_LIBRARIES( njli_source ${EXTRA_PLATFORM_LIBS} 
+    TARGET_LINK_LIBRARIES( njli ${EXTRA_PLATFORM_LIBS} 
         ${NJLIGameEngine_LBY} 
         )
 

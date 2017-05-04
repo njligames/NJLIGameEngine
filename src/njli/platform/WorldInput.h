@@ -31,30 +31,14 @@ public:
 public:
     //TODO: fill in specific methods for WorldInput
 
-    DeviceTouch* getTouch(const s32 index);
-    const DeviceTouch* getTouch(const s32 index) const;
-    s32 numberOfTouches() const;
-    //        void resetTouches();
-
-    void setTouch(const void* touch, const int index, const int num_touches);
-    void setTouch(const int x, const int y, const int index, const int num_touches, float scaleFactor);
+    const DeviceTouch &finger(int eventType, const size_t index)const;
+    u32 numberOfFingers(int eventType)const;
     
-    void setTouch(int deviceIndex, int touchIndex, int num_touches)
-    {
-#if defined (__ANDROID__) || defined(__IPHONEOS__)
-        m_CurrentTouches[touchIndex] = m_AllTouches[touchIndex];
-        m_CurrentTouches[touchIndex]->set(SDL_GetTouchFinger(deviceIndex, touchIndex));
-        m_NumTouches = num_touches;
-#endif
-    }
-
-    void clearNodeTouches();
-
-    //TODO import bullet library and pass btVector2
-    void touchDown();
-    void touchUp();
-    void touchMove();
-    void touchCancelled();
+    void startHandleFingers();
+    void addFinger(int touchDevId, int pointerFingerId, int eventType, float x, float y, float dx, float dy, float pressure);
+    void finishHandleFingers();
+    
+    void mouse(int button, int eventType, float x, float y, int clicks);
     
     void keyboardShow();
     void keyboardCancel();
@@ -73,10 +57,21 @@ protected:
 private:
     WorldInput(const WorldInput&);
     WorldInput& operator=(const WorldInput&);
+    
+    std::vector<DeviceTouch*> m_DeviceTouches;
 
-    DeviceTouch** m_AllTouches;
-    DeviceTouch** m_CurrentTouches;
-    s32 m_NumTouches;
+    DeviceTouch** m_FingerDownTouches;
+    DeviceTouch** m_FingerUpTouches;
+    DeviceTouch** m_FingerMoveTouches;
+    
+    DeviceTouch** m_CurrentFingerDownTouches;
+    DeviceTouch** m_CurrentFingerUpTouches;
+    DeviceTouch** m_CurrentFingerMoveTouches;
+    
+    s32 m_NumDownTouches;
+    s32 m_NumUpTouches;
+    s32 m_NumMoveTouches;
+    
     s32 m_Orientation;
 };
 }

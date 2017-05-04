@@ -13,7 +13,7 @@
 
 namespace njli
 {
-    const u8 DeviceTouch::MAX_TOUCHES = 5;
+    const u8 DeviceTouch::MAX_TOUCHES = 20;
     
 //    -(CGPoint) pixelPointFromViewPoint:(CGPoint)touch
 //    CGPoint pixelPointFromViewPoint(CGPoint touch, UIView *view)
