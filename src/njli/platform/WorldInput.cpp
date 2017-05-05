@@ -200,30 +200,31 @@ namespace njli
         clearTouches();
     }
     
-    void WorldInput::addFinger(int touchDevId, int pointerFingerId, int eventType, float x, float y, float dx, float dy, float pressure)
+    void WorldInput::addFinger(int touchDevId, int pointerFingerId, int action, float x, float y, float dx, float dy, float pressure)
     {
-        switch(eventType)
+        SDL_assertCheck(action >= 0 && action <=2 , "%s", "Make sure that the action value is either down=0, up=1, move=2");
+        switch(action)
         {
-            case SDL_FINGERDOWN:
+            case 0:
             {
                 m_CurrentFingerDownTouches[m_NumDownTouches] = m_FingerDownTouches[m_NumDownTouches];
-                m_CurrentFingerDownTouches[m_NumDownTouches]->set(touchDevId, pointerFingerId, eventType, x, y, dx, dy, pressure);
+                m_CurrentFingerDownTouches[m_NumDownTouches]->set(touchDevId, pointerFingerId, SDL_FINGERDOWN, x, y, dx, dy, pressure);
                 njli::World::getInstance()->touchDown(*(m_CurrentFingerDownTouches[m_NumDownTouches]));
                 m_NumDownTouches++;
             }
                 break;
-            case SDL_FINGERUP:
+            case 1:
             {
                 m_CurrentFingerUpTouches[m_NumUpTouches] = m_FingerUpTouches[m_NumUpTouches];
-                m_CurrentFingerUpTouches[m_NumUpTouches]->set(touchDevId, pointerFingerId, eventType, x, y, dx, dy, pressure);
+                m_CurrentFingerUpTouches[m_NumUpTouches]->set(touchDevId, pointerFingerId, SDL_FINGERUP, x, y, dx, dy, pressure);
                 njli::World::getInstance()->touchDown(*(m_CurrentFingerUpTouches[m_NumDownTouches]));
                 m_NumUpTouches++;
             }
                 break;
-            case SDL_FINGERMOTION:
+            case 2:
             {
                 m_CurrentFingerMoveTouches[m_NumMoveTouches] = m_FingerMoveTouches[m_NumMoveTouches];
-                m_CurrentFingerMoveTouches[m_NumMoveTouches]->set(touchDevId, pointerFingerId, eventType, x, y, dx, dy, pressure);
+                m_CurrentFingerMoveTouches[m_NumMoveTouches]->set(touchDevId, pointerFingerId, SDL_FINGERMOTION, x, y, dx, dy, pressure);
                 njli::World::getInstance()->touchDown(*(m_CurrentFingerMoveTouches[m_NumDownTouches]));
                 m_NumMoveTouches++;
             }

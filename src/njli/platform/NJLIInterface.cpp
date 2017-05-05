@@ -119,10 +119,26 @@ void NJLI_HandleStartTouches()
 
 void NJLI_HandleTouch(int touchDevId, int pointerFingerId, int eventType, float x, float y, float dx, float dy, float pressure)
 {
+    int action = eventType;
+    switch(eventType)
+    {
+        case SDL_FINGERDOWN:
+            action = 0;
+            break;
+        case SDL_FINGERUP:
+            action = 1;
+            break;
+        case SDL_FINGERMOTION:
+            action = 2;
+            break;
+        default:
+            break;
+    }
+    
     //gDisplayMode.w, gDisplayMode.h
     njli::NJLIGameEngine::handleFinger(touchDevId,
                                        pointerFingerId,
-                                       eventType,
+                                       action,
                                        x * gDisplayMode.w,
                                        gDisplayMode.h - (y * gDisplayMode.h),
                                        dx * gDisplayMode.w,

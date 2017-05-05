@@ -18,6 +18,7 @@ class DeviceTouch;
 
 class WorldInput : public AbstractObject {
 public:
+    
     using AbstractDecorator::setName;
     using AbstractDecorator::getName;
 
