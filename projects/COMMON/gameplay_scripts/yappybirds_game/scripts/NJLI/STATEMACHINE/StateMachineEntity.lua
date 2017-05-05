@@ -89,6 +89,46 @@ function StateMachineEntity:_worldRenderHUD()
   end
 end
 
+function StateMachineEntity:_worldTouchesDown(touches)
+  assert(touches, "The touches is nil")
+
+  local entity = self:getEntityManager():getWorldEntity(njli.World.getInstance():getName())
+
+  if entity and entity:hasState() then
+    entity:touchesDown(touches)
+  end
+end
+
+function StateMachineEntity:_worldTouchesUp(touches)
+  assert(touches, "The touches is nil")
+
+  local entity = self:getEntityManager():getWorldEntity(njli.World.getInstance():getName())
+
+  if entity and entity:hasState() then
+    entity:touchesUp(touches)
+  end
+end
+
+function StateMachineEntity:_worldTouchesMove(touches)
+  assert(touches, "The touches is nil")
+
+  local entity = self:getEntityManager():getWorldEntity(njli.World.getInstance():getName())
+
+  if entity and entity:hasState() then
+    entity:touchesMove(touches)
+  end
+end
+
+function StateMachineEntity:_worldTouchesCancelled(touches)
+  assert(touches, "The touches is nil")
+
+  local entity = self:getEntityManager():getWorldEntity(njli.World.getInstance():getName())
+
+  if entity and entity:hasState() then
+    entity:touchesCancelled(touches)
+  end
+end
+
 function StateMachineEntity:_worldTouchDown(touches)
   assert(touches, "The touches is nil")
 
@@ -282,6 +322,50 @@ function StateMachineEntity:_sceneRenderHUD(scene)
 
   if sceneEntity and sceneEntity:hasState() then
     sceneEntity:renderHUD()
+  end
+end
+
+function StateMachineEntity:_sceneTouchesDown(scene, touches)
+  assert(scene, "The scene is nil")
+  assert(touches, "The touches is nil")
+
+  local sceneEntity = self:getEntityManager():getSceneEntity(scene:getName())
+
+  if sceneEntity and sceneEntity:hasState() then
+    sceneEntity:touchesDown(touches)
+  end
+end
+
+function StateMachineEntity:_sceneTouchesUp(scene, touches)
+  assert(scene, "The scene is nil")
+  assert(touches, "The touches is nil")
+
+  local sceneEntity = self:getEntityManager():getSceneEntity(scene:getName())
+
+  if sceneEntity and sceneEntity:hasState() then
+    sceneEntity:touchesUp(touches)
+  end
+end
+
+function StateMachineEntity:_sceneTouchesMove(scene, touches)
+  assert(scene, "The scene is nil")
+  assert(touches, "The touches is nil")
+
+  local sceneEntity = self:getEntityManager():getSceneEntity(scene:getName())
+
+  if sceneEntity and sceneEntity:hasState() then
+    sceneEntity:touchesMove(touches)
+  end
+end
+
+function StateMachineEntity:_sceneTouchesCancelled(scene, touches)
+  assert(scene, "The scene is nil")
+  assert(touches, "The touches is nil")
+
+  local sceneEntity = self:getEntityManager():getSceneEntity(scene:getName())
+
+  if sceneEntity and sceneEntity:hasState() then
+    sceneEntity:touchesCancelled(touches)
   end
 end
 
@@ -502,6 +586,71 @@ function StateMachineEntity:_nodeOnMessage(node, message)
   end
 end
 
+function StateMachineEntity:_rayTouchesDown(rayContact)
+  assert(rayContact, "The rayContact is nil")
+
+  local hitNode = rayContact:getHitNode()
+  assert(hitNode, "The hitNode is nil")
+
+  local nodeEntity = self:getEntityManager():getNodeEntity(hitNode:getName())
+
+  if nodeEntity and nodeEntity:hasState() then
+    nodeEntity:rayTouchesDown(rayContact)
+  end
+end
+
+function StateMachineEntity:_rayTouchesUp(rayContact)
+  assert(rayContact, "The rayContact is nil")
+
+  local hitNode = rayContact:getHitNode()
+  assert(hitNode, "The hitNode is nil")
+
+  local nodeEntity = self:getEntityManager():getNodeEntity(hitNode:getName())
+
+  if nodeEntity and nodeEntity:hasState() then
+    nodeEntity:rayTouchesUp(rayContact)
+  end
+end
+
+function StateMachineEntity:_rayTouchesMove(rayContact)
+  assert(rayContact, "The rayContact is nil")
+
+  local hitNode = rayContact:getHitNode()
+  assert(hitNode, "The hitNode is nil")
+
+  local nodeEntity = self:getEntityManager():getNodeEntity(hitNode:getName())
+
+  if nodeEntity and nodeEntity:hasState() then
+    nodeEntity:rayTouchesMove(rayContact)
+  end
+end
+
+function StateMachineEntity:_rayTouchesCancelled(rayContact)
+  assert(rayContact, "The rayContact is nil")
+
+  local hitNode = rayContact:getHitNode()
+  assert(hitNode, "The hitNode is nil")
+
+  local nodeEntity = self:getEntityManager():getNodeEntity(hitNode:getName())
+
+  if nodeEntity and nodeEntity:hasState() then
+    nodeEntity:rayTouchesCancelled(rayContact)
+  end
+end
+
+function StateMachineEntity:_rayTouchesMissed(node)
+  assert(node, "The node is nil")
+
+  if self:getEntityManager():hasNodeEntity(node:getName()) then
+      local nodeEntity = self:getEntityManager():getNodeEntity(node:getName())
+
+      if nodeEntity and nodeEntity:hasState() then
+        nodeEntity:rayTouchesMissed(node)
+      end
+  end
+
+end
+
 function StateMachineEntity:_rayTouchDown(rayContact)
   assert(rayContact, "The rayContact is nil")
 
@@ -685,6 +834,54 @@ function StateMachineEntity:_nodeGameUnPause(node)
 
       if nodeEntity and nodeEntity:hasState() then
         nodeEntity:gameUnPause()
+      end
+  end
+end
+
+function StateMachineEntity:_nodeTouchesDown(node, touches)
+  assert(node, "The node is nil")
+
+  if self:getEntityManager():hasNodeEntity(node:getName()) then
+      local nodeEntity = self:getEntityManager():getNodeEntity(node:getName())
+
+      if nodeEntity and nodeEntity:hasState() then
+        nodeEntity:touchesDown(touches)
+      end
+  end
+end
+
+function StateMachineEntity:_nodeTouchesUp(node, touches)
+  assert(node, "The node is nil")
+
+  if self:getEntityManager():hasNodeEntity(node:getName()) then
+      local nodeEntity = self:getEntityManager():getNodeEntity(node:getName())
+
+      if nodeEntity and nodeEntity:hasState() then
+        nodeEntity:touchesUp(touches)
+      end
+  end
+end
+
+function StateMachineEntity:_nodeTouchesMove(node, touches)
+  assert(node, "The node is nil")
+
+  if self:getEntityManager():hasNodeEntity(node:getName()) then
+      local nodeEntity = self:getEntityManager():getNodeEntity(node:getName())
+
+      if nodeEntity and nodeEntity:hasState() then
+        nodeEntity:touchesMove(touches)
+      end
+  end
+end
+
+function StateMachineEntity:_nodeTouchesCancelled(node, touches)
+  assert(node, "The node is nil")
+
+  if self:getEntityManager():hasNodeEntity(node:getName()) then
+      local nodeEntity = self:getEntityManager():getNodeEntity(node:getName())
+
+      if nodeEntity and nodeEntity:hasState() then
+        nodeEntity:touchesCancelled(touches)
       end
   end
 end

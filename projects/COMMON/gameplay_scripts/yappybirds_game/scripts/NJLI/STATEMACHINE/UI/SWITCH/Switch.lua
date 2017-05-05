@@ -265,6 +265,42 @@ function Switch:onMessage()
   BaseClass.onMessage(self)
 end
 
+function Switch:rayTouchesDown(rayContact)
+  BaseClass.rayTouchesDown(self, rayContact)
+
+  if not self:disabled() then
+      self:touchDownInside(rayContact)
+  end
+end
+
+function Switch:rayTouchesUp(rayContact)
+  BaseClass.rayTouchesUp(self, rayContact)
+
+  if not self:disabled() then
+      self:touchUpInside(rayContact)
+  end
+end
+
+function Switch:rayTouchesMove(rayContact)
+  BaseClass.rayTouchesMove(self, rayContact)
+
+  if not self:disabled() then
+      self:touchDragInside(rayContact)
+  end
+end
+
+function Switch:rayTouchesCancelled(rayContact)
+  BaseClass.rayTouchesCancelled(self, rayContact)
+
+  if not self:disabled() then
+      self:touchCancelled(rayContact)
+  end
+end
+
+function Switch:rayTouchesMissed(node)
+  BaseClass.rayTouchesMissed(self, node)
+end
+
 function Switch:rayTouchDown(rayContact)
   BaseClass.rayTouchDown(self, rayContact)
 
@@ -339,6 +375,22 @@ end
 
 function Switch:gameUnPause()
     BaseClass.gameUnPause(self)
+end
+
+function Switch:touchesDown(touches)
+    BaseClass.touchesDown(self, touches)
+end
+
+function Switch:touchesUp(touches)
+    BaseClass.touchesUp(self, touches)
+end
+
+function Switch:touchesMove(touches)
+    BaseClass.touchesMove(self, touches)
+end
+
+function Switch:touchesCancelled(touches)
+    BaseClass.touchesCancelled(self, touches)
 end
 
 function Switch:touchDown(touches)

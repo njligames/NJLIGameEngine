@@ -104,7 +104,11 @@ void NJLI_HandleMouse(int button, int eventType, float x, float y, int clicks)
 //            break;
 //    }
     
-    njli::NJLIGameEngine::mouse(button, eventType, x, y, clicks);
+    njli::NJLIGameEngine::mouse(button,
+                                eventType,
+                                x * gDisplayMode.w,
+                                y * gDisplayMode.h,
+                                clicks);
     
 }
 
@@ -115,7 +119,15 @@ void NJLI_HandleStartTouches()
 
 void NJLI_HandleTouch(int touchDevId, int pointerFingerId, int eventType, float x, float y, float dx, float dy, float pressure)
 {
-    njli::NJLIGameEngine::handleFinger(touchDevId, pointerFingerId, eventType, x, y, dx, dy, pressure);
+    //gDisplayMode.w, gDisplayMode.h
+    njli::NJLIGameEngine::handleFinger(touchDevId,
+                                       pointerFingerId,
+                                       eventType,
+                                       x * gDisplayMode.w,
+                                       gDisplayMode.h - (y * gDisplayMode.h),
+                                       dx * gDisplayMode.w,
+                                       dy * gDisplayMode.h,
+                                       pressure);
 }
 
 void NJLI_HandleFinishTouches()

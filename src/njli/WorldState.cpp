@@ -425,7 +425,7 @@ namespace njli
                         Node *n = untouchedNodes[i];
                         
                         char buffer[BUFFER_SIZE];
-                        sprintf(buffer, "%s", "__NJLINodeRayTouchMissed");
+                        sprintf(buffer, "%s", "__NJLINodeRayTouchesMissed");
                         njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, n);
                     }
                     //                if (!touched)
@@ -444,6 +444,67 @@ namespace njli
         }
     }
     
+    void WorldState::checkRayCollision(const DeviceTouch &touch, const char *code, bool disableNodeTouched)
+    {
+        Scene *scene = njli::World::getInstance()->getScene();
+        
+        if(scene)
+        {
+            Camera *camera = scene->getTouchCamera();
+            if(NULL != camera)
+            {
+                PhysicsWorld *physicsWorld = scene->getPhysicsWorld();
+                if(physicsWorld)
+                {
+                    btAlignedObjectArray<Node*> untouchedNodes;
+                    untouchedNodes.clear();
+                    
+                    scene->getActiveNodes(untouchedNodes);
+                    
+                    bool touched = false;
+                    btVector2 touchPosition = touch.getPosition();
+                    btVector3 from, to;
+                    camera->getTouchRay(touchPosition, from, to);
+                    
+                    s32 numContacts = 0;
+                    if (physicsWorld->rayTestAll(from, to, m_RayContacts, numContacts))
+                    {
+                        for (s32 i = 0; i < numContacts; ++i)
+                        {
+                            PhysicsRayContact *contact = m_RayContacts.at(i);
+                            
+                            if (disableNodeTouched)
+                            {
+                                contact->getHitNode()->enableTouched(false);
+                                
+                            }
+                            untouchedNodes.remove(contact->getHitNode());
+                            contact->screenPosition(btVector2(from.x(), from.y()));
+                            char buffer[BUFFER_SIZE];
+                            sprintf(buffer, "%s%s", "__NJLINodeRay", code);
+                            njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, *contact);
+                            touched = true;
+                            
+                        }
+                    }
+                    
+                    for(unsigned int i = 0; i < untouchedNodes.size(); i++)
+                    {
+                        Node *n = untouchedNodes[i];
+                        
+                        char buffer[BUFFER_SIZE];
+                        sprintf(buffer, "%s", "__NJLINodeRayTouchMissed");
+                        njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, n);
+                    }
+                }
+            }
+            else
+            {
+                SDL_LogWarn(SDL_LOG_CATEGORY_TEST, "setTouchCamera() must be called on the scene\n");
+            }
+        }
+    }
+    
     void WorldState::touchDown(DeviceTouch **m_CurrentTouches)
     {
 //        SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "WorldState::touchDown\n");
@@ -451,11 +512,11 @@ namespace njli
         char action[BUFFER_SIZE] = "Down";
         char buffer[BUFFER_SIZE] = "";
         
-        sprintf(buffer, "__NJLIWorldTouch%s", action);
+        sprintf(buffer, "__NJLIWorldTouches%s", action);
         njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, m_CurrentTouches);
         
 //        sprintf(buffer, "WorldTouch%s", action);
-        sprintf(buffer, "Touch%s", action);
+        sprintf(buffer, "Touches%s", action);
         checkRayCollision(m_CurrentTouches, buffer);
     }
     
@@ -464,11 +525,11 @@ namespace njli
         char action[BUFFER_SIZE] = "Up";
         char buffer[BUFFER_SIZE] = "";
         
-        sprintf(buffer, "__NJLIWorldTouch%s", action);
+        sprintf(buffer, "__NJLIWorldTouches%s", action);
         njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, m_CurrentTouches);
         
 //        sprintf(buffer, "WorldTouch%s", action);
-        sprintf(buffer, "Touch%s", action);
+        sprintf(buffer, "Touches%s", action);
         checkRayCollision(m_CurrentTouches, buffer, true);
         
     }
@@ -478,11 +539,11 @@ namespace njli
         char action[BUFFER_SIZE] = "Move";
         char buffer[BUFFER_SIZE] = "";
         
-        sprintf(buffer, "__NJLIWorldTouch%s", action);
+        sprintf(buffer, "__NJLIWorldTouches%s", action);
         njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, m_CurrentTouches);
         
 //        sprintf(buffer, "WorldTouch%s", action);
-        sprintf(buffer, "Touch%s", action);
+        sprintf(buffer, "Touches%s", action);
         checkRayCollision(m_CurrentTouches, buffer);
     }
     
@@ -491,12 +552,67 @@ namespace njli
         char action[BUFFER_SIZE] = "Cancelled";
         char buffer[BUFFER_SIZE] = "";
         
-        sprintf(buffer, "__NJLIWorldTouch%s", action);
+        sprintf(buffer, "__NJLIWorldTouches%s", action);
         njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, m_CurrentTouches);
         
 //        sprintf(buffer, "WorldTouch%s", action);
-        sprintf(buffer, "Touch%s", action);
+        sprintf(buffer, "Touches%s", action);
         checkRayCollision(m_CurrentTouches, buffer);
+    }
+    
+    void WorldState::touchDown(const DeviceTouch &touch)
+    {
+//        SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "WorldState::touchDown\n");
+        
+        char action[BUFFER_SIZE] = "Down";
+        char buffer[BUFFER_SIZE] = "";
+        
+        sprintf(buffer, "__NJLIWorldTouch%s", action);
+        njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, touch);
+        
+//        sprintf(buffer, "WorldTouch%s", action);
+        sprintf(buffer, "Touch%s", action);
+        checkRayCollision(touch, buffer);
+    }
+    
+    void WorldState::touchUp(const DeviceTouch &touch)
+    {
+        char action[BUFFER_SIZE] = "Up";
+        char buffer[BUFFER_SIZE] = "";
+        
+        sprintf(buffer, "__NJLIWorldTouch%s", action);
+        njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, touch);
+        
+//        sprintf(buffer, "WorldTouch%s", action);
+        sprintf(buffer, "Touch%s", action);
+        checkRayCollision(touch, buffer, true);
+        
+    }
+    
+    void WorldState::touchMove(const DeviceTouch &touch)
+    {
+        char action[BUFFER_SIZE] = "Move";
+        char buffer[BUFFER_SIZE] = "";
+        
+        sprintf(buffer, "__NJLIWorldTouch%s", action);
+        njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, touch);
+        
+//        sprintf(buffer, "WorldTouch%s", action);
+        sprintf(buffer, "Touch%s", action);
+        checkRayCollision(touch, buffer);
+    }
+    
+    void WorldState::touchCancelled(const DeviceTouch &touch)
+    {
+        char action[BUFFER_SIZE] = "Cancelled";
+        char buffer[BUFFER_SIZE] = "";
+        
+        sprintf(buffer, "__NJLIWorldTouch%s", action);
+        njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, touch);
+        
+//        sprintf(buffer, "WorldTouch%s", action);
+        sprintf(buffer, "Touch%s", action);
+        checkRayCollision(touch, buffer);
     }
     
 //    void WorldState::enableRayTestClosest(bool enable)

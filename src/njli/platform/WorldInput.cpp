@@ -239,10 +239,10 @@ namespace njli
             njli::World::getInstance()->touchDown(m_CurrentFingerDownTouches);
         
         if(m_NumUpTouches > 0)
-            njli::World::getInstance()->touchDown(m_CurrentFingerUpTouches);
+            njli::World::getInstance()->touchUp(m_CurrentFingerUpTouches);
         
         if(m_NumMoveTouches > 0)
-            njli::World::getInstance()->touchDown(m_CurrentFingerMoveTouches);
+            njli::World::getInstance()->touchMove(m_CurrentFingerMoveTouches);
     }
     
     void WorldInput::mouse(int button, int eventType, float x, float y, int clicks)

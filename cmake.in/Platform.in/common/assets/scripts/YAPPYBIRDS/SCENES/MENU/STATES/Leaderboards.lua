@@ -54,6 +54,22 @@ function Leaderboards:renderHUD()
   BaseClass.renderHUD(self)
 end
 
+function Leaderboards:touchesDown(touches)
+  BaseClass.touchesDown(self, touches)
+end
+
+function Leaderboards:touchesUp(touches)
+  BaseClass.touchesUp(self, touches)
+end
+
+function Leaderboards:touchesMove(touches)
+  BaseClass.touchesMove(self, touches)
+end
+
+function Leaderboards:touchesCancelled(touches)
+  BaseClass.touchesCancelled(self, touches)
+end
+
 function Leaderboards:touchDown(touches)
   BaseClass.touchDown(self, touches)
 end

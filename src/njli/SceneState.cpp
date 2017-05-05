@@ -213,12 +213,12 @@ namespace njli
         char action[BUFFER_SIZE] = "Down";
         char buffer[BUFFER_SIZE] = "";
         
-        sprintf(buffer, "__NJLISceneTouch%s", action);
+        sprintf(buffer, "__NJLISceneTouches%s", action);
         njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, scene, m_CurrentTouches);
         
         if(scene)
         {
-            sprintf(buffer, "__NJLINodeTouch%s", action);
+            sprintf(buffer, "__NJLINodeTouches%s", action);
             btAlignedObjectArray<Node*> activeNodes;
             scene->getActiveNodes(activeNodes);
             for(unsigned int i = 0; i < activeNodes.size(); i++)
@@ -233,12 +233,12 @@ namespace njli
         char action[BUFFER_SIZE] = "Up";
         char buffer[BUFFER_SIZE] = "";
         
-        sprintf(buffer, "__NJLISceneTouch%s", action);
+        sprintf(buffer, "__NJLISceneTouches%s", action);
         njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, scene, m_CurrentTouches);
         
         if(scene)
         {
-            sprintf(buffer, "__NJLINodeTouch%s", action);
+            sprintf(buffer, "__NJLINodeTouches%s", action);
             btAlignedObjectArray<Node*> activeNodes;
             scene->getActiveNodes(activeNodes);
             for(unsigned int i = 0; i < activeNodes.size(); i++)
@@ -253,12 +253,12 @@ namespace njli
         char action[BUFFER_SIZE] = "Move";
         char buffer[BUFFER_SIZE] = "";
         
-        sprintf(buffer, "__NJLISceneTouch%s", action);
+        sprintf(buffer, "__NJLISceneTouches%s", action);
         njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, scene, m_CurrentTouches);
         
         if(scene)
         {
-            sprintf(buffer, "__NJLINodeTouch%s", action);
+            sprintf(buffer, "__NJLINodeTouches%s", action);
             btAlignedObjectArray<Node*> activeNodes;
             scene->getActiveNodes(activeNodes);
             for(unsigned int i = 0; i < activeNodes.size(); i++)
@@ -273,8 +273,28 @@ namespace njli
         char action[BUFFER_SIZE] = "Cancelled";
         char buffer[BUFFER_SIZE] = "";
         
-        sprintf(buffer, "__NJLISceneTouch%s", action);
+        sprintf(buffer, "__NJLISceneTouches%s", action);
         njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, scene, m_CurrentTouches);
+        
+        if(scene)
+        {
+            sprintf(buffer, "__NJLINodeTouches%s", action);
+            btAlignedObjectArray<Node*> activeNodes;
+            scene->getActiveNodes(activeNodes);
+            for(unsigned int i = 0; i < activeNodes.size(); i++)
+            {
+                njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, activeNodes[i], m_CurrentTouches);
+            }
+        }
+    }
+
+void SceneState::touchDown(Scene *scene, const DeviceTouch &touch)
+    {
+        char action[BUFFER_SIZE] = "Down";
+        char buffer[BUFFER_SIZE] = "";
+        
+        sprintf(buffer, "__NJLISceneTouch%s", action);
+        njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, scene, touch);
         
         if(scene)
         {
@@ -283,7 +303,67 @@ namespace njli
             scene->getActiveNodes(activeNodes);
             for(unsigned int i = 0; i < activeNodes.size(); i++)
             {
-                njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, activeNodes[i], m_CurrentTouches);
+                njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, activeNodes[i], touch);
+            }
+        }
+    }
+    
+    void SceneState::touchUp(Scene *scene, const DeviceTouch &touch)
+    {
+        char action[BUFFER_SIZE] = "Up";
+        char buffer[BUFFER_SIZE] = "";
+        
+        sprintf(buffer, "__NJLISceneTouch%s", action);
+        njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, scene, touch);
+        
+        if(scene)
+        {
+            sprintf(buffer, "__NJLINodeTouch%s", action);
+            btAlignedObjectArray<Node*> activeNodes;
+            scene->getActiveNodes(activeNodes);
+            for(unsigned int i = 0; i < activeNodes.size(); i++)
+            {
+                njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, activeNodes[i], touch);
+            }
+        }
+    }
+    
+    void SceneState::touchMove(Scene *scene, const DeviceTouch &touch)
+    {
+        char action[BUFFER_SIZE] = "Move";
+        char buffer[BUFFER_SIZE] = "";
+        
+        sprintf(buffer, "__NJLISceneTouch%s", action);
+        njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, scene, touch);
+        
+        if(scene)
+        {
+            sprintf(buffer, "__NJLINodeTouch%s", action);
+            btAlignedObjectArray<Node*> activeNodes;
+            scene->getActiveNodes(activeNodes);
+            for(unsigned int i = 0; i < activeNodes.size(); i++)
+            {
+                njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, activeNodes[i], touch);
+            }
+        }
+    }
+    
+    void SceneState::touchCancelled(Scene *scene, const DeviceTouch &touch)
+    {
+        char action[BUFFER_SIZE] = "Cancelled";
+        char buffer[BUFFER_SIZE] = "";
+        
+        sprintf(buffer, "__NJLISceneTouch%s", action);
+        njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, scene, touch);
+        
+        if(scene)
+        {
+            sprintf(buffer, "__NJLINodeTouch%s", action);
+            btAlignedObjectArray<Node*> activeNodes;
+            scene->getActiveNodes(activeNodes);
+            for(unsigned int i = 0; i < activeNodes.size(); i++)
+            {
+                njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, activeNodes[i], touch);
             }
         }
     }

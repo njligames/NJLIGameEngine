@@ -204,6 +204,30 @@ function WorldEntity:renderHUD()
   self:_getCurrentEntityState():renderHUD()
 end
 
+function WorldEntity:touchesDown(touches)
+  --print(self:getWorld():getName() .. " :touchDown(" .. #touches .. ")")
+  assert(self:hasState(), "WorldEntity must be in a state")
+  self:_getCurrentEntityState():touchesDown(touches)
+end
+
+function WorldEntity:touchesUp(touches)
+  --print(self:getWorld():getName() .. " :touchUp(" .. #touches .. ")")
+  assert(self:hasState(), "WorldEntity must be in a state")
+  self:_getCurrentEntityState():touchesUp(touches)
+end
+
+function WorldEntity:touchesMove(touches)
+  --print(self:getWorld():getName() .. " :touchMove(" .. #touches .. ")")
+  assert(self:hasState(), "WorldEntity must be in a state")
+  self:_getCurrentEntityState():touchesMove(touches)
+end
+
+function WorldEntity:touchesCancelled(touches)
+  --print(self:getWorld():getName() .. " :touchCancelled(" .. #touches .. ")")
+  assert(self:hasState(), "WorldEntity must be in a state")
+  self:_getCurrentEntityState():touchesCancelled(touches)
+end
+
 function WorldEntity:touchDown(touches)
   --print(self:getWorld():getName() .. " :touchDown(" .. #touches .. ")")
   assert(self:hasState(), "WorldEntity must be in a state")

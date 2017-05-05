@@ -54,6 +54,22 @@ function Win:renderHUD()
   BaseClass.renderHUD(self)
 end
 
+function Win:touchesDown(touches)
+  BaseClass.touchesDown(self, touches)
+end
+
+function Win:touchesUp(touches)
+  BaseClass.touchesUp(self, touches)
+end
+
+function Win:touchesMove(touches)
+  BaseClass.touchesMove(self, touches)
+end
+
+function Win:touchesCancelled(touches)
+  BaseClass.touchesCancelled(self, touches)
+end
+
 function Win:touchDown(touches)
   BaseClass.touchDown(self, touches)
 end

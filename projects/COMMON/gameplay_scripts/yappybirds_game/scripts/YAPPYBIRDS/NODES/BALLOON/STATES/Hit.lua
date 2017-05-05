@@ -50,6 +50,22 @@ function Hit:onMessage()
   BaseClass.onMessage(self)
 end
 
+function Hit:touchesDown(rayContact)
+  BaseClass.touchesDown(self, rayContact)
+end
+
+function Hit:touchesUp(rayContact)
+  BaseClass.touchesUp(self, rayContact)
+end
+
+function Hit:touchesMove(rayContact)
+  BaseClass.touchesMove(self, rayContact)
+end
+
+function Hit:touchesCancelled(rayContact)
+  BaseClass.touchesCancelled(self, rayContact)
+end
+
 function Hit:touchDown(rayContact)
   BaseClass.touchDown(self, rayContact)
 end

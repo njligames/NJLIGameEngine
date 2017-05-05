@@ -61,6 +61,27 @@ function __NJLIWorldRenderHUD()
   __interface:getStateMachine():_worldRenderHUD()
 end
 
+function __NJLIWorldTouchesDown(touches)
+  --print("__NJLIWorldTouchesDown")
+  assert(touches ~= nil, "The touches are nil")
+  __interface:getStateMachine():_worldTouchesDown(touches)
+end
+
+function __NJLIWorldTouchesUp(touches)
+  --print("__NJLIWorldTouchesUp")
+  __interface:getStateMachine():_worldTouchesUp(touches)
+end
+
+function __NJLIWorldTouchesMove(touches)
+  --print("__NJLIWorldTouchesMove")
+  __interface:getStateMachine():_worldTouchesMove(touches)
+end
+
+function __NJLIWorldTouchesCancelled(touches)
+  --print("__NJLIWorldTouchesCancelled")
+  __interface:getStateMachine():_worldTouchesCancelled(touches)
+end
+
 function __NJLIWorldTouchDown(touches)
   --print("__NJLIWorldTouchDown")
   assert(touches ~= nil, "The touches are nil")
@@ -171,6 +192,26 @@ function __NJLISceneGameUnPause(scene)
   __interface:getStateMachine():_sceneGameUnPause(scene)
 end
 
+function __NJLISceneTouchesDown(scene, touches)
+  --print("__NJLISceneTouchesDown")
+  __interface:getStateMachine():_sceneTouchesDown(scene, touches)
+end
+
+function __NJLISceneTouchesUp(scene, touches)
+  --print("__NJLISceneTouchesUp")
+  __interface:getStateMachine():_sceneTouchesUp(scene, touches)
+end
+
+function __NJLISceneTouchesMove(scene, touches)
+  --print("__NJLISceneTouchesMove")
+  __interface:getStateMachine():_sceneTouchesMove(scene, touches)
+end
+
+function __NJLISceneTouchesCancelled(scene, touches)
+  --print("__NJLISceneTouchesCancelled")
+  __interface:getStateMachine():_sceneTouchesCancelled(scene, touches)
+end
+
 function __NJLISceneTouchDown(scene, touches)
   --print("__NJLISceneTouchDown")
   __interface:getStateMachine():_sceneTouchDown(scene, touches)
@@ -275,6 +316,31 @@ function __NJLINodeActionComplete(action)
   __interface:getStateMachine():_nodeActionComplete(action)
 end
 
+function __NJLINodeRayTouchesDown(rayContact)
+  --print("__NJLINodeRayTouchesDown")
+  __interface:getStateMachine():_rayTouchesDown(rayContact)
+end
+
+function __NJLINodeRayTouchesUp(rayContact)
+  --print("__NJLINodeRayTouchesUp")
+  __interface:getStateMachine():_rayTouchesUp(rayContact)
+end
+
+function __NJLINodeRayTouchesMove(rayContact)
+  --print("__NJLINodeRayTouchesMove")
+  __interface:getStateMachine():_rayTouchesMove(rayContact)
+end
+
+function __NJLINodeRayTouchesCancelled(rayContact)
+  --print("__NJLINodeRayTouchesCancelled")
+  __interface:getStateMachine():_rayTouchesCancelled(rayContact)
+end
+
+function __NJLINodeRayTouchesMissed(node)
+    --print("__NJLINodeRayTouchesMissed")
+  __interface:getStateMachine():_rayTouchesMissed(node)
+end
+
 function __NJLINodeRayTouchDown(rayContact)
   --print("__NJLINodeRayTouchDown")
   __interface:getStateMachine():_rayTouchDown(rayContact)
@@ -330,6 +396,26 @@ function __NJLINodeGameUnPause(node)
   __interface:getStateMachine():_nodeGameUnPause(node)
 end
 
+function __NJLINodeTouchesDown(node, touches)
+  --print("__NJLINodeTouchesDown")
+  __interface:getStateMachine():_nodeTouchesDown(node, touches)
+end
+
+function __NJLINodeTouchesUp(node, touches)
+  --print("__NJLINodeTouchesUp")
+  __interface:getStateMachine():_nodeTouchesUp(node, touches)
+end
+
+function __NJLINodeTouchesMove(node, touches)
+  --print("__NJLINodeTouchesMove")
+  __interface:getStateMachine():_nodeTouchesMove(node, touches)
+end
+
+function __NJLINodeTouchesCancelled(node, touches)
+  --print("__NJLINodeTouchesCancelled")
+  __interface:getStateMachine():_nodeTouchesCancelled(node, touches)
+end
+
 function __NJLINodeTouchDown(node, touches)
   --print("__NJLINodeTouchDown")
   __interface:getStateMachine():_nodeTouchDown(node, touches)
@@ -367,6 +453,26 @@ end
 function __NJLIResize(width, height, orientation)
   --print("__NJLIResize(" .. width .. ", " .. height .. ", " .. orientation .. ")")
   __interface:getDeviceEntity():resize(width, height, orientation)
+end
+
+function __NJLITouchesDown(touches)
+  --print("__NJLITouchesDown(" .. #touches .. ")")
+  __interface:getDeviceEntity():touchesDown(touches)
+end
+
+function __NJLITouchesUp(touches)
+  --print("__NJLITouchesUp(" .. #touches .. ")")
+  __interface:getDeviceEntity():touchesUp(touches)
+end
+
+function __NJLITouchesMove(touches)
+  --print("__NJLITouchesMove(" .. #touches .. ")")
+  __interface:getDeviceEntity():touchesMove(touches)
+end
+
+function __NJLITouchesCancelled(touches)
+  --print("__NJLITouchesCancelled(" .. #touches .. ")")
+  __interface:getDeviceEntity():touchesCancelled(touches)
 end
 
 function __NJLITouchDown(touches)

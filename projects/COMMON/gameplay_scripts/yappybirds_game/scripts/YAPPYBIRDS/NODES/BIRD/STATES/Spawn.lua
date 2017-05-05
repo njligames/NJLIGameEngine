@@ -50,6 +50,22 @@ function Spawn:onMessage()
   BaseClass.onMessage(self)
 end
 
+function Spawn:touchesDown(rayContact)
+  BaseClass.touchesDown(self, rayContact)
+end
+
+function Spawn:touchesUp(rayContact)
+  BaseClass.touchesUp(self, rayContact)
+end
+
+function Spawn:touchesMove(rayContact)
+  BaseClass.touchesMove(self, rayContact)
+end
+
+function Spawn:touchesCancelled(rayContact)
+  BaseClass.touchesCancelled(self, rayContact)
+end
+
 function Spawn:touchDown(rayContact)
   BaseClass.touchDown(self, rayContact)
 end

@@ -57,6 +57,33 @@ function Selected:onMessage()
 	BaseClass.onMessage(self)
 end
 
+function Selected:rayTouchesDown(rayContact)
+	BaseClass.rayTouchesDown(self, rayContact)
+end
+
+function Selected:rayTouchesUp(rayContact)
+	BaseClass.rayTouchesUp(self, rayContact)
+    self:getNodeEntity():pushState("NJLI.STATEMACHINE.UI.BUTTON.STATES.Default")
+end
+
+function Selected:rayTouchesMove(rayContact)
+	BaseClass.rayTouchesMove(self, rayContact)
+end
+
+function Selected:rayTouchesCancelled(rayContact)
+	BaseClass.rayTouchesCancelled(self, rayContact)
+end
+
+function Selected:rayTouchesMissed(node)
+    BaseClass.rayTouchesMissed(self, node)
+
+    --self:getNodeEntity():pushState("NJLI.STATEMACHINE.UI.BUTTON.STATES.Default")
+
+    if not self:getNodeEntity():disabled() then
+        self:getNodeEntity():touchDragOutside()
+    end
+end
+
 function Selected:rayTouchDown(rayContact)
 	BaseClass.rayTouchDown(self, rayContact)
 end
@@ -122,6 +149,28 @@ end
 
 function Selected:gameUnPause()
     BaseClass.gameUnPause(self)
+end
+
+function Selected:touchesDown(touches)
+    BaseClass.touchesDown(self, touches)
+end
+
+function Selected:touchesUp(touches)
+    BaseClass.touchesUp(self, touches)
+
+    self:getNodeEntity():pushState("NJLI.STATEMACHINE.UI.BUTTON.STATES.Default")
+
+    if not self:getNodeEntity():disabled() then
+        self:getNodeEntity():touchUpOutside(touches)
+    end
+end
+
+function Selected:touchesMove(touches)
+    BaseClass.touchesMove(self, touches)
+end
+
+function Selected:touchesCancelled(touches)
+    BaseClass.touchesCancelled(self, touches)
 end
 
 function Selected:touchDown(touches)

@@ -245,6 +245,46 @@ function Button:onMessage()
   BaseClass.onMessage(self)
 end
 
+function Button:rayTouchesDown(rayContact)
+  BaseClass.rayTouchesDown(self, rayContact)
+
+  if not self:disabled() then
+      self:touchDownInside(rayContact)
+  end
+end
+
+function Button:rayTouchesUp(rayContact)
+  BaseClass.rayTouchesUp(self, rayContact)
+
+  if not self:disabled() then
+      self:touchUpInside(rayContact)
+  end
+end
+
+function Button:rayTouchesMove(rayContact)
+  BaseClass.rayTouchesMove(self, rayContact)
+
+  if not self:disabled() then
+      self:touchDragInside(rayContact)
+  end
+end
+
+function Button:rayTouchesCancelled(rayContact)
+  BaseClass.rayTouchesCancelled(self, rayContact)
+
+  if not self:disabled() then
+      self:touchCancelled(rayContact)
+  end
+end
+
+function Button:rayTouchesMissed(node)
+  BaseClass.rayTouchesMissed(self, node)
+
+--  if not self:disabled() then
+--      self:touchMissed(node)
+--  end
+end
+
 function Button:rayTouchDown(rayContact)
   BaseClass.rayTouchDown(self, rayContact)
 
@@ -323,6 +363,22 @@ end
 
 function Button:gameUnPause()
     BaseClass.gameUnPause(self)
+end
+
+function Button:touchesDown(touches)
+    BaseClass.touchesDown(self, touches)
+end
+
+function Button:touchesUp(touches)
+    BaseClass.touchesUp(self, touches)
+end
+
+function Button:touchesMove(touches)
+    BaseClass.touchesMove(self, touches)
+end
+
+function Button:touchesCancelled(touches)
+    BaseClass.touchesCancelled(self, touches)
 end
 
 function Button:touchDown(touches)

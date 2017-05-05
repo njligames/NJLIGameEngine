@@ -50,6 +50,22 @@ function Idle:onMessage()
   BaseClass.onMessage(self)
 end
 
+function Idle:touchesDown(rayContact)
+  BaseClass.touchesDown(self, rayContact)
+end
+
+function Idle:touchesUp(rayContact)
+  BaseClass.touchesUp(self, rayContact)
+end
+
+function Idle:touchesMove(rayContact)
+  BaseClass.touchesMove(self, rayContact)
+end
+
+function Idle:touchesCancelled(rayContact)
+  BaseClass.touchesCancelled(self, rayContact)
+end
+
 function Idle:touchDown(rayContact)
   BaseClass.touchDown(self, rayContact)
 end

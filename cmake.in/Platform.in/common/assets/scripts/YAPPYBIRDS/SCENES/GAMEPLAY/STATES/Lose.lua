@@ -54,6 +54,22 @@ function Lose:renderHUD()
   BaseClass.renderHUD(self)
 end
 
+function Lose:touchesDown(touches)
+  BaseClass.touchesDown(self, touches)
+end
+
+function Lose:touchesUp(touches)
+  BaseClass.touchesUp(self, touches)
+end
+
+function Lose:touchesMove(touches)
+  BaseClass.touchesMove(self, touches)
+end
+
+function Lose:touchesCancelled(touches)
+  BaseClass.touchesCancelled(self, touches)
+end
+
 function Lose:touchDown(touches)
   BaseClass.touchDown(self, touches)
 end

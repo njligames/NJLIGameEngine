@@ -1654,6 +1654,26 @@ namespace njli
         return false;
     }
     
+    bool WorldLuaVirtualMachine::execute(const char* code, const DeviceTouch &touch)
+    {
+        if(m_lua_State)
+        {
+            lua_getglobal(m_lua_State, code);
+            
+            swig_type_info * deviceTouchTypeInfo = SWIG_TypeQuery( m_lua_State, "_p_njli__DeviceTouch" );
+            SWIG_NewPointerObj(m_lua_State,(void *) &touch,deviceTouchTypeInfo,0);
+            
+            /* do the call (1 arguments, 0 result) */
+            //            int error_code = lua_pcall(m_lua_State, 1, 0, 0);
+            int status = docall(m_lua_State, 1, 0);
+            
+            if(LUA_OK == status)
+                return true;
+            getError(code, status);
+        }
+        return false;
+    }
+    
     bool WorldLuaVirtualMachine::execute(const char *code, Scene *pEntity, DeviceTouch **touches)
     {
         //        SDL_LogVerbose(SDL_LOG_CATEGORY_TEST, "WorldLuaVirtualMachine::execute(%s)\n", code);
@@ -1676,6 +1696,31 @@ namespace njli
             
             /* call the function with 2 arguments, return 0 result */
 //            int error_code = lua_pcall(m_lua_State, 2, 0, 0);
+            int status = docall(m_lua_State, 2, 0);
+            
+            if(LUA_OK == status)
+                return true;
+            getError(code, status);
+        }
+        return false;
+    }
+    
+    bool WorldLuaVirtualMachine::execute(const char *code, Scene *pEntity, const DeviceTouch &touch)
+    {
+        //        SDL_LogVerbose(SDL_LOG_CATEGORY_TEST, "WorldLuaVirtualMachine::execute(%s)\n", code);
+        
+        if(m_lua_State)
+        {
+            lua_getglobal(m_lua_State, code);
+            
+            swig_type_info *sceneTypeInfo = SWIG_TypeQuery( m_lua_State, "_p_njli__Scene" );
+            SWIG_NewPointerObj(m_lua_State,(void *) pEntity,sceneTypeInfo,0);
+            
+            swig_type_info * deviceTouchTypeInfo = SWIG_TypeQuery( m_lua_State, "_p_njli__DeviceTouch" );
+            SWIG_NewPointerObj(m_lua_State,(void *) &touch,deviceTouchTypeInfo,0);
+            
+            /* call the function with 2 arguments, return 0 result */
+            //            int error_code = lua_pcall(m_lua_State, 2, 0, 0);
             int status = docall(m_lua_State, 2, 0);
             
             if(LUA_OK == status)
@@ -1865,6 +1910,31 @@ namespace njli
                 SWIG_NewPointerObj(m_lua_State,(void *) touches[i],deviceTouchTypeInfo,0);
                 lua_rawseti(m_lua_State,-2,i+1);/* -1 is the number, -2 is the table*/
             }
+            
+            /* call the function with 2 arguments, return 0 result */
+            //            int error_code = lua_pcall(m_lua_State, 2, 0, 0);
+            int status = docall(m_lua_State, 2, 0);
+            
+            if(LUA_OK == status)
+                return true;
+            getError(code, status);
+        }
+        return false;
+    }
+    
+    bool WorldLuaVirtualMachine::execute(const char *code, Node *pEntity, const DeviceTouch &touch)
+    {
+        //        SDL_LogVerbose(SDL_LOG_CATEGORY_TEST, "WorldLuaVirtualMachine::execute(%s)\n", code);
+        
+        if(m_lua_State)
+        {
+            lua_getglobal(m_lua_State, code);
+            
+            swig_type_info *sceneTypeInfo = SWIG_TypeQuery( m_lua_State, "_p_njli__Node" );
+            SWIG_NewPointerObj(m_lua_State,(void *) pEntity,sceneTypeInfo,0);
+            
+            swig_type_info * deviceTouchTypeInfo = SWIG_TypeQuery( m_lua_State, "_p_njli__DeviceTouch" );
+            SWIG_NewPointerObj(m_lua_State,(void *) &touch,deviceTouchTypeInfo,0);
             
             /* call the function with 2 arguments, return 0 result */
             //            int error_code = lua_pcall(m_lua_State, 2, 0, 0);

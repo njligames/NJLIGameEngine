@@ -92,6 +92,10 @@ void NJLIGameEngine::resize(int x, int y, int width, int height,
                                          function __NJLIWorldGamePause() end\n\
                                          function __NJLIWorldGameUnPause() end\n\
                                          function __NJLIWorldRenderHUD() end\n\
+                                         function __NJLIWorldTouchesDown(touches) end\n\
+                                         function __NJLIWorldTouchesUp(touches) end\n\
+                                         function __NJLIWorldTouchesMove(touches) end\n\
+                                         function __NJLIWorldTouchesCancelled(touches) end\n\
                                          function __NJLIWorldTouchDown(touches) end\n\
                                          function __NJLIWorldTouchUp(touches) end\n\
                                          function __NJLIWorldTouchMove(touches) end\n\
@@ -106,6 +110,10 @@ void NJLIGameEngine::resize(int x, int y, int width, int height,
                                          function __NJLISceneRenderHUD(scene) end\n\
                                          function __NJLISceneGamePause(scene) end\n\
                                          function __NJLISceneGameUnPause(scene) end\n\
+                                         function __NJLISceneTouchesDown(scene, touches) end\n\
+                                         function __NJLISceneTouchesUp(scene, touches) end\n\
+                                         function __NJLISceneTouchesMove(scene, touches) end\n\
+                                         function __NJLISceneTouchesCancelled(scene, touches) end\n\
                                          function __NJLISceneTouchDown(scene, touches) end\n\
                                          function __NJLISceneTouchUp(scene, touches) end\n\
                                          function __NJLISceneTouchMove(scene, touches) end\n\
@@ -118,6 +126,11 @@ void NJLIGameEngine::resize(int x, int y, int width, int height,
                                          function __NJLINodeNear(node, otherNode) end\n\
                                          function __NJLINodeActionUpdate(action, timeStep) end\n\
                                          function __NJLINodeActionComplete(action) end\n\
+                                         function __NJLINodeRayTouchesDown(rayContact) end\n\
+                                         function __NJLINodeRayTouchesUp(rayContact) end\n\
+                                         function __NJLINodeRayTouchesMove(rayContact) end\n\
+                                         function __NJLINodeRayTouchesCancelled(rayContact) end\n\
+                                         function __NJLINodeRayTouchesMissed(node) end\n\
                                          function __NJLINodeRayTouchDown(rayContact) end\n\
                                          function __NJLINodeRayTouchUp(rayContact) end\n\
                                          function __NJLINodeRayTouchMove(rayContact) end\n\

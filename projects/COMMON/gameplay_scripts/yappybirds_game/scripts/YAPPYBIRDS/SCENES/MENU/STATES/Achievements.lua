@@ -54,6 +54,22 @@ function Achievements:renderHUD()
   BaseClass.renderHUD(self)
 end
 
+function Achievements:touchesDown(touches)
+  BaseClass.touchesDown(self, touches)
+end
+
+function Achievements:touchesUp(touches)
+  BaseClass.touchesUp(self, touches)
+end
+
+function Achievements:touchesMove(touches)
+  BaseClass.touchesMove(self, touches)
+end
+
+function Achievements:touchesCancelled(touches)
+  BaseClass.touchesCancelled(self, touches)
+end
+
 function Achievements:touchDown(touches)
   BaseClass.touchDown(self, touches)
 end

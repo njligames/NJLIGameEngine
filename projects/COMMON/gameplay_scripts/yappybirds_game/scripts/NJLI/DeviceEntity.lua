@@ -44,6 +44,22 @@ function DeviceEntity:resize(width, height, orientation)
   --print("DeviceEntity:resize("..width..", "..height..", "..orientation..")")
 end
 
+function DeviceEntity:touchesDown(touches)
+  --print("DeviceEntity:touchesDown("..#touches..")")
+end
+
+function DeviceEntity:touchesUp(touches)
+  --print("DeviceEntity:touchesUp("..#touches..")")
+end
+
+function DeviceEntity:touchesMove(touches)
+  --print("DeviceEntity:touchesMove("..#touches..")")
+end
+
+function DeviceEntity:touchesCancelled(touches)
+  --print("DeviceEntity:touchesCancelled("..#touches..")")
+end
+
 function DeviceEntity:touchDown(touches)
   --print("DeviceEntity:touchDown("..#touches..")")
 end

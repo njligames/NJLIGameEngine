@@ -70,6 +70,40 @@ function Phasing:onMessage()
   BaseClass.onMessage(self)
 end
 
+function Phasing:rayTouchesDown(rayContact)
+  BaseClass.rayTouchesDown(self, rayContact)
+end
+
+function Phasing:rayTouchesUp(rayContact)
+  BaseClass.rayTouchesUp(self, rayContact)
+  if not self:getNodeEntity():disabled() then
+    if self:getNodeEntity()._on then
+      self:getNodeEntity():pushState("NJLI.STATEMACHINE.UI.SWITCH.STATES.Off")
+    else
+      self:getNodeEntity():pushState("NJLI.STATEMACHINE.UI.SWITCH.STATES.On")
+    end
+  end
+end
+
+function Phasing:rayTouchesMove(rayContact)
+  BaseClass.rayTouchesMove(self, rayContact)
+end
+
+function Phasing:rayTouchesCancelled(rayContact)
+  BaseClass.rayTouchesCancelled(self, rayContact)
+end
+
+function Phasing:rayTouchesMissed(node)
+    BaseClass.rayTouchesMissed(self, node)
+    if not self:getNodeEntity():disabled() then
+      if self:getNodeEntity()._on then
+        self:getNodeEntity():pushState("NJLI.STATEMACHINE.UI.SWITCH.STATES.On")
+      else
+        self:getNodeEntity():pushState("NJLI.STATEMACHINE.UI.SWITCH.STATES.Off")
+      end
+    end
+end
+
 function Phasing:rayTouchDown(rayContact)
   BaseClass.rayTouchDown(self, rayContact)
 end

@@ -51,6 +51,22 @@ function Lob:onMessage()
   BaseClass.onMessage(self)
 end
 
+function Lob:touchesDown(rayContact)
+  BaseClass.touchesDown(self, rayContact)
+end
+
+function Lob:touchesUp(rayContact)
+  BaseClass.touchesUp(self, rayContact)
+end
+
+function Lob:touchesMove(rayContact)
+  BaseClass.touchesMove(self, rayContact)
+end
+
+function Lob:touchesCancelled(rayContact)
+  BaseClass.touchesCancelled(self, rayContact)
+end
+
 function Lob:touchDown(rayContact)
   BaseClass.touchDown(self, rayContact)
 end

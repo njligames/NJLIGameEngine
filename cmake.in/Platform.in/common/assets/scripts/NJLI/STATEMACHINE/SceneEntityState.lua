@@ -117,6 +117,22 @@ function SceneEntityState:renderHUD()
   --print(self:getSceneState():getName() .. " :renderHUD()")
 end
 
+function SceneEntityState:touchesDown(touches)
+  --print(self:getSceneState():getName() .. " :touchDown(" .. #touches .. ")")
+end
+
+function SceneEntityState:touchesUp(touches)
+  --print(self:getSceneState():getName() .. " :touchUp(" .. #touches .. ")")
+end
+
+function SceneEntityState:touchesMove(touches)
+  --print(self:getSceneState():getName() .. " :touchMove(" .. #touches .. ")")
+end
+
+function SceneEntityState:touchesCancelled(touches)
+  --print(self:getSceneState():getName() .. " :touchCancelled(" .. #touches .. ")")
+end
+
 function SceneEntityState:touchDown(touches)
   --print(self:getSceneState():getName() .. " :touchDown(" .. #touches .. ")")
 end

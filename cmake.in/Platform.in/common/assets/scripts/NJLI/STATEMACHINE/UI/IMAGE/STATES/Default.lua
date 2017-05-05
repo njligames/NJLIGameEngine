@@ -63,6 +63,26 @@ function Default:onMessage()
   BaseClass.onMessage(self)
 end
 
+function Default:rayTouchesDown(rayContact)
+  BaseClass.rayTouchesDown(self, rayContact)
+end
+
+function Default:rayTouchesUp(rayContact)
+  BaseClass.rayTouchesUp(self, rayContact)
+end
+
+function Default:rayTouchesMove(rayContact)
+  BaseClass.rayTouchesMove(self, rayContact)
+end
+
+function Default:rayTouchesCancelled(rayContact)
+  BaseClass.rayTouchesCancelled(self, rayContact)
+end
+
+function Default:rayTouchesMissed(node)
+    BaseClass.rayTouchesMissed(self, node)
+end
+
 function Default:rayTouchDown(rayContact)
   BaseClass.rayTouchDown(self, rayContact)
 end
@@ -121,6 +141,22 @@ end
 
 function Default:gameUnPause()
     BaseClass.gameUnPause(self)
+end
+
+function Default:touchesDown(touches)
+    BaseClass.touchDown(self, touches)
+end
+
+function Default:touchesUp(touches)
+    BaseClass.touchUp(self, touches)
+end
+
+function Default:touchesMove(touches)
+    BaseClass.touchMove(self, touches)
+end
+
+function Default:touchesCancelled(touches)
+    BaseClass.touchCancelled(self, touches)
 end
 
 function Default:touchDown(touches)

@@ -495,26 +495,19 @@ static void handleInput()
                 break;
 #endif
                 
-//#if ((defined(__IPHONEOS__) && __IPHONEOS__) || (defined(__ANDROID__) && __ANDROID__))
-//            case SDL_FINGERMOTION:
-//            case SDL_FINGERDOWN:
-//            case SDL_FINGERUP:
-//            {
-//                NJLI_HandleTouch((int) event.tfinger.touchId,
-//                                 (int) event.tfinger.fingerId,
-//                                 event.type,
-//                                 event.tfinger.x,
-//                                 event.tfinger.y,
-//                                 event.tfinger.dx,
-//                                 event.tfinger.dy,
-//                                 event.tfinger.pressure);
-//            }
-//                break;
-//            case SDL_MULTIGESTURE:
-//                SDL_Log("SDL_EVENT: Multi gesture fingers: %d", event.mgesture.numFingers);
-//                gNumTouches = event.mgesture.numFingers;
-//                break;
-//#endif
+#if !((defined(__IPHONEOS__) && __IPHONEOS__) || (defined(__ANDROID__) && __ANDROID__))
+            case SDL_FINGERMOTION:
+            case SDL_FINGERDOWN:
+            case SDL_FINGERUP:
+                NJLI_HandleTouch((int) event.tfinger.touchId,
+                                 (int) event.tfinger.fingerId,
+                                 event.type,
+                                 event.tfinger.x,
+                                 event.tfinger.y,
+                                 event.tfinger.dx,
+                                 event.tfinger.dy,
+                                 event.tfinger.pressure);
+#endif
             case SDL_APP_DIDENTERFOREGROUND:
                 SDL_Log("SDL_APP_DIDENTERFOREGROUND");
                 

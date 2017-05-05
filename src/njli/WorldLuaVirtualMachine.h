@@ -283,19 +283,46 @@ public:
          */
     bool execute(const char* code, Node* node, const Telegram& tele, bool& b);
 
-    /**
-         *  @author James Folk, 16-02-11 18:02:39
-         *
-         *  @brief <#Description#>
-         *
-         *  @param code             <#code description#>
-         *  @param m_CurrentTouches <#m_CurrentTouches description#>
-         *
-         *  @return <#return value description#>
-         */
-    bool execute(const char* code, DeviceTouch** m_CurrentTouches);
     
-    bool execute(const char *code, Scene *pEntity, DeviceTouch **m_CurrentTouches);
+    /**
+     <#Description#>
+
+     @param code <#code description#>
+     @param touches <#touches description#>
+     @return <#return value description#>
+     */
+    bool execute(const char* code, DeviceTouch** touches);
+    
+    
+    /**
+     <#Description#>
+
+     @param code <#code description#>
+     @param touch <#touch description#>
+     @return <#return value description#>
+     */
+    bool execute(const char* code, const DeviceTouch &touch);
+    
+    
+    /**
+     <#Description#>
+
+     @param code <#code description#>
+     @param pEntity <#pEntity description#>
+     @param touches <#touches description#>
+     @return <#return value description#>
+     */
+    bool execute(const char *code, Scene *pEntity, DeviceTouch **touches);
+    
+    /**
+     <#Description#>
+
+     @param code <#code description#>
+     @param pEntity <#pEntity description#>
+     @param touch <#touch description#>
+     @return <#return value description#>
+     */
+    bool execute(const char *code, Scene *pEntity, const DeviceTouch &touch);
 
     /**
          *  @author James Folk, 16-02-11 18:02:43
@@ -387,6 +414,17 @@ public:
      @return <#return value description#>
      */
     bool execute(const char *code, Node *pEntity, DeviceTouch **touches);
+    
+    
+    /**
+     <#Description#>
+
+     @param code <#code description#>
+     @param pEntity <#pEntity description#>
+     @param touche <#touche description#>
+     @return <#return value description#>
+     */
+    bool execute(const char *code, Node *pEntity, const DeviceTouch &touche);
 
     
     /**

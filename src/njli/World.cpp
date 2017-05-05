@@ -350,13 +350,13 @@ namespace njli
 //        return m_WorldSQLite;
 //    }
     
-    void World::touchDown(DeviceTouch **touches)
+    void World::touchDown(DeviceTouch **touch)
     {
         WorldState *currentState = dynamic_cast<WorldState*>(m_stateMachine->getState());
         
         if(currentState)
         {
-            currentState->touchDown(touches);
+            currentState->touchDown(touch);
         }
         else
         {
@@ -364,20 +364,20 @@ namespace njli
         }
         
         if(getScene())
-            getScene()->touchDown(touches);
+            getScene()->touchDown(touch);
         
         char buffer[256];
-        sprintf(buffer, "%s", "__NJLITouchDown");
-        njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, touches);
+        sprintf(buffer, "%s", "__NJLITouchesDown");
+        njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, touch);
     }
     
-    void World::touchUp(DeviceTouch **touches)
+    void World::touchUp(DeviceTouch **touch)
     {
         WorldState *currentState = dynamic_cast<WorldState*>(m_stateMachine->getState());
         
         if(currentState)
         {
-            currentState->touchUp(touches);
+            currentState->touchUp(touch);
         }
         else
         {
@@ -385,20 +385,20 @@ namespace njli
         }
         
         if(getScene())
-            getScene()->touchUp(touches);
+            getScene()->touchUp(touch);
         
         char buffer[256];
-        sprintf(buffer, "%s", "__NJLITouchUp");
-        njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, touches);
+        sprintf(buffer, "%s", "__NJLITouchesUp");
+        njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, touch);
     }
     
-    void World::touchMove(DeviceTouch **touches)
+    void World::touchMove(DeviceTouch **touch)
     {
         WorldState *currentState = dynamic_cast<WorldState*>(m_stateMachine->getState());
         
         if(currentState)
         {
-            currentState->touchMove(touches);
+            currentState->touchMove(touch);
         }
         else
         {
@@ -406,20 +406,20 @@ namespace njli
         }
         
         if(getScene())
-            getScene()->touchMove(touches);
+            getScene()->touchMove(touch);
         
         char buffer[256];
-        sprintf(buffer, "%s", "__NJLITouchMove");
-        njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, touches);
+        sprintf(buffer, "%s", "__NJLITouchesMove");
+        njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, touch);
     }
     
-    void World::touchCancelled(DeviceTouch **touches)
+    void World::touchCancelled(DeviceTouch **touch)
     {
         WorldState *currentState = dynamic_cast<WorldState*>(m_stateMachine->getState());
         
         if(currentState)
         {
-            currentState->touchCancelled(touches);
+            currentState->touchCancelled(touch);
         }
         else
         {
@@ -427,63 +427,83 @@ namespace njli
         }
         
         if(getScene())
-            getScene()->touchCancelled(touches);
+            getScene()->touchCancelled(touch);
         
         char buffer[256];
-        sprintf(buffer, "%s", "__NJLITouchCancelled");
-        njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, touches);
+        sprintf(buffer, "%s", "__NJLITouchesCancelled");
+        njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, touch);
     }
-    
     
     void World::touchDown(const DeviceTouch &touch)
     {
-//        WorldState *currentState = dynamic_cast<WorldState*>(m_stateMachine->getState());
-//        
-//        if(currentState)
-//        {
-//            currentState->touchDown(touches);
-//        }
-//        else
-//        {
-//            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no WorldState\n");
-//        }
-//        
-//        if(getScene())
-//            getScene()->touchDown(touches);
-//        
-//        char buffer[256];
-//        sprintf(buffer, "%s", "__NJLITouchDown");
-//        njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, touches);
+        WorldState *currentState = dynamic_cast<WorldState*>(m_stateMachine->getState());
+        
+        if(currentState)
+        {
+            currentState->touchDown(touch);
+        }
+        else
+        {
+            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no WorldState\n");
+        }
+        
+        if(getScene())
+            getScene()->touchDown(touch);
+        
+        char buffer[256];
+        sprintf(buffer, "%s", "__NJLITouchDown");
+        njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, touch);
     }
     
     void World::touchUp(const DeviceTouch &touch)
     {
-//        WorldState *currentState = dynamic_cast<WorldState*>(m_stateMachine->getState());
-//        
-//        if(currentState)
-//        {
-//            currentState->touchUp(touches);
-//        }
-//        else
-//        {
-//            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no WorldState\n");
-//        }
-//        
-//        if(getScene())
-//            getScene()->touchUp(touches);
-//        
-//        char buffer[256];
-//        sprintf(buffer, "%s", "__NJLITouchUp");
-//        njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, touches);
+        WorldState *currentState = dynamic_cast<WorldState*>(m_stateMachine->getState());
+        
+        if(currentState)
+        {
+            currentState->touchUp(touch);
+        }
+        else
+        {
+            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no WorldState\n");
+        }
+        
+        if(getScene())
+            getScene()->touchUp(touch);
+        
+        char buffer[256];
+        sprintf(buffer, "%s", "__NJLITouchUp");
+        njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, touch);
     }
     
     void World::touchMove(const DeviceTouch &touch)
     {
+        WorldState *currentState = dynamic_cast<WorldState*>(m_stateMachine->getState());
+        
+        if(currentState)
+        {
+            currentState->touchMove(touch);
+        }
+        else
+        {
+            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no WorldState\n");
+        }
+        
+        if(getScene())
+            getScene()->touchMove(touch);
+        
+        char buffer[256];
+        sprintf(buffer, "%s", "__NJLITouchMove");
+        njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, touch);
+    }
+    
+//    void World::touchCancelled(const DeviceTouch &touches)
+//    {
 //        WorldState *currentState = dynamic_cast<WorldState*>(m_stateMachine->getState());
 //        
 //        if(currentState)
 //        {
-//            currentState->touchMove(touches);
+//            currentState->touchCancelled(touches);
 //        }
 //        else
 //        {
@@ -491,12 +511,12 @@ namespace njli
 //        }
 //        
 //        if(getScene())
-//            getScene()->touchMove(touches);
+//            getScene()->touchCancelled(touch);
 //        
 //        char buffer[256];
-//        sprintf(buffer, "%s", "__NJLITouchMove");
+//        sprintf(buffer, "%s", "__NJLITouchCancelled");
 //        njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, touches);
-    }
+//    }
     
     void World::keyboardShow()
     {

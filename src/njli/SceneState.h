@@ -120,30 +120,84 @@ public:
          */
     virtual bool onMessage(Scene * scene, const Telegram& telegram) const;
 
+    
+    
     /**
-     *  <#Description#>
-     *
-     *  @param m_CurrentTouches <#m_CurrentTouches description#>
+     <#Description#>
+
+     @param object <#object description#>
+     @param touches <#touches description#>
      */
-    void touchDown(Scene *object, DeviceTouch * *m_CurrentTouches);
+    void touchDown(Scene *object, DeviceTouch * *touches);
+    
+    
     /**
-     *  <#Description#>
-     *
-     *  @param m_CurrentTouches <#m_CurrentTouches description#>
+     <#Description#>
+
+     @param object <#object description#>
+     @param touches <#touches description#>
      */
-    void touchUp(Scene *object, DeviceTouch * *m_CurrentTouches);
+    void touchUp(Scene *object, DeviceTouch * *touches);
+    
+    
     /**
-     *  <#Description#>
-     *
-     *  @param m_CurrentTouches <#m_CurrentTouches description#>
+     <#Description#>
+
+     @param object <#object description#>
+     @param touches <#touches description#>
      */
-    void touchMove(Scene *object, DeviceTouch * *m_CurrentTouches);
+    void touchMove(Scene *object, DeviceTouch * *touches);
+    
+    
     /**
-     *  <#Description#>
-     *
-     *  @param m_CurrentTouches <#m_CurrentTouches description#>
+     <#Description#>
+
+     @param object <#object description#>
+     @param touches <#touches description#>
      */
-    void touchCancelled(Scene *object, DeviceTouch * *m_CurrentTouches);
+    void touchCancelled(Scene *object, DeviceTouch * *touches);
+
+    
+    
+    
+    
+    /**
+     <#Description#>
+
+     @param object <#object description#>
+     @param touch <#touch description#>
+     */
+    void touchDown(Scene *object, const DeviceTouch &touch);
+    
+    
+    /**
+     <#Description#>
+
+     @param object <#object description#>
+     @param touch <#touch description#>
+     */
+    void touchUp(Scene *object, const DeviceTouch &touch);
+    
+    
+    /**
+     <#Description#>
+
+     @param object <#object description#>
+     @param touch <#touch description#>
+     */
+    void touchMove(Scene *object, const DeviceTouch &touch);
+    
+    
+    /**
+     <#Description#>
+
+     @param object <#object description#>
+     @param touch <#touch description#>
+     */
+    void touchCancelled(Scene *object, const DeviceTouch &touch);
+    
+
+    
     
     void keyboardShow(Scene *object);
     void keyboardCancel(Scene *object);

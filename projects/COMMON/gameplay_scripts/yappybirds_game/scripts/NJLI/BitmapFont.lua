@@ -118,7 +118,8 @@ local __load = function(self)
 
     local font = loadFont(self._fntFile)
 
-    njli.World.getInstance():getWorldResourceLoader():load("shaders/objectShader.vsh", "shaders/objectShader.fsh", self._shader)
+    --njli.World.getInstance():getWorldResourceLoader():load("shaders/opengl_2.1/objectShader.vsh", "shaders/opengl_2.1/objectShader.fsh", self._shader)
+    njli.World.getInstance():getWorldResourceLoader():load("shaders/opengl_es_2.0/objectShader.vsh", "shaders/opengl_es_2.0/objectShader.fsh", self._shader)
 
     local imagePath = baseImagePath .. font.spritesheets[1].file
     assert(imagePath, "There is no file: " .. imagePath)

@@ -170,34 +170,78 @@ public:
 public:
     //TODO: fill in specific methods for WorldState
 
+    
     /**
-         *  <#Description#>
-         *
-         *  @param m_CurrentTouches <#m_CurrentTouches description#>
-         */
-    void touchDown(DeviceTouch * *m_CurrentTouches);
+     <#Description#>
+
+     @param touches <#touches description#>
+     */
+    void touchDown(DeviceTouch * *touches);
+    
+    
     /**
-         *  <#Description#>
-         *
-         *  @param m_CurrentTouches <#m_CurrentTouches description#>
-         */
-    void touchUp(DeviceTouch * *m_CurrentTouches);
+     <#Description#>
+
+     @param touches <#touches description#>
+     */
+    void touchUp(DeviceTouch * *touches);
+    
+    
     /**
-         *  <#Description#>
-         *
-         *  @param m_CurrentTouches <#m_CurrentTouches description#>
-         */
-    void touchMove(DeviceTouch * *m_CurrentTouches);
+     <#Description#>
+
+     @param touches <#touches description#>
+     */
+    void touchMove(DeviceTouch * *touches);
+    
+    
     /**
-         *  <#Description#>
-         *
-         *  @param m_CurrentTouches <#m_CurrentTouches description#>
-         */
-    void touchCancelled(DeviceTouch * *m_CurrentTouches);
+     <#Description#>
+
+     @param touches <#touches description#>
+     */
+    void touchCancelled(DeviceTouch * *touches);
+    
+    
+    
+    
+    
+    
+    /**
+     <#Description#>
+
+     @param touch <#touch description#>
+     */
+    void touchDown(const DeviceTouch &touch);
+    
+    
+    /**
+     <#Description#>
+
+     @param touch <#touch description#>
+     */
+    void touchUp(const DeviceTouch &touch);
+    
+    
+    /**
+     <#Description#>
+
+     @param touch <#touch description#>
+     */
+    void touchMove(const DeviceTouch &touch);
+    
+    
+    /**
+     <#Description#>
+
+     @param touch <#touch description#>
+     */
+    void touchCancelled(const DeviceTouch &touch);
 
 public:
 protected:
     void checkRayCollision(DeviceTouch * *m_CurrentTouches, const char* code, bool disableNodeTouched = false);
+    void checkRayCollision(const DeviceTouch &m_CurrentTouches, const char* code, bool disableNodeTouched = false);
 
 private:
     btAlignedObjectArray<njli::PhysicsRayContact*> m_RayContacts;

@@ -54,6 +54,22 @@ function ModeSelect:renderHUD()
   BaseClass.renderHUD(self)
 end
 
+function ModeSelect:touchesDown(touches)
+  BaseClass.touchesDown(self, touches)
+end
+
+function ModeSelect:touchesUp(touches)
+  BaseClass.touchesUp(self, touches)
+end
+
+function ModeSelect:touchesMove(touches)
+  BaseClass.touchesMove(self, touches)
+end
+
+function ModeSelect:touchesCancelled(touches)
+  BaseClass.touchesCancelled(self, touches)
+end
+
 function ModeSelect:touchDown(touches)
   BaseClass.touchDown(self, touches)
 end

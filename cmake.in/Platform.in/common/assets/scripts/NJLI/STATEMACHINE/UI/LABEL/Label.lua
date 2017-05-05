@@ -110,6 +110,22 @@ function Label:onMessage()
   BaseClass.onMessage(self)
 end
 
+function Label:rayTouchesDown(rayContact)
+  BaseClass.rayTouchesDown(self, rayContact)
+end
+
+function Label:rayTouchesUp(rayContact)
+  BaseClass.rayTouchesUp(self, rayContact)
+end
+
+function Label:rayTouchesMove(rayContact)
+  BaseClass.rayTouchesMove(self, rayContact)
+end
+
+function Label:rayTouchesCancelled(rayContact)
+  BaseClass.rayTouchesCancelled(self, rayContact)
+end
+
 function Label:rayTouchDown(rayContact)
   BaseClass.rayTouchDown(self, rayContact)
 end

@@ -50,6 +50,26 @@ function Highlighted:onMessage()
   BaseClass.onMessage(self)
 end
 
+function Highlighted:rayTouchesDown(rayContact)
+  BaseClass.rayTouchesDown(self, rayContact)
+end
+
+function Highlighted:rayTouchesUp(rayContact)
+  BaseClass.rayTouchesUp(self, rayContact)
+end
+
+function Highlighted:rayTouchesMove(rayContact)
+  BaseClass.rayTouchesMove(self, rayContact)
+end
+
+function Highlighted:rayTouchesCancelled(rayContact)
+  BaseClass.rayTouchesCancelled(self, rayContact)
+end
+
+function Highlighted:rayTouchesMissed(node)
+    BaseClass.rayTouchesMissed(self, node)
+end
+
 function Highlighted:rayTouchDown(rayContact)
   BaseClass.rayTouchDown(self, rayContact)
 end
@@ -108,6 +128,22 @@ end
 
 function Highlighted:gameUnPause()
     BaseClass.gameUnPause(self)
+end
+
+function Highlighted:touchesDown(touches)
+    BaseClass.touchesDown(self, touches)
+end
+
+function Highlighted:touchesUp(touches)
+    BaseClass.touchesUp(self, touches)
+end
+
+function Highlighted:touchesMove(touches)
+    BaseClass.touchesMove(self, touches)
+end
+
+function Highlighted:touchesCancelled(touches)
+    BaseClass.touchesCancelled(self, touches)
 end
 
 function Highlighted:touchDown(touches)

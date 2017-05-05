@@ -374,30 +374,70 @@ public:
          */
     //        bool isPaused()const;
     
+    
+    
     /**
-     *  <#Description#>
-     *
-     *  @param m_CurrentTouches <#m_CurrentTouches description#>
+     <#Description#>
+
+     @param touches <#touches description#>
      */
-    void touchDown(DeviceTouch** m_CurrentTouches);
+    void touchDown(DeviceTouch** touches);
+    
+    
     /**
-     *  <#Description#>
-     *
-     *  @param m_CurrentTouches <#m_CurrentTouches description#>
+     <#Description#>
+
+     @param touches <#touches description#>
      */
-    void touchUp(DeviceTouch** m_CurrentTouches);
+    void touchUp(DeviceTouch** touches);
+    
+    
     /**
-     *  <#Description#>
-     *
-     *  @param m_CurrentTouches <#m_CurrentTouches description#>
+     <#Description#>
+
+     @param touches <#touches description#>
      */
-    void touchMove(DeviceTouch** m_CurrentTouches);
+    void touchMove(DeviceTouch** touches);
+    
+    
     /**
-     *  <#Description#>
-     *
-     *  @param m_CurrentTouches <#m_CurrentTouches description#>
+     <#Description#>
+
+     @param touches <#touches description#>
      */
-    void touchCancelled(DeviceTouch** m_CurrentTouches);
+    void touchCancelled(DeviceTouch** touches);
+    
+    
+    /**
+     <#Description#>
+
+     @param touch <#touch description#>
+     */
+    void touchDown(const DeviceTouch &touch);
+    
+    
+    /**
+     <#Description#>
+
+     @param touch <#touch description#>
+     */
+    void touchUp(const DeviceTouch &touch);
+    
+    
+    /**
+     <#Description#>
+
+     @param touch <#touch description#>
+     */
+    void touchMove(const DeviceTouch &touch);
+    
+    
+    /**
+     <#Description#>
+
+     @param touch <#touch description#>
+     */
+    void touchCancelled(const DeviceTouch &touch);
     
     void keyboardShow();
     void keyboardCancel();

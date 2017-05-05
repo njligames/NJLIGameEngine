@@ -195,6 +195,22 @@ function Menu:onMessage(message)
   BaseClass.onMessage(self, message)
 end
 
+function Menu:touchesDown(touches)
+  BaseClass.touchesDown(self, touches)
+end
+
+function Menu:touchesUp(touches)
+  BaseClass.touchesUp(self, touches)
+end
+
+function Menu:touchesMove(touches)
+  BaseClass.touchesMove(self, touches)
+end
+
+function Menu:touchesCancelled(touches)
+  BaseClass.touchesCancelled(self, touches)
+end
+
 function Menu:touchDown(touches)
   BaseClass.touchDown(self, touches)
 end

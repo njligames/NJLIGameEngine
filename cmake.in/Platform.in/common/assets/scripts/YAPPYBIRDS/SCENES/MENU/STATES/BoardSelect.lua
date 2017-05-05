@@ -54,6 +54,22 @@ function BoardSelect:renderHUD()
   BaseClass.renderHUD(self)
 end
 
+function BoardSelect:touchesDown(touches)
+  BaseClass.touchesDown(self, touches)
+end
+
+function BoardSelect:touchesUp(touches)
+  BaseClass.touchesUp(self, touches)
+end
+
+function BoardSelect:touchesMove(touches)
+  BaseClass.touchesMove(self, touches)
+end
+
+function BoardSelect:touchesCancelled(touches)
+  BaseClass.touchesCancelled(self, touches)
+end
+
 function BoardSelect:touchDown(touches)
   BaseClass.touchDown(self, touches)
 end

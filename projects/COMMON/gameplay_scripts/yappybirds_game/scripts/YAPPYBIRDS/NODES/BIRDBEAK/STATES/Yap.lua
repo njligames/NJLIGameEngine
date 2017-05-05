@@ -50,6 +50,22 @@ function Yap:onMessage()
   BaseClass.onMessage(self)
 end
 
+function Yap:touchesDown(rayContact)
+  BaseClass.touchesDown(self, rayContact)
+end
+
+function Yap:touchesUp(rayContact)
+  BaseClass.touchesUp(self, rayContact)
+end
+
+function Yap:touchesMove(rayContact)
+  BaseClass.touchesMove(self, rayContact)
+end
+
+function Yap:touchesCancelled(rayContact)
+  BaseClass.touchesCancelled(self, rayContact)
+end
+
 function Yap:touchDown(rayContact)
   BaseClass.touchDown(self, rayContact)
 end

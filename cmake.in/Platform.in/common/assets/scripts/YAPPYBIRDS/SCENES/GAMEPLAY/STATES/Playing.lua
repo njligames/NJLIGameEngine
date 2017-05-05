@@ -54,6 +54,22 @@ function Playing:renderHUD()
   BaseClass.renderHUD(self)
 end
 
+function Playing:touchesDown(touches)
+  BaseClass.touchesDown(self, touches)
+end
+
+function Playing:touchesUp(touches)
+  BaseClass.touchesUp(self, touches)
+end
+
+function Playing:touchesMove(touches)
+  BaseClass.touchesMove(self, touches)
+end
+
+function Playing:touchesCancelled(touches)
+  BaseClass.touchesCancelled(self, touches)
+end
+
 function Playing:touchDown(touches)
   BaseClass.touchDown(self, touches)
 end

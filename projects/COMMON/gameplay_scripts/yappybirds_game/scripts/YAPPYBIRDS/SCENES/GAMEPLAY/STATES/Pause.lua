@@ -54,6 +54,22 @@ function Pause:renderHUD()
   BaseClass.renderHUD(self)
 end
 
+function Pause:touchesDown(touches)
+  BaseClass.touchesDown(self, touches)
+end
+
+function Pause:touchesUp(touches)
+  BaseClass.touchesUp(self, touches)
+end
+
+function Pause:touchesMove(touches)
+  BaseClass.touchesMove(self, touches)
+end
+
+function Pause:touchesCancelled(touches)
+  BaseClass.touchesCancelled(self, touches)
+end
+
 function Pause:touchDown(touches)
   BaseClass.touchDown(self, touches)
 end

@@ -65,6 +65,32 @@ function Off:onMessage()
   BaseClass.onMessage(self)
 end
 
+function Off:rayTouchesDown(rayContact)
+  BaseClass.rayTouchesDown(self, rayContact)
+  if not self:getNodeEntity():disabled() then
+      self:getNodeEntity():pushState("NJLI.STATEMACHINE.UI.SWITCH.STATES.Phasing")
+  end
+end
+
+function Off:rayTouchesUp(rayContact)
+  BaseClass.rayTouchesUp(self, rayContact)
+    -- if not self:getNodeEntity():disabled() then
+    --     self:getNodeEntity():pushState("NJLI.STATEMACHINE.UI.SWITCH.STATES.On")
+    -- end
+end
+
+function Off:rayTouchesMove(rayContact)
+  BaseClass.rayTouchesMove(self, rayContact)
+end
+
+function Off:rayTouchesCancelled(rayContact)
+  BaseClass.rayTouchesCancelled(self, rayContact)
+end
+
+function Off:rayTouchesMissed(node)
+    BaseClass.rayTouchesMissed(self, node)
+end
+
 function Off:rayTouchDown(rayContact)
   BaseClass.rayTouchDown(self, rayContact)
   if not self:getNodeEntity():disabled() then
@@ -129,6 +155,22 @@ end
 
 function Off:gameUnPause()
     BaseClass.gameUnPause(self)
+end
+
+function Off:touchesDown(touches)
+    BaseClass.touchesDown(self, touches)
+end
+
+function Off:touchesUp(touches)
+    BaseClass.touchesUp(self, touches)
+end
+
+function Off:touchesMove(touches)
+    BaseClass.touchesMove(self, touches)
+end
+
+function Off:touchesCancelled(touches)
+    BaseClass.touchesCancelled(self, touches)
 end
 
 function Off:touchDown(touches)

@@ -382,7 +382,8 @@ material:setName("YappyBird Material")
 shader:setName("YappyBird Shader")
 Geometry2D:setName("YappyBird Geometry")
 
-njli.World.getInstance():getWorldResourceLoader():load("shaders/objectShader.vsh", "shaders/objectShader.fsh", shader)
+--njli.World.getInstance():getWorldResourceLoader():load("shaders/opengl_2.1/objectShader.vsh", "shaders/opengl_2.1/objectShader.fsh", shader)
+njli.World.getInstance():getWorldResourceLoader():load("shaders/opengl_es_2.0/objectShader.vsh", "shaders/opengl_es_2.0/objectShader.fsh", shader)
 
 
 Geometry2D:setMaterial(material)

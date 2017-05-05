@@ -793,6 +793,67 @@ namespace njli
         }
     }
     
+    
+    
+    
+    
+    
+    void Scene::touchDown(const DeviceTouch &touch)
+    {
+        SceneState *currentState = dynamic_cast<SceneState*>(m_SceneStateMachine->getState());
+        
+        if(currentState)
+        {
+            currentState->touchDown(this, touch);
+        }
+        else
+        {
+            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState\n");
+        }
+    }
+    
+    void Scene::touchUp(const DeviceTouch &touch)
+    {
+        SceneState *currentState = dynamic_cast<SceneState*>(m_SceneStateMachine->getState());
+        
+        if(currentState)
+        {
+            currentState->touchUp(this, touch);
+        }
+        else
+        {
+            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState\n");
+        }
+    }
+    
+    void Scene::touchMove(const DeviceTouch &touch)
+    {
+        SceneState *currentState = dynamic_cast<SceneState*>(m_SceneStateMachine->getState());
+        
+        if(currentState)
+        {
+            currentState->touchMove(this, touch);
+        }
+        else
+        {
+            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState\n");
+        }
+    }
+    
+    void Scene::touchCancelled(const DeviceTouch &touch)
+    {
+        SceneState *currentState = dynamic_cast<SceneState*>(m_SceneStateMachine->getState());
+        
+        if(currentState)
+        {
+            currentState->touchCancelled(this, touch);
+        }
+        else
+        {
+            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState\n");
+        }
+    }
+    
     void Scene::keyboardShow()
     {
         SceneState *currentState = dynamic_cast<SceneState*>(m_SceneStateMachine->getState());

@@ -127,6 +127,22 @@ function WorldEntityState:renderHUD()
   --print(self:getWorldState():getName() .. " :renderHUD()")
 end
 
+function WorldEntityState:touchesDown(touches)
+  --print(self:getWorldState():getName() .. " :touchDown(" .. #touches .. ")")
+end
+
+function WorldEntityState:touchesUp(touches)
+  --print(self:getWorldState():getName() .. " :touchUp(" .. #touches .. ")")
+end
+
+function WorldEntityState:touchesMove(touches)
+  --print(self:getWorldState():getName() .. " :touchMove(" .. #touches .. ")")
+end
+
+function WorldEntityState:touchesCancelled(touches)
+  --print(self:getWorldState():getName() .. " :touchCancelled(" .. #touches .. ")")
+end
+
 function WorldEntityState:touchDown(touches)
   --print(self:getWorldState():getName() .. " :touchDown(" .. #touches .. ")")
 end

@@ -54,6 +54,22 @@ function MainMenu:renderHUD()
   BaseClass.renderHUD(self)
 end
 
+function MainMenu:touchesDown(touches)
+  BaseClass.touchesDown(self, touches)
+end
+
+function MainMenu:touchesUp(touches)
+  BaseClass.touchesUp(self, touches)
+end
+
+function MainMenu:touchesMove(touches)
+  BaseClass.touchesMove(self, touches)
+end
+
+function MainMenu:touchesCancelled(touches)
+  BaseClass.touchesCancelled(self, touches)
+end
+
 function MainMenu:touchDown(touches)
   BaseClass.touchDown(self, touches)
 end

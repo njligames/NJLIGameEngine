@@ -50,6 +50,22 @@ function Fly:onMessage()
   BaseClass.onMessage(self)
 end
 
+function Fly:touchesDown(rayContact)
+  BaseClass.touchesDown(self, rayContact)
+end
+
+function Fly:touchesUp(rayContact)
+  BaseClass.touchesUp(self, rayContact)
+end
+
+function Fly:touchesMove(rayContact)
+  BaseClass.touchesMove(self, rayContact)
+end
+
+function Fly:touchesCancelled(rayContact)
+  BaseClass.touchesCancelled(self, rayContact)
+end
+
 function Fly:touchDown(rayContact)
   BaseClass.touchDown(self, rayContact)
 end

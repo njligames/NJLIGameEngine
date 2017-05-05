@@ -54,6 +54,22 @@ function Characters:renderHUD()
   BaseClass.renderHUD(self)
 end
 
+function Characters:touchesDown(touches)
+  BaseClass.touchesDown(self, touches)
+end
+
+function Characters:touchesUp(touches)
+  BaseClass.touchesUp(self, touches)
+end
+
+function Characters:touchesMove(touches)
+  BaseClass.touchesMove(self, touches)
+end
+
+function Characters:touchesCancelled(touches)
+  BaseClass.touchesCancelled(self, touches)
+end
+
 function Characters:touchDown(touches)
   BaseClass.touchDown(self, touches)
 end

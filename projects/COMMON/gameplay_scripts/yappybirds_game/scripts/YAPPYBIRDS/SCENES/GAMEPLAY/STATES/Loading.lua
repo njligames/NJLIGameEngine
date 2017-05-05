@@ -54,6 +54,22 @@ function Loading:renderHUD()
   BaseClass.renderHUD(self)
 end
 
+function Loading:touchesDown(touches)
+  BaseClass.touchesDown(self, touches)
+end
+
+function Loading:touchesUp(touches)
+  BaseClass.touchesUp(self, touches)
+end
+
+function Loading:touchesMove(touches)
+  BaseClass.touchesMove(self, touches)
+end
+
+function Loading:touchesCancelled(touches)
+  BaseClass.touchesCancelled(self, touches)
+end
+
 function Loading:touchDown(touches)
   BaseClass.touchDown(self, touches)
 end

@@ -50,6 +50,22 @@ function Pursue:onMessage()
   BaseClass.onMessage(self)
 end
 
+function Pursue:touchesDown(rayContact)
+  BaseClass.touchesDown(self, rayContact)
+end
+
+function Pursue:touchesUp(rayContact)
+  BaseClass.touchesUp(self, rayContact)
+end
+
+function Pursue:touchesMove(rayContact)
+  BaseClass.touchesMove(self, rayContact)
+end
+
+function Pursue:touchesCancelled(rayContact)
+  BaseClass.touchesCancelled(self, rayContact)
+end
+
 function Pursue:touchDown(rayContact)
   BaseClass.touchDown(self, rayContact)
 end

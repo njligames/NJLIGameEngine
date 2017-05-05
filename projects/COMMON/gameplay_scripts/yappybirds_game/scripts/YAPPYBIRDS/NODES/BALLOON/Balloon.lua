@@ -50,6 +50,22 @@ function Balloon:onMessage()
   BaseClass.onMessage(self)
 end
 
+function Balloon:rayTouchesDown(rayContact)
+  BaseClass.rayTouchesDown(self, rayContact)
+end
+
+function Balloon:rayTouchesUp(rayContact)
+  BaseClass.rayTouchesUp(self, rayContact)
+end
+
+function Balloon:rayTouchesMove(rayContact)
+  BaseClass.rayTouchesMove(self, rayContact)
+end
+
+function Balloon:rayTouchesCancelled(rayContact)
+  BaseClass.rayTouchesCancelled(self, rayContact)
+end
+
 function Balloon:rayTouchDown(rayContact)
   BaseClass.rayTouchDown(self, rayContact)
 end

@@ -94,6 +94,26 @@ function Image:onMessage()
   BaseClass.onMessage(self)
 end
 
+function Image:rayTouchesDown(rayContact)
+  BaseClass.rayTouchesDown(self, rayContact)
+end
+
+function Image:rayTouchesUp(rayContact)
+  BaseClass.rayTouchesUp(self, rayContact)
+end
+
+function Image:rayTouchesMove(rayContact)
+  BaseClass.rayTouchesMove(self, rayContact)
+end
+
+function Image:rayTouchesCancelled(rayContact)
+  BaseClass.rayTouchesCancelled(self, rayContact)
+end
+
+function Image:rayTouchesMissed(node)
+  BaseClass.rayTouchesMissed(self, node)
+end
+
 function Image:rayTouchDown(rayContact)
   BaseClass.rayTouchDown(self, rayContact)
 end
@@ -152,6 +172,22 @@ end
 
 function Image:gameUnPause()
     BaseClass.gameUnPause(self)
+end
+
+function Image:touchesDown(touches)
+    BaseClass.touchesDown(self, touches)
+end
+
+function Image:touchesUp(touches)
+    BaseClass.touchesUp(self, touches)
+end
+
+function Image:touchesMove(touches)
+    BaseClass.touchesMove(self, touches)
+end
+
+function Image:touchesCancelled(touches)
+    BaseClass.touchesCancelled(self, touches)
 end
 
 function Image:touchDown(touches)

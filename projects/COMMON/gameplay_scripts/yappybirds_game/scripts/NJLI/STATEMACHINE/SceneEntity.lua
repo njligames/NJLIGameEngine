@@ -289,6 +289,30 @@ function SceneEntity:onMessage(message)
   self:_getCurrentEntityState():onMessage(message)
 end
 
+function SceneEntity:touchesDown(touches)
+  --print(self:getScene():getName() .. " :touchDown(" .. #touches .. ")")
+  assert(self:hasState(), "SceneEntity must be in a state")
+  self:_getCurrentEntityState():touchesDown(touches)
+end
+
+function SceneEntity:touchesUp(touches)
+  --print(self:getScene():getName() .. " :touchUp(" .. #touches .. ")")
+  assert(self:hasState(), "SceneEntity must be in a state")
+  self:_getCurrentEntityState():touchesUp(touches)
+end
+
+function SceneEntity:touchesMove(touches)
+  --print(self:getScene():getName() .. " :touchMove("..#touches ..")")
+  assert(self:hasState(), "SceneEntity must be in a state")
+  self:_getCurrentEntityState():touchesMove(touches)
+end
+
+function SceneEntity:touchesCancelled(touches)
+  --print(self:getScene():getName() .. " :touchCancelled("..#touches ..")")
+  assert(self:hasState(), "SceneEntity must be in a state")
+  self:_getCurrentEntityState():touchesCancelled(touches)
+end
+
 function SceneEntity:touchDown(touches)
   --print(self:getScene():getName() .. " :touchDown(" .. #touches .. ")")
   assert(self:hasState(), "SceneEntity must be in a state")

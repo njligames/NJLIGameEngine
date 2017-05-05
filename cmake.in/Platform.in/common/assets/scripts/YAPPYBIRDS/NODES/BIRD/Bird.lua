@@ -50,6 +50,22 @@ function Bird:onMessage()
   BaseClass.onMessage(self)
 end
 
+function Bird:rayTouchesDown(rayContact)
+  BaseClass.rayTouchesDown(self, rayContact)
+end
+
+function Bird:rayTouchesUp(rayContact)
+  BaseClass.rayTouchesUp(self, rayContact)
+end
+
+function Bird:rayTouchesMove(rayContact)
+  BaseClass.rayTouchesMove(self, rayContact)
+end
+
+function Bird:rayTouchesCancelled(rayContact)
+  BaseClass.rayTouchesCancelled(self, rayContact)
+end
+
 function Bird:rayTouchDown(rayContact)
   BaseClass.rayTouchDown(self, rayContact)
 end

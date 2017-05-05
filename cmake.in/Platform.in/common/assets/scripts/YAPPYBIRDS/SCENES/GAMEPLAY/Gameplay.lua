@@ -50,6 +50,22 @@ function Gameplay:onMessage(message)
   BaseClass.onMessage(self, message)
 end
 
+function Gameplay:touchesDown(touches)
+  BaseClass.touchesDown(self, touches)
+end
+
+function Gameplay:touchesUp(touches)
+  BaseClass.touchesUp(self, touches)
+end
+
+function Gameplay:touchesMove(touches)
+  BaseClass.touchesMove(self, touches)
+end
+
+function Gameplay:touchesCancelled(touches)
+  BaseClass.touchesCancelled(self, touches)
+end
+
 function Gameplay:touchDown(touches)
   BaseClass.touchDown(self, touches)
 end

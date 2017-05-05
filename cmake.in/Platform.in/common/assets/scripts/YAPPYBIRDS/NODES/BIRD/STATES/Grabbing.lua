@@ -50,6 +50,22 @@ function Grabbing:onMessage()
   BaseClass.onMessage(self)
 end
 
+function Grabbing:touchesDown(rayContact)
+  BaseClass.touchesDown(self, rayContact)
+end
+
+function Grabbing:touchesUp(rayContact)
+  BaseClass.touchesUp(self, rayContact)
+end
+
+function Grabbing:touchesMove(rayContact)
+  BaseClass.touchesMove(self, rayContact)
+end
+
+function Grabbing:touchesCancelled(rayContact)
+  BaseClass.touchesCancelled(self, rayContact)
+end
+
 function Grabbing:touchDown(rayContact)
   BaseClass.touchDown(self, rayContact)
 end
