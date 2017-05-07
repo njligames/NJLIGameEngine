@@ -28,10 +28,10 @@ public:
 //    static void setTouch(const int x, const int y);
 //    static void setTouch(int touchDevId, int pointerFingerId, int eventType, float x, float y, float dx, float dy, float pressure);
     static void handleFinger(int touchDevId, int pointerFingerId, int eventType, float x, float y, float dx, float dy, float pressure);
-    static void finishHandleFingers();
-    static void startHandleFingers();
+    static void handleFingers();
+//    static void startHandleFingers();
     
-    static void mouse(int button, int eventType, float x, float y, int clicks);
+    static void mouse(int button, int eventType, float x, float y);
 
 //    static void clearNodeTouches();
 //

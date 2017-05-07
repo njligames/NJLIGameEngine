@@ -14,8 +14,12 @@ extern "C" {
 /* Include the SDL main definition header */
 #include "SDL_main.h"
 
+
+//https://fossies.org/linux/SDL2/src/core/android/SDL_android.c
+
 /* Called before SDL_main() to initialize JNI bindings in SDL library */
 extern void SDL_Android_Init(JNIEnv* env, jclass cls);
+extern void Android_OnTouch(int touch_device_id_in, int pointer_finger_id_in, int action, float x, float y, float p);
 
 /*
  * Class:     source_android_engine_njligames_com_android_androidstudio_SDLActivity
@@ -232,19 +236,9 @@ JNIEXPORT void JNICALL Java_source_android_engine_njligames_com_android_1android
  * Signature: (IIFFI)V
  */
 JNIEXPORT void JNICALL Java_source_android_engine_njligames_com_android_1androidstudio_SDLActivity_onNativeMouse
-  (JNIEnv *env, jclass cls, jint button, jint action, jfloat x, jfloat y, jint clicks)
+  (JNIEnv *env, jclass cls, jint button, jint action, jfloat x, jfloat y)
 {
-    NJLI_HandleMouse(button, action, x, y, clicks);
-}
-
-/*
- * Class:     source_android_engine_njligames_com_android_androidstudio_SDLActivity
- * Method:    onNativeStartTouches
- * Signature: ()V
- */
-JNIEXPORT void JNICALL Java_source_android_engine_njligames_com_android_1androidstudio_SDLActivity_onNativeStartTouches(JNIEnv *env, jclass cls)
-{
-    NJLI_HandleStartTouches();
+    NJLI_HandleMouse(button, action, x, y);
 }
 
 /*
@@ -253,19 +247,22 @@ JNIEXPORT void JNICALL Java_source_android_engine_njligames_com_android_1android
  * Signature: (IIIFFFFF)V
  */
 JNIEXPORT void JNICALL Java_source_android_engine_njligames_com_android_1androidstudio_SDLActivity_onNativeTouch
-  (JNIEnv *env, jclass cls, jint touchDevId, jint pointerFingerId, jint event, jfloat x, jfloat y, jfloat dx, jfloat dy, jfloat pressure)
+  (JNIEnv *env, jclass cls, jint touchDevId, jint pointerFingerId, jint event, jfloat x, jfloat y, jfloat pressure)
 {
-    NJLI_HandleTouch(touchDevId, pointerFingerId, event, x, y, dx, dy, pressure);
-}
+    /*
+     * JNIEXPORT void JNICALL Java_org_libsdl_app_SDLActivity_onNativeTouch(
+  307                                     JNIEnv* env, jclass jcls,
+  308                                     jint touch_device_id_in, jint pointer_finger_id_in,
+  309                                     jint action, jfloat x, jfloat y, jfloat p)
+  310 {
+  311     Android_OnTouch(touch_device_id_in, pointer_finger_id_in, action, x, y, p);
+  312 }
+     */
+//    NJLI_HandleTouch(touchDevId, pointerFingerId, event, x, y, dx, dy, pressure);
 
-/*
- * Class:     source_android_engine_njligames_com_android_androidstudio_SDLActivity
- * Method:    onNativeFinishTouches
- * Signature: ()V
- */
-JNIEXPORT void JNICALL Java_source_android_engine_njligames_com_android_1androidstudio_SDLActivity_onNativeFinishTouches(JNIEnv *env, jclass cls)
-{
-    NJLI_HandleFinishTouches();
+
+//https://fossies.org/linux/SDL2/src/core/android/SDL_android.c
+    Android_OnTouch(touchDevId, pointerFingerId, event, x, y, pressure);
 }
 
 /*
@@ -352,6 +349,51 @@ void Java_source_android_engine_njligames_com_android_1androidstudio_SDLActivity
 
     initAssetManager(AAssetManager_fromJava(env, java_asset_manager));
 }
+
+void Java_source_android_engine_njligames_com_android_1androidstudio_SDLActivity_nativeCommitText(JNIEnv *env, jclass jclazz, jstring text, jint newCursorPosition)
+{
+    const char *_text = (*env)->GetStringUTFChars(env, text, NULL);
+
+    NJLI_HandleCommitText(text, newCursorPosition);
+
+    (*env)->ReleaseStringUTFChars(env, text, _text);
+}
+
+void Java_source_android_engine_njligames_com_android_1androidstudio_SDLActivity_nativeSetComposingText(JNIEnv *env, jclass jclazz, jstring text, jint newCursorPosition)
+{
+    const char *_text = (*env)->GetStringUTFChars(env, text, NULL);
+
+    NJLI_HandleSetComposingText(text, newCursorPosition);
+
+    (*env)->ReleaseStringUTFChars(env, text, _text);
+}
+
+void Java_source_android_engine_njligames_com_android_1androidstudio_SDLActivity_onNativeUpdate(JNIEnv *env, jclass jclazz, jdouble timeStep)
+{
+    NJLI_HandleUpdate(timeStep);
+}
+
+void Java_source_android_engine_njligames_com_android_1androidstudio_SDLActivity_onNativeRender(JNIEnv *env, jclass jclazz)
+{
+    NJLI_HandleRender();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #ifdef __cplusplus
 }

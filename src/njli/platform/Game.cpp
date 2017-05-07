@@ -198,20 +198,20 @@ void NJLIGameEngine::destroy() { njli::World::destroyInstance(); }
     
     void NJLIGameEngine::handleFinger(int touchDevId, int pointerFingerId, int eventType, float x, float y, float dx, float dy, float pressure)
     {
-        njli::World::getInstance()->getWorldInput()->addFinger(touchDevId, pointerFingerId, eventType, x, y, dx, dy, pressure);
+        njli::World::getInstance()->getWorldInput()->handleFinger(touchDevId, pointerFingerId, eventType, x, y, dx, dy, pressure);
     }
     
-    void NJLIGameEngine::finishHandleFingers()
+    void NJLIGameEngine::handleFingers()
     {
-        njli::World::getInstance()->getWorldInput()->finishHandleFingers();
+        njli::World::getInstance()->getWorldInput()->handleFingers();
     }
     
-    void NJLIGameEngine::startHandleFingers()
-    {
-        njli::World::getInstance()->getWorldInput()->startHandleFingers();
-    }
+//    void NJLIGameEngine::startHandleFingers()
+//    {
+//        njli::World::getInstance()->getWorldInput()->startHandleFingers();
+//    }
     
-    void NJLIGameEngine::mouse(int button, int eventType, float x, float y, int clicks)
+    void NJLIGameEngine::mouse(int button, int eventType, float x, float y)
     {
         
     }

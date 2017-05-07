@@ -353,9 +353,9 @@ static void UpdateFrame(void* param)
 
 static int EventFilter(void* userdata, SDL_Event* event)
 {
-#if ((defined(__IPHONEOS__) && __IPHONEOS__) || (defined(__ANDROID__) && __ANDROID__))
-    NJLI_HandleStartTouches();
-#endif
+//#if ((defined(__IPHONEOS__) && __IPHONEOS__) || (defined(__ANDROID__) && __ANDROID__))
+//    NJLI_HandleStartTouches();
+//#endif
     
     Uint32 eventType = event->type;
     
@@ -490,24 +490,24 @@ static void handleInput()
                 NJLI_HandleMouse(event.button.button,
                                  event.type,
                                  event.button.x,
-                                 event.button.y,
-                                 event.button.clicks);
+                                 event.button.y);
                 break;
 #endif
                 
-#if !((defined(__IPHONEOS__) && __IPHONEOS__) || (defined(__ANDROID__) && __ANDROID__))
-            case SDL_FINGERMOTION:
-            case SDL_FINGERDOWN:
-            case SDL_FINGERUP:
-                NJLI_HandleTouch((int) event.tfinger.touchId,
-                                 (int) event.tfinger.fingerId,
-                                 event.type,
-                                 event.tfinger.x,
-                                 event.tfinger.y,
-                                 event.tfinger.dx,
-                                 event.tfinger.dy,
-                                 event.tfinger.pressure);
-#endif
+//#if !(defined(__IPHONEOS__) && __IPHONEOS__)
+//            case SDL_FINGERMOTION:
+//            case SDL_FINGERDOWN:
+//            case SDL_FINGERUP:
+//                NJLI_HandleTouch((int) event.tfinger.touchId,
+//                                 (int) event.tfinger.fingerId,
+//                                 event.type,
+//                                 event.tfinger.x,
+//                                 event.tfinger.y,
+//                                 event.tfinger.dx,
+//                                 event.tfinger.dy,
+//                                 event.tfinger.pressure);
+//                break;
+//#endif
             case SDL_APP_DIDENTERFOREGROUND:
                 SDL_Log("SDL_APP_DIDENTERFOREGROUND");
                 
@@ -872,6 +872,10 @@ static void handleInput()
                 break;
         }
     }
+    
+//#if !(defined(__IPHONEOS__) && __IPHONEOS__)
+//    NJLI_HandleFinishTouches();
+//#endif
     
 #if !(defined(__MACOSX__) && __MACOSX__)
 #endif

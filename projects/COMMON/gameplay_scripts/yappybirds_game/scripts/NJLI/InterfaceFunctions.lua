@@ -84,7 +84,7 @@ end
 
 function __NJLIWorldTouchDown(touches)
   --print("__NJLIWorldTouchDown")
-  assert(touches ~= nil, "The touches are nil")
+  --assert(touches ~= nil, "The touches are nil")
   __interface:getStateMachine():_worldTouchDown(touches)
 end
 

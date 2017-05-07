@@ -20,49 +20,15 @@
 namespace njli
 {
     WorldInput::WorldInput():
-    m_FingerDownTouches(new njli::DeviceTouch*[njli::DeviceTouch::MAX_TOUCHES]),
-    m_FingerUpTouches(new njli::DeviceTouch*[njli::DeviceTouch::MAX_TOUCHES]),
-    m_FingerMoveTouches(new njli::DeviceTouch*[njli::DeviceTouch::MAX_TOUCHES]),
-    
-    m_CurrentFingerDownTouches(new njli::DeviceTouch*[njli::DeviceTouch::MAX_TOUCHES]),
-    m_CurrentFingerUpTouches(new njli::DeviceTouch*[njli::DeviceTouch::MAX_TOUCHES]),
-    m_CurrentFingerMoveTouches(new njli::DeviceTouch*[njli::DeviceTouch::MAX_TOUCHES]),
-    
-    m_NumDownTouches(0),
-    m_NumUpTouches(0),
-    m_NumMoveTouches(0),
-    
+    m_TouchBuffer(new njli::DeviceTouch*[njli::DeviceTouch::MAX_TOUCHES * 3]),
     m_Orientation(0)
     {
-        for (u32 i = 0; i < njli::DeviceTouch::MAX_TOUCHES; ++i)
-        {
-            m_FingerDownTouches[i] = new njli::DeviceTouch();
-            m_FingerUpTouches[i] = new njli::DeviceTouch();
-            m_FingerMoveTouches[i] = new njli::DeviceTouch();
-            
-            m_CurrentFingerDownTouches[i] = NULL;
-            m_CurrentFingerUpTouches[i] = NULL;
-            m_CurrentFingerMoveTouches[i] = NULL;
-        }
+        
     }
     
     WorldInput::~WorldInput()
     {
-        for (u32 i = 0; i < njli::DeviceTouch::MAX_TOUCHES; ++i)
-        {
-            delete m_FingerDownTouches[i];
-            delete m_FingerUpTouches[i];
-            delete m_FingerMoveTouches[i];
-        }
-        
-        delete [] m_FingerDownTouches;
-        delete [] m_FingerUpTouches;
-        delete [] m_FingerMoveTouches;
-        
-        delete [] m_CurrentFingerDownTouches;
-        delete [] m_CurrentFingerUpTouches;
-        delete [] m_CurrentFingerMoveTouches;
-        
+        delete [] m_TouchBuffer;
     }
     
     const char *WorldInput::getClassName()const
@@ -80,153 +46,64 @@ namespace njli
         return njli::JsonJLI::parse(string_format("%s", FORMATSTRING));
     }
     
-//    DeviceTouch * WorldInput::getTouch(const s32 index)
-//    {
-//        if (index >= 0 && index < DeviceTouch::MAX_TOUCHES)
-//        {
-//            return m_CurrentTouches[index];
-//        }
-//        return NULL;
-//    }
-//    
-//    const DeviceTouch * WorldInput::getTouch(const s32 index)const
-//    {
-//        if (index >= 0 && index < DeviceTouch::MAX_TOUCHES)
-//        {
-//            return m_CurrentTouches[index];
-//        }
-//        return NULL;
-//    }
-//    
-//    s32 WorldInput::numberOfTouches()const
-//    {
-//        return m_NumTouches;
-//    }
-    
-//    void WorldInput::resetTouches()
-//    {
-//        m_NumTouches = 0;
-//    }
-    
-//    void WorldInput::setTouch(const void *touch, const int index, const int num_touches)
-//    {
-//        m_CurrentTouches[index] = m_AllTouches[index];
-//        m_CurrentTouches[index]->set(touch, index, num_touches);
-//        m_NumTouches = num_touches;
-//    }
-//    void WorldInput::setTouch(const int x, const int y, const int index, const int num_touches, float scaleFactor)
-//    {
-//        m_CurrentTouches[index] = m_AllTouches[index];
-//        m_CurrentTouches[index]->set(x, y, index, num_touches, scaleFactor);
-//        m_NumTouches = num_touches;
-//    }
-    
-//    void WorldInput::setTouch(int deviceIndex, int touchIndex, int num_touches)
-//    {
-//        m_CurrentTouches[touchIndex] = m_AllTouches[touchIndex];
-////        m_CurrentTouches[touchIndex]->set(x, y, index, num_touches, scaleFactor);
-//        m_CurrentTouches[touchIndex]->set(SDL_GetTouchFinger(deviceIndex, touchIndex));
-//        m_NumTouches = num_touches;
-//    }
-    
-//    void WorldInput::clearNodeTouches()
-//    {
-//        clearTouches();
-//        if(njli::World::getInstance()->getScene())
-//            njli::World::getInstance()->getScene()->clearNodeTouches();
-//    }
-//    
-//    void WorldInput::touchDown()
-//    {
-//        njli::World::getInstance()->touchDown(m_CurrentTouches);
-////        clearTouches();
-//    }
-//    void WorldInput::touchUp()
-//    {
-//        njli::World::getInstance()->touchUp(m_CurrentTouches);
-////        clearTouches();
-//    }
-//    void WorldInput::touchMove()
-//    {
-//        njli::World::getInstance()->touchMove(m_CurrentTouches);
-////        clearTouches();
-//    }
-//    void WorldInput::touchCancelled()
-//    {
-//        njli::World::getInstance()->touchCancelled(m_CurrentTouches);
-////        clearTouches();
-//    }
-    
-    
-    const DeviceTouch &WorldInput::finger(int eventType, const size_t index)const
-    {
-        static DeviceTouch _t = DeviceTouch();
-        switch(eventType)
-        {
-            case SDL_FINGERDOWN:
-                if(index < m_NumDownTouches)
-                    return *m_CurrentFingerDownTouches[index];
-            case SDL_FINGERUP:
-                if(index < m_NumUpTouches)
-                    return *m_CurrentFingerUpTouches[index];
-            case SDL_FINGERMOTION:
-                if(index < m_NumMoveTouches)
-                    return *m_CurrentFingerMoveTouches[index];
-            default:
-                SDL_assertPrint(false, "%s", "Wrong event type");
-        }
-        return _t;
-    }
-    
-    u32 WorldInput::numberOfFingers(int eventType)const
-    {
-        switch(eventType)
-        {
-            case SDL_FINGERDOWN:
-                return m_NumDownTouches;
-            case SDL_FINGERUP:
-                return m_NumUpTouches;
-            case SDL_FINGERMOTION:
-                return m_NumMoveTouches;
-        }
-        return 0;
-    }
-    
-    void WorldInput::startHandleFingers()
-    {
-        m_NumDownTouches = 0;
-        m_NumUpTouches = 0;
-        m_NumMoveTouches = 0;
-        clearTouches();
-    }
-    
-    void WorldInput::addFinger(int touchDevId, int pointerFingerId, int action, float x, float y, float dx, float dy, float pressure)
+    void WorldInput::handleFinger(int touchDevId, int pointerFingerId, int action, float x, float y, float dx, float dy, float pressure)
     {
         SDL_assertCheck(action >= 0 && action <=2 , "%s", "Make sure that the action value is either down=0, up=1, move=2");
+        
+        DeviceTouch *touch = NULL;
+        
         switch(action)
         {
             case 0:
             {
-                m_CurrentFingerDownTouches[m_NumDownTouches] = m_FingerDownTouches[m_NumDownTouches];
-                m_CurrentFingerDownTouches[m_NumDownTouches]->set(touchDevId, pointerFingerId, SDL_FINGERDOWN, x, y, dx, dy, pressure);
-                njli::World::getInstance()->touchDown(*(m_CurrentFingerDownTouches[m_NumDownTouches]));
-                m_NumDownTouches++;
+                std::unordered_map<int, DeviceTouch*>::iterator iter = m_FingerDownMap.find(pointerFingerId);
+                if(iter == m_FingerDownMap.end())
+                {
+                    touch = new DeviceTouch();
+                }
+                else
+                {
+                    touch = m_FingerDownMap[pointerFingerId];
+                }
+                
+                touch->set(touchDevId, pointerFingerId, SDL_FINGERDOWN, x, y, dx, dy, pressure);
+                
+                njli::World::getInstance()->touchDown(*touch);
+                
             }
                 break;
             case 1:
             {
-                m_CurrentFingerUpTouches[m_NumUpTouches] = m_FingerUpTouches[m_NumUpTouches];
-                m_CurrentFingerUpTouches[m_NumUpTouches]->set(touchDevId, pointerFingerId, SDL_FINGERUP, x, y, dx, dy, pressure);
-                njli::World::getInstance()->touchDown(*(m_CurrentFingerUpTouches[m_NumDownTouches]));
-                m_NumUpTouches++;
+                std::unordered_map<int, DeviceTouch*>::iterator iter = m_FingerUpMap.find(pointerFingerId);
+                if(iter == m_FingerUpMap.end())
+                {
+                    touch = new DeviceTouch();
+                }
+                else
+                {
+                    touch = m_FingerUpMap[pointerFingerId];
+                }
+                
+                touch->set(touchDevId, pointerFingerId, SDL_FINGERUP, x, y, dx, dy, pressure);
+                
+                njli::World::getInstance()->touchUp(*touch);
             }
                 break;
             case 2:
             {
-                m_CurrentFingerMoveTouches[m_NumMoveTouches] = m_FingerMoveTouches[m_NumMoveTouches];
-                m_CurrentFingerMoveTouches[m_NumMoveTouches]->set(touchDevId, pointerFingerId, SDL_FINGERMOTION, x, y, dx, dy, pressure);
-                njli::World::getInstance()->touchDown(*(m_CurrentFingerMoveTouches[m_NumDownTouches]));
-                m_NumMoveTouches++;
+                std::unordered_map<int, DeviceTouch*>::iterator iter = m_FingerMoveMap.find(pointerFingerId);
+                if(iter == m_FingerMoveMap.end())
+                {
+                    touch = new DeviceTouch();
+                }
+                else
+                {
+                    touch = m_FingerMoveMap[pointerFingerId];
+                }
+                
+                touch->set(touchDevId, pointerFingerId, SDL_FINGERMOTION, x, y, dx, dy, pressure);
+                
+                njli::World::getInstance()->touchMove(*touch);
             }
                 break;
             default:
@@ -234,19 +111,62 @@ namespace njli
         }
     }
     
-    void WorldInput::finishHandleFingers()
+    void WorldInput::handleFingers()
     {
-        if(m_NumDownTouches > 0)
-            njli::World::getInstance()->touchDown(m_CurrentFingerDownTouches);
         
-        if(m_NumUpTouches > 0)
-            njli::World::getInstance()->touchUp(m_CurrentFingerUpTouches);
+        if(!m_FingerDownMap.empty())
+        {
+            int i = 0;
+            for(i = 0; i < njli::DeviceTouch::MAX_TOUCHES * 3; i++)
+            {
+                m_TouchBuffer[i] = NULL;
+            }
+            i = 0;
+            for (std::unordered_map<int, DeviceTouch*>::iterator iter = m_FingerDownMap.begin();
+                 iter != m_FingerDownMap.end(); iter++)
+            {
+                m_TouchBuffer[i++] = iter->second;
+            }
+            njli::World::getInstance()->touchDown(m_TouchBuffer);
+            m_FingerDownMap.clear();
+        }
         
-        if(m_NumMoveTouches > 0)
-            njli::World::getInstance()->touchMove(m_CurrentFingerMoveTouches);
+        if(!m_FingerUpMap.empty())
+        {
+            int i = 0;
+            for(i = 0; i < njli::DeviceTouch::MAX_TOUCHES * 3; i++)
+            {
+                m_TouchBuffer[i] = NULL;
+            }
+            i = 0;
+            for (std::unordered_map<int, DeviceTouch*>::iterator iter = m_FingerUpMap.begin();
+                 iter != m_FingerUpMap.end(); iter++)
+            {
+                m_TouchBuffer[i++] = iter->second;
+            }
+            njli::World::getInstance()->touchDown(m_TouchBuffer);
+            m_FingerUpMap.clear();
+        }
+        
+        if(!m_FingerMoveMap.empty())
+        {
+            int i = 0;
+            for(i = 0; i < njli::DeviceTouch::MAX_TOUCHES * 3; i++)
+            {
+                m_TouchBuffer[i] = NULL;
+            }
+            i = 0;
+            for (std::unordered_map<int, DeviceTouch*>::iterator iter = m_FingerMoveMap.begin();
+                 iter != m_FingerMoveMap.end(); iter++)
+            {
+                m_TouchBuffer[i++] = iter->second;
+            }
+            njli::World::getInstance()->touchDown(m_TouchBuffer);
+            m_FingerMoveMap.clear();
+        }
     }
     
-    void WorldInput::mouse(int button, int eventType, float x, float y, int clicks)
+    void WorldInput::handleMouse(int button, int eventType, float x, float y, int clicks)
     {
         
     }
@@ -291,15 +211,5 @@ namespace njli
 //        id<UIApplicationDelegate> appDelegate = [[UIApplication sharedApplication] delegate];
 //        GameViewController *viewController = (GameViewController*)appDelegate.window.rootViewController;
 //        [viewController showKeyboard:[NSString stringWithCString:currentText encoding:NSUTF8StringEncoding]];
-    }
-    
-    void WorldInput::clearTouches()
-    {
-        for (u32 i = 0; i < njli::DeviceTouch::MAX_TOUCHES; ++i)
-        {
-            m_CurrentFingerDownTouches[i] = NULL;
-            m_CurrentFingerUpTouches[i] = NULL;
-            m_CurrentFingerMoveTouches[i] = NULL;
-        }
     }
 }

@@ -12,6 +12,7 @@
 #include "AbstractObject.h"
 #include <string>
 #include "DeviceTouch.h"
+#include <unordered_map>
 
 namespace njli {
 class DeviceTouch;
@@ -30,16 +31,10 @@ public:
     operator std::string() const;
 
 public:
-    //TODO: fill in specific methods for WorldInput
-
-    const DeviceTouch &finger(int eventType, const size_t index)const;
-    u32 numberOfFingers(int eventType)const;
+    void handleFinger(int touchDevId, int pointerFingerId, int eventType, float x, float y, float dx, float dy, float pressure);
+    void handleFingers();
     
-    void startHandleFingers();
-    void addFinger(int touchDevId, int pointerFingerId, int eventType, float x, float y, float dx, float dy, float pressure);
-    void finishHandleFingers();
-    
-    void mouse(int button, int eventType, float x, float y, int clicks);
+    void handleMouse(int button, int eventType, float x, float y, int clicks);
     
     void keyboardShow();
     void keyboardCancel();
@@ -53,25 +48,19 @@ public:
     void showKeyboard(const char* currentText);
 
 protected:
-    void clearTouches();
+//    void clearTouches();
+    DeviceTouch *popNextTouch();
+    void recycleTouch(DeviceTouch *touch);
 
 private:
     WorldInput(const WorldInput&);
     WorldInput& operator=(const WorldInput&);
     
-    std::vector<DeviceTouch*> m_DeviceTouches;
-
-    DeviceTouch** m_FingerDownTouches;
-    DeviceTouch** m_FingerUpTouches;
-    DeviceTouch** m_FingerMoveTouches;
+    std::unordered_map<int, DeviceTouch*> m_FingerDownMap;
+    std::unordered_map<int, DeviceTouch*> m_FingerUpMap;
+    std::unordered_map<int, DeviceTouch*> m_FingerMoveMap;
     
-    DeviceTouch** m_CurrentFingerDownTouches;
-    DeviceTouch** m_CurrentFingerUpTouches;
-    DeviceTouch** m_CurrentFingerMoveTouches;
-    
-    s32 m_NumDownTouches;
-    s32 m_NumUpTouches;
-    s32 m_NumMoveTouches;
+    DeviceTouch **m_TouchBuffer;
     
     s32 m_Orientation;
 };

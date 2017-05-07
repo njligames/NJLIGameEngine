@@ -19,6 +19,16 @@ int gXOffset = 0;
 int gYOffset = 0;
 int gNumTouches = 1;
 
+void NJLI_HandleUpdate(double timeStep)
+{
+    njli::NJLIGameEngine::update(timeStep);
+}
+
+void NJLI_HandleRender()
+{
+    njli::NJLIGameEngine::render();
+}
+
 void NJLI_HandleLowMemory()
 {
     njli::NJLIGameEngine::receivedMemoryWarning();
@@ -87,7 +97,7 @@ void NJLI_HandleKeyboardFocusLost()
 {
 }
 
-void NJLI_HandleMouse(int button, int eventType, float x, float y, int clicks)
+void NJLI_HandleMouse(int button, int eventType, float x, float y)
 {
 //    switch(eventType)
 //    {
@@ -107,14 +117,8 @@ void NJLI_HandleMouse(int button, int eventType, float x, float y, int clicks)
     njli::NJLIGameEngine::mouse(button,
                                 eventType,
                                 x * gDisplayMode.w,
-                                y * gDisplayMode.h,
-                                clicks);
+                                y * gDisplayMode.h);
     
-}
-
-void NJLI_HandleStartTouches()
-{
-    njli::NJLIGameEngine::startHandleFingers();
 }
 
 void NJLI_HandleTouch(int touchDevId, int pointerFingerId, int eventType, float x, float y, float dx, float dy, float pressure)
@@ -148,7 +152,7 @@ void NJLI_HandleTouch(int touchDevId, int pointerFingerId, int eventType, float 
 
 void NJLI_HandleFinishTouches()
 {
-    njli::NJLIGameEngine::finishHandleFingers();
+    njli::NJLIGameEngine::handleFingers();
 }
 
 void NJLI_HandleAccel(float x, float y, float z)
@@ -183,4 +187,14 @@ int NJLI_HandleRemoveJoystick(int device_id)
 const char *NJLI_HandleGetHint(const char *name)
 {
     return "";
+}
+
+void NJLI_HandleCommitText(const char *text, int newCursorPosition)
+{
+    
+}
+
+void NJLI_HandleSetComposingText(const char *text, int newCursorPosition)
+{
+    
 }

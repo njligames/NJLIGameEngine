@@ -25,6 +25,8 @@ extern int gNumTouches;
 extern "C" {
 #endif
     
+    void NJLI_HandleUpdate(double timeStep);
+    void NJLI_HandleRender();
     void NJLI_HandleLowMemory();
     void NJLI_HandleQuit();
     void NJLI_HandlePause();
@@ -38,9 +40,8 @@ extern "C" {
     void NJLI_HandleKeyDown(int keycode);
     void NJLI_HandleKeyUp(int keycode);
     void NJLI_HandleKeyboardFocusLost();
-    void NJLI_HandleMouse(int button, int eventType, float x, float y, int clicks);
+    void NJLI_HandleMouse(int button, int eventType, float x, float y);
     
-    void NJLI_HandleStartTouches();
     void NJLI_HandleTouch(int touchDevId, int pointerFingerId, int eventType, float x, float y, float dx, float dy, float pressure);
     void NJLI_HandleFinishTouches();
     
@@ -50,6 +51,9 @@ extern "C" {
     int NJLI_HandleAddJoystick(int device_id, const char *name, int is_accelerometer, int nbuttons, int naxes, int nhats, int nballs);
     int NJLI_HandleRemoveJoystick(int device_id);
     const char *NJLI_HandleGetHint(const char *name);
+    
+    void NJLI_HandleCommitText(const char *text, int newCursorPosition);
+    void NJLI_HandleSetComposingText(const char *text, int newCursorPosition);
     
 #ifdef __cplusplus
 }
