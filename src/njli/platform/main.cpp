@@ -480,10 +480,11 @@ static void handleInput()
     SDL_PumpEvents();
     while (SDL_PollEvent(&event))
     {
+        SDLTest_PrintEvent(&event);
         switch (event.type)
         {
                 
-#if ((defined(__MACOSX__) && __MACOSX__) || (defined(__EMSCRIPTEN__) && __EMSCRIPTEN__))
+#if ((defined(__MACOSX__) && __MACOSX__) || (defined(__EMSCRIPTEN__) && __EMSCRIPTEN__) || (defined(__ANDROID__) && __ANDROID__))
             case SDL_MOUSEMOTION:
             case SDL_MOUSEBUTTONDOWN:
             case SDL_MOUSEBUTTONUP:
@@ -494,20 +495,20 @@ static void handleInput()
                 break;
 #endif
                 
-//#if !(defined(__IPHONEOS__) && __IPHONEOS__)
-//            case SDL_FINGERMOTION:
-//            case SDL_FINGERDOWN:
-//            case SDL_FINGERUP:
-//                NJLI_HandleTouch((int) event.tfinger.touchId,
-//                                 (int) event.tfinger.fingerId,
-//                                 event.type,
-//                                 event.tfinger.x,
-//                                 event.tfinger.y,
-//                                 event.tfinger.dx,
-//                                 event.tfinger.dy,
-//                                 event.tfinger.pressure);
-//                break;
-//#endif
+#if (defined(__ANDROID__) && __ANDROID__)
+            case SDL_FINGERMOTION:
+            case SDL_FINGERDOWN:
+            case SDL_FINGERUP:
+                NJLI_HandleTouch((int) event.tfinger.touchId,
+                                 (int) event.tfinger.fingerId,
+                                 event.type,
+                                 event.tfinger.x,
+                                 event.tfinger.y,
+                                 event.tfinger.dx,
+                                 event.tfinger.dy,
+                                 event.tfinger.pressure);
+                break;
+#endif
             case SDL_APP_DIDENTERFOREGROUND:
                 SDL_Log("SDL_APP_DIDENTERFOREGROUND");
                 

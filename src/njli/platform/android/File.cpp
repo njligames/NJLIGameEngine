@@ -5,8 +5,7 @@
 #include <errno.h>
 #include <string>
 #include <unistd.h>
-#include "SDLActivity.h"
-//#include "android_file.h"
+#include "android_file.h"
 
 #define ANDROID_PATH "assets/"
 

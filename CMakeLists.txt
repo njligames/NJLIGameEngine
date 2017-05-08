@@ -3125,6 +3125,9 @@ IF( ${NJLI_BUILD_PLATFORM} STREQUAL "android" )
         ${njli_generated} 
         ${njli_generated_swig} 
         ${njli_generated_swig_lua} 
+        ${NJLI_THIRDPARTY_DIRECTORY}/SDL2-2.0.5/src/main/android/SDL_android_main.c
+        ${NJLI_THIRDPARTY_DIRECTORY}/android_file.h
+        ${NJLI_THIRDPARTY_DIRECTORY}/android_file.cpp
         ${NJLI_SOURCE_DIRECTORY}/njli/platform/main.cpp
         ${NJLIGameEngine_THIRDPARTY_INC}
         )

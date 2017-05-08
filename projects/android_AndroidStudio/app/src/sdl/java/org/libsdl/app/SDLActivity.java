@@ -1,203 +1,40 @@
-package source.android.engine.njligames.com.android_androidstudio;
+package org.libsdl.app;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.pm.ActivityInfo;
-import android.graphics.Color;
-import android.graphics.PixelFormat;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
-import android.media.AudioFormat;
-import android.media.AudioManager;
-import android.media.AudioRecord;
-import android.media.AudioTrack;
-import android.media.MediaRecorder;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.provider.MediaStore;
-import android.text.InputType;
-import android.util.Log;
-import android.util.SparseArray;
-import android.view.Display;
-import android.view.Gravity;
-import android.view.InputDevice;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
-import android.view.Surface;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
-import android.view.inputmethod.BaseInputConnection;
-import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputConnection;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.content.res.AssetManager;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
-import java.lang.reflect.Method;
-import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.lang.reflect.Method;
+
+import android.app.*;
+import android.content.*;
+import android.text.InputType;
+import android.view.*;
+import android.view.inputmethod.BaseInputConnection;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputConnection;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.RelativeLayout;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.os.*;
+import android.util.Log;
+import android.util.SparseArray;
+import android.graphics.*;
+import android.graphics.drawable.Drawable;
+import android.media.*;
+import android.hardware.*;
+import android.content.pm.ActivityInfo;
+import android.content.res.AssetManager;
 
 /**
- SDL Activity
- */
+    SDL Activity
+*/
 public class SDLActivity extends Activity {
-
-    private void createDirectories(String path, String destinationDir)
-    {
-        _createDirectories(path, path, destinationDir);
-    }
-
-    private void _createDirectories(String checkdir, String path, String destinationDir)
-    {
-        AssetManager assetManager = this.getAssets();
-        String assets[] = null;
-        try
-        {
-            assets = assetManager.list(checkdir);
-            if (assets.length == 0)
-            {
-                copyFileUsingStream(checkdir, destinationDir + path);
-            }
-            else
-            {
-                String fullPath = destinationDir + path + "/";
-                File dir = new File(fullPath);
-                if (!dir.exists())
-                    dir.mkdirs();
-                for (int i = 0; i < assets.length; ++i)
-                {
-                    _createDirectories(checkdir + "/" + assets[i], assets[i], fullPath );
-                }
-            }
-        }
-        catch (IOException ex)
-        {
-            Log.e("tag", "I/O Exception", ex);
-        }
-    }
-
-//    public void copyAssets(String path, String destinationDir) {
-//        AssetManager assetManager = this.getAssets();
-//        String assets[] = null;
-//        try {
-//            assets = assetManager.list(path);
-//            if (assets.length == 0) {
-//                copyFile(path,destinationDir);
-//            } else {
-//                String fullPath = destinationDir + "/" + path;
-//                File dir = new File(fullPath);
-//                if (!dir.exists())
-//                    dir.mkdir();
-//                for (int i = 0; i < assets.length; ++i) {
-//                    copyAssets(path + "/" + assets[i], destinationDir + path + "/" + assets[i]);
-//                }
-//            }
-//        } catch (IOException ex) {
-//            Log.e("tag", "I/O Exception", ex);
-//        }
-//    }
-
-
-    private void copyFileUsingStream(String source, String dest) throws IOException
-    {
-        AssetManager assetManager = this.getAssets();
-        InputStream is = null;
-        OutputStream os = null;
-        try
-        {
-            is = assetManager.open(source);
-            os = new FileOutputStream(dest);
-            if(is != null)
-            {
-                byte[] buffer = new byte[1024];
-                int length;
-                while ((length = is.read(buffer)) != -1)
-                {
-                    os.write(buffer, 0, length);
-                }
-                int i = 0;
-            }
-        }
-        catch (IOException ioe)
-        {
-            System.out.println("Exception while copying file " + ioe);
-        }
-        finally
-        {
-            // close the streams using close method
-            try {
-                if (is != null)
-                {
-                    is.close();
-                }
-                if (os != null)
-                {
-                    os.close();
-                }
-            }
-            catch (IOException ioe)
-            {
-                System.out.println("Error while closing stream: " + ioe);
-            }
-        }
-    }
-//    private void copyFile(String from, String to) {
-//
-//        AssetManager assetManager = this.getAssets();
-//
-//        InputStream in = null;
-//        OutputStream out = null;
-//        try {
-//            in = assetManager.open(from);
-//            out = new FileOutputStream(to);
-//
-//            FileChannel src = new FileInputStream(in).getChannel();
-//            FileChannel dest = new FileOutputStream(out).getChannel();
-//            dest.transferFrom(src, 0, src.size());
-//
-//            byte[] buffer = new byte[1024];
-//            int read;
-//            while ((read = in.read(buffer)) != -1) {
-//                out.write(buffer, 0, read);
-//            }
-//            in.close();
-//            in = null;
-//            out.flush();
-//            out.close();
-//            out = null;
-//        } catch (Exception e) {
-//            Log.e("tag", e.getMessage());
-//        }
-//        new File(newFileName).setExecutable(true, false);
-//    }
-
     private static final String TAG = "SDL";
 
     // Keep track of the paused state
@@ -235,15 +72,15 @@ public class SDLActivity extends Activity {
      */
     protected String[] getLibraries() {
         return new String[] {
-                "njli"
+            "njli"
         };
     }
 
     // Load the .so
     public void loadLibraries() {
-        for (String lib : getLibraries()) {
-            System.loadLibrary(lib);
-        }
+       for (String lib : getLibraries()) {
+          System.loadLibrary(lib);
+       }
 
         // Try debug libraries...
         try { System.loadLibrary("fmodD");
@@ -313,44 +150,29 @@ public class SDLActivity extends Activity {
             errorMsgBrokenLib = e.getMessage();
         }
 
-
-
         AssetManager assetManager = getAssets();
-//        try {
-//            String[] imgPath = assetManager.list(".");
-//            for (int i = 0; i< imgPath.length; i++)
-//            {
-//                Log.d(TAG, imgPath[i]);
-//            }
-//        } catch (IOException e) {
-//            Log.e(TAG, e.getMessage());
-//        }
-
         SDLActivity.initAssetManager(assetManager);
-
-        //this.createDirectories("assets", filesDir);
-
 
         if (mBrokenLibraries)
         {
             AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
             dlgAlert.setMessage("An error occurred while trying to start the application. Please try again and/or reinstall."
-                    + System.getProperty("line.separator")
-                    + System.getProperty("line.separator")
-                    + "Error: " + errorMsgBrokenLib);
+                  + System.getProperty("line.separator")
+                  + System.getProperty("line.separator")
+                  + "Error: " + errorMsgBrokenLib);
             dlgAlert.setTitle("SDL Error");
             dlgAlert.setPositiveButton("Exit",
-                    new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog,int id) {
-                            // if this button is clicked, close current activity
-                            SDLActivity.mSingleton.finish();
-                        }
-                    });
-            dlgAlert.setCancelable(false);
-            dlgAlert.create().show();
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog,int id) {
+                        // if this button is clicked, close current activity
+                        SDLActivity.mSingleton.finish();
+                    }
+                });
+           dlgAlert.setCancelable(false);
+           dlgAlert.create().show();
 
-            return;
+           return;
         }
 
         // Set up the surface
@@ -367,8 +189,7 @@ public class SDLActivity extends Activity {
         mLayout.addView(mSurface);
 
         setContentView(mLayout);
-        org.fmod.FMOD.init(this);
-
+        
         // Get filename from "Open with" of another application
         Intent intent = getIntent();
 
@@ -388,7 +209,7 @@ public class SDLActivity extends Activity {
         super.onPause();
 
         if (SDLActivity.mBrokenLibraries) {
-            return;
+           return;
         }
 
         SDLActivity.handlePause();
@@ -400,7 +221,7 @@ public class SDLActivity extends Activity {
         super.onResume();
 
         if (SDLActivity.mBrokenLibraries) {
-            return;
+           return;
         }
 
         SDLActivity.handleResume();
@@ -413,7 +234,7 @@ public class SDLActivity extends Activity {
         Log.v(TAG, "onWindowFocusChanged(): " + hasFocus);
 
         if (SDLActivity.mBrokenLibraries) {
-            return;
+           return;
         }
 
         SDLActivity.mHasFocus = hasFocus;
@@ -428,7 +249,7 @@ public class SDLActivity extends Activity {
         super.onLowMemory();
 
         if (SDLActivity.mBrokenLibraries) {
-            return;
+           return;
         }
 
         SDLActivity.nativeLowMemory();
@@ -437,13 +258,12 @@ public class SDLActivity extends Activity {
     @Override
     protected void onDestroy() {
         Log.v(TAG, "onDestroy()");
-        org.fmod.FMOD.close();
 
         if (SDLActivity.mBrokenLibraries) {
-            super.onDestroy();
-            // Reset everything in case the user re opens the app
-            SDLActivity.initialize();
-            return;
+           super.onDestroy();
+           // Reset everything in case the user re opens the app
+           SDLActivity.initialize();
+           return;
         }
 
         // Send a quit message to the application
@@ -471,17 +291,17 @@ public class SDLActivity extends Activity {
     public boolean dispatchKeyEvent(KeyEvent event) {
 
         if (SDLActivity.mBrokenLibraries) {
-            return false;
+           return false;
         }
 
         int keyCode = event.getKeyCode();
         // Ignore certain special keys so they're handled by Android
         if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN ||
-                keyCode == KeyEvent.KEYCODE_VOLUME_UP ||
-                keyCode == KeyEvent.KEYCODE_CAMERA ||
-                keyCode == 168 || /* API 11: KeyEvent.KEYCODE_ZOOM_IN */
-                keyCode == 169 /* API 11: KeyEvent.KEYCODE_ZOOM_OUT */
-                ) {
+            keyCode == KeyEvent.KEYCODE_VOLUME_UP ||
+            keyCode == KeyEvent.KEYCODE_CAMERA ||
+            keyCode == 168 || /* API 11: KeyEvent.KEYCODE_ZOOM_IN */
+            keyCode == 169 /* API 11: KeyEvent.KEYCODE_ZOOM_OUT */
+            ) {
             return false;
         }
         return super.dispatchKeyEvent(event);
@@ -552,40 +372,40 @@ public class SDLActivity extends Activity {
                 return;
             }
             switch (msg.arg1) {
-                case COMMAND_CHANGE_TITLE:
-                    if (context instanceof Activity) {
-                        ((Activity) context).setTitle((String)msg.obj);
-                    } else {
-                        Log.e(TAG, "error handling message, getContext() returned no Activity");
-                    }
-                    break;
-                case COMMAND_TEXTEDIT_HIDE:
-                    if (mTextEdit != null) {
-                        // Note: On some devices setting view to GONE creates a flicker in landscape.
-                        // Setting the View's sizes to 0 is similar to GONE but without the flicker.
-                        // The sizes will be set to useful values when the keyboard is shown again.
-                        mTextEdit.setLayoutParams(new RelativeLayout.LayoutParams(0, 0));
-
-                        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
-                        imm.hideSoftInputFromWindow(mTextEdit.getWindowToken(), 0);
-                    }
-                    break;
-                case COMMAND_SET_KEEP_SCREEN_ON:
-                {
-                    Window window = ((Activity) context).getWindow();
-                    if (window != null) {
-                        if ((msg.obj instanceof Integer) && (((Integer) msg.obj).intValue() != 0)) {
-                            window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-                        } else {
-                            window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-                        }
-                    }
-                    break;
+            case COMMAND_CHANGE_TITLE:
+                if (context instanceof Activity) {
+                    ((Activity) context).setTitle((String)msg.obj);
+                } else {
+                    Log.e(TAG, "error handling message, getContext() returned no Activity");
                 }
-                default:
-                    if ((context instanceof SDLActivity) && !((SDLActivity) context).onUnhandledMessage(msg.arg1, msg.obj)) {
-                        Log.e(TAG, "error handling message, command is " + msg.arg1);
+                break;
+            case COMMAND_TEXTEDIT_HIDE:
+                if (mTextEdit != null) {
+                    // Note: On some devices setting view to GONE creates a flicker in landscape.
+                    // Setting the View's sizes to 0 is similar to GONE but without the flicker.
+                    // The sizes will be set to useful values when the keyboard is shown again.
+                    mTextEdit.setLayoutParams(new RelativeLayout.LayoutParams(0, 0));
+
+                    InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(mTextEdit.getWindowToken(), 0);
+                }
+                break;
+            case COMMAND_SET_KEEP_SCREEN_ON:
+            {
+                Window window = ((Activity) context).getWindow();
+                if (window != null) {
+                    if ((msg.obj instanceof Integer) && (((Integer) msg.obj).intValue() != 0)) {
+                        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+                    } else {
+                        window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                     }
+                }
+                break;
+            }
+            default:
+                if ((context instanceof SDLActivity) && !((SDLActivity) context).onUnhandledMessage(msg.arg1, msg.obj)) {
+                    Log.e(TAG, "error handling message, command is " + msg.arg1);
+                }
             }
         }
     }
@@ -975,11 +795,11 @@ public class SDLActivity extends Activity {
                 // To avoid direct dependency on Google APK expansion library that is
                 // not a part of Android SDK we access it using reflection
                 expansionFile = Class.forName("com.android.vending.expansion.zipfile.APKExpansionSupport")
-                        .getMethod("getAPKExpansionZipFile", Context.class, int.class, int.class)
-                        .invoke(null, this, mainVersion, patchVersion);
+                    .getMethod("getAPKExpansionZipFile", Context.class, int.class, int.class)
+                    .invoke(null, this, mainVersion, patchVersion);
 
                 expansionFileMethod = expansionFile.getClass()
-                        .getMethod("getInputStream", String.class);
+                    .getMethod("getInputStream", String.class);
             } catch (Exception ex) {
                 ex.printStackTrace();
                 expansionFile = null;
@@ -1213,8 +1033,8 @@ public class SDLActivity extends Activity {
 }
 
 /**
- Simple nativeInit() runnable
- */
+    Simple nativeInit() runnable
+*/
 class SDLMain implements Runnable {
     @Override
     public void run() {
@@ -1227,13 +1047,13 @@ class SDLMain implements Runnable {
 
 
 /**
- SDLSurface. This is what we draw on, so we need to know when it's created
- in order to do anything useful.
+    SDLSurface. This is what we draw on, so we need to know when it's created
+    in order to do anything useful.
 
- Because of this, that's where we set up the SDL thread
- */
+    Because of this, that's where we set up the SDL thread
+*/
 class SDLSurface extends SurfaceView implements SurfaceHolder.Callback,
-        View.OnKeyListener, View.OnTouchListener, SensorEventListener {
+    View.OnKeyListener, View.OnTouchListener, SensorEventListener  {
 
     // Sensors
     protected static SensorManager mSensorManager;
@@ -1307,47 +1127,47 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback,
 
         int sdlFormat = 0x15151002; // SDL_PIXELFORMAT_RGB565 by default
         switch (format) {
-            case PixelFormat.A_8:
-                Log.v("SDL", "pixel format A_8");
-                break;
-            case PixelFormat.LA_88:
-                Log.v("SDL", "pixel format LA_88");
-                break;
-            case PixelFormat.L_8:
-                Log.v("SDL", "pixel format L_8");
-                break;
-            case PixelFormat.RGBA_4444:
-                Log.v("SDL", "pixel format RGBA_4444");
-                sdlFormat = 0x15421002; // SDL_PIXELFORMAT_RGBA4444
-                break;
-            case PixelFormat.RGBA_5551:
-                Log.v("SDL", "pixel format RGBA_5551");
-                sdlFormat = 0x15441002; // SDL_PIXELFORMAT_RGBA5551
-                break;
-            case PixelFormat.RGBA_8888:
-                Log.v("SDL", "pixel format RGBA_8888");
-                sdlFormat = 0x16462004; // SDL_PIXELFORMAT_RGBA8888
-                break;
-            case PixelFormat.RGBX_8888:
-                Log.v("SDL", "pixel format RGBX_8888");
-                sdlFormat = 0x16261804; // SDL_PIXELFORMAT_RGBX8888
-                break;
-            case PixelFormat.RGB_332:
-                Log.v("SDL", "pixel format RGB_332");
-                sdlFormat = 0x14110801; // SDL_PIXELFORMAT_RGB332
-                break;
-            case PixelFormat.RGB_565:
-                Log.v("SDL", "pixel format RGB_565");
-                sdlFormat = 0x15151002; // SDL_PIXELFORMAT_RGB565
-                break;
-            case PixelFormat.RGB_888:
-                Log.v("SDL", "pixel format RGB_888");
-                // Not sure this is right, maybe SDL_PIXELFORMAT_RGB24 instead?
-                sdlFormat = 0x16161804; // SDL_PIXELFORMAT_RGB888
-                break;
-            default:
-                Log.v("SDL", "pixel format unknown " + format);
-                break;
+        case PixelFormat.A_8:
+            Log.v("SDL", "pixel format A_8");
+            break;
+        case PixelFormat.LA_88:
+            Log.v("SDL", "pixel format LA_88");
+            break;
+        case PixelFormat.L_8:
+            Log.v("SDL", "pixel format L_8");
+            break;
+        case PixelFormat.RGBA_4444:
+            Log.v("SDL", "pixel format RGBA_4444");
+            sdlFormat = 0x15421002; // SDL_PIXELFORMAT_RGBA4444
+            break;
+        case PixelFormat.RGBA_5551:
+            Log.v("SDL", "pixel format RGBA_5551");
+            sdlFormat = 0x15441002; // SDL_PIXELFORMAT_RGBA5551
+            break;
+        case PixelFormat.RGBA_8888:
+            Log.v("SDL", "pixel format RGBA_8888");
+            sdlFormat = 0x16462004; // SDL_PIXELFORMAT_RGBA8888
+            break;
+        case PixelFormat.RGBX_8888:
+            Log.v("SDL", "pixel format RGBX_8888");
+            sdlFormat = 0x16261804; // SDL_PIXELFORMAT_RGBX8888
+            break;
+        case PixelFormat.RGB_332:
+            Log.v("SDL", "pixel format RGB_332");
+            sdlFormat = 0x14110801; // SDL_PIXELFORMAT_RGB332
+            break;
+        case PixelFormat.RGB_565:
+            Log.v("SDL", "pixel format RGB_565");
+            sdlFormat = 0x15151002; // SDL_PIXELFORMAT_RGB565
+            break;
+        case PixelFormat.RGB_888:
+            Log.v("SDL", "pixel format RGB_888");
+            // Not sure this is right, maybe SDL_PIXELFORMAT_RGB24 instead?
+            sdlFormat = 0x16161804; // SDL_PIXELFORMAT_RGB888
+            break;
+        default:
+            Log.v("SDL", "pixel format unknown " + format);
+            break;
         }
 
         mWidth = width;
@@ -1355,7 +1175,7 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback,
         SDLActivity.onNativeResize(width, height, sdlFormat, mDisplay.getRefreshRate());
         Log.v("SDL", "Window size: " + width + "x" + height);
 
-
+ 
         boolean skip = false;
         int requestedOrientation = SDLActivity.mSingleton.getRequestedOrientation();
 
@@ -1366,28 +1186,28 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback,
         else if (requestedOrientation == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         {
             if (mWidth > mHeight) {
-                skip = true;
+               skip = true;
             }
         } else if (requestedOrientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
             if (mWidth < mHeight) {
-                skip = true;
+               skip = true;
             }
         }
 
         // Special Patch for Square Resolution: Black Berry Passport
         if (skip) {
-            double min = Math.min(mWidth, mHeight);
-            double max = Math.max(mWidth, mHeight);
-
-            if (max / min < 1.20) {
-                Log.v("SDL", "Don't skip on such aspect-ratio. Could be a square resolution.");
-                skip = false;
-            }
+           double min = Math.min(mWidth, mHeight);
+           double max = Math.max(mWidth, mHeight);
+           
+           if (max / min < 1.20) {
+              Log.v("SDL", "Don't skip on such aspect-ratio. Could be a square resolution.");
+              skip = false;
+           }
         }
 
         if (skip) {
-            Log.v("SDL", "Skip .. Surface is not ready.");
-            return;
+           Log.v("SDL", "Skip .. Surface is not ready.");
+           return;
         }
 
 
@@ -1469,11 +1289,11 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback,
             // they are ignored here because sending them as mouse input to SDL is messy
             if ((keyCode == KeyEvent.KEYCODE_BACK) || (keyCode == KeyEvent.KEYCODE_FORWARD)) {
                 switch (event.getAction()) {
-                    case KeyEvent.ACTION_DOWN:
-                    case KeyEvent.ACTION_UP:
-                        // mark the event as handled or it will be handled by system
-                        // handling KEYCODE_BACK by system will call onBackPressed()
-                        return true;
+                case KeyEvent.ACTION_DOWN:
+                case KeyEvent.ACTION_UP:
+                    // mark the event as handled or it will be handled by system
+                    // handling KEYCODE_BACK by system will call onBackPressed()
+                    return true;
                 }
             }
         }
@@ -1493,6 +1313,7 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback,
         int i = -1;
         float x,y,p;
 
+        //SDLActivity.mSeparateMouseAndTouch = false;
         // !!! FIXME: dump this SDK check after 2.0.4 ships and require API14.
         if (event.getSource() == InputDevice.SOURCE_MOUSE && SDLActivity.mSeparateMouseAndTouch) {
             if (Build.VERSION.SDK_INT < 14) {
@@ -1566,18 +1387,18 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback,
         }
 
         return true;
-    }
+   }
 
     // Sensor events
     public void enableSensor(int sensortype, boolean enabled) {
         // TODO: This uses getDefaultSensor - what if we have >1 accels?
         if (enabled) {
             mSensorManager.registerListener(this,
-                    mSensorManager.getDefaultSensor(sensortype),
-                    SensorManager.SENSOR_DELAY_GAME, null);
+                            mSensorManager.getDefaultSensor(sensortype),
+                            SensorManager.SENSOR_DELAY_GAME, null);
         } else {
             mSensorManager.unregisterListener(this,
-                    mSensorManager.getDefaultSensor(sensortype));
+                            mSensorManager.getDefaultSensor(sensortype));
         }
     }
 
@@ -1609,8 +1430,8 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback,
                     break;
             }
             SDLActivity.onNativeAccel(-x / SensorManager.GRAVITY_EARTH,
-                    y / SensorManager.GRAVITY_EARTH,
-                    event.values[2] / SensorManager.GRAVITY_EARTH);
+                                      y / SensorManager.GRAVITY_EARTH,
+                                      event.values[2] / SensorManager.GRAVITY_EARTH);
         }
     }
 }
@@ -1729,9 +1550,9 @@ class SDLInputConnection extends BaseInputConnection {
         return super.setComposingText(text, newCursorPosition);
     }
 
-    public static native void nativeCommitText(String text, int newCursorPosition);
+    public native void nativeCommitText(String text, int newCursorPosition);
 
-    public static native void nativeSetComposingText(String text, int newCursorPosition);
+    public native void nativeSetComposingText(String text, int newCursorPosition);
 
     @Override
     public boolean deleteSurroundingText(int beforeLength, int afterLength) {
@@ -1739,7 +1560,7 @@ class SDLInputConnection extends BaseInputConnection {
         if (beforeLength == 1 && afterLength == 0) {
             // backspace
             return super.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL))
-                    && super.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_DEL));
+                && super.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_DEL));
         }
 
         return super.deleteSurroundingText(beforeLength, afterLength);
@@ -1812,7 +1633,7 @@ class SDLJoystickHandler_API12 extends SDLJoystickHandler {
                     for (InputDevice.MotionRange range : ranges ) {
                         if ((range.getSource() & InputDevice.SOURCE_CLASS_JOYSTICK) != 0) {
                             if (range.getAxis() == MotionEvent.AXIS_HAT_X ||
-                                    range.getAxis() == MotionEvent.AXIS_HAT_Y) {
+                                range.getAxis() == MotionEvent.AXIS_HAT_Y) {
                                 joystick.hats.add(range);
                             }
                             else {
@@ -1823,7 +1644,7 @@ class SDLJoystickHandler_API12 extends SDLJoystickHandler {
 
                     mJoysticks.add(joystick);
                     SDLActivity.nativeAddJoystick(joystick.device_id, joystick.name, 0, -1,
-                            joystick.axes.size(), joystick.hats.size()/2, 0);
+                                                  joystick.axes.size(), joystick.hats.size()/2, 0);
                 }
             }
         }
