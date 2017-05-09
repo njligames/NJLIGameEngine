@@ -8,8 +8,10 @@
 #include "Log.h"
 
 //#define MAC_PATH "/Users/jamesfolk/NJLI/GameEngine/COMMON/assets/"
-#define MAC_PATH "/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/cmake.in/Platform.in/common/assets/"
-//#define MAC_PATH ""
+//#define MAC_PATH "/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/cmake.in/Platform.in/common/assets/"
+#define MAC_PATH "./"
+char RUNNING_PATH[4096] = "./";
+bool HAS_RUNNING_PATH = false;
 
 // static int emscripten_read(void* cookie, char* buf, int size) {
 //   return AAsset_read((AAsset*)cookie, buf, size);
@@ -41,23 +43,75 @@
 
 const char *RESOURCE_PATH()
 {
-    static char tempBuffer[512];
-    strcpy(tempBuffer, MAC_PATH);
+    static char tempBuffer[4096];
+    char *data_path = NULL;
+    
+    if(HAS_RUNNING_PATH)
+    {
+        data_path = RUNNING_PATH;
+    }
+    else
+    {
+        char *base_path = SDL_GetBasePath();
+        if (base_path) {
+            data_path = base_path;
+        } else {
+            data_path = SDL_strdup(MAC_PATH);
+        }
+    }
+    
+    strcpy(tempBuffer, data_path);
+    strcat(tempBuffer, "assets/");
+    
     return tempBuffer;
 }
 
 const char *ASSET_PATH(const char *file)
 {
-    static char tempBuffer[512];
-    strcpy(tempBuffer, MAC_PATH);
+    static char tempBuffer[4096];
+    char *data_path = NULL;
+    
+    if(HAS_RUNNING_PATH)
+    {
+        data_path = RUNNING_PATH;
+    }
+    else
+    {
+        char *base_path = SDL_GetBasePath();
+        if (base_path) {
+            data_path = base_path;
+        } else {
+            data_path = SDL_strdup(MAC_PATH);
+        }
+    }
+    
+    strcpy(tempBuffer, data_path);
+    strcat(tempBuffer, "assets/");
     strcat(tempBuffer, file);
     return tempBuffer;
 }
 
 const char *BUNDLE_PATH()
 {
-    static char tempBuffer[512];
-    strcpy(tempBuffer, MAC_PATH);
+    static char tempBuffer[4096];
+    char *data_path = NULL;
+    
+    if(HAS_RUNNING_PATH)
+    {
+        data_path = RUNNING_PATH;
+    }
+    else
+    {
+        char *base_path = SDL_GetBasePath();
+        if (base_path) {
+            data_path = base_path;
+        } else {
+            data_path = SDL_strdup(MAC_PATH);
+        }
+    }
+    
+    strcpy(tempBuffer, data_path);
+    strcat(tempBuffer, "assets/");
     return tempBuffer;
 }
 
@@ -79,4 +133,12 @@ const char *DOCUMENT_BASEPATH()
     static char tempBuffer[512];
     strcpy(tempBuffer, MAC_PATH);
     return tempBuffer;
+}
+
+void setRunningPath(const char *file)
+{
+    SDL_assert(file != NULL);
+    
+    strcpy(RUNNING_PATH, file);
+    HAS_RUNNING_PATH = true;
 }

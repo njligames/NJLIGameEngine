@@ -18,6 +18,8 @@ const char* DOCUMENT_BASEPATH() SIMPLE_FUNCTION;
 void sleepThread(float milliseconds) SIMPLE_FUNCTION;
 
 void setupFileSystem() SIMPLE_FUNCTION;
+    
+    void setRunningPath(const char *file) SIMPLE_FUNCTION;
 
 #ifdef __cplusplus
 }

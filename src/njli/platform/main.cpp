@@ -27,6 +27,7 @@ using namespace std;
 #include "NJLIInterface.h"
 #include "Game.h"
 #include "DeviceUtil.h"
+#include "File.h"
 
 class Graphics
 {
@@ -1106,6 +1107,10 @@ static void createRenderer()
 
 int main(int argc, char** argv)
 {
+#if defined(__MACOSX__)
+    if(argc > 1)
+        setRunningPath(argv[1]);
+#endif
     
     /* initialize SDL */
     if (SDL_Init(SDL_INIT_VIDEO) < 0)
@@ -1184,6 +1189,13 @@ int main(int argc, char** argv)
 #if (defined(__IPHONEOS__) && __IPHONEOS__)
     SDL_AddEventWatch(EventFilter, NULL);
 #endif
+    
+#if defined(__MACOSX__)
+    SDL_GetWindowSize(gWindow, &w, &h);
+#else
+    SDL_GL_GetDrawableSize(gWindow, &w, &h);
+#endif
+    NJLI_HandleResize(w, h, gDisplayMode.format, gDisplayMode.refresh_rate);
     
     gDone = (njli::NJLIGameEngine::start() == false)?1:0;
     

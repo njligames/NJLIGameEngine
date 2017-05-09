@@ -1,5 +1,7 @@
 local BaseClass = require "NJLI.STATEMACHINE.SceneEntity"
 
+require('mobdebug').start()
+
 local Menu = {}
 Menu.__index = Menu
 
@@ -28,9 +30,12 @@ local __ctor = function(self, init)
     self:getScene():addCameraNode(OrthographicCameraNode, true)
     self:getScene():addCameraNode(PerspectiveCameraNode)
 
-    self._button = self:createButtonControl("stage", 800, 400, 25)
-    self._switch = self:createSwitchControl("stage", 400, 400, 25)
+    self._button = self:createButtonControl("stage", 814, 400, 25)
+    self._switch = self:createSwitchControl("stage", 313, 400, 25)
     self:createImageControl("ui_thanks", 0, 0, 1)
+    
+    
+    
 
     self._label = self:createLabelControl( 0, 0)
     self._label:text("THE TEXT\nTHE TEXT")
@@ -185,6 +190,7 @@ end
 
 function Menu:update(timeStep)
   BaseClass.update(self, timeStep)
+  
 end
 
 function Menu:exit()
