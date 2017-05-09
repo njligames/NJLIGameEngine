@@ -7,10 +7,10 @@ In file included from /Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/ext
     int errno = 0;
         ^
 1 warning generated.
-/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/WorldInput.cpp:276:5: warning: control reaches end of non-void function [-Wreturn-type]
+/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/WorldInput.cpp:236:5: warning: control reaches end of non-void function [-Wreturn-type]
     }
     ^
-/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/WorldInput.cpp:281:5: warning: control reaches end of non-void function [-Wreturn-type]
+/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/WorldInput.cpp:241:5: warning: control reaches end of non-void function [-Wreturn-type]
     }
     ^
 2 warnings generated.
@@ -24,7 +24,7 @@ In file included from /Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/ext
   btScalar *temp4 ;
             ^
 3 warnings generated.
-/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/generated/swig/lua/lnjli.cpp:7874:14: warning: unused variable 'buffer' [-Wunused-variable]
+/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/generated/swig/lua/lnjli.cpp:7875:14: warning: unused variable 'buffer' [-Wunused-variable]
         char buffer[2048];
              ^
 1 warning generated.
@@ -42,10 +42,10 @@ In file included from /Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/ext
     int errno = 0;
         ^
 1 warning generated.
-/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/WorldInput.cpp:276:5: warning: control reaches end of non-void function [-Wreturn-type]
+/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/WorldInput.cpp:236:5: warning: control reaches end of non-void function [-Wreturn-type]
     }
     ^
-/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/WorldInput.cpp:281:5: warning: control reaches end of non-void function [-Wreturn-type]
+/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/WorldInput.cpp:241:5: warning: control reaches end of non-void function [-Wreturn-type]
     }
     ^
 2 warnings generated.
@@ -59,7 +59,7 @@ In file included from /Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/ext
   btScalar *temp4 ;
             ^
 3 warnings generated.
-/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/generated/swig/lua/lnjli.cpp:7874:14: warning: unused variable 'buffer' [-Wunused-variable]
+/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/generated/swig/lua/lnjli.cpp:7875:14: warning: unused variable 'buffer' [-Wunused-variable]
         char buffer[2048];
              ^
 1 warning generated.

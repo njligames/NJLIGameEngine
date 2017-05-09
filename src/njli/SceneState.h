@@ -18,6 +18,7 @@
 namespace njli {
 class SceneStateBuilder;
     class DeviceTouch;
+    class DeviceMouse;
 
 /**
      *  <#Description#>
@@ -186,6 +187,25 @@ public:
      @param touch <#touch description#>
      */
     void touchMove(Scene *object, const DeviceTouch &touch);
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    void mouseDown(Scene *object, const DeviceMouse &touch);
+    void mouseUp(Scene *object, const DeviceMouse &touch);
+    void mouseMove(Scene *object, const DeviceMouse &touch);
+    
+    
+    
+    
+    
+    
     
     
     /**

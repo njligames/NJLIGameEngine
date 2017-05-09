@@ -60,9 +60,9 @@ end
 function Default:rayTouchesDown(rayContact)
 	BaseClass.rayTouchesDown(self, rayContact)
 
-    if not self:getNodeEntity():disabled() then
-        self:getNodeEntity():pushState("NJLI.STATEMACHINE.UI.BUTTON.STATES.Selected")
-    end
+  if not self:getNodeEntity():disabled() then
+    self:getNodeEntity():pushState("NJLI.STATEMACHINE.UI.BUTTON.STATES.Selected")
+  end
 end
 
 function Default:rayTouchesUp(rayContact)
@@ -88,9 +88,9 @@ end
 function Default:rayTouchDown(rayContact)
 	BaseClass.rayTouchDown(self, rayContact)
 
-    if not self:getNodeEntity():disabled() then
-        self:getNodeEntity():pushState("NJLI.STATEMACHINE.UI.BUTTON.STATES.Selected")
-    end
+  if not self:getNodeEntity():disabled() then
+    self:getNodeEntity():pushState("NJLI.STATEMACHINE.UI.BUTTON.STATES.Selected")
+  end
 end
 
 function Default:rayTouchUp(rayContact)
@@ -100,9 +100,9 @@ end
 function Default:rayTouchMove(rayContact)
 	BaseClass.rayTouchMove(self, rayContact)
 
-    if not self:getNodeEntity():disabled() then
-        self:getNodeEntity():pushState("NJLI.STATEMACHINE.UI.BUTTON.STATES.Selected")
-    end
+  if not self:getNodeEntity():disabled() then
+    self:getNodeEntity():pushState("NJLI.STATEMACHINE.UI.BUTTON.STATES.Selected")
+  end
 end
 
 function Default:rayTouchCancelled(rayContact)
@@ -111,6 +111,26 @@ end
 
 function Default:rayTouchMissed(node)
     BaseClass.rayTouchMissed(self, node)
+end
+
+function Default:rayMouseDown(rayContact)
+  BaseClass.rayMouseDown(self, rayContact)
+
+  if not self:getNodeEntity():disabled() then
+    self:getNodeEntity():pushState("NJLI.STATEMACHINE.UI.BUTTON.STATES.Selected")
+  end
+end
+
+function Default:rayMouseUp(rayContact)
+  BaseClass.rayMouseUp(self, rayContact)
+end
+
+function Default:rayMouseMove(rayContact)
+  BaseClass.rayMouseMove(self, rayContact)
+end
+
+function Default:rayMouseMissed(node)
+  BaseClass.rayMouseMissed(self, node)
 end
 
 function Default:collide(otherNode, collisionPoint)
@@ -169,20 +189,32 @@ function Default:touchesCancelled(touches)
     BaseClass.touchesCancelled(self, touches)
 end
 
-function Default:touchDown(touches)
-    BaseClass.touchDown(self, touches)
+function Default:touchDown(touch)
+    BaseClass.touchDown(self, touch)
 end
 
-function Default:touchUp(touches)
-    BaseClass.touchUp(self, touches)
+function Default:touchUp(touch)
+    BaseClass.touchUp(self, touch)
 end
 
-function Default:touchMove(touches)
-    BaseClass.touchMove(self, touches)
+function Default:touchMove(touch)
+    BaseClass.touchMove(self, touch)
 end
 
-function Default:touchCancelled(touches)
-    BaseClass.touchCancelled(self, touches)
+function Default:touchCancelled(touch)
+    BaseClass.touchCancelled(self, touch)
+end
+
+function Default:mouseDown(mouse)
+    BaseClass.mouseDown(self, mouse)
+end
+
+function Default:mouseUp(mouse)
+    BaseClass.mouseUp(self, mouse)
+end
+
+function Default:mouseMove(mouse)
+    BaseClass.mouseMove(self, mouse)
 end
 
 --#############################################################################

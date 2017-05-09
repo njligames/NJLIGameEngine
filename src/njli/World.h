@@ -249,6 +249,10 @@ public:
     void touchUp(const DeviceTouch &touch);
     void touchMove(const DeviceTouch &touch);
     
+    void mouseDown(const DeviceMouse &touch);
+    void mouseUp(const DeviceMouse &touch);
+    void mouseMove(const DeviceMouse &touch);
+    
     
     void keyboardShow();
     void keyboardCancel();

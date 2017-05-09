@@ -82,25 +82,40 @@ function __NJLIWorldTouchesCancelled(touches)
   __interface:getStateMachine():_worldTouchesCancelled(touches)
 end
 
-function __NJLIWorldTouchDown(touches)
+function __NJLIWorldTouchDown(touch)
   --print("__NJLIWorldTouchDown")
   --assert(touches ~= nil, "The touches are nil")
-  __interface:getStateMachine():_worldTouchDown(touches)
+  __interface:getStateMachine():_worldTouchDown(touch)
 end
 
-function __NJLIWorldTouchUp(touches)
+function __NJLIWorldTouchUp(touch)
   --print("__NJLIWorldTouchUp")
-  __interface:getStateMachine():_worldTouchUp(touches)
+  __interface:getStateMachine():_worldTouchUp(touch)
 end
 
-function __NJLIWorldTouchMove(touches)
+function __NJLIWorldTouchMove(touch)
   --print("__NJLIWorldTouchMove")
-  __interface:getStateMachine():_worldTouchMove(touches)
+  __interface:getStateMachine():_worldTouchMove(touch)
 end
 
-function __NJLIWorldTouchCancelled(touches)
+function __NJLIWorldTouchCancelled(touch)
   --print("__NJLIWorldTouchCancelled")
-  __interface:getStateMachine():_worldTouchCancelled(touches)
+  __interface:getStateMachine():_worldTouchCancelled(touch)
+end
+
+function __NJLIWorldMouseDown(mouse)
+  --print("__NJLIWorldMouseDown")
+  __interface:getStateMachine():_worldMouseDown(mouse)
+end
+
+function __NJLIWorldMouseUp(mouse)
+  --print("__NJLIWorldMouseUp")
+  __interface:getStateMachine():_worldMouseUp(mouse)
+end
+
+function __NJLIWorldMouseMove(mouse)
+  --print("__NJLIWorldMouseMove")
+  __interface:getStateMachine():_worldMouseMove(mouse)
 end
 
 function __NJLIWorldWillResignActive()
@@ -212,24 +227,36 @@ function __NJLISceneTouchesCancelled(scene, touches)
   __interface:getStateMachine():_sceneTouchesCancelled(scene, touches)
 end
 
-function __NJLISceneTouchDown(scene, touches)
+function __NJLISceneTouchDown(scene, touch)
   --print("__NJLISceneTouchDown")
-  __interface:getStateMachine():_sceneTouchDown(scene, touches)
+  __interface:getStateMachine():_sceneTouchDown(scene, touch)
 end
 
-function __NJLISceneTouchUp(scene, touches)
+function __NJLISceneTouchUp(scene, touch)
   --print("__NJLISceneTouchUp")
-  __interface:getStateMachine():_sceneTouchUp(scene, touches)
+  __interface:getStateMachine():_sceneTouchUp(scene, touch)
 end
 
-function __NJLISceneTouchMove(scene, touches)
+function __NJLISceneTouchMove(scene, touch)
   --print("__NJLISceneTouchMove")
-  __interface:getStateMachine():_sceneTouchMove(scene, touches)
+  __interface:getStateMachine():_sceneTouchMove(scene, touch)
 end
 
-function __NJLISceneTouchCancelled(scene, touches)
+function __NJLISceneTouchCancelled(scene, touch)
   --print("__NJLISceneTouchCancelled")
-  __interface:getStateMachine():_sceneTouchCancelled(scene, touches)
+  __interface:getStateMachine():_sceneTouchCancelled(scene, touch)
+end
+
+function __NJLISceneMouseDown(scene, mouse)
+  __interface:getStateMachine():_sceneMouseDown(scene, mouse)
+end
+
+function __NJLISceneMouseUp(scene, mouse)
+  __interface:getStateMachine():_sceneMouseUp(scene, mouse)
+end
+
+function __NJLISceneMouseMove(scene, mouse)
+  __interface:getStateMachine():_sceneMouseMove(scene, mouse)
 end
 
 function __NJLISceneReceivedMemoryWarning(scene)
@@ -366,6 +393,23 @@ function __NJLINodeRayTouchMissed(node)
   __interface:getStateMachine():_rayTouchMissed(node)
 end
 
+function __NJLINodeRayMouseDown(rayContact)
+  -- print("__NJLINodeRayMouseDown")
+  __interface:getStateMachine():_rayMouseDown(rayContact)
+end
+
+function __NJLINodeRayMouseUp(rayContact)
+  __interface:getStateMachine():_rayMouseUp(rayContact)
+end
+
+function __NJLINodeRayMouseMove(rayContact)
+  __interface:getStateMachine():_rayMouseMove(rayContact)
+end
+
+function __NJLINodeRayMouseMissed(node)
+  __interface:getStateMachine():_rayMouseMissed(node)
+end
+
 function __NJLINodeKeyboardShow(node)
   --print("__NJLINodeKeyboardShow")
   __interface:getStateMachine():_nodeKeyboardShow(node)
@@ -416,24 +460,36 @@ function __NJLINodeTouchesCancelled(node, touches)
   __interface:getStateMachine():_nodeTouchesCancelled(node, touches)
 end
 
-function __NJLINodeTouchDown(node, touches)
+function __NJLINodeTouchDown(node, touch)
   --print("__NJLINodeTouchDown")
-  __interface:getStateMachine():_nodeTouchDown(node, touches)
+  __interface:getStateMachine():_nodeTouchDown(node, touch)
 end
 
-function __NJLINodeTouchUp(node, touches)
+function __NJLINodeTouchUp(node, touch)
   --print("__NJLINodeTouchUp")
-  __interface:getStateMachine():_nodeTouchUp(node, touches)
+  __interface:getStateMachine():_nodeTouchUp(node, touch)
 end
 
-function __NJLINodeTouchMove(node, touches)
+function __NJLINodeTouchMove(node, touch)
   --print("__NJLINodeTouchMove")
-  __interface:getStateMachine():_nodeTouchMove(node, touches)
+  __interface:getStateMachine():_nodeTouchMove(node, touch)
 end
 
 function __NJLINodeTouchCancelled(node, touches)
   --print("__NJLINodeTouchCancelled")
   __interface:getStateMachine():_nodeTouchCancelled(node, touches)
+end
+
+function __NJLINodeMouseDown(node, mouse)
+  __interface:getStateMachine():_nodeMouseDown(node, mouse)
+end
+
+function __NJLINodeMouseUp(node, mouse)
+  __interface:getStateMachine():_nodeMouseUp(node, mouse)
+end
+
+function __NJLINodeMouseMove(node, mouse)
+  __interface:getStateMachine():_nodeMouseMove(node, mouse)
 end
 
 --#############################################################################
@@ -475,24 +531,36 @@ function __NJLITouchesCancelled(touches)
   __interface:getDeviceEntity():touchesCancelled(touches)
 end
 
-function __NJLITouchDown(touches)
+function __NJLITouchDown(touch)
   --print("__NJLITouchDown(" .. #touches .. ")")
-  __interface:getDeviceEntity():touchDown(touches)
+  __interface:getDeviceEntity():touchDown(touch)
 end
 
-function __NJLITouchUp(touches)
+function __NJLITouchUp(touch)
   --print("__NJLITouchUp(" .. #touches .. ")")
-  __interface:getDeviceEntity():touchUp(touches)
+  __interface:getDeviceEntity():touchUp(touch)
 end
 
-function __NJLITouchMove(touches)
+function __NJLITouchMove(touch)
   --print("__NJLITouchMove(" .. #touches .. ")")
-  __interface:getDeviceEntity():touchMove(touches)
+  __interface:getDeviceEntity():touchMove(touch)
 end
 
 function __NJLITouchCancelled(touches)
   --print("__NJLITouchCancelled(" .. #touches .. ")")
   __interface:getDeviceEntity():touchCancelled(touches)
+end
+
+function __NJLIMouseDown(mouse)
+  __interface:getDeviceEntity():mouseDown(mouse)
+end
+
+function __NJLIMouseUp(mouse)
+  __interface:getDeviceEntity():mouseUp(mouse)
+end
+
+function __NJLIMouseMove(mouse)
+  __interface:getDeviceEntity():mouseMove(mouse)
 end
 
 return __interface

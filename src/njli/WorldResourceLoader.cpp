@@ -1089,6 +1089,7 @@ namespace njli
         {
             FileData *fileData = loadFileData(filePath);
             
+            
             char *fileContent = (char*)fileData->getBufferPtr();
             if(fileContent)
             {

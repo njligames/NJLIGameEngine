@@ -103,6 +103,22 @@ function Default:rayTouchMissed(node)
     BaseClass.rayTouchMissed(self, node)
 end
 
+function Default:rayMouseDown(rayContact)
+  BaseClass.rayMouseDown(self, rayContact)
+end
+
+function Default:rayMouseUp(rayContact)
+  BaseClass.rayMouseUp(self, rayContact)
+end
+
+function Default:rayMouseMove(rayContact)
+  BaseClass.rayMouseMove(self, rayContact)
+end
+
+function Default:rayMouseMissed(node)
+  BaseClass.rayMouseMissed(self, node)
+end
+
 function Default:collide(otherNode, collisionPoint)
   BaseClass.collide(self, collisionPoint)
 end
@@ -159,20 +175,32 @@ function Default:touchesCancelled(touches)
     BaseClass.touchCancelled(self, touches)
 end
 
-function Default:touchDown(touches)
-    BaseClass.touchDown(self, touches)
+function Default:touchDown(touch)
+    BaseClass.touchDown(self, touch)
 end
 
-function Default:touchUp(touches)
-    BaseClass.touchUp(self, touches)
+function Default:touchUp(touch)
+    BaseClass.touchUp(self, touch)
 end
 
-function Default:touchMove(touches)
-    BaseClass.touchMove(self, touches)
+function Default:touchMove(touch)
+    BaseClass.touchMove(self, touch)
 end
 
-function Default:touchCancelled(touches)
-    BaseClass.touchCancelled(self, touches)
+function Default:touchCancelled(touch)
+    BaseClass.touchCancelled(self, touch)
+end
+
+function Default:mouseDown(mouse)
+    BaseClass.mouseDown(self, mouse)
+end
+
+function Default:mouseUp(mouse)
+    BaseClass.mouseUp(self, mouse)
+end
+
+function Default:mouseMove(mouse)
+    BaseClass.mouseMove(self, mouse)
 end
 
 --#############################################################################

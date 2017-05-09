@@ -16,6 +16,7 @@
 
 #include "AbstractState.h"
 #include "DeviceTouch.h"
+#include "DeviceMouse.h"
 #include "Node.h"
 #include "Scene.h"
 #include "btDispatcher.h"
@@ -303,6 +304,15 @@ public:
      */
     bool execute(const char* code, const DeviceTouch &touch);
     
+    /**
+     <#Description#>
+
+     @param code <#code description#>
+     @param mouse <#mouse description#>
+     @return <#return value description#>
+     */
+    bool execute(const char* code, const DeviceMouse &mouse);
+    
     
     /**
      <#Description#>
@@ -323,6 +333,16 @@ public:
      @return <#return value description#>
      */
     bool execute(const char *code, Scene *pEntity, const DeviceTouch &touch);
+    
+    /**
+     <#Description#>
+
+     @param code <#code description#>
+     @param pEntity <#pEntity description#>
+     @param mouse <#mouse description#>
+     @return <#return value description#>
+     */
+    bool execute(const char *code, Scene *pEntity, const DeviceMouse &mouse);
 
     /**
          *  @author James Folk, 16-02-11 18:02:43
@@ -415,17 +435,25 @@ public:
      */
     bool execute(const char *code, Node *pEntity, DeviceTouch **touches);
     
+    /**
+     <#Description#>
+
+     @param code <#code description#>
+     @param pEntity <#pEntity description#>
+     @param touch <#touch description#>
+     @return <#return value description#>
+     */
+    bool execute(const char *code, Node *pEntity, const DeviceTouch &touch);
     
     /**
      <#Description#>
 
      @param code <#code description#>
      @param pEntity <#pEntity description#>
-     @param touche <#touche description#>
+     @param mouse <#mouse description#>
      @return <#return value description#>
      */
-    bool execute(const char *code, Node *pEntity, const DeviceTouch &touche);
-
+    bool execute(const char *code, Node *pEntity, const DeviceMouse &mouse);
     
     /**
      <#Description#>

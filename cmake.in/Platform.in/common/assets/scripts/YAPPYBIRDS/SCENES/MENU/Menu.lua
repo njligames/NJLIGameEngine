@@ -88,7 +88,7 @@ function Menu:createButtonControl(buttonName, xPos, yPos, buttonScale)
         touchUpOutside = function(touches) print(#touches) end,
         touchUpInside = function(rayContact) print(rayContact) end,
         touchDownInside = function(rayContact) print(rayContact) end,
-        touchDragOutside = function() print("touchDragOutside") end,
+        touchDragOutside = function() print("touchDragOutside asdf") end,
         touchDragInside = function(rayContact) print(rayContact) end,
         touchCancelled = function(rayContact) print(rayContact) end,
         soundTouchUpOutside = nil, --path to the sound

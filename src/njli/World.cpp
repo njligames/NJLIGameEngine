@@ -497,6 +497,69 @@ namespace njli
         njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, touch);
     }
     
+    void World::mouseDown(const DeviceMouse &mouse)
+    {
+        WorldState *currentState = dynamic_cast<WorldState*>(m_stateMachine->getState());
+        
+        if(currentState)
+        {
+            currentState->mouseDown(mouse);
+        }
+        else
+        {
+            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no WorldState\n");
+        }
+
+        if(getScene())
+            getScene()->mouseDown(mouse);
+        
+        char buffer[256];
+        sprintf(buffer, "%s", "__NJLIMouseDown");
+        njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, mouse);
+    }
+    
+    void World::mouseUp(const DeviceMouse &mouse)
+    {
+        WorldState *currentState = dynamic_cast<WorldState*>(m_stateMachine->getState());
+        
+        if(currentState)
+        {
+            currentState->mouseUp(mouse);
+        }
+        else
+        {
+            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no WorldState\n");
+        }
+
+        if(getScene())
+            getScene()->mouseUp(mouse);
+        
+        char buffer[256];
+        sprintf(buffer, "%s", "__NJLIMouseUp");
+        njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, mouse);
+    }
+    
+    void World::mouseMove(const DeviceMouse &mouse)
+    {
+        WorldState *currentState = dynamic_cast<WorldState*>(m_stateMachine->getState());
+        
+        if(currentState)
+        {
+            currentState->mouseMove(mouse);
+        }
+        else
+        {
+            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no WorldState\n");
+        }
+
+        if(getScene())
+            getScene()->mouseMove(mouse);
+        
+        char buffer[256];
+        sprintf(buffer, "%s", "__NJLIMouseMove");
+        njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer, mouse);
+    }
+    
 //    void World::touchCancelled(const DeviceTouch &touches)
 //    {
 //        WorldState *currentState = dynamic_cast<WorldState*>(m_stateMachine->getState());

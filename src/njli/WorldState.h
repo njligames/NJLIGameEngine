@@ -12,6 +12,7 @@
 #include "AbstractBuilder.h"
 #include "AbstractState.h"
 #include "DeviceTouch.h"
+#include "DeviceMouse.h"
 #include "lua.hpp"
 
 namespace njli {
@@ -231,6 +232,20 @@ public:
     void touchMove(const DeviceTouch &touch);
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    void mouseDown(const DeviceMouse &touch);
+    void mouseUp(const DeviceMouse &touch);
+    void mouseMove(const DeviceMouse &touch);
+    
+    
+    
     /**
      <#Description#>
 
@@ -240,8 +255,9 @@ public:
 
 public:
 protected:
-    void checkRayCollision(DeviceTouch * *m_CurrentTouches, const char* code, bool disableNodeTouched = false);
-    void checkRayCollision(const DeviceTouch &m_CurrentTouches, const char* code, bool disableNodeTouched = false);
+    void checkRayCollision(DeviceTouch * *touches, const char* code, bool disableNodeTouched = false);
+    void checkRayCollision(const DeviceTouch &touch, const char* code, bool disableNodeTouched = false);
+    void checkRayCollision(const DeviceMouse &mouse, const char* code, bool disableNodeTouched = false);
 
 private:
     btAlignedObjectArray<njli::PhysicsRayContact*> m_RayContacts;

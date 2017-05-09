@@ -90,6 +90,22 @@ function Focused:rayTouchMissed(node)
     BaseClass.rayTouchMissed(self, node)
 end
 
+function Focused:rayMouseDown(rayContact)
+  BaseClass.rayMouseDown(self, rayContact)
+end
+
+function Focused:rayMouseUp(rayContact)
+  BaseClass.rayMouseUp(self, rayContact)
+end
+
+function Focused:rayMouseMove(rayContact)
+  BaseClass.rayMouseMove(self, rayContact)
+end
+
+function Focused:rayMouseMissed(node)
+  BaseClass.rayMouseMissed(self, node)
+end
+
 function Focused:collide(otherNode, collisionPoint)
 	BaseClass.collide(self, collisionPoint)
 end
@@ -146,20 +162,32 @@ function Focused:touchesCancelled(touches)
     BaseClass.touchesCancelled(self, touches)
 end
 
-function Focused:touchDown(touches)
-    BaseClass.touchDown(self, touches)
+function Focused:touchDown(touch)
+    BaseClass.touchDown(self, touch)
 end
 
-function Focused:touchUp(touches)
-    BaseClass.touchUp(self, touches)
+function Focused:touchUp(touch)
+    BaseClass.touchUp(self, touch)
 end
 
-function Focused:touchMove(touches)
-    BaseClass.touchMove(self, touches)
+function Focused:touchMove(touch)
+    BaseClass.touchMove(self, touch)
 end
 
-function Focused:touchCancelled(touches)
-    BaseClass.touchCancelled(self, touches)
+function Focused:touchCancelled(touch)
+    BaseClass.touchCancelled(self, touch)
+end
+
+function Focused:mouseDown(mouse)
+    BaseClass.mouseDown(self, mouse)
+end
+
+function Focused:mouseUp(mouse)
+    BaseClass.mouseUp(self, mouse)
+end
+
+function Focused:mouseMove(mouse)
+    BaseClass.mouseMove(self, mouse)
 end
 
 --#############################################################################

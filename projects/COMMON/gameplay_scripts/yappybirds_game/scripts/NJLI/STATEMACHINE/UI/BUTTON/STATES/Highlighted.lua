@@ -90,6 +90,22 @@ function Highlighted:rayTouchMissed(node)
     BaseClass.rayTouchMissed(self, node)
 end
 
+function Highlighted:rayMouseDown(rayContact)
+  BaseClass.rayMouseDown(self, rayContact)
+end
+
+function Highlighted:rayMouseUp(rayContact)
+  BaseClass.rayMouseUp(self, rayContact)
+end
+
+function Highlighted:rayMouseMove(rayContact)
+  BaseClass.rayMouseMove(self, rayContact)
+end
+
+function Highlighted:rayMouseMissed(node)
+  BaseClass.rayMouseMissed(self, node)
+end
+
 function Highlighted:collide(otherNode, collisionPoint)
   BaseClass.collide(self, collisionPoint)
 end
@@ -146,20 +162,32 @@ function Highlighted:touchesCancelled(touches)
     BaseClass.touchesCancelled(self, touches)
 end
 
-function Highlighted:touchDown(touches)
-    BaseClass.touchDown(self, touches)
+function Highlighted:touchDown(touch)
+    BaseClass.touchDown(self, touch)
 end
 
-function Highlighted:touchUp(touches)
-    BaseClass.touchUp(self, touches)
+function Highlighted:touchUp(touch)
+    BaseClass.touchUp(self, touch)
 end
 
-function Highlighted:touchMove(touches)
-    BaseClass.touchMove(self, touches)
+function Highlighted:touchMove(touch)
+    BaseClass.touchMove(self, touch)
 end
 
-function Highlighted:touchCancelled(touches)
-    BaseClass.touchCancelled(self, touches)
+function Highlighted:touchCancelled(touch)
+    BaseClass.touchCancelled(self, touch)
+end
+
+function Highlighted:mouseDown(mouse)
+    BaseClass.mouseDown(self, mouse)
+end
+
+function Highlighted:mouseUp(mouse)
+    BaseClass.mouseUp(self, mouse)
+end
+
+function Highlighted:mouseMove(mouse)
+    BaseClass.mouseMove(self, mouse)
 end
 
 --#############################################################################

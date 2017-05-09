@@ -146,6 +146,22 @@ function Label:rayTouchMissed(node)
   BaseClass.rayTouchMissed(self, node)
 end
 
+function Label:rayMouseDown(rayContact)
+  BaseClass.rayMouseDown(self, rayContact)
+end
+
+function Label:rayMouseUp(rayContact)
+  BaseClass.rayMouseUp(self, rayContact)
+end
+
+function Label:rayMouseMove(rayContact)
+  BaseClass.rayMouseMove(self, rayContact)
+end
+
+function Label:rayMouseMissed(node)
+  BaseClass.rayMouseMissed(self, node)
+end
+
 function Label:collide(otherNode, collisionPoint)
   BaseClass.collide(self, otherNode, collisionPoint)
 end
@@ -186,20 +202,32 @@ function Label:gameUnPause()
     BaseClass.gameUnPause(self)
 end
 
-function Label:touchDown(touches)
-    BaseClass.touchDown(self, touches)
+function Label:touchDown(touch)
+    BaseClass.touchDown(self, touch)
 end
 
-function Label:touchUp(touches)
-    BaseClass.touchUp(self, touches)
+function Label:touchUp(touch)
+    BaseClass.touchUp(self, touch)
 end
 
-function Label:touchMove(touches)
-    BaseClass.touchMove(self, touches)
+function Label:touchMove(touch)
+    BaseClass.touchMove(self, touch)
 end
 
-function Label:touchCancelled(touches)
-    BaseClass.touchCancelled(self, touches)
+function Label:touchCancelled(touch)
+    BaseClass.touchCancelled(self, touch)
+end
+
+function Label:mouseDown(mouse)
+    BaseClass.mouseDown(self, mouse)
+end
+
+function Label:mouseUp(mouse)
+    BaseClass.mouseUp(self, mouse)
+end
+
+function Label:mouseMove(mouse)
+    BaseClass.mouseMove(self, mouse)
 end
 
 --#############################################################################

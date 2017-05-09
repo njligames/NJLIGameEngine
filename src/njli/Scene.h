@@ -36,6 +36,7 @@ class PhysicsRayContact;
 class Clock;
 class Geometry;
     class DeviceTouch;
+    class DeviceMouse;
 
 /**
      *  <#Description#>
@@ -430,6 +431,19 @@ public:
      @param touch <#touch description#>
      */
     void touchMove(const DeviceTouch &touch);
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    void mouseDown(const DeviceMouse &mouse);
+    void mouseUp(const DeviceMouse &mouse);
+    void mouseMove(const DeviceMouse &mouse);
     
     
     /**

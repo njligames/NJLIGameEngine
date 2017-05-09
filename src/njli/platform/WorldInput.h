@@ -12,6 +12,7 @@
 #include "AbstractObject.h"
 #include <string>
 #include "DeviceTouch.h"
+#include "DeviceMouse.h"
 #include <unordered_map>
 
 namespace njli {
@@ -59,6 +60,8 @@ private:
     std::unordered_map<int, DeviceTouch*> m_FingerDownMap;
     std::unordered_map<int, DeviceTouch*> m_FingerUpMap;
     std::unordered_map<int, DeviceTouch*> m_FingerMoveMap;
+    
+    DeviceMouse *m_Mouse;
     
     DeviceTouch **m_TouchBuffer;
     

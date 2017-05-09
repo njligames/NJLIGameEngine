@@ -143,20 +143,32 @@ function WorldEntityState:touchesCancelled(touches)
   --print(self:getWorldState():getName() .. " :touchCancelled(" .. #touches .. ")")
 end
 
-function WorldEntityState:touchDown(touches)
+function WorldEntityState:touchDown(touch)
   --print(self:getWorldState():getName() .. " :touchDown(" .. #touches .. ")")
 end
 
-function WorldEntityState:touchUp(touches)
+function WorldEntityState:touchUp(touch)
   --print(self:getWorldState():getName() .. " :touchUp(" .. #touches .. ")")
 end
 
-function WorldEntityState:touchMove(touches)
+function WorldEntityState:touchMove(touch)
   --print(self:getWorldState():getName() .. " :touchMove(" .. #touches .. ")")
 end
 
-function WorldEntityState:touchCancelled(touches)
+function WorldEntityState:touchCancelled(touch)
   --print(self:getWorldState():getName() .. " :touchCancelled(" .. #touches .. ")")
+end
+
+function WorldEntityState:mouseDown(mouse)
+  --print(self:getWorldState():getName() .. " :mouseDown(" .. #touches .. ")")
+end
+
+function WorldEntityState:mouseUp(mouse)
+  --print(self:getWorldState():getName() .. " :mouseUp(" .. #touches .. ")")
+end
+
+function WorldEntityState:mouseMove(mouse)
+  --print(self:getWorldState():getName() .. " :mouseMove(" .. #touches .. ")")
 end
 
 function WorldEntityState:pause()

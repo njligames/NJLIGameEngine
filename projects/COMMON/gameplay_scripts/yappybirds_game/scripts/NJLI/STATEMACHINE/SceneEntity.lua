@@ -313,28 +313,46 @@ function SceneEntity:touchesCancelled(touches)
   self:_getCurrentEntityState():touchesCancelled(touches)
 end
 
-function SceneEntity:touchDown(touches)
+function SceneEntity:touchDown(touch)
   --print(self:getScene():getName() .. " :touchDown(" .. #touches .. ")")
   assert(self:hasState(), "SceneEntity must be in a state")
-  self:_getCurrentEntityState():touchDown(touches)
+  self:_getCurrentEntityState():touchDown(touch)
 end
 
-function SceneEntity:touchUp(touches)
+function SceneEntity:touchUp(touch)
   --print(self:getScene():getName() .. " :touchUp(" .. #touches .. ")")
   assert(self:hasState(), "SceneEntity must be in a state")
-  self:_getCurrentEntityState():touchUp(touches)
+  self:_getCurrentEntityState():touchUp(touch)
 end
 
-function SceneEntity:touchMove(touches)
+function SceneEntity:touchMove(touch)
   --print(self:getScene():getName() .. " :touchMove("..#touches ..")")
   assert(self:hasState(), "SceneEntity must be in a state")
-  self:_getCurrentEntityState():touchMove(touches)
+  self:_getCurrentEntityState():touchMove(touch)
 end
 
-function SceneEntity:touchCancelled(touches)
+function SceneEntity:touchCancelled(touch)
   --print(self:getScene():getName() .. " :touchCancelled("..#touches ..")")
   assert(self:hasState(), "SceneEntity must be in a state")
-  self:_getCurrentEntityState():touchCancelled(touches)
+  self:_getCurrentEntityState():touchCancelled(touch)
+end
+
+function SceneEntity:mouseDown(mouse)
+  --print(self:getScene():getName() .. " :mouseDown(" .. #touches .. ")")
+  assert(self:hasState(), "SceneEntity must be in a state")
+  self:_getCurrentEntityState():mouseDown(mouse)
+end
+
+function SceneEntity:mouseUp(mouse)
+  --print(self:getScene():getName() .. " :mouseUp(" .. #touches .. ")")
+  assert(self:hasState(), "SceneEntity must be in a state")
+  self:_getCurrentEntityState():mouseUp(mouse)
+end
+
+function SceneEntity:mouseMove(mouse)
+  --print(self:getScene():getName() .. " :mouseMove("..#touches ..")")
+  assert(self:hasState(), "SceneEntity must be in a state")
+  self:_getCurrentEntityState():mouseMove(mouse)
 end
 
 function SceneEntity:renderHUD()

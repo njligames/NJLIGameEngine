@@ -20,15 +20,40 @@
 namespace njli
 {
     WorldInput::WorldInput():
+    m_Mouse(new njli::DeviceMouse()),
     m_TouchBuffer(new njli::DeviceTouch*[njli::DeviceTouch::MAX_TOUCHES * 3]),
     m_Orientation(0)
+    
     {
         
     }
     
     WorldInput::~WorldInput()
     {
+        delete m_Mouse;
+        
         delete [] m_TouchBuffer;
+        
+        for (std::unordered_map<int, DeviceTouch*>::iterator iter = m_FingerDownMap.begin();
+             iter != m_FingerDownMap.end(); iter++)
+        {
+            DeviceTouch *touch = iter->second;
+            delete touch;
+        }
+        
+        for (std::unordered_map<int, DeviceTouch*>::iterator iter = m_FingerUpMap.begin();
+             iter != m_FingerUpMap.end(); iter++)
+        {
+            DeviceTouch *touch = iter->second;
+            delete touch;
+        }
+        
+        for (std::unordered_map<int, DeviceTouch*>::iterator iter = m_FingerMoveMap.begin();
+             iter != m_FingerMoveMap.end(); iter++)
+        {
+            DeviceTouch *touch = iter->second;
+            delete touch;
+        }
     }
     
     const char *WorldInput::getClassName()const
@@ -168,7 +193,21 @@ namespace njli
     
     void WorldInput::handleMouse(int button, int eventType, float x, float y, int clicks)
     {
-        
+        m_Mouse->set(button, eventType, x, y, clicks);
+        switch(eventType)
+        {
+            case SDL_MOUSEMOTION:
+                njli::World::getInstance()->mouseMove(*m_Mouse);
+                break;
+            case SDL_MOUSEBUTTONDOWN:
+                njli::World::getInstance()->mouseDown(*m_Mouse);
+                break;
+            case SDL_MOUSEBUTTONUP:
+                njli::World::getInstance()->mouseUp(*m_Mouse);
+                break;
+            default:
+                break;
+        }
     }
     
     void WorldInput::keyboardShow()

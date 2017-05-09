@@ -133,20 +133,32 @@ function SceneEntityState:touchesCancelled(touches)
   --print(self:getSceneState():getName() .. " :touchCancelled(" .. #touches .. ")")
 end
 
-function SceneEntityState:touchDown(touches)
+function SceneEntityState:touchDown(touch)
   --print(self:getSceneState():getName() .. " :touchDown(" .. #touches .. ")")
 end
 
-function SceneEntityState:touchUp(touches)
+function SceneEntityState:touchUp(touch)
   --print(self:getSceneState():getName() .. " :touchUp(" .. #touches .. ")")
 end
 
-function SceneEntityState:touchMove(touches)
+function SceneEntityState:touchMove(touch)
   --print(self:getSceneState():getName() .. " :touchMove(" .. #touches .. ")")
 end
 
-function SceneEntityState:touchCancelled(touches)
+function SceneEntityState:touchCancelled(touch)
   --print(self:getSceneState():getName() .. " :touchCancelled(" .. #touches .. ")")
+end
+
+function SceneEntityState:mouseDown(mouse)
+  --print(self:getSceneState():getName() .. " :mouseDown(" .. #touches .. ")")
+end
+
+function SceneEntityState:mouseUp(mouse)
+  --print(self:getSceneState():getName() .. " :mouseUp(" .. #touches .. ")")
+end
+
+function SceneEntityState:mouseMove(mouse)
+  --print(self:getSceneState():getName() .. " :mouseMove(" .. #touches .. ")")
 end
 
 function SceneEntityState:pause()

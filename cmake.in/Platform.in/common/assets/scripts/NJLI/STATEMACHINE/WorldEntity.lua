@@ -228,28 +228,46 @@ function WorldEntity:touchesCancelled(touches)
   self:_getCurrentEntityState():touchesCancelled(touches)
 end
 
-function WorldEntity:touchDown(touches)
+function WorldEntity:touchDown(touch)
   --print(self:getWorld():getName() .. " :touchDown(" .. #touches .. ")")
   assert(self:hasState(), "WorldEntity must be in a state")
-  self:_getCurrentEntityState():touchDown(touches)
+  self:_getCurrentEntityState():touchDown(touch)
 end
 
-function WorldEntity:touchUp(touches)
+function WorldEntity:touchUp(touch)
   --print(self:getWorld():getName() .. " :touchUp(" .. #touches .. ")")
   assert(self:hasState(), "WorldEntity must be in a state")
-  self:_getCurrentEntityState():touchUp(touches)
+  self:_getCurrentEntityState():touchUp(touch)
 end
 
-function WorldEntity:touchMove(touches)
+function WorldEntity:touchMove(touch)
   --print(self:getWorld():getName() .. " :touchMove(" .. #touches .. ")")
   assert(self:hasState(), "WorldEntity must be in a state")
-  self:_getCurrentEntityState():touchMove(touches)
+  self:_getCurrentEntityState():touchMove(touch)
 end
 
-function WorldEntity:touchCancelled(touches)
+function WorldEntity:touchCancelled(touch)
   --print(self:getWorld():getName() .. " :touchCancelled(" .. #touches .. ")")
   assert(self:hasState(), "WorldEntity must be in a state")
-  self:_getCurrentEntityState():touchCancelled(touches)
+  self:_getCurrentEntityState():touchCancelled(touch)
+end
+
+function WorldEntity:mouseDown(mouse)
+  --print(self:getWorld():getName() .. " :mouseDown(" .. #touches .. ")")
+  assert(self:hasState(), "WorldEntity must be in a state")
+  self:_getCurrentEntityState():mouseDown(mouse)
+end
+
+function WorldEntity:mouseUp(mouse)
+  --print(self:getWorld():getName() .. " :mouseUp(" .. #touches .. ")")
+  assert(self:hasState(), "WorldEntity must be in a state")
+  self:_getCurrentEntityState():mouseUp(mouse)
+end
+
+function WorldEntity:mouseMove(mouse)
+  --print(self:getWorld():getName() .. " :mouseMove(" .. #touches .. ")")
+  assert(self:hasState(), "WorldEntity must be in a state")
+  self:_getCurrentEntityState():mouseMove(mouse)
 end
 
 function WorldEntity:pause()

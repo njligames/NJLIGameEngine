@@ -840,6 +840,48 @@ namespace njli
         }
     }
     
+    void Scene::mouseDown(const DeviceMouse &mouse)
+    {
+        SceneState *currentState = dynamic_cast<SceneState*>(m_SceneStateMachine->getState());
+        
+        if(currentState)
+        {
+            currentState->mouseDown(this, mouse);
+        }
+        else
+        {
+            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState\n");
+        }
+    }
+    
+    void Scene::mouseUp(const DeviceMouse &mouse)
+    {
+        SceneState *currentState = dynamic_cast<SceneState*>(m_SceneStateMachine->getState());
+        
+        if(currentState)
+        {
+            currentState->mouseUp(this, mouse);
+        }
+        else
+        {
+            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState\n");
+        }
+    }
+    
+    void Scene::mouseMove(const DeviceMouse &mouse)
+    {
+        SceneState *currentState = dynamic_cast<SceneState*>(m_SceneStateMachine->getState());
+        
+        if(currentState)
+        {
+            currentState->mouseMove(this, mouse);
+        }
+        else
+        {
+            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState\n");
+        }
+    }
+    
     void Scene::touchCancelled(const DeviceTouch &touch)
     {
         SceneState *currentState = dynamic_cast<SceneState*>(m_SceneStateMachine->getState());

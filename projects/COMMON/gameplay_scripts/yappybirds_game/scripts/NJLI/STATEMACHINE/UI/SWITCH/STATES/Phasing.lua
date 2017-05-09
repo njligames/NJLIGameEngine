@@ -138,6 +138,36 @@ function Phasing:rayTouchMissed(node)
     end
 end
 
+function Phasing:rayMouseDown(rayContact)
+  BaseClass.rayMouseDown(self, rayContact)
+end
+
+function Phasing:rayMouseUp(rayContact)
+  BaseClass.rayMouseUp(self, rayContact)
+  if not self:getNodeEntity():disabled() then
+    if self:getNodeEntity()._on then
+      self:getNodeEntity():pushState("NJLI.STATEMACHINE.UI.SWITCH.STATES.Off")
+    else
+      self:getNodeEntity():pushState("NJLI.STATEMACHINE.UI.SWITCH.STATES.On")
+    end
+  end
+end
+
+function Phasing:rayMouseMove(rayContact)
+  BaseClass.rayMouseMove(self, rayContact)
+end
+
+function Phasing:rayMouseMissed(node)
+  BaseClass.rayMouseMissed(self, node)
+    if not self:getNodeEntity():disabled() then
+      if self:getNodeEntity()._on then
+        self:getNodeEntity():pushState("NJLI.STATEMACHINE.UI.SWITCH.STATES.On")
+      else
+        self:getNodeEntity():pushState("NJLI.STATEMACHINE.UI.SWITCH.STATES.Off")
+      end
+    end
+end
+
 function Phasing:collide(otherNode, collisionPoint)
   BaseClass.collide(self, collisionPoint)
 end
@@ -178,20 +208,32 @@ function Phasing:gameUnPause()
     BaseClass.gameUnPause(self)
 end
 
-function Phasing:touchDown(touches)
-    BaseClass.touchDown(self, touches)
+function Phasing:touchDown(touch)
+    BaseClass.touchDown(self, touch)
 end
 
-function Phasing:touchUp(touches)
-    BaseClass.touchUp(self, touches)
+function Phasing:touchUp(touch)
+    BaseClass.touchUp(self, touch)
 end
 
-function Phasing:touchMove(touches)
-    BaseClass.touchMove(self, touches)
+function Phasing:touchMove(touch)
+    BaseClass.touchMove(self, touch)
 end
 
-function Phasing:touchCancelled(touches)
-    BaseClass.touchCancelled(self, touches)
+function Phasing:touchCancelled(touch)
+    BaseClass.touchCancelled(self, touch)
+end
+
+function Phasing:mouseDown(mouse)
+    BaseClass.mouseDown(self, mouse)
+end
+
+function Phasing:mouseUp(mouse)
+    BaseClass.mouseUp(self, mouse)
+end
+
+function Phasing:mouseMove(mouse)
+    BaseClass.mouseMove(self, mouse)
 end
 
 --#############################################################################

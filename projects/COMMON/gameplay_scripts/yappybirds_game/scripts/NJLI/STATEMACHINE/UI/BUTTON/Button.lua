@@ -325,6 +325,22 @@ function Button:rayTouchMissed(node)
 --  end
 end
 
+function Button:rayMouseDown(rayContact)
+  BaseClass.rayMouseDown(self, rayContact)
+end
+
+function Button:rayMouseUp(rayContact)
+  BaseClass.rayMouseUp(self, rayContact)
+end
+
+function Button:rayMouseMove(rayContact)
+  BaseClass.rayMouseMove(self, rayContact)
+end
+
+function Button:rayMouseMissed(node)
+  BaseClass.rayMouseMissed(self, node)
+end
+
 function Button:collide(otherNode, collisionPoint)
   BaseClass.collide(self, otherNode, collisionPoint)
 end
@@ -381,20 +397,32 @@ function Button:touchesCancelled(touches)
     BaseClass.touchesCancelled(self, touches)
 end
 
-function Button:touchDown(touches)
-    BaseClass.touchDown(self, touches)
+function Button:touchDown(touch)
+    BaseClass.touchDown(self, touch)
 end
 
-function Button:touchUp(touches)
-    BaseClass.touchUp(self, touches)
+function Button:touchUp(touch)
+    BaseClass.touchUp(self, touch)
 end
 
-function Button:touchMove(touches)
-    BaseClass.touchMove(self, touches)
+function Button:touchMove(touch)
+    BaseClass.touchMove(self, touch)
 end
 
-function Button:touchCancelled(touches)
-    BaseClass.touchCancelled(self, touches)
+function Button:touchCancelled(touch)
+    BaseClass.touchCancelled(self, touch)
+end
+
+function Button:mouseDown(mouse)
+    BaseClass.mouseDown(self, mouse)
+end
+
+function Button:mouseUp(mouse)
+    BaseClass.mouseUp(self, mouse)
+end
+
+function Button:mouseMove(mouse)
+    BaseClass.mouseMove(self, mouse)
 end
 
 --#############################################################################

@@ -60,20 +60,32 @@ function DeviceEntity:touchesCancelled(touches)
   --print("DeviceEntity:touchesCancelled("..#touches..")")
 end
 
-function DeviceEntity:touchDown(touches)
+function DeviceEntity:touchDown(touch)
   --print("DeviceEntity:touchDown("..#touches..")")
 end
 
-function DeviceEntity:touchUp(touches)
+function DeviceEntity:touchUp(touch)
   --print("DeviceEntity:touchUp("..#touches..")")
 end
 
-function DeviceEntity:touchMove(touches)
+function DeviceEntity:touchMove(touch)
   --print("DeviceEntity:touchMove("..#touches..")")
 end
 
 function DeviceEntity:touchCancelled(touches)
   --print("DeviceEntity:touchCancelled("..#touches..")")
+end
+
+function DeviceEntity:mouseDown(mouse)
+  --print("DeviceEntity:mouseDown()")
+end
+
+function DeviceEntity:mouseUp(mouse)
+  --print("DeviceEntity:mouseUp()")
+end
+
+function DeviceEntity:mouseMove(mouse)
+  --print("DeviceEntity:mouseMove()")
 end
 
 --#############################################################################

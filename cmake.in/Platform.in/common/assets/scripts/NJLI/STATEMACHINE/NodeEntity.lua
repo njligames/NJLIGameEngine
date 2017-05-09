@@ -250,16 +250,40 @@ function NodeEntity:rayTouchesMissed(node)
   self:_getCurrentEntityState():rayTouchesMissed(node)
 end
 
+function NodeEntity:rayMouseDown(rayContact)
+  --print(self:getNode():getName() .. " :rayMouseDown()")
+  assert(self:hasState(), "NodeEntity must be in a state")
+  self:_getCurrentEntityState():rayMouseDown(rayContact)
+end
+
+function NodeEntity:rayMouseUp(rayContact)
+  --print(self:getNode():getName() .. " :rayMouseUp()")
+  assert(self:hasState(), "NodeEntity must be in a state")
+  self:_getCurrentEntityState():rayMouseUp(rayContact)
+end
+
+function NodeEntity:rayMouseMove(rayContact)
+  --print(self:getNode():getName() .. " :rayMouseMove()")
+  assert(self:hasState(), "NodeEntity must be in a state")
+  self:_getCurrentEntityState():rayMouseMove(rayContact)
+end
+
+function NodeEntity:rayMouseMissed(node)
+  --print(self:getNode():getName() .. " :rayMouseMissed()")
+  assert(self:hasState(), "NodeEntity must be in a state")
+  self:_getCurrentEntityState():rayMouseMissed(node)
+end
+
 function NodeEntity:collide(otherNode, collisionPoint)
   --print(self:getNode():getName() .. " :collide()")
   assert(self:hasState(), "NodeEntity must be in a state")
-  self:_getCurrentEntityState():rayTouchMovecollide(otherNode, collisionPoint)
+  self:_getCurrentEntityState():collide(otherNode, collisionPoint)
 end
 
 function NodeEntity:near(otherNode)
   --print(self:getNode():getName() .. " :near()")
   assert(self:hasState(), "NodeEntity must be in a state")
-  self:_getCurrentEntityState():otherNode(otherNode)
+  self:_getCurrentEntityState():near(otherNode)
 end
 
 function NodeEntity:actionUpdate(action, timeStep)
@@ -334,28 +358,46 @@ function NodeEntity:touchesCancelled(touches)
   self:_getCurrentEntityState():touchesCancelled(touches)
 end
 
-function NodeEntity:touchDown(touches)
+function NodeEntity:touchDown(touch)
   --print(self:getNode():getName() .. " :actionComplete()")
   assert(self:hasState(), "NodeEntity must be in a state")
-  self:_getCurrentEntityState():touchDown(touches)
+  self:_getCurrentEntityState():touchDown(touch)
 end
 
-function NodeEntity:touchUp(touches)
+function NodeEntity:touchUp(touch)
   --print(self:getNode():getName() .. " :touchUp()")
   assert(self:hasState(), "NodeEntity must be in a state")
-  self:_getCurrentEntityState():touchUp(touches)
+  self:_getCurrentEntityState():touchUp(touch)
 end
 
-function NodeEntity:touchMove(touches)
+function NodeEntity:touchMove(touch)
   --print(self:getNode():getName() .. " :touchMove()")
   assert(self:hasState(), "NodeEntity must be in a state")
-  self:_getCurrentEntityState():touchMove(touches)
+  self:_getCurrentEntityState():touchMove(touch)
 end
 
-function NodeEntity:touchCancelled(touches)
+function NodeEntity:touchCancelled(touch)
     --print(self:getNode():getName() .. " :touchCancelled()")
   assert(self:hasState(), "NodeEntity must be in a state")
-  self:_getCurrentEntityState():touchCancelled(touches)
+  self:_getCurrentEntityState():touchCancelled(touch)
+end
+
+function NodeEntity:mouseDown(mouse)
+  --print(self:getNode():getName() .. " :mouseDown()")
+  assert(self:hasState(), "NodeEntity must be in a state")
+  self:_getCurrentEntityState():mouseDown(mouse)
+end
+
+function NodeEntity:mouseUp(mouse)
+  --print(self:getNode():getName() .. " :mouseUp()")
+  assert(self:hasState(), "NodeEntity must be in a state")
+  self:_getCurrentEntityState():mouseUp(mouse)
+end
+
+function NodeEntity:mouseMove(mouse)
+  --print(self:getNode():getName() .. " :mouseMove()")
+  assert(self:hasState(), "NodeEntity must be in a state")
+  self:_getCurrentEntityState():mouseMove(mouse)
 end
 
 --#############################################################################

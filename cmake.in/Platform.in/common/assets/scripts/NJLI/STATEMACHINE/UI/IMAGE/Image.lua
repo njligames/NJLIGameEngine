@@ -134,6 +134,22 @@ function Image:rayTouchMissed(node)
   BaseClass.rayTouchMissed(self, node)
 end
 
+function Image:rayMouseDown(rayContact)
+  BaseClass.rayMouseDown(self, rayContact)
+end
+
+function Image:rayMouseUp(rayContact)
+  BaseClass.rayMouseUp(self, rayContact)
+end
+
+function Image:rayMouseMove(rayContact)
+  BaseClass.rayMouseMove(self, rayContact)
+end
+
+function Image:rayMouseMissed(node)
+  BaseClass.rayMouseMissed(self, node)
+end
+
 function Image:collide(otherNode, collisionPoint)
   BaseClass.collide(self, otherNode, collisionPoint)
 end
@@ -190,20 +206,32 @@ function Image:touchesCancelled(touches)
     BaseClass.touchesCancelled(self, touches)
 end
 
-function Image:touchDown(touches)
-    BaseClass.touchDown(self, touches)
+function Image:touchDown(touch)
+    BaseClass.touchDown(self, touch)
 end
 
-function Image:touchUp(touches)
-    BaseClass.touchUp(self, touches)
+function Image:touchUp(touch)
+    BaseClass.touchUp(self, touch)
 end
 
-function Image:touchMove(touches)
-    BaseClass.touchMove(self, touches)
+function Image:touchMove(touch)
+    BaseClass.touchMove(self, touch)
 end
 
-function Image:touchCancelled(touches)
-    BaseClass.touchCancelled(self, touches)
+function Image:touchCancelled(touch)
+    BaseClass.touchCancelled(self, touch)
+end
+
+function Image:mouseDown(mouse)
+    BaseClass.mouseDown(self, mouse)
+end
+
+function Image:mouseUp(mouse)
+    BaseClass.mouseUp(self, mouse)
+end
+
+function Image:mouseMove(mouse)
+    BaseClass.mouseMove(self, mouse)
 end
 
 --#############################################################################

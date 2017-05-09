@@ -480,7 +480,7 @@ static void handleInput()
     SDL_PumpEvents();
     while (SDL_PollEvent(&event))
     {
-        SDLTest_PrintEvent(&event);
+//        SDLTest_PrintEvent(&event);
         switch (event.type)
         {
                 
@@ -488,10 +488,12 @@ static void handleInput()
             case SDL_MOUSEMOTION:
             case SDL_MOUSEBUTTONDOWN:
             case SDL_MOUSEBUTTONUP:
+                
                 NJLI_HandleMouse(event.button.button,
                                  event.type,
                                  event.button.x,
-                                 event.button.y);
+                                 event.button.y,
+                                 event.button.clicks);
                 break;
 #endif
                 
@@ -1104,6 +1106,7 @@ static void createRenderer()
 
 int main(int argc, char** argv)
 {
+    
     /* initialize SDL */
     if (SDL_Init(SDL_INIT_VIDEO) < 0)
     {

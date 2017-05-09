@@ -61,10 +61,6 @@ void NJLI_HandleResize(int width, int height, int sdlFormat, float refreshRate)
     njli::NJLIGameEngine::resize(gXOffset, gYOffset,
                                  gDisplayMode.w, gDisplayMode.h,
                                  0);
-    
-//    njli::NJLIGameEngine::resize(SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-//                                 gDisplayMode.w, gDisplayMode.h,
-//                                 0);
 }
 
 int NJLI_HandlePadDown(int device_id, int keycode)
@@ -97,27 +93,13 @@ void NJLI_HandleKeyboardFocusLost()
 {
 }
 
-void NJLI_HandleMouse(int button, int eventType, float x, float y)
-{
-//    switch(eventType)
-//    {
-//        case SDL_MOUSEMOTION:
-//            SDL_Log("SDL EVENT: Mouse: button %d released at %f,%f with click count %d in window %d", button, x, y, clicks, 0);
-//            break;
-//        case SDL_MOUSEBUTTONDOWN:
-//            SDL_Log("SDL EVENT: Mouse: button %d released at %f,%f with click count %d in window %d", button, x, y, clicks, 0);
-//            break;
-//        case SDL_MOUSEBUTTONUP:
-//            SDL_Log("SDL EVENT: Mouse: button %d released at %f,%f with click count %d in window %d", button, x, y, clicks, 0);
-//            break;
-//        default:
-//            break;
-//    }
-    
+void NJLI_HandleMouse(int button, int eventType, float x, float y, int clicks)
+{   
     njli::NJLIGameEngine::mouse(button,
                                 eventType,
-                                x * gDisplayMode.w,
-                                y * gDisplayMode.h);
+                                x,
+                                y,
+                                clicks);
     
 }
 

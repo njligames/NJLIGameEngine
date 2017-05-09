@@ -139,6 +139,22 @@ function NodeEntityState:rayTouchMissed(node)
   --print(self:getNodeState():getName() .. " :rayTouchMissed(node)")
 end
 
+function NodeEntityState:rayMouseDown(rayContact)
+  --print(self:getNodeState():getName() .. " :rayMouseDown(rayContact)")
+end
+
+function NodeEntityState:rayMouseUp(rayContact)
+  --print(self:getNodeState():getName() .. " :rayMouseUp(rayContact)")
+end
+
+function NodeEntityState:rayMouseMove(rayContact)
+  --print(self:getNodeState():getName() .. " :rayMouseMove(rayContact)")
+end
+
+function NodeEntityState:rayMouseMissed(node)
+  --print(self:getNodeState():getName() .. " :rayMouseMissed(node)")
+end
+
 function NodeEntityState:collide(otherNode, collisionPoint)
   --print(self:getNodeState():getName() .. " :collide(otherNode, collisionPoint)")
 end
@@ -195,20 +211,32 @@ function NodeEntityState:touchesCancelled(touches)
     --print(self:getNodeState():getName() .. " :touchCancelled()")
 end
 
-function NodeEntityState:touchDown(touches)
+function NodeEntityState:touchDown(touch)
   --print(self:getNodeState():getName() .. " :actionComplete()")
 end
 
-function NodeEntityState:touchUp(touches)
+function NodeEntityState:touchUp(touch)
   --print(self:getNodeState():getName() .. " :touchUp()")
 end
 
-function NodeEntityState:touchMove(touches)
+function NodeEntityState:touchMove(touch)
   --print(self:getNodeState():getName() .. " :touchMove()")
 end
 
-function NodeEntityState:touchCancelled(touches)
+function NodeEntityState:touchCancelled(touch)
     --print(self:getNodeState():getName() .. " :touchCancelled()")
+end
+
+function NodeEntityState:mouseDown(mouse)
+  --print(self:getNodeState():getName() .. " :mouseDown()")
+end
+
+function NodeEntityState:mouseUp(mouse)
+  --print(self:getNodeState():getName() .. " :mouseUp()")
+end
+
+function NodeEntityState:mouseMove(mouse)
+  --print(self:getNodeState():getName() .. " :mouseMove()")
 end
 
 --#############################################################################

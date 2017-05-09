@@ -337,6 +337,22 @@ function Switch:rayTouchMissed(node)
   BaseClass.rayTouchMissed(self, node)
 end
 
+function Switch:rayMouseDown(rayContact)
+  BaseClass.rayMouseDown(self, rayContact)
+end
+
+function Switch:rayMouseUp(rayContact)
+  BaseClass.rayMouseUp(self, rayContact)
+end
+
+function Switch:rayMouseMove(rayContact)
+  BaseClass.rayMouseMove(self, rayContact)
+end
+
+function Switch:rayMouseMissed(node)
+  BaseClass.rayMouseMissed(self, node)
+end
+
 function Switch:collide(otherNode, collisionPoint)
   BaseClass.collide(self, otherNode, collisionPoint)
 end
@@ -393,20 +409,32 @@ function Switch:touchesCancelled(touches)
     BaseClass.touchesCancelled(self, touches)
 end
 
-function Switch:touchDown(touches)
-    BaseClass.touchDown(self, touches)
+function Switch:touchDown(touch)
+    BaseClass.touchDown(self, touch)
 end
 
-function Switch:touchUp(touches)
-    BaseClass.touchUp(self, touches)
+function Switch:touchUp(touch)
+    BaseClass.touchUp(self, touch)
 end
 
-function Switch:touchMove(touches)
-    BaseClass.touchMove(self, touches)
+function Switch:touchMove(touch)
+    BaseClass.touchMove(self, touch)
 end
 
-function Switch:touchCancelled(touches)
-    BaseClass.touchCancelled(self, touches)
+function Switch:touchCancelled(touch)
+    BaseClass.touchCancelled(self, touch)
+end
+
+function Switch:mouseDown(mouse)
+    BaseClass.mouseDown(self, mouse)
+end
+
+function Switch:mouseUp(mouse)
+    BaseClass.mouseUp(self, mouse)
+end
+
+function Switch:mouseMove(mouse)
+    BaseClass.mouseMove(self, mouse)
 end
 
 --#############################################################################

@@ -3183,6 +3183,11 @@ ELSE()
     ENDIF()
 
     IF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" OR ${NJLI_BUILD_PLATFORM} STREQUAL "ios" OR ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
+        SET_SOURCE_FILES_PROPERTIES(
+            ${NJLI_RESOURCES}
+            PROPERTIES
+            MACOSX_PACKAGE_LOCATION Resources
+            )
         SET_TARGET_PROPERTIES(
             EngineSource PROPERTIES
             MACOSX_BUNDLE YES

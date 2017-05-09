@@ -67,6 +67,7 @@ end
 
 function Off:rayTouchesDown(rayContact)
   BaseClass.rayTouchesDown(self, rayContact)
+
   if not self:getNodeEntity():disabled() then
       self:getNodeEntity():pushState("NJLI.STATEMACHINE.UI.SWITCH.STATES.Phasing")
   end
@@ -74,9 +75,6 @@ end
 
 function Off:rayTouchesUp(rayContact)
   BaseClass.rayTouchesUp(self, rayContact)
-    -- if not self:getNodeEntity():disabled() then
-    --     self:getNodeEntity():pushState("NJLI.STATEMACHINE.UI.SWITCH.STATES.On")
-    -- end
 end
 
 function Off:rayTouchesMove(rayContact)
@@ -93,6 +91,7 @@ end
 
 function Off:rayTouchDown(rayContact)
   BaseClass.rayTouchDown(self, rayContact)
+  
   if not self:getNodeEntity():disabled() then
       self:getNodeEntity():pushState("NJLI.STATEMACHINE.UI.SWITCH.STATES.Phasing")
   end
@@ -100,9 +99,6 @@ end
 
 function Off:rayTouchUp(rayContact)
   BaseClass.rayTouchUp(self, rayContact)
-    -- if not self:getNodeEntity():disabled() then
-    --     self:getNodeEntity():pushState("NJLI.STATEMACHINE.UI.SWITCH.STATES.On")
-    -- end
 end
 
 function Off:rayTouchMove(rayContact)
@@ -115,6 +111,26 @@ end
 
 function Off:rayTouchMissed(node)
     BaseClass.rayTouchMissed(self, node)
+end
+
+function Off:rayMouseDown(rayContact)
+  BaseClass.rayMouseDown(self, rayContact)
+  
+  if not self:getNodeEntity():disabled() then
+      self:getNodeEntity():pushState("NJLI.STATEMACHINE.UI.SWITCH.STATES.Phasing")
+  end
+end
+
+function Off:rayMouseUp(rayContact)
+  BaseClass.rayMouseUp(self, rayContact)
+end
+
+function Off:rayMouseMove(rayContact)
+  BaseClass.rayMouseMove(self, rayContact)
+end
+
+function Off:rayMouseMissed(node)
+  BaseClass.rayMouseMissed(self, node)
 end
 
 function Off:collide(otherNode, collisionPoint)
@@ -173,20 +189,32 @@ function Off:touchesCancelled(touches)
     BaseClass.touchesCancelled(self, touches)
 end
 
-function Off:touchDown(touches)
-    BaseClass.touchDown(self, touches)
+function Off:touchDown(touch)
+    BaseClass.touchDown(self, touch)
 end
 
-function Off:touchUp(touches)
-    BaseClass.touchUp(self, touches)
+function Off:touchUp(touch)
+    BaseClass.touchUp(self, touch)
 end
 
-function Off:touchMove(touches)
-    BaseClass.touchMove(self, touches)
+function Off:touchMove(touch)
+    BaseClass.touchMove(self, touch)
 end
 
-function Off:touchCancelled(touches)
-    BaseClass.touchCancelled(self, touches)
+function Off:touchCancelled(touch)
+    BaseClass.touchCancelled(self, touch)
+end
+
+function Off:mouseDown(mouse)
+    BaseClass.mouseDown(self, mouse)
+end
+
+function Off:mouseUp(mouse)
+    BaseClass.mouseUp(self, mouse)
+end
+
+function Off:mouseMove(mouse)
+    BaseClass.mouseMove(self, mouse)
 end
 
 --#############################################################################

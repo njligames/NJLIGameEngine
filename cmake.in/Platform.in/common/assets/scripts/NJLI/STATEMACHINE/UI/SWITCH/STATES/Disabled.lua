@@ -95,6 +95,22 @@ function Disabled:rayTouchMove(rayContact)
   BaseClass.rayTouchMove(self, rayContact)
 end
 
+function Disabled:rayMouseDown(rayContact)
+  BaseClass.rayMouseDown(self, rayContact)
+end
+
+function Disabled:rayMouseUp(rayContact)
+  BaseClass.rayMouseUp(self, rayContact)
+end
+
+function Disabled:rayMouseMove(rayContact)
+  BaseClass.rayMouseMove(self, rayContact)
+end
+
+function Disabled:rayMouseMissed(node)
+  BaseClass.rayMouseMissed(self, node)
+end
+
 function Disabled:rayTouchCancelled(rayContact)
   BaseClass.rayTouchCancelled(self, rayContact)
 end
@@ -159,20 +175,32 @@ function Disabled:touchesCancelled(touches)
     BaseClass.touchesCancelled(self, touches)
 end
 
-function Disabled:touchDown(touches)
-    BaseClass.touchDown(self, touches)
+function Disabled:touchDown(touch)
+    BaseClass.touchDown(self, touch)
 end
 
-function Disabled:touchUp(touches)
-    BaseClass.touchUp(self, touches)
+function Disabled:touchUp(touch)
+    BaseClass.touchUp(self, touch)
 end
 
-function Disabled:touchMove(touches)
-    BaseClass.touchMove(self, touches)
+function Disabled:touchMove(touch)
+    BaseClass.touchMove(self, touch)
 end
 
-function Disabled:touchCancelled(touches)
-    BaseClass.touchCancelled(self, touches)
+function Disabled:touchCancelled(touch)
+    BaseClass.touchCancelled(self, touch)
+end
+
+function Disabled:mouseDown(mouse)
+    BaseClass.mouseDown(self, mouse)
+end
+
+function Disabled:mouseUp(mouse)
+    BaseClass.mouseUp(self, mouse)
+end
+
+function Disabled:mouseMove(mouse)
+    BaseClass.mouseMove(self, mouse)
 end
 
 --#############################################################################
