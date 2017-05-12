@@ -2,566 +2,358 @@ local Interface = require 'NJLI.Interface'
 
 local __interface = Interface()
 
---#############################################################################
---World State Functions
---#############################################################################
+RegisterCreate("Create", function()
+end) 
 
-function __NJLIWorldEnterState()
-  --print("__NJLIWorldEnterState")
+RegisterDestroy("Destroy", function()
+end)
+
+
+
+
+
+_done__debugging__ = nil
+RegisterUpdate("Update", function(timeStep)
+    __interface:getDeviceEntity():update(timeStep)
+    if _done__debugging__ == nil then _done__debugging__ = false return end
+    if not _done__debugging__ then
+      require("mobdebug").start()
+      _done__debugging__ = true
+    end
+    for k, v in pairs(Runtime.Update) do v(timeStep) end
+end)
+
+RegisterRender("Render", function()
+    __interface:getDeviceEntity():render()
+end)
+
+RegisterResize("Resize", function(width, height, orientation)
+    __interface:getDeviceEntity():resize(width, height, orientation)
+end)
+RegisterTouchesDown("TouchesDown", function(touches)
+    __interface:getDeviceEntity():touchesDown(touches)
+end)
+RegisterTouchesUp("TouchesUp", function(touches)
+    __interface:getDeviceEntity():touchesUp(touches)
+end)
+RegisterTouchesMove("TouchesMove", function(touches)
+    __interface:getDeviceEntity():touchesMove(touches)
+end)
+RegisterTouchesCancelled("TouchesCancelled", function(touches)
+    __interface:getDeviceEntity():touchesCancelled(touches)
+end)
+RegisterTouchDown("TouchDown", function(touch)
+    __interface:getDeviceEntity():touchDown(touch)
+end)
+RegisterTouchUp("TouchUp", function(touch)
+    __interface:getDeviceEntity():touchUp(touch)
+end)
+RegisterTouchMove("TouchMove", function(touch)
+    __interface:getDeviceEntity():touchMove(touch)
+end)
+RegisterTouchCancelled("TouchCancelled", function(touches)
+    __interface:getDeviceEntity():touchCancelled(touches)
+end)
+RegisterMouseDown("MouseDown", function(mouse)
+    __interface:getDeviceEntity():mouseDown(mouse)
+end)
+RegisterMouseUp("MouseUp", function(mouse)
+    __interface:getDeviceEntity():mouseUp(mouse)
+end)
+RegisterMouseMove("MouseMove", function(mouse)
+    __interface:getDeviceEntity():mouseMove(mouse)
+end)
+RegisterWorldEnterState("WorldEnterState", function()
   __interface:getStateMachine():_worldEnterState()
-end
-
-function __NJLIWorldUpdateState(timeStep)
-  --print("__NJLIWorldUpdateState")
+end)
+RegisterWorldUpdateState("WorldUpdateState", function(timeStep)
   __interface:getStateMachine():_worldUpdateState(timeStep)
-end
-
-function __NJLIWorldExitState()
-  --print("__NJLIWorldExitState")
+end)
+RegisterWorldExitState("WorldExitState", function()
   __interface:getStateMachine():_worldExitState()
-end
-
-function __NJLIWorldOnMessage(message)
-  --print("__NJLIWorldOnMessage")
-  __interface:getStateMachine():_worldOnMessage(message)
-end
-
-function __NJLIWorldKeyboardShow()
-  --print("__NJLIWorldKeyboardShow")
-  __interface:getStateMachine():_worldKeyboardShow()
-end
-
-function __NJLIWorldKeyboardCancel()
-  --print("__NJLIWorldKeyboardCancel")
-  __interface:getStateMachine():_worldKeyboardCancel()
-end
-
-function __NJLIWorldKeyboardReturn(text)
-  --print("__NJLIWorldKeyboardReturn")
-  __interface:getStateMachine():_worldKeyboardReturn(text)
-end
-
-function __NJLIWorldReceivedMemoryWarning()
-  --print("__NJLIWorldReceivedMemoryWarning")
-  __interface:getStateMachine():_worldReceivedMemoryWarning()
-end
-
-function __NJLIWorldGamePause()
-  --print("__NJLIWorldGamePause")
-  __interface:getStateMachine():_worldGamePause()
-end
-
-function __NJLIWorldGameUnPause()
-  --print("__NJLIWorldGameUnPause")
-  __interface:getStateMachine():_worldGameUnPause()
-end
-
-function __NJLIWorldRenderHUD()
-  --print("__NJLIWorldRenderHUD")
-  __interface:getStateMachine():_worldRenderHUD()
-end
-
-function __NJLIWorldTouchesDown(touches)
-  --print("__NJLIWorldTouchesDown")
-  assert(touches ~= nil, "The touches are nil")
-  __interface:getStateMachine():_worldTouchesDown(touches)
-end
-
-function __NJLIWorldTouchesUp(touches)
-  --print("__NJLIWorldTouchesUp")
-  __interface:getStateMachine():_worldTouchesUp(touches)
-end
-
-function __NJLIWorldTouchesMove(touches)
-  --print("__NJLIWorldTouchesMove")
-  __interface:getStateMachine():_worldTouchesMove(touches)
-end
-
-function __NJLIWorldTouchesCancelled(touches)
-  --print("__NJLIWorldTouchesCancelled")
-  __interface:getStateMachine():_worldTouchesCancelled(touches)
-end
-
-function __NJLIWorldTouchDown(touch)
-  --print("__NJLIWorldTouchDown")
-  --assert(touches ~= nil, "The touches are nil")
-  __interface:getStateMachine():_worldTouchDown(touch)
-end
-
-function __NJLIWorldTouchUp(touch)
-  --print("__NJLIWorldTouchUp")
-  __interface:getStateMachine():_worldTouchUp(touch)
-end
-
-function __NJLIWorldTouchMove(touch)
-  --print("__NJLIWorldTouchMove")
-  __interface:getStateMachine():_worldTouchMove(touch)
-end
-
-function __NJLIWorldTouchCancelled(touch)
-  --print("__NJLIWorldTouchCancelled")
-  __interface:getStateMachine():_worldTouchCancelled(touch)
-end
-
-function __NJLIWorldMouseDown(mouse)
-  --print("__NJLIWorldMouseDown")
-  __interface:getStateMachine():_worldMouseDown(mouse)
-end
-
-function __NJLIWorldMouseUp(mouse)
-  --print("__NJLIWorldMouseUp")
-  __interface:getStateMachine():_worldMouseUp(mouse)
-end
-
-function __NJLIWorldMouseMove(mouse)
-  --print("__NJLIWorldMouseMove")
-  __interface:getStateMachine():_worldMouseMove(mouse)
-end
-
-function __NJLIWorldWillResignActive()
-  --print("__NJLIWorldWillResignActive")
-  __interface:getStateMachine():_worldWillResignActive()
-end
-
-function __NJLIWorldDidBecomeActive()
-  --print("__NJLIWorldDidBecomeActive")
-  __interface:getStateMachine():_worldDidBecomeActive()
-end
-
-function __NJLIWorldDidEnterBackground()
-  --print("__NJLIWorldDidEnterBackground")
-  __interface:getStateMachine():_worldDidEnterBackground()
-end
-
-function __NJLIWorldWillEnterForeground()
-  --print("__NJLIWorldWillEnterForeground")
-  __interface:getStateMachine():_worldWillEnterForeground()
-end
-
-function __NJLIWorldWillTerminate()
-  --print("__NJLIWorldWillTerminate")
-  __interface:getStateMachine():_worldWillTerminate()
-end
-
-function __NJLIWorldInterrupt()
-  --print("__NJLIWorldInterrupt")
-  __interface:getStateMachine():_worldInterrupt()
-end
-
-function __NJLIWorldResumeInterrupt()
-  --print("__NJLIWorldResumeInterrupt")
-  __interface:getStateMachine():_worldResumeInterrupt()
-end
-
---#############################################################################
---Scene State Functions
---#############################################################################
-
-function __NJLISceneEnterState(scene)
-  --print("__NJLISceneEnterState")
-  __interface:getStateMachine():_sceneEnterState(scene)
-end
-
-function __NJLISceneUpdateState(scene, timeStep)
-  --print("__NJLISceneUpdateState")
-  __interface:getStateMachine():_sceneUpdateState(scene, timeStep)
-end
-
-function __NJLISceneExitState(scene)
-  --print("__NJLISceneExitState")
-  __interface:getStateMachine():_sceneExitState(scene)
-end
-
-function __NJLISceneOnMessage(scene, message)
-  --print("__NJLISceneOnMessage")
-  __interface:getStateMachine():_sceneOnMessage(scene, message)
-end
-
-function __NJLISceneKeyboardShow(scene)
-  --print("__NJLISceneKeyboardShow")
-  __interface:getStateMachine():_sceneKeyboardShow(scene)
-end
-
-function __NJLISceneKeyboardCancel(scene)
-  --print("__NJLISceneKeyboardCancel")
-  __interface:getStateMachine():_sceneKeyboardCancel(scene)
-end
-
-function __NJLISceneKeyboardReturn(scene, text)
-  --print("__NJLISceneKeyboardReturn")
-  __interface:getStateMachine():_sceneKeyboardReturn(scene, text)
-end
-
-function __NJLISceneRenderHUD(scene)
-  --print("__NJLISceneRenderHUD")
-  __interface:getStateMachine():_sceneRenderHUD(scene)
-end
-
-function __NJLISceneGamePause(scene)
-  --print("__NJLISceneGamePause")
-  __interface:getStateMachine():_sceneGamePause(scene)
-end
-
-function __NJLISceneGameUnPause(scene)
-  --print("__NJLISceneGameUnPause")
-  __interface:getStateMachine():_sceneGameUnPause(scene)
-end
-
-function __NJLISceneTouchesDown(scene, touches)
-  --print("__NJLISceneTouchesDown")
-  __interface:getStateMachine():_sceneTouchesDown(scene, touches)
-end
-
-function __NJLISceneTouchesUp(scene, touches)
-  --print("__NJLISceneTouchesUp")
-  __interface:getStateMachine():_sceneTouchesUp(scene, touches)
-end
-
-function __NJLISceneTouchesMove(scene, touches)
-  --print("__NJLISceneTouchesMove")
-  __interface:getStateMachine():_sceneTouchesMove(scene, touches)
-end
-
-function __NJLISceneTouchesCancelled(scene, touches)
-  --print("__NJLISceneTouchesCancelled")
-  __interface:getStateMachine():_sceneTouchesCancelled(scene, touches)
-end
-
-function __NJLISceneTouchDown(scene, touch)
-  --print("__NJLISceneTouchDown")
-  __interface:getStateMachine():_sceneTouchDown(scene, touch)
-end
-
-function __NJLISceneTouchUp(scene, touch)
-  --print("__NJLISceneTouchUp")
-  __interface:getStateMachine():_sceneTouchUp(scene, touch)
-end
-
-function __NJLISceneTouchMove(scene, touch)
-  --print("__NJLISceneTouchMove")
-  __interface:getStateMachine():_sceneTouchMove(scene, touch)
-end
-
-function __NJLISceneTouchCancelled(scene, touch)
-  --print("__NJLISceneTouchCancelled")
-  __interface:getStateMachine():_sceneTouchCancelled(scene, touch)
-end
-
-function __NJLISceneMouseDown(scene, mouse)
-  __interface:getStateMachine():_sceneMouseDown(scene, mouse)
-end
-
-function __NJLISceneMouseUp(scene, mouse)
-  __interface:getStateMachine():_sceneMouseUp(scene, mouse)
-end
-
-function __NJLISceneMouseMove(scene, mouse)
-  __interface:getStateMachine():_sceneMouseMove(scene, mouse)
-end
-
-function __NJLISceneReceivedMemoryWarning(scene)
-  --print("__NJLISceneReceivedMemoryWarning")
-  __interface:getStateMachine():_sceneReceivedMemoryWarning(scene)
-end
-
-function __NJLISceneWillResignActive(scene)
-  --print("__NJLISceneWillResignActive")
-  __interface:getStateMachine():_sceneWillResignActive(scene)
-end
-
-function __NJLISceneDidBecomeActive(scene)
-  --print("__NJLISceneDidBecomeActive")
-  __interface:getStateMachine():_sceneDidBecomeActive(scene)
-end
-
-function __NJLISceneDidEnterBackground(scene)
-  --print("__NJLISceneDidEnterBackground")
-  __interface:getStateMachine():_sceneDidEnterBackground(scene)
-end
-
-function __NJLISceneWillEnterForeground(scene)
-  --print("__NJLISceneWillEnterForeground")
-  __interface:getStateMachine():_sceneWillEnterForeground(scene)
-end
-
-function __NJLISceneWillTerminate(scene)
-  --print("__NJLISceneWillTerminate")
-  __interface:getStateMachine():_sceneWillTerminate(scene)
-end
-
-function __NJLISceneInterrupt(scene)
-  --print("__NJLISceneInterrupt")
-  __interface:getStateMachine():_sceneInterrupt(scene)
-end
-
-function __NJLISceneResumeInterrupt(scene)
-  --print("__NJLISceneResumeInterrupt")
-  __interface:getStateMachine():_sceneResumeInterrupt(scene)
-end
-
---#############################################################################
---Node State Functions
---#############################################################################
-
-function __NJLINodeEnterState(node)
-  --print("__NJLINodeEnterState")
-  __interface:getStateMachine():_nodeEnterState(node)
-end
-
-function __NJLINodeUpdateState(node, timeStep)
-  --print("__NJLINodeUpdateState")
-  __interface:getStateMachine():_nodeUpdateState(node, timeStep)
-end
-
-function __NJLINodeExitState(node)
-  --print("__NJLINodeExitState")
-  __interface:getStateMachine():_nodeExitState(node)
-end
-
-function __NJLINodeOnMessage(node, message)
-  --print("__NJLINodeOnMessage")
-  __interface:getStateMachine():_nodeOnMessage(node, message)
-end
-
-function __NJLINodeCollide(node, otherNode, collisionPoint)
-  --print("__NJLINodeCollide")
-  __interface:getStateMachine():_nodeCollide(node, otherNode, collisionPoint)
-end
-
-function __NJLINodeNear(node, otherNode)
-  --print("__NJLINodeNear")
-  __interface:getStateMachine():_nodeNear(node, otherNode)
-end
-
-function __NJLINodeActionUpdate(action, timeStep)
-  --print("__NJLINodeActionUpdate")
-  __interface:getStateMachine():_nodeActionUpdate(action, timeStep)
-end
-
-function __NJLINodeActionComplete(action)
-  --print("__NJLINodeActionComplete")
-  __interface:getStateMachine():_nodeActionComplete(action)
-end
-
-function __NJLINodeRayTouchesDown(rayContact)
-  --print("__NJLINodeRayTouchesDown")
-  __interface:getStateMachine():_rayTouchesDown(rayContact)
-end
-
-function __NJLINodeRayTouchesUp(rayContact)
-  --print("__NJLINodeRayTouchesUp")
-  __interface:getStateMachine():_rayTouchesUp(rayContact)
-end
-
-function __NJLINodeRayTouchesMove(rayContact)
-  --print("__NJLINodeRayTouchesMove")
-  __interface:getStateMachine():_rayTouchesMove(rayContact)
-end
-
-function __NJLINodeRayTouchesCancelled(rayContact)
-  --print("__NJLINodeRayTouchesCancelled")
-  __interface:getStateMachine():_rayTouchesCancelled(rayContact)
-end
-
-function __NJLINodeRayTouchesMissed(node)
-    --print("__NJLINodeRayTouchesMissed")
-  __interface:getStateMachine():_rayTouchesMissed(node)
-end
-
-function __NJLINodeRayTouchDown(rayContact)
-  --print("__NJLINodeRayTouchDown")
-  __interface:getStateMachine():_rayTouchDown(rayContact)
-end
-
-function __NJLINodeRayTouchUp(rayContact)
-  --print("__NJLINodeRayTouchUp")
-  __interface:getStateMachine():_rayTouchUp(rayContact)
-end
-
-function __NJLINodeRayTouchMove(rayContact)
-  --print("__NJLINodeRayTouchMove")
-  __interface:getStateMachine():_rayTouchMove(rayContact)
-end
-
-function __NJLINodeRayTouchCancelled(rayContact)
-  --print("__NJLINodeRayTouchCancelled")
-  __interface:getStateMachine():_rayTouchCancelled(rayContact)
-end
-
-function __NJLINodeRayTouchMissed(node)
-    --print("__NJLINodeRayTouchMissed")
-  __interface:getStateMachine():_rayTouchMissed(node)
-end
-
-function __NJLINodeRayMouseDown(rayContact)
-  -- print("__NJLINodeRayMouseDown")
-  __interface:getStateMachine():_rayMouseDown(rayContact)
-end
-
-function __NJLINodeRayMouseUp(rayContact)
-  __interface:getStateMachine():_rayMouseUp(rayContact)
-end
-
-function __NJLINodeRayMouseMove(rayContact)
-  __interface:getStateMachine():_rayMouseMove(rayContact)
-end
-
-function __NJLINodeRayMouseMissed(node)
-  __interface:getStateMachine():_rayMouseMissed(node)
-end
-
-function __NJLINodeKeyboardShow(node)
-  --print("__NJLINodeKeyboardShow")
-  __interface:getStateMachine():_nodeKeyboardShow(node)
-end
-
-function __NJLINodeKeyboardCancel(node)
-  --print("__NJLINodeKeyboardCancel")
-  __interface:getStateMachine():_nodeKeyboardCancel(node)
-end
-
-function __NJLINodeKeyboardReturn(node)
-  --print("__NJLINodeKeyboardReturn")
-  __interface:getStateMachine():_nodeKeyboardReturn(node)
-end
-
-function __NJLINodeRenderHUD(node)
-  --print("__NJLINodeRenderHUD")
-  __interface:getStateMachine():_nodeRenderHUD(node)
-end
-
-function __NJLINodeGamePause(node)
-  --print("__NJLINodeGamePause")
-  __interface:getStateMachine():_nodeGamePause(node)
-end
-
-function __NJLINodeGameUnPause(node)
-  --print("__NJLINodeGameUnPause")
-  __interface:getStateMachine():_nodeGameUnPause(node)
-end
-
-function __NJLINodeTouchesDown(node, touches)
-  --print("__NJLINodeTouchesDown")
-  __interface:getStateMachine():_nodeTouchesDown(node, touches)
-end
-
-function __NJLINodeTouchesUp(node, touches)
-  --print("__NJLINodeTouchesUp")
-  __interface:getStateMachine():_nodeTouchesUp(node, touches)
-end
-
-function __NJLINodeTouchesMove(node, touches)
-  --print("__NJLINodeTouchesMove")
-  __interface:getStateMachine():_nodeTouchesMove(node, touches)
-end
-
-function __NJLINodeTouchesCancelled(node, touches)
-  --print("__NJLINodeTouchesCancelled")
-  __interface:getStateMachine():_nodeTouchesCancelled(node, touches)
-end
-
-function __NJLINodeTouchDown(node, touch)
-  --print("__NJLINodeTouchDown")
-  __interface:getStateMachine():_nodeTouchDown(node, touch)
-end
-
-function __NJLINodeTouchUp(node, touch)
-  --print("__NJLINodeTouchUp")
-  __interface:getStateMachine():_nodeTouchUp(node, touch)
-end
-
-function __NJLINodeTouchMove(node, touch)
-  --print("__NJLINodeTouchMove")
-  __interface:getStateMachine():_nodeTouchMove(node, touch)
-end
-
-function __NJLINodeTouchCancelled(node, touches)
-  --print("__NJLINodeTouchCancelled")
-  __interface:getStateMachine():_nodeTouchCancelled(node, touches)
-end
-
-function __NJLINodeMouseDown(node, mouse)
-  __interface:getStateMachine():_nodeMouseDown(node, mouse)
-end
-
-function __NJLINodeMouseUp(node, mouse)
-  __interface:getStateMachine():_nodeMouseUp(node, mouse)
-end
-
-function __NJLINodeMouseMove(node, mouse)
-  __interface:getStateMachine():_nodeMouseMove(node, mouse)
-end
-
---#############################################################################
---Device Functions
---#############################################################################
-
-function __NJLIUpdate(timeStep)
-  --print("__NJLIUpdate(".. timeStep .. ")")
-  __interface:getDeviceEntity():update(timeStep)
-end
-
-function __NJLIRender()
-  --print("__NJLIRender()")
-  __interface:getDeviceEntity():render()
-end
-
-function __NJLIResize(width, height, orientation)
-  --print("__NJLIResize(" .. width .. ", " .. height .. ", " .. orientation .. ")")
-  __interface:getDeviceEntity():resize(width, height, orientation)
-end
-
-function __NJLITouchesDown(touches)
-  --print("__NJLITouchesDown(" .. #touches .. ")")
-  __interface:getDeviceEntity():touchesDown(touches)
-end
-
-function __NJLITouchesUp(touches)
-  --print("__NJLITouchesUp(" .. #touches .. ")")
-  __interface:getDeviceEntity():touchesUp(touches)
-end
-
-function __NJLITouchesMove(touches)
-  --print("__NJLITouchesMove(" .. #touches .. ")")
-  __interface:getDeviceEntity():touchesMove(touches)
-end
-
-function __NJLITouchesCancelled(touches)
-  --print("__NJLITouchesCancelled(" .. #touches .. ")")
-  __interface:getDeviceEntity():touchesCancelled(touches)
-end
-
-function __NJLITouchDown(touch)
-  --print("__NJLITouchDown(" .. #touches .. ")")
-  __interface:getDeviceEntity():touchDown(touch)
-end
-
-function __NJLITouchUp(touch)
-  --print("__NJLITouchUp(" .. #touches .. ")")
-  __interface:getDeviceEntity():touchUp(touch)
-end
-
-function __NJLITouchMove(touch)
-  --print("__NJLITouchMove(" .. #touches .. ")")
-  __interface:getDeviceEntity():touchMove(touch)
-end
-
-function __NJLITouchCancelled(touches)
-  --print("__NJLITouchCancelled(" .. #touches .. ")")
-  __interface:getDeviceEntity():touchCancelled(touches)
-end
-
-function __NJLIMouseDown(mouse)
-  __interface:getDeviceEntity():mouseDown(mouse)
-end
-
-function __NJLIMouseUp(mouse)
-  __interface:getDeviceEntity():mouseUp(mouse)
-end
-
-function __NJLIMouseMove(mouse)
-  __interface:getDeviceEntity():mouseMove(mouse)
-end
+end)
+RegisterWorldOnMessage("WorldOnMessage", function()
+    __interface:getStateMachine():_worldOnMessage(message)
+end)
+RegisterWorldKeyboardShow("WorldKeyboardShow", function()
+    __interface:getStateMachine():_worldKeyboardShow()
+end)
+RegisterWorldKeyboardCancel("WorldKeyboardCancel", function()
+    __interface:getStateMachine():_worldKeyboardCancel()
+end)
+RegisterWorldKeyboardReturn("WorldKeyboardReturn", function(text)
+    __interface:getStateMachine():_worldKeyboardReturn(text)
+end)
+RegisterWorldReceivedMemoryWarning("WorldReceivedMemoryWarning", function()
+    __interface:getStateMachine():_worldReceivedMemoryWarning()
+end)
+RegisterWorldGamePause("WorldGamePause", function()
+    __interface:getStateMachine():_worldGamePause()
+end)
+RegisterWorldGameUnPause("WorldGameUnPause", function()
+    __interface:getStateMachine():_worldGameUnPause()
+end)
+RegisterWorldRenderHUD("WorldRenderHUD", function()
+    __interface:getStateMachine():_worldRenderHUD()
+end)
+RegisterWorldTouchesDown("WorldTouchesDown", function(touches)
+    __interface:getStateMachine():_worldTouchesDown(touches)
+end)
+RegisterWorldTouchesUp("WorldTouchesUp", function(touches)
+    __interface:getStateMachine():_worldTouchesUp(touches)
+end)
+RegisterWorldTouchesMove("WorldTouchesMove", function(touches)
+    __interface:getStateMachine():_worldTouchesMove(touches)
+end)
+RegisterWorldTouchesCancelled("WorldTouchesCancelled", function(touches)
+    __interface:getStateMachine():_worldTouchesCancelled(touches)
+end)
+RegisterWorldTouchDown("WorldTouchDown", function(touch)
+    __interface:getStateMachine():_worldTouchDown(touch)
+end)
+RegisterWorldTouchUp("WorldTouchUp", function(touch)
+    __interface:getStateMachine():_worldTouchUp(touch)
+end)
+RegisterWorldTouchMove("WorldTouchMove", function(touch)
+    __interface:getStateMachine():_worldTouchMove(touch)
+end)
+RegisterWorldTouchCancelled("WorldTouchCancelled", function(touch)
+    __interface:getStateMachine():_worldTouchCancelled(touch)
+end)
+RegisterWorldMouseDown("WorldMouseDown", function(mouse)
+    __interface:getStateMachine():_worldMouseDown(mouse)
+end)
+RegisterWorldMouseUp("WorldMouseUp", function(mouse)
+    __interface:getStateMachine():_worldMouseUp(mouse)
+end)
+RegisterWorldMouseMove("WorldMouseMove", function(mouse)
+    __interface:getStateMachine():_worldMouseMove(mouse)
+end)
+RegisterWorldWillResignActive("WorldWillResignActive", function()
+    __interface:getStateMachine():_worldWillResignActive()
+end)
+RegisterWorldDidBecomeActive("WorldDidBecomeActive", function()
+    __interface:getStateMachine():_worldDidBecomeActive()
+end)
+RegisterWorldDidEnterBackground("WorldDidEnterBackground", function()
+    __interface:getStateMachine():_worldDidEnterBackground()
+end)
+RegisterWorldWillEnterForeground("WorldWillEnterForeground", function()
+    __interface:getStateMachine():_worldWillEnterForeground()
+end)
+RegisterWorldWillTerminate("WorldWillTerminate", function()
+    __interface:getStateMachine():_worldWillTerminate()
+end)
+RegisterWorldInterrupt("WorldInterrupt", function()
+    __interface:getStateMachine():_worldInterrupt()
+end)
+RegisterWorldResumeInterrupt("WorldResumeInterrupt", function()
+    __interface:getStateMachine():_worldResumeInterrupt()
+end)
+RegisterSceneEnterState("SceneEnterState", function(scene)
+    __interface:getStateMachine():_sceneEnterState(scene)
+end)
+RegisterSceneUpdateState("SceneUpdateState", function(scene, timeStep)
+    __interface:getStateMachine():_sceneUpdateState(scene, timeStep)
+end)
+RegisterSceneExitState("SceneExitState", function(scene)
+    __interface:getStateMachine():_sceneExitState(scene)
+end)
+RegisterSceneOnMessage("SceneOnMessage", function(scene, message)
+    __interface:getStateMachine():_sceneOnMessage(scene, message)
+end)
+RegisterSceneKeyboardShow("SceneKeyboardShow", function(scene)
+    __interface:getStateMachine():_sceneKeyboardShow(scene)
+end)
+RegisterSceneKeyboardCancel("SceneKeyboardCancel", function(scene)
+    __interface:getStateMachine():_sceneKeyboardCancel(scene)
+end)
+RegisterSceneKeyboardReturn("SceneKeyboardReturn", function(scene, text)
+    __interface:getStateMachine():_sceneKeyboardReturn(scene, text)
+end)
+RegisterSceneRenderHUD("SceneRenderHUD", function(scene)
+    __interface:getStateMachine():_sceneRenderHUD(scene)
+end)
+RegisterSceneGamePause("SceneGamePause", function(scene)
+    __interface:getStateMachine():_sceneGamePause(scene)
+end)
+RegisterSceneGameUnPause("SceneGameUnPause", function(scene)
+    __interface:getStateMachine():_sceneGameUnPause(scene)
+end)
+RegisterSceneTouchesDown("SceneTouchesDown", function(scene, touches)
+    __interface:getStateMachine():_sceneTouchesDown(scene, touches)
+end)
+RegisterSceneTouchesUp("SceneTouchesUp", function(scene, touches)
+    __interface:getStateMachine():_sceneTouchesUp(scene, touches)
+end)
+RegisterSceneTouchesMove("SceneTouchesMove", function(scene, touches)
+    __interface:getStateMachine():_sceneTouchesMove(scene, touches)
+end)
+RegisterSceneTouchesCancelled("SceneTouchesCancelled", function(scene, touches)
+    __interface:getStateMachine():_sceneTouchesCancelled(scene, touches)
+end)
+RegisterSceneTouchDown("SceneTouchDown", function(scene, touch)
+    __interface:getStateMachine():_sceneTouchDown(scene, touch)
+end)
+RegisterSceneTouchUp("SceneTouchUp", function(scene, touch)
+    __interface:getStateMachine():_sceneTouchUp(scene, touch)
+end)
+RegisterSceneTouchMove("SceneTouchMove", function(scene, touch)
+    __interface:getStateMachine():_sceneTouchMove(scene, touch)
+end)
+RegisterSceneTouchCancelled("SceneTouchCancelled", function(scene, touch)
+    __interface:getStateMachine():_sceneTouchCancelled(scene, touch)
+end)
+RegisterSceneMouseDown("SceneMouseDown", function(scene, mouse)
+    __interface:getStateMachine():_sceneMouseDown(scene, mouse)
+end)
+RegisterSceneMouseUp("SceneMouseUp", function(scene, mouse)
+    __interface:getStateMachine():_sceneMouseUp(scene, mouse)
+end)
+RegisterSceneMouseMove("SceneMouseMove", function(scene, mouse)
+    __interface:getStateMachine():_sceneMouseMove(scene, mouse)
+end)
+RegisterSceneReceivedMemoryWarning("SceneReceivedMemoryWarning", function(scene)
+    __interface:getStateMachine():_sceneReceivedMemoryWarning(scene)
+end)
+RegisterSceneWillResignActive("SceneWillResignActive", function(scene)
+    __interface:getStateMachine():_sceneWillResignActive(scene)
+end)
+RegisterSceneDidBecomeActive("SceneDidBecomeActive", function(scene)
+    __interface:getStateMachine():_sceneDidBecomeActive(scene)
+end)
+RegisterSceneDidEnterBackground("SceneDidEnterBackground", function(scene)
+    __interface:getStateMachine():_sceneDidEnterBackground(scene)
+end)
+RegisterSceneWillEnterForeground("SceneWillEnterForeground", function(scene)
+    __interface:getStateMachine():_sceneWillEnterForeground(scene)
+end)
+RegisterSceneWillTerminate("SceneWillTerminate", function(scene)
+    __interface:getStateMachine():_sceneWillTerminate(scene)
+end)
+RegisterSceneInterrupt("SceneInterrupt", function(scene)
+    __interface:getStateMachine():_sceneInterrupt(scene)
+end)
+RegisterSceneResumeInterrupt("SceneResumeInterrupt", function(scene)
+    __interface:getStateMachine():_sceneResumeInterrupt(scene)
+end)
+RegisterNodeEnterState("NodeEnterState", function(node)
+    __interface:getStateMachine():_nodeEnterState(node)
+end)
+RegisterNodeUpdateState("NodeUpdateState", function(node, timeStep)
+    __interface:getStateMachine():_nodeUpdateState(node, timeStep)
+end)
+RegisterNodeExitState("NodeExitState", function(node)
+    __interface:getStateMachine():_nodeExitState(node)
+end)
+RegisterNodeOnMessage("NodeOnMessage", function(node, message)
+    __interface:getStateMachine():_nodeOnMessage(node, message)
+end)
+RegisterNodeCollide("NodeCollide", function(node, otherNode, collisionPoint)
+    __interface:getStateMachine():_nodeCollide(node, otherNode, collisionPoint)
+end)
+RegisterNodeNear("NodeNear", function(node, otherNode)
+    __interface:getStateMachine():_nodeNear(node, otherNode)
+end)
+RegisterNodeActionUpdate("NodeActionUpdate", function(action, timeStep)
+    __interface:getStateMachine():_nodeActionUpdate(action, timeStep)
+end)
+RegisterNodeActionComplete("NodeActionComplete", function(action)
+    __interface:getStateMachine():_nodeActionComplete(action)
+end)
+RegisterNodeRayTouchesDown("NodeRayTouchesDown", function(rayContact)
+    __interface:getStateMachine():_rayTouchesDown(rayContact)
+end)
+RegisterNodeRayTouchesUp("NodeRayTouchesUp", function(rayContact)
+    __interface:getStateMachine():_rayTouchesUp(rayContact)
+end)
+RegisterNodeRayTouchesMove("NodeRayTouchesMove", function(rayContact)
+    __interface:getStateMachine():_rayTouchesMove(rayContact)
+end)
+RegisterNodeRayTouchesCancelled("NodeRayTouchesCancelled", function(rayContact)
+    __interface:getStateMachine():_rayTouchesCancelled(rayContact)
+end)
+RegisterNodeRayTouchesMissed("NodeRayTouchesMissed", function(node)
+    __interface:getStateMachine():_rayTouchesMissed(node)
+end)
+RegisterNodeRayTouchDown("NodeRayTouchDown", function(rayContact)
+    __interface:getStateMachine():_rayTouchDown(rayContact)
+end)
+RegisterNodeRayTouchUp("NodeRayTouchUp", function(rayContact)
+    __interface:getStateMachine():_rayTouchUp(rayContact)
+end)
+RegisterNodeRayTouchMove("NodeRayTouchMove", function(rayContact)
+    __interface:getStateMachine():_rayTouchMove(rayContact)
+end)
+RegisterNodeRayTouchCancelled("NodeRayTouchCancelled", function(rayContact)
+    __interface:getStateMachine():_rayTouchCancelled(rayContact)
+end)
+RegisterNodeRayMouseDown("NodeRayMouseDown", function(rayContact)
+    __interface:getStateMachine():_rayMouseDown(rayContact)
+end)
+RegisterNodeRayMouseUp("NodeRayMouseUp", function(rayContact)
+    __interface:getStateMachine():_rayMouseUp(rayContact)
+end)
+RegisterNodeRayMouseMove("NodeRayMouseMove", function(rayContact)
+    __interface:getStateMachine():_rayMouseMove(rayContact)
+end)
+RegisterNodeRayTouchMissed("NodeRayTouchMissed", function(node)
+    __interface:getStateMachine():_rayTouchMissed(node)
+end)
+RegisterNodeRayMouseMissed("NodeRayMouseMissed", function(node)
+    __interface:getStateMachine():_rayMouseMissed(node)
+end)
+RegisterNodeKeyboardShow("NodeKeyboardShow", function(node)
+    __interface:getStateMachine():_nodeKeyboardShow(node)
+end)
+RegisterNodeKeyboardCancel("NodeKeyboardCancel", function(node)
+    __interface:getStateMachine():_nodeKeyboardCancel(node)
+end)
+RegisterNodeKeyboardReturn("NodeKeyboardReturn", function(node)
+    __interface:getStateMachine():_nodeKeyboardReturn(node)
+end)
+RegisterNodeRenderHUD("NodeRenderHUD", function(node)
+    __interface:getStateMachine():_nodeRenderHUD(node)
+end)
+RegisterNodeGamePause("NodeGamePause", function(node)
+    __interface:getStateMachine():_nodeGamePause(node)
+end)
+RegisterNodeGameUnPause("NodeGameUnPause", function(node)
+    __interface:getStateMachine():_nodeGameUnPause(node)
+end)
+RegisterNodeTouchesDown("NodeTouchesDown", function(node, touches)
+    __interface:getStateMachine():_nodeTouchesDown(node, touches)
+end)
+RegisterNodeTouchesUp("NodeTouchesUp", function(node, touches)
+    __interface:getStateMachine():_nodeTouchesUp(node, touches)
+end)
+RegisterNodeTouchesMove("NodeTouchesMove", function(node, touches)
+    __interface:getStateMachine():_nodeTouchesMove(node, touches)
+end)
+RegisterNodeTouchesCancelled("NodeTouchesCancelled", function(node, touches)
+    __interface:getStateMachine():_nodeTouchesCancelled(node, touches)
+end)
+RegisterNodeTouchDown("NodeTouchDown", function(node, touch)
+    __interface:getStateMachine():_nodeTouchDown(node, touch)
+end)
+RegisterNodeTouchUp("NodeTouchUp", function(node, touch)
+    __interface:getStateMachine():_nodeTouchUp(node, touch)
+end)
+RegisterNodeTouchMove("NodeTouchMove", function(node, touch)
+    __interface:getStateMachine():_nodeTouchMove(node, touch)
+end)
+RegisterNodeTouchCancelled("NodeTouchCancelled", function(node, touches)
+    __interface:getStateMachine():_nodeTouchCancelled(node, touches)
+end)
+RegisterNodeMouseDown("NodeMouseDown", function(node, mouse)
+    __interface:getStateMachine():_nodeMouseDown(node, mouse)
+end)
+RegisterNodeMouseUp("NodeMouseUp", function(node, mouse)
+    __interface:getStateMachine():_nodeMouseUp(node, mouse)
+end)
+RegisterNodeMouseMove("NodeMouseMove", function(node, mouse)
+    __interface:getStateMachine():_nodeMouseMove(node, mouse)
+end)
 
 return __interface
 

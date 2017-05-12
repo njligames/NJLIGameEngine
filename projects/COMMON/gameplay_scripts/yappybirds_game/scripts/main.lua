@@ -2,9 +2,6 @@
 
 --http://notebook.kulchenko.com/zerobrane/debugging-wireshark-lua-scripts-with-zerobrane-studio
 
-require('mobdebug').start()
-require('mobdebug').on()
-
 Interface = require "NJLI.InterfaceFunctions"
 YappyGame = require "YAPPYBIRDS.YappyGame"
 

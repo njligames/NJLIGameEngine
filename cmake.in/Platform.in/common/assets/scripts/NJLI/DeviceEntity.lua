@@ -34,6 +34,9 @@ end
 
 function DeviceEntity:update(timeStep)
   --print("DeviceEntity:update("..timeStep..")")
+  
+  njli.World.getInstance():setBackgroundColor(1.000, 0.594, 0.000)
+  
 end
 
 function DeviceEntity:render()

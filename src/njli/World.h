@@ -283,14 +283,24 @@ public:
          *  @param viewPort <#viewPort description#>
          */
     void getViewPort(s32* viewPort) const;
-
+    
+    /**
+     <#Description#>
+     */
+    void createScript();
+    
+    /**
+     <#Description#>
+     */
+    void destroyScript();
+    
     /**
          *  <#Description#>
          *
          *  @param timeStep <#timeStep description#>
          */
     void update(f32 timeStep, const u32 numSubSteps);
-
+    
     /**
          *  <#Description#>
          */
@@ -436,6 +446,16 @@ public:
          *  @param color <#color description#>
          */
     void setBackgroundColor(const btVector4& color);
+    
+    /**
+     <#Description#>
+
+     @param red <#red description#>
+     @param green <#green description#>
+     @param blue <#blue description#>
+     */
+    void setBackgroundColor(f32 red, f32 green, f32 blue);
+    
     /**
          *  <#Description#>
          *

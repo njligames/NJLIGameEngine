@@ -61,7 +61,8 @@ const char *RESOURCE_PATH()
     }
     
     strcpy(tempBuffer, data_path);
-    strcat(tempBuffer, "assets/");
+    if(!HAS_RUNNING_PATH)
+        strcat(tempBuffer, "assets/");
     
     return tempBuffer;
 }
@@ -86,7 +87,8 @@ const char *ASSET_PATH(const char *file)
     }
     
     strcpy(tempBuffer, data_path);
-    strcat(tempBuffer, "assets/");
+    if(!HAS_RUNNING_PATH)
+        strcat(tempBuffer, "assets/");
     strcat(tempBuffer, file);
     return tempBuffer;
 }
@@ -111,7 +113,8 @@ const char *BUNDLE_PATH()
     }
     
     strcpy(tempBuffer, data_path);
-    strcat(tempBuffer, "assets/");
+    if(!HAS_RUNNING_PATH)
+        strcat(tempBuffer, "assets/");
     return tempBuffer;
 }
 
@@ -140,5 +143,7 @@ void setRunningPath(const char *file)
     SDL_assert(file != NULL);
     
     strcpy(RUNNING_PATH, file);
+    strcat(RUNNING_PATH, "/");
+    
     HAS_RUNNING_PATH = true;
 }

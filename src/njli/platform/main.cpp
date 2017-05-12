@@ -1107,9 +1107,11 @@ static void createRenderer()
 
 int main(int argc, char** argv)
 {
-#if defined(__MACOSX__)
+#if (defined(__MACOSX__) && __MACOSX__)
     if(argc > 1)
+    {
         setRunningPath(argv[1]);
+    }
 #endif
     
     /* initialize SDL */

@@ -1,7 +1,5 @@
 local BaseClass = require "NJLI.STATEMACHINE.SceneEntity"
 
-require('mobdebug').start()
-
 local Menu = {}
 Menu.__index = Menu
 

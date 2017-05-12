@@ -642,6 +642,20 @@ namespace njli
 //        }
     }
     
+    void World::createScript()
+    {
+        char buffer[256];
+        sprintf(buffer, "%s", "__NJLICreate");
+        njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer);
+    }
+    
+    void World::destroyScript()
+    {
+        char buffer[256];
+        sprintf(buffer, "%s", "__NJLIDestroy");
+        njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer);
+    }
+    
     void World::update(f32 timeStep, const u32 numSubSteps)
     {
         BT_PROFILE("World::update");
@@ -989,6 +1003,13 @@ namespace njli
                              clampColor(m_BackgroundColor->z()),
                              clampColor(m_BackgroundColor->w()));
     }
+    
+    void World::setBackgroundColor(f32 red, f32 green, f32 blue)
+    {
+        btVector4 _color(red, green, blue, m_BackgroundColor->w());
+        setBackgroundColor(_color);
+    }
+    
     const btVector4 &World::getBackgroundColor()const
     {
         return *m_BackgroundColor;
