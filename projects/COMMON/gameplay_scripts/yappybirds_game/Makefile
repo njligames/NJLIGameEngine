@@ -1,6 +1,6 @@
 CP=cp
 
-OBJDIR=../../assets/scripts
+OBJDIR=$(ASSET_DIR)/assets/scripts
 SRCDIR=scripts
 
 STRUCTURE := $(shell find $(SRCDIR) -type d)
@@ -12,12 +12,13 @@ OBJFILES := $(subst $(SRCDIR), $(OBJDIR), $(SRCFILES:%.lua=%.lua))
 
 OUTDIRS := $(addprefix $(OBJDIR)/../, $(STRUCTURE))
 
-#COMPILED_LUA := $(OBJDIR)/luac.out
+COMPILED_LUA := $(OBJDIR)/luac.out
 
 yappybirds_game: $(OUTDIRS) $(OBJFILES) $(COMPILED_LUA)
+#yappybirds_game: $(OUTDIRS) $(OBJFILES) 
 
 $(OBJDIR)/%.lua: $(addprefix $(SRCDIR)/, %.lua)
-	@$(CP) $^ $@
+	$(CP) $^ $@
 
 $(OUTDIRS):
 	@mkdir -p $@

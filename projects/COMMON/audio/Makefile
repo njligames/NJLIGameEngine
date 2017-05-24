@@ -1,7 +1,7 @@
 BIN := ./../bin/packAudio.sh
 OUT_FORMAT := caf
 
-OBJDIR := ../assets/sounds
+OBJDIR := $(ASSET_DIR)/assets/sounds
 SRCDIR := .
 
 SRCFILES := $(addsuffix /*, $(SRCDIR))

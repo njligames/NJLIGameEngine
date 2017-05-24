@@ -3197,6 +3197,11 @@ ELSE()
             XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER "com.njligames.engine.${NJLI_BUILD_PLATFORM}.source"
             RESOURCE "${NJLI_RESOURCES}"
             )
+        ADD_CUSTOM_COMMAND(TARGET EngineSource
+            POST_BUILD
+            COMMAND make
+            WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/projects/COMMON 
+            )
     ELSE()
         SET_TARGET_PROPERTIES(
             EngineSource PROPERTIES
