@@ -1,3 +1,9 @@
+//#version 100
+
+#ifdef __EMSCRIPTEN__
+precision highp float;
+#endif
+
 attribute vec4 inPosition;
 attribute vec2 inTexCoord;
 attribute vec4 inColor;

@@ -3134,6 +3134,11 @@ IF( ${NJLI_BUILD_PLATFORM} STREQUAL "android" )
     TARGET_LINK_LIBRARIES( njli ${EXTRA_PLATFORM_LIBS} 
         ${NJLIGameEngine_LBY} 
         )
+    ADD_CUSTOM_COMMAND(TARGET njli
+        POST_BUILD
+        COMMAND export NJLI_BUILD_PLATFORM=${NJLI_BUILD_PLATFORM} && make
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/projects/COMMON 
+        )
 
 ELSE()
 
@@ -3199,9 +3204,10 @@ ELSE()
             )
         ADD_CUSTOM_COMMAND(TARGET EngineSource
             POST_BUILD
-            COMMAND make
+            COMMAND export NJLI_BUILD_PLATFORM=${NJLI_BUILD_PLATFORM} && make
             WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/projects/COMMON 
             )
+
     ELSE()
         SET_TARGET_PROPERTIES(
             EngineSource PROPERTIES

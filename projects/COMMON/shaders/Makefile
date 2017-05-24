@@ -1,4 +1,6 @@
 BIN := ./../bin/glslopt
+CP := cp
+
 #Usage: glslopt <-f|-v> <input shader> [<output shader>]
 #	-f : fragment shader (default)
 #	-v : vertex shader
@@ -7,6 +9,15 @@ BIN := ./../bin/glslopt
 #	-3 : target OpenGL ES 3.0
 #
 #If no output specified, output is to [input].out.
+
+#$(NJLI_BUILD_PLATFORM)
+GL_TARGET := -1
+ifeq ($(NJLI_BUILD_PLATFORM),macOS)
+	GL_TARGET := -1
+else
+	GL_TARGET := -2
+endif
+
 
 OBJDIR := $(ASSET_DIR)/assets/shaders
 SRCDIR := .
@@ -26,16 +37,12 @@ OBJFILES_FRAGMENT := $(subst $(SRCDIR)/, $(OBJDIR)/, $(SRCFILES:%.fsh=%.fsh))
 shaders_opengl: $(OBJFILES_VERTEX) $(OBJFILES_FRAGMENT)
 
 $(OBJDIR)/%.vsh: $(addprefix $(SRCDIR)/, %.vsh)
-	@$(BIN) -v $^ $@
-	@$(BIN) -v -1 $^ $@.gl
-	@$(BIN) -v -2 $^ $@.gles2
-	@$(BIN) -v -3 $^ $@.gles3
+	@$(BIN) -v $(GL_TARGET) $^ $@
+	@$(CP) $^ $@_DEBUG
 
 $(OBJDIR)/%.fsh: $(addprefix $(SRCDIR)/, %.fsh)
-	@$(BIN) -f $^ $@
-	@$(BIN) -f -1 $^ $@.gl
-	@$(BIN) -f -2 $^ $@.gles2
-	@$(BIN) -f -3 $^ $@.gles3
+	@$(BIN) -f $(GL_TARGET) $^ $@
+	@$(CP) $^ $@_DEBUG
 
 clean:
 	@rm -rf $(OBJDIR)/*

@@ -21,7 +21,7 @@ all:
 	@cd $(MAKEFILE_PATH)/audio && make
 	@cd $(MAKEFILE_PATH)/gameplay_scripts/yappybirds_game && make
 	@cd $(MAKEFILE_PATH)/fonts && make
-	@cd $(MAKEFILE_PATH)/shaders && make
+	@cd $(MAKEFILE_PATH)/shaders && make clean && make
 
 clean: 
 	@cd $(MAKEFILE_PATH)/gameplay_scripts/yappybirds_game && make clean
