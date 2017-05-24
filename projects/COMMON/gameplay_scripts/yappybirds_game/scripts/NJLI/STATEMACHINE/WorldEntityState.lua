@@ -48,11 +48,11 @@ local __ctor = function(self, init)
       nodes = init.scene.nodes,
     })
 
-  Interface:getStateMachine():getEntityManager():addWorldEntityState(self)
+  gInterface:getStateMachine():getEntityManager():addWorldEntityState(self)
 end
 
 local __dtor = function(self)
-  Interface:getStateMachine():getEntityManager():removeWorldEntityState(self)
+  gInterface:getStateMachine():getEntityManager():removeWorldEntityState(self)
 
   self._sceneEntity = nil
 

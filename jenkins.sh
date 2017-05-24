@@ -15,7 +15,7 @@ export GLES20_DIR=/Users/jamesfolk/Dropbox/Developer/GameEngine/Source/jli_game_
 export MY_ANDROID_NDK=/Users/jamesfolk/Library/Android/sdk/ndk-bundle
 export MY_ANDROID_API_LEVEL=24
 
-#./cmake_apple.sh TRUE
+./cmake_apple.sh TRUE
 ./cmake_emscripten.sh TRUE
 
 #/usr/bin/xcrun -sdk iphoneos PackageApplication -v "${RELEASE_BUILDDIR}/${APPLICATION_NAME}.app" -o "${BUILD_HISTORY_DIR}/${APPLICATION_NAME}.ipa" --sign "${DEVELOPER_NAME}" --embed "${PROVISONING_PROFILE}"

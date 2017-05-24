@@ -18,6 +18,7 @@ build_emscripten()
         mkdir -p ../../ERRORS
         echo "" > ../../ERRORS/emscripen.log
         emmake make 2> ../../ERRORS/emscripen.log
+        emmake make install
     fi
 }
 

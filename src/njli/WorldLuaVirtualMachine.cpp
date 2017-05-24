@@ -1262,20 +1262,20 @@ namespace njli
         {
 //            const char *msg = lua_tostring(m_lua_State, -1);
 
-            std::string theerror = "\n<ERROR>\n";
+            std::string theerror = "\n\t<ERROR>\n\t";
             theerror += value.c_str();
-            theerror += "\n</ERROR>\n";
+            theerror += "\n\t</ERROR>\n";
 
-            std::string theerrordescription = "\n<DESCRIPTION>\n";
+            std::string theerrordescription = "\t<DESCRIPTION>\n\t";
             theerrordescription += lua_tostring( m_lua_State, -1 );
-            theerrordescription += "\n</DESCRIPTION>\n";
+            theerrordescription += "\n\t</DESCRIPTION>\n";
 
-            std::string thecode = "\n<CODE>\n";
+            std::string thecode = "\t<CODE>\n\t";
             thecode += code;
-            thecode += "\n</CODE>\n";
+            thecode += "\n\t</CODE>\n";
 
             SDL_LogError(SDL_LOG_CATEGORY_TEST,
-                         "\n<LUA>\n%s\n%s\n%s\n</LUA>\n",
+                         "\n<LUA>%s%s%s</LUA>\n",
                          theerror.c_str(),
                          theerrordescription.c_str(),
                          thecode.c_str()

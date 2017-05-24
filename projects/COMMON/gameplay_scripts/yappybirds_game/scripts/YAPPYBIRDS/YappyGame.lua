@@ -81,6 +81,8 @@ function YappyGame:startStateMachine()
 end
 
 function YappyGame:getWorldEntity()
+  assert(self._worldEntity)
+  
   return self._worldEntity
 end
 

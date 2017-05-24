@@ -44,7 +44,7 @@ function Label:text(t)
     if t ~= nil then
         self._text = t
 
-        Interface:getStateMachine():getEntityManager():removeNodeEntity(self)
+        gInterface:getStateMachine():getEntityManager():removeNodeEntity(self)
 
         local node, rect = RanchersFont:printf(self._text)
         node:setOrigin(self:getNode():getOrigin())
@@ -56,7 +56,7 @@ function Label:text(t)
         self._node = node
         self._rect = rect
 
-        Interface:getStateMachine():getEntityManager():addNodeEntity(self)
+        gInterface:getStateMachine():getEntityManager():addNodeEntity(self)
     end
 
     return self._text

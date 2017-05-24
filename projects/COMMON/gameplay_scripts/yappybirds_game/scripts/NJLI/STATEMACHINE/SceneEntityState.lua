@@ -36,11 +36,11 @@ local __ctor = function(self, init)
 
     self._nodes = init.nodes
 
-    Interface:getStateMachine():getEntityManager():addSceneEntityState(self)
+    gInterface:getStateMachine():getEntityManager():addSceneEntityState(self)
 end
 
 local __dtor = function(self)
-  Interface:getStateMachine():getEntityManager():removeSceneEntityState(self)
+  gInterface:getStateMachine():getEntityManager():removeSceneEntityState(self)
 
     for k, v in pairs(self._nodes) do
         self:getSceneEntity():removeNodeEntity(k)

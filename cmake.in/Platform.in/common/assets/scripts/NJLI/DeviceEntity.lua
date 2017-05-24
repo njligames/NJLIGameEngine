@@ -32,10 +32,17 @@ end
 
 --#############################################################################
 
+function DeviceEntity:create()
+  --print("DeviceEntity:create()")
+end
+
+function DeviceEntity:destroy()
+  --print("DeviceEntity:destroy()")
+end
+
 function DeviceEntity:update(timeStep)
   --print("DeviceEntity:update("..timeStep..")")
   
-  njli.World.getInstance():setBackgroundColor(1.000, 0.594, 0.000)
   
 end
 

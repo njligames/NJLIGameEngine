@@ -29,11 +29,11 @@ local __ctor = function(self, init)
   
   self._entityName = self:getNodeState():getName()
 
-  Interface:getStateMachine():getEntityManager():addNodeEntityState(self)
+  gInterface:getStateMachine():getEntityManager():addNodeEntityState(self)
 end
 
 local __dtor = function(self)
-  Interface:getStateMachine():getEntityManager():removeNodeEntityState(self)
+  gInterface:getStateMachine():getEntityManager():removeNodeEntityState(self)
 
   njli.NodeState.destroy(self:getNodeState())
   self._nodeState = nil

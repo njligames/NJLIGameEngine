@@ -481,7 +481,7 @@ static void handleInput()
     SDL_PumpEvents();
     while (SDL_PollEvent(&event))
     {
-//        SDLTest_PrintEvent(&event);
+        SDLTest_PrintEvent(&event);
         switch (event.type)
         {
                 

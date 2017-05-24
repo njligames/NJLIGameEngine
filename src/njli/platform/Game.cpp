@@ -53,7 +53,7 @@ bool NJLIGameEngine::create(const char* deviceName, bool initLua)
     
     njli::World::getInstance()->setDeviceName(deviceName);
     
-    //njli::World::getInstance()->createScript();
+//    njli::World::getInstance()->createScript();
     
     return true;
 }
@@ -84,7 +84,7 @@ void NJLIGameEngine::resize(int x, int y, int width, int height,
         njli::World::getInstance()->getWorldClock()->reset();
         
         std::string source = R"(
-local Runtime = {
+Runtime = {
     Create = {},
     Destroy = {},
     Update = {},
@@ -652,8 +652,8 @@ function RegisterNodeMouseMove(name, func)
     Runtime.NodeMouseMove[name] = func
 end
 
-
 function __NJLICreate()
+        print("__NJLICreate")
     for k, v in pairs(Runtime.Create) do v() end
 end
 
@@ -1106,8 +1106,13 @@ function __NJLINodeMouseMove(node, mouse)
 end
         )";
         
-        return (World::getInstance()->getWorldLuaVirtualMachine()->compileString(source.c_str()) && World::getInstance()->getWorldLuaVirtualMachine()->compileFile("scripts/main.lua"));
-        //return World::getInstance()->getWorldLuaVirtualMachine()->compileFile("scripts/main.lua");
+        bool ret = false;
+        if(World::getInstance()->getWorldLuaVirtualMachine()->compileString(source.c_str()))
+        {
+            ret = World::getInstance()->getWorldLuaVirtualMachine()->compileFile("scripts/main.lua");
+            njli::World::getInstance()->createScript();
+        }
+        return ret;
         
     }
 void NJLIGameEngine::update(float step)
@@ -1120,7 +1125,7 @@ void NJLIGameEngine::render() { njli::World::getInstance()->render(); }
 
     void NJLIGameEngine::destroy()
     {
-        //njli::World::getInstance()->destroyScript();
+        njli::World::getInstance()->destroyScript();
         njli::World::destroyInstance();
     }
 

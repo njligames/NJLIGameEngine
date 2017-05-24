@@ -45,6 +45,8 @@ const char *DOCUMENT_PATH(const char *file)
     return [fullFilename UTF8String];
 }
 
+void setRunningPath(const char *file){}
+
 const char *DOCUMENT_BASEPATH()
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);

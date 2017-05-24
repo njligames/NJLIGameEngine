@@ -62,13 +62,13 @@ local __ctor = function(self, init)
 
   assert(startState, "No start state was defined for " .. self:getWorld():getName())
 
-  Interface:getStateMachine():getEntityManager():addWorldEntity(self)
+  gInterface:getStateMachine():getEntityManager():addWorldEntity(self)
 
   self._startStateName = startState:getWorldState():getName()
 end
 
 local __dtor = function(self)
-  Interface:getStateMachine():getEntityManager():removeWorldEntity(self)
+  gInterface:getStateMachine():getEntityManager():removeWorldEntity(self)
 
   self._localStateEntityTable = nil
   self._stateEntityTable = nil
@@ -108,7 +108,7 @@ function WorldEntity:__getEntityState(stateName)
   local nodeEntityState = self._localStateEntityTable[stateName]
   
   if nil == nodeEntityState then
-    return Interface:getStateMachine():getEntityManager():getWorldEntityState(stateName)
+    return gInterface:getStateMachine():getEntityManager():getWorldEntityState(stateName)
   end
   
   return nodeEntityState
@@ -169,7 +169,7 @@ function WorldEntity:getStartStateEntity()
 end
 
 function WorldEntity:startStateMachine()
-  --print(self:getWorld():getName() .. " :startStateMachine()")
+--  print(self:getWorld():getName() .. " :startStateMachine()")
 
   self:pushState(self._startStateName)
 end

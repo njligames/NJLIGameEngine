@@ -40,12 +40,6 @@ end
 
 function Spawn:update(timeStep)
   BaseClass.update(self, timeStep)
-
-  -- self:getNodeEntity():pushState("YAPPYBIRDS.NODES.BALLOON.STATES.Lob")
-  --Interface:getStateMachine():pushNodeState("YAPPYBIRDS.NODES.BALLOON.STATES.Lob")
-  --Interface:getStateMachine():pushSceneState("YAPPYBIRDS.SCENES.GAMEPLAY.STATES.Loading")
-   --Interface:getStateMachine():pushSceneState("YAPPYBIRDS.SCENES.RESULTS.STATES.Loading")
-   --Interface:getStateMachine():pushWorldState("YAPPYBIRDS.WORLDS.YAPPYBIRDS.STATES.Gameplay")
 end
 
 function Spawn:exit()

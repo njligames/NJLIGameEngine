@@ -2,8 +2,7 @@
 
 --http://notebook.kulchenko.com/zerobrane/debugging-wireshark-lua-scripts-with-zerobrane-studio
 
-Interface = require "NJLI.InterfaceFunctions"
-YappyGame = require "YAPPYBIRDS.YappyGame"
+
 
 
 NJLIButtonControl =
@@ -313,7 +312,7 @@ local ResultsScene =
   nodes = {} --The nodes for the Scene.
 }
 
-local Worlds =
+Worlds =
 {
   yappygame =
   {
@@ -341,63 +340,6 @@ local Worlds =
   }
 }
 
-local function CreatePerspectiveCameraNode(name)
-    local node = njli.Node.create()
-    node:setName(name)
 
-    local camera = njli.Camera.create()
-    camera:enableOrthographic(false)
-    camera:setRenderCategory(RenderCategories.perspective)
-    camera:setName("perspectiveCamera")
-
-    node:setCamera(camera)
-
-    return node
-end
-
-local function CreateOrthoCameraNode(name)
-    local node = njli.Node.create()
-    node:setName(name)
-
-    local camera = njli.Camera.create()
-    camera:enableOrthographic()
-    camera:setRenderCategory(RenderCategories.orthographic)
-    camera:setName("orthoCamera")
-
-    node:setCamera(camera)
-
-    return node
-end
-
-local BitmapFont = require 'NJLI.BitmapFont'
-RanchersFont = BitmapFont({file='Ranchers_GlyphDesigner.fnt'})
-
-local material = njli.Material.create()
-local shader = njli.ShaderProgram.create()
-Geometry2D = njli.Sprite2D.create()
-
-OrthographicCameraNode = CreateOrthoCameraNode("orthoCamera")
-PerspectiveCameraNode = CreatePerspectiveCameraNode("perspectiveCamera")
-
-material:setName("YappyBird Material")
-shader:setName("YappyBird Shader")
-Geometry2D:setName("YappyBird Geometry")
-
---njli.World.getInstance():getWorldResourceLoader():load("shaders/opengl_2.1/objectShader.vsh", "shaders/opengl_2.1/objectShader.fsh", shader)
-njli.World.getInstance():getWorldResourceLoader():load("shaders/opengl_es_2.0/objectShader.vsh", "shaders/opengl_es_2.0/objectShader.fsh", shader)
-
-
-Geometry2D:setMaterial(material)
-Geometry2D:setShaderProgram(shader)
-Geometry2D:show(OrthographicCameraNode:getCamera())
-Geometry2D:hide(PerspectiveCameraNode:getCamera())
-
-RanchersFont:load()
-RanchersFont:show(OrthographicCameraNode:getCamera())
-RanchersFont:hide(PerspectiveCameraNode:getCamera())
-
-MyGame = YappyGame(Worlds.yappygame)
-
-MyGame:startStateMachine()
-
+InterfaceFunctions = require "NJLI.InterfaceFunctions"
 

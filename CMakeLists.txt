@@ -3209,6 +3209,8 @@ ELSE()
         ${EXTRA_PLATFORM_LIBS}
         )
 
+    #INSTALL(TARGETS EngineSource DESTINATION bin/engine/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE})
+
 
 
 

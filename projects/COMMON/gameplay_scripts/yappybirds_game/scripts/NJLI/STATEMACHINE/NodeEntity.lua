@@ -57,13 +57,13 @@ local __ctor = function(self, init)
 
   assert(startState, "No start state was defined for " .. self:getNode():getName())
 
-  Interface:getStateMachine():getEntityManager():addNodeEntity(self)
+  gInterface:getStateMachine():getEntityManager():addNodeEntity(self)
 
   self._startStateName = startState:getNodeState():getName()
 end
 
 local __dtor = function(self)
-  Interface:getStateMachine():getEntityManager():removeNodeEntity(self)
+  gInterface:getStateMachine():getEntityManager():removeNodeEntity(self)
 
   self._localStateEntityTable = nil
   self._stateEntityTable = nil
@@ -105,7 +105,7 @@ function NodeEntity:__getEntityState(stateName)
   local nodeEntityState = self._localStateEntityTable[stateName]
   
   if nil == nodeEntityState then
-    return Interface:getStateMachine():getEntityManager():getNodeEntityState(stateName)
+    return gInterface:getStateMachine():getEntityManager():getNodeEntityState(stateName)
   end
   
   return nodeEntityState

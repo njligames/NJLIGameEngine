@@ -77,13 +77,13 @@ local __ctor = function(self, init)
     --Create the NodeEntities for this SceneEntity
     self:addNodeEntities(init.nodes, self)
 
-    Interface:getStateMachine():getEntityManager():addSceneEntity(self)
+    gInterface:getStateMachine():getEntityManager():addSceneEntity(self)
 
     self._startStateName = startState:getSceneState():getName()
 end
 
 local __dtor = function(self)
-  Interface:getStateMachine():getEntityManager():removeSceneEntity(self)
+  gInterface:getStateMachine():getEntityManager():removeSceneEntity(self)
 
   self._localStateEntityTable = nil
   self._stateEntityTable = nil
@@ -131,7 +131,7 @@ function SceneEntity:__getEntityState(stateName)
   local nodeEntityState = self._localStateEntityTable[stateName]
   
   if nil == nodeEntityState then
-    return Interface:getStateMachine():getEntityManager():getSceneEntityState(stateName)
+    return gInterface:getStateMachine():getEntityManager():getSceneEntityState(stateName)
   end
   
   return nodeEntityState
