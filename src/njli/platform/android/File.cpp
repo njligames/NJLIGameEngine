@@ -117,6 +117,8 @@ void sleepThread(float milliseconds)
     usleep(milliseconds);
 }
 
+void setRunningPath(const char *file){}
+
 const char* DOCUMENT_BASEPATH()
 {
     static char tempBuffer[512];

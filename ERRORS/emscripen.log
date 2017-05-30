@@ -28,10 +28,6 @@ In file included from /Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/ext
         char buffer[2048];
              ^
 1 warning generated.
-/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/main.cpp:101:1: warning: unused function 'SDLTest_PrintEvent' [-Wunused-function]
-SDLTest_PrintEvent(SDL_Event * event)
-^
-1 warning generated.
 WARNING:root:not all asm.js optimizations are possible with ALLOW_MEMORY_GROWTH, disabling those. [-Walmost-asm]
 warning: unresolved symbol: setRunningPath
 In file included from /Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/exts/luasocket/usocket.c:19:
