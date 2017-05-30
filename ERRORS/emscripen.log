@@ -1,62 +1,9 @@
-In file included from /Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/exts/luasocket/usocket.c:19:
-/Applications/Developer/emsdk_portable/emscripten/1.37.9/system/include/libc/sys/poll.h:1:2: warning: redirecting incorrect #include <sys/poll.h> to <poll.h> [-W#warnings]
-#warning redirecting incorrect #include <sys/poll.h> to <poll.h>
- ^
-1 warning generated.
-/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/DeviceUtil.cpp:26:9: warning: unused variable 'errno' [-Wunused-variable]
-    int errno = 0;
-        ^
-1 warning generated.
-/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/WorldInput.cpp:236:5: warning: control reaches end of non-void function [-Wreturn-type]
-    }
-    ^
-/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/WorldInput.cpp:241:5: warning: control reaches end of non-void function [-Wreturn-type]
-    }
-    ^
-2 warnings generated.
-/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/generated/swig/lua/lbullet.cpp:17370:13: warning: unused variable 'temp2' [-Wunused-variable]
-  btScalar *temp2 ;
-            ^
-/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/generated/swig/lua/lbullet.cpp:19542:13: warning: unused variable 'temp2' [-Wunused-variable]
-  btScalar *temp2 ;
-            ^
-/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/generated/swig/lua/lbullet.cpp:192965:13: warning: unused variable 'temp4' [-Wunused-variable]
-  btScalar *temp4 ;
-            ^
-3 warnings generated.
-/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/generated/swig/lua/lnjli.cpp:7875:14: warning: unused variable 'buffer' [-Wunused-variable]
-        char buffer[2048];
-             ^
-1 warning generated.
-WARNING:root:not all asm.js optimizations are possible with ALLOW_MEMORY_GROWTH, disabling those. [-Walmost-asm]
-warning: unresolved symbol: setRunningPath
-In file included from /Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/exts/luasocket/usocket.c:19:
-/Applications/Developer/emsdk_portable/emscripten/1.37.9/system/include/libc/sys/poll.h:1:2: warning: redirecting incorrect #include <sys/poll.h> to <poll.h> [-W#warnings]
-#warning redirecting incorrect #include <sys/poll.h> to <poll.h>
- ^
-1 warning generated.
-/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/DeviceUtil.cpp:26:9: warning: unused variable 'errno' [-Wunused-variable]
-    int errno = 0;
-        ^
-1 warning generated.
-/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/WorldInput.cpp:236:5: warning: control reaches end of non-void function [-Wreturn-type]
-    }
-    ^
-/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/WorldInput.cpp:241:5: warning: control reaches end of non-void function [-Wreturn-type]
-    }
-    ^
-2 warnings generated.
-/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/generated/swig/lua/lbullet.cpp:17370:13: warning: unused variable 'temp2' [-Wunused-variable]
-  btScalar *temp2 ;
-            ^
-/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/generated/swig/lua/lbullet.cpp:19542:13: warning: unused variable 'temp2' [-Wunused-variable]
-  btScalar *temp2 ;
-            ^
-/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/generated/swig/lua/lbullet.cpp:192965:13: warning: unused variable 'temp4' [-Wunused-variable]
-  btScalar *temp4 ;
-            ^
-3 warnings generated.
-/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/generated/swig/lua/lnjli.cpp:7875:14: warning: unused variable 'buffer' [-Wunused-variable]
-        char buffer[2048];
-             ^
-1 warning generated.
+
+  emmake is a helper for make, setting various environment
+  variables so that emcc etc. are used. Typical usage:
+
+    emmake make [FLAGS]
+
+  (but you can run any command instead of make)
+
+  

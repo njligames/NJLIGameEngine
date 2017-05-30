@@ -1,5 +1,5 @@
-#CMAKE_MINIMUM_REQUIRED(VERSION 3.7.2)
 cmake_minimum_required(VERSION 3.4.1)
+
 PROJECT (${NJLI_BUILD_PLATFORM})
 
 # The version number.
@@ -17,8 +17,77 @@ SET ( NJLI_SOUND_PLATFORM fmod CACHE STRING "The sound to use" )
 SET ( NJLI_SOURCE_DIRECTORY "${CMAKE_SOURCE_DIR}/src" CACHE STRING "The njli source directory" )
 SET ( NJLI_SWIGIN_DIRECTORY "${CMAKE_SOURCE_DIR}/src/swig.in" CACHE STRING "The njli source directory" )
 SET ( NJLI_THIRDPARTY_SWIGIN_DIRECTORY "${NJLI_THIRDPARTY_DIRECTORY}/swig.in" CACHE STRING "The njli source directory" )
-OPTION ( NJLI_SWIG_AS_TARGET TRUE )
- 
+
+OPTION(NJLI_USE_ASSIMP_LIBRARY "Use assimp library"                    OFF)
+OPTION(NJLI_USE_BULLET_LIBRARY "Use bullet library"                    ON)
+OPTION(NJLI_USE_CONCURRENTQUEUE_LIBRARY "Use concurrent queue library" OFF)
+OPTION(NJLI_USE_DEBUGDRAW_LIBRARY "Use debug-draw library"             ON)
+OPTION(NJLI_USE_FLATBUFFERS_LIBRARY "Use flatbuffers library"          OFF)
+OPTION(NJLI_USE_GLM_LIBRARY "Use glm library"                          ON)
+OPTION(NJLI_USE_IMGUI_LIBRARY "Use imgui library"                      OFF)
+OPTION(NJLI_USE_IMGUIZMO_LIBRARY "Use ImGuizmo library"                OFF)
+OPTION(NJLI_USE_JSONCPP_LIBRARY "Use jsoncp library"                   ON)
+OPTION(NJLI_USE_NANOVG_LIBRARY "Use nanovg library"                    ON)
+OPTION(NJLI_USE_OPENCV_LIBRARY "Use opencv library"                    OFF)
+OPTION(NJLI_USE_SQLITE_LIBRARY "Use sqlite library"                    OFF)
+OPTION(NJLI_USE_STB_LIBRARY "Use stb library"                          ON)
+OPTION(NJLI_USE_TINYXML2_LIBRARY "Use tinyxml2 library"                ON)
+
+IF(NJLI_USE_ASSIMP_LIBRARY)
+    ADD_DEFINITIONS(-DUSE_ASSIMP_LIBRARY=1)
+ENDIF(NJLI_USE_ASSIMP_LIBRARY)
+
+IF(NJLI_USE_BULLET_LIBRARY)
+    ADD_DEFINITIONS(-DUSE_BULLET_LIBRARY=1)
+ENDIF(NJLI_USE_BULLET_LIBRARY)
+
+IF(NJLI_USE_CONCURRENTQUEUE_LIBRARY)
+    ADD_DEFINITIONS(-DUSE_CONCURRENTQUEUE_LIBRARY=1)
+ENDIF(NJLI_USE_CONCURRENTQUEUE_LIBRARY)
+
+IF(NJLI_USE_DEBUGDRAW_LIBRARY)
+    ADD_DEFINITIONS(-DUSE_DEBUGDRAW_LIBRARY=1)
+ENDIF(NJLI_USE_DEBUGDRAW_LIBRARY)
+
+IF(NJLI_USE_FLATBUFFERS_LIBRARY)
+    ADD_DEFINITIONS(-DUSE_FLATBUFFERS_LIBRARY=1)
+ENDIF(NJLI_USE_FLATBUFFERS_LIBRARY)
+
+IF(NJLI_USE_GLM_LIBRARY)
+    ADD_DEFINITIONS(-DUSE_GLM_LIBRARY=1)
+ENDIF(NJLI_USE_GLM_LIBRARY)
+
+IF(NJLI_USE_IMGUI_LIBRARY)
+    ADD_DEFINITIONS(-DUSE_IMGUI_LIBRARY=1)
+ENDIF(NJLI_USE_IMGUI_LIBRARY)
+
+IF(NJLI_USE_IMGUIZMO_LIBRARY)
+    ADD_DEFINITIONS(-DUSE_IMGUIZMO_LIBRARY=1)
+ENDIF(NJLI_USE_IMGUIZMO_LIBRARY)
+
+IF(NJLI_USE_JSONCPP_LIBRARY)
+    ADD_DEFINITIONS(-DUSE_JSONCPP_LIBRARY=1)
+ENDIF(NJLI_USE_JSONCPP_LIBRARY)
+
+IF(NJLI_USE_NANOVG_LIBRARY)
+    ADD_DEFINITIONS(-DUSE_NANOVG_LIBRARY=1)
+ENDIF(NJLI_USE_NANOVG_LIBRARY)
+
+IF(NJLI_USE_OPENCV_LIBRARY)
+    ADD_DEFINITIONS(-DUSE_OPENCV_LIBRARY=1)
+ENDIF(NJLI_USE_OPENCV_LIBRARY)
+
+IF(NJLI_USE_SQLITE_LIBRARY)
+    ADD_DEFINITIONS(-DUSE_SQLITE_LIBRARY=1)
+ENDIF(NJLI_USE_SQLITE_LIBRARY)
+
+IF(NJLI_USE_STB_LIBRARY)
+    ADD_DEFINITIONS(-DUSE_STB_LIBRARY=1)
+ENDIF(NJLI_USE_STB_LIBRARY)
+
+IF(NJLI_USE_TINYXML2_LIBRARY)
+    ADD_DEFINITIONS(-DUSE_TINYXML2_LIBRARY=1)
+ENDIF(NJLI_USE_TINYXML2_LIBRARY)
 
 SET( NJLI_ASSIMP_POSTFIX "" )
 SET( NJLI_FMOD_POSTFIX "" )
@@ -2478,31 +2547,47 @@ SET(EXTRA_PLATFORM_LIBS "")
 
 IF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" )
 
-    SET( EFFECTIVE_PLATFORM_NAME "\$(EFFECTIVE_PLATFORM_NAME)" )
-    SET( CONFIGURATION "Release" )
-
-    SET(imported_flatbuffers_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/flatbuffers/appletv/10.2/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/lib/libflatbuffers.a")
-    SET(imported_sqlite_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/sqlite/appletv/10.2/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/libsqlite3.a")
-
-    SET(imported_assimp_location                 "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/assimp/${NJLI_BUILD_PLATFORM}/10.2/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/lib/libassimp${NJLI_ASSIMP_POSTFIX}.a" )
-    SET(imported_BulletCollision_location        "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.2/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/lib/libBulletCollision.a" )
-    SET(imported_BulletDynamics_location         "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.2/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/lib/libBulletDynamics.a" )
-    SET(imported_BulletFileLoader_location       "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.2/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/lib/libBulletFileLoader.a" )
-    SET(imported_BulletSoftBody_location         "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.2/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/lib/libBulletSoftBody.a" )
-    SET(imported_BulletWorldImporter_location    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.2/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/lib/libBulletWorldImporter.a" )
-    SET(imported_BulletXmlWorldImporter_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.2/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/lib/libBulletXmlWorldImporter.a" )
-    SET(imported_ConvexDecomposition_location    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.2/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/lib/libConvexDecomposition.a" )
-    SET(imported_GIMPACTUtils_location           "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.2/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/lib/libGIMPACTUtils.a" )
-    SET(imported_HACD_location                   "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.2/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/lib/libHACD.a" )
-    SET(imported_LinearMath_location             "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.2/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/lib/libLinearMath.a" )
-    SET(imported_imgui_location                  "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/imgui/${NJLI_BUILD_PLATFORM}/10.2/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/libimgui.a" )
-    SET(imported_ImGuizmo_location               "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/ImGuizmo/${NJLI_BUILD_PLATFORM}/10.2/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/libImGuizmo.a" )
-    SET(imported_jsoncpp_location                "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/jsoncpp/${NJLI_BUILD_PLATFORM}/10.2/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/libjsoncpp.a")
-    SET(imported_nanovg_location                 "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/nanovg/${NJLI_BUILD_PLATFORM}/10.2/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/libnanovg.a" )
-    SET(imported_stb_location                    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/stb/${NJLI_BUILD_PLATFORM}/10.2/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/libstb.a" )
-    SET(imported_tinyxml2_location               "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/tinyxml2/${NJLI_BUILD_PLATFORM}/10.2/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/libtinyxml2.a" )
-    SET(imported_fmod_location                   "${NJLI_THIRDPARTY_DIRECTORY}/fmod/lib/${NJLI_BUILD_PLATFORM}/10.2/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/libfmod${NJLI_FMOD_POSTFIX}.${NJLI_FMOD_EXTENSION}" )
-    SET(imported_SDL2_location                   "${NJLI_THIRDPARTY_DIRECTORY}/SDL2/lib/${NJLI_BUILD_PLATFORM}/10.2/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/libSDL2.a" )
+    SET(imported_assimp_location                 "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/assimp/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libassimp${NJLI_ASSIMP_POSTFIX}.a" )
+    #SET(imported_zlibstatic_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/assimp/appletv/10.2/Release-appletvos/lib/libzlibstatic.a")
+    SET(imported_BulletCollision_location        "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libBulletCollision.a" )
+    SET(imported_BulletDynamics_location         "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libBulletDynamics.a" )
+    SET(imported_BulletFileLoader_location       "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libBulletFileLoader.a" )
+    SET(imported_BulletSoftBody_location         "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libBulletSoftBody.a" )
+    SET(imported_BulletWorldImporter_location    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libBulletWorldImporter.a" )
+    SET(imported_BulletXmlWorldImporter_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libBulletXmlWorldImporter.a" )
+    SET(imported_ConvexDecomposition_location    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libConvexDecomposition.a" )
+    SET(imported_GIMPACTUtils_location           "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libGIMPACTUtils.a" )
+    SET(imported_HACD_location                   "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libHACD.a" )
+    SET(imported_LinearMath_location             "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libLinearMath.a" )
+    SET(imported_flatbuffers_location            "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/flatbuffers/appletv/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libflatbuffers.a")
+    SET(imported_imgui_location                  "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/imgui/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libimgui.a" )
+    SET(imported_ImGuizmo_location               "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/ImGuizmo/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libImGuizmo.a" )
+    SET(imported_jsoncpp_location                "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/jsoncpp/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libjsoncpp.a")
+    SET(imported_nanovg_location                 "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/nanovg/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libnanovg.a" )
+    SET(imported_opencv_calib3d_location         "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libopencv_calib3d.a")
+    SET(imported_opencv_core_location            "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libopencv_core.a")
+    SET(imported_opencv_features2d_location      "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libopencv_features2d.a")
+    SET(imported_opencv_flann_location           "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libopencv_flann.a")
+    SET(imported_opencv_imgcodecs_location       "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libopencv_imgcodecs.a")
+    SET(imported_opencv_imgproc_location         "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libopencv_imgproc.a")
+    SET(imported_opencv_ml_location              "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libopencv_ml.a")
+    SET(imported_opencv_objdetect_location       "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libopencv_objdetect.a")
+    SET(imported_opencv_photo_location           "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libopencv_photo.a")
+    SET(imported_opencv_shape_location           "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libopencv_shape.a")
+    SET(imported_opencv_stitching_location       "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libopencv_stitching.a")
+    SET(imported_opencv_video_location           "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libopencv_video.a")
+    SET(imported_opencv_videostab_location       "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libopencv_videostab.a")
+    #SET(imported_IlmImf_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/share/OpenCV/3rdparty/lib/libIlmImf.a")
+    #SET(imported_libjasper_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/share/OpenCV/3rdparty/lib/liblibjasper.a")
+    #SET(imported_libjpeg_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/share/OpenCV/3rdparty/lib/liblibjpeg.a")
+    #SET(imported_libtiff_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/share/OpenCV/3rdparty/lib/liblibtiff.a")
+    #SET(imported_libwebp_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/share/OpenCV/3rdparty/lib/liblibwebp.a")
+    #SET(imported_zlib_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/share/OpenCV/3rdparty/lib/libzlib.a")
+    SET(imported_sqlite_location                 "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/sqlite/appletv/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libsqlite3.a")
+    SET(imported_stb_location                    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/stb/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libstb.a" )
+    SET(imported_tinyxml2_location               "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/tinyxml2/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libtinyxml2.a" )
+    SET(imported_fmod_location                   "${NJLI_THIRDPARTY_DIRECTORY}/fmod/lib/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libfmod${NJLI_FMOD_POSTFIX}.${NJLI_FMOD_EXTENSION}" )
+    SET(imported_SDL2_location                   "${NJLI_THIRDPARTY_DIRECTORY}/SDL2/lib/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libSDL2.a" )
     SET(NJLI_APPICON_NAME "App Icon & Top Shelf Image")
 
     LIST(APPEND NJLIGameEngine_HDRS /Applications/Xcode.app/Contents/Developer/Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS.sdk/System/Library/Frameworks )
@@ -2532,31 +2617,46 @@ IF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" )
 
 ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
 
-    SET( EFFECTIVE_PLATFORM_NAME "\$(EFFECTIVE_PLATFORM_NAME)" )
-    SET( CONFIGURATION "Release" )
-
-    SET(imported_flatbuffers_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/flatbuffers/ios/10.3/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/lib/libflatbuffers.a")
-    SET(imported_sqlite_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/sqlite/ios/10.3/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/libsqlite3.a")
-
-    SET(imported_assimp_location                 "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/assimp/${NJLI_BUILD_PLATFORM}/10.3/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/lib/libassimp${NJLI_ASSIMP_POSTFIX}.a" )
-    SET(imported_BulletCollision_location        "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.3/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/lib/libBulletCollision.a" )
-    SET(imported_BulletDynamics_location         "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.3/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/lib/libBulletDynamics.a" )
-    SET(imported_BulletFileLoader_location       "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.3/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/lib/libBulletFileLoader.a" )
-    SET(imported_BulletSoftBody_location         "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.3/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/lib/libBulletSoftBody.a" )
-    SET(imported_BulletWorldImporter_location    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.3/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/lib/libBulletWorldImporter.a" )
-    SET(imported_BulletXmlWorldImporter_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.3/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/lib/libBulletXmlWorldImporter.a" )
-    SET(imported_ConvexDecomposition_location    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.3/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/lib/libConvexDecomposition.a" )
-    SET(imported_GIMPACTUtils_location           "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.3/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/lib/libGIMPACTUtils.a" )
-    SET(imported_HACD_location                   "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.3/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/lib/libHACD.a" )
-    SET(imported_LinearMath_location             "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.3/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/lib/libLinearMath.a" )
-    SET(imported_imgui_location                  "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/imgui/${NJLI_BUILD_PLATFORM}/10.3/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/libimgui.a" )
-    SET(imported_ImGuizmo_location               "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/ImGuizmo/${NJLI_BUILD_PLATFORM}/10.3/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/libImGuizmo.a" )
-    SET(imported_jsoncpp_location                "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/jsoncpp/${NJLI_BUILD_PLATFORM}/10.3/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/libjsoncpp.a")
-    SET(imported_nanovg_location                 "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/nanovg/${NJLI_BUILD_PLATFORM}/10.3/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/libnanovg.a" )
-    SET(imported_stb_location                    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/stb/${NJLI_BUILD_PLATFORM}/10.3/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/libstb.a" )
-    SET(imported_tinyxml2_location               "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/tinyxml2/${NJLI_BUILD_PLATFORM}/10.3/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/libtinyxml2.a" )
-    SET(imported_fmod_location                   "${NJLI_THIRDPARTY_DIRECTORY}/fmod/lib/${NJLI_BUILD_PLATFORM}/10.3/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/libfmod${NJLI_FMOD_POSTFIX}.${NJLI_FMOD_EXTENSION}" )
-    SET(imported_SDL2_location                   "${NJLI_THIRDPARTY_DIRECTORY}/SDL2/lib/${NJLI_BUILD_PLATFORM}/10.3/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/libSDL2.a" )
+    SET(imported_assimp_location                 "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/assimp/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libassimp${NJLI_ASSIMP_POSTFIX}.a" )
+    SET(imported_BulletCollision_location        "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libBulletCollision.a" )
+    SET(imported_BulletDynamics_location         "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libBulletDynamics.a" )
+    SET(imported_BulletFileLoader_location       "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libBulletFileLoader.a" )
+    SET(imported_BulletSoftBody_location         "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libBulletSoftBody.a" )
+    SET(imported_BulletWorldImporter_location    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libBulletWorldImporter.a" )
+    SET(imported_BulletXmlWorldImporter_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libBulletXmlWorldImporter.a" )
+    SET(imported_ConvexDecomposition_location    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libConvexDecomposition.a" )
+    SET(imported_GIMPACTUtils_location           "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libGIMPACTUtils.a" )
+    SET(imported_HACD_location                   "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libHACD.a" )
+    SET(imported_LinearMath_location             "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libLinearMath.a" )
+    SET(imported_flatbuffers_location            "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/flatbuffers/ios/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libflatbuffers.a")
+    SET(imported_imgui_location                  "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/imgui/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/libimgui.a" )
+    SET(imported_ImGuizmo_location               "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/ImGuizmo/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/libImGuizmo.a" )
+    SET(imported_jsoncpp_location                "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/jsoncpp/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/libjsoncpp.a")
+    SET(imported_nanovg_location                 "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/nanovg/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/libnanovg.a" )
+    SET(imported_opencv_calib3d_location         "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libopencv_calib3d.a")
+    SET(imported_opencv_core_location            "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libopencv_core.a")
+    SET(imported_opencv_features2d_location      "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libopencv_features2d.a")
+    SET(imported_opencv_flann_location           "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libopencv_flann.a")
+    SET(imported_opencv_imgcodecs_location       "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libopencv_imgcodecs.a")
+    SET(imported_opencv_imgproc_location         "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libopencv_imgproc.a")
+    SET(imported_opencv_ml_location              "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libopencv_ml.a")
+    SET(imported_opencv_objdetect_location       "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libopencv_objdetect.a")
+    SET(imported_opencv_photo_location           "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libopencv_photo.a")
+    SET(imported_opencv_shape_location           "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libopencv_shape.a")
+    SET(imported_opencv_stitching_location       "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libopencv_stitching.a")
+    SET(imported_opencv_video_location           "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libopencv_video.a")
+    SET(imported_opencv_videostab_location       "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libopencv_videostab.a")
+    #SET(imported_IlmImf_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/share/OpenCV/3rdparty/lib/libIlmImf.a")
+    #SET(imported_libjasper_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/share/OpenCV/3rdparty/lib/liblibjasper.a")
+    #SET(imported_libjpeg_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/share/OpenCV/3rdparty/lib/liblibjpeg.a")
+    #SET(imported_libtiff_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/share/OpenCV/3rdparty/lib/liblibtiff.a")
+    #SET(imported_libwebp_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/share/OpenCV/3rdparty/lib/liblibwebp.a")
+    #SET(imported_zlib_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/share/OpenCV/3rdparty/lib/libzlib.a")
+    SET(imported_sqlite_location                 "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/sqlite/ios/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/libsqlite3.a")
+    SET(imported_stb_location                    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/stb/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/libstb.a" )
+    SET(imported_tinyxml2_location               "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/tinyxml2/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/libtinyxml2.a" )
+    SET(imported_fmod_location                   "${NJLI_THIRDPARTY_DIRECTORY}/fmod/lib/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/libfmod${NJLI_FMOD_POSTFIX}.${NJLI_FMOD_EXTENSION}" )
+    SET(imported_SDL2_location                   "${NJLI_THIRDPARTY_DIRECTORY}/SDL2/lib/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/libSDL2.a" )
 
     SET(NJLI_APPICON_NAME "AppIcon")
 
@@ -2590,9 +2690,6 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
 
 ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
 
-    SET(imported_flatbuffers_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/flatbuffers/${NJLI_BUILD_PLATFORM}/10.12/Release/lib/libflatbuffers.a")
-    SET(imported_sqlite_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/sqlite/${NJLI_BUILD_PLATFORM}/10.12/Release/libsqlite3.a")
-
     SET(imported_assimp_location                 "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/assimp/${NJLI_BUILD_PLATFORM}/10.12/Release/lib/libassimp${NJLI_ASSIMP_POSTFIX}.a" )
     SET(imported_BulletCollision_location        "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.12/Release/lib/libBulletCollision.a" )
     SET(imported_BulletDynamics_location         "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.12/Release/lib/libBulletDynamics.a" )
@@ -2604,10 +2701,31 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
     SET(imported_GIMPACTUtils_location           "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.12/Release/lib/libGIMPACTUtils.a" )
     SET(imported_HACD_location                   "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.12/Release/lib/libHACD.a" )
     SET(imported_LinearMath_location             "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.12/Release/lib/libLinearMath.a" )
+    SET(imported_flatbuffers_location            "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/flatbuffers/${NJLI_BUILD_PLATFORM}/10.12/Release/lib/libflatbuffers.a")
     SET(imported_imgui_location                  "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/imgui/${NJLI_BUILD_PLATFORM}/10.12/Release/libimgui.a" )
     SET(imported_ImGuizmo_location               "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/ImGuizmo/${NJLI_BUILD_PLATFORM}/10.12/Release/libImGuizmo.a" )
     SET(imported_jsoncpp_location                "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/jsoncpp/${NJLI_BUILD_PLATFORM}/10.12/Release/libjsoncpp.a")
     SET(imported_nanovg_location                 "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/nanovg/${NJLI_BUILD_PLATFORM}/10.12/Release/libnanovg.a" )
+    SET(imported_opencv_calib3d_location         "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.12/Release/lib/libopencv_calib3d.a")
+    SET(imported_opencv_core_location            "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.12/Release/lib/libopencv_core.a")
+    SET(imported_opencv_features2d_location      "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.12/Release/lib/libopencv_features2d.a")
+    SET(imported_opencv_flann_location           "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.12/Release/lib/libopencv_flann.a")
+    SET(imported_opencv_imgcodecs_location       "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.12/Release/lib/libopencv_imgcodecs.a")
+    SET(imported_opencv_imgproc_location         "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.12/Release/lib/libopencv_imgproc.a")
+    SET(imported_opencv_ml_location              "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.12/Release/lib/libopencv_ml.a")
+    SET(imported_opencv_objdetect_location       "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.12/Release/lib/libopencv_objdetect.a")
+    SET(imported_opencv_photo_location           "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.12/Release/lib/libopencv_photo.a")
+    SET(imported_opencv_shape_location           "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.12/Release/lib/libopencv_shape.a")
+    SET(imported_opencv_stitching_location       "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.12/Release/lib/libopencv_stitching.a")
+    SET(imported_opencv_video_location           "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.12/Release/lib/libopencv_video.a")
+    SET(imported_opencv_videostab_location       "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.12/Release/lib/libopencv_videostab.a")
+    #SET(imported_IlmImf_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.12/Release/share/OpenCV/3rdparty/lib/libIlmImf.a")
+    #SET(imported_libjasper_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.12/Release/share/OpenCV/3rdparty/lib/liblibjasper.a")
+    #SET(imported_libjpeg_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.12/Release/share/OpenCV/3rdparty/lib/liblibjpeg.a")
+    #SET(imported_libtiff_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.12/Release/share/OpenCV/3rdparty/lib/liblibtiff.a")
+    #SET(imported_libwebp_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.12/Release/share/OpenCV/3rdparty/lib/liblibwebp.a")
+    #SET(imported_zlib_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.12/Release/share/OpenCV/3rdparty/lib/libzlib.a")
+    SET(imported_sqlite_location                 "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/sqlite/${NJLI_BUILD_PLATFORM}/10.12/Release/libsqlite3.a")
     SET(imported_stb_location                    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/stb/${NJLI_BUILD_PLATFORM}/10.12/Release/libstb.a" )
     SET(imported_tinyxml2_location               "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/tinyxml2/${NJLI_BUILD_PLATFORM}/10.12/Release/libtinyxml2.a" )
     SET(imported_fmod_location                   "${NJLI_THIRDPARTY_DIRECTORY}/fmod/lib/${NJLI_BUILD_PLATFORM}/10.12/Release/libfmod.dylib" )
@@ -2643,9 +2761,6 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
 
 ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
 
-    SET(imported_flatbuffers_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/flatbuffers/${NJLI_BUILD_PLATFORM}/Release/lib/libflatbuffers.a")
-    SET(imported_sqlite_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/sqlite/${NJLI_BUILD_PLATFORM}/Release/libsqlite3.a")
-
     SET(imported_assimp_location                 "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/assimp/${NJLI_BUILD_PLATFORM}/Release/lib/libassimp${NJLI_ASSIMP_POSTFIX}.a" )
     SET(imported_BulletCollision_location        "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/Release/lib/libBulletCollision.a" )
     SET(imported_BulletDynamics_location         "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/Release/lib/libBulletDynamics.a" )
@@ -2657,10 +2772,31 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
     SET(imported_GIMPACTUtils_location           "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/Release/lib/libGIMPACTUtils.a" )
     SET(imported_HACD_location                   "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/Release/lib/libHACD.a" )
     SET(imported_LinearMath_location             "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/Release/lib/libLinearMath.a" )
+    SET(imported_flatbuffers_location            "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/flatbuffers/${NJLI_BUILD_PLATFORM}/Release/lib/libflatbuffers.a")
     SET(imported_imgui_location                  "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/imgui/${NJLI_BUILD_PLATFORM}/Release/libimgui.a" )
     SET(imported_ImGuizmo_location               "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/ImGuizmo/${NJLI_BUILD_PLATFORM}/Release/libImGuizmo.a" )
     SET(imported_jsoncpp_location                "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/jsoncpp/${NJLI_BUILD_PLATFORM}/Release/libjsoncpp.a")
     SET(imported_nanovg_location                 "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/nanovg/${NJLI_BUILD_PLATFORM}/Release/libnanovg.a" )
+    SET(imported_opencv_calib3d_location         "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_calib3d.a")
+    SET(imported_opencv_core_location            "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_core.a")
+    SET(imported_opencv_features2d_location      "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_features2d.a")
+    SET(imported_opencv_flann_location           "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_flann.a")
+    SET(imported_opencv_imgcodecs_location       "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_imgcodecs.a")
+    SET(imported_opencv_imgproc_location         "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_imgproc.a")
+    SET(imported_opencv_ml_location              "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_ml.a")
+    SET(imported_opencv_objdetect_location       "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_objdetect.a")
+    SET(imported_opencv_photo_location           "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_photo.a")
+    SET(imported_opencv_shape_location           "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_shape.a")
+    SET(imported_opencv_stitching_location       "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_stitching.a")
+    SET(imported_opencv_video_location           "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_video.a")
+    SET(imported_opencv_videostab_location       "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_videostab.a")
+    #SET(imported_IlmImf_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/share/OpenCV/3rdparty/lib/libIlmImf.a")
+    #SET(imported_libjasper_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/share/OpenCV/3rdparty/lib/liblibjasper.a")
+    #SET(imported_libjpeg_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/share/OpenCV/3rdparty/lib/liblibjpeg.a")
+    #SET(imported_libtiff_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/share/OpenCV/3rdparty/lib/liblibtiff.a")
+    #SET(imported_libwebp_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/share/OpenCV/3rdparty/lib/liblibwebp.a")
+    #SET(imported_zlib_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/share/OpenCV/3rdparty/lib/libzlib.a")
+    SET(imported_sqlite_location                 "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/sqlite/${NJLI_BUILD_PLATFORM}/Release/libsqlite3.a")
     SET(imported_stb_location                    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/stb/${NJLI_BUILD_PLATFORM}/Release/libstb.a" )
     SET(imported_tinyxml2_location               "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/tinyxml2/${NJLI_BUILD_PLATFORM}/Release/libtinyxml2.a" )
     SET(imported_fmod_location                   "" )
@@ -2703,28 +2839,46 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
 
 ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "android" )
 
-    SET(imported_flatbuffers_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/flatbuffers/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libflatbuffers.a")
-    SET(imported_sqlite_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/sqlite/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libsqlite3.a")
-
-    SET(imported_assimp_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/assimp/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libassimp.a" )
-    SET(imported_BulletCollision_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libBulletCollision.a" )
-    SET(imported_BulletDynamics_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libBulletDynamics.a" )
-    SET(imported_BulletFileLoader_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libBulletFileLoader.a" )
-    SET(imported_BulletSoftBody_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libBulletSoftBody.a" )
-    SET(imported_BulletWorldImporter_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libBulletWorldImporter.a" )
+    SET(imported_assimp_location                 "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/assimp/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libassimp.a" )
+    SET(imported_BulletCollision_location        "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libBulletCollision.a" )
+    SET(imported_BulletDynamics_location         "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libBulletDynamics.a" )
+    SET(imported_BulletFileLoader_location       "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libBulletFileLoader.a" )
+    SET(imported_BulletSoftBody_location         "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libBulletSoftBody.a" )
+    SET(imported_BulletWorldImporter_location    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libBulletWorldImporter.a" )
     SET(imported_BulletXmlWorldImporter_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libBulletXmlWorldImporter.a" )
-    SET(imported_ConvexDecomposition_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libConvexDecomposition.a" )
-    SET(imported_GIMPACTUtils_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libGIMPACTUtils.a" )
-    SET(imported_HACD_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libHACD.a" )
-    SET(imported_LinearMath_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libLinearMath.a" )
-    SET(imported_imgui_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/imgui/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libimgui.a" )
-    SET(imported_ImGuizmo_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/ImGuizmo/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libImGuizmo.a" )
-    SET(imported_jsoncpp_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/jsoncpp/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libjsoncpp.a")
-    SET(imported_nanovg_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/nanovg/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libnanovg.a" )
-    SET(imported_stb_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/stb/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libstb.a" )
-    SET(imported_tinyxml2_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/tinyxml2/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libtinyxml2.a" )
-    SET(imported_fmod_location "${NJLI_THIRDPARTY_DIRECTORY}/fmod/lib/android/24/${ANDROID_ABI}/libfmod.so" )
-    SET(imported_SDL2_location "${NJLI_THIRDPARTY_DIRECTORY}/SDL2/lib/android/23/Release/${ANDROID_ABI}/libSDL2.so" )
+    SET(imported_ConvexDecomposition_location    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libConvexDecomposition.a" )
+    SET(imported_GIMPACTUtils_location           "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libGIMPACTUtils.a" )
+    SET(imported_HACD_location                   "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libHACD.a" )
+    SET(imported_LinearMath_location             "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libLinearMath.a" )
+    SET(imported_flatbuffers_location            "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/flatbuffers/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libflatbuffers.a")
+    SET(imported_imgui_location                  "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/imgui/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libimgui.a" )
+    SET(imported_ImGuizmo_location               "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/ImGuizmo/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libImGuizmo.a" )
+    SET(imported_jsoncpp_location                "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/jsoncpp/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libjsoncpp.a")
+    SET(imported_nanovg_location                 "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/nanovg/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libnanovg.a" )
+    SET(imported_opencv_calib3d_location         "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libopencv_calib3d.a")
+    SET(imported_opencv_core_location            "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libopencv_core.a")
+    SET(imported_opencv_features2d_location      "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libopencv_features2d.a")
+    SET(imported_opencv_flann_location           "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libopencv_flann.a")
+    SET(imported_opencv_imgcodecs_location       "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libopencv_imgcodecs.a")
+    SET(imported_opencv_imgproc_location         "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libopencv_imgproc.a")
+    SET(imported_opencv_ml_location              "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libopencv_ml.a")
+    SET(imported_opencv_objdetect_location       "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libopencv_objdetect.a")
+    SET(imported_opencv_photo_location           "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libopencv_photo.a")
+    SET(imported_opencv_shape_location           "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libopencv_shape.a")
+    SET(imported_opencv_stitching_location       "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libopencv_stitching.a")
+    SET(imported_opencv_video_location           "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libopencv_video.a")
+    SET(imported_opencv_videostab_location       "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libopencv_videostab.a")
+    #SET(imported_IlmImf_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/share/OpenCV/3rdparty/lib/libIlmImf.a")
+    #SET(imported_libjasper_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/share/OpenCV/3rdparty/lib/liblibjasper.a")
+    #SET(imported_libjpeg_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/share/OpenCV/3rdparty/lib/liblibjpeg.a")
+    #SET(imported_libtiff_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/share/OpenCV/3rdparty/lib/liblibtiff.a")
+    #SET(imported_libwebp_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/share/OpenCV/3rdparty/lib/liblibwebp.a")
+    #SET(imported_zlib_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/share/OpenCV/3rdparty/lib/libzlib.a")
+    SET(imported_sqlite_location                 "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/sqlite/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libsqlite3.a")
+    SET(imported_stb_location                    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/stb/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libstb.a" )
+    SET(imported_tinyxml2_location               "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/tinyxml2/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libtinyxml2.a" )
+    SET(imported_fmod_location                   "${NJLI_THIRDPARTY_DIRECTORY}/fmod/lib/android/24/${ANDROID_ABI}/libfmod.so" )
+    SET(imported_SDL2_location                   "${NJLI_THIRDPARTY_DIRECTORY}/SDL2/lib/android/23/Release/${ANDROID_ABI}/libSDL2.so" )
 
     FILE(GLOB NJLIGameEngine_LBY
         ${NJLI_THIRDPARTY_DIRECTORY}/fmod/lib/android/24/${ANDROID_ABI}/Release/libfmod.so
@@ -2757,109 +2911,206 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "android" )
 ENDIF()
 
 #https://developer.android.com/studio/projects/add-native-code.html
-ADD_LIBRARY(imported_assimp STATIC IMPORTED )
-ADD_LIBRARY(imported_Bullet2FileLoader STATIC IMPORTED )
-ADD_LIBRARY(imported_Bullet3Collision STATIC IMPORTED )
-ADD_LIBRARY(imported_Bullet3Common STATIC IMPORTED )
-ADD_LIBRARY(imported_Bullet3Dynamics STATIC IMPORTED )
-ADD_LIBRARY(imported_Bullet3Geometry STATIC IMPORTED )
-ADD_LIBRARY(imported_Bullet3OpenCL_clew STATIC IMPORTED )
-ADD_LIBRARY(imported_BulletCollision STATIC IMPORTED )
-ADD_LIBRARY(imported_BulletDynamics STATIC IMPORTED )
-ADD_LIBRARY(imported_BulletFileLoader STATIC IMPORTED )
-ADD_LIBRARY(imported_BulletInverseDynamics STATIC IMPORTED )
-ADD_LIBRARY(imported_BulletInverseDynamicsUtils STATIC IMPORTED )
-ADD_LIBRARY(imported_BulletSoftBody STATIC IMPORTED )
-ADD_LIBRARY(imported_BulletWorldImporter STATIC IMPORTED )
-ADD_LIBRARY(imported_BulletXmlWorldImporter STATIC IMPORTED )
-ADD_LIBRARY(imported_ConvexDecomposition STATIC IMPORTED )
-ADD_LIBRARY(imported_GIMPACTUtils STATIC IMPORTED )
-ADD_LIBRARY(imported_HACD STATIC IMPORTED )
-ADD_LIBRARY(imported_LinearMath STATIC IMPORTED )
-ADD_LIBRARY(imported_flatbuffers STATIC IMPORTED)
-ADD_LIBRARY(imported_imgui STATIC IMPORTED )
-ADD_LIBRARY(imported_ImGuizmo STATIC IMPORTED )
-ADD_LIBRARY(imported_jsoncpp STATIC IMPORTED )
-ADD_LIBRARY(imported_nanovg STATIC IMPORTED )
-ADD_LIBRARY(imported_sqlite STATIC IMPORTED)
-ADD_LIBRARY(imported_stb STATIC IMPORTED )
-ADD_LIBRARY(imported_tinyxml2 STATIC IMPORTED )
-IF( NOT ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
-    ADD_LIBRARY(imported_fmod SHARED IMPORTED )
-ENDIF( NOT ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
-ADD_LIBRARY(imported_SDL2 SHARED IMPORTED )
-
-
-SET_TARGET_PROPERTIES(imported_assimp PROPERTIES IMPORTED_LOCATION ${imported_assimp_location})
-SET_TARGET_PROPERTIES(imported_BulletCollision PROPERTIES IMPORTED_LOCATION ${imported_BulletCollision_location})
-SET_TARGET_PROPERTIES(imported_BulletDynamics PROPERTIES IMPORTED_LOCATION ${imported_BulletDynamics_location})
-SET_TARGET_PROPERTIES(imported_BulletFileLoader PROPERTIES IMPORTED_LOCATION ${imported_BulletFileLoader_location})
-SET_TARGET_PROPERTIES(imported_BulletSoftBody PROPERTIES IMPORTED_LOCATION ${imported_BulletSoftBody_location})
-SET_TARGET_PROPERTIES(imported_BulletWorldImporter PROPERTIES IMPORTED_LOCATION ${imported_BulletWorldImporter_location})
-SET_TARGET_PROPERTIES(imported_BulletXmlWorldImporter PROPERTIES IMPORTED_LOCATION ${imported_BulletXmlWorldImporter_location})
-SET_TARGET_PROPERTIES(imported_ConvexDecomposition PROPERTIES IMPORTED_LOCATION ${imported_ConvexDecomposition_location})
-SET_TARGET_PROPERTIES(imported_GIMPACTUtils PROPERTIES IMPORTED_LOCATION ${imported_GIMPACTUtils_location})
-SET_TARGET_PROPERTIES(imported_HACD PROPERTIES IMPORTED_LOCATION ${imported_HACD_location})
-SET_TARGET_PROPERTIES(imported_LinearMath PROPERTIES IMPORTED_LOCATION ${imported_LinearMath_location})
-SET_TARGET_PROPERTIES(imported_flatbuffers PROPERTIES IMPORTED_LOCATION ${imported_flatbuffers_location})
-SET_TARGET_PROPERTIES(imported_imgui PROPERTIES IMPORTED_LOCATION ${imported_imgui_location})
-SET_TARGET_PROPERTIES(imported_ImGuizmo PROPERTIES IMPORTED_LOCATION ${imported_ImGuizmo_location})
-SET_TARGET_PROPERTIES(imported_jsoncpp PROPERTIES IMPORTED_LOCATION ${imported_jsoncpp_location})
-SET_TARGET_PROPERTIES(imported_nanovg PROPERTIES IMPORTED_LOCATION ${imported_nanovg_location})
-SET_TARGET_PROPERTIES(imported_sqlite PROPERTIES IMPORTED_LOCATION ${imported_sqlite_location})
-SET_TARGET_PROPERTIES(imported_stb PROPERTIES IMPORTED_LOCATION ${imported_stb_location})
-SET_TARGET_PROPERTIES(imported_tinyxml2 PROPERTIES IMPORTED_LOCATION ${imported_tinyxml2_location})
-IF( NOT ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
-    SET_TARGET_PROPERTIES(imported_fmod PROPERTIES IMPORTED_LOCATION ${imported_fmod_location})
-ENDIF( NOT ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
-SET_TARGET_PROPERTIES(imported_SDL2 PROPERTIES IMPORTED_LOCATION ${imported_SDL2_location})
-
-
-SET(EXTRA_PLATFORM_LIBS
-    ${EXTRA_PLATFORM_LIBS}
-    imported_assimp
-    imported_BulletCollision
-    imported_BulletDynamics
-    imported_BulletFileLoader
-    imported_BulletSoftBody
-    imported_BulletWorldImporter
-    imported_BulletXmlWorldImporter
-    imported_ConvexDecomposition
-    imported_GIMPACTUtils
-    imported_HACD
-    imported_LinearMath
-    imported_flatbuffers
-    imported_imgui
-    imported_ImGuizmo
-    imported_jsoncpp
-    imported_nanovg
-    imported_sqlite
-    imported_stb
-    imported_tinyxml2
-    imported_SDL2
-    )
-
-IF( NOT ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
-    SET(EXTRA_PLATFORM_LIBS
-        ${EXTRA_PLATFORM_LIBS}
-        imported_fmod
-        )
-ENDIF( NOT ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
-
-INCLUDE_DIRECTORIES("${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/assimp" )
-INCLUDE_DIRECTORIES("${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/bullet3" )
-INCLUDE_DIRECTORIES("${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/imgui" )
-INCLUDE_DIRECTORIES("${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/ImGuizmo" )
-INCLUDE_DIRECTORIES("${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/jsoncpp" )
-INCLUDE_DIRECTORIES("${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/nanovg" )
-INCLUDE_DIRECTORIES("${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/stb" )
-INCLUDE_DIRECTORIES("${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/tinyxml2" )
-IF( NOT ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
-    INCLUDE_DIRECTORIES("${NJLI_THIRDPARTY_DIRECTORY}/fmod/include" )
-ENDIF( NOT ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
-INCLUDE_DIRECTORIES("${NJLI_THIRDPARTY_DIRECTORY}/SDL2/include" )
 INCLUDE_DIRECTORIES( ${NJLIGameEngine_HDRS} )
 
+INCLUDE_DIRECTORIES("${NJLI_THIRDPARTY_DIRECTORY}/SDL2/include" )
+
+ADD_LIBRARY(imported_SDL2 SHARED IMPORTED )
+SET_TARGET_PROPERTIES(imported_SDL2 PROPERTIES IMPORTED_LOCATION ${imported_SDL2_location})
+LIST(APPEND EXTRA_PLATFORM_LIBS imported_SDL2)
+
+IF( NOT ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
+    INCLUDE_DIRECTORIES("${NJLI_THIRDPARTY_DIRECTORY}/fmod/include" )
+
+    ADD_LIBRARY(imported_fmod SHARED IMPORTED )
+    SET_TARGET_PROPERTIES(imported_fmod PROPERTIES IMPORTED_LOCATION ${imported_fmod_location})
+    LIST(APPEND EXTRA_PLATFORM_LIBS imported_fmod)
+ENDIF( NOT ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
+
+IF(NJLI_USE_ASSIMP_LIBRARY)
+    INCLUDE_DIRECTORIES("${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/assimp" )
+    
+    ADD_LIBRARY(imported_assimp STATIC IMPORTED )
+    SET_TARGET_PROPERTIES(imported_assimp PROPERTIES IMPORTED_LOCATION ${imported_assimp_location})
+    LIST(APPEND EXTRA_PLATFORM_LIBS imported_assimp)
+ENDIF(NJLI_USE_ASSIMP_LIBRARY)
+
+IF(NJLI_USE_BULLET_LIBRARY)
+    INCLUDE_DIRECTORIES("${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/bullet3" )
+
+    #ADD_LIBRARY(imported_Bullet2FileLoader STATIC IMPORTED )
+    #ADD_LIBRARY(imported_Bullet3Collision STATIC IMPORTED )
+    #ADD_LIBRARY(imported_Bullet3Common STATIC IMPORTED )
+    #ADD_LIBRARY(imported_Bullet3Dynamics STATIC IMPORTED )
+    #ADD_LIBRARY(imported_Bullet3Geometry STATIC IMPORTED )
+    #ADD_LIBRARY(imported_Bullet3OpenCL_clew STATIC IMPORTED )
+    ADD_LIBRARY(imported_BulletCollision STATIC IMPORTED )
+    ADD_LIBRARY(imported_BulletDynamics STATIC IMPORTED )
+    ADD_LIBRARY(imported_BulletFileLoader STATIC IMPORTED )
+    #ADD_LIBRARY(imported_BulletInverseDynamics STATIC IMPORTED )
+    #ADD_LIBRARY(imported_BulletInverseDynamicsUtils STATIC IMPORTED )
+    ADD_LIBRARY(imported_BulletSoftBody STATIC IMPORTED )
+    ADD_LIBRARY(imported_BulletWorldImporter STATIC IMPORTED )
+    ADD_LIBRARY(imported_BulletXmlWorldImporter STATIC IMPORTED )
+    ADD_LIBRARY(imported_ConvexDecomposition STATIC IMPORTED )
+    ADD_LIBRARY(imported_GIMPACTUtils STATIC IMPORTED )
+    ADD_LIBRARY(imported_HACD STATIC IMPORTED )
+    ADD_LIBRARY(imported_LinearMath STATIC IMPORTED )
+
+    SET_TARGET_PROPERTIES(imported_BulletCollision PROPERTIES IMPORTED_LOCATION ${imported_BulletCollision_location})
+    SET_TARGET_PROPERTIES(imported_BulletDynamics PROPERTIES IMPORTED_LOCATION ${imported_BulletDynamics_location})
+    SET_TARGET_PROPERTIES(imported_BulletFileLoader PROPERTIES IMPORTED_LOCATION ${imported_BulletFileLoader_location})
+    SET_TARGET_PROPERTIES(imported_BulletSoftBody PROPERTIES IMPORTED_LOCATION ${imported_BulletSoftBody_location})
+    SET_TARGET_PROPERTIES(imported_BulletWorldImporter PROPERTIES IMPORTED_LOCATION ${imported_BulletWorldImporter_location})
+    SET_TARGET_PROPERTIES(imported_BulletXmlWorldImporter PROPERTIES IMPORTED_LOCATION ${imported_BulletXmlWorldImporter_location})
+    SET_TARGET_PROPERTIES(imported_ConvexDecomposition PROPERTIES IMPORTED_LOCATION ${imported_ConvexDecomposition_location})
+    SET_TARGET_PROPERTIES(imported_GIMPACTUtils PROPERTIES IMPORTED_LOCATION ${imported_GIMPACTUtils_location})
+    SET_TARGET_PROPERTIES(imported_HACD PROPERTIES IMPORTED_LOCATION ${imported_HACD_location})
+    SET_TARGET_PROPERTIES(imported_LinearMath PROPERTIES IMPORTED_LOCATION ${imported_LinearMath_location})
+
+    LIST(APPEND EXTRA_PLATFORM_LIBS imported_BulletCollision)
+    LIST(APPEND EXTRA_PLATFORM_LIBS imported_BulletDynamics)
+    LIST(APPEND EXTRA_PLATFORM_LIBS imported_BulletFileLoader)
+    LIST(APPEND EXTRA_PLATFORM_LIBS imported_BulletSoftBody)
+    LIST(APPEND EXTRA_PLATFORM_LIBS imported_BulletWorldImporter)
+    LIST(APPEND EXTRA_PLATFORM_LIBS imported_BulletXmlWorldImporter)
+    LIST(APPEND EXTRA_PLATFORM_LIBS imported_ConvexDecomposition)
+    LIST(APPEND EXTRA_PLATFORM_LIBS imported_GIMPACTUtils)
+    LIST(APPEND EXTRA_PLATFORM_LIBS imported_HACD)
+    LIST(APPEND EXTRA_PLATFORM_LIBS imported_LinearMath)
+ENDIF(NJLI_USE_BULLET_LIBRARY)
+
+IF(NJLI_USE_CONCURRENTQUEUE_LIBRARY)
+    INCLUDE_DIRECTORIES("${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/concurrentqueue")
+ENDIF(NJLI_USE_CONCURRENTQUEUE_LIBRARY)
+
+IF(NJLI_USE_DEBUGDRAW_LIBRARY)
+    INCLUDE_DIRECTORIES("${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/debug-draw")
+ENDIF(NJLI_USE_DEBUGDRAW_LIBRARY)
+
+IF(NJLI_USE_FLATBUFFERS_LIBRARY)
+    INCLUDE_DIRECTORIES("${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/flatbuffers")
+
+    ADD_LIBRARY(imported_flatbuffers STATIC IMPORTED)
+    SET_TARGET_PROPERTIES(imported_flatbuffers PROPERTIES IMPORTED_LOCATION ${imported_flatbuffers_location})
+    LIST(APPEND EXTRA_PLATFORM_LIBS imported_flatbuffers)
+ENDIF(NJLI_USE_FLATBUFFERS_LIBRARY)
+
+IF(NJLI_USE_GLM_LIBRARY)
+    INCLUDE_DIRECTORIES("${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/glm" )
+ENDIF(NJLI_USE_GLM_LIBRARY)
+
+IF(NJLI_USE_IMGUI_LIBRARY)
+    INCLUDE_DIRECTORIES("${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/imgui" )
+
+    ADD_LIBRARY(imported_imgui STATIC IMPORTED )
+    SET_TARGET_PROPERTIES(imported_imgui PROPERTIES IMPORTED_LOCATION ${imported_imgui_location})
+    LIST(APPEND EXTRA_PLATFORM_LIBS imported_imgui)
+ENDIF(NJLI_USE_IMGUI_LIBRARY)
+
+IF(NJLI_USE_IMGUIZMO_LIBRARY)
+    INCLUDE_DIRECTORIES("${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/ImGuizmo" )
+
+    ADD_LIBRARY(imported_ImGuizmo STATIC IMPORTED )
+    SET_TARGET_PROPERTIES(imported_ImGuizmo PROPERTIES IMPORTED_LOCATION ${imported_ImGuizmo_location})
+    LIST(APPEND EXTRA_PLATFORM_LIBS imported_ImGuizmo)
+ENDIF(NJLI_USE_IMGUIZMO_LIBRARY)
+
+IF(NJLI_USE_JSONCPP_LIBRARY)
+    INCLUDE_DIRECTORIES("${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/jsoncpp" )
+
+    ADD_LIBRARY(imported_jsoncpp STATIC IMPORTED )
+    SET_TARGET_PROPERTIES(imported_jsoncpp PROPERTIES IMPORTED_LOCATION ${imported_jsoncpp_location})
+    LIST(APPEND EXTRA_PLATFORM_LIBS imported_jsoncpp)
+ENDIF(NJLI_USE_JSONCPP_LIBRARY)
+
+IF(NJLI_USE_NANOVG_LIBRARY)
+    INCLUDE_DIRECTORIES("${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/nanovg" )
+
+    ADD_LIBRARY(imported_nanovg STATIC IMPORTED )
+    SET_TARGET_PROPERTIES(imported_nanovg PROPERTIES IMPORTED_LOCATION ${imported_nanovg_location})
+    LIST(APPEND EXTRA_PLATFORM_LIBS imported_nanovg)
+ENDIF(NJLI_USE_NANOVG_LIBRARY)
+
+IF(NJLI_USE_OPENCV_LIBRARY)
+    INCLUDE_DIRECTORIES("${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/opencv" )
+
+    ADD_LIBRARY(imported_opencv_calib3d STATIC IMPORTED)
+    SET_TARGET_PROPERTIES(imported_opencv_calib3d PROPERTIES IMPORTED_LOCATION ${imported_opencv_calib3d_location})
+    LIST(APPEND EXTRA_PLATFORM_LIBS imported_opencv_calib3d)
+
+    ADD_LIBRARY(imported_opencv_core STATIC IMPORTED)
+    SET_TARGET_PROPERTIES(imported_opencv_core PROPERTIES IMPORTED_LOCATION ${imported_opencv_core_location})
+    LIST(APPEND EXTRA_PLATFORM_LIBS imported_opencv_core)
+
+    ADD_LIBRARY(imported_opencv_features2d STATIC IMPORTED)
+    SET_TARGET_PROPERTIES(imported_opencv_features2d PROPERTIES IMPORTED_LOCATION ${imported_opencv_features2d_location})
+    LIST(APPEND EXTRA_PLATFORM_LIBS imported_opencv_features2d)
+
+    ADD_LIBRARY(imported_opencv_flann STATIC IMPORTED)
+    SET_TARGET_PROPERTIES(imported_opencv_flann PROPERTIES IMPORTED_LOCATION ${imported_opencv_flann_location})
+    LIST(APPEND EXTRA_PLATFORM_LIBS imported_opencv_flann)
+
+    ADD_LIBRARY(imported_opencv_imgcodecs STATIC IMPORTED)
+    SET_TARGET_PROPERTIES(imported_opencv_imgcodecs PROPERTIES IMPORTED_LOCATION ${imported_opencv_imgcodecs_location})
+    LIST(APPEND EXTRA_PLATFORM_LIBS imported_opencv_imgcodecs)
+
+    ADD_LIBRARY(imported_opencv_imgproc STATIC IMPORTED)
+    SET_TARGET_PROPERTIES(imported_opencv_imgproc PROPERTIES IMPORTED_LOCATION ${imported_opencv_imgproc_location})
+    LIST(APPEND EXTRA_PLATFORM_LIBS imported_opencv_imgproc)
+
+    ADD_LIBRARY(imported_opencv_ml STATIC IMPORTED)
+    SET_TARGET_PROPERTIES(imported_opencv_ml PROPERTIES IMPORTED_LOCATION ${imported_opencv_ml_location})
+    LIST(APPEND EXTRA_PLATFORM_LIBS imported_opencv_ml)
+
+    ADD_LIBRARY(imported_opencv_objdetect STATIC IMPORTED)
+    SET_TARGET_PROPERTIES(imported_opencv_objdetect PROPERTIES IMPORTED_LOCATION ${imported_opencv_objdetect_location})
+    LIST(APPEND EXTRA_PLATFORM_LIBS imported_opencv_objdetect)
+
+    ADD_LIBRARY(imported_opencv_photo STATIC IMPORTED)
+    SET_TARGET_PROPERTIES(imported_opencv_photo PROPERTIES IMPORTED_LOCATION ${imported_opencv_photo_location})
+    LIST(APPEND EXTRA_PLATFORM_LIBS imported_opencv_photo)
+
+    ADD_LIBRARY(imported_opencv_shape STATIC IMPORTED)
+    SET_TARGET_PROPERTIES(imported_opencv_shape PROPERTIES IMPORTED_LOCATION ${imported_opencv_shape_location})
+    LIST(APPEND EXTRA_PLATFORM_LIBS imported_opencv_shape)
+
+    ADD_LIBRARY(imported_opencv_stitching STATIC IMPORTED)
+    SET_TARGET_PROPERTIES(imported_opencv_stitching PROPERTIES IMPORTED_LOCATION ${imported_opencv_stitching_location})
+    LIST(APPEND EXTRA_PLATFORM_LIBS imported_opencv_stitching)
+
+    ADD_LIBRARY(imported_opencv_video STATIC IMPORTED)
+    SET_TARGET_PROPERTIES(imported_opencv_video PROPERTIES IMPORTED_LOCATION ${imported_opencv_video_location})
+    LIST(APPEND EXTRA_PLATFORM_LIBS imported_opencv_video)
+
+    ADD_LIBRARY(imported_opencv_videostab STATIC IMPORTED)
+    SET_TARGET_PROPERTIES(imported_opencv_videostab PROPERTIES IMPORTED_LOCATION ${imported_opencv_videostab_location})
+    LIST(APPEND EXTRA_PLATFORM_LIBS imported_opencv_videostab)
+ENDIF(NJLI_USE_OPENCV_LIBRARY)
+
+IF(NJLI_USE_SQLITE_LIBRARY)
+    INCLUDE_DIRECTORIES("${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/sqlite")
+
+    ADD_LIBRARY(imported_sqlite STATIC IMPORTED)
+    SET_TARGET_PROPERTIES(imported_sqlite PROPERTIES IMPORTED_LOCATION ${imported_sqlite_location})
+    LIST(APPEND EXTRA_PLATFORM_LIBS imported_sqlite)
+ENDIF(NJLI_USE_SQLITE_LIBRARY)
+
+IF(NJLI_USE_STB_LIBRARY)
+    INCLUDE_DIRECTORIES("${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/stb" )
+
+    ADD_LIBRARY(imported_stb STATIC IMPORTED )
+    SET_TARGET_PROPERTIES(imported_stb PROPERTIES IMPORTED_LOCATION ${imported_stb_location})
+    LIST(APPEND EXTRA_PLATFORM_LIBS imported_stb)
+ENDIF(NJLI_USE_STB_LIBRARY)
+
+IF(NJLI_USE_TINYXML2_LIBRARY)
+    INCLUDE_DIRECTORIES("${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/tinyxml2" )
+
+    ADD_LIBRARY(imported_tinyxml2 STATIC IMPORTED )
+    SET_TARGET_PROPERTIES(imported_tinyxml2 PROPERTIES IMPORTED_LOCATION ${imported_tinyxml2_location})
+    LIST(APPEND EXTRA_PLATFORM_LIBS imported_tinyxml2)
+ENDIF(NJLI_USE_TINYXML2_LIBRARY)
 
 LIST(REMOVE_ITEM NJLIGameEngine_SRCS 
     ${NJLI_SOURCE_DIRECTORY}/njli/platform/main.cpp
@@ -2873,48 +3124,15 @@ SET(Binary_FILES
 #INSTALL(PROGRAMS ${Binary_FILES} DESTINATION bin/thirdparty/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE} )
 INSTALL(FILES ${NJLI_SOURCE_DIRECTORY}/njli/platform/Game.h DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
-#IF(NJLI_SWIG_AS_TARGET)
-    ADD_CUSTOM_TARGET( SWIGLua
-        COMMAND 
-            ./swig_lua.sh ${CMAKE_CURRENT_BINARY_DIR}
-        WORKING_DIRECTORY
-            ${CMAKE_SOURCE_DIR}
-        COMMENT
-            "Generating SWIG module with swig"
-        VERBATIM
-        )
-#ELSE()
-#    ADD_CUSTOM_COMMAND(
-#        OUTPUT
-#            ${NJLI_SOURCE_DIRECTORY}/njli/generated/swig/lua/lnjli.cpp
-#            ${NJLI_SOURCE_DIRECTORY}/njli/generated/swig/lua/lbullet.cpp
-#            ${NJLI_SOURCE_DIRECTORY}/njli/generated/swig/lua/swig_runtime.h
-#            ${CMAKE_CURRENT_BINARY_DIR}/lnjli.xml
-#            ${CMAKE_CURRENT_BINARY_DIR}/lbullet.xml
-#        DEPENDS
-#            ${NJLIGameEngine_SRCS}
-#            ${NJLIGameEngine_ITFS} 
-#            ${NJLIGameEngine_THIRDPARTY_ITFS}
-#        COMMAND
-#            ./swig_lua.sh ${CMAKE_CURRENT_BINARY_DIR}
-#        WORKING_DIRECTORY
-#            ${CMAKE_SOURCE_DIR}
-#        COMMENT
-#            "Generating SWIG module with swig"
-#        VERBATIM
-#        )
-#    ADD_CUSTOM_TARGET(SWIGLua ALL
-#        DEPENDS
-#            ${NJLIGameEngine_SRCS}
-#            ${njli_generated}
-#            ${njli_generated_swig}
-#            ${njli_generated_swig_lua}
-#            ${NJLIGameEngine_ITFS}
-#            ${NJLIGameEngine_THIRDPARTY_ITFS}
-#        COMMENT "Generating SWIG module with swig" VERBATIM
-#        SOURCES ${NJLIGameEngine_ITFS} ${NJLIGameEngine_THIRDPARTY_ITFS}
-#        )
-#ENDIF()
+ADD_CUSTOM_TARGET( SWIGLua
+    COMMAND 
+        ./swig_lua.sh ${CMAKE_CURRENT_BINARY_DIR}
+    WORKING_DIRECTORY
+        ${CMAKE_SOURCE_DIR}
+    COMMENT
+        "Generating SWIG module with swig"
+    VERBATIM
+    )
 
 #SET_SOURCE_FILES_PROPERTIES( ${NJLI_SOURCE_DIRECTORY}/njli/generated/swig/lua/lnjli.cpp PROPERTIES GENERATED TRUE )
 #SET_SOURCE_FILES_PROPERTIES( ${NJLI_SOURCE_DIRECTORY}/njli/generated/swig/lua/lbullet.cpp PROPERTIES GENERATED TRUE )
