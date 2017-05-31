@@ -21,7 +21,7 @@
 #include "Camera.h"
 #include "WorldClock.h"
 #include "WorldDebugDrawer.h"
-#include "WorldHUD.h"
+//#include "WorldHUD.h"
 #include "WorldInput.h"
 #include "WorldResourceLoader.h"
 #include "WorldSocket.h"
@@ -32,6 +32,7 @@
 //#include "WorldFacebook.h"
 
 namespace njli {
+    class WorldHUD;
 /// <#Description#>
 class World : public AbstractObject {
 public:
@@ -139,6 +140,7 @@ public:
          */
     //const WorldFacebook *getWorldFacebook() const;
 
+#if defined(USE_NANOVG_LIBRARY)
     /**
          *  <#Description#>
          *
@@ -151,6 +153,7 @@ public:
          *  @return <#return value description#>
          */
     const WorldHUD* getWorldHUD() const;
+#endif
 
     /**
          *  <#Description#>

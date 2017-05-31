@@ -30,6 +30,9 @@
 #include "unistd.h"
 #include <signal.h>
 #include "SDL_log.h"
+#ifdef USE_NANOVG_LIBRARY
+#include "WorldHUD.h"
+#endif
 
 namespace njli
 {
@@ -78,7 +81,9 @@ namespace njli
     m_ViewPortDimensions(new btVector2()),
     m_Scene(NULL),
     m_WorldSocket(new WorldSocket),
+#if defined(USE_NANOVG_LIBRARY)
     m_WorldHUD(new WorldHUD),
+#endif
     m_WorldInput(new WorldInput),
     m_WorldSound(new WorldSound),
     m_WorldDebugDrawer(new WorldDebugDrawer),
@@ -98,7 +103,9 @@ namespace njli
     {
         addChild(m_WorldSound);
         addChild(m_WorldInput);
+#ifdef USE_NANOVG_LIBRARY
         addChild(m_WorldHUD);
+#endif
         addChild(m_WorldSocket);
         addChild(m_stateMachine);
         addChild(m_WorldLuaVirtualMachine);
@@ -120,7 +127,9 @@ namespace njli
         delete m_WorldDebugDrawer;m_WorldDebugDrawer=NULL;
         delete m_WorldSound;m_WorldSound=NULL;
         delete m_WorldInput;m_WorldInput=NULL;
+#if defined(USE_NANOVG_LIBRARY)
         delete m_WorldHUD;m_WorldHUD=NULL;
+#endif
         delete m_WorldSocket;m_WorldSocket=NULL;
         delete m_ViewPortDimensions;m_ViewPortDimensions=NULL;
         delete m_stateMachine;m_stateMachine=NULL;
@@ -267,6 +276,7 @@ namespace njli
         return NULL;
     }*/
     
+#if defined(USE_NANOVG_LIBRARY)
     WorldHUD *World::getWorldHUD()
     {
         s32 idx = getChildIndex(m_WorldHUD);
@@ -282,6 +292,7 @@ namespace njli
             return dynamic_cast<const WorldHUD*>(getChild(idx));
         return NULL;
     }
+#endif
     
     WorldInput *World::getWorldInput()
     {
@@ -696,15 +707,16 @@ namespace njli
     
     void World::render()
     {
-        
+#if defined(USE_NANOVG_LIBRARY)
         getWorldHUD()->renderFBOs();
-        
+#endif
         renderGL();
         
         if(getScene())
             getScene()->render();
-        
+#if defined(USE_NANOVG_LIBRARY)
         getWorldHUD()->render();
+#endif
         
         char buffer[256];
         sprintf(buffer, "%s", "__NJLIRender");

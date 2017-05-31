@@ -1,6 +1,6 @@
 #!/bin/sh
 
-./swig_bullet_lua.sh
-./swig_lua.sh
-./swig_njli_lua.sh
+./swig_lua.sh $1
+./swig_bullet_lua.sh $1
+./swig_njli_lua.sh $1
 

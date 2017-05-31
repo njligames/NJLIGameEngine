@@ -10,7 +10,9 @@
 #include "GLPlatform.h"
 #include "Camera.h"
 #include "World.h"
+#ifdef USE_NANOVG_LIBRARY
 #include "WorldHUD.h"
+#endif
 
 //http://blog.angusforbes.com/openglglsl-render-to-texture/
 
@@ -28,13 +30,17 @@ namespace njli
     m_stencilBufferB(-1),
     m_isHidden(false)
     {
+#if defined(USE_NANOVG_LIBRARY)
         njli::World::getInstance()->getWorldHUD()->addFBO(this);
+#endif
         
     }
     
     AbstractFrameBufferObject::~AbstractFrameBufferObject()
     {
+#if defined(USE_NANOVG_LIBRARY)
         njli::World::getInstance()->getWorldHUD()->removeFBO(this);
+#endif
         unLoadGPU();
     }
     

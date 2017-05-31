@@ -12,7 +12,9 @@
 #include "AbstractObject.h"
 #include "File.h"
 #include "Util.h"
+#ifdef USE_NANOVG_LIBRARY
 #include "nanovg.h"
+#endif
 //#include "nanovg_gl_utils.h"
 #include "AbstractFrameBufferObject.h"
 #include "JLIFactoryTypes.h"

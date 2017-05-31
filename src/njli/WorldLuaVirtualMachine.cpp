@@ -179,7 +179,9 @@ extern "C" {
 #include "WorldClock.h"
 #include "WorldDebugDrawer.h"
 #include "WorldFactory.h"
+#ifdef USE_NANOVG_LIBRARY
 #include "WorldHUD.h"
+#endif
 #include "WorldLuaVirtualMachine.h"
 #include "WorldResourceLoader.h"
 //#include "WorldSQLite.h"

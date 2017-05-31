@@ -11,20 +11,14 @@
 //%njli_array_functions(njli::AbstractTransform, AbstractTransformArray);
 %njli_array_functions(njli::Action, ActionArray);
 %njli_array_functions(njli::ActionBuilder, ActionBuilderArray);
-%njli_array_functions(njli::ButtonHUD, ButtonHUDArray);
-%njli_array_functions(njli::ButtonHUDBuilder, ButtonHUDBuilderArray);
 %njli_array_functions(njli::Camera, CameraArray);
 %njli_array_functions(njli::CameraBuilder, CameraBuilderArray);
-%njli_array_functions(njli::CheckboxHUD, CheckboxHUDArray);
-%njli_array_functions(njli::CheckboxHUDBuilder, CheckboxHUDBuilderArray);
 %njli_array_functions(njli::Clock, ClockArray);
 %njli_array_functions(njli::ClockBuilder, ClockBuilderArray);
 %njli_array_functions(njli::CollisionResponse, CollisionResponseArray);
 %njli_array_functions(njli::CollisionResponseBuilder, CollisionResponseBuilderArray);
 %njli_array_functions(njli::Cube, CubeArray);
 %njli_array_functions(njli::CubeBuilder, CubeBuilderArray);
-%njli_array_functions(njli::DropdownHUD, DropdownHUDArray);
-%njli_array_functions(njli::DropdownHUDBuilder, DropdownHUDBuilderArray);
 %njli_array_functions(njli::Font, FontArray);
 %njli_array_functions(njli::FontBuilder, FontBuilderArray);
 //%njli_array_functions(njli::GameClock, GameClockArray);
@@ -37,8 +31,6 @@
 //%njli_array_functions(njli::JLITransform, JLITransformArray);
 %njli_array_functions(njli::JsonJLI, JsonJLIArray);
 %njli_array_functions(njli::JsonJLIBuilder, JsonJLIBuilderArray);
-%njli_array_functions(njli::LabelHUD, LabelHUDArray);
-%njli_array_functions(njli::LabelHUDBuilder, LabelHUDBuilderArray);
 %njli_array_functions(njli::LevelOfDetail, LevelOfDetailArray);
 %njli_array_functions(njli::LevelOfDetailBuilder, LevelOfDetailBuilderArray);
 %njli_array_functions(njli::Light, LightArray);
@@ -127,8 +119,6 @@
 %njli_array_functions(njli::ShaderProgramBuilder, ShaderProgramBuilderArray);
 %njli_array_functions(njli::Skinner, SkinnerArray);
 %njli_array_functions(njli::SkinnerBuilder, SkinnerBuilderArray);
-%njli_array_functions(njli::SliderHUD, SliderHUDArray);
-%njli_array_functions(njli::SliderHUDBuilder, SliderHUDBuilderArray);
 %njli_array_functions(njli::SoundBuilder, SoundBuilderArray);
 %njli_array_functions(njli::Sprite2D, Sprite2DArray);
 %njli_array_functions(njli::Sprite2DBuilder, Sprite2DBuilderArray);
@@ -196,8 +186,6 @@
 
 %njli_array_functions(njli::StopWatch, StopWatchArray);
 %njli_array_functions(njli::StopWatchBuilder, StopWatchBuilderArray);
-%njli_array_functions(njli::TextboxHUD, TextboxHUDArray);
-%njli_array_functions(njli::TextboxHUDBuilder, TextboxHUDBuilderArray);
 //%njli_array_functions(njli::Thread, ThreadArray);
 //%njli_array_functions(njli::ThreadBuilder, ThreadBuilderArray);
 %njli_array_functions(njli::Timer, TimerArray);
@@ -206,7 +194,21 @@
 //%njli_array_functions(njli::WorldClock, WorldClockArray);
 //%njli_array_functions(njli::WorldDebugDrawer, WorldDebugDrawerArray);
 //%njli_array_functions(njli::WorldFactory, WorldFactoryArray);
-//%njli_array_functions(njli::WorldHUD, WorldHUDArray);
+#ifdef USE_NANOVG_LIBRARY
+    %njli_array_functions(njli::ButtonHUD, ButtonHUDArray);
+    %njli_array_functions(njli::ButtonHUDBuilder, ButtonHUDBuilderArray);
+    %njli_array_functions(njli::CheckboxHUD, CheckboxHUDArray);
+    %njli_array_functions(njli::CheckboxHUDBuilder, CheckboxHUDBuilderArray);
+    %njli_array_functions(njli::DropdownHUD, DropdownHUDArray);
+    %njli_array_functions(njli::DropdownHUDBuilder, DropdownHUDBuilderArray);
+    %njli_array_functions(njli::LabelHUD, LabelHUDArray);
+    %njli_array_functions(njli::LabelHUDBuilder, LabelHUDBuilderArray);
+    %njli_array_functions(njli::SliderHUD, SliderHUDArray);
+    %njli_array_functions(njli::SliderHUDBuilder, SliderHUDBuilderArray);
+    %njli_array_functions(njli::TextboxHUD, TextboxHUDArray);
+    %njli_array_functions(njli::TextboxHUDBuilder, TextboxHUDBuilderArray);
+    //%njli_array_functions(njli::WorldHUD, WorldHUDArray);
+#endif
 //%njli_array_functions(njli::WorldLuaVirtualMachine, WorldLuaVirtualMachineArray);
 //%njli_array_functions(njli::WorldResourceLoader, WorldResourceLoaderArray);
 //%njli_array_functions(njli::WorldSQLite, WorldSQLiteArray);

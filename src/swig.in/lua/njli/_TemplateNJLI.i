@@ -4,5 +4,7 @@
 %template(SceneStateMachine_Lua) njli::AbstractStateMachine< njli::Scene >;
 %template(WorldState_Lua)  njli::AbstractState< void >;
 %template(WorldStateMachine_Lua) njli::AbstractStateMachine< void >;
+#ifdef USE_NANOVG_LIBRARY
 %template(btAlignedObjectArray_JLIGlyphPosition)  btAlignedObjectArray<njli::JLIGlyphPosition>;
 %template(btAlignedObjectArray_JLITextRow)  btAlignedObjectArray<njli::JLITextRow>;
+#endif

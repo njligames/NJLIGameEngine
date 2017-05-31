@@ -492,6 +492,7 @@ namespace njli
                 obj = (AbstractFactoryObject**)_obj;
             }
                 break;
+#if defined(USE_NANOVG_LIBRARY)
             case JLI_OBJECT_TYPE_ButtonHUD:
             {
                 ButtonHUD **_obj = new ButtonHUD*[size];
@@ -512,6 +513,7 @@ namespace njli
                 obj = (AbstractFactoryObject**)_obj;
             }
                 break;
+#endif
             case JLI_OBJECT_TYPE_Camera:
             {
                 Camera **_obj = new Camera*[size];
@@ -532,6 +534,7 @@ namespace njli
                 obj = (AbstractFactoryObject**)_obj;
             }
                 break;
+#if defined(USE_NANOVG_LIBRARY)
             case JLI_OBJECT_TYPE_CheckboxHUD:
             {
                 CheckboxHUD **_obj = new CheckboxHUD*[size];
@@ -552,6 +555,7 @@ namespace njli
                 obj = (AbstractFactoryObject**)_obj;
             }
                 break;
+#endif
             case JLI_OBJECT_TYPE_Clock:
             {
                 Clock **_obj = new Clock*[size];
@@ -612,6 +616,7 @@ namespace njli
                 obj = (AbstractFactoryObject**)_obj;
             }
                 break;
+#if defined(USE_NANOVG_LIBRARY)
             case JLI_OBJECT_TYPE_DropdownHUD:
             {
                 DropdownHUD **_obj = new DropdownHUD*[size];
@@ -632,6 +637,7 @@ namespace njli
                 obj = (AbstractFactoryObject**)_obj;
             }
                 break;
+#endif
             case JLI_OBJECT_TYPE_Font:
             {
                 Font **_obj = new Font*[size];
@@ -692,6 +698,7 @@ namespace njli
                 obj = (AbstractFactoryObject**)_obj;
             }
                 break;
+#if defined(USE_NANOVG_LIBRARY)
             case JLI_OBJECT_TYPE_LabelHUD:
             {
                 LabelHUD **_obj = new LabelHUD*[size];
@@ -712,6 +719,7 @@ namespace njli
                 obj = (AbstractFactoryObject**)_obj;
             }
                 break;
+#endif
             case JLI_OBJECT_TYPE_Light:
             {
                 Light **_obj = new Light*[size];
@@ -1574,6 +1582,7 @@ namespace njli
                 obj = (AbstractFactoryObject**)_obj;
             }
                 break;
+#if defined(USE_NANOVG_LIBRARY)
             case JLI_OBJECT_TYPE_SliderHUD:
             {
                 SliderHUD **_obj = new SliderHUD*[size];
@@ -1594,6 +1603,7 @@ namespace njli
                 obj = (AbstractFactoryObject**)_obj;
             }
                 break;
+#endif
             case JLI_OBJECT_TYPE_Sound:
             {
                 Sound **_obj = new Sound*[size];
@@ -2074,6 +2084,7 @@ namespace njli
                 obj = (AbstractFactoryObject**)_obj;
             }
                 break;
+#if defined(USE_NANOVG_LIBRARY)
             case JLI_OBJECT_TYPE_TextboxHUD:
             {
                 TextboxHUD **_obj = new TextboxHUD*[size];
@@ -2094,6 +2105,7 @@ namespace njli
                 obj = (AbstractFactoryObject**)_obj;
             }
                 break;
+#endif
             case JLI_OBJECT_TYPE_Timer:
             {
                 Timer **_obj = new Timer*[size];
@@ -2214,24 +2226,28 @@ namespace njli
             case JLI_OBJECT_TYPE_ActionBuilder:
                     obj = new ActionBuilder();
                 break;
+#if defined(USE_NANOVG_LIBRARY)
             case JLI_OBJECT_TYPE_ButtonHUD:
                 obj = new ButtonHUD();
                 break;
             case JLI_OBJECT_TYPE_ButtonHUDBuilder:
                 obj = new ButtonHUDBuilder();
                 break;
+#endif
             case JLI_OBJECT_TYPE_Camera:
                     obj = new Camera();
                 break;
             case JLI_OBJECT_TYPE_CameraBuilder:
                     obj = new CameraBuilder();
                 break;
+#if defined(USE_NANOVG_LIBRARY)
             case JLI_OBJECT_TYPE_CheckboxHUD:
                 obj = new CheckboxHUD();
                 break;
             case JLI_OBJECT_TYPE_CheckboxHUDBuilder:
                 obj = new CheckboxHUDBuilder();
                 break;
+#endif
             case JLI_OBJECT_TYPE_Clock:
                     obj = new Clock();
                 break;
@@ -2250,12 +2266,14 @@ namespace njli
             case JLI_OBJECT_TYPE_CubeBuilder:
                     obj = new CubeBuilder();
                 break;
+#if defined(USE_NANOVG_LIBRARY)
             case JLI_OBJECT_TYPE_DropdownHUD:
                 obj = new DropdownHUD();
                 break;
             case JLI_OBJECT_TYPE_DropdownHUDBuilder:
                 obj = new DropdownHUDBuilder();
                 break;
+#endif
             case JLI_OBJECT_TYPE_Font:
                     obj = new Font();
                 break;
@@ -2274,12 +2292,14 @@ namespace njli
             case JLI_OBJECT_TYPE_JsonJLIBuilder:
                     obj = new JsonJLIBuilder();
                 break;
+#if defined(USE_NANOVG_LIBRARY)
             case JLI_OBJECT_TYPE_LabelHUD:
                 obj = new LabelHUD();
                 break;
             case JLI_OBJECT_TYPE_LabelHUDBuilder:
                 obj = new LabelHUDBuilder();
                 break;
+#endif
             case JLI_OBJECT_TYPE_Light:
                     obj = new Light();
                 break;
@@ -2545,12 +2565,14 @@ namespace njli
                 case JLI_OBJECT_TYPE_SkinnerBuilder:
                     obj = new SkinnerBuilder();
                 break;
+#if defined(USE_NANOVG_LIBRARY)
             case JLI_OBJECT_TYPE_SliderHUD:
                 obj = new SliderHUD();
                 break;
             case JLI_OBJECT_TYPE_SliderHUDBuilder:
                 obj = new SliderHUDBuilder();
                 break;
+#endif
             case JLI_OBJECT_TYPE_Sound:
                     obj = new Sound();
                 break;
@@ -2695,12 +2717,14 @@ namespace njli
             case JLI_OBJECT_TYPE_StopWatchBuilder:
                     obj = new StopWatchBuilder();
                 break;
+#if defined(USE_NANOVG_LIBRARY)
             case JLI_OBJECT_TYPE_TextboxHUD:
                 obj = new TextboxHUD();
                 break;
             case JLI_OBJECT_TYPE_TextboxHUDBuilder:
                 obj = new TextboxHUDBuilder();
                 break;
+#endif
             case JLI_OBJECT_TYPE_Timer:
                     obj = new Timer();
                 break;
@@ -2747,12 +2771,14 @@ namespace njli
             case JLI_OBJECT_TYPE_Action:
                 obj = new Action(builder);
                 break;
+#if defined(USE_NANOVG_LIBRARY)
             case JLI_OBJECT_TYPE_ButtonHUD:
                 obj = new ButtonHUD(builder);
                 break;
             case JLI_OBJECT_TYPE_CheckboxHUD:
                 obj = new CheckboxHUD(builder);
                 break;
+#endif
             case JLI_OBJECT_TYPE_Camera:
                 obj = new Camera(builder);
                 break;
@@ -2765,9 +2791,11 @@ namespace njli
             case JLI_OBJECT_TYPE_Cube:
                 obj = new Cube(builder);
                 break;
+#if defined(USE_NANOVG_LIBRARY)
             case JLI_OBJECT_TYPE_DropdownHUD:
                 obj = new DropdownHUD(builder);
                 break;
+#endif
             case JLI_OBJECT_TYPE_Font:
                 obj = new Font(builder);
                 break;
@@ -2777,9 +2805,11 @@ namespace njli
             case JLI_OBJECT_TYPE_JsonJLI:
                 obj = new JsonJLI(builder);
                 break;
+#if defined(USE_NANOVG_LIBRARY)
             case JLI_OBJECT_TYPE_LabelHUD:
                 obj = new LabelHUD(builder);
                 break;
+#endif
             case JLI_OBJECT_TYPE_Light:
                 obj = new Light(builder);
                 break;
@@ -2918,9 +2948,11 @@ namespace njli
             case JLI_OBJECT_TYPE_Skinner:
                 obj = new Skinner(builder);
                 break;
+#if defined(USE_NANOVG_LIBRARY)
             case JLI_OBJECT_TYPE_SliderHUD:
                 obj = new SliderHUD(builder);
                 break;
+#endif
             case JLI_OBJECT_TYPE_Sound:
                 obj = new Sound(builder);
                 break;
@@ -3053,9 +3085,11 @@ namespace njli
             case JLI_OBJECT_TYPE_StopWatch:
                 obj = new StopWatch(builder);
                 break;
+#if defined(USE_NANOVG_LIBRARY)
             case JLI_OBJECT_TYPE_TextboxHUD:
                 obj = new TextboxHUD(builder);
                 break;
+#endif
             case JLI_OBJECT_TYPE_Timer:
                 obj = new Timer(builder);
                 break;
@@ -3087,24 +3121,28 @@ namespace njli
             case JLI_OBJECT_TYPE_ActionBuilder:
                 obj = new ActionBuilder(*dynamic_cast<const ActionBuilder*>(&object));
                 break;
+#if defined(USE_NANOVG_LIBRARY)
             case JLI_OBJECT_TYPE_ButtonHUD:
                 obj = new ButtonHUD(*dynamic_cast<const ButtonHUD*>(&object));
                 break;
             case JLI_OBJECT_TYPE_ButtonHUDBuilder:
                 obj = new ButtonHUDBuilder(*dynamic_cast<const ButtonHUDBuilder*>(&object));
                 break;
+#endif
             case JLI_OBJECT_TYPE_Camera:
                 obj = new Camera(*dynamic_cast<const Camera*>(&object));
                 break;
             case JLI_OBJECT_TYPE_CameraBuilder:
                 obj = new CameraBuilder(*dynamic_cast<const CameraBuilder*>(&object));
                 break;
+#if defined(USE_NANOVG_LIBRARY)
             case JLI_OBJECT_TYPE_CheckboxHUD:
                 obj = new CheckboxHUD(*dynamic_cast<const CheckboxHUD*>(&object));
                 break;
             case JLI_OBJECT_TYPE_CheckboxHUDBuilder:
                 obj = new CheckboxHUDBuilder(*dynamic_cast<const CheckboxHUDBuilder*>(&object));
                 break;
+#endif
             case JLI_OBJECT_TYPE_Clock:
                 obj = new Clock(*dynamic_cast<const Clock*>(&object));
                 break;
@@ -3123,12 +3161,14 @@ namespace njli
             case JLI_OBJECT_TYPE_CubeBuilder:
                 obj = new CubeBuilder(*dynamic_cast<const CubeBuilder*>(&object));
                 break;
+#if defined(USE_NANOVG_LIBRARY)
             case JLI_OBJECT_TYPE_DropdownHUD:
                 obj = new DropdownHUD(*dynamic_cast<const DropdownHUD*>(&object));
                 break;
             case JLI_OBJECT_TYPE_DropdownHUDBuilder:
                 obj = new DropdownHUDBuilder(*dynamic_cast<const DropdownHUDBuilder*>(&object));
                 break;
+#endif
             case JLI_OBJECT_TYPE_Font:
                 obj = new Font(*dynamic_cast<const Font*>(&object));
                 break;
@@ -3147,12 +3187,14 @@ namespace njli
             case JLI_OBJECT_TYPE_JsonJLIBuilder:
                 obj = new JsonJLIBuilder(*dynamic_cast<const JsonJLIBuilder*>(&object));
                 break;
+#if defined(USE_NANOVG_LIBRARY)
             case JLI_OBJECT_TYPE_LabelHUD:
                 obj = new LabelHUD(*dynamic_cast<const LabelHUD*>(&object));
                 break;
             case JLI_OBJECT_TYPE_LabelHUDBuilder:
                 obj = new LabelHUDBuilder(*dynamic_cast<const LabelHUDBuilder*>(&object));
                 break;
+#endif
             case JLI_OBJECT_TYPE_Light:
                 obj = new Light(*dynamic_cast<const Light*>(&object));
                 break;
@@ -3422,12 +3464,14 @@ namespace njli
             case JLI_OBJECT_TYPE_SkinnerBuilder:
                 obj = new SkinnerBuilder(*dynamic_cast<const SkinnerBuilder*>(&object));
                 break;
+#if defined(USE_NANOVG_LIBRARY)
             case JLI_OBJECT_TYPE_SliderHUD:
                 obj = new SliderHUD(*dynamic_cast<const SliderHUD*>(&object));
                 break;
             case JLI_OBJECT_TYPE_SliderHUDBuilder:
                 obj = new SliderHUDBuilder(*dynamic_cast<const SliderHUDBuilder*>(&object));
                 break;
+#endif
             case JLI_OBJECT_TYPE_Sound:
                 obj = new Sound(*dynamic_cast<const Sound*>(&object));
                 break;
@@ -3572,12 +3616,14 @@ namespace njli
             case JLI_OBJECT_TYPE_StopWatchBuilder:
                 obj = new StopWatchBuilder(*dynamic_cast<const StopWatchBuilder*>(&object));
                 break;
+#if defined(USE_NANOVG_LIBRARY)
             case JLI_OBJECT_TYPE_TextboxHUD:
                 obj = new TextboxHUD(*dynamic_cast<const TextboxHUD*>(&object));
                 break;
             case JLI_OBJECT_TYPE_TextboxHUDBuilder:
                 obj = new TextboxHUDBuilder(*dynamic_cast<const TextboxHUDBuilder*>(&object));
                 break;
+#endif
             case JLI_OBJECT_TYPE_Timer:
                 obj = new Timer(*dynamic_cast<const Timer*>(&object));
                 break;

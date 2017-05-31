@@ -3,13 +3,18 @@
 PWD=`pwd`
 
 MY_NJLI_INTERFACE_DIRECTORY=${PWD}/src/swig.in/lua
-MY_BULLET_INTERFACE_DIRECTORY=${PWD}/../External/thirdparty/swig.in/lua/bullet3
 
 MY_NJLI_SOURCE_DIRECTORY=${PWD}/src/njli
 MY_NJLI_BULLET_SOURCE_DIRECTORY=${PWD}/src/bullet
 MY_BULLET_SOURCE_DIRECTORY=${PWD}/../External/thirdparty/bullet3/src
 
 MY_XML_OUTPUT_DIRECTORY=$1
+shift
+MY_DEFINES=""
+for var in "$@"
+do
+    MY_DEFINES="${MY_DEFINES} -D$var=1"
+done
 
 if [ -z "${MY_XML_OUTPUT_DIRECTORY}" ]
 then
@@ -17,8 +22,11 @@ then
 fi
 
 
+
+/usr/local/bin/swig -lua -external-runtime ${PWD}/src/njli/generated/swig/lua/swig_runtime.h
+
 #njli
-/usr/local/bin/swig -v -w201 -w312 -c++ -lua -includeall -ignoremissing -features directors,autodoc=1 \
+/usr/local/bin/swig ${MY_DEFINES} -v -w201 -w312 -c++ -lua -includeall -ignoremissing -features directors,autodoc=1 \
     -I${MY_BULLET_SOURCE_DIRECTORY} \
     -I${MY_BULLET_SOURCE_DIRECTORY}/BulletCollision/BroadphaseCollision \
     -I${MY_BULLET_SOURCE_DIRECTORY}/BulletCollision/CollisionDispatch \
@@ -82,9 +90,16 @@ fi
     -I${MY_NJLI_INTERFACE_DIRECTORY}/njli/steering \
     -I${MY_NJLI_INTERFACE_DIRECTORY}/njli/steering/behavior \
     \
-    -I${MY_BULLET_INTERFACE_DIRECTORY} \
-    \
     -xmlout ${MY_XML_OUTPUT_DIRECTORY}/lnjli.xml \
     -o ${MY_NJLI_SOURCE_DIRECTORY}/generated/swig/lua/lnjli.cpp \
     ${MY_NJLI_INTERFACE_DIRECTORY}/njli/_LuaEntry.i
 
+if [[ ${MY_DEFINES} == *"USE_BULLET_LIBRARY"* ]]; then
+    #bullet.
+    /usr/local/bin/swig -v -w201 -w312 -c++ -lua -includeall -ignoremissing -features directors,autodoc=1 -DBT_INFINITY \
+        -I${PWD}/../External/thirdparty/bullet3/src \
+        -I${PWD}/src/bullet \
+        -xmlout ${MY_XML_OUTPUT_DIRECTORY}/lbullet.xml \
+        -o ${PWD}/src/njli/generated/swig/lua/lbullet.cpp \
+        ${PWD}/../External/thirdparty/swig.in/lua/bullet3/_LuaEntry.i
+fi
