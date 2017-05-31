@@ -30,8 +30,8 @@ OPTION(NJLI_USE_JSONCPP_LIBRARY "Use jsoncp library"                   ON)
 OPTION(NJLI_USE_NANOVG_LIBRARY "Use nanovg library"                    ON)
 OPTION(NJLI_USE_OPENCV_LIBRARY "Use opencv library"                    OFF)
 OPTION(NJLI_USE_SQLITE_LIBRARY "Use sqlite library"                    OFF)
-OPTION(NJLI_USE_STB_LIBRARY "Use stb library"                          ON)
-OPTION(NJLI_USE_TINYXML2_LIBRARY "Use tinyxml2 library"                ON)
+OPTION(NJLI_USE_STB_LIBRARY "Use stb library"                          OFF)
+#OPTION(NJLI_USE_TINYXML2_LIBRARY "Use tinyxml2 library"                OFF)
 
 IF(NJLI_USE_ASSIMP_LIBRARY)
     ADD_DEFINITIONS(-DUSE_ASSIMP_LIBRARY=1)
@@ -85,9 +85,9 @@ IF(NJLI_USE_STB_LIBRARY)
     ADD_DEFINITIONS(-DUSE_STB_LIBRARY=1)
 ENDIF(NJLI_USE_STB_LIBRARY)
 
-IF(NJLI_USE_TINYXML2_LIBRARY)
-    ADD_DEFINITIONS(-DUSE_TINYXML2_LIBRARY=1)
-ENDIF(NJLI_USE_TINYXML2_LIBRARY)
+#IF(NJLI_USE_TINYXML2_LIBRARY)
+#    ADD_DEFINITIONS(-DUSE_TINYXML2_LIBRARY=1)
+#ENDIF(NJLI_USE_TINYXML2_LIBRARY)
 
 SET( NJLI_ASSIMP_POSTFIX "" )
 SET( NJLI_FMOD_POSTFIX "" )
@@ -636,6 +636,30 @@ FILE(GLOB NJLIGameEngine_SRCS
     ${njli_steering}
     ${njli_steering_behavior}
     )
+IF(NOT NJLI_USE_NANOVG_LIBRARY)
+    LIST(REMOVE_ITEM NJLIGameEngine_SRCS
+        "${NJLI_SOURCE_DIRECTORY}/njli/builders/graphics/ButtonHUDBuilder.h"
+        "${NJLI_SOURCE_DIRECTORY}/njli/builders/graphics/CheckboxHUDBuilder.h"
+        "${NJLI_SOURCE_DIRECTORY}/njli/builders/graphics/DropdownHUDBuilder.h"
+        "${NJLI_SOURCE_DIRECTORY}/njli/builders/graphics/LabelHUDBuilder.h"
+        "${NJLI_SOURCE_DIRECTORY}/njli/builders/graphics/SliderHUDBuilder.h"
+        "${NJLI_SOURCE_DIRECTORY}/njli/builders/graphics/TextboxHUDBuilder.h"
+        "${NJLI_SOURCE_DIRECTORY}/njli/graphics/${NJLI_GRAPHICS_PLATFORM}/ButtonHUD.cpp"
+        "${NJLI_SOURCE_DIRECTORY}/njli/graphics/${NJLI_GRAPHICS_PLATFORM}/CheckboxHUD.cpp"
+        "${NJLI_SOURCE_DIRECTORY}/njli/graphics/${NJLI_GRAPHICS_PLATFORM}/DropdownHUD.cpp"
+        "${NJLI_SOURCE_DIRECTORY}/njli/graphics/${NJLI_GRAPHICS_PLATFORM}/LabelHUD.cpp"
+        "${NJLI_SOURCE_DIRECTORY}/njli/graphics/${NJLI_GRAPHICS_PLATFORM}/SliderHUD.cpp"
+        "${NJLI_SOURCE_DIRECTORY}/njli/graphics/${NJLI_GRAPHICS_PLATFORM}/TextboxHUD.cpp"
+        "${NJLI_SOURCE_DIRECTORY}/njli/graphics/${NJLI_GRAPHICS_PLATFORM}/WorldHUD.cpp"
+        "${NJLI_SOURCE_DIRECTORY}/njli/graphics/ButtonHUD.h"
+        "${NJLI_SOURCE_DIRECTORY}/njli/graphics/CheckboxHUD.h"
+        "${NJLI_SOURCE_DIRECTORY}/njli/graphics/DropdownHUD.h"
+        "${NJLI_SOURCE_DIRECTORY}/njli/graphics/LabelHUD.h"
+        "${NJLI_SOURCE_DIRECTORY}/njli/graphics/SliderHUD.h"
+        "${NJLI_SOURCE_DIRECTORY}/njli/graphics/TextboxHUD.h"
+        "${NJLI_SOURCE_DIRECTORY}/njli/graphics/WorldHUD.h"
+        )
+ENDIF(NOT NJLI_USE_NANOVG_LIBRARY)
 
 FILE(GLOB NJLIGameEngine_HDRS
     ${NJLI_SOURCE_DIRECTORY} 
@@ -2585,7 +2609,7 @@ IF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" )
     #SET(imported_zlib_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/share/OpenCV/3rdparty/lib/libzlib.a")
     SET(imported_sqlite_location                 "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/sqlite/appletv/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libsqlite3.a")
     SET(imported_stb_location                    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/stb/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libstb.a" )
-    SET(imported_tinyxml2_location               "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/tinyxml2/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libtinyxml2.a" )
+    #SET(imported_tinyxml2_location               "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/tinyxml2/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libtinyxml2.a" )
     SET(imported_fmod_location                   "${NJLI_THIRDPARTY_DIRECTORY}/fmod/lib/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libfmod${NJLI_FMOD_POSTFIX}.${NJLI_FMOD_EXTENSION}" )
     SET(imported_SDL2_location                   "${NJLI_THIRDPARTY_DIRECTORY}/SDL2/lib/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libSDL2.a" )
     SET(NJLI_APPICON_NAME "App Icon & Top Shelf Image")
@@ -2654,7 +2678,7 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
     #SET(imported_zlib_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/share/OpenCV/3rdparty/lib/libzlib.a")
     SET(imported_sqlite_location                 "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/sqlite/ios/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/libsqlite3.a")
     SET(imported_stb_location                    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/stb/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/libstb.a" )
-    SET(imported_tinyxml2_location               "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/tinyxml2/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/libtinyxml2.a" )
+    #SET(imported_tinyxml2_location               "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/tinyxml2/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/libtinyxml2.a" )
     SET(imported_fmod_location                   "${NJLI_THIRDPARTY_DIRECTORY}/fmod/lib/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/libfmod${NJLI_FMOD_POSTFIX}.${NJLI_FMOD_EXTENSION}" )
     SET(imported_SDL2_location                   "${NJLI_THIRDPARTY_DIRECTORY}/SDL2/lib/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/libSDL2.a" )
 
@@ -2727,7 +2751,7 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
     #SET(imported_zlib_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.12/Release/share/OpenCV/3rdparty/lib/libzlib.a")
     SET(imported_sqlite_location                 "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/sqlite/${NJLI_BUILD_PLATFORM}/10.12/Release/libsqlite3.a")
     SET(imported_stb_location                    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/stb/${NJLI_BUILD_PLATFORM}/10.12/Release/libstb.a" )
-    SET(imported_tinyxml2_location               "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/tinyxml2/${NJLI_BUILD_PLATFORM}/10.12/Release/libtinyxml2.a" )
+    #SET(imported_tinyxml2_location               "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/tinyxml2/${NJLI_BUILD_PLATFORM}/10.12/Release/libtinyxml2.a" )
     SET(imported_fmod_location                   "${NJLI_THIRDPARTY_DIRECTORY}/fmod/lib/${NJLI_BUILD_PLATFORM}/10.12/Release/libfmod.dylib" )
     SET(imported_SDL2_location                   "${NJLI_THIRDPARTY_DIRECTORY}/SDL2/lib/${NJLI_BUILD_PLATFORM}/10.12/Release/libSDL2.a" )
 
@@ -2798,7 +2822,7 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
     #SET(imported_zlib_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/share/OpenCV/3rdparty/lib/libzlib.a")
     SET(imported_sqlite_location                 "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/sqlite/${NJLI_BUILD_PLATFORM}/Release/libsqlite3.a")
     SET(imported_stb_location                    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/stb/${NJLI_BUILD_PLATFORM}/Release/libstb.a" )
-    SET(imported_tinyxml2_location               "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/tinyxml2/${NJLI_BUILD_PLATFORM}/Release/libtinyxml2.a" )
+    #SET(imported_tinyxml2_location               "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/tinyxml2/${NJLI_BUILD_PLATFORM}/Release/libtinyxml2.a" )
     SET(imported_fmod_location                   "" )
     SET(imported_SDL2_location                   "${NJLI_THIRDPARTY_DIRECTORY}/SDL2/lib/${NJLI_BUILD_PLATFORM}/Release/libSDL2.a" )
 
@@ -2876,7 +2900,7 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "android" )
     #SET(imported_zlib_location "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/share/OpenCV/3rdparty/lib/libzlib.a")
     SET(imported_sqlite_location                 "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/sqlite/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libsqlite3.a")
     SET(imported_stb_location                    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/stb/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libstb.a" )
-    SET(imported_tinyxml2_location               "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/tinyxml2/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libtinyxml2.a" )
+    #SET(imported_tinyxml2_location               "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/tinyxml2/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libtinyxml2.a" )
     SET(imported_fmod_location                   "${NJLI_THIRDPARTY_DIRECTORY}/fmod/lib/android/24/${ANDROID_ABI}/libfmod.so" )
     SET(imported_SDL2_location                   "${NJLI_THIRDPARTY_DIRECTORY}/SDL2/lib/android/23/Release/${ANDROID_ABI}/libSDL2.so" )
 
@@ -3104,13 +3128,13 @@ IF(NJLI_USE_STB_LIBRARY)
     LIST(APPEND EXTRA_PLATFORM_LIBS imported_stb)
 ENDIF(NJLI_USE_STB_LIBRARY)
 
-IF(NJLI_USE_TINYXML2_LIBRARY)
-    INCLUDE_DIRECTORIES("${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/tinyxml2" )
-
-    ADD_LIBRARY(imported_tinyxml2 STATIC IMPORTED )
-    SET_TARGET_PROPERTIES(imported_tinyxml2 PROPERTIES IMPORTED_LOCATION ${imported_tinyxml2_location})
-    LIST(APPEND EXTRA_PLATFORM_LIBS imported_tinyxml2)
-ENDIF(NJLI_USE_TINYXML2_LIBRARY)
+#IF(NJLI_USE_TINYXML2_LIBRARY)
+#    INCLUDE_DIRECTORIES("${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/tinyxml2" )
+#
+#    ADD_LIBRARY(imported_tinyxml2 STATIC IMPORTED )
+#    SET_TARGET_PROPERTIES(imported_tinyxml2 PROPERTIES IMPORTED_LOCATION ${imported_tinyxml2_location})
+#    LIST(APPEND EXTRA_PLATFORM_LIBS imported_tinyxml2)
+#ENDIF(NJLI_USE_TINYXML2_LIBRARY)
 
 LIST(REMOVE_ITEM NJLIGameEngine_SRCS 
     ${NJLI_SOURCE_DIRECTORY}/njli/platform/main.cpp
