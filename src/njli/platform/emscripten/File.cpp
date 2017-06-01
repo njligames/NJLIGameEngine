@@ -71,6 +71,8 @@ const char *DOCUMENT_PATH(const char *file)
     return tempBuffer;
 }
 
+void setRunningPath(const char *file) {}
+
 void sleepThread(float milliseconds)
 {
     usleep(milliseconds);

@@ -697,6 +697,13 @@ FILE(GLOB NJLIGameEngine_HDRS
     ${NJLI_SOURCE_DIRECTORY}/njli/platform/${NJLI_BUILD_PLATFORM} 
     )
 
+IF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
+    LIST(APPEND NJLIGameEngine_HDRS
+        /Applications/Developer/emsdk_portable/emscripten/1.37.9/system/include 
+		/Applications/Developer/emsdk_portable/emscripten/1.37.9/system/include/emscripten
+        )
+ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
+
 IF(NJLI_USE_ASSIMP_LIBRARY)
     LIST(APPEND NJLIGameEngine_HDRS
         ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/assimp 
@@ -1851,6 +1858,26 @@ FILE(GLOB NJLIGameEngine_THIRDPARTY_INC
     ${SDL2} 
 )
 
+SET(emscripten_include "")
+SET(emscripten_include_emscripten "")
+IF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
+    FILE( GLOB emscripten_include
+        /Applications/Developer/emsdk_portable/emscripten/1.37.9/system/include/*.h
+        /Applications/Developer/emsdk_portable/emscripten/1.37.9/system/include/*.inl
+        /Applications/Developer/emsdk_portable/emscripten/1.37.9/system/include/*.hpp
+        )
+    FILE( GLOB emscripten_include_emscripten
+        /Applications/Developer/emsdk_portable/emscripten/1.37.9/system/include/emscripten/*.h
+        /Applications/Developer/emsdk_portable/emscripten/1.37.9/system/include/emscripten/*.inl
+        /Applications/Developer/emsdk_portable/emscripten/1.37.9/system/include/emscripten/*.hpp
+        )
+
+    LIST(APPEND NJLIGameEngine_THIRDPARTY_INC
+        ${emscripten_include} 
+        ${emscripten_include_emscripten} 
+        )
+ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
+
 IF(NJLI_USE_ASSIMP_LIBRARY)
     LIST(APPEND NJLIGameEngine_THIRDPARTY_INC
         ${assimp} 
@@ -2916,6 +2943,8 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
     SET( NJLI_RESOURCES ${ASSET_CATALOGUE} ${GAME_ASSETS} )
 
 ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
+    LIST(APPEND NJLIGameEngine_HDRS /Applications/Developer/emsdk_portable/emscripten/1.37.9/system/include )
+    LIST(APPEND NJLIGameEngine_HDRS /Applications/Developer/emsdk_portable/emscripten/1.37.9/system/include/emscripten )
 
     SET(imported_assimp_location                 "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/assimp/${NJLI_BUILD_PLATFORM}/Release/lib/libassimp${NJLI_ASSIMP_POSTFIX}.a" )
     SET(imported_BulletCollision_location        "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/Release/lib/libBulletCollision.a" )
@@ -2967,16 +2996,22 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
 
     ADD_DEFINITIONS(-DEMCC_DEBUG=1)
     ADD_DEFINITIONS(-DDEBUG=1)
-    SET( EXTRA_PLATFORM_LIBS 
-        ${EXTRA_PLATFORM_LIBS}
-        "-O2"
-        "--js-opts 0"
-        "-g" 
-        "-s ALLOW_MEMORY_GROWTH=1"
-        "-s ASSERTIONS=1"
-        "-s DEMANGLE_SUPPORT=1"
-        "-s FULL_ES2=1"
-        )
+    LIST(APPEND EXTRA_PLATFORM_LIBS "-O0")
+    LIST(APPEND EXTRA_PLATFORM_LIBS "--js-opts 0")
+    LIST(APPEND EXTRA_PLATFORM_LIBS "-g3")
+    LIST(APPEND EXTRA_PLATFORM_LIBS "-s ALLOW_MEMORY_GROWTH=1")
+    LIST(APPEND EXTRA_PLATFORM_LIBS "-s FULL_ES2=1")
+
+    #    SET( EXTRA_PLATFORM_LIBS 
+    #        ${EXTRA_PLATFORM_LIBS}
+    #        "-O0"
+    #        "--js-opts 0"
+    #        "-g4" 
+    #        "-s ALLOW_MEMORY_GROWTH=1"
+    #        #"-s ASSERTIONS=1"
+    #        #"-s DEMANGLE_SUPPORT=1"
+    #        "-s FULL_ES2=1"
+    #        )
 
     #STRING( COMPARE EQUAL "${CMAKE_BUILD_TYPE}" "Debug" is_equal )
     #IF( is_equal )
@@ -3375,6 +3410,11 @@ SET_SOURCE_FILES_PROPERTIES( ${NJLI_SOURCE_DIRECTORY}/njli/generated/swig/lua/sw
 SOURCE_GROUP("ThirdParty"                                                                   FILES ${third_party_directory} )
 SOURCE_GROUP("ThirdParty\\include"                                                          FILES ${group_other} )
 SOURCE_GROUP("ThirdParty\\include\\SDL2"                                                    FILES ${SDL2} )
+
+IF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
+    SOURCE_GROUP("ThirdParty\\include\\emscripten"                                              FILES ${emscripten_include} )
+    SOURCE_GROUP("ThirdParty\\include\\emscripten\\emscripten"                                  FILES ${emscripten_include_emscripten} )
+ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
 
 IF(NJLI_USE_ASSIMP_LIBRARY)
     SOURCE_GROUP("ThirdParty\\include\\assimp"                                                  FILES ${assimp} )

@@ -6,8 +6,9 @@
 
 #include "SDL.h"
 
-#ifdef __EMSCRIPTEN__
-#include <emscripten/emscripten.h>
+#if defined(__EMSCRIPTEN__)
+#include "emscripten/emscripten.h"
+//#include "emscripten.h"
 #endif
 
 #include "GLPlatform.h"
@@ -481,11 +482,11 @@ static void handleInput()
     SDL_PumpEvents();
     while (SDL_PollEvent(&event))
     {
-        SDLTest_PrintEvent(&event);
+//        SDLTest_PrintEvent(&event);
         switch (event.type)
         {
                 
-#if ((defined(__MACOSX__) && __MACOSX__) || (defined(__EMSCRIPTEN__) && __EMSCRIPTEN__) || (defined(__ANDROID__) && __ANDROID__))
+#if defined(__MACOSX__) || defined(__EMSCRIPTEN__) || defined(__ANDROID__)
             case SDL_MOUSEMOTION:
             case SDL_MOUSEBUTTONDOWN:
             case SDL_MOUSEBUTTONUP:
@@ -877,10 +878,6 @@ static void handleInput()
         }
     }
     
-//#if !(defined(__IPHONEOS__) && __IPHONEOS__)
-//    NJLI_HandleFinishTouches();
-//#endif
-    
 #if !(defined(__MACOSX__) && __MACOSX__)
 #endif
     
@@ -1125,7 +1122,7 @@ int main(int argc, char** argv)
     SDL_GetDesktopDisplayMode(0, &gDisplayMode);
 #endif
 
-#if defined(__EMSCRIPTEN__) || defined (__ANDROID__) || defined(__IPHONEOS__)
+#if defined(__EMSCRIPTEN__) || defined(__ANDROID__) || defined(__IPHONEOS__)
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_ES);
 #endif
     
@@ -1145,7 +1142,7 @@ int main(int argc, char** argv)
                                SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
                                gDisplayMode.w, gDisplayMode.h,
                                SDL_WINDOW_OPENGL
-#if defined(__MACOSX__)
+#if defined(__MACOSX__) || defined(__EMSCRIPTEN__)
                                | SDL_WINDOW_MAXIMIZED
                                | SDL_WINDOW_ALWAYS_ON_TOP
                                | SDL_WINDOW_UTILITY
@@ -1153,7 +1150,7 @@ int main(int argc, char** argv)
                                | SDL_WINDOW_FULLSCREEN
 #endif
                                | SDL_WINDOW_RESIZABLE
-#if !(defined(__EMSCRIPTEN__) && __EMSCRIPTEN__)
+#if !defined(__EMSCRIPTEN__)
                                | SDL_WINDOW_ALLOW_HIGHDPI
 #endif
                                );

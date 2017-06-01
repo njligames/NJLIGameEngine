@@ -1,9 +1,1 @@
-
-  emmake is a helper for make, setting various environment
-  variables so that emcc etc. are used. Typical usage:
-
-    emmake make [FLAGS]
-
-  (but you can run any command instead of make)
-
-  
+[0;33mwarning:[0m emitted code will contain very large numbers of local variables, which is bad for performance (build to JS with -O2 or above to avoid this - make sure to do so both on source files, and during 'linking')

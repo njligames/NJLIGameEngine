@@ -4,12 +4,12 @@ BUILD=$1
 
 build_emscripten_sublime()
 {
-    emcmake cmake -G "Sublime Text 2 - Ninja" ../.. \
+    emcmake cmake -G "Sublime Text 2 - Unix Makefiles" ../.. \
         -DCMAKE_INSTALL_PREFIX=../../generated/ \
         -DNJLI_THIRDPARTY_DIRECTORY:STRING=${MY_THIRDPARTY_DIR} \
-        -DCMAKE_CXX_FLAGS="-std=gnu++11 -Wall -Walmost-asm" \
+        -DCMAKE_CXX_FLAGS="-std=gnu++11" \
         -DNJLI_BUILD_PLATFORM="emscripten" \
-        -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_BUILD_TYPE=Debug \
         -DNJLI_BUILD_DIR="emscripten" \
         -DNJLI_SOUND_PLATFORM=openal
 
@@ -17,8 +17,8 @@ build_emscripten_sublime()
     then
         mkdir -p ../../ERRORS
         echo "" > ../../ERRORS/emscripen.log
-        emmake ninja 2> ../../ERRORS/emscripen.log
-        emmake ninja install
+        emmake make 2> ../../ERRORS/emscripen.log
+        emmake make install
     fi
 }
 
