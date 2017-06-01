@@ -3385,7 +3385,7 @@ IF(NJLI_USE_STB_LIBRARY)
 ENDIF(NJLI_USE_STB_LIBRARY)
 
 IF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
-    ADD_CUSTOM_TARGET( SWIGNJLILua
+    ADD_CUSTOM_TARGET( SWIGLua
         COMMAND 
             ./swig_njli_lua.sh ${CMAKE_CURRENT_BINARY_DIR} ${SWIG_DEFINE}
         BYPRODUCTS
@@ -3607,7 +3607,7 @@ SOURCE_GROUP("Interfaces\\swig.in\\lua\\thirdparty\\bullet3\\vectormath\\neon" F
 SOURCE_GROUP("Interfaces\\swig.in\\lua\\thirdparty\\bullet3\\vectormath\\scalar" FILES ${swigin_bullet3_vectormath_scalar} )
 SOURCE_GROUP("Interfaces\\swig.in\\lua\\thirdparty\\bullet3\\vectormath\\sse" FILES ${swigin_bullet3_vectormath_sse} )
 
-IF( NOT ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
+IF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
     ADD_CUSTOM_TARGET(ldoc ALL
         ldoc ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/ldoc.in/
         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in
@@ -3632,7 +3632,7 @@ IF( NOT ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
         INSTALL(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/rtf DESTINATION ${CMAKE_INSTALL_DOCDIR})
         INSTALL(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/xml DESTINATION ${CMAKE_INSTALL_DOCDIR})
     ENDIF(DOXYGEN_FOUND)
-ENDIF()
+ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
 
 IF( ${NJLI_BUILD_PLATFORM} STREQUAL "android" )
     ADD_LIBRARY( njli SHARED 
@@ -3647,15 +3647,17 @@ IF( ${NJLI_BUILD_PLATFORM} STREQUAL "android" )
         ${NJLI_SOURCE_DIRECTORY}/njli/platform/main.cpp
         ${NJLIGameEngine_THIRDPARTY_INC}
         )
-    TARGET_LINK_LIBRARIES( njli ${EXTRA_PLATFORM_LIBS} 
+
+    TARGET_LINK_LIBRARIES( njli 
+        ${EXTRA_PLATFORM_LIBS} 
         ${NJLIGameEngine_LBY} 
         )
-    #ADD_DEPENDENCIES(njli SWIGLua)
-    #    ADD_CUSTOM_COMMAND(TARGET njli
-    #        POST_BUILD
-    #        COMMAND export NJLI_BUILD_PLATFORM=${NJLI_BUILD_PLATFORM} && make
-    #        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/projects/COMMON 
-    #        )
+
+    ADD_CUSTOM_COMMAND(TARGET njli
+        PRE_BUILD
+        COMMAND export NJLI_BUILD_PLATFORM=${NJLI_BUILD_PLATFORM} && make
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/projects/COMMON 
+        )
 
 ELSE()
 
@@ -3677,9 +3679,7 @@ ELSE()
         SET_TARGET_PROPERTIES( libnjli_shared PROPERTIES PREFIX "")
         TARGET_LINK_LIBRARIES( libnjli_shared ${EXTRA_PLATFORM_LIBS} ${NJLIGameEngine_LBY} )
         INSTALL( TARGETS libnjli_shared DESTINATION lib/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE} )
-    ENDIF()
 
-    IF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
         ADD_LIBRARY( libnjli_lua_module MODULE ${NJLIGameEngine_SRCS} ${njli_generated} ${njli_generated_swig} ${njli_generated_swig_lua} )
         #ADD_DEPENDENCIES(libnjli_lua_module SWIGLua)
         SET_TARGET_PROPERTIES( libnjli_lua_module PROPERTIES OUTPUT_NAME njli )
@@ -3723,11 +3723,6 @@ ELSE()
             XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER "com.njligames.engine.${NJLI_BUILD_PLATFORM}.source"
             RESOURCE "${NJLI_RESOURCES}"
             )
-        ADD_CUSTOM_COMMAND(TARGET EngineSource
-            POST_BUILD
-            COMMAND export NJLI_BUILD_PLATFORM=${NJLI_BUILD_PLATFORM} && make
-            WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/projects/COMMON 
-            )
 
     ELSE()
         SET_TARGET_PROPERTIES(
@@ -3740,64 +3735,75 @@ ELSE()
         ${NJLIGameEngine_LBY}
         ${EXTRA_PLATFORM_LIBS}
         )
+    ADD_CUSTOM_COMMAND(TARGET EngineSource
+        PRE_BUILD
+        COMMAND export NJLI_BUILD_PLATFORM=${NJLI_BUILD_PLATFORM} && make
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/projects/COMMON 
+        )
 
     #INSTALL(TARGETS EngineSource DESTINATION bin/engine/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE})
 
-    IF( NOT ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
-        ADD_EXECUTABLE( EngineLibrary
-            ${libnjli_shared}
-            ${NJLIGameEngine_SRCS} ${njli_generated} ${njli_generated_swig} ${njli_generated_swig_lua}
-            ${NJLI_SOURCE_DIRECTORY}/njli/platform/main.cpp
-            ${NJLI_RESOURCES}
-            ${NJLIGameEngine_THIRDPARTY_INC}
-            )
+    ADD_EXECUTABLE( EngineLibrary
+        ${libnjli_shared}
+        ${NJLIGameEngine_SRCS} ${njli_generated} ${njli_generated_swig} ${njli_generated_swig_lua}
+        ${NJLI_SOURCE_DIRECTORY}/njli/platform/main.cpp
+        ${NJLI_RESOURCES}
+        ${NJLIGameEngine_THIRDPARTY_INC}
+        )
+
+    IF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
+        ADD_DEPENDENCIES(EngineLibrary libnjli_static)
+    ELSE()
         ADD_DEPENDENCIES(EngineLibrary libnjli_shared)
-        
-        IF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" OR ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
-            SET_TARGET_PROPERTIES (
-                EngineLibrary PROPERTIES
-                XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY "iPhone Developer"
-                XCODE_ATTRIBUTE_TARGETED_DEVICE_FAMILY ${NJLI_DEVICE_FAMILY}
-                XCODE_ATTRIBUTE_CLANG_ENABLE_OBJC_ARC YES
-                XCODE_ATTRIBUTE_INSTALL_PATH "${CMAKE_BINARY_DIR}/ProductRelease"
-                XCODE_ATTRIBUTE_COMBINE_HIDPI_IMAGES "NO"
-                XCODE_ATTRIBUTE_ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME "LaunchImage"
-                )
-        ENDIF()
+    ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
+    
+    IF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" OR ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
+        SET_TARGET_PROPERTIES (
+            EngineLibrary PROPERTIES
+            XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY "iPhone Developer"
+            XCODE_ATTRIBUTE_TARGETED_DEVICE_FAMILY ${NJLI_DEVICE_FAMILY}
+            XCODE_ATTRIBUTE_CLANG_ENABLE_OBJC_ARC YES
+            XCODE_ATTRIBUTE_INSTALL_PATH "${CMAKE_BINARY_DIR}/ProductRelease"
+            XCODE_ATTRIBUTE_COMBINE_HIDPI_IMAGES "NO"
+            XCODE_ATTRIBUTE_ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME "LaunchImage"
+            )
+    ENDIF()
 
-        IF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" OR ${NJLI_BUILD_PLATFORM} STREQUAL "ios" OR ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
-            SET_SOURCE_FILES_PROPERTIES(
-                ${NJLI_RESOURCES}
-                PROPERTIES
-                MACOSX_PACKAGE_LOCATION Resources
-                )
-            SET_TARGET_PROPERTIES(
-                EngineLibrary PROPERTIES
-                MACOSX_BUNDLE YES
-                MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/${NJLI_BUILD_PLATFORM}/Info.plist"
-                XCODE_ATTRIBUTE_ASSETCATALOG_COMPILER_APPICON_NAME ${NJLI_APPICON_NAME}
-                XCODE_ATTRIBUTE_PRODUCT_NAME ${NJLI_BUILD_PLATFORM}
-                XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER "com.njligames.engine.${NJLI_BUILD_PLATFORM}.library"
-                RESOURCE "${NJLI_RESOURCES}"
-                )
-            ADD_CUSTOM_COMMAND(TARGET EngineLibrary
-                POST_BUILD
-                COMMAND export NJLI_BUILD_PLATFORM=${NJLI_BUILD_PLATFORM} && make
-                WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/projects/COMMON 
-                )
-
-        ELSE()
-            SET_TARGET_PROPERTIES(
-                EngineLibrary PROPERTIES
-                RESOURCE "${NJLI_RESOURCES}"
-                )
-        ENDIF()
-
-        TARGET_LINK_LIBRARIES( EngineLibrary
-            ${NJLIGameEngine_LBY}
-            ${EXTRA_PLATFORM_LIBS}
+    IF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" OR ${NJLI_BUILD_PLATFORM} STREQUAL "ios" OR ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
+        SET_SOURCE_FILES_PROPERTIES(
+            ${NJLI_RESOURCES}
+            PROPERTIES
+            MACOSX_PACKAGE_LOCATION Resources
+            )
+        SET_TARGET_PROPERTIES(
+            EngineLibrary PROPERTIES
+            MACOSX_BUNDLE YES
+            MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/${NJLI_BUILD_PLATFORM}/Info.plist"
+            XCODE_ATTRIBUTE_ASSETCATALOG_COMPILER_APPICON_NAME ${NJLI_APPICON_NAME}
+            XCODE_ATTRIBUTE_PRODUCT_NAME ${NJLI_BUILD_PLATFORM}
+            XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER "com.njligames.engine.${NJLI_BUILD_PLATFORM}.library"
+            RESOURCE "${NJLI_RESOURCES}"
             )
 
-        #INSTALL(TARGETS EngineLibrary DESTINATION bin/engine/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE})
+    ELSE()
+        SET_TARGET_PROPERTIES(
+            EngineLibrary PROPERTIES
+            RESOURCE "${NJLI_RESOURCES}"
+            )
     ENDIF()
+
+    TARGET_LINK_LIBRARIES( EngineLibrary
+        ${NJLIGameEngine_LBY}
+        ${EXTRA_PLATFORM_LIBS}
+        )
+
+    ADD_CUSTOM_COMMAND(TARGET EngineLibrary
+        PRE_BUILD
+        COMMAND export NJLI_BUILD_PLATFORM=${NJLI_BUILD_PLATFORM} && make
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/projects/COMMON 
+        )
+
+    #INSTALL(TARGETS EngineLibrary DESTINATION bin/engine/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE})
+
+
 ENDIF()

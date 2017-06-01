@@ -1050,20 +1050,33 @@ namespace njli
     
     bool WorldLuaVirtualMachine::loadFile(const char *filePath)
     {
+        //luaL_loadfile
         if(m_lua_State)
         {
-            std::string script;
-            if(njli::World::getInstance()->getWorldResourceLoader()->load(filePath, &script))
+            int error_code = luaL_loadfile(m_lua_State, ASSET_PATH(filePath));
+            
+            if(LUA_OK == error_code)
             {
-                return loadString(script.c_str());
+                return true;
             }
-            else
-            {
-                SDL_LogWarn(SDL_LOG_CATEGORY_TEST, "Unable to load script file");
-            }
+            getError(filePath, error_code);
         }
-        
         return false;
+        
+//        if(m_lua_State)
+//        {
+//            std::string script;
+//            if(njli::World::getInstance()->getWorldResourceLoader()->load(filePath, &script))
+//            {
+//                return loadString(script.c_str());
+//            }
+//            else
+//            {
+//                SDL_LogWarn(SDL_LOG_CATEGORY_TEST, "Unable to load script file");
+//            }
+//        }
+//        
+//        return false;
     }
     
     bool WorldLuaVirtualMachine::loadString(const char *code)
