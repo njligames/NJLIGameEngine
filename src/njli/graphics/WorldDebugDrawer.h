@@ -1,318 +1,395 @@
 //
-//  WorldDebugDrawer.h
-//  JLIGameEngineTest
+//  WorldDebugDrawer.hpp
+//  macOS
 //
-//  Created by James Folk on 3/23/15.
-//  Copyright (c) 2015 James Folk. All rights reserved.
+//  Created by James Folk on 6/1/17.
+//
 //
 
-#ifndef __JLIGameEngineTest__DebugDrawer__
-#define __JLIGameEngineTest__DebugDrawer__
+#ifndef WorldDebugDrawer_hpp
+#define WorldDebugDrawer_hpp
 
-#include <string>
-#include "Geometry.h"
+#include "debug_draw.hpp"
 #include "btIDebugDraw.h"
+#include "GLPlatform.h"
+#include "glm/glm.hpp"
+#include "Util.h"
 
 namespace njli
 {
-    /// <#Description#>
-    class WorldDebugDrawer :
-    public Geometry,
+    class Camera;
+
+    class WorldDebugDrawer
+    : public dd::RenderInterface,
     public btIDebugDraw
     {
-        friend class World;
     public:
-        /**
-         *  <#Description#>
-         */
         WorldDebugDrawer();
-        /**
-         *  <#Description#>
-         */
-        BT_DECLARE_ALIGNED_ALLOCATOR();
-        /**
-         *  <#Description#>
-         *
-         *  @return <#return value description#>
-         */
-        virtual ~WorldDebugDrawer();
-        
-        /**
-         *  <#Description#>
-         *
-         *  @return <#return value description#>
-         */
+        virtual ~WorldDebugDrawer() ;
         virtual const char *getClassName()const;
-        /**
-         *  <#Description#>
-         *
-         *  @return <#return value description#>
-         */
         virtual s32 getType()const;
-        /**
-         *  <#Description#>
-         *
-         *  @return <#return value description#>
-         */
         operator std::string() const;
+        virtual void beginDraw() ;
+        virtual void endDraw() ;
+        virtual void drawPointList(const dd::DrawVertex *, int, bool) ;
+        virtual void drawLineList(const dd::DrawVertex *, int, bool) ;
+        virtual void drawGlyphList(const dd::DrawVertex *, int, dd::GlyphTextureHandle) ;
+        virtual void destroyGlyphTexture(dd::GlyphTextureHandle) ;
+        virtual dd::GlyphTextureHandle createGlyphTexture(int, int, const void *) ;
         
+        virtual void drawLine(const btVector3& from,const btVector3& to,const btVector3& color) ;
+        virtual void drawContactPoint(const btVector3& PointOnB,const btVector3& normalOnB,btScalar distance,int lifeTime,const btVector3& color) ;
+        virtual void reportErrorWarning(const char* warningString) ;
+        virtual void draw3dText(const btVector3& location,const char* textString) ;
+        virtual void setDebugMode(int debugMode) ;
+        virtual int getDebugMode() const ;
+        
+        void init();
+        void unInit();
+        void draw(Camera *camera);
+        
+        /**
+         Add a point in 3D space to the debug draw queue.
+         Point is expressed in world-space coordinates.
+         Note that not all renderer support configurable point
+         size, so take the 'size' parameter as a hint only
+
+         @param pos <#pos description#>
+         @param color <#color description#>
+         @param .0f <#.0f description#>
+         @param durationMillis <#durationMillis description#>
+         @param depthEnabled <#depthEnabled description#>
+         */
+        void point(const btVector3 &pos,
+                   const btVector3 &color,
+                   float size = 1.0f,
+                   int durationMillis = 0,
+                   bool depthEnabled = true);
+        
+        /**
+         Add a 3D line to the debug draw queue. Note that
+         lines are expressed in world coordinates, and so are
+         all wireframe primitives which are built from lines.
+
+         @param from <#from description#>
+         @param to <#to description#>
+         @param color <#color description#>
+         @param durationMillis <#durationMillis description#>
+         @param depthEnabled <#depthEnabled description#>
+         */
+        void line(const btVector3 &from,
+                  const btVector3 &to,
+                  const btVector3 &color,
+                  int durationMillis = 0,
+                  bool depthEnabled = true);
+        
+        /**
+         Add a 2D text string as an overlay to the current view, using a built-in font.
+         Position is in screen-space pixels, origin at the top-left corner of the screen.
+         The third element (Z) of the position vector is ignored.
+         Note: Newlines and tabs are handled (1 tab = 4 spaces).
+
+         @param str <#str description#>
+         @param pos <#pos description#>
+         @param color <#color description#>
+         @param .0f <#.0f description#>
+         @param durationMillis <#durationMillis description#>
+         */
+        void screenText(ddStrParam str,
+                        const btVector3 &pos,
+                        const btVector3 &color,
+                        float scaling = 1.0f,
+                        int durationMillis = 0);
+        
+        /**
+         Add a 3D text label centered at the given world position that
+         gets projected to screen-space. The label always faces the viewer.
+         sx/sy, sw/sh are the viewport coordinates/size, in pixels.
+         'vpMatrix' is the view * projection transform to map the text from 3D to 2D.
+
+         @param str <#str description#>
+         @param pos <#pos description#>
+         @param color <#color description#>
+         @param .0f <#.0f description#>
+         @param durationMillis <#durationMillis description#>
+         */
+        void projectedText(ddStrParam str,
+                           const btVector3 &pos,
+                           const btVector3 &color,
+                           float scaling = 1.0f,
+                           int durationMillis = 0);
+        
+        /**
+         Add a set of three coordinate axis depicting the position and orientation of the given transform.
+         'size' defines the size of the arrow heads. 'length' defines the length of the arrow's base line.
+
+         @param transform <#transform description#>
+         @param size <#size description#>
+         @param length <#length description#>
+         @param durationMillis <#durationMillis description#>
+         @param depthEnabled <#depthEnabled description#>
+         */
+//        void axisTriad(ddMat4x4Param transform,
+//                       float size, float length,
+//                       int durationMillis = 0,
+//                       bool depthEnabled = true);
+        
+        /**
+         Add a 3D line with an arrow-like end to the debug draw queue.
+         'size' defines the arrow head size. 'from' and 'to' the length of the arrow's base line.
+
+         @param from <#from description#>
+         @param to <#to description#>
+         @param color <#color description#>
+         @param size <#size description#>
+         @param durationMillis <#durationMillis description#>
+         @param depthEnabled <#depthEnabled description#>
+         */
+        void arrow(const btVector3 &from,
+                   const btVector3 &to,
+                   const btVector3 &color,
+                   float size,
+                   int durationMillis = 0,
+                   bool depthEnabled = true);
+        
+        /**
+         Add an axis-aligned cross (3 lines converging at a point) to the debug draw queue.
+         'length' defines the length of the crossing lines.
+         'center' is the world-space point where the lines meet.
+
+         @param center <#center description#>
+         @param length <#length description#>
+         @param durationMillis <#durationMillis description#>
+         @param depthEnabled <#depthEnabled description#>
+         */
+        void cross(const btVector3 &center,
+                   float length,
+                   int durationMillis = 0,
+                   bool depthEnabled = true);
+        
+        /**
+         Add a wireframe circle to the debug draw queue.
+
+         @param center <#center description#>
+         @param planeNormal <#planeNormal description#>
+         @param color <#color description#>
+         @param radius <#radius description#>
+         @param numSteps <#numSteps description#>
+         @param durationMillis <#durationMillis description#>
+         @param depthEnabled <#depthEnabled description#>
+         */
+        void circle(const btVector3 &center,
+                    const btVector3 &planeNormal,
+                    const btVector3 &color,
+                    float radius,
+                    float numSteps,
+                    int durationMillis = 0,
+                    bool depthEnabled = true);
+        
+        /**
+         Add a wireframe plane in 3D space to the debug draw queue.
+         If 'normalVecScale' is not zero, a line depicting the plane normal is also draw.
+
+         @param center <#center description#>
+         @param planeNormal <#planeNormal description#>
+         @param planeColor <#planeColor description#>
+         @param normalVecColor <#normalVecColor description#>
+         @param planeScale <#planeScale description#>
+         @param normalVecScale <#normalVecScale description#>
+         @param durationMillis <#durationMillis description#>
+         @param depthEnabled <#depthEnabled description#>
+         */
+        void plane(const btVector3 &center,
+                   const btVector3 &planeNormal,
+                   const btVector3 &planeColor,
+                   const btVector3 &normalVecColor,
+                   float planeScale,
+                   float normalVecScale,
+                   int durationMillis = 0,
+                   bool depthEnabled = true);
+        
+        /**
+         Add a wireframe sphere to the debug draw queue.
+
+         @param center <#center description#>
+         @param color <#color description#>
+         @param radius <#radius description#>
+         @param durationMillis <#durationMillis description#>
+         @param depthEnabled <#depthEnabled description#>
+         */
+        void sphere(const btVector3 &center,
+                    const btVector3 &color,
+                    float radius,
+                    int durationMillis = 0,
+                    bool depthEnabled = true);
+        
+        /**
+         Add a wireframe cone to the debug draw queue.
+         The cone 'apex' is the point where all lines meet.
+         The length of the 'dir' vector determines the thickness.
+         'baseRadius' & 'apexRadius' are in degrees.
+
+         @param apex <#apex description#>
+         @param dir <#dir description#>
+         @param color <#color description#>
+         @param baseRadius <#baseRadius description#>
+         @param apexRadius <#apexRadius description#>
+         @param durationMillis <#durationMillis description#>
+         @param depthEnabled <#depthEnabled description#>
+         */
+        void cone(const btVector3 &apex,
+                  const btVector3 &dir,
+                  const btVector3 &color,
+                  float baseRadius,
+                  float apexRadius,
+                  int durationMillis = 0,
+                  bool depthEnabled = true);
+        
+        /**
+         Wireframe box from the eight points that define it.
+
+         @param points <#points description#>
+         @param color <#color description#>
+         @param durationMillis <#durationMillis description#>
+         @param depthEnabled <#depthEnabled description#>
+         */
+//        void box(const ddVec3 points[8],
+//                 const btVector3 &color,
+//                 int durationMillis = 0,
+//                 bool depthEnabled = true);
+        
+        /**
+         Add a wireframe box to the debug draw queue.
+
+         @param center <#center description#>
+         @param color <#color description#>
+         @param width <#width description#>
+         @param height <#height description#>
+         @param depth <#depth description#>
+         @param durationMillis <#durationMillis description#>
+         @param depthEnabled <#depthEnabled description#>
+         */
+        void box(const btVector3 &center,
+                 const btVector3 &color,
+                 float width,
+                 float height,
+                 float depth,
+                 int durationMillis = 0,
+                 bool depthEnabled = true);
+        
+        /**
+         Add a wireframe Axis Aligned Bounding Box (AABB) to the debug draw queue.
+
+         @param mins <#mins description#>
+         @param maxs <#maxs description#>
+         @param color <#color description#>
+         @param durationMillis <#durationMillis description#>
+         @param depthEnabled <#depthEnabled description#>
+         */
+        void aabb(const btVector3 &mins,
+                  const btVector3 &maxs,
+                  const btVector3 &color,
+                  int durationMillis = 0,
+                  bool depthEnabled = true);
+        
+        /**
+         Add a wireframe frustum pyramid to the debug draw queue.
+         'invClipMatrix' is the inverse of the matrix defining the frustum
+         (AKA clip) volume, which normally consists of the projection * view matrix.
+         E.g.: inverse(projMatrix * viewMatrix)
+
+         @param invClipMatrix <#invClipMatrix description#>
+         @param color <#color description#>
+         @param durationMillis <#durationMillis description#>
+         @param depthEnabled <#depthEnabled description#>
+         */
+//        void frustum(ddMat4x4Param invClipMatrix,
+//                     const btVector3 &color,
+//                     int durationMillis = 0,
+//                     bool depthEnabled = true);
+        
+        /**
+         Add a vertex normal for debug visualization.
+         The normal vector 'normal' is assumed to be already normalized.
+
+         @param origin <#origin description#>
+         @param normal <#normal description#>
+         @param length <#length description#>
+         @param durationMillis <#durationMillis description#>
+         @param depthEnabled <#depthEnabled description#>
+         */
+        void vertexNormal(const btVector3 &origin,
+                          const btVector3 &normal,
+                          float length,
+                          int durationMillis = 0,
+                          bool depthEnabled = true);
+        
+        /**
+         Add a "tangent basis" at a given point in world space.
+         Color scheme used is: normal=WHITE, tangent=YELLOW, bi-tangent=MAGENTA.
+         The normal vector, tangent and bi-tangent vectors are assumed to be already normalized.
+
+         @param origin <#origin description#>
+         @param normal <#normal description#>
+         @param tangent <#tangent description#>
+         @param bitangent <#bitangent description#>
+         @param lengths <#lengths description#>
+         @param durationMillis <#durationMillis description#>
+         @param depthEnabled <#depthEnabled description#>
+         */
+        void tangentBasis(const btVector3 &origin,
+                          const btVector3 &normal,
+                          const btVector3 &tangent,
+                          const btVector3 &bitangent,
+                          float lengths,
+                          int durationMillis = 0,
+                          bool depthEnabled = true);
+        
+        /**
+         Makes a 3D square grid of lines along the X and Z planes.
+         'y' defines the height in the Y axis where the grid is placed.
+         The grid will go from 'mins' to 'maxs' units in both the X and Z.
+         'step' defines the gap between each line of the grid.
+
+         @param mins <#mins description#>
+         @param maxs <#maxs description#>
+         @param y <#y description#>
+         @param step <#step description#>
+         @param color <#color description#>
+         @param durationMillis <#durationMillis description#>
+         @param depthEnabled <#depthEnabled description#>
+         */
+        void xzSquareGrid(float mins, float maxs,
+                          float y,    float step,
+                          const btVector3 &color,
+                          int durationMillis = 0,
+                          bool depthEnabled = true);
     protected:
-        //TODO: fill in specific methods for WorldDebugDrawer
-        /**
-         *  <#Description#>
-         *
-         *  @param geometry <#geometry description#>
-         *  @param vertices <#vertices description#>
-         *  @param node     <#node description#>
-         */
-        virtual void getVertices(LevelOfDetail *geometry, btVector3 **vertices, Node*node)const;
-        /**
-         *  <#Description#>
-         *
-         *  @param geometry <#geometry description#>
-         *  @param node     <#node description#>
-         *
-         *  @return <#return value description#>
-         */
-        virtual u64 getNumberOfVertices(LevelOfDetail *geometry, Node*node)const;
+        void setupShaderPrograms();
+        void setupVertexBuffers();
+        void compileShader(const GLuint shader);
+        void linkProgram(const GLuint program);
         
-        /**
-         *  <#Description#>
-         *
-         *  @param geometry      <#geometry description#>
-         *  @param colorVertices <#colorVertices description#>
-         *  @param node          <#node description#>
-         */
-        virtual void getVertexColors(LevelOfDetail *geometry, btVector4 **colorVertices, Node*node)const;
-        /**
-         *  <#Description#>
-         *
-         *  @param geometry <#geometry description#>
-         *  @param node     <#node description#>
-         *
-         *  @return <#return value description#>
-         */
-        virtual u64 getNumberOfVertexColors(LevelOfDetail *geometry, Node*node)const;
-        
-        /**
-         *  <#Description#>
-         *
-         *  @param geometry           <#geometry description#>
-         *  @param textureCoordinates <#textureCoordinates description#>
-         *  @param node               <#node description#>
-         */
-        virtual void getTextureCoordinates(LevelOfDetail *geometry, btVector2 **textureCoordinates, Node*node)const;
-        /**
-         *  <#Description#>
-         *
-         *  @param geometry <#geometry description#>
-         *  @param node     <#node description#>
-         *
-         *  @return <#return value description#>
-         */
-        virtual u64 getNumberOfTextureCoordinates(LevelOfDetail *geometry, Node*node)const;
-        
-        /**
-         *  <#Description#>
-         *
-         *  @param node    <#node description#>
-         *  @param opacity <#opacity description#>
-         */
-        virtual void setOpacity(Node *node, f32 opacity);
-        
-        /**
-         *  <#Description#>
-         *
-         *  @param node    <#node description#>
-         *  @param opacity <#opacity description#>
-         */
-        virtual void setHidden(Node *node, bool hidden = true);
-        
-        /**
-         *  <#Description#>
-         *
-         *  @param node    <#node description#>
-         *  @param opacity <#opacity description#>
-         */
-        virtual bool isHidden(Node *node)const;
-        
-        /**
-         *  <#Description#>
-         *
-         *  @param node      <#node description#>
-         *  @param transfrom <#transfrom description#>
-         */
-        virtual void transformVertices(Node *node, const btTransform &transfrom);
-        /**
-         *  <#Description#>
-         *
-         *  @param node      <#node description#>
-         *  @param transform <#transform description#>
-         */
-        virtual void transformVertexColors(Node *node, const btTransform &transform);
-        /**
-         *  <#Description#>
-         *
-         *  @param node      <#node description#>
-         *  @param transform <#transform description#>
-         */
-        virtual void transformTextureCoordinates(Node *node, const btTransform &transform);
-        /**
-         *  <#Description#>
-         *
-         *  @return <#return value description#>
-         */
-        virtual s32 numberOfVertices()const;
-        /**
-         *  <#Description#>
-         *
-         *  @return <#return value description#>
-         */
-        virtual s32 numberOfIndices()const;
-        
-        /**
-         *  <#Description#>
-         *
-         *  @return <#return value description#>
-         */
-        virtual const void *getArrayBuffer()const;
-        /**
-         *  <#Description#>
-         *
-         *  @return <#return value description#>
-         */
-        virtual s64 getArrayBufferSize()const;
-        
-        /**
-         *  <#Description#>
-         *
-         *  @return <#return value description#>
-         */
-        virtual const void *getElementArrayBuffer()const;
-        /**
-         *  <#Description#>
-         *
-         *  @return <#return value description#>
-         */
-        virtual s64 getElementArrayBufferSize()const;
-        virtual void setSize(Node*node, const btVector3 &position, const f32 halfSize);
-        virtual void setColor(Node*node, const btVector4 &color);
-        
-        /**
-         *  <#Description#>
-         *
-         *  @param node         <#node description#>
-         *  @param physicsShape <#physicsShape description#>
-         */
-        virtual void applyShape(Node *node, PhysicsShape *physicsShape);
-        
-        /**
-         *  <#Description#>
-         *
-         *  @param node <#node description#>
-         */
-        void hideGeometry(Node*node);
-        
-        /**
-         *  <#Description#>
-         *
-         *  @param camera <#camera description#>
-         */
-        void render(Camera *camera, s32 mode = 0x0004);
-    public:
-        /**
-         *  <#Description#>
-         *
-         *  @param from  <#from description#>
-         *  @param to    <#to description#>
-         *  @param color <#color description#>
-         */
-        virtual void drawLine(const btVector3& from,const btVector3& to,const btVector3& color);
-        /**
-         *  <#Description#>
-         *
-         *  @param PointOnB  <#PointOnB description#>
-         *  @param normalOnB <#normalOnB description#>
-         *  @param distance  <#distance description#>
-         *  @param lifeTime  <#lifeTime description#>
-         *  @param color     <#color description#>
-         */
-        virtual void drawContactPoint(const btVector3& PointOnB,const btVector3& normalOnB,btScalar distance,int lifeTime,const btVector3& color);
-        /**
-         *  <#Description#>
-         *
-         *  @param warningString <#warningString description#>
-         */
-        virtual void reportErrorWarning(const char* warningString);
-        
-        /**
-         *  <#Description#>
-         *
-         *  @param location   <#location description#>
-         *  @param textString <#textString description#>
-         */
-        virtual void draw3dText(const btVector3& location,const char* textString);
-        
-        /**
-         *  <#Description#>
-         *
-         *  @param debugMode <#debugMode description#>
-         */
-        virtual void setDebugMode(int debugMode);
-        
-        /**
-         *  <#Description#>
-         *
-         *  @return <#return value description#>
-         */
-        virtual int getDebugMode() const;
-    protected:
-        virtual bool shouldApplyShape(Node *node)const{SDL_assert(true); return true;}
-        void swapVertexData(const size_t idx1, const size_t idx2);
-        
-        
-        void setVertexPositions(const u64 index,
-                                const btVector3 &from,
-                                const btVector3 &to);
-        
-        void getVertexPositions(const u64 index,
-                                btVector3 &from,
-                                btVector3 &to)const;
-        
-        void setVertexTextureCoordinates(const u64 index,
-                                         const btVector2 &from,
-                                         const btVector2 &to);
-        
-        void getVertexTextureCoordinates(const u64 index,
-                                         btVector2 &from,
-                                         btVector2 &to)const;
-        
-        void setVertexColors(const u64 index,
-                             const btVector4 &from,
-                             const btVector4 &to);
-        
-        void getVertexColors(const u64 index,
-                             btVector4 &from,
-                             btVector4 &to)const;
-        
-        virtual void load();
-        virtual void unLoad();
     private:
-        WorldDebugDrawer(const WorldDebugDrawer &);
-        WorldDebugDrawer &operator=(const WorldDebugDrawer &);
-        
-        typedef struct
-        {
-            TexturedColoredVertex pointA;
-            TexturedColoredVertex pointB;
-        } Line;
-        
-        Line *m_Line;        // Array holding quad information for each particle;
-        u16 *m_Indexes;
-        
         int m_DebugMode;
-        s32 m_Index;
+        
+        glm::mat4 m_mvpMatrix;
+        
+        GLuint linePointProgram;
+        GLint  linePointProgram_MvpMatrixLocation;
+        
+        GLuint textProgram;
+        GLint  textProgram_GlyphTextureLocation;
+        GLint  textProgram_ScreenDimensions;
+        
+        GLuint linePointVAO;
+        GLuint linePointVBO;
+        
+        GLuint textVAO;
+        GLuint textVBO;
+        
+        
     };
 }
 
-#endif /* defined(__JLIGameEngineTest__DebugDrawer__) */
+#endif /* WorldDebugDrawer_hpp */

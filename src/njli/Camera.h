@@ -45,6 +45,7 @@ Camera : public AbstractFactoryObject
     friend class World;
     friend class Geometry;
     friend class WorldState;
+    friend class WorldDebugDrawer;
 
 protected:
     Camera();

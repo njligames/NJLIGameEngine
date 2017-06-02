@@ -373,23 +373,13 @@ public:
          */
     const Scene* getScene() const;
 
+    
     /**
-         *  <#Description#>
-         *
-         *  @param camera   <#camera description#>
-         *  @param shader   <#shader description#>
-         *  @param material <#material description#>
-         */
-    void enableDebugDraw(Camera* camera, ShaderProgram* shader, Material* material);
+     <#Description#>
 
-    /**
-         *  <#Description#>
-         *
-         *  @param camera   <#camera description#>
-         *  @param shader   <#shader description#>
-         *  @param material <#material description#>
-         */
-    void enableDebugDraw(Camera* camera, ShaderProgram* shader = NULL);
+     @param camera <#camera description#>
+     */
+    void enableDebugDraw(Camera* camera);
 
     /**
          *  <#Description#>

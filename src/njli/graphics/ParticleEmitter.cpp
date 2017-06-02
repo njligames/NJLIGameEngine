@@ -23,6 +23,8 @@
 #include "btVector3.h"
 
 #include "btQuickprof.h"
+#include "ParticleEmitter.h"
+#include "Geometry.h"
 
 // Macro which returns a random value between -1 and 1
 #define RANDOM_MINUS_1_TO_1() ((random() / (f32)0x3fffffff )-1.0f)

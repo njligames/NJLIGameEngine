@@ -15,6 +15,7 @@
 #define FORMATSTRING "{\"njli::Material\":[]}"
 #include "btPrint.h"
 #include "JsonJLI.h"
+#include "Geometry.h"
 
 namespace njli
 {

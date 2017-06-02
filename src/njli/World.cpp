@@ -712,8 +712,10 @@ namespace njli
 #endif
         renderGL();
         
-        if(getScene())
-            getScene()->render();
+        Scene *scene = getScene();
+        
+        if(scene)
+            scene->render();
 #if defined(USE_NANOVG_LIBRARY)
         getWorldHUD()->render();
 #endif
@@ -723,16 +725,14 @@ namespace njli
         njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer);
         
 #if defined(DEBUG) || defined (_DEBUG)
-        Scene *scene = getScene();
-        ShaderProgram *shaderProgram = getDebugDrawer()->getShaderProgram();
+        
         if(m_enableDebugDraw)
         {
-            if(scene && m_DebugDrawCamera && shaderProgram)
+            if(scene)
             {
                 PhysicsWorld *physicsWorld = scene->getPhysicsWorld();
                 if(physicsWorld)
                 {
-                    getDebugDrawer()->render(m_DebugDrawCamera);
                     physicsWorld->debugDrawWorld();
                 }
                 else
@@ -742,12 +742,16 @@ namespace njli
             }
             else
             {
-                if(!shaderProgram)
-                    SDL_LogWarn(SDL_LOG_CATEGORY_TEST, "Debug draw is enabled without a shader.");
-                if(!m_DebugDrawCamera)
-                    SDL_LogWarn(SDL_LOG_CATEGORY_TEST, "Debug draw is enabled without a camera.");
-                if(!scene)
-                    SDL_LogWarn(SDL_LOG_CATEGORY_TEST, "Debug draw is enabled without a scene.");
+                SDL_LogWarn(SDL_LOG_CATEGORY_TEST, "Debug draw is enabled without a scene.");
+            }
+            
+            if(m_DebugDrawCamera)
+            {
+                getDebugDrawer()->draw(m_DebugDrawCamera);
+            }
+            else
+            {
+                SDL_LogWarn(SDL_LOG_CATEGORY_TEST, "Debug draw is enabled without a camera.");
             }
         }
 #endif
@@ -868,56 +872,23 @@ namespace njli
         return NULL;
     }
     
-    void World::enableDebugDraw(Camera *camera, ShaderProgram *shader, Material *material)
+    void World::enableDebugDraw(Camera *camera)
     {
-        if (camera && shader && material)
+        if (camera)
         {
             m_enableDebugDraw = true;
             m_DebugDrawCamera = camera;
-            getDebugDrawer()->setShaderProgram(shader);
-            getDebugDrawer()->setMaterial(material);
         }
         else
         {
-            if (camera == NULL)
-                SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "Unable to enableDebugDraw, camera is NULL\n");
-            if (shader == NULL)
-                SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "Unable to enableDebugDraw, shader is NULL\n");
-            if (material == NULL)
-                SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "Unable to enableDebugDraw, material is NULL\n");
+            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "Unable to enableDebugDraw, camera is NULL\n");
         }
-    }
-    
-    void World::enableDebugDraw(Camera *camera, ShaderProgram *shader)
-    {
-        if(!m_DebugDrawMaterial)
-        {
-            Image *img = Image::create();
-            img->generate(8, 8, 4);
-            
-            m_DebugDrawMaterial = Material::create();
-            m_DebugDrawMaterial->getDiffuse()->loadGPU(*img);
-            Image::destroy(img);
-        }
-        
-        if (NULL == shader)
-        {
-            enableDebugDraw(camera, getDebugDrawer()->getShaderProgram(), m_DebugDrawMaterial);
-        }
-        else
-        {
-            enableDebugDraw(camera, shader, m_DebugDrawMaterial);
-        }
-        
-        
     }
     
     void World::disableDebugDraw()
     {
         m_enableDebugDraw = false;
         m_DebugDrawCamera = NULL;
-        getDebugDrawer()->removeShaderProgram();
-        getDebugDrawer()->removeMaterial();
     }
     
 //    void World::enableDebugDraw(bool enable)
