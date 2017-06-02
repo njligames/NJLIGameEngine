@@ -37,8 +37,8 @@ namespace njli
     m_matrixBuffer(new f32[9]),
     m_Camera(NULL)
     {
-        m_NVGContext = nvgCreateGLES2(NVG_ANTIALIAS | NVG_STENCIL_STROKES | NVG_DEBUG);
-        SDL_assert(m_NVGContext!=NULL);
+        m_NVGContext = nvgCreateGL3(NVG_ANTIALIAS | NVG_STENCIL_STROKES | NVG_DEBUG);
+//        SDL_assert(m_NVGContext!=NULL);
     }
 
     WorldHUD::~WorldHUD()
@@ -53,7 +53,7 @@ namespace njli
         for (std::vector<s32>::iterator i = m_images.begin(); i != m_images.end(); ++i)
             nvgDeleteImage(m_NVGContext, *i);
         
-        nvgDeleteGLES2(m_NVGContext);
+        nvgDeleteGL3(m_NVGContext);
     }
 
     const s8 *WorldHUD::getClassName()const
@@ -1159,10 +1159,10 @@ namespace njli
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         glBlendEquation(GL_FUNC_ADD);
         
-        nvgBeginFrame(m_NVGContext,
-                      njli::World::getInstance()->getViewportDimensions().x(),
-                      njli::World::getInstance()->getViewportDimensions().y(),
-                      njli::World::getInstance()->getAspectRatio());
+//        nvgBeginFrame(m_NVGContext,
+//                      njli::World::getInstance()->getViewportDimensions().x(),
+//                      njli::World::getInstance()->getViewportDimensions().y(),
+//                      njli::World::getInstance()->getAspectRatio());
         
         s8 buffer[BUFFER_SIZE];
         sprintf(buffer, "%s", "__NJLIWorldRenderHUD");
@@ -1171,7 +1171,7 @@ namespace njli
         if(njli::World::getInstance()->getScene())
             njli::World::getInstance()->getScene()->renderHUD();
         
-        nvgEndFrame(m_NVGContext);
+//        nvgEndFrame(m_NVGContext);
         
         glDisable(GL_BLEND);
     }

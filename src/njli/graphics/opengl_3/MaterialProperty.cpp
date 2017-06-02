@@ -594,15 +594,15 @@ namespace njli
         {
             case 1:
             {
-                internalformat = GL_LUMINANCE;
-                format	= GL_LUMINANCE;
+                internalformat = GL_ALPHA;
+                format	= GL_ALPHA;
             }
                 break;
                 
             case 2:
             {
-                internalformat = GL_LUMINANCE_ALPHA;
-                format	= GL_LUMINANCE_ALPHA;
+                internalformat = GL_ALPHA;
+                format	= GL_ALPHA;
             }
                 break;
             case 3:
@@ -643,7 +643,7 @@ namespace njli
     {
         GLint level = 0;
         GLint internalformat = GL_RGBA;
-        //GLint border = 0;
+        GLint border = 0;
         GLenum format = GL_RGBA;
         GLenum type = GL_UNSIGNED_BYTE;
         const GLvoid* pixels = (const GLvoid*)img.getDataPtr();
@@ -657,15 +657,15 @@ namespace njli
         {
             case 1:
             {
-                internalformat = GL_LUMINANCE;
-                format	= GL_LUMINANCE;
+                internalformat = GL_ALPHA;
+                format	= GL_ALPHA;
             }
                 break;
                 
             case 2:
             {
-                internalformat = GL_LUMINANCE_ALPHA;
-                format	= GL_LUMINANCE_ALPHA;
+                internalformat = GL_ALPHA;
+                format	= GL_ALPHA;
             }
                 break;
             case 3:

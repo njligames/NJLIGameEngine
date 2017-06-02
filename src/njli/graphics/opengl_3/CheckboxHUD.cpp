@@ -91,10 +91,10 @@ namespace njli
         
         
         
-//        f32 w = m_dimensions->x();
+        f32 w = m_dimensions->x();
         f32 h = m_dimensions->y();
-//        f32 tw = 0;
-//        f32 iw = 0;
+        f32 tw = 0;
+        f32 iw = 0;
         f32 x = m_position->x();
         f32 y = getHeight() - m_position->y() - h;
         

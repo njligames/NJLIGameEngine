@@ -68,15 +68,15 @@ static const char *getGLSLVarTypeName(njliGLSLVarType var)
     }
 }
 
-//static void log_v_fixed_length(const GLchar* source, const GLint length) {
-////    if (LOGGING_ON) {
-//        char log_buffer[length + 1];
-//        memcpy(log_buffer, source, length);
-//        log_buffer[length] = '\0';
-//        
-//        SDL_LogVerbose(SDL_LOG_CATEGORY_TEST, "<glGetShaderSource>\n%s\n</glGetShaderSource>", log_buffer);
-////    }
-//}
+static void log_v_fixed_length(const GLchar* source, const GLint length) {
+//    if (LOGGING_ON) {
+        char log_buffer[length + 1];
+        memcpy(log_buffer, source, length);
+        log_buffer[length] = '\0';
+        
+        SDL_LogVerbose(SDL_LOG_CATEGORY_TEST, "<glGetShaderSource>\n%s\n</glGetShaderSource>", log_buffer);
+//    }
+}
 
 static void log_shader_info_log(GLuint shader_object_id) {
 //    if (LOGGING_ON) {
@@ -125,9 +125,7 @@ static GLuint compile_shader(const GLenum type, const GLchar* source, const GLin
     str[0] = new GLchar[length];
     strcpy(str[0], source);
     
-    SDL_LogVerbose(SDL_LOG_CATEGORY_TEST, "The source on disk : %s", source);
-    
-    glShaderSource(shader_object_id, 1, (const GLchar**)&(source), NULL);DEBUG_GL_ERROR_PRINT("glShaderSource", "id:%d,source:%s",shader_object_id,str[0]);
+    glShaderSource(shader_object_id, 1, (const GLchar**)&(str[0]), NULL);DEBUG_GL_ERROR_PRINT("glShaderSource", "id:%d,source:%s",shader_object_id,str[0]);
     glCompileShader(shader_object_id);DEBUG_GL_ERROR_WRITE("glCompileShader");
     glGetShaderiv(shader_object_id, GL_COMPILE_STATUS, &compile_status);DEBUG_GL_ERROR_WRITE("glGetShaderiv");
     

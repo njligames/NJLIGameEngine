@@ -51,178 +51,106 @@ namespace njli
     
     Geometry::Geometry():
     AbstractFactoryObject(this),
+//    m_Name("MyGeometry"),
     m_Material(NULL),
     m_ShaderProgram(NULL),
     m_projectionMatrixUniform(-1),
-    m_modelViewBufferID(-1),
-    m_colorTransformBufferID(-1),
+//    m_modelViewMatrixUniform(-1),
     m_ModelviewTransform(NULL),
     m_ColorTransform(NULL),
+    m_modelViewBufferID(-1),
+    m_colorTransformBufferID(-1),
     m_InTransformAttrib(-1),
     m_InColorTransform(-1),
+//    m_CurrentMeshCount(-1),
     m_verticesBufferID(-1),
     indexBufferID(-1),
     m_vertexArrayID(-1),
     m_InPositionAttrib(-1),
     m_InTexCoordAttrib(-1),
     m_InColorAttrib(-1),
-    m_InOpacityAttrib(-1),
-    m_InHiddenAttrib(-1),
     m_blendFuncSource(GL_SRC_ALPHA),
     m_blendFuncDestination(GL_ONE_MINUS_SRC_ALPHA),
     _opacityModifyRGB(false),
-    u_pointSize(1),
     m_enableBlend(true),
     m_enableDepthTest(true),
     m_enableStencilTest(false),
     m_TransformDirty(true),
     m_ColorTransformDirty(true),
+//    m_StartCopyTransform(std::numeric_limits<u64>::max()),
     m_LoadGPU(false),
     m_setupOpacity_Material(NULL),
     m_setupOpacity_Image(NULL),
     m_setupOpacity(false),
     m_UnLoadGPU(false),
+//    m_setupShader(false),
     m_bufferModified(true),
     m_vertexAttribChanged(false),
     m_MatrixBuffer(new float[16]),
     m_maxindice(0),
     m_RenderCategory(JLI_BIT_CATEGORY_NONE)
-    
-    
-    
-////    m_Name("MyGeometry"),
-//    m_Material(NULL),
-//    m_ShaderProgram(NULL),
-//    m_projectionMatrixUniform(-1),
-////    m_modelViewMatrixUniform(-1),
-//    m_ModelviewTransform(NULL),
-//    m_modelViewBufferID(-1),
-//    m_ColorTransform(NULL),
-//    m_colorTransformBufferID(-1),
-//    m_InTransformAttrib(-1),
-//    m_InColorTransform(-1),
-////    m_CurrentMeshCount(-1),
-//    m_verticesBufferID(-1),
-//    indexBufferID(-1),
-//    m_vertexArrayID(-1),
-//    m_InPositionAttrib(-1),
-//    m_InTexCoordAttrib(-1),
-//    m_InColorAttrib(-1),
-//    m_blendFuncSource(GL_SRC_ALPHA),
-//    m_blendFuncDestination(GL_ONE_MINUS_SRC_ALPHA),
-//    _opacityModifyRGB(false),
-//    m_enableBlend(true),
-//    m_enableDepthTest(true),
-//    m_enableStencilTest(false),
-//    m_TransformDirty(true),
-//    m_ColorTransformDirty(true),
-////    m_StartCopyTransform(std::numeric_limits<u64>::max()),
-//    m_LoadGPU(false),
-//    m_setupOpacity_Material(NULL),
-//    m_setupOpacity_Image(NULL),
-//    m_setupOpacity(false),
-//    m_UnLoadGPU(false),
-////    m_setupShader(false),
-//    m_bufferModified(true),
-//    m_vertexAttribChanged(false),
-//    m_MatrixBuffer(new float[16]),
-//    m_maxindice(0),
-//    m_RenderCategory(JLI_BIT_CATEGORY_NONE)
     {
         enableRenderObject();
     }
     
     Geometry::Geometry(const AbstractBuilder &builder):
     AbstractFactoryObject(this),
+//    m_Name("MyGeometry"),
     m_Material(NULL),
     m_ShaderProgram(NULL),
     m_projectionMatrixUniform(-1),
-    m_modelViewBufferID(-1),
-    m_colorTransformBufferID(-1),
+//    m_modelViewMatrixUniform(-1),
     m_ModelviewTransform(NULL),
     m_ColorTransform(NULL),
+    m_modelViewBufferID(-1),
+    m_colorTransformBufferID(-1),
     m_InTransformAttrib(-1),
     m_InColorTransform(-1),
+//    m_CurrentMeshCount(-1),
     m_verticesBufferID(-1),
     indexBufferID(-1),
     m_vertexArrayID(-1),
     m_InPositionAttrib(-1),
     m_InTexCoordAttrib(-1),
     m_InColorAttrib(-1),
-    m_InOpacityAttrib(-1),
-    m_InHiddenAttrib(-1),
     m_blendFuncSource(GL_SRC_ALPHA),
     m_blendFuncDestination(GL_ONE_MINUS_SRC_ALPHA),
     _opacityModifyRGB(false),
-    u_pointSize(1),
     m_enableBlend(true),
     m_enableDepthTest(true),
     m_enableStencilTest(false),
     m_TransformDirty(true),
     m_ColorTransformDirty(true),
+//    m_StartCopyTransform(std::numeric_limits<u64>::max()),
     m_LoadGPU(false),
     m_setupOpacity_Material(NULL),
     m_setupOpacity_Image(NULL),
     m_setupOpacity(false),
     m_UnLoadGPU(false),
+//    m_setupShader(false),
     m_bufferModified(true),
     m_vertexAttribChanged(false),
     m_MatrixBuffer(new float[16]),
     m_maxindice(0),
     m_RenderCategory(JLI_BIT_CATEGORY_NONE)
-////    m_Name("MyGeometry"),
-//    m_Material(NULL),
-//    m_ShaderProgram(NULL),
-//    m_projectionMatrixUniform(-1),
-////    m_modelViewMatrixUniform(-1),
-//    m_ModelviewTransform(NULL),
-//    m_ColorTransform(NULL),
-//    m_modelViewBufferID(-1),
-//    m_colorTransformBufferID(-1),
-//    m_InTransformAttrib(-1),
-//    m_InColorTransform(-1),
-////    m_CurrentMeshCount(-1),
-//    m_verticesBufferID(-1),
-//    indexBufferID(-1),
-//    m_vertexArrayID(-1),
-//    m_InPositionAttrib(-1),
-//    m_InTexCoordAttrib(-1),
-//    m_InColorAttrib(-1),
-//    m_blendFuncSource(GL_SRC_ALPHA),
-//    m_blendFuncDestination(GL_ONE_MINUS_SRC_ALPHA),
-//    _opacityModifyRGB(false),
-//    m_enableBlend(true),
-//    m_enableDepthTest(true),
-//    m_enableStencilTest(false),
-//    m_TransformDirty(true),
-//    m_ColorTransformDirty(true),
-////    m_StartCopyTransform(std::numeric_limits<u64>::max()),
-//    m_LoadGPU(false),
-//    m_setupOpacity_Material(NULL),
-//    m_setupOpacity_Image(NULL),
-//    m_setupOpacity(false),
-//    m_UnLoadGPU(false),
-////    m_setupShader(false),
-//    m_bufferModified(true),
-//    m_vertexAttribChanged(false),
-//    m_MatrixBuffer(new float[16]),
-//    m_maxindice(0),
-//    m_RenderCategory(JLI_BIT_CATEGORY_NONE)
     {
         enableRenderObject();
     }
     
     Geometry::Geometry(const Geometry &copy):
     AbstractFactoryObject(this),
+//    m_Name("MyGeometry"),
     m_Material(NULL),
     m_ShaderProgram(NULL),
     m_projectionMatrixUniform(-1),
-    m_modelViewBufferID(-1),
-    m_colorTransformBufferID(-1),
+//    m_modelViewMatrixUniform(-1),
     m_ModelviewTransform(NULL),
     m_ColorTransform(NULL),
+    m_modelViewBufferID(-1),
+    m_colorTransformBufferID(-1),
     m_InTransformAttrib(-1),
     m_InColorTransform(-1),
+//    m_CurrentMeshCount(-1),
     m_verticesBufferID(-1),
     indexBufferID(-1),
     m_vertexArrayID(-1),
@@ -234,62 +162,23 @@ namespace njli
     m_blendFuncSource(GL_SRC_ALPHA),
     m_blendFuncDestination(GL_ONE_MINUS_SRC_ALPHA),
     _opacityModifyRGB(false),
-    u_pointSize(1),
     m_enableBlend(true),
     m_enableDepthTest(true),
     m_enableStencilTest(false),
     m_TransformDirty(true),
     m_ColorTransformDirty(true),
+//    m_StartCopyTransform(std::numeric_limits<u64>::max()),
     m_LoadGPU(false),
     m_setupOpacity_Material(NULL),
     m_setupOpacity_Image(NULL),
     m_setupOpacity(false),
     m_UnLoadGPU(false),
+//    m_setupShader(false),
     m_bufferModified(true),
     m_vertexAttribChanged(false),
     m_MatrixBuffer(new float[16]),
     m_maxindice(0),
     m_RenderCategory(JLI_BIT_CATEGORY_NONE)
-////    m_Name("MyGeometry"),
-//    m_Material(NULL),
-//    m_ShaderProgram(NULL),
-//    m_projectionMatrixUniform(-1),
-////    m_modelViewMatrixUniform(-1),
-//    m_ModelviewTransform(NULL),
-//    m_ColorTransform(NULL),
-//    m_modelViewBufferID(-1),
-//    m_colorTransformBufferID(-1),
-//    m_InTransformAttrib(-1),
-//    m_InColorTransform(-1),
-////    m_CurrentMeshCount(-1),
-//    m_verticesBufferID(-1),
-//    indexBufferID(-1),
-//    m_vertexArrayID(-1),
-//    m_InPositionAttrib(-1),
-//    m_InTexCoordAttrib(-1),
-//    m_InColorAttrib(-1),
-//    m_InOpacityAttrib(-1),
-//    m_InHiddenAttrib(-1),
-//    m_blendFuncSource(GL_SRC_ALPHA),
-//    m_blendFuncDestination(GL_ONE_MINUS_SRC_ALPHA),
-//    _opacityModifyRGB(false),
-//    m_enableBlend(true),
-//    m_enableDepthTest(true),
-//    m_enableStencilTest(false),
-//    m_TransformDirty(true),
-//    m_ColorTransformDirty(true),
-////    m_StartCopyTransform(std::numeric_limits<u64>::max()),
-//    m_LoadGPU(false),
-//    m_setupOpacity_Material(NULL),
-//    m_setupOpacity_Image(NULL),
-//    m_setupOpacity(false),
-//    m_UnLoadGPU(false),
-////    m_setupShader(false),
-//    m_bufferModified(true),
-//    m_vertexAttribChanged(false),
-//    m_MatrixBuffer(new float[16]),
-//    m_maxindice(0),
-//    m_RenderCategory(JLI_BIT_CATEGORY_NONE)
     {
         enableRenderObject();
     }
@@ -1242,6 +1131,7 @@ namespace njli
                 glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
             }
         }
+        
         glBindVertexArray(0);
         
         m_LoadGPU = false;
@@ -1275,6 +1165,8 @@ namespace njli
     
     void Geometry::unLoadGPU_Internal()
     {
+        unLoadGPU();
+        
         SDL_assert(m_UnLoadGPU);
         
         if(m_modelViewBufferID == -1)
@@ -1304,6 +1196,7 @@ namespace njli
         if(m_vertexArrayID == -1)
         {
             glDeleteVertexArrays(1, &m_vertexArrayID);
+            
             m_vertexArrayID = -1;
         }
         
@@ -1321,7 +1214,7 @@ namespace njli
         
         if (!shader->isLinked())
         {
-            if(shader->link())
+            if(!shader->link())
             {
                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "%s\n", shader->programLog());
 //                SDL_LogError(SDL_LOG_CATEGORY_TEST, "Vertex log: %s\n", shader->vertexShaderLog());

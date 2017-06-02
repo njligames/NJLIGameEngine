@@ -29,8 +29,8 @@ static int viewHeight;
 
 void initGL()
 {
-    glEnable(GL_BLEND);
-    glDisable(GL_DEPTH_TEST);
+//    glEnable(GL_BLEND);
+//    glDisable(GL_DEPTH_TEST);
 }
 
 void renderGL()
@@ -40,8 +40,8 @@ void renderGL()
 #endif
 //    glViewport(viewX, viewY, viewWidth, viewHeight);
     glViewport(viewX, viewY, (int)ImGui::GetIO().DisplaySize.x, (int)ImGui::GetIO().DisplaySize.y);
-//    glClearColor(bgRed, bgGreen, bgBlue, bgAlpha);
-    glClearColor(0.52, 0.86, 0.99, 1.0f);
+    glClearColor(bgRed, bgGreen, bgBlue, bgAlpha);
+//    glClearColor(0.52, 0.86, 0.99, 1.0f);
     
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT|GL_STENCIL_BUFFER_BIT);
 //    glEnable(GL_BLEND);
@@ -95,14 +95,14 @@ void printGLInfo()
     glGetIntegerv(GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS, &param);
     SDL_LogVerbose(SDL_LOG_CATEGORY_TEST, "%s = %d\n", "The count texture units of allowed for usage in both shaders", param);
     
-    glGetIntegerv(GL_MAX_VERTEX_UNIFORM_VECTORS, &param);
-    SDL_LogVerbose(SDL_LOG_CATEGORY_TEST, "%s = %d\n", "The maximumum amount of uniform vectors in the vertex shader", param);
-    
-    glGetIntegerv(GL_MAX_FRAGMENT_UNIFORM_VECTORS, &param);
-    SDL_LogVerbose(SDL_LOG_CATEGORY_TEST, "%s = %d\n", "The maximumum amount of uniform vectors in the fragment shader", param);
-    
-    glGetIntegerv(GL_MAX_VARYING_VECTORS, &param);
-    SDL_LogVerbose(SDL_LOG_CATEGORY_TEST, "%s = %d\n", "The maximumum amount of varying vectors", param);
+//    glGetIntegerv(GL_MAX_VERTEX_UNIFORM_VECTORS, &param);
+//    SDL_LogVerbose(SDL_LOG_CATEGORY_TEST, "%s = %d\n", "The maximumum amount of uniform vectors in the vertex shader", param);
+//    
+//    glGetIntegerv(GL_MAX_FRAGMENT_UNIFORM_VECTORS, &param);
+//    SDL_LogVerbose(SDL_LOG_CATEGORY_TEST, "%s = %d\n", "The maximumum amount of uniform vectors in the fragment shader", param);
+//    
+//    glGetIntegerv(GL_MAX_VARYING_VECTORS, &param);
+//    SDL_LogVerbose(SDL_LOG_CATEGORY_TEST, "%s = %d\n", "The maximumum amount of varying vectors", param);
     
     glGetIntegerv(GL_MAX_VERTEX_ATTRIBS, &param);
     SDL_LogVerbose(SDL_LOG_CATEGORY_TEST, "%s = %d\n", "The maximumum amount of vertex attributes", param);
