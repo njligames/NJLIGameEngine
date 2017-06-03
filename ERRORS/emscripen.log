@@ -1,1 +1,75 @@
+In file included from /Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/World.cpp:15:
+/Users/jamesfolk/Dropbox/Developer/NJLI/External/thirdparty/BUILD/include/bullet3/BulletXmlWorldImporter/tinyxml.h:43:9: warning: 'DEBUG' macro redefined [-Wmacro-redefined]
+#define DEBUG
+        ^
+<command line>:5:9: note: previous definition is here
+#define DEBUG 1
+        ^
+1 warning generated.
+In file included from /Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/graphics/ParticleEmitter.cpp:21:
+/Users/jamesfolk/Dropbox/Developer/NJLI/External/thirdparty/BUILD/include/bullet3/BulletXmlWorldImporter/tinyxml.h:43:9: warning: 'DEBUG' macro redefined [-Wmacro-redefined]
+#define DEBUG
+        ^
+<command line>:5:9: note: previous definition is here
+#define DEBUG 1
+        ^
+1 warning generated.
+/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/WorldInput.cpp:236:5: warning: control reaches end of non-void function [-Wreturn-type]
+    }
+    ^
+/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/WorldInput.cpp:241:5: warning: control reaches end of non-void function [-Wreturn-type]
+    }
+    ^
+2 warnings generated.
+In file included from /Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/World.cpp:15:
+/Users/jamesfolk/Dropbox/Developer/NJLI/External/thirdparty/BUILD/include/bullet3/BulletXmlWorldImporter/tinyxml.h:43:9: warning: 'DEBUG' macro redefined [-Wmacro-redefined]
+#define DEBUG
+        ^
+<command line>:5:9: note: previous definition is here
+#define DEBUG 1
+        ^
+1 warning generated.
+In file included from /Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/graphics/ParticleEmitter.cpp:21:
+/Users/jamesfolk/Dropbox/Developer/NJLI/External/thirdparty/BUILD/include/bullet3/BulletXmlWorldImporter/tinyxml.h:43:9: warning: 'DEBUG' macro redefined [-Wmacro-redefined]
+#define DEBUG
+        ^
+<command line>:5:9: note: previous definition is here
+#define DEBUG 1
+        ^
+1 warning generated.
+/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/WorldInput.cpp:236:5: warning: control reaches end of non-void function [-Wreturn-type]
+    }
+    ^
+/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/WorldInput.cpp:241:5: warning: control reaches end of non-void function [-Wreturn-type]
+    }
+    ^
+2 warnings generated.
 [0;33mwarning:[0m emitted code will contain very large numbers of local variables, which is bad for performance (build to JS with -O2 or above to avoid this - make sure to do so both on source files, and during 'linking')
+warning: unresolved symbol: glUnmapBuffer
+warning: unresolved symbol: glMapBufferRange
+In file included from /Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/World.cpp:15:
+/Users/jamesfolk/Dropbox/Developer/NJLI/External/thirdparty/BUILD/include/bullet3/BulletXmlWorldImporter/tinyxml.h:43:9: warning: 'DEBUG' macro redefined [-Wmacro-redefined]
+#define DEBUG
+        ^
+<command line>:5:9: note: previous definition is here
+#define DEBUG 1
+        ^
+1 warning generated.
+In file included from /Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/graphics/ParticleEmitter.cpp:21:
+/Users/jamesfolk/Dropbox/Developer/NJLI/External/thirdparty/BUILD/include/bullet3/BulletXmlWorldImporter/tinyxml.h:43:9: warning: 'DEBUG' macro redefined [-Wmacro-redefined]
+#define DEBUG
+        ^
+<command line>:5:9: note: previous definition is here
+#define DEBUG 1
+        ^
+1 warning generated.
+/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/WorldInput.cpp:236:5: warning: control reaches end of non-void function [-Wreturn-type]
+    }
+    ^
+/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/WorldInput.cpp:241:5: warning: control reaches end of non-void function [-Wreturn-type]
+    }
+    ^
+2 warnings generated.
+[0;33mwarning:[0m emitted code will contain very large numbers of local variables, which is bad for performance (build to JS with -O2 or above to avoid this - make sure to do so both on source files, and during 'linking')
+warning: unresolved symbol: glUnmapBuffer
+warning: unresolved symbol: glMapBufferRange

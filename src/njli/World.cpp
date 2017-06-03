@@ -34,6 +34,8 @@
 #include "WorldHUD.h"
 #endif
 
+#include "imgui.h"
+
 namespace njli
 {
     World *World::s_Instance = NULL;
@@ -89,7 +91,7 @@ namespace njli
     m_WorldDebugDrawer(new WorldDebugDrawer),
     //m_WorldSQLite(new WorldSQLite),
     //m_WorldFacebook(new WorldFacebook),
-    m_enableDebugDraw(false),
+    m_enableDebugDraw(true),
     m_DebugDrawCamera(NULL),
     m_DebugDrawMaterial(NULL),
 //    m_TouchCamera(NULL),
@@ -101,6 +103,8 @@ namespace njli
     m_AnimationPaused(false),
     m_GamePaused(false)
     {
+        m_WorldDebugDrawer->init();
+        
         addChild(m_WorldSound);
         addChild(m_WorldInput);
 #ifdef USE_NANOVG_LIBRARY
@@ -707,6 +711,7 @@ namespace njli
     
     void World::render()
     {
+        
 #if defined(USE_NANOVG_LIBRARY)
         getWorldHUD()->renderFBOs();
 #endif
@@ -728,6 +733,8 @@ namespace njli
         
         if(m_enableDebugDraw)
         {
+            getDebugDrawer()->beginDraw();
+            
             if(scene)
             {
                 PhysicsWorld *physicsWorld = scene->getPhysicsWorld();
@@ -753,6 +760,13 @@ namespace njli
             {
                 SDL_LogWarn(SDL_LOG_CATEGORY_TEST, "Debug draw is enabled without a camera.");
             }
+            
+            // This creates a window
+            ImGui::Begin("Window Title Here");
+            ImGui::Text("Hello, world!");
+            ImGui::End();
+            
+            getDebugDrawer()->endDraw();
         }
 #endif
         m_WorldFactory->collectGarbage_GPU();

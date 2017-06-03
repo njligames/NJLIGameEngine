@@ -7,6 +7,7 @@ build_emscripten_sublime()
     emcmake cmake -G "Sublime Text 2 - Unix Makefiles" ../.. \
         -DCMAKE_INSTALL_PREFIX=../../generated/ \
         -DNJLI_THIRDPARTY_DIRECTORY:STRING=${MY_THIRDPARTY_DIR} \
+        -DNJLI_GRAPHICS_PLATFORM=opengl_es_3 \
         -DCMAKE_CXX_FLAGS="-std=gnu++11" \
         -DNJLI_BUILD_PLATFORM="emscripten" \
         -DCMAKE_BUILD_TYPE=Debug \
@@ -46,7 +47,7 @@ build_emscripten_xcode()
 
 cd projects
 
-rm -rf emscripten_Sublime
+#rm -rf emscripten_Sublime
 mkdir -p emscripten_Sublime
 cd emscripten_Sublime
 build_emscripten_sublime

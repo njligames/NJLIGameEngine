@@ -370,6 +370,16 @@ namespace njli
         void compileShader(const GLuint shader);
         void linkProgram(const GLuint program);
         
+        void initImgui();
+        void renderImgui();
+        void newFrameImgui();
+        
+        void setupKeymaps();
+        void setupImGuiHooks();
+        void connectServer(const std::string serverName);
+        
+        void ImGui_ImplIOS_CreateFontsTexture();
+        bool ImGui_ImplIOS_CreateDeviceObjects();
     private:
         int m_DebugMode;
         

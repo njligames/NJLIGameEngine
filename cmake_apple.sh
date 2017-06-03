@@ -37,10 +37,10 @@ build_apple_xcode()
 
     MY_BUILD_DIR="${MY_PLATFORM}/${MY_VERSION}/${MY_BUILD_PLAT}"
 
-    MY_GRAPHICS_PLATFORM=opengl_es_2
+    MY_GRAPHICS_PLATFORM=opengl_es_3
     if [ $MY_PLATFORM == macOS ]
     then
-        MY_GRAPHICS_PLATFORM=opengl_2
+        MY_GRAPHICS_PLATFORM=opengl_3
     fi
 
 
@@ -162,7 +162,7 @@ _build_macos()
         -DCMAKE_CXX_FLAGS='-std=gnu++11' \
         -DCMAKE_INSTALL_PREFIX=../generated/ \
         -DNJLI_THIRDPARTY_DIRECTORY:STRING=${MY_THIRDPARTY_DIR} \
-        -DNJLI_GRAPHICS_PLATFORM=opengl_2.1 \
+        -DNJLI_GRAPHICS_PLATFORM=opengl_2 \
         -DCMAKE_OSX_ARCHITECTURES="i386;x86_64" \
         -DNJLI_BUILD_PLATFORM="macOS" \
         -DCMAKE_BUILD_TYPE=${MY_BUILD_TYPE} \
