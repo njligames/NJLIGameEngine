@@ -118,11 +118,11 @@ namespace njli
         glDeleteProgram(linePointProgram);
         glDeleteProgram(textProgram);
         
-        glDeleteVertexArrays(1, &linePointVAO);
+        glDeleteVertexArraysOES(1, &linePointVAO);
         
         glDeleteBuffers(1, &linePointVBO);
         
-        glDeleteVertexArrays(1, &textVAO);
+        glDeleteVertexArraysOES(1, &textVAO);
         
         glDeleteBuffers(1, &textVBO);
     }
@@ -157,7 +157,7 @@ namespace njli
         SDL_assert(points != nullptr);
         SDL_assert(count > 0 && count <= DEBUG_DRAW_VERTEX_BUFFER_SIZE);
         
-        glBindVertexArray(linePointVAO);
+        glBindVertexArrayOES(linePointVAO);
         glUseProgram(linePointProgram);
         
         glUniformMatrix4fv(linePointProgram_MvpMatrixLocation,
@@ -181,7 +181,7 @@ namespace njli
         
         glUseProgram(0);
         
-        glBindVertexArray(0);
+        glBindVertexArrayOES(0);
         
         glBindBuffer(GL_ARRAY_BUFFER, 0);
     }
@@ -191,7 +191,7 @@ namespace njli
         assert(lines != nullptr);
         assert(count > 0 && count <= DEBUG_DRAW_VERTEX_BUFFER_SIZE);
         
-        glBindVertexArray(linePointVAO);
+        glBindVertexArrayOES(linePointVAO);
         
         glUseProgram(linePointProgram);
         
@@ -216,7 +216,7 @@ namespace njli
         
         glUseProgram(0);
         
-        glBindVertexArray(0);
+        glBindVertexArrayOES(0);
         
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         
@@ -621,11 +621,11 @@ namespace njli
         // Lines/points vertex buffer:
         //
         {
-            glGenVertexArrays(1, &linePointVAO);
+            glGenVertexArraysOES(1, &linePointVAO);
             
             glGenBuffers(1, &linePointVBO);
             
-            glBindVertexArray(linePointVAO);
+            glBindVertexArrayOES(linePointVAO);
             
             glBindBuffer(GL_ARRAY_BUFFER, linePointVBO);
             
@@ -655,7 +655,7 @@ namespace njli
                                   /* stride    = */ sizeof(dd::DrawVertex),
                                   /* offset    = */ reinterpret_cast<void *>(offset));
             
-            glBindVertexArray(0);
+            glBindVertexArrayOES(0);
             
             glBindBuffer(GL_ARRAY_BUFFER, 0);
         }
@@ -664,11 +664,11 @@ namespace njli
         // Text rendering vertex buffer:
         //
         {
-            glGenVertexArrays(1, &textVAO);
+            glGenVertexArraysOES(1, &textVAO);
             
             glGenBuffers(1, &textVBO);
             
-            glBindVertexArray(textVAO);
+            glBindVertexArrayOES(textVAO);
             
             glBindBuffer(GL_ARRAY_BUFFER, textVBO);
             
@@ -708,7 +708,7 @@ namespace njli
                                   /* stride    = */ sizeof(dd::DrawVertex),
                                   /* offset    = */ reinterpret_cast<void *>(offset));
             
-            glBindVertexArray(0);
+            glBindVertexArrayOES(0);
             
             glBindBuffer(GL_ARRAY_BUFFER, 0);
         }
@@ -883,7 +883,7 @@ namespace njli
     static int          g_AttribLocationTex = 0, g_AttribLocationProjMtx = 0;
     static int          g_AttribLocationPosition = 0, g_AttribLocationUV = 0, g_AttribLocationColor = 0;
     static size_t       g_VboSize = 0;
-    static unsigned int g_VboHandle = 0, g_VaoHandle = 0;
+    static unsigned int g_VboHandle = 0, g_VaoHandle = 0, g_ElementsHandle = 0;
     static float        g_displayScale;
     
     static int usynergy_sockfd;
@@ -1240,31 +1240,30 @@ namespace njli
         glUseProgram(g_ShaderHandle);
         glUniform1i(g_AttribLocationTex, 0);
         glUniformMatrix4fv(g_AttribLocationProjMtx, 1, GL_FALSE, &ortho_projection[0][0]);
-        glBindVertexArray(g_VaoHandle);
+        glBindVertexArrayOES(g_VaoHandle);
         
         for (int n = 0; n < draw_data->CmdListsCount; n++)
         {
-            ImDrawList* cmd_list = draw_data->CmdLists[n];
-            ImDrawIdx* idx_buffer = &cmd_list->IdxBuffer.front();
+            const ImDrawList* cmd_list = draw_data->CmdLists[n];
+            const ImDrawIdx* idx_buffer_offset = 0;
             
             glBindBuffer(GL_ARRAY_BUFFER, g_VboHandle);
-            const int needed_vtx_size = cmd_list->VtxBuffer.Size * sizeof(ImDrawVert);
-            if (g_VboSize < needed_vtx_size)
-            {
-                // Grow our buffer if needed
-                g_VboSize = needed_vtx_size + 2000 * sizeof(ImDrawVert);
-                glBufferData(GL_ARRAY_BUFFER, (GLsizeiptr)g_VboSize, NULL, GL_STREAM_DRAW);
-            }
+            glBufferData(GL_ARRAY_BUFFER, (GLsizeiptr)cmd_list->VtxBuffer.size() * sizeof(ImDrawVert), (GLvoid*)&cmd_list->VtxBuffer.front(), GL_STREAM_DRAW);
             
-            unsigned char* vtx_data = (unsigned char*)glMapBufferRange(GL_ARRAY_BUFFER, 0, needed_vtx_size, GL_MAP_WRITE_BIT | GL_MAP_INVALIDATE_BUFFER_BIT);
-            if (!vtx_data)
-                continue;
-            memcpy(vtx_data, cmd_list->VtxBuffer.Data, cmd_list->VtxBuffer.Size * sizeof(ImDrawVert));
-            glUnmapBuffer(GL_ARRAY_BUFFER);
+            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, g_ElementsHandle);
+            glBufferData(GL_ELEMENT_ARRAY_BUFFER, (GLsizeiptr)cmd_list->IdxBuffer.size() * sizeof(ImDrawIdx), (GLvoid*)&cmd_list->IdxBuffer.front(), GL_STREAM_DRAW);
             
-            for (int cmd_i = 0; cmd_i < cmd_list->CmdBuffer.Size; cmd_i++)
+            glEnableVertexAttribArray(g_AttribLocationPosition);
+            glEnableVertexAttribArray(g_AttribLocationUV);
+            glEnableVertexAttribArray(g_AttribLocationColor);
+            
+#define OFFSETOF(TYPE, ELEMENT) ((size_t)&(((TYPE *)0)->ELEMENT))
+            glVertexAttribPointer(g_AttribLocationPosition, 2, GL_FLOAT, GL_FALSE, sizeof(ImDrawVert), (GLvoid*)OFFSETOF(ImDrawVert, pos));
+            glVertexAttribPointer(g_AttribLocationUV, 2, GL_FLOAT, GL_FALSE, sizeof(ImDrawVert), (GLvoid*)OFFSETOF(ImDrawVert, uv));
+            glVertexAttribPointer(g_AttribLocationColor, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(ImDrawVert), (GLvoid*)OFFSETOF(ImDrawVert, col));
+#undef OFFSETOF
+            for (const ImDrawCmd* pcmd = cmd_list->CmdBuffer.begin(); pcmd != cmd_list->CmdBuffer.end(); pcmd++)
             {
-                const ImDrawCmd* pcmd = &cmd_list->CmdBuffer[cmd_i];
                 if (pcmd->UserCallback)
                 {
                     pcmd->UserCallback(cmd_list, pcmd);
@@ -1272,18 +1271,23 @@ namespace njli
                 else
                 {
                     glBindTexture(GL_TEXTURE_2D, (GLuint)(intptr_t)pcmd->TextureId);
+//                    glScissor((int)pcmd->ClipRect.x,
+//                              (int)(fb_height - pcmd->ClipRect.w),
+//                              (int)(pcmd->ClipRect.z - pcmd->ClipRect.x),
+//                              (int)(pcmd->ClipRect.w - pcmd->ClipRect.y));
+                    
                     glScissor((int)(pcmd->ClipRect.x * g_displayScale),
                               (int)((height - pcmd->ClipRect.w) * g_displayScale),
                               (int)((pcmd->ClipRect.z - pcmd->ClipRect.x) * g_displayScale),
                               (int)((pcmd->ClipRect.w - pcmd->ClipRect.y) * g_displayScale));
-                    glDrawElements( GL_TRIANGLES, (GLsizei)pcmd->ElemCount, GL_UNSIGNED_SHORT, idx_buffer );
+                    glDrawElements(GL_TRIANGLES, (GLsizei)pcmd->ElemCount, GL_UNSIGNED_SHORT, idx_buffer_offset);
                 }
-                idx_buffer += pcmd->ElemCount;
+                idx_buffer_offset += pcmd->ElemCount;
             }
         }
         
         // Restore modified state
-        glBindVertexArray(0);
+        glBindVertexArrayOES(0);
         glBindBuffer( GL_ARRAY_BUFFER, 0);
         glEnable(GL_CULL_FACE);
         glEnable(GL_DEPTH_TEST);
@@ -1380,9 +1384,10 @@ namespace njli
         g_AttribLocationColor = glGetAttribLocation(g_ShaderHandle, "Color");
         
         glGenBuffers(1, &g_VboHandle);
+        glGenBuffers(1, &g_ElementsHandle);
         
-        glGenVertexArrays(1, &g_VaoHandle);
-        glBindVertexArray(g_VaoHandle);
+        glGenVertexArraysOES(1, &g_VaoHandle);
+        glBindVertexArrayOES(g_VaoHandle);
         glBindBuffer(GL_ARRAY_BUFFER, g_VboHandle);
         glEnableVertexAttribArray(g_AttribLocationPosition);
         glEnableVertexAttribArray(g_AttribLocationUV);
@@ -1393,7 +1398,7 @@ namespace njli
         glVertexAttribPointer(g_AttribLocationUV, 2, GL_FLOAT, GL_FALSE, sizeof(ImDrawVert), (GLvoid*)OFFSETOF(ImDrawVert, uv));
         glVertexAttribPointer(g_AttribLocationColor, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(ImDrawVert), (GLvoid*)OFFSETOF(ImDrawVert, col));
 #undef OFFSETOF
-        glBindVertexArray(0);
+        glBindVertexArrayOES(0);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         
         ImGui_ImplIOS_CreateFontsTexture();
