@@ -7,7 +7,7 @@ build_emscripten_sublime()
     emcmake cmake -G "Sublime Text 2 - Unix Makefiles" ../.. \
         -DCMAKE_INSTALL_PREFIX=../../generated/ \
         -DNJLI_THIRDPARTY_DIRECTORY:STRING=${MY_THIRDPARTY_DIR} \
-        -DNJLI_GRAPHICS_PLATFORM=opengl_es_3 \
+        -DNJLI_GRAPHICS_PLATFORM=opengl_es_2 \
         -DCMAKE_CXX_FLAGS="-std=gnu++11" \
         -DNJLI_BUILD_PLATFORM="emscripten" \
         -DCMAKE_BUILD_TYPE=Debug \

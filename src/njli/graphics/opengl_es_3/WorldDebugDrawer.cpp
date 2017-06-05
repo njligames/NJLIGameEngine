@@ -296,6 +296,8 @@ namespace njli
     
     void WorldDebugDrawer::unInit()
     {
+        unInitImgui();
+        
         dd::shutdown();
     }
     
@@ -895,62 +897,7 @@ namespace njli
 //    static NSString *g_serverName;
     static std::string g_serverName;
     
-    void WorldDebugDrawer::initImgui()
-    {
-        setupImGuiHooks();
-    }
-    
-    void WorldDebugDrawer::renderImgui()
-    {
-        ImGui::Render();
-    }
-    
-    void WorldDebugDrawer::newFrameImgui()
-    {
-        ImGuiIO& io = ImGui::GetIO();
-        ImGuiStyle &style = ImGui::GetStyle();
-        
-        if (!g_FontTexture)
-        {
-            ImGui_ImplIOS_CreateDeviceObjects();
-        }
-        
-        io.DisplaySize = ImVec2( njli::World::getInstance()->getViewportDimensions().x(), njli::World::getInstance()->getViewportDimensions().y() );
-        
-        io.MouseDrawCursor = g_synergyPtrActive;
-        if (g_synergyPtrActive)
-        {
-            style.TouchExtraPadding = ImVec2( 0.0, 0.0 );
-            io.MousePos = ImVec2( g_mousePosX, g_mousePosY );
-            for (int i=0; i < 3; i++)
-            {
-                io.MouseDown[i] = g_MousePressed[i];
-            }
-            
-            // This is an arbitrary scaling factor that works for me. Not sure what units these
-            // mousewheel values from synergy are supposed to be in
-            io.MouseWheel = g_mouseWheelY / 500.0;
-        }
-        else
-        {
-            // Synergy not active, use touch events
-//            style.TouchExtraPadding = ImVec2( 4.0, 4.0 );
-//            io.MousePos = ImVec2(_touchPos.x, _touchPos.y );
-//            if ((_mouseDown) || (_mouseTapped))
-//            {
-//                io.MouseDown[0] = true;
-//                _mouseTapped = NO;
-//            }
-//            else
-//            {
-//                io.MouseDown[0] = false;
-//            }
-        }
-        
-        ImGui::NewFrame();
-    }
-
-    void WorldDebugDrawer::setupKeymaps()
+    void setupKeymaps()
     {
         // The keyboard mapping is a big headache. I tried for a while to find a better way to do this,
         // but this was the best I could come up with. There are some device independent API's available
@@ -1090,7 +1037,7 @@ namespace njli
         g_keycodeCharShifted[ kVK_Space ]=' ';
     }
     
-    void WorldDebugDrawer::setupImGuiHooks()
+    void setupImGuiHooks()
     {
         ImGuiIO &io = ImGui::GetIO();
         
@@ -1104,11 +1051,11 @@ namespace njli
         
         io.RenderDrawListsFn = ImGui_ImplIOS_RenderDrawLists;
         
-//        UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(viewDidPan:) ];
-//        [self.view addGestureRecognizer:panRecognizer];
-//        
-//        UITapGestureRecognizer *tapRecoginzer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector( viewDidTap:)];
-//        [self.view addGestureRecognizer:tapRecoginzer];
+        //        UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(viewDidPan:) ];
+        //        [self.view addGestureRecognizer:panRecognizer];
+        //
+        //        UITapGestureRecognizer *tapRecoginzer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector( viewDidTap:)];
+        //        [self.view addGestureRecognizer:tapRecoginzer];
         
         // Fill out the Synergy key map
         // (for some reason synergy scan codes are off by 1)
@@ -1131,8 +1078,78 @@ namespace njli
         io.KeyMap[ImGuiKey_Z] = kVK_ANSI_Z+1;
     }
     
+    void WorldDebugDrawer::initImgui()
+    {
+        setupImGuiHooks();
+    }
+    
+    void WorldDebugDrawer::unInitImgui()
+    {
+        if (g_FontTexture)
+        {
+            glDeleteTextures(1, &g_FontTexture);
+            ImGui::GetIO().Fonts->TexID = 0;
+            g_FontTexture = 0;
+        }
+        ImGui::Shutdown();
+    }
+    
+    void WorldDebugDrawer::renderImgui()
+    {
+        ImGui::Render();
+    }
+    
+    void WorldDebugDrawer::newFrameImgui()
+    {
+        ImGuiIO& io = ImGui::GetIO();
+        ImGuiStyle &style = ImGui::GetStyle();
+        
+        if (!g_FontTexture)
+        {
+            ImGui_ImplIOS_CreateDeviceObjects();
+        }
+        
+        io.DisplaySize = ImVec2( njli::World::getInstance()->getViewportDimensions().x(), njli::World::getInstance()->getViewportDimensions().y() );
+        
+        io.MouseDrawCursor = g_synergyPtrActive;
+        if (g_synergyPtrActive)
+        {
+            style.TouchExtraPadding = ImVec2( 0.0, 0.0 );
+            io.MousePos = ImVec2( g_mousePosX, g_mousePosY );
+            for (int i=0; i < 3; i++)
+            {
+                io.MouseDown[i] = g_MousePressed[i];
+            }
+            
+            // This is an arbitrary scaling factor that works for me. Not sure what units these
+            // mousewheel values from synergy are supposed to be in
+            io.MouseWheel = g_mouseWheelY / 500.0;
+        }
+        else
+        {
+            // Synergy not active, use touch events
+//            style.TouchExtraPadding = ImVec2( 4.0, 4.0 );
+//            io.MousePos = ImVec2(_touchPos.x, _touchPos.y );
+//            if ((_mouseDown) || (_mouseTapped))
+//            {
+//                io.MouseDown[0] = true;
+//                _mouseTapped = NO;
+//            }
+//            else
+//            {
+//                io.MouseDown[0] = false;
+//            }
+        }
+        
+        ImGui::NewFrame();
+    }
+
+    
+    
+    
+    
 //    - (void)connectServer: (NSString*)serverName
-    void WorldDebugDrawer::connectServer(const std::string serverName)
+    void WorldDebugDrawer::connectSynergyServer(const std::string serverName)
     {
 //        self.serverName = serverName;
 //        g_serverName = serverName;
@@ -1275,7 +1292,7 @@ namespace njli
         glBindTexture(GL_TEXTURE_2D, last_texture);
     }
     
-    void WorldDebugDrawer::ImGui_ImplIOS_CreateFontsTexture()
+    void ImGui_ImplIOS_CreateFontsTexture()
     {
         // Build texture atlas
         ImGuiIO& io = ImGui::GetIO();
@@ -1299,7 +1316,7 @@ namespace njli
         glBindTexture(GL_TEXTURE_2D, last_texture);
     }
     
-    bool WorldDebugDrawer::ImGui_ImplIOS_CreateDeviceObjects()
+    bool ImGui_ImplIOS_CreateDeviceObjects()
     {
         const GLchar *vertex_shader =
         "uniform mat4 ProjMtx;\n"

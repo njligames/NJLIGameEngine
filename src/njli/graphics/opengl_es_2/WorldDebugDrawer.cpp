@@ -118,11 +118,11 @@ namespace njli
         glDeleteProgram(linePointProgram);
         glDeleteProgram(textProgram);
         
-        glDeleteVertexArraysOES(1, &linePointVAO);
+        glDeleteVertexArrays(1, &linePointVAO);
         
         glDeleteBuffers(1, &linePointVBO);
         
-        glDeleteVertexArraysOES(1, &textVAO);
+        glDeleteVertexArrays(1, &textVAO);
         
         glDeleteBuffers(1, &textVBO);
     }
@@ -157,7 +157,7 @@ namespace njli
         SDL_assert(points != nullptr);
         SDL_assert(count > 0 && count <= DEBUG_DRAW_VERTEX_BUFFER_SIZE);
         
-        glBindVertexArrayOES(linePointVAO);
+        glBindVertexArray(linePointVAO);
         glUseProgram(linePointProgram);
         
         glUniformMatrix4fv(linePointProgram_MvpMatrixLocation,
@@ -181,7 +181,7 @@ namespace njli
         
         glUseProgram(0);
         
-        glBindVertexArrayOES(0);
+        glBindVertexArray(0);
         
         glBindBuffer(GL_ARRAY_BUFFER, 0);
     }
@@ -191,7 +191,7 @@ namespace njli
         assert(lines != nullptr);
         assert(count > 0 && count <= DEBUG_DRAW_VERTEX_BUFFER_SIZE);
         
-        glBindVertexArrayOES(linePointVAO);
+        glBindVertexArray(linePointVAO);
         
         glUseProgram(linePointProgram);
         
@@ -216,7 +216,7 @@ namespace njli
         
         glUseProgram(0);
         
-        glBindVertexArrayOES(0);
+        glBindVertexArray(0);
         
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         
@@ -296,6 +296,8 @@ namespace njli
     
     void WorldDebugDrawer::unInit()
     {
+        unInitImgui();
+        
         dd::shutdown();
     }
     
@@ -619,11 +621,11 @@ namespace njli
         // Lines/points vertex buffer:
         //
         {
-            glGenVertexArraysOES(1, &linePointVAO);
+            glGenVertexArrays(1, &linePointVAO);
             
             glGenBuffers(1, &linePointVBO);
             
-            glBindVertexArrayOES(linePointVAO);
+            glBindVertexArray(linePointVAO);
             
             glBindBuffer(GL_ARRAY_BUFFER, linePointVBO);
             
@@ -653,7 +655,7 @@ namespace njli
                                   /* stride    = */ sizeof(dd::DrawVertex),
                                   /* offset    = */ reinterpret_cast<void *>(offset));
             
-            glBindVertexArrayOES(0);
+            glBindVertexArray(0);
             
             glBindBuffer(GL_ARRAY_BUFFER, 0);
         }
@@ -662,11 +664,11 @@ namespace njli
         // Text rendering vertex buffer:
         //
         {
-            glGenVertexArraysOES(1, &textVAO);
+            glGenVertexArrays(1, &textVAO);
             
             glGenBuffers(1, &textVBO);
             
-            glBindVertexArrayOES(textVAO);
+            glBindVertexArray(textVAO);
             
             glBindBuffer(GL_ARRAY_BUFFER, textVBO);
             
@@ -706,7 +708,7 @@ namespace njli
                                   /* stride    = */ sizeof(dd::DrawVertex),
                                   /* offset    = */ reinterpret_cast<void *>(offset));
             
-            glBindVertexArrayOES(0);
+            glBindVertexArray(0);
             
             glBindBuffer(GL_ARRAY_BUFFER, 0);
         }
@@ -895,62 +897,7 @@ namespace njli
 //    static NSString *g_serverName;
     static std::string g_serverName;
     
-    void WorldDebugDrawer::initImgui()
-    {
-        
-    }
-    
-    void WorldDebugDrawer::renderImgui()
-    {
-        ImGui::Render();
-    }
-    
-    void WorldDebugDrawer::newFrameImgui()
-    {
-        ImGuiIO& io = ImGui::GetIO();
-        ImGuiStyle &style = ImGui::GetStyle();
-        
-        if (!g_FontTexture)
-        {
-            ImGui_ImplIOS_CreateDeviceObjects();
-        }
-        
-        io.DisplaySize = ImVec2( njli::World::getInstance()->getViewportDimensions().x(), njli::World::getInstance()->getViewportDimensions().y() );
-        
-        io.MouseDrawCursor = g_synergyPtrActive;
-        if (g_synergyPtrActive)
-        {
-            style.TouchExtraPadding = ImVec2( 0.0, 0.0 );
-            io.MousePos = ImVec2( g_mousePosX, g_mousePosY );
-            for (int i=0; i < 3; i++)
-            {
-                io.MouseDown[i] = g_MousePressed[i];
-            }
-            
-            // This is an arbitrary scaling factor that works for me. Not sure what units these
-            // mousewheel values from synergy are supposed to be in
-            io.MouseWheel = g_mouseWheelY / 500.0;
-        }
-        else
-        {
-            // Synergy not active, use touch events
-//            style.TouchExtraPadding = ImVec2( 4.0, 4.0 );
-//            io.MousePos = ImVec2(_touchPos.x, _touchPos.y );
-//            if ((_mouseDown) || (_mouseTapped))
-//            {
-//                io.MouseDown[0] = true;
-//                _mouseTapped = NO;
-//            }
-//            else
-//            {
-//                io.MouseDown[0] = false;
-//            }
-        }
-        
-        ImGui::NewFrame();
-    }
-
-    void WorldDebugDrawer::setupKeymaps()
+    void setupKeymaps()
     {
         // The keyboard mapping is a big headache. I tried for a while to find a better way to do this,
         // but this was the best I could come up with. There are some device independent API's available
@@ -1090,7 +1037,7 @@ namespace njli
         g_keycodeCharShifted[ kVK_Space ]=' ';
     }
     
-    void WorldDebugDrawer::setupImGuiHooks()
+    void setupImGuiHooks()
     {
         ImGuiIO &io = ImGui::GetIO();
         
@@ -1104,11 +1051,11 @@ namespace njli
         
         io.RenderDrawListsFn = ImGui_ImplIOS_RenderDrawLists;
         
-//        UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(viewDidPan:) ];
-//        [self.view addGestureRecognizer:panRecognizer];
-//        
-//        UITapGestureRecognizer *tapRecoginzer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector( viewDidTap:)];
-//        [self.view addGestureRecognizer:tapRecoginzer];
+        //        UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(viewDidPan:) ];
+        //        [self.view addGestureRecognizer:panRecognizer];
+        //
+        //        UITapGestureRecognizer *tapRecoginzer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector( viewDidTap:)];
+        //        [self.view addGestureRecognizer:tapRecoginzer];
         
         // Fill out the Synergy key map
         // (for some reason synergy scan codes are off by 1)
@@ -1131,8 +1078,78 @@ namespace njli
         io.KeyMap[ImGuiKey_Z] = kVK_ANSI_Z+1;
     }
     
+    void WorldDebugDrawer::initImgui()
+    {
+        setupImGuiHooks();
+    }
+    
+    void WorldDebugDrawer::unInitImgui()
+    {
+        if (g_FontTexture)
+        {
+            glDeleteTextures(1, &g_FontTexture);
+            ImGui::GetIO().Fonts->TexID = 0;
+            g_FontTexture = 0;
+        }
+        ImGui::Shutdown();
+    }
+    
+    void WorldDebugDrawer::renderImgui()
+    {
+        ImGui::Render();
+    }
+    
+    void WorldDebugDrawer::newFrameImgui()
+    {
+        ImGuiIO& io = ImGui::GetIO();
+        ImGuiStyle &style = ImGui::GetStyle();
+        
+        if (!g_FontTexture)
+        {
+            ImGui_ImplIOS_CreateDeviceObjects();
+        }
+        
+        io.DisplaySize = ImVec2( njli::World::getInstance()->getViewportDimensions().x(), njli::World::getInstance()->getViewportDimensions().y() );
+        
+        io.MouseDrawCursor = g_synergyPtrActive;
+        if (g_synergyPtrActive)
+        {
+            style.TouchExtraPadding = ImVec2( 0.0, 0.0 );
+            io.MousePos = ImVec2( g_mousePosX, g_mousePosY );
+            for (int i=0; i < 3; i++)
+            {
+                io.MouseDown[i] = g_MousePressed[i];
+            }
+            
+            // This is an arbitrary scaling factor that works for me. Not sure what units these
+            // mousewheel values from synergy are supposed to be in
+            io.MouseWheel = g_mouseWheelY / 500.0;
+        }
+        else
+        {
+            // Synergy not active, use touch events
+//            style.TouchExtraPadding = ImVec2( 4.0, 4.0 );
+//            io.MousePos = ImVec2(_touchPos.x, _touchPos.y );
+//            if ((_mouseDown) || (_mouseTapped))
+//            {
+//                io.MouseDown[0] = true;
+//                _mouseTapped = NO;
+//            }
+//            else
+//            {
+//                io.MouseDown[0] = false;
+//            }
+        }
+        
+        ImGui::NewFrame();
+    }
+
+    
+    
+    
+    
 //    - (void)connectServer: (NSString*)serverName
-    void WorldDebugDrawer::connectServer(const std::string serverName)
+    void WorldDebugDrawer::connectSynergyServer(const std::string serverName)
     {
 //        self.serverName = serverName;
 //        g_serverName = serverName;
@@ -1223,7 +1240,7 @@ namespace njli
         glUseProgram(g_ShaderHandle);
         glUniform1i(g_AttribLocationTex, 0);
         glUniformMatrix4fv(g_AttribLocationProjMtx, 1, GL_FALSE, &ortho_projection[0][0]);
-        glBindVertexArrayOES(g_VaoHandle);
+        glBindVertexArray(g_VaoHandle);
         
         for (int n = 0; n < draw_data->CmdListsCount; n++)
         {
@@ -1239,12 +1256,11 @@ namespace njli
                 glBufferData(GL_ARRAY_BUFFER, (GLsizeiptr)g_VboSize, NULL, GL_STREAM_DRAW);
             }
             
-//            unsigned char* vtx_data = (unsigned char*)glMapBufferRange(GL_ARRAY_BUFFER, 0, needed_vtx_size, GL_MAP_WRITE_BIT | GL_MAP_INVALIDATE_BUFFER_BIT);
-            unsigned char* vtx_data = NULL;
+            unsigned char* vtx_data = (unsigned char*)glMapBufferRange(GL_ARRAY_BUFFER, 0, needed_vtx_size, GL_MAP_WRITE_BIT | GL_MAP_INVALIDATE_BUFFER_BIT);
             if (!vtx_data)
                 continue;
             memcpy(vtx_data, cmd_list->VtxBuffer.Data, cmd_list->VtxBuffer.Size * sizeof(ImDrawVert));
-            glUnmapBufferOES(GL_ARRAY_BUFFER);
+            glUnmapBuffer(GL_ARRAY_BUFFER);
             
             for (int cmd_i = 0; cmd_i < cmd_list->CmdBuffer.Size; cmd_i++)
             {
@@ -1267,7 +1283,7 @@ namespace njli
         }
         
         // Restore modified state
-        glBindVertexArrayOES(0);
+        glBindVertexArray(0);
         glBindBuffer( GL_ARRAY_BUFFER, 0);
         glEnable(GL_CULL_FACE);
         glEnable(GL_DEPTH_TEST);
@@ -1276,7 +1292,7 @@ namespace njli
         glBindTexture(GL_TEXTURE_2D, last_texture);
     }
     
-    void WorldDebugDrawer::ImGui_ImplIOS_CreateFontsTexture()
+    void ImGui_ImplIOS_CreateFontsTexture()
     {
         // Build texture atlas
         ImGuiIO& io = ImGui::GetIO();
@@ -1300,7 +1316,7 @@ namespace njli
         glBindTexture(GL_TEXTURE_2D, last_texture);
     }
     
-    bool WorldDebugDrawer::ImGui_ImplIOS_CreateDeviceObjects()
+    bool ImGui_ImplIOS_CreateDeviceObjects()
     {
         const GLchar *vertex_shader =
         "uniform mat4 ProjMtx;\n"
@@ -1365,8 +1381,8 @@ namespace njli
         
         glGenBuffers(1, &g_VboHandle);
         
-        glGenVertexArraysOES(1, &g_VaoHandle);
-        glBindVertexArrayOES(g_VaoHandle);
+        glGenVertexArrays(1, &g_VaoHandle);
+        glBindVertexArray(g_VaoHandle);
         glBindBuffer(GL_ARRAY_BUFFER, g_VboHandle);
         glEnableVertexAttribArray(g_AttribLocationPosition);
         glEnableVertexAttribArray(g_AttribLocationUV);
@@ -1377,7 +1393,7 @@ namespace njli
         glVertexAttribPointer(g_AttribLocationUV, 2, GL_FLOAT, GL_FALSE, sizeof(ImDrawVert), (GLvoid*)OFFSETOF(ImDrawVert, uv));
         glVertexAttribPointer(g_AttribLocationColor, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(ImDrawVert), (GLvoid*)OFFSETOF(ImDrawVert, col));
 #undef OFFSETOF
-        glBindVertexArrayOES(0);
+        glBindVertexArray(0);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         
         ImGui_ImplIOS_CreateFontsTexture();

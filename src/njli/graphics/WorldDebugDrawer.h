@@ -371,15 +371,12 @@ namespace njli
         void linkProgram(const GLuint program);
         
         void initImgui();
+        void unInitImgui();
         void renderImgui();
         void newFrameImgui();
         
-        void setupKeymaps();
-        void setupImGuiHooks();
-        void connectServer(const std::string serverName);
+        void connectSynergyServer(const std::string serverName);
         
-        void ImGui_ImplIOS_CreateFontsTexture();
-        bool ImGui_ImplIOS_CreateDeviceObjects();
     private:
         int m_DebugMode;
         
