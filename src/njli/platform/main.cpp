@@ -359,6 +359,8 @@ static int EventFilter(void* userdata, SDL_Event* event)
 //    NJLI_HandleStartTouches();
 //#endif
     
+    njli::NJLIGameEngine::handleEvent(&event);
+    
     Uint32 eventType = event->type;
     
     switch (eventType)
@@ -482,7 +484,8 @@ static void handleInput()
     SDL_PumpEvents();
     while (SDL_PollEvent(&event))
     {
-//        SDLTest_PrintEvent(&event);
+        njli::NJLIGameEngine::handleEvent(&event);
+        SDLTest_PrintEvent(&event);
         switch (event.type)
         {
                 

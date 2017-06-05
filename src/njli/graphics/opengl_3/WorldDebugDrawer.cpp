@@ -118,11 +118,11 @@ namespace njli
         glDeleteProgram(linePointProgram);
         glDeleteProgram(textProgram);
         
-        glDeleteVertexArraysOES(1, &linePointVAO);
+        glDeleteVertexArrays(1, &linePointVAO);
         
         glDeleteBuffers(1, &linePointVBO);
         
-        glDeleteVertexArraysOES(1, &textVAO);
+        glDeleteVertexArrays(1, &textVAO);
         
         glDeleteBuffers(1, &textVBO);
     }
@@ -157,7 +157,7 @@ namespace njli
         SDL_assert(points != nullptr);
         SDL_assert(count > 0 && count <= DEBUG_DRAW_VERTEX_BUFFER_SIZE);
         
-        glBindVertexArrayOES(linePointVAO);
+        glBindVertexArray(linePointVAO);
         glUseProgram(linePointProgram);
         
         glUniformMatrix4fv(linePointProgram_MvpMatrixLocation,
@@ -181,7 +181,7 @@ namespace njli
         
         glUseProgram(0);
         
-        glBindVertexArrayOES(0);
+        glBindVertexArray(0);
         
         glBindBuffer(GL_ARRAY_BUFFER, 0);
     }
@@ -191,7 +191,7 @@ namespace njli
         assert(lines != nullptr);
         assert(count > 0 && count <= DEBUG_DRAW_VERTEX_BUFFER_SIZE);
         
-        glBindVertexArrayOES(linePointVAO);
+        glBindVertexArray(linePointVAO);
         
         glUseProgram(linePointProgram);
         
@@ -216,7 +216,7 @@ namespace njli
         
         glUseProgram(0);
         
-        glBindVertexArrayOES(0);
+        glBindVertexArray(0);
         
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         
@@ -621,11 +621,11 @@ namespace njli
         // Lines/points vertex buffer:
         //
         {
-            glGenVertexArraysOES(1, &linePointVAO);
+            glGenVertexArrays(1, &linePointVAO);
             
             glGenBuffers(1, &linePointVBO);
             
-            glBindVertexArrayOES(linePointVAO);
+            glBindVertexArray(linePointVAO);
             
             glBindBuffer(GL_ARRAY_BUFFER, linePointVBO);
             
@@ -655,7 +655,7 @@ namespace njli
                                   /* stride    = */ sizeof(dd::DrawVertex),
                                   /* offset    = */ reinterpret_cast<void *>(offset));
             
-            glBindVertexArrayOES(0);
+            glBindVertexArray(0);
             
             glBindBuffer(GL_ARRAY_BUFFER, 0);
         }
@@ -664,11 +664,11 @@ namespace njli
         // Text rendering vertex buffer:
         //
         {
-            glGenVertexArraysOES(1, &textVAO);
+            glGenVertexArrays(1, &textVAO);
             
             glGenBuffers(1, &textVBO);
             
-            glBindVertexArrayOES(textVAO);
+            glBindVertexArray(textVAO);
             
             glBindBuffer(GL_ARRAY_BUFFER, textVBO);
             
@@ -708,7 +708,7 @@ namespace njli
                                   /* stride    = */ sizeof(dd::DrawVertex),
                                   /* offset    = */ reinterpret_cast<void *>(offset));
             
-            glBindVertexArrayOES(0);
+            glBindVertexArray(0);
             
             glBindBuffer(GL_ARRAY_BUFFER, 0);
         }
@@ -1240,7 +1240,7 @@ namespace njli
         glUseProgram(g_ShaderHandle);
         glUniform1i(g_AttribLocationTex, 0);
         glUniformMatrix4fv(g_AttribLocationProjMtx, 1, GL_FALSE, &ortho_projection[0][0]);
-        glBindVertexArrayOES(g_VaoHandle);
+        glBindVertexArray(g_VaoHandle);
         
         for (int n = 0; n < draw_data->CmdListsCount; n++)
         {
@@ -1287,7 +1287,7 @@ namespace njli
         }
         
         // Restore modified state
-        glBindVertexArrayOES(0);
+        glBindVertexArray(0);
         glBindBuffer( GL_ARRAY_BUFFER, 0);
         glEnable(GL_CULL_FACE);
         glEnable(GL_DEPTH_TEST);
@@ -1323,10 +1323,11 @@ namespace njli
     bool ImGui_ImplIOS_CreateDeviceObjects()
     {
         const GLchar *vertex_shader =
+        "#version 120\n"
         "uniform mat4 ProjMtx;\n"
-        "attribute highp vec2 Position;\n"
-        "attribute highp vec2 UV;\n"
-        "attribute highp vec4 Color;\n"
+        "attribute vec2 Position;\n"
+        "attribute vec2 UV;\n"
+        "attribute vec4 Color;\n"
         "varying vec2 Frag_UV;\n"
         "varying vec4 Frag_Color;\n"
         "void main()\n"
@@ -1337,9 +1338,10 @@ namespace njli
         "}\n";
         
         const GLchar* fragment_shader =
+        "#version 120\n"
         "uniform sampler2D Texture;\n"
-        "varying highp vec2 Frag_UV;\n"
-        "varying highp vec4 Frag_Color;\n"
+        "varying vec2 Frag_UV;\n"
+        "varying vec4 Frag_Color;\n"
         "void main()\n"
         "{\n"
         "	gl_FragColor = Frag_Color * texture2D( Texture, Frag_UV.st);\n"
@@ -1358,6 +1360,7 @@ namespace njli
         if (logLength > 0) {
             GLchar *log = (GLchar *)malloc(logLength);
             glGetShaderInfoLog(g_VertHandle, logLength, &logLength, log);
+            SDL_LogInfo(SDL_LOG_CATEGORY_TEST, "%s", log);
             free(log);
         }
 #endif
@@ -1369,6 +1372,7 @@ namespace njli
         if (logLength > 0) {
             GLchar *log = (GLchar *)malloc(logLength);
             glGetShaderInfoLog(g_FragHandle, logLength, &logLength, log);
+            SDL_LogInfo(SDL_LOG_CATEGORY_TEST, "%s", log);
             free(log);
         }
 #endif
@@ -1386,8 +1390,8 @@ namespace njli
         glGenBuffers(1, &g_VboHandle);
         glGenBuffers(1, &g_ElementsHandle);
         
-        glGenVertexArraysOES(1, &g_VaoHandle);
-        glBindVertexArrayOES(g_VaoHandle);
+        glGenVertexArrays(1, &g_VaoHandle);
+        glBindVertexArray(g_VaoHandle);
         glBindBuffer(GL_ARRAY_BUFFER, g_VboHandle);
         glEnableVertexAttribArray(g_AttribLocationPosition);
         glEnableVertexAttribArray(g_AttribLocationUV);
@@ -1398,7 +1402,7 @@ namespace njli
         glVertexAttribPointer(g_AttribLocationUV, 2, GL_FLOAT, GL_FALSE, sizeof(ImDrawVert), (GLvoid*)OFFSETOF(ImDrawVert, uv));
         glVertexAttribPointer(g_AttribLocationColor, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(ImDrawVert), (GLvoid*)OFFSETOF(ImDrawVert, col));
 #undef OFFSETOF
-        glBindVertexArrayOES(0);
+        glBindVertexArray(0);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         
         ImGui_ImplIOS_CreateFontsTexture();

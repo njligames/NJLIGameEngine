@@ -364,6 +364,8 @@ namespace njli
                           const btVector3 &color,
                           int durationMillis = 0,
                           bool depthEnabled = true);
+        
+        bool processSdlEvent(SDL_Event* event);
     protected:
         void setupShaderPrograms();
         void setupVertexBuffers();
@@ -376,6 +378,7 @@ namespace njli
         void newFrameImgui();
         
         void connectSynergyServer(const std::string serverName);
+        
         
     private:
         int m_DebugMode;

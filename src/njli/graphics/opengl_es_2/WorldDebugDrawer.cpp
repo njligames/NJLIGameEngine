@@ -873,8 +873,9 @@ namespace njli
     static char g_keycodeCharUnshifted[256] = {};
     static char g_keycodeCharShifted[256] = {};
     
-    //static double       g_Time = 0.0f;
+    static double       g_Time = 0.0f;
     static bool         g_MousePressed[3] = { false, false, false };
+    static float        g_MouseWheel = 0.0f;
     static float        g_mouseWheelX = 0.0f;
     static float        g_mouseWheelY = 0.0f;
     
@@ -891,6 +892,8 @@ namespace njli
     static uint16_t g_mousePosX = 0;
     static uint16_t g_mousePosY = 0;
     
+    static const char* ImGui_ImplGlfw_GetClipboardText(void* user_data);
+    static void ImGui_ImplGlfw_SetClipboardText(void* user_data, const char* text);
     static void ImGui_ImplIOS_RenderDrawLists (ImDrawData *draw_data);
     bool ImGui_ImplIOS_CreateDeviceObjects();
     
@@ -1050,6 +1053,8 @@ namespace njli
         style.TouchExtraPadding = ImVec2( 4.0, 4.0 );
         
         io.RenderDrawListsFn = ImGui_ImplIOS_RenderDrawLists;
+        io.SetClipboardTextFn = ImGui_ImplGlfw_SetClipboardText;
+        io.GetClipboardTextFn = ImGui_ImplGlfw_GetClipboardText;
         
         //        UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(viewDidPan:) ];
         //        [self.view addGestureRecognizer:panRecognizer];
@@ -1111,6 +1116,12 @@ namespace njli
         
         io.DisplaySize = ImVec2( njli::World::getInstance()->getViewportDimensions().x(), njli::World::getInstance()->getViewportDimensions().y() );
         
+        // Setup time step
+        Uint32	time = SDL_GetTicks();
+        double current_time = time / 1000.0;
+        io.DeltaTime = g_Time > 0.0 ? (float)(current_time - g_Time) : (float)(1.0f/60.0f);
+        g_Time = current_time;
+        
         io.MouseDrawCursor = g_synergyPtrActive;
         if (g_synergyPtrActive)
         {
@@ -1127,6 +1138,40 @@ namespace njli
         }
         else
         {
+#if ((defined(__IPHONEOS__) && __IPHONEOS__) || (defined(__ANDROID__) && __ANDROID__))
+            SDL_TouchID touchID = SDL_GetTouchDevice(0);
+            if(SDL_GetNumTouchFingers(touchID))
+            {
+                SDL_Finger *finger = SDL_GetTouchFinger(SDL_GetTouchDevice(0), 0);
+                io.MousePos = ImVec2((float)finger->x * io.DisplaySize.x, (float)finger->y * io.DisplaySize.y);
+                io.MouseDown[0] = g_MousePressed[0];
+                g_MousePressed[0] = g_MousePressed[1] = g_MousePressed[2] = false;
+                io.MouseWheel = g_MouseWheel;
+                g_MouseWheel = 0.0f;
+
+            }
+#else
+            // Setup inputs
+            // (we already got mouse wheel, keyboard keys & characters from glfw callbacks polled in glfwPollEvents())
+            int mx, my;
+            Uint32 mouseMask = SDL_GetMouseState(&mx, &my);
+//            if (SDL_GetWindowFlags(gWindow) & SDL_WINDOW_MOUSE_FOCUS)
+                io.MousePos = ImVec2((float)mx, (float)my);   // Mouse position, in pixels (set to -1,-1 if no mouse / on another screen, etc.)
+//            else
+//                io.MousePos = ImVec2(-1,-1);
+            
+            io.MouseDown[0] = g_MousePressed[0] || (mouseMask & SDL_BUTTON(SDL_BUTTON_LEFT)) != 0;		// If a mouse press event came, always pass it as "mouse held this frame", so we don't miss click-release events that are shorter than 1 frame.
+            io.MouseDown[1] = g_MousePressed[1] || (mouseMask & SDL_BUTTON(SDL_BUTTON_RIGHT)) != 0;
+            io.MouseDown[2] = g_MousePressed[2] || (mouseMask & SDL_BUTTON(SDL_BUTTON_MIDDLE)) != 0;
+            g_MousePressed[0] = g_MousePressed[1] = g_MousePressed[2] = false;
+            
+            io.MouseWheel = g_MouseWheel;
+            g_MouseWheel = 0.0f;
+            
+            // Hide OS mouse cursor if ImGui is drawing it
+            SDL_ShowCursor(io.MouseDrawCursor ? 0 : 1);
+#endif
+            
             // Synergy not active, use touch events
 //            style.TouchExtraPadding = ImVec2( 4.0, 4.0 );
 //            io.MousePos = ImVec2(_touchPos.x, _touchPos.y );
@@ -1185,6 +1230,49 @@ namespace njli
 //        });
     }
     
+    bool WorldDebugDrawer::processSdlEvent(SDL_Event* event)
+    {
+        ImGuiIO& io = ImGui::GetIO();
+        switch (event->type)
+        {
+            case SDL_MOUSEWHEEL:
+            {
+                if (event->wheel.y > 0)
+                    g_MouseWheel = 1;
+                if (event->wheel.y < 0)
+                    g_MouseWheel = -1;
+                return true;
+            }
+            case SDL_FINGERMOTION:
+            case SDL_FINGERDOWN:
+            case SDL_FINGERUP:
+            case SDL_MOUSEBUTTONDOWN:
+            {
+                if (event->button.button == SDL_BUTTON_LEFT) g_MousePressed[0] = true;
+                if (event->button.button == SDL_BUTTON_RIGHT) g_MousePressed[1] = true;
+                if (event->button.button == SDL_BUTTON_MIDDLE) g_MousePressed[2] = true;
+                return true;
+            }
+            case SDL_TEXTINPUT:
+            {
+                ImGuiIO& io = ImGui::GetIO();
+                io.AddInputCharactersUTF8(event->text.text);
+                return true;
+            }
+            case SDL_KEYDOWN:
+            case SDL_KEYUP:
+            {
+                int key = event->key.keysym.sym & ~SDLK_SCANCODE_MASK;
+                io.KeysDown[key] = (event->type == SDL_KEYDOWN);
+                io.KeyShift = ((SDL_GetModState() & KMOD_SHIFT) != 0);
+                io.KeyCtrl = ((SDL_GetModState() & KMOD_CTRL) != 0);
+                io.KeyAlt = ((SDL_GetModState() & KMOD_ALT) != 0);
+                return true;
+            }
+        }
+        return false;   
+    }
+    
     
 //    - (void)viewDidPan: (UIPanGestureRecognizer *)recognizer
 //    {
@@ -1207,6 +1295,17 @@ namespace njli
 //        _touchPos = [recognizer locationInView:self.view];
 //        _mouseTapped = YES;
 //    }
+    
+    
+    static const char* ImGui_ImplGlfw_GetClipboardText(void* user_data)
+    {
+        return SDL_GetClipboardText();
+    }
+    
+    static void ImGui_ImplGlfw_SetClipboardText(void* user_data, const char* text)
+    {
+        SDL_SetClipboardText(text);
+    }
     
     // This is the main rendering function that you have to implement and provide to ImGui (via setting up 'RenderDrawListsFn' in the ImGuiIO structure)
     // If text or lines are blurry when integrating ImGui in your engine:
@@ -1358,6 +1457,7 @@ namespace njli
         if (logLength > 0) {
             GLchar *log = (GLchar *)malloc(logLength);
             glGetShaderInfoLog(g_VertHandle, logLength, &logLength, log);
+            SDL_LogInfo(SDL_LOG_CATEGORY_TEST, "%s", log);
             free(log);
         }
 #endif
@@ -1369,6 +1469,7 @@ namespace njli
         if (logLength > 0) {
             GLchar *log = (GLchar *)malloc(logLength);
             glGetShaderInfoLog(g_FragHandle, logLength, &logLength, log);
+            SDL_LogInfo(SDL_LOG_CATEGORY_TEST, "%s", log);
             free(log);
         }
 #endif

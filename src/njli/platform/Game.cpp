@@ -1187,6 +1187,11 @@ void NJLIGameEngine::render() { njli::World::getInstance()->render(); }
         njli::World::getInstance()->getWorldInput()->handleMouse(button, eventType, x, y, clicks);
     }
     
+    void NJLIGameEngine::handleEvent(void *event)
+    {
+        njli::World::getInstance()->getDebugDrawer()->processSdlEvent((SDL_Event*)event);
+    }
+    
 //void NJLIGameEngine::setTouch(const int x, const int y, const int index,
 //    const unsigned long num_touches, float scaleFactor)
 //{

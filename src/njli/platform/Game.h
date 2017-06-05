@@ -32,6 +32,8 @@ public:
 //    static void startHandleFingers();
     
     static void mouse(int button, int eventType, float x, float y, int clicks);
+    
+    static void handleEvent(void *event);
 
 //    static void clearNodeTouches();
 //
