@@ -37,7 +37,7 @@ build_apple_xcode()
 
     MY_BUILD_DIR="${MY_PLATFORM}/${MY_VERSION}/${MY_BUILD_PLAT}"
 
-    MY_GRAPHICS_PLATFORM=opengl_es_2
+    MY_GRAPHICS_PLATFORM=opengl_es_3
     if [ $MY_PLATFORM == macOS ]
     then
         MY_GRAPHICS_PLATFORM=opengl_2

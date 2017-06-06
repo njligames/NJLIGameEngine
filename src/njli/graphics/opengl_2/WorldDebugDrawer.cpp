@@ -14,7 +14,7 @@
 #include "World.h"
 #define FORMATSTRING "{\"njli::WorldDebugDrawer\":[]}"
 #include "JsonJLI.h"
-
+#include "NJLIInterface.h"
 #include "imgui.h"
 
 //#include "uSynergy.h"
@@ -751,125 +751,125 @@ namespace njli
     
     // From Carbon HIToolbox/Events.h
     // FIXME: Keyboard mapping is hacked in because Synergy doesn't give us character but only keycode which aren't really portable if you consider keyboard locale. See https://github.com/ocornut/imgui/pull/247
-    enum {
-        kVK_ANSI_A                    = 0x00,
-        kVK_ANSI_S                    = 0x01,
-        kVK_ANSI_D                    = 0x02,
-        kVK_ANSI_F                    = 0x03,
-        kVK_ANSI_H                    = 0x04,
-        kVK_ANSI_G                    = 0x05,
-        kVK_ANSI_Z                    = 0x06,
-        kVK_ANSI_X                    = 0x07,
-        kVK_ANSI_C                    = 0x08,
-        kVK_ANSI_V                    = 0x09,
-        kVK_ANSI_B                    = 0x0B,
-        kVK_ANSI_Q                    = 0x0C,
-        kVK_ANSI_W                    = 0x0D,
-        kVK_ANSI_E                    = 0x0E,
-        kVK_ANSI_R                    = 0x0F,
-        kVK_ANSI_Y                    = 0x10,
-        kVK_ANSI_T                    = 0x11,
-        kVK_ANSI_1                    = 0x12,
-        kVK_ANSI_2                    = 0x13,
-        kVK_ANSI_3                    = 0x14,
-        kVK_ANSI_4                    = 0x15,
-        kVK_ANSI_6                    = 0x16,
-        kVK_ANSI_5                    = 0x17,
-        kVK_ANSI_Equal                = 0x18,
-        kVK_ANSI_9                    = 0x19,
-        kVK_ANSI_7                    = 0x1A,
-        kVK_ANSI_Minus                = 0x1B,
-        kVK_ANSI_8                    = 0x1C,
-        kVK_ANSI_0                    = 0x1D,
-        kVK_ANSI_RightBracket         = 0x1E,
-        kVK_ANSI_O                    = 0x1F,
-        kVK_ANSI_U                    = 0x20,
-        kVK_ANSI_LeftBracket          = 0x21,
-        kVK_ANSI_I                    = 0x22,
-        kVK_ANSI_P                    = 0x23,
-        kVK_ANSI_L                    = 0x25,
-        kVK_ANSI_J                    = 0x26,
-        kVK_ANSI_Quote                = 0x27,
-        kVK_ANSI_K                    = 0x28,
-        kVK_ANSI_Semicolon            = 0x29,
-        kVK_ANSI_Backslash            = 0x2A,
-        kVK_ANSI_Comma                = 0x2B,
-        kVK_ANSI_Slash                = 0x2C,
-        kVK_ANSI_N                    = 0x2D,
-        kVK_ANSI_M                    = 0x2E,
-        kVK_ANSI_Period               = 0x2F,
-        kVK_ANSI_Grave                = 0x32,
-        kVK_ANSI_KeypadDecimal        = 0x41,
-        kVK_ANSI_KeypadMultiply       = 0x43,
-        kVK_ANSI_KeypadPlus           = 0x45,
-        kVK_ANSI_KeypadClear          = 0x47,
-        kVK_ANSI_KeypadDivide         = 0x4B,
-        kVK_ANSI_KeypadEnter          = 0x4C,
-        kVK_ANSI_KeypadMinus          = 0x4E,
-        kVK_ANSI_KeypadEquals         = 0x51,
-        kVK_ANSI_Keypad0              = 0x52,
-        kVK_ANSI_Keypad1              = 0x53,
-        kVK_ANSI_Keypad2              = 0x54,
-        kVK_ANSI_Keypad3              = 0x55,
-        kVK_ANSI_Keypad4              = 0x56,
-        kVK_ANSI_Keypad5              = 0x57,
-        kVK_ANSI_Keypad6              = 0x58,
-        kVK_ANSI_Keypad7              = 0x59,
-        kVK_ANSI_Keypad8              = 0x5B,
-        kVK_ANSI_Keypad9              = 0x5C
-    };
-    
-    /* keycodes for keys that are independent of keyboard layout*/
-    enum {
-        kVK_Return                    = 0x24,
-        kVK_Tab                       = 0x30,
-        kVK_Space                     = 0x31,
-        kVK_Delete                    = 0x33,
-        kVK_Escape                    = 0x35,
-        kVK_Command                   = 0x37,
-        kVK_Shift                     = 0x38,
-        kVK_CapsLock                  = 0x39,
-        kVK_Option                    = 0x3A,
-        kVK_Control                   = 0x3B,
-        kVK_RightShift                = 0x3C,
-        kVK_RightOption               = 0x3D,
-        kVK_RightControl              = 0x3E,
-        kVK_Function                  = 0x3F,
-        kVK_F17                       = 0x40,
-        kVK_VolumeUp                  = 0x48,
-        kVK_VolumeDown                = 0x49,
-        kVK_Mute                      = 0x4A,
-        kVK_F18                       = 0x4F,
-        kVK_F19                       = 0x50,
-        kVK_F20                       = 0x5A,
-        kVK_F5                        = 0x60,
-        kVK_F6                        = 0x61,
-        kVK_F7                        = 0x62,
-        kVK_F3                        = 0x63,
-        kVK_F8                        = 0x64,
-        kVK_F9                        = 0x65,
-        kVK_F11                       = 0x67,
-        kVK_F13                       = 0x69,
-        kVK_F16                       = 0x6A,
-        kVK_F14                       = 0x6B,
-        kVK_F10                       = 0x6D,
-        kVK_F12                       = 0x6F,
-        kVK_F15                       = 0x71,
-        kVK_Help                      = 0x72,
-        kVK_Home                      = 0x73,
-        kVK_PageUp                    = 0x74,
-        kVK_ForwardDelete             = 0x75,
-        kVK_F4                        = 0x76,
-        kVK_End                       = 0x77,
-        kVK_F2                        = 0x78,
-        kVK_PageDown                  = 0x79,
-        kVK_F1                        = 0x7A,
-        kVK_LeftArrow                 = 0x7B,
-        kVK_RightArrow                = 0x7C,
-        kVK_DownArrow                 = 0x7D,
-        kVK_UpArrow                   = 0x7E
-    };
-    
+//    enum {
+//        kVK_ANSI_A                    = 0x00,
+//        kVK_ANSI_S                    = 0x01,
+//        kVK_ANSI_D                    = 0x02,
+//        kVK_ANSI_F                    = 0x03,
+//        kVK_ANSI_H                    = 0x04,
+//        kVK_ANSI_G                    = 0x05,
+//        kVK_ANSI_Z                    = 0x06,
+//        kVK_ANSI_X                    = 0x07,
+//        kVK_ANSI_C                    = 0x08,
+//        kVK_ANSI_V                    = 0x09,
+//        kVK_ANSI_B                    = 0x0B,
+//        kVK_ANSI_Q                    = 0x0C,
+//        kVK_ANSI_W                    = 0x0D,
+//        kVK_ANSI_E                    = 0x0E,
+//        kVK_ANSI_R                    = 0x0F,
+//        kVK_ANSI_Y                    = 0x10,
+//        kVK_ANSI_T                    = 0x11,
+//        kVK_ANSI_1                    = 0x12,
+//        kVK_ANSI_2                    = 0x13,
+//        kVK_ANSI_3                    = 0x14,
+//        kVK_ANSI_4                    = 0x15,
+//        kVK_ANSI_6                    = 0x16,
+//        kVK_ANSI_5                    = 0x17,
+//        kVK_ANSI_Equal                = 0x18,
+//        kVK_ANSI_9                    = 0x19,
+//        kVK_ANSI_7                    = 0x1A,
+//        kVK_ANSI_Minus                = 0x1B,
+//        kVK_ANSI_8                    = 0x1C,
+//        kVK_ANSI_0                    = 0x1D,
+//        kVK_ANSI_RightBracket         = 0x1E,
+//        kVK_ANSI_O                    = 0x1F,
+//        kVK_ANSI_U                    = 0x20,
+//        kVK_ANSI_LeftBracket          = 0x21,
+//        kVK_ANSI_I                    = 0x22,
+//        kVK_ANSI_P                    = 0x23,
+//        kVK_ANSI_L                    = 0x25,
+//        kVK_ANSI_J                    = 0x26,
+//        kVK_ANSI_Quote                = 0x27,
+//        kVK_ANSI_K                    = 0x28,
+//        kVK_ANSI_Semicolon            = 0x29,
+//        kVK_ANSI_Backslash            = 0x2A,
+//        kVK_ANSI_Comma                = 0x2B,
+//        kVK_ANSI_Slash                = 0x2C,
+//        kVK_ANSI_N                    = 0x2D,
+//        kVK_ANSI_M                    = 0x2E,
+//        kVK_ANSI_Period               = 0x2F,
+//        kVK_ANSI_Grave                = 0x32,
+//        kVK_ANSI_KeypadDecimal        = 0x41,
+//        kVK_ANSI_KeypadMultiply       = 0x43,
+//        kVK_ANSI_KeypadPlus           = 0x45,
+//        kVK_ANSI_KeypadClear          = 0x47,
+//        kVK_ANSI_KeypadDivide         = 0x4B,
+//        kVK_ANSI_KeypadEnter          = 0x4C,
+//        kVK_ANSI_KeypadMinus          = 0x4E,
+//        kVK_ANSI_KeypadEquals         = 0x51,
+//        kVK_ANSI_Keypad0              = 0x52,
+//        kVK_ANSI_Keypad1              = 0x53,
+//        kVK_ANSI_Keypad2              = 0x54,
+//        kVK_ANSI_Keypad3              = 0x55,
+//        kVK_ANSI_Keypad4              = 0x56,
+//        kVK_ANSI_Keypad5              = 0x57,
+//        kVK_ANSI_Keypad6              = 0x58,
+//        kVK_ANSI_Keypad7              = 0x59,
+//        kVK_ANSI_Keypad8              = 0x5B,
+//        kVK_ANSI_Keypad9              = 0x5C
+//    };
+//    
+//    /* keycodes for keys that are independent of keyboard layout*/
+//    enum {
+//        kVK_Return                    = 0x24,
+//        kVK_Tab                       = 0x30,
+//        kVK_Space                     = 0x31,
+//        kVK_Delete                    = 0x33,
+//        kVK_Escape                    = 0x35,
+//        kVK_Command                   = 0x37,
+//        kVK_Shift                     = 0x38,
+//        kVK_CapsLock                  = 0x39,
+//        kVK_Option                    = 0x3A,
+//        kVK_Control                   = 0x3B,
+//        kVK_RightShift                = 0x3C,
+//        kVK_RightOption               = 0x3D,
+//        kVK_RightControl              = 0x3E,
+//        kVK_Function                  = 0x3F,
+//        kVK_F17                       = 0x40,
+//        kVK_VolumeUp                  = 0x48,
+//        kVK_VolumeDown                = 0x49,
+//        kVK_Mute                      = 0x4A,
+//        kVK_F18                       = 0x4F,
+//        kVK_F19                       = 0x50,
+//        kVK_F20                       = 0x5A,
+//        kVK_F5                        = 0x60,
+//        kVK_F6                        = 0x61,
+//        kVK_F7                        = 0x62,
+//        kVK_F3                        = 0x63,
+//        kVK_F8                        = 0x64,
+//        kVK_F9                        = 0x65,
+//        kVK_F11                       = 0x67,
+//        kVK_F13                       = 0x69,
+//        kVK_F16                       = 0x6A,
+//        kVK_F14                       = 0x6B,
+//        kVK_F10                       = 0x6D,
+//        kVK_F12                       = 0x6F,
+//        kVK_F15                       = 0x71,
+//        kVK_Help                      = 0x72,
+//        kVK_Home                      = 0x73,
+//        kVK_PageUp                    = 0x74,
+//        kVK_ForwardDelete             = 0x75,
+//        kVK_F4                        = 0x76,
+//        kVK_End                       = 0x77,
+//        kVK_F2                        = 0x78,
+//        kVK_PageDown                  = 0x79,
+//        kVK_F1                        = 0x7A,
+//        kVK_LeftArrow                 = 0x7B,
+//        kVK_RightArrow                = 0x7C,
+//        kVK_DownArrow                 = 0x7D,
+//        kVK_UpArrow                   = 0x7E
+//    };
+//    
     static char g_keycodeCharUnshifted[256] = {};
     static char g_keycodeCharShifted[256] = {};
     
@@ -900,151 +900,151 @@ namespace njli
 //    static NSString *g_serverName;
     static std::string g_serverName;
     
-    void setupKeymaps()
-    {
-        // The keyboard mapping is a big headache. I tried for a while to find a better way to do this,
-        // but this was the best I could come up with. There are some device independent API's available
-        // to convert scan codes to unicode characters, but these are only available on mac and not
-        // on iOS as far as I can tell (it's part of Carbon). I didn't see any better way to do
-        // this or  any way to get the character codes out of usynergy.
-        g_keycodeCharUnshifted[ kVK_ANSI_A ]='a';
-        g_keycodeCharUnshifted[ kVK_ANSI_S ]='s';
-        g_keycodeCharUnshifted[ kVK_ANSI_D ]='d';
-        g_keycodeCharUnshifted[ kVK_ANSI_F ]='f';
-        g_keycodeCharUnshifted[ kVK_ANSI_H ]='h';
-        g_keycodeCharUnshifted[ kVK_ANSI_G ]='g';
-        g_keycodeCharUnshifted[ kVK_ANSI_Z ]='z';
-        g_keycodeCharUnshifted[ kVK_ANSI_X ]='x';
-        g_keycodeCharUnshifted[ kVK_ANSI_C ]='c';
-        g_keycodeCharUnshifted[ kVK_ANSI_V ]='v';
-        g_keycodeCharUnshifted[ kVK_ANSI_B ]='b';
-        g_keycodeCharUnshifted[ kVK_ANSI_Q ]='q';
-        g_keycodeCharUnshifted[ kVK_ANSI_W ]='w';
-        g_keycodeCharUnshifted[ kVK_ANSI_E ]='e';
-        g_keycodeCharUnshifted[ kVK_ANSI_R ]='r';
-        g_keycodeCharUnshifted[ kVK_ANSI_Y ]='y';
-        g_keycodeCharUnshifted[ kVK_ANSI_T ]='t';
-        g_keycodeCharUnshifted[ kVK_ANSI_1 ]='1';
-        g_keycodeCharUnshifted[ kVK_ANSI_2 ]='2';
-        g_keycodeCharUnshifted[ kVK_ANSI_3 ]='3';
-        g_keycodeCharUnshifted[ kVK_ANSI_4 ]='4';
-        g_keycodeCharUnshifted[ kVK_ANSI_6 ]='6';
-        g_keycodeCharUnshifted[ kVK_ANSI_5 ]='5';
-        g_keycodeCharUnshifted[ kVK_ANSI_Equal ]='=';
-        g_keycodeCharUnshifted[ kVK_ANSI_9 ]='9';
-        g_keycodeCharUnshifted[ kVK_ANSI_7 ]='7';
-        g_keycodeCharUnshifted[ kVK_ANSI_Minus ]='-';
-        g_keycodeCharUnshifted[ kVK_ANSI_8 ]='8';
-        g_keycodeCharUnshifted[ kVK_ANSI_0 ]='0';
-        g_keycodeCharUnshifted[ kVK_ANSI_RightBracket ]=']';
-        g_keycodeCharUnshifted[ kVK_ANSI_O ]='o';
-        g_keycodeCharUnshifted[ kVK_ANSI_U ]='u';
-        g_keycodeCharUnshifted[ kVK_ANSI_LeftBracket ]='[';
-        g_keycodeCharUnshifted[ kVK_ANSI_I ]='i';
-        g_keycodeCharUnshifted[ kVK_ANSI_P ]='p';
-        g_keycodeCharUnshifted[ kVK_ANSI_L ]='l';
-        g_keycodeCharUnshifted[ kVK_ANSI_J ]='j';
-        g_keycodeCharUnshifted[ kVK_ANSI_Quote ]='\'';
-        g_keycodeCharUnshifted[ kVK_ANSI_K ]='k';
-        g_keycodeCharUnshifted[ kVK_ANSI_Semicolon ]=';';
-        g_keycodeCharUnshifted[ kVK_ANSI_Backslash ]='\\';
-        g_keycodeCharUnshifted[ kVK_ANSI_Comma ]=',';
-        g_keycodeCharUnshifted[ kVK_ANSI_Slash ]='/';
-        g_keycodeCharUnshifted[ kVK_ANSI_N ]='n';
-        g_keycodeCharUnshifted[ kVK_ANSI_M ]='m';
-        g_keycodeCharUnshifted[ kVK_ANSI_Period ]='.';
-        g_keycodeCharUnshifted[ kVK_ANSI_Grave ]='`';
-        g_keycodeCharUnshifted[ kVK_ANSI_KeypadDecimal ]='.';
-        g_keycodeCharUnshifted[ kVK_ANSI_KeypadMultiply ]='*';
-        g_keycodeCharUnshifted[ kVK_ANSI_KeypadPlus ]='+';
-        g_keycodeCharUnshifted[ kVK_ANSI_KeypadDivide ]='/';
-        g_keycodeCharUnshifted[ kVK_ANSI_KeypadEnter ]='\n';
-        g_keycodeCharUnshifted[ kVK_ANSI_KeypadMinus ]='-';
-        g_keycodeCharUnshifted[ kVK_ANSI_KeypadEquals ]='=';
-        g_keycodeCharUnshifted[ kVK_ANSI_Keypad0 ]='0';
-        g_keycodeCharUnshifted[ kVK_ANSI_Keypad1 ]='1';
-        g_keycodeCharUnshifted[ kVK_ANSI_Keypad2 ]='2';
-        g_keycodeCharUnshifted[ kVK_ANSI_Keypad3 ]='3';
-        g_keycodeCharUnshifted[ kVK_ANSI_Keypad4 ]='4';
-        g_keycodeCharUnshifted[ kVK_ANSI_Keypad5 ]='5';
-        g_keycodeCharUnshifted[ kVK_ANSI_Keypad6 ]='6';
-        g_keycodeCharUnshifted[ kVK_ANSI_Keypad7 ]='7';
-        g_keycodeCharUnshifted[ kVK_ANSI_Keypad8 ]='8';
-        g_keycodeCharUnshifted[ kVK_ANSI_Keypad9 ]='9';
-        g_keycodeCharUnshifted[ kVK_Space ]=' ';
-        
-        g_keycodeCharShifted[ kVK_ANSI_A ]='A';
-        g_keycodeCharShifted[ kVK_ANSI_S ]='S';
-        g_keycodeCharShifted[ kVK_ANSI_D ]='D';
-        g_keycodeCharShifted[ kVK_ANSI_F ]='F';
-        g_keycodeCharShifted[ kVK_ANSI_H ]='H';
-        g_keycodeCharShifted[ kVK_ANSI_G ]='G';
-        g_keycodeCharShifted[ kVK_ANSI_Z ]='Z';
-        g_keycodeCharShifted[ kVK_ANSI_X ]='X';
-        g_keycodeCharShifted[ kVK_ANSI_C ]='C';
-        g_keycodeCharShifted[ kVK_ANSI_V ]='V';
-        g_keycodeCharShifted[ kVK_ANSI_B ]='B';
-        g_keycodeCharShifted[ kVK_ANSI_Q ]='Q';
-        g_keycodeCharShifted[ kVK_ANSI_W ]='W';
-        g_keycodeCharShifted[ kVK_ANSI_E ]='E';
-        g_keycodeCharShifted[ kVK_ANSI_R ]='R';
-        g_keycodeCharShifted[ kVK_ANSI_Y ]='Y';
-        g_keycodeCharShifted[ kVK_ANSI_T ]='T';
-        g_keycodeCharShifted[ kVK_ANSI_1 ]='!';
-        g_keycodeCharShifted[ kVK_ANSI_2 ]='@';
-        g_keycodeCharShifted[ kVK_ANSI_3 ]='#';
-        g_keycodeCharShifted[ kVK_ANSI_4 ]='$';
-        g_keycodeCharShifted[ kVK_ANSI_6 ]='^';
-        g_keycodeCharShifted[ kVK_ANSI_5 ]='%';
-        g_keycodeCharShifted[ kVK_ANSI_Equal ]='+';
-        g_keycodeCharShifted[ kVK_ANSI_9 ]='(';
-        g_keycodeCharShifted[ kVK_ANSI_7 ]='&';
-        g_keycodeCharShifted[ kVK_ANSI_Minus ]='_';
-        g_keycodeCharShifted[ kVK_ANSI_8 ]='*';
-        g_keycodeCharShifted[ kVK_ANSI_0 ]=')';
-        g_keycodeCharShifted[ kVK_ANSI_RightBracket ]='}';
-        g_keycodeCharShifted[ kVK_ANSI_O ]='O';
-        g_keycodeCharShifted[ kVK_ANSI_U ]='U';
-        g_keycodeCharShifted[ kVK_ANSI_LeftBracket ]='{';
-        g_keycodeCharShifted[ kVK_ANSI_I ]='I';
-        g_keycodeCharShifted[ kVK_ANSI_P ]='P';
-        g_keycodeCharShifted[ kVK_ANSI_L ]='L';
-        g_keycodeCharShifted[ kVK_ANSI_J ]='J';
-        g_keycodeCharShifted[ kVK_ANSI_Quote ]='\"';
-        g_keycodeCharShifted[ kVK_ANSI_K ]='K';
-        g_keycodeCharShifted[ kVK_ANSI_Semicolon ]=':';
-        g_keycodeCharShifted[ kVK_ANSI_Backslash ]='|';
-        g_keycodeCharShifted[ kVK_ANSI_Comma ]='<';
-        g_keycodeCharShifted[ kVK_ANSI_Slash ]='?';
-        g_keycodeCharShifted[ kVK_ANSI_N ]='N';
-        g_keycodeCharShifted[ kVK_ANSI_M ]='M';
-        g_keycodeCharShifted[ kVK_ANSI_Period ]='>';
-        g_keycodeCharShifted[ kVK_ANSI_Grave ]='~';
-        g_keycodeCharShifted[ kVK_ANSI_KeypadDecimal ]='.';
-        g_keycodeCharShifted[ kVK_ANSI_KeypadMultiply ]='*';
-        g_keycodeCharShifted[ kVK_ANSI_KeypadPlus ]='+';
-        g_keycodeCharShifted[ kVK_ANSI_KeypadDivide ]='/';
-        g_keycodeCharShifted[ kVK_ANSI_KeypadEnter ]='\n';
-        g_keycodeCharShifted[ kVK_ANSI_KeypadMinus ]='-';
-        g_keycodeCharShifted[ kVK_ANSI_KeypadEquals ]='=';
-        g_keycodeCharShifted[ kVK_ANSI_Keypad0 ]='0';
-        g_keycodeCharShifted[ kVK_ANSI_Keypad1 ]='1';
-        g_keycodeCharShifted[ kVK_ANSI_Keypad2 ]='2';
-        g_keycodeCharShifted[ kVK_ANSI_Keypad3 ]='3';
-        g_keycodeCharShifted[ kVK_ANSI_Keypad4 ]='4';
-        g_keycodeCharShifted[ kVK_ANSI_Keypad5 ]='5';
-        g_keycodeCharShifted[ kVK_ANSI_Keypad6 ]='6';
-        g_keycodeCharShifted[ kVK_ANSI_Keypad7 ]='7';
-        g_keycodeCharShifted[ kVK_ANSI_Keypad8 ]='8';
-        g_keycodeCharShifted[ kVK_ANSI_Keypad9 ]='9';
-        g_keycodeCharShifted[ kVK_Space ]=' ';
-    }
+//    void setupKeymaps()
+//    {
+//        // The keyboard mapping is a big headache. I tried for a while to find a better way to do this,
+//        // but this was the best I could come up with. There are some device independent API's available
+//        // to convert scan codes to unicode characters, but these are only available on mac and not
+//        // on iOS as far as I can tell (it's part of Carbon). I didn't see any better way to do
+//        // this or  any way to get the character codes out of usynergy.
+//        g_keycodeCharUnshifted[ kVK_ANSI_A ]='a';
+//        g_keycodeCharUnshifted[ kVK_ANSI_S ]='s';
+//        g_keycodeCharUnshifted[ kVK_ANSI_D ]='d';
+//        g_keycodeCharUnshifted[ kVK_ANSI_F ]='f';
+//        g_keycodeCharUnshifted[ kVK_ANSI_H ]='h';
+//        g_keycodeCharUnshifted[ kVK_ANSI_G ]='g';
+//        g_keycodeCharUnshifted[ kVK_ANSI_Z ]='z';
+//        g_keycodeCharUnshifted[ kVK_ANSI_X ]='x';
+//        g_keycodeCharUnshifted[ kVK_ANSI_C ]='c';
+//        g_keycodeCharUnshifted[ kVK_ANSI_V ]='v';
+//        g_keycodeCharUnshifted[ kVK_ANSI_B ]='b';
+//        g_keycodeCharUnshifted[ kVK_ANSI_Q ]='q';
+//        g_keycodeCharUnshifted[ kVK_ANSI_W ]='w';
+//        g_keycodeCharUnshifted[ kVK_ANSI_E ]='e';
+//        g_keycodeCharUnshifted[ kVK_ANSI_R ]='r';
+//        g_keycodeCharUnshifted[ kVK_ANSI_Y ]='y';
+//        g_keycodeCharUnshifted[ kVK_ANSI_T ]='t';
+//        g_keycodeCharUnshifted[ kVK_ANSI_1 ]='1';
+//        g_keycodeCharUnshifted[ kVK_ANSI_2 ]='2';
+//        g_keycodeCharUnshifted[ kVK_ANSI_3 ]='3';
+//        g_keycodeCharUnshifted[ kVK_ANSI_4 ]='4';
+//        g_keycodeCharUnshifted[ kVK_ANSI_6 ]='6';
+//        g_keycodeCharUnshifted[ kVK_ANSI_5 ]='5';
+//        g_keycodeCharUnshifted[ kVK_ANSI_Equal ]='=';
+//        g_keycodeCharUnshifted[ kVK_ANSI_9 ]='9';
+//        g_keycodeCharUnshifted[ kVK_ANSI_7 ]='7';
+//        g_keycodeCharUnshifted[ kVK_ANSI_Minus ]='-';
+//        g_keycodeCharUnshifted[ kVK_ANSI_8 ]='8';
+//        g_keycodeCharUnshifted[ kVK_ANSI_0 ]='0';
+//        g_keycodeCharUnshifted[ kVK_ANSI_RightBracket ]=']';
+//        g_keycodeCharUnshifted[ kVK_ANSI_O ]='o';
+//        g_keycodeCharUnshifted[ kVK_ANSI_U ]='u';
+//        g_keycodeCharUnshifted[ kVK_ANSI_LeftBracket ]='[';
+//        g_keycodeCharUnshifted[ kVK_ANSI_I ]='i';
+//        g_keycodeCharUnshifted[ kVK_ANSI_P ]='p';
+//        g_keycodeCharUnshifted[ kVK_ANSI_L ]='l';
+//        g_keycodeCharUnshifted[ kVK_ANSI_J ]='j';
+//        g_keycodeCharUnshifted[ kVK_ANSI_Quote ]='\'';
+//        g_keycodeCharUnshifted[ kVK_ANSI_K ]='k';
+//        g_keycodeCharUnshifted[ kVK_ANSI_Semicolon ]=';';
+//        g_keycodeCharUnshifted[ kVK_ANSI_Backslash ]='\\';
+//        g_keycodeCharUnshifted[ kVK_ANSI_Comma ]=',';
+//        g_keycodeCharUnshifted[ kVK_ANSI_Slash ]='/';
+//        g_keycodeCharUnshifted[ kVK_ANSI_N ]='n';
+//        g_keycodeCharUnshifted[ kVK_ANSI_M ]='m';
+//        g_keycodeCharUnshifted[ kVK_ANSI_Period ]='.';
+//        g_keycodeCharUnshifted[ kVK_ANSI_Grave ]='`';
+//        g_keycodeCharUnshifted[ kVK_ANSI_KeypadDecimal ]='.';
+//        g_keycodeCharUnshifted[ kVK_ANSI_KeypadMultiply ]='*';
+//        g_keycodeCharUnshifted[ kVK_ANSI_KeypadPlus ]='+';
+//        g_keycodeCharUnshifted[ kVK_ANSI_KeypadDivide ]='/';
+//        g_keycodeCharUnshifted[ kVK_ANSI_KeypadEnter ]='\n';
+//        g_keycodeCharUnshifted[ kVK_ANSI_KeypadMinus ]='-';
+//        g_keycodeCharUnshifted[ kVK_ANSI_KeypadEquals ]='=';
+//        g_keycodeCharUnshifted[ kVK_ANSI_Keypad0 ]='0';
+//        g_keycodeCharUnshifted[ kVK_ANSI_Keypad1 ]='1';
+//        g_keycodeCharUnshifted[ kVK_ANSI_Keypad2 ]='2';
+//        g_keycodeCharUnshifted[ kVK_ANSI_Keypad3 ]='3';
+//        g_keycodeCharUnshifted[ kVK_ANSI_Keypad4 ]='4';
+//        g_keycodeCharUnshifted[ kVK_ANSI_Keypad5 ]='5';
+//        g_keycodeCharUnshifted[ kVK_ANSI_Keypad6 ]='6';
+//        g_keycodeCharUnshifted[ kVK_ANSI_Keypad7 ]='7';
+//        g_keycodeCharUnshifted[ kVK_ANSI_Keypad8 ]='8';
+//        g_keycodeCharUnshifted[ kVK_ANSI_Keypad9 ]='9';
+//        g_keycodeCharUnshifted[ kVK_Space ]=' ';
+//        
+//        g_keycodeCharShifted[ kVK_ANSI_A ]='A';
+//        g_keycodeCharShifted[ kVK_ANSI_S ]='S';
+//        g_keycodeCharShifted[ kVK_ANSI_D ]='D';
+//        g_keycodeCharShifted[ kVK_ANSI_F ]='F';
+//        g_keycodeCharShifted[ kVK_ANSI_H ]='H';
+//        g_keycodeCharShifted[ kVK_ANSI_G ]='G';
+//        g_keycodeCharShifted[ kVK_ANSI_Z ]='Z';
+//        g_keycodeCharShifted[ kVK_ANSI_X ]='X';
+//        g_keycodeCharShifted[ kVK_ANSI_C ]='C';
+//        g_keycodeCharShifted[ kVK_ANSI_V ]='V';
+//        g_keycodeCharShifted[ kVK_ANSI_B ]='B';
+//        g_keycodeCharShifted[ kVK_ANSI_Q ]='Q';
+//        g_keycodeCharShifted[ kVK_ANSI_W ]='W';
+//        g_keycodeCharShifted[ kVK_ANSI_E ]='E';
+//        g_keycodeCharShifted[ kVK_ANSI_R ]='R';
+//        g_keycodeCharShifted[ kVK_ANSI_Y ]='Y';
+//        g_keycodeCharShifted[ kVK_ANSI_T ]='T';
+//        g_keycodeCharShifted[ kVK_ANSI_1 ]='!';
+//        g_keycodeCharShifted[ kVK_ANSI_2 ]='@';
+//        g_keycodeCharShifted[ kVK_ANSI_3 ]='#';
+//        g_keycodeCharShifted[ kVK_ANSI_4 ]='$';
+//        g_keycodeCharShifted[ kVK_ANSI_6 ]='^';
+//        g_keycodeCharShifted[ kVK_ANSI_5 ]='%';
+//        g_keycodeCharShifted[ kVK_ANSI_Equal ]='+';
+//        g_keycodeCharShifted[ kVK_ANSI_9 ]='(';
+//        g_keycodeCharShifted[ kVK_ANSI_7 ]='&';
+//        g_keycodeCharShifted[ kVK_ANSI_Minus ]='_';
+//        g_keycodeCharShifted[ kVK_ANSI_8 ]='*';
+//        g_keycodeCharShifted[ kVK_ANSI_0 ]=')';
+//        g_keycodeCharShifted[ kVK_ANSI_RightBracket ]='}';
+//        g_keycodeCharShifted[ kVK_ANSI_O ]='O';
+//        g_keycodeCharShifted[ kVK_ANSI_U ]='U';
+//        g_keycodeCharShifted[ kVK_ANSI_LeftBracket ]='{';
+//        g_keycodeCharShifted[ kVK_ANSI_I ]='I';
+//        g_keycodeCharShifted[ kVK_ANSI_P ]='P';
+//        g_keycodeCharShifted[ kVK_ANSI_L ]='L';
+//        g_keycodeCharShifted[ kVK_ANSI_J ]='J';
+//        g_keycodeCharShifted[ kVK_ANSI_Quote ]='\"';
+//        g_keycodeCharShifted[ kVK_ANSI_K ]='K';
+//        g_keycodeCharShifted[ kVK_ANSI_Semicolon ]=':';
+//        g_keycodeCharShifted[ kVK_ANSI_Backslash ]='|';
+//        g_keycodeCharShifted[ kVK_ANSI_Comma ]='<';
+//        g_keycodeCharShifted[ kVK_ANSI_Slash ]='?';
+//        g_keycodeCharShifted[ kVK_ANSI_N ]='N';
+//        g_keycodeCharShifted[ kVK_ANSI_M ]='M';
+//        g_keycodeCharShifted[ kVK_ANSI_Period ]='>';
+//        g_keycodeCharShifted[ kVK_ANSI_Grave ]='~';
+//        g_keycodeCharShifted[ kVK_ANSI_KeypadDecimal ]='.';
+//        g_keycodeCharShifted[ kVK_ANSI_KeypadMultiply ]='*';
+//        g_keycodeCharShifted[ kVK_ANSI_KeypadPlus ]='+';
+//        g_keycodeCharShifted[ kVK_ANSI_KeypadDivide ]='/';
+//        g_keycodeCharShifted[ kVK_ANSI_KeypadEnter ]='\n';
+//        g_keycodeCharShifted[ kVK_ANSI_KeypadMinus ]='-';
+//        g_keycodeCharShifted[ kVK_ANSI_KeypadEquals ]='=';
+//        g_keycodeCharShifted[ kVK_ANSI_Keypad0 ]='0';
+//        g_keycodeCharShifted[ kVK_ANSI_Keypad1 ]='1';
+//        g_keycodeCharShifted[ kVK_ANSI_Keypad2 ]='2';
+//        g_keycodeCharShifted[ kVK_ANSI_Keypad3 ]='3';
+//        g_keycodeCharShifted[ kVK_ANSI_Keypad4 ]='4';
+//        g_keycodeCharShifted[ kVK_ANSI_Keypad5 ]='5';
+//        g_keycodeCharShifted[ kVK_ANSI_Keypad6 ]='6';
+//        g_keycodeCharShifted[ kVK_ANSI_Keypad7 ]='7';
+//        g_keycodeCharShifted[ kVK_ANSI_Keypad8 ]='8';
+//        g_keycodeCharShifted[ kVK_ANSI_Keypad9 ]='9';
+//        g_keycodeCharShifted[ kVK_Space ]=' ';
+//    }
     
     void setupImGuiHooks()
     {
         ImGuiIO &io = ImGui::GetIO();
         
-        setupKeymaps();
+//        setupKeymaps();
         
         // Account for retina display for glScissor
         g_displayScale = 1.0f;//[[UIScreen mainScreen] scale];
@@ -1064,23 +1064,44 @@ namespace njli
         
         // Fill out the Synergy key map
         // (for some reason synergy scan codes are off by 1)
-        io.KeyMap[ImGuiKey_Tab] = kVK_Tab+1;
-        io.KeyMap[ImGuiKey_LeftArrow] = kVK_LeftArrow+1;
-        io.KeyMap[ImGuiKey_RightArrow] = kVK_RightArrow+1;
-        io.KeyMap[ImGuiKey_UpArrow] = kVK_UpArrow+1;
-        io.KeyMap[ImGuiKey_DownArrow] = kVK_DownArrow+1;
-        io.KeyMap[ImGuiKey_Home] = kVK_Home+1;
-        io.KeyMap[ImGuiKey_End] = kVK_End+1;
-        io.KeyMap[ImGuiKey_Delete] = kVK_ForwardDelete+1;
-        io.KeyMap[ImGuiKey_Backspace] = kVK_Delete+1;
-        io.KeyMap[ImGuiKey_Enter] = kVK_Return+1;
-        io.KeyMap[ImGuiKey_Escape] = kVK_Escape+1;
-        io.KeyMap[ImGuiKey_A] = kVK_ANSI_A+1;
-        io.KeyMap[ImGuiKey_C] = kVK_ANSI_C+1;
-        io.KeyMap[ImGuiKey_V] = kVK_ANSI_V+1;
-        io.KeyMap[ImGuiKey_X] = kVK_ANSI_X+1;
-        io.KeyMap[ImGuiKey_Y] = kVK_ANSI_Y+1;
-        io.KeyMap[ImGuiKey_Z] = kVK_ANSI_Z+1;
+//        io.KeyMap[ImGuiKey_Tab] = kVK_Tab;//+1;
+//        io.KeyMap[ImGuiKey_LeftArrow] = kVK_LeftArrow+1;
+//        io.KeyMap[ImGuiKey_RightArrow] = kVK_RightArrow+1;
+//        io.KeyMap[ImGuiKey_UpArrow] = kVK_UpArrow+1;
+//        io.KeyMap[ImGuiKey_DownArrow] = kVK_DownArrow+1;
+//        io.KeyMap[ImGuiKey_Home] = kVK_Home+1;
+//        io.KeyMap[ImGuiKey_End] = kVK_End+1;
+//        io.KeyMap[ImGuiKey_Delete] = kVK_ForwardDelete+1;
+//        io.KeyMap[ImGuiKey_Backspace] = kVK_Delete+1;
+//        io.KeyMap[ImGuiKey_Enter] = kVK_Return+1;
+//        io.KeyMap[ImGuiKey_Escape] = kVK_Escape+1;
+//        io.KeyMap[ImGuiKey_A] = kVK_ANSI_A+1;
+//        io.KeyMap[ImGuiKey_C] = kVK_ANSI_C+1;
+//        io.KeyMap[ImGuiKey_V] = kVK_ANSI_V+1;
+//        io.KeyMap[ImGuiKey_X] = kVK_ANSI_X+1;
+//        io.KeyMap[ImGuiKey_Y] = kVK_ANSI_Y+1;
+//        io.KeyMap[ImGuiKey_Z] = kVK_ANSI_Z+1;
+        
+            
+        io.KeyMap[ImGuiKey_Tab] = SDLK_TAB;                     // Keyboard mapping. ImGui will use those indices to peek into the io.KeyDown[] array.
+        io.KeyMap[ImGuiKey_LeftArrow] = SDL_SCANCODE_LEFT;
+        io.KeyMap[ImGuiKey_RightArrow] = SDL_SCANCODE_RIGHT;
+        io.KeyMap[ImGuiKey_UpArrow] = SDL_SCANCODE_UP;
+        io.KeyMap[ImGuiKey_DownArrow] = SDL_SCANCODE_DOWN;
+        io.KeyMap[ImGuiKey_PageUp] = SDL_SCANCODE_PAGEUP;
+        io.KeyMap[ImGuiKey_PageDown] = SDL_SCANCODE_PAGEDOWN;
+        io.KeyMap[ImGuiKey_Home] = SDL_SCANCODE_HOME;
+        io.KeyMap[ImGuiKey_End] = SDL_SCANCODE_END;
+        io.KeyMap[ImGuiKey_Delete] = SDLK_DELETE;
+        io.KeyMap[ImGuiKey_Backspace] = SDLK_BACKSPACE;
+        io.KeyMap[ImGuiKey_Enter] = SDLK_RETURN;
+        io.KeyMap[ImGuiKey_Escape] = SDLK_ESCAPE;
+        io.KeyMap[ImGuiKey_A] = SDLK_a;
+        io.KeyMap[ImGuiKey_C] = SDLK_c;
+        io.KeyMap[ImGuiKey_V] = SDLK_v;
+        io.KeyMap[ImGuiKey_X] = SDLK_x;
+        io.KeyMap[ImGuiKey_Y] = SDLK_y;
+        io.KeyMap[ImGuiKey_Z] = SDLK_z;
     }
     
     void WorldDebugDrawer::initImgui()
@@ -1104,8 +1125,33 @@ namespace njli
         ImGui::Render();
     }
     
+    static void GetPrimaryIp(char* buffer, size_t buflen)
+    {
+        setenv("LANG","C",1);
+        FILE * fp = popen("ifconfig", "r");
+        if (fp) {
+            char *p=NULL, *e; size_t n;
+            while ((getline(&p, &n, fp) > 0) && p) {
+                if ((p = strstr(p, "inet "))) {
+                    p+=5;
+                    if ((p = strchr(p, ':'))) {
+                        ++p;
+                        if ((e = strchr(p, ' '))) {
+                            *e='\0';
+                            printf("%s\n", p);
+                        }
+                    }
+                }
+            }
+        }
+        pclose(fp);
+    }
+    
     void WorldDebugDrawer::newFrameImgui()
     {
+        static char buffer[256];
+        GetPrimaryIp(buffer, 256);
+        
         ImGuiIO& io = ImGui::GetIO();
         ImGuiStyle &style = ImGui::GetStyle();
         
@@ -1114,7 +1160,8 @@ namespace njli
             ImGui_ImplIOS_CreateDeviceObjects();
         }
         
-        io.DisplaySize = ImVec2( njli::World::getInstance()->getViewportDimensions().x(), njli::World::getInstance()->getViewportDimensions().y() );
+        io.DisplaySize = ImVec2(njli::World::getInstance()->getViewportDimensions().x(),
+                                njli::World::getInstance()->getViewportDimensions().y());
         
         // Setup time step
         Uint32	time = SDL_GetTicks();
@@ -1132,22 +1179,23 @@ namespace njli
                 io.MouseDown[i] = g_MousePressed[i];
             }
             
-            // This is an arbitrary scaling factor that works for me. Not sure what units these
-            // mousewheel values from synergy are supposed to be in
             io.MouseWheel = g_mouseWheelY / 500.0;
         }
         else
         {
-            // Setup inputs
-            // (we already got mouse wheel, keyboard keys & characters from glfw callbacks polled in glfwPollEvents())
             int mx, my;
             Uint32 mouseMask = SDL_GetMouseState(&mx, &my);
-//            if (SDL_GetWindowFlags(gWindow) & SDL_WINDOW_MOUSE_FOCUS)
-                io.MousePos = ImVec2((float)mx, (float)my);   // Mouse position, in pixels (set to -1,-1 if no mouse / on another screen, etc.)
-//            else
-//                io.MousePos = ImVec2(-1,-1);
-            
-            io.MouseDown[0] = g_MousePressed[0] || (mouseMask & SDL_BUTTON(SDL_BUTTON_LEFT)) != 0;		// If a mouse press event came, always pass it as "mouse held this frame", so we don't miss click-release events that are shorter than 1 frame.
+            if (SDL_GetWindowFlags(gWindow) & SDL_WINDOW_MOUSE_FOCUS)
+            {
+                io.MousePos = ImVec2((float)mx, (float)my);
+            }
+            else
+            {
+                io.MousePos = ImVec2(-1,-1);
+            }
+            // If a mouse press event came, always pass it as "mouse held this frame", so we don't miss click-release events that are
+            // shorter than 1 frame.
+            io.MouseDown[0] = g_MousePressed[0] || (mouseMask & SDL_BUTTON(SDL_BUTTON_LEFT)) != 0;
             io.MouseDown[1] = g_MousePressed[1] || (mouseMask & SDL_BUTTON(SDL_BUTTON_RIGHT)) != 0;
             io.MouseDown[2] = g_MousePressed[2] || (mouseMask & SDL_BUTTON(SDL_BUTTON_MIDDLE)) != 0;
             g_MousePressed[0] = g_MousePressed[1] = g_MousePressed[2] = false;
@@ -1155,31 +1203,14 @@ namespace njli
             io.MouseWheel = g_MouseWheel;
             g_MouseWheel = 0.0f;
             
-            // Hide OS mouse cursor if ImGui is drawing it
             SDL_ShowCursor(io.MouseDrawCursor ? 0 : 1);
-            
-            // Synergy not active, use touch events
-//            style.TouchExtraPadding = ImVec2( 4.0, 4.0 );
-//            io.MousePos = ImVec2(_touchPos.x, _touchPos.y );
-//            if ((_mouseDown) || (_mouseTapped))
-//            {
-//                io.MouseDown[0] = true;
-//                _mouseTapped = NO;
-//            }
-//            else
-//            {
-//                io.MouseDown[0] = false;
-//            }
         }
         
         ImGui::NewFrame();
     }
-
     
     
     
-    
-//    - (void)connectServer: (NSString*)serverName
     void WorldDebugDrawer::connectSynergyServer(const std::string serverName)
     {
 //        self.serverName = serverName;
