@@ -1153,9 +1153,9 @@ int main(int argc, char** argv)
                                | SDL_WINDOW_FULLSCREEN
 #endif
                                | SDL_WINDOW_RESIZABLE
-#if !defined(__EMSCRIPTEN__)
-                               | SDL_WINDOW_ALLOW_HIGHDPI
-#endif
+//#if !defined(__EMSCRIPTEN__)
+//                               | SDL_WINDOW_ALLOW_HIGHDPI
+//#endif
                                );
     
 #if defined(__MACOSX__)
