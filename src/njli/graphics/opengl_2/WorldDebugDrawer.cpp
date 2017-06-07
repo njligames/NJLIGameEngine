@@ -1185,7 +1185,7 @@ namespace njli
         {
             int mx, my;
             Uint32 mouseMask = SDL_GetMouseState(&mx, &my);
-            if (SDL_GetWindowFlags(gWindow) & SDL_WINDOW_MOUSE_FOCUS)
+            if (SDL_GetWindowFlags(gGameWindow) & SDL_WINDOW_MOUSE_FOCUS)
             {
                 io.MousePos = ImVec2((float)mx, (float)my);
             }

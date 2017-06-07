@@ -1,5 +1,6 @@
 
 #if defined(NJLI_GL_ES2)
+    #define GL_GLEXT_PROTOTYPES
     #include <GLES2/gl2.h>
     #include <GLES2/gl2ext.h>
     #include <GLES2/gl2platform.h>
@@ -16,7 +17,7 @@
 #else
 #error Unsupported choice setting
 #endif
-W
+
 #include <dlfcn.h>
 
 #include <android/asset_manager_jni.h>

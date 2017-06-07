@@ -11,9 +11,9 @@
 
 #include "SDL.h"
 
-extern SDL_Window* gWindow;
-extern SDL_Renderer *gRenderer;
-extern SDL_GLContext gGlContext;
+extern SDL_Window* gGameWindow;
+extern SDL_Renderer *gGameRenderer;
+extern SDL_GLContext gGameGlContext;
 extern SDL_DisplayMode gDisplayMode;
 extern SDL_MouseMotionEvent gLastEvent;
 extern int gDone;

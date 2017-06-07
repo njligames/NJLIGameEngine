@@ -18,13 +18,6 @@
 #include <memory>
 using namespace std;
 
-//SDL_Window* gWindow = nullptr;
-//SDL_Renderer *gRenderer = nullptr;
-//SDL_GLContext gGlContext;
-//SDL_DisplayMode gDisplayMode;
-//SDL_MouseMotionEvent gLastEvent;
-
-
 #include "NJLIInterface.h"
 #include "Game.h"
 #include "DeviceUtil.h"
@@ -517,12 +510,18 @@ static void handleInput()
                 break;
 #endif
             case SDL_APP_DIDENTERFOREGROUND:
-                SDL_Log("SDL_APP_DIDENTERFOREGROUND");
+            {
+                SDL_Window *window = SDL_GetWindowFromID(event.window.windowID);
+                if(window)
+                {
+                    SDL_Log("SDL_APP_DIDENTERFOREGROUND");
                 
 #if (defined(__IPHONEOS__) && __IPHONEOS__)
-                SDL_iPhoneSetAnimationCallback(gWindow, 1, UpdateFrame, gGraphics.get());
+                    SDL_iPhoneSetAnimationCallback(window, 1, UpdateFrame, gGraphics.get());
 #endif
-                NJLI_HandleResume();
+                    NJLI_HandleResume();
+                }
+            }
                 break;
                 
             case SDL_APP_DIDENTERBACKGROUND:
@@ -543,11 +542,17 @@ static void handleInput()
                 break;
                 
             case SDL_APP_WILLENTERBACKGROUND:
-                SDL_Log("SDL_APP_WILLENTERBACKGROUND");
+            {
+                SDL_Window *window = SDL_GetWindowFromID(event.window.windowID);
+                if(window)
+                {
+                    SDL_Log("SDL_APP_WILLENTERBACKGROUND");
 #if (defined(__IPHONEOS__) && __IPHONEOS__)
-                SDL_iPhoneSetAnimationCallback(gWindow, 1, NULL, gGraphics.get());
+                    SDL_iPhoneSetAnimationCallback(window, 1, NULL, gGraphics.get());
 #endif
-                NJLI_HandlePause();
+                    NJLI_HandlePause();
+                }
+            }
                 break;
                 
             case SDL_APP_WILLENTERFOREGROUND:
@@ -569,13 +574,17 @@ static void handleInput()
                     case SDL_WINDOWEVENT_RESIZED:
                     case SDL_WINDOWEVENT_SIZE_CHANGED:
                     {
+                        SDL_Window *window = SDL_GetWindowFromID(event.window.windowID);
+                        if (window)
+                        {
                         int w, h;
 #if defined(__MACOSX__)
-                        SDL_GetWindowSize(gWindow, &w, &h);
+                            SDL_GetWindowSize(window, &w, &h);
 #else
-                        SDL_GL_GetDrawableSize(gWindow, &w, &h);
+                            SDL_GL_GetDrawableSize(window, &w, &h);
 #endif
-                        NJLI_HandleResize(w, h, gDisplayMode.format, gDisplayMode.refresh_rate);
+                            NJLI_HandleResize(w, h, gDisplayMode.format, gDisplayMode.refresh_rate);
+                        }
                     }
                         break;
                     case SDL_WINDOWEVENT_CLOSE:
@@ -583,12 +592,11 @@ static void handleInput()
                         SDL_Window *window = SDL_GetWindowFromID(event.window.windowID);
                         if (window)
                         {
-                            if (window == gWindow)
+                            if (window == gGameWindow)
                             {
-                                SDL_DestroyWindow(gWindow);
-                                gWindow = NULL;
-                                break;
+                                gGameWindow = NULL;
                             }
+                            SDL_DestroyWindow(window);
                         }
                     }
                         break;
@@ -609,9 +617,9 @@ static void handleInput()
                     case SDLK_PRINTSCREEN: {
                         SDL_Window *window = SDL_GetWindowFromID(event.key.windowID);
                         if (window) {
-                            if (window == gWindow)
+                            if (window == gGameWindow)
                             {
-                                SDLTest_ScreenShot(gRenderer);
+                                SDLTest_ScreenShot(gGameRenderer);
                             }
                         }
                     }
@@ -665,22 +673,24 @@ static void handleInput()
                         if (withAlt) {
                             /* Alt-C toggle a render clip rectangle */
                             int w, h;
-                            if (gRenderer)
+                            if (gGameRenderer)
                             {
+                                SDL_Window *window = SDL_GetWindowFromID(event.key.windowID);
+                                
                                 SDL_Rect clip;
-                                SDL_GetWindowSize(gWindow, &w, &h);
-                                SDL_RenderGetClipRect(gRenderer, &clip);
+                                SDL_GetWindowSize(window, &w, &h);
+                                SDL_RenderGetClipRect(gGameRenderer, &clip);
                                 if (SDL_RectEmpty(&clip))
                                 {
                                     clip.x = w/4;
                                     clip.y = h/4;
                                     clip.w = w/2;
                                     clip.h = h/2;
-                                    SDL_RenderSetClipRect(gRenderer, &clip);
+                                    SDL_RenderSetClipRect(gGameRenderer, &clip);
                                 }
                                 else
                                 {
-                                    SDL_RenderSetClipRect(gRenderer, NULL);
+                                    SDL_RenderSetClipRect(gGameRenderer, NULL);
                                 }
                             }
                         }
@@ -893,12 +903,6 @@ static void mainloop()
     
     UpdateFrame(gGraphics.get());
     
-    int w, h;
-    SDL_GL_GetDrawableSize(gWindow, &w, &h);
-    
-    int w2, h2;
-    SDL_GetWindowSize(gWindow, &w2, &h2);
-    
 
 #if defined(__EMSCRIPTEN__) || defined(__ANDROID__)
     
@@ -914,8 +918,9 @@ static void mainloop()
         
         njli::NJLIGameEngine::destroy();
         
-        SDL_GL_DeleteContext(gGlContext);
-        SDL_DestroyWindow(gWindow);
+        SDL_GL_DeleteContext(gGameGlContext);
+        SDL_DestroyWindow(gGameWindow);
+        gGameWindow = NULL;
         SDL_Quit();
     }
     
@@ -1086,7 +1091,7 @@ SDLTest_PrintRenderer(SDL_RendererInfo * info)
     }
 }
 
-static void createRenderer()
+static SDL_Renderer * createRenderer(SDL_Window* window)
 {
     int n = SDL_GetNumRenderDrivers();
     SDL_RendererInfo info;
@@ -1098,10 +1103,10 @@ static void createRenderer()
         SDL_LogInfo(SDL_LOG_CATEGORY_TEST, "%s", info.name);
         if (SDL_strcasecmp(info.name, "opengl") == 0)
         {
-            gRenderer = SDL_CreateRenderer(gWindow, j, 0);
-            return;
+            return SDL_CreateRenderer(window, j, 0);
         }
     }
+    return NULL;
 }
 #endif
 
@@ -1141,7 +1146,7 @@ int main(int argc, char** argv)
 #endif
     
     /* create window and renderer */
-    gWindow = SDL_CreateWindow("NJLIGameEngine",
+    gGameWindow = SDL_CreateWindow("NJLIGameEngine",
                                SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
                                gDisplayMode.w, gDisplayMode.h,
                                SDL_WINDOW_OPENGL
@@ -1158,44 +1163,40 @@ int main(int argc, char** argv)
 //#endif
                                );
     
-#if defined(__MACOSX__)
-    createRenderer();
-#endif
+
     
-    int w, h;
-    SDL_GetWindowSize(gWindow, &w, &h);
-    SDL_Log("SDL_GetWindowSize #%d: current display mode is %dx%dpx", 0, w, h);
-    
-    SDL_GL_GetDrawableSize(gWindow, &w, &h);
-    SDL_Log("SDL_GL_GetDrawableSize #%d: current display mode is %dx%dpx", 0, w, h);
-    
-    if (!gWindow)
+    if (!gGameWindow)
     {
         printf("Could not initialize Window\n");
         return 1;
     }
     
-#if (defined(__ANDROID__) && (__ANDROID__))
-    SDL_SetWindowFullscreen(gWindow, SDL_TRUE);
+#if defined(__MACOSX__)
+    gGameRenderer = createRenderer(gGameWindow);
 #endif
     
-    gGlContext = SDL_GL_CreateContext(gWindow);
+#if (defined(__ANDROID__) && (__ANDROID__))
+    SDL_SetWindowFullscreen(gGameWindow, SDL_TRUE);
+#endif
+    
+    gGameGlContext = SDL_GL_CreateContext(gGameWindow);
     if (!njli::NJLIGameEngine::create(DeviceUtil::hardwareDescription().c_str()))
     {
         cerr << "Error initializing OpenGL" << endl;
         return 1;
     }
     
-    gGraphics = unique_ptr<Graphics>(new Graphics(gWindow));
+    gGraphics = unique_ptr<Graphics>(new Graphics(gGameWindow));
     
 #if (defined(__IPHONEOS__) && __IPHONEOS__)
     SDL_AddEventWatch(EventFilter, NULL);
 #endif
     
+    int w, h;
 #if defined(__MACOSX__)
-    SDL_GetWindowSize(gWindow, &w, &h);
+    SDL_GetWindowSize(gGameWindow, &w, &h);
 #else
-    SDL_GL_GetDrawableSize(gWindow, &w, &h);
+    SDL_GL_GetDrawableSize(gGameWindow, &w, &h);
 #endif
     NJLI_HandleResize(w, h, gDisplayMode.format, gDisplayMode.refresh_rate);
     

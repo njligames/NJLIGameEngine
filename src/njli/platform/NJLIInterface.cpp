@@ -9,9 +9,9 @@
 #include "NJLIInterface.h"
 #include "Game.h"
 
-SDL_Window* gWindow = nullptr;
-SDL_Renderer *gRenderer = nullptr;
-SDL_GLContext gGlContext;
+SDL_Window* gGameWindow = nullptr;
+SDL_Renderer *gGameRenderer = nullptr;
+SDL_GLContext gGameGlContext;
 SDL_DisplayMode gDisplayMode;
 SDL_MouseMotionEvent gLastEvent;
 int gDone = 0;
@@ -151,8 +151,8 @@ void NJLI_HandleSurfaceDestroyed()
 {
     njli::NJLIGameEngine::destroy();
     
-    SDL_GL_DeleteContext(gGlContext);
-    SDL_DestroyWindow(gWindow);
+    SDL_GL_DeleteContext(gGameGlContext);
+    SDL_DestroyWindow(gGameWindow);
     SDL_Quit();
 }
 
