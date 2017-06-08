@@ -97,6 +97,9 @@ public:
     void setLoopCount(s32 count);
 
     virtual btTransform getWorldTransform() const;
+    
+    bool load(void *system, const char *path);
+    bool load(void *system, const char* fileContent, u32 size);
 
 #ifdef USE_OPENAL
 #endif
@@ -110,7 +113,6 @@ private:
     FMOD::Sound* m_Sound;
     s32 m_ChannelIndex;
     btTransform* m_Transform;
-    FMOD_MODE m_Mode;
 #endif
 
 #ifndef __EMSCRIPTEN__

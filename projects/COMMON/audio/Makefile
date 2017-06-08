@@ -1,5 +1,6 @@
-BIN := ./../bin/packAudio.sh
-OUT_FORMAT := caf
+#BIN := ./../bin/packAudio.sh
+BIN := sox
+OUT_FORMAT := ogg
 
 OBJDIR := $(ASSET_DIR)/assets/sounds
 SRCDIR := .

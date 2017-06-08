@@ -29,7 +29,7 @@ local __ctor = function(self, init)
     self:getScene():addCameraNode(PerspectiveCameraNode)
 
     self._button = self:createButtonControl("stage", 814, 400, 25)
-    self._switch = self:createSwitchControl("stage", 313, 400, 25)
+    --self._switch = self:createSwitchControl("stage", 313, 400, 25)
     self:createImageControl("ui_thanks", 0, 0, 1)
     
     
@@ -91,11 +91,11 @@ function Menu:createButtonControl(buttonName, xPos, yPos, buttonScale)
         touchUpOutside = function(touches) print(#touches) end,
         touchUpInside = function(rayContact) print(rayContact) end,
         touchDownInside = function(rayContact) print(rayContact) end,
-        touchDragOutside = function() print("touchDragOutside asdf") end,
+        touchDragOutside = function() print("touchDragOutside") end,
         touchDragInside = function(rayContact) print(rayContact) end,
         touchCancelled = function(rayContact) print(rayContact) end,
         soundTouchUpOutside = nil, --path to the sound
-        soundTouchUpInside = nil, --path to the sound
+        soundTouchUpInside = "sounds/interface_select-whoosh.ogg", --path to the sound
         soundTouchDownInside = nil, --path to the sound
         soundTouchDragOutside = nil, --path to the sound
         soundTouchDragInside = nil, --path to the sound

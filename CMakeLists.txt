@@ -2798,7 +2798,7 @@ IF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" )
     #SET(imported_tinyxml2_location                   "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/tinyxml2/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libtinyxml2.a" )
     SET(imported_fmod_location                        "${NJLI_THIRDPARTY_DIRECTORY}/fmod/lib/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libfmod${NJLI_FMOD_POSTFIX}.${NJLI_FMOD_EXTENSION}" )
     SET(imported_SDL2_location                        "${NJLI_THIRDPARTY_DIRECTORY}/SDL2/lib/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libSDL2.a" )
-    SET(imported_uSynergy_location                    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/usynergy/${NJLI_BUILD_PLATFORM}/10.2/Release-appletvos/libuSynergy.a")
+    SET(imported_uSynergy_location                    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/usynergy/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libuSynergy.a")
 
     SET(NJLI_APPICON_NAME "App Icon & Top Shelf Image")
 
@@ -3134,8 +3134,7 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "android" )
     #SET(imported_tinyxml2_location                    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/tinyxml2/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libtinyxml2.a" )
     SET(imported_fmod_location                        "${NJLI_THIRDPARTY_DIRECTORY}/fmod/lib/android/24/${ANDROID_ABI}/libfmod.so" )
     SET(imported_SDL2_location                        "${NJLI_THIRDPARTY_DIRECTORY}/SDL2/lib/android/23/Release/${ANDROID_ABI}/libSDL2.so" )
-    SET(imported_uSynergy_location                    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/uSynergy/lib/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libuSynergy.a" )
-
+    SET(imported_uSynergy_location                    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/usynergy/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libuSynergy.a")
     FILE(GLOB NJLIGameEngine_LBY
         ${NJLI_THIRDPARTY_DIRECTORY}/fmod/lib/android/24/${ANDROID_ABI}/Release/libfmod.so
         ${NJLI_THIRDPARTY_DIRECTORY}/SDL2/lib/android/23/Release/${ANDROID_ABI}/libSDL2.so 
@@ -3725,6 +3724,18 @@ IF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
 ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
 
 IF( ${NJLI_BUILD_PLATFORM} STREQUAL "android" )
+    #    ADD_LIBRARY( njli SHARED 
+    #        ${NJLIGameEngine_HDRS} 
+    #        ${NJLIGameEngine_SRCS} 
+    #        ${njli_generated} 
+    #        ${njli_generated_swig} 
+    #        ${njli_generated_swig_lua} 
+    #        ${NJLI_THIRDPARTY_DIRECTORY}/SDL2-2.0.5/src/main/android/SDL_android_main.c
+    #        ${NJLI_THIRDPARTY_DIRECTORY}/android_file.h
+    #        ${NJLI_THIRDPARTY_DIRECTORY}/android_file.cpp
+    #        ${NJLI_SOURCE_DIRECTORY}/njli/platform/main.cpp
+    #        ${NJLIGameEngine_THIRDPARTY_INC}
+    #        )
     ADD_LIBRARY( njli SHARED 
         ${NJLIGameEngine_HDRS} 
         ${NJLIGameEngine_SRCS} 
@@ -3737,9 +3748,7 @@ IF( ${NJLI_BUILD_PLATFORM} STREQUAL "android" )
         ${NJLI_SOURCE_DIRECTORY}/njli/platform/main.cpp
         ${NJLIGameEngine_THIRDPARTY_INC}
         )
-
-    TARGET_LINK_LIBRARIES( njli 
-        ${EXTRA_PLATFORM_LIBS} 
+    TARGET_LINK_LIBRARIES( njli ${EXTRA_PLATFORM_LIBS} 
         ${NJLIGameEngine_LBY} 
         )
 

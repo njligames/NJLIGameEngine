@@ -6,6 +6,7 @@ cmake.in/html/
 cmake.in/latex/
 cmake.in/rtf/
 cmake.in/xml/
+cmake.in/Platform.in/common/assets/
 ldoc/
 install/*
 src/njli/xml.out

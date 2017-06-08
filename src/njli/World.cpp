@@ -97,7 +97,7 @@ namespace njli
     m_WorldDebugDrawer(new WorldDebugDrawer),
     //m_WorldSQLite(new WorldSQLite),
     //m_WorldFacebook(new WorldFacebook),
-    m_enableDebugDraw(true),
+    m_enableDebugDraw(false),
     m_DebugDrawCamera(NULL),
     m_DebugDrawMaterial(NULL),
 //    m_TouchCamera(NULL),
@@ -457,6 +457,7 @@ namespace njli
     
     void World::touchDown(const DeviceTouch &touch)
     {
+//        getDebugDrawer()->connectSynergyServer("192.168.7.22");
         WorldState *currentState = dynamic_cast<WorldState*>(m_stateMachine->getState());
         
         if(currentState)
@@ -735,7 +736,7 @@ namespace njli
         sprintf(buffer, "%s", "__NJLIRender");
         njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer);
         
-#if defined(DEBUG) || defined (_DEBUG)
+#if !defined(NDEBUG)
         
         if(m_enableDebugDraw)
         {
@@ -764,7 +765,7 @@ namespace njli
             }
             else
             {
-                SDL_LogWarn(SDL_LOG_CATEGORY_TEST, "Debug draw is enabled without a camera.");
+//                SDL_LogWarn(SDL_LOG_CATEGORY_TEST, "Debug draw is enabled without a camera.");
             }
             
             // 1. Show a simple window

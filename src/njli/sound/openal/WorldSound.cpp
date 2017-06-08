@@ -75,36 +75,31 @@ namespace njli
         // FMOD_ERRCHECK(result);
     }
     
-    void WorldSound::playSound(Sound &sound, bool isPaused)
-    {
-        // if(sound.m_Sound)
-        // {
-        //     FMOD::Channel *channel = NULL;
-        //     FMOD_ERRCHECK(m_System->playSound(sound.m_Sound, 0, isPaused, &channel));
-        //     if(channel)
-        //         channel->getIndex(&sound.m_ChannelIndex);
-        // }
-        // else
-        // {
-        //     DEBUG_LOG_WRITE_W(TAG, "The sound is not loaded");
-        // }
-    }
     
-    bool WorldSound::createSound(const char *fileContent, size_t file_size, Sound &sound)
-    {
-        // FMOD_CREATESOUNDEXINFO info;
-        // memset(&info, 0, sizeof(FMOD_CREATESOUNDEXINFO));
-        // info.cbsize = sizeof(FMOD_CREATESOUNDEXINFO);
-        // info.length = file_size;
+    bool WorldSound::loadSound(const char *path, Sound& sound)
+            {
+                return false;
+                            }
         
-        // FMOD::Sound * s = 0;
-        // FMOD_MODE mode = FMOD_OPENMEMORY | FMOD_LOOP_OFF;
-        // FMOD_RESULT result = m_System->createSound(fileContent, mode, &info, &s);
-        // FMOD_ERRCHECK(result);
-        // sound.m_Sound = s;
-        // sound.m_Mode = mode;
-        return false;
-    }
+        bool WorldSound::loadSound(const char* path, u32 size, Sound& sound)
+                {
+                    return false;
+                                }
+//    bool WorldSound::createSound(const char *fileContent, size_t file_size, Sound &sound)
+//    {
+//        // FMOD_CREATESOUNDEXINFO info;
+//        // memset(&info, 0, sizeof(FMOD_CREATESOUNDEXINFO));
+//        // info.cbsize = sizeof(FMOD_CREATESOUNDEXINFO);
+//        // info.length = file_size;
+//        
+//        // FMOD::Sound * s = 0;
+//        // FMOD_MODE mode = FMOD_OPENMEMORY | FMOD_LOOP_OFF;
+//        // FMOD_RESULT result = m_System->createSound(fileContent, mode, &info, &s);
+//        // FMOD_ERRCHECK(result);
+//        // sound.m_Sound = s;
+//        // sound.m_Mode = mode;
+//        return false;
+//    }
     
     // FMOD::Channel *WorldSound::getChannel(s32 channelindex)
     // {

@@ -326,6 +326,7 @@ function Button:rayTouchMissed(node)
 end
 
 function Button:rayMouseDown(rayContact)
+  print("get me")
   BaseClass.rayMouseDown(self, rayContact)
 end
 

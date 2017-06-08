@@ -685,6 +685,12 @@ namespace njli
     
     bool WorldResourceLoader::load(const char *filePath, Sound *object)
     {
+        if(njli::World::getInstance()->getWorldSound()->loadSound(filePath, *object))
+            return true;
+        
+//        if(njli::World::getInstance()->getWorldSound()->createSound(filePath, *object))
+//            return true;
+        
         SDL_assert(object);
         bool retVal = false;
         
@@ -697,7 +703,7 @@ namespace njli
             
             if(fileContent)
             {
-                if(njli::World::getInstance()->getWorldSound()->createSound(fileContent,
+                if(njli::World::getInstance()->getWorldSound()->loadSound(fileContent,
                                                                             fileSize,
                                                                             *object))
                 {

@@ -17,14 +17,23 @@
 #include "btPrint.h"
 #include "JsonJLI.h"
 
+static void ERRCHECK_fn(FMOD_RESULT result, const char *file, int line)
+{
+    if (result != FMOD_OK)
+    {
+        SDL_LogError(SDL_LOG_CATEGORY_TEST, "%s(%d): FMOD error %d - %s", file, line, result, FMOD_ErrorString(result));
+    }
+}
+
+#define FMOD_ERRCHECK(_result) do { if (FMOD_LOGGING_ON) ERRCHECK_fn(_result, __FILE__, __LINE__); } while (0)
+
 namespace njli
 {
     Sound::Sound():
     AbstractFactoryObject(this),
     m_Sound(NULL),
     m_ChannelIndex(-1),
-    m_Transform(new btTransform()),
-    m_Mode()
+    m_Transform(new btTransform())
     {
         
     }
@@ -33,8 +42,7 @@ namespace njli
     AbstractFactoryObject(this),
     m_Sound(NULL),
     m_ChannelIndex(-1),
-    m_Transform(new btTransform()),
-    m_Mode()
+    m_Transform(new btTransform())
     {
         
     }
@@ -43,8 +51,7 @@ namespace njli
     AbstractFactoryObject(this),
     m_Sound(NULL),
     m_ChannelIndex(-1),
-    m_Transform(new btTransform()),
-    m_Mode()
+    m_Transform(new btTransform())
     {
         
     }
@@ -244,9 +251,10 @@ namespace njli
     {
         if(m_Sound)
         {
-            m_Sound->getMode(&m_Mode);
+            FMOD_MODE mode;
+            m_Sound->getMode(&mode);
             
-            if(IsOn(m_Mode, FMOD_3D))
+            if(IsOn(mode, FMOD_3D))
             {
                 FMOD::Channel *channel = getChannel();
                 if(channel)
@@ -276,7 +284,7 @@ namespace njli
         }
         else
         {
-            SDL_LogWarn(SDL_LOG_CATEGORY_TEST, "The sound is not null\n");
+            SDL_LogWarn(SDL_LOG_CATEGORY_TEST, "The sound is null\n");
         }
     }
     
@@ -398,6 +406,38 @@ namespace njli
         if(getParent())
             return getParent()->getWorldTransform() * getTransform();
         return btTransform::getIdentity();
+    }
+    
+    bool Sound::load(void *system, const char *path)
+    {
+        FMOD::System *_system = (FMOD::System *)system;
+        SDL_assert(_system);
+        
+        m_Sound = NULL;
+        FMOD_RESULT result = _system->createSound(ASSET_PATH(path), FMOD_DEFAULT, 0, &m_Sound);
+        FMOD_ERRCHECK(result);
+        
+        return (FMOD_OK == result);
+    }
+    
+    bool Sound::load(void *system, const char* fileContent, u32 size)
+    {
+        FMOD::System *_system = (FMOD::System *)system;
+        SDL_assert(_system);
+        
+        FMOD_CREATESOUNDEXINFO info;
+        memset(&info, 0, sizeof(FMOD_CREATESOUNDEXINFO));
+        info.cbsize = sizeof(FMOD_CREATESOUNDEXINFO);
+        info.length = size;
+        info.numchannels = 1;
+        
+        info.suggestedsoundtype = FMOD_SOUND_TYPE_OGGVORBIS;
+        
+        
+        FMOD_RESULT result = _system->createSound(fileContent, FMOD_OPENMEMORY, 0, &m_Sound);
+        FMOD_ERRCHECK(result);
+        
+        return (result == FMOD_OK);
     }
     
     FMOD::Channel *Sound::getChannel()

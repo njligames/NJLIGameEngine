@@ -15,6 +15,7 @@
 
 #include "btQuickprof.h"
 #include "SDL_log.h"
+#include "android_file.h"
 
 #define MAXCHANNELS (32)
 
@@ -45,6 +46,7 @@ FMOD_RESULT F_CALLBACK fmodFileOpenCallback(const char *name, unsigned int *file
 {
     if(FMOD_LOGGING_ON)
         SDL_LogWarn(SDL_LOG_CATEGORY_TEST, "NOTE : FMOD_FILE_OPEN_CALLBACK occured.\n");
+    *handle = mobile__fopen(name, "r");
     //    SoundInstance *soundInstance;
     //
     //    assert(fileName);
@@ -437,8 +439,8 @@ namespace njli
         FMOD_RESULT   result        = FMOD_OK;
         unsigned int  version       = 0;
         
-        //        FMOD::Debug_Initialize(FMOD_DEBUG_LEVEL_NONE | FMOD_DEBUG_LEVEL_ERROR | FMOD_DEBUG_LEVEL_WARNING | FMOD_DEBUG_LEVEL_LOG, FMOD_DEBUG_MODE_CALLBACK, fmodErrorCallback);
-        FMOD::Debug_Initialize(FMOD_DEBUG_LEVEL_NONE);// | FMOD_DEBUG_LEVEL_ERROR | FMOD_DEBUG_LEVEL_WARNING | FMOD_DEBUG_LEVEL_LOG);
+        FMOD::Debug_Initialize(FMOD_DEBUG_LEVEL_ERROR | FMOD_DEBUG_LEVEL_WARNING | FMOD_DEBUG_LEVEL_LOG, FMOD_DEBUG_MODE_CALLBACK, fmodErrorCallback);
+//        FMOD::Debug_Initialize(FMOD_DEBUG_LEVEL_NONE | FMOD_DEBUG_LEVEL_ERROR | FMOD_DEBUG_LEVEL_WARNING | FMOD_DEBUG_LEVEL_LOG);
         
         result = FMOD::System_Create(&m_System);
         FMOD_ERRCHECK(result);
@@ -446,9 +448,9 @@ namespace njli
         result = m_System->getVersion(&version);
         FMOD_ERRCHECK(result);
         
-        //        s32 d = FMOD_DEBUG_LEVEL_ERROR | FMOD_DEBUG_LEVEL_WARNING | FMOD_DEBUG_LEVEL_LOG | FMOD_DEBUG_TYPE_MEMORY | FMOD_DEBUG_TYPE_FILE | FMOD_DEBUG_TYPE_CODEC | FMOD_DEBUG_TYPE_TRACE | FMOD_DEBUG_DISPLAY_TIMESTAMPS | FMOD_DEBUG_DISPLAY_LINENUMBERS | FMOD_DEBUG_DISPLAY_THREAD;
-        //        result = FMOD::Debug_Initialize(d, FMOD_DEBUG_MODE_TTY, fmodDebugCallback);
-        //        FMOD_ERRCHECK(result);
+//                s32 d = FMOD_DEBUG_LEVEL_ERROR | FMOD_DEBUG_LEVEL_WARNING | FMOD_DEBUG_LEVEL_LOG | FMOD_DEBUG_TYPE_MEMORY | FMOD_DEBUG_TYPE_FILE | FMOD_DEBUG_TYPE_CODEC | FMOD_DEBUG_TYPE_TRACE | FMOD_DEBUG_DISPLAY_TIMESTAMPS | FMOD_DEBUG_DISPLAY_LINENUMBERS | FMOD_DEBUG_DISPLAY_THREAD;
+//                result = FMOD::Debug_Initialize(d, FMOD_DEBUG_MODE_TTY, fmodDebugCallback);
+//                FMOD_ERRCHECK(result);
         
         if (version < FMOD_VERSION)
         {
@@ -460,8 +462,8 @@ namespace njli
         result = m_System->setCallback(fmodSystemcallback);
         FMOD_ERRCHECK(result);
         
-        result = m_System->setFileSystem(fmodFileOpenCallback, fmodFileCloseCallback, fmodFileReadCallback, fmodFileSeekCallback, fmodFileAsyncReadCallback, fmodFileAsyncCancelCallback, 2048);
-        FMOD_ERRCHECK(result);
+//        result = m_System->setFileSystem(fmodFileOpenCallback, fmodFileCloseCallback, fmodFileReadCallback, fmodFileSeekCallback, fmodFileAsyncReadCallback, fmodFileAsyncCancelCallback, 2048);
+//        FMOD_ERRCHECK(result);
         
         result = m_System->set3DRolloffCallback(fmod3DRolloffCallback);
         FMOD_ERRCHECK(result);
@@ -527,28 +529,51 @@ namespace njli
         }
     }
     
-    bool WorldSound::createSound(const char *fileContent, size_t file_size, Sound &sound)
+//    bool WorldSound::createSound(const char *path, Sound& sound)
+//    {
+//        FMOD::Sound * s = 0;
+//        FMOD_RESULT result = m_System->createSound(ASSET_PATH(path), FMOD_LOOP_NORMAL, 0, &s);
+//        FMOD_ERRCHECK(result);
+//        sound.m_Sound = s;
+//        sound.m_Mode = FMOD_LOOP_NORMAL;
+//        
+//        return (result == FMOD_OK);
+//    }
+//    bool WorldSound::createSound(const char *fileContent, size_t file_size, Sound &sound)
+//    {
+//        FMOD_CREATESOUNDEXINFO info;
+//        memset(&info, 0, sizeof(FMOD_CREATESOUNDEXINFO));
+//        info.cbsize = sizeof(FMOD_CREATESOUNDEXINFO);
+//        info.length = file_size;
+////        info.format = FMOD_SOUND_FORMAT_PCM16;
+//        info.numchannels = 1;
+//        
+//        info.suggestedsoundtype = FMOD_SOUND_TYPE_WAV;
+//        
+////        info.defaultfrequency = 44100;
+//        
+//        //channels 1, format 2, freq 44100, mode 00000809
+//        
+//        FMOD::Sound * s = 0;
+//        FMOD_MODE mode = FMOD_OPENMEMORY;// | FMOD_LOOP_OFF | FMOD_OPENRAW;
+//        //        FMOD_MODE mode = FMOD_DEFAULT | FMOD_LOOP_OFF;
+////        FMOD_RESULT result = m_System->createSound(fileContent, mode, &info, &s);
+//        FMOD_RESULT result = m_System->createSound(fileContent, FMOD_OPENMEMORY, 0, &s);
+//        FMOD_ERRCHECK(result);
+//        sound.m_Sound = s;
+//        sound.m_Mode = mode;
+//        
+//        return (result == FMOD_OK);
+//    }
+    
+    bool WorldSound::loadSound(const char *path, Sound& sound)
     {
-        FMOD_CREATESOUNDEXINFO info;
-        memset(&info, 0, sizeof(FMOD_CREATESOUNDEXINFO));
-        info.cbsize = sizeof(FMOD_CREATESOUNDEXINFO);
-        info.length = file_size;
-        info.format = FMOD_SOUND_FORMAT_PCM16;
-        info.numchannels = 1;
-        info.defaultfrequency = 44100;
-        
-        //channels 1, format 2, freq 44100, mode 00000809
-        
-        
-        FMOD::Sound * s = 0;
-        FMOD_MODE mode = FMOD_OPENMEMORY;// | FMOD_LOOP_OFF | FMOD_OPENRAW;
-        //        FMOD_MODE mode = FMOD_DEFAULT | FMOD_LOOP_OFF;
-        FMOD_RESULT result = m_System->createSound(fileContent, mode, &info, &s);
-        FMOD_ERRCHECK(result);
-        sound.m_Sound = s;
-        sound.m_Mode = mode;
-        
-        return (result == FMOD_OK);
+        return sound.load(m_System, path);
+    }
+    
+    bool WorldSound::loadSound(const char* path, u32 size, Sound& sound)
+    {
+        return sound.load(m_System, path, size);
     }
     
     void WorldSound::enablePause(bool enable)

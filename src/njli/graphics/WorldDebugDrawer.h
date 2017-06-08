@@ -14,6 +14,8 @@
 #include "GLPlatform.h"
 #include "glm/glm.hpp"
 #include "Util.h"
+#include "uSynergy.h"
+#include <thread>
 
 namespace njli
 {
@@ -366,6 +368,8 @@ namespace njli
                           bool depthEnabled = true);
         
         bool processSdlEvent(SDL_Event* event);
+        
+        void connectSynergyServer(const std::string serverName);
     protected:
         void setupShaderPrograms();
         void setupVertexBuffers();
@@ -377,7 +381,7 @@ namespace njli
         void renderImgui();
         void newFrameImgui();
         
-        void connectSynergyServer(const std::string serverName);
+        
         
         
     private:
@@ -398,7 +402,10 @@ namespace njli
         GLuint textVAO;
         GLuint textVBO;
         
-        
+        uSynergyContext _synergyCtx;
+        std::thread _synergyQueue;
+        std::string _serverName;
+        bool _synergyActive;
     };
 }
 

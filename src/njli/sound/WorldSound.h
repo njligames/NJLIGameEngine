@@ -49,7 +49,11 @@ public:
 
     void enablePause(bool enable = true);
 
-    bool createSound(const char* fileContent, size_t file_size, Sound& sound);
+//    bool createSound(const char* fileContent, size_t file_size, Sound& sound);
+//    bool createSound(const char *path, Sound& sound);
+    
+    bool loadSound(const char *path, Sound& sound);
+    bool loadSound(const char* fileContent, u32 file_size, Sound& sound);
 protected:
     void update();
 

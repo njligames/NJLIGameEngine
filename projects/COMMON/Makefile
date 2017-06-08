@@ -3,18 +3,20 @@ MAKEFILE_PATH := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 export ASSET_DIR = /Users/jamesfolk/Dropbox/Developer/NJLI/Engine/cmake.in/Platform.in/common
 
 all: 
-	@mkdir -p $(MAKEFILE_PATH)/assets
-	@mkdir -p $(MAKEFILE_PATH)/assets/cameras
-	@mkdir -p $(MAKEFILE_PATH)/assets/curves
-	@mkdir -p $(MAKEFILE_PATH)/assets/fonts
-	@mkdir -p $(MAKEFILE_PATH)/assets/images
-	@mkdir -p $(MAKEFILE_PATH)/assets/materials
-	@mkdir -p $(MAKEFILE_PATH)/assets/meshes
-	@mkdir -p $(MAKEFILE_PATH)/assets/particles
-	@mkdir -p $(MAKEFILE_PATH)/assets/scripts
-	@mkdir -p $(MAKEFILE_PATH)/assets/shaders
-	@mkdir -p $(MAKEFILE_PATH)/assets/sounds
-	@mkdir -p $(MAKEFILE_PATH)/assets/strings
+	echo ${MAKEFILE_PATH}
+	@mkdir -p $(ASSET_DIR)/assets
+	@mkdir -p $(ASSET_DIR)/assets/cameras
+	@mkdir -p $(ASSET_DIR)/assets/curves
+	@mkdir -p $(ASSET_DIR)/assets/fonts
+	@mkdir -p $(ASSET_DIR)/assets/images
+	@mkdir -p $(ASSET_DIR)/assets/materials
+	@mkdir -p $(ASSET_DIR)/assets/meshes
+	@mkdir -p $(ASSET_DIR)/assets/particles
+	@mkdir -p $(ASSET_DIR)/assets/scripts
+	@mkdir -p $(ASSET_DIR)/assets/shaders
+	@mkdir -p $(ASSET_DIR)/assets/sounds
+	@mkdir -p $(ASSET_DIR)/assets/strings
+
 	@cd $(MAKEFILE_PATH)/countryLevel && make
 	@cd $(MAKEFILE_PATH)/gameplay && make
 	@cd $(MAKEFILE_PATH)/interface && make
