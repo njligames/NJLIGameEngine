@@ -10,7 +10,7 @@
 #include "JLIFactoryTypes.h"
 #include "World.h"
 #include "ButtonHUDBuilder.h"
-#include "GLPlatform.h"
+#include "GraphicsPlatform.h"
 #include "WorldHUD.h"
 #include "Log.h"
 #define TAG "ButtonHUD.cpp"

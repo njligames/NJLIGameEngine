@@ -12,7 +12,7 @@
 #include "MaterialPropertyBuilder.h"
 #include "btTransform.h"
 #include "Image.h"
-#include "GLPlatform.h"
+#include "GraphicsPlatform.h"
 #include "ShaderProgram.h"
 #include "AbstractFrameBufferObject.h"
 #include "Material.h"

@@ -10,7 +10,7 @@
 #include "JLIFactoryTypes.h"
 #include "World.h"
 #include "Sprite2DBuilder.h"
-#include "GLPlatform.h"
+#include "GraphicsPlatform.h"
 #include "ShaderProgram.h"
 #include "Material.h"
 #include "MaterialProperty.h"

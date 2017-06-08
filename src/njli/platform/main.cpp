@@ -11,7 +11,7 @@
 //#include "emscripten.h"
 #endif
 
-#include "GLPlatform.h"
+#include "GraphicsPlatform.h"
 
 #include <iostream>
 #include <string>

@@ -10,7 +10,7 @@
 #include "SceneState.h"
 #include "SceneStateMachine.h"
 #include "btVector2.h"
-#include "GLPlatform.h"
+#include "GraphicsPlatform.h"
 
 #include "tinyxml.h"
 

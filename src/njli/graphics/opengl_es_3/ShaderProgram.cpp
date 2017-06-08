@@ -10,7 +10,7 @@
 #include "JLIFactoryTypes.h"
 #include "World.h"
 #include "ShaderProgramBuilder.h"
-#include "GLPlatform.h"
+#include "GraphicsPlatform.h"
 #include "Camera.h"
 
 #include "Log.h"

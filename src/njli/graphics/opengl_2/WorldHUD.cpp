@@ -16,7 +16,7 @@
 #include "Image.h"
 #include "SpriteFrameAtlas.h"
 
-#include "GLPlatform.h"
+#include "GraphicsPlatform.h"
 //#include "nanovg.h"
 
 #include "nanovg_gl.h"

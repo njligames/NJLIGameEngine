@@ -11,7 +11,7 @@
 
 #include "debug_draw.hpp"
 #include "btIDebugDraw.h"
-#include "GLPlatform.h"
+#include "GraphicsPlatform.h"
 #include "glm/glm.hpp"
 #include "Util.h"
 #include "uSynergy.h"

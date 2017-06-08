@@ -2,7 +2,7 @@
 #include "Log.h"
 #define TAG "Game.cpp"
 #include "AbstractRender.h"
-#include "GLPlatform.h"
+#include "GraphicsPlatform.h"
 #include "Game.h"
 #include "World.h"
 #include <string>

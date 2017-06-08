@@ -7,7 +7,7 @@
 //
 
 #include "AbstractFrameBufferObject.h"
-#include "GLPlatform.h"
+#include "GraphicsPlatform.h"
 #include "Camera.h"
 #include "World.h"
 #ifdef USE_NANOVG_LIBRARY

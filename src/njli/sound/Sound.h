@@ -9,7 +9,7 @@
 #ifndef __JLIGameEngineTest__Sound__
 #define __JLIGameEngineTest__Sound__
 
-#include "GLPlatform.h"
+#include "GraphicsPlatform.h"
 
 #include "AbstractBuilder.h"
 #include "AbstractFactoryObject.h"

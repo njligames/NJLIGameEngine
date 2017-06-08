@@ -4,7 +4,7 @@
 
 //#include "SoundPlatform.h"
 
-#include "GLPlatform.h"
+#include "GraphicsPlatform.h"
 
 #ifdef USE_OPENAL
 // #include "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/OpenAL.framework/Versions/A/Headers/al.h"

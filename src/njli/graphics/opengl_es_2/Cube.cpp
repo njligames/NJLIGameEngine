@@ -12,7 +12,7 @@
 #include "JLIFactoryTypes.h"
 #include "World.h"
 #include "CubeBuilder.h"
-#include "GLPlatform.h"
+#include "GraphicsPlatform.h"
 #include "ShaderProgram.h"
 
 #include "Log.h"

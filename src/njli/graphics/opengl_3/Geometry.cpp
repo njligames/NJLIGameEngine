@@ -13,7 +13,7 @@
 #include "Material.h"
 #include "ShaderProgram.h"
 #include "MaterialProperty.h"
-#include "GLPlatform.h"
+#include "GraphicsPlatform.h"
 #include "Node.h"
 #include "btTransform.h"
 

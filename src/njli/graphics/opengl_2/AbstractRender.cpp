@@ -10,7 +10,7 @@
 #define JLIGameEngineTest_AbstractRender_h
 
 #define TAG "AbstractRender.cpp"
-#include "GLPlatform.h"
+#include "GraphicsPlatform.h"
 #include "AbstractRender.h"
 #include "Log.h"
 #include <string>

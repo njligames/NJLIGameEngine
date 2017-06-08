@@ -9,7 +9,7 @@
 
 #define ANDROID_PATH "assets/"
 
-#include "GLPlatform.h"
+#include "GraphicsPlatform.h"
 
 
 #ifndef _Included_com_example_njligameenginetest_File
