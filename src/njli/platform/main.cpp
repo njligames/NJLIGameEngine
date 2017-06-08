@@ -18,13 +18,6 @@
 #include <memory>
 using namespace std;
 
-//SDL_Window* gWindow = nullptr;
-//SDL_Renderer *gRenderer = nullptr;
-//SDL_GLContext gGlContext;
-//SDL_DisplayMode gDisplayMode;
-//SDL_MouseMotionEvent gLastEvent;
-
-
 #include "NJLIInterface.h"
 #include "Game.h"
 #include "DeviceUtil.h"
