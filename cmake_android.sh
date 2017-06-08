@@ -20,6 +20,7 @@ _build_android()
         -DNJLI_BUILD_PLATFORM='android' \
         -DCMAKE_BUILD_TYPE=${MY_BUILD_TYPE} \
         -DNJLI_BUILD_DIR=${MY_BUILD_DIR} \
+        -DNJLI_SOUND_PLATFORM=openal \
         -DANDROID_ABI=${MY_ABI} \
         -DANDROID_NATIVE_API_LEVEL=${MY_ANDROID_API_LEVEL} \
         -DANDROID_STL=c++_shared \

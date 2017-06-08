@@ -51,6 +51,7 @@ build_apple_xcode()
         -DNJLI_BUILD_PLATFORM=${MY_PLATFORM} \
         -DCMAKE_BUILD_TYPE=Release \
         -DNJLI_GRAPHICS_PLATFORM=${MY_GRAPHICS_PLATFORM} \
+        -DNJLI_SOUND_PLATFORM=sdl \
         -DNJLI_BUILD_DIR=${MY_BUILD_DIR}
 
     if [ ! -z "${BUILD}" ]; then

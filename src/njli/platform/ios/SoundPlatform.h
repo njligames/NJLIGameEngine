@@ -2,8 +2,8 @@
 #include "fmod.hpp"
 #include "fmod_errors.h"
 #elif defined(NJLI_SOUND_OPENAL)
-#include <AL/al.h>
-#include <AL/alc.h>
+#include <OpenAL/al.h>
+#include <OpenAL/alc.h>
 #elif defined(NJLI_SOUND_SDL)
 #include "SDL_audio.h"
 #else

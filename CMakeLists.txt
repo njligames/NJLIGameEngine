@@ -2828,6 +2828,12 @@ IF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" )
         "-framework UIKit"
         "-framework Foundation"
         )
+    IF( ${NJLI_SOUND_PLATFORM} STREQUAL "openal" )
+        SET ( EXTRA_PLATFORM_LIBS
+            ${EXTRA_PLATFORM_LIBS}
+            "-framework OpenAL"
+            )
+    ENDIF( ${NJLI_SOUND_PLATFORM} STREQUAL "openal" )
 
     SET( ASSET_CATALOGUE
         "${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/${NJLI_BUILD_PLATFORM}/Assets.xcassets" 
@@ -2908,6 +2914,13 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
         "-framework UIKit"
         "-framework Foundation"
         )
+    IF( ${NJLI_SOUND_PLATFORM} STREQUAL "openal" )
+        SET ( EXTRA_PLATFORM_LIBS
+            ${EXTRA_PLATFORM_LIBS}
+            "-framework OpenAL"
+            )
+    ENDIF( ${NJLI_SOUND_PLATFORM} STREQUAL "openal" )
+
 
     SET( ASSET_CATALOGUE
         "${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/${NJLI_BUILD_PLATFORM}/Assets.xcassets" 
@@ -2990,6 +3003,12 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
         "-framework AudioUnit"
         "-framework Carbon"
         )
+    IF( ${NJLI_SOUND_PLATFORM} STREQUAL "openal" )
+        SET ( EXTRA_PLATFORM_LIBS
+            ${EXTRA_PLATFORM_LIBS}
+            "-framework OpenAL"
+            )
+    ENDIF( ${NJLI_SOUND_PLATFORM} STREQUAL "openal" )
 
     SET( ASSET_CATALOGUE
         "${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/${NJLI_BUILD_PLATFORM}/Assets.xcassets" 

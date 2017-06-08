@@ -12,7 +12,7 @@ build_emscripten_sublime()
         -DNJLI_BUILD_PLATFORM="emscripten" \
         -DCMAKE_BUILD_TYPE=Debug \
         -DNJLI_BUILD_DIR="emscripten" \
-        -DNJLI_SOUND_PLATFORM=openal
+        -DNJLI_SOUND_PLATFORM=sdl
 
     if [ ! -z ${BUILD} ]
     then

@@ -341,6 +341,16 @@ namespace njli
         return btTransform::getIdentity();
     }
     
+    bool Sound::load(void *system, const char *path)
+    {
+        return false;
+    }
+    
+    bool Sound::load(void *system, const char* fileContent, u32 size)
+    {
+        return false;
+    }
+    
     // FMOD::Channel *Sound::getChannel()
     // {
     //     FMOD::Channel *channel = NULL;
