@@ -16,14 +16,7 @@
 #include "AbstractTransform.h"
 #include "lua.hpp"
 
-#ifdef USE_OPENAL
-// #include "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/OpenAL.framework/Versions/A/Headers/al.h"
-// #include "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/OpenAL.framework/Versions/A/Headers/alc.h"
-#endif
-#ifdef USE_FMOD
-#include "fmod.hpp"
-#include "fmod_errors.h"
-#endif
+#include "SoundPlatform.h"
 
 namespace njli {
 class SoundBuilder;
@@ -101,9 +94,10 @@ public:
     bool load(void *system, const char *path);
     bool load(void *system, const char* fileContent, u32 size);
 
-#ifdef USE_OPENAL
+#if defined(NJLI_SOUND_OPENAL)
 #endif
-#ifdef USE_FMOD
+    
+#if defined(NJLI_SOUND_FMOD)
 protected:
     FMOD::Channel* getChannel();
     Node* getParent();

@@ -5,16 +5,7 @@
 //#include "SoundPlatform.h"
 
 #include "GraphicsPlatform.h"
-
-#ifdef USE_OPENAL
-// #include "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/OpenAL.framework/Versions/A/Headers/al.h"
-// #include "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/OpenAL.framework/Versions/A/Headers/alc.h"
-#include <vector>
-#endif
-#ifdef USE_FMOD
-#include "fmod.hpp"
-#include "fmod_errors.h"
-#endif
+#include "SoundPlatform.h"
 
 #include "AbstractObject.h"
 #include "Util.h"
@@ -61,7 +52,7 @@ protected:
 
     
 
-#ifdef USE_OPENAL
+#if defined(NJLI_SOUND_OPENAL)
     // // OpenAL context for playing sounds
     // ALCcontext* m_ALCcontext;
 
@@ -71,7 +62,7 @@ protected:
     // std::vector<u32> m_Sources;
 #endif
 
-#ifdef USE_FMOD
+#if defined(NJLI_SOUND_FMOD)
 protected:
     FMOD::Channel* getChannel(s32 channelindex);
 
