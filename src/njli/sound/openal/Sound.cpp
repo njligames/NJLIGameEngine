@@ -14,33 +14,93 @@
 #define TAG "Sound.cpp"
 #include "PhysicsBody.h"
 
+
+
+static const char * GetOpenALErrorString(int errID)
+{
+    if (errID == AL_NO_ERROR) return "";
+    if (errID == AL_INVALID_NAME) return "Invalid name";
+    if (errID == AL_INVALID_ENUM) return " Invalid enum ";
+    if (errID == AL_INVALID_VALUE) return " Invalid value ";
+    if (errID == AL_INVALID_OPERATION) return " Invalid operation ";
+    if (errID == AL_OUT_OF_MEMORY) return " Out of memory like! ";
+    
+    return " Don't know ";
+}
+
+static inline void CheckOpenALError(const char* stmt, const char* fname, int line)
+{
+    
+    ALenum err = alGetError();
+    if (err != AL_NO_ERROR)
+    {
+        SDL_Log("OpenAL error %08x, (%s) at %s:%i - for %s", err, GetOpenALErrorString(err), fname, line, stmt);
+    }
+};
+
+#ifndef AL_CHECK
+//#ifdef DEBUG
+#define AL_CHECK(stmt) do { \
+stmt; \
+CheckOpenALError(#stmt, __FILE__, __LINE__); \
+} while (0);
+#else
+#define AL_CHECK(stmt) stmt
+//#endif
+#endif
+
+
+//http://kcat.strangesoft.net/openal-tutorial.html
+
+/*
+#define AL_INVALID_NAME                           0xA001
+#define AL_INVALID_ENUM                           0xA002
+#define AL_INVALID_VALUE                          0xA003
+#define AL_INVALID_OPERATION                      0xA004
+#define AL_OUT_OF_MEMORY                          0xA005
+ */
+//#define TEST_ERROR(_msg) \
+//do{\
+//ALenum error = alGetError(); \
+//switch(error){\
+//case AL_INVALID_NAME:SDL_Log("%s - AL_INVALID_NAME", _msg);break;\
+//case AL_INVALID_ENUM:SDL_Log("%s - AL_INVALID_ENUM", _msg);break;\
+//case AL_INVALID_VALUE:SDL_Log("%s - AL_INVALID_VALUE", _msg);break;\
+//case AL_INVALID_OPERATION:SDL_Log("%s - AL_INVALID_OPERATION", _msg);break;\
+//case AL_OUT_OF_MEMORY:SDL_Log("%s - AL_OUT_OF_MEMORY", _msg);break;\
+//}\
+//}while(0)
+
 namespace njli
 {
     Sound::Sound():
-    AbstractFactoryObject(this)
+    AbstractFactoryObject(this),
+    mAudioStream(new AudioStream())
     {
-        
+        AudioStreamInit(mAudioStream);
     }
     
     Sound::Sound(const AbstractBuilder &builder):
     AbstractFactoryObject(this)
     {
-        
+        SDL_assert(false);
     }
     
     Sound::Sound(const Sound &copy):
     AbstractFactoryObject(this)
     {
-        
+        SDL_assert(false);
     }
     
     Sound::~Sound()
     {
-        
+        AudioStreamDeinit(mAudioStream);
+        delete mAudioStream;
     }
     
     Sound &Sound::operator=(const Sound &rhs)
     {
+        SDL_assert(false);
         if(this != &rhs)
         {
             
@@ -203,190 +263,220 @@ namespace njli
     
     bool Sound::isPlaying()
     {
-        bool playing = false;
-        // FMOD::Channel *channel = getChannel();
-        // if(channel)
-        //     channel->isPlaying(&playing);
-        return playing;
+        ALint val;
+        AL_CHECK(alGetSourcei(mAudioStream->source, AL_SOURCE_STATE, &val));
+        return (val == AL_PLAYING);
     }
     
     void Sound::play(bool isPaused)
     {
-        // if(m_Sound)
-        // {
-        //     m_Sound->getMode(&m_Mode);
-            
-        //     if(IsOn(m_Mode, FMOD_3D))
-        //     {
-        //         FMOD::Channel *channel = getChannel();
-        //         if(channel)
-        //         {
-        //             FMOD_VECTOR pos =
-        //             {
-        //                 getWorldTransform().getOrigin().x(),
-        //                 getWorldTransform().getOrigin().y(),
-        //                 getWorldTransform().getOrigin().z()
-        //             };
-        //             FMOD_VECTOR vel = {  0.0f, 0.0f, 0.0f };
-        //             PhysicsBody *body = getParent()->getPhysicsBody();
-        //             if (body)
-        //             {
-        //                 vel =
-        //                 {
-        //                     body->getVelocity().x(),
-        //                     body->getVelocity().y(),
-        //                     body->getVelocity().z(),
-        //                 };
-        //             }
-        //             channel->set3DAttributes(&pos, &vel);
-        //         }
-        //     }
-            
-        //     njli::World::getInstance()->getWorldSound()->playSound(*this, isPaused);
-        // }
-        // else
-        // {
-        //     DEBUG_LOG_WRITE_W(TAG, "The sound is not loaded");
-        // }
+        AudioStreamPlay(mAudioStream);
+        njli::World::getInstance()->getWorldSound()->playSound(*this, isPaused);
     }
     
     void Sound::stop()
     {
-        // FMOD::Channel *channel = getChannel();
-        // if(channel)
-        //     channel->stop();
+        
     }
     
     bool Sound::isPaused()
     {
         bool paused = false;
-        // FMOD::Channel *channel = getChannel();
-        // if(channel)
-        //     channel->getPaused(&paused);
+        
         return paused;
     }
     
     void Sound::pause()
     {
-        // FMOD::Channel *channel = getChannel();
-        // if(channel)
-        //     channel->setPaused(true);
+        
     }
     
     void Sound::unPause()
     {
-        // FMOD::Channel *channel = getChannel();
-        // if(channel)
-        //     channel->setPaused(false);
+        
     }
     
     bool Sound::isMuted()
     {
         bool muted = false;
-        // FMOD::Channel *channel = getChannel();
-        // if(channel)
-        //     channel->getMute(&muted);
+        
         return muted;
     }
     
     void Sound::mute()
     {
-        // FMOD::Channel *channel = getChannel();
-        // if(channel)
-        //     channel->setMute(true);
+        
     }
     
     void Sound::unMute()
     {
-        // FMOD::Channel *channel = getChannel();
-        // if(channel)
-        //     channel->setMute(false);
+        
     }
     
     f32 Sound::getVolume()
     {
         f32 volume = 1.0f;
-        // FMOD::Channel *channel = getChannel();
-        // if(channel)
-        //     channel->getVolume(&volume);
+        
         return volume;
     }
     
     void Sound::setVolume(f32 vol)
     {
-        // FMOD::Channel *channel = getChannel();
-        // if(channel)
-        //     channel->setVolume(vol);
+        
     }
     
     s32 Sound::getLoopCount()
     {
         s32 count = 0;
-        // m_Sound->getLoopCount(&count);
+        
         return count;
     }
     
     void Sound::setLoopCount(s32 count)
     {
-        // if(count < 0)
-        //     m_Sound->setMode(FMOD_LOOP_NORMAL);
-        // else
-        //     m_Sound->setLoopCount(count);
+        
     }
     
     btTransform Sound::getWorldTransform()const
     {
-        // if(getParent())
-        //     return getParent()->getWorldTransform() * getTransform();
+         if(getParent())
+             return getParent()->getWorldTransform() * getTransform();
         return btTransform::getIdentity();
     }
     
     bool Sound::load(void *system, const char *path)
     {
-        return false;
+        return AudioStreamOpen(mAudioStream, path);
     }
     
     bool Sound::load(void *system, const char* fileContent, u32 size)
     {
+        SDL_assert(false);
         return false;
     }
     
-    // FMOD::Channel *Sound::getChannel()
-    // {
-    //     FMOD::Channel *channel = NULL;
-    //     FMOD_RESULT result;
+    void Sound::update()
+    {
+        if(isPlaying())
+            AudioStreamUpdate(mAudioStream);
+    }
+    
+     Node *Sound::getParent()
+     {
+         return dynamic_cast<Node*>(AbstractDecorator::getParent());
+     }
+    
+     const Node *Sound::getParent()const
+     {
+         return dynamic_cast<const Node*>(AbstractDecorator::getParent());
+     }
+    
+    void Sound::AudioStreamInit(AudioStream* self)
+    {
+        memset(self, 0, sizeof(AudioStream));
         
-    //     if(m_ChannelIndex > 0)
-    //     {
-    //         FMOD::Sound *sound = NULL;
-    //         channel = njli::World::getInstance()->getWorldSound()->getChannel(m_ChannelIndex);
-    //         if(channel)
-    //         {
-    //             result = channel->getCurrentSound(&sound);
-    //             if(result != FMOD_OK)
-    //             {
-    //                 m_ChannelIndex = -1;
-    //             }
-    //             else if (sound == m_Sound)
-    //             {
-    //                 return channel;
-    //             }
-    //         }
-    //         else
-    //         {
-    //             m_ChannelIndex = -1;
-    //         }
-    //     }
-    //     return NULL;
-    // }
+        AL_CHECK(alGenSources(1, & self->source));
+        AL_CHECK(alGenBuffers(2, self->buffers));
+        
+        self->bufferSize=4096*8;
+        self->shouldLoop=true;//We loop by default
+    }
     
-    // Node *Sound::getParent()
-    // {
-    //     return dynamic_cast<Node*>(getParent());
-    // }
+    void Sound::AudioStreamDeinit(AudioStream* self)
+    {
+        ALint val;
+        do
+        {
+            AL_CHECK(alGetSourcei(self->source, AL_SOURCE_STATE, &val));
+        }
+        while(val == AL_PLAYING);
+        
+        AL_CHECK(alDeleteSources(1, & self->source));
+        AL_CHECK(alDeleteBuffers(2, self->buffers));
+        
+        stb_vorbis_close(self->stream);
+        memset(self, 0, sizeof(AudioStream));
+    }
     
-    // const Node *Sound::getParent()const
-    // {
-    //     return dynamic_cast<const Node*>(getParent());
-    // }
+    bool Sound::AudioStreamStream(AudioStream* self, ALuint buffer)
+    {
+        //Uncomment this to avoid VLAs
+        //#define BUFFER_SIZE 4096*32
+#ifndef BUFFER_SIZE//VLAs ftw
+#define BUFFER_SIZE (self->bufferSize)
+#endif
+        ALshort pcm[BUFFER_SIZE];
+        int  size = 0;
+        int  result = 0;
+        
+        while(size < BUFFER_SIZE)
+        {
+            result = stb_vorbis_get_samples_short_interleaved(self->stream, self->info.channels, pcm+size, BUFFER_SIZE-size);
+            if(result > 0) size += result*self->info.channels;
+            else break;
+        }
+        
+        if(size == 0) return false;
+        
+        AL_CHECK(alBufferData(buffer, self->format, pcm, size*sizeof(ALshort), self->info.sample_rate));
+        
+        self->totalSamplesLeft-=size;
+#undef BUFFER_SIZE
+        
+        return true;
+    }
+    
+    bool Sound::AudioStreamOpen(AudioStream* self, const char* filename)
+    {
+        self->stream = stb_vorbis_open_filename(ASSET_PATH((char*)filename), NULL, NULL);
+        if(not self->stream) return false;
+        // Get file info
+        self->info = stb_vorbis_get_info(self->stream);
+        if(self->info.channels == 2) self->format = AL_FORMAT_STEREO16;
+        else self->format = AL_FORMAT_MONO16;
+        
+        if(not AudioStreamStream(self, self->buffers[0])) return false;
+        if(not AudioStreamStream(self, self->buffers[1])) return false;
+        AL_CHECK(alSourceQueueBuffers(self->source, 2, self->buffers));
+        
+        self->totalSamplesLeft=stb_vorbis_stream_length_in_samples(self->stream) * self->info.channels;
+        
+        return true;
+    }
+    
+    bool Sound::AudioStreamUpdate(AudioStream* self)
+    {
+        ALint processed=0;
+        
+        AL_CHECK(alGetSourcei(self->source, AL_BUFFERS_PROCESSED, &processed));
+        
+        while(processed--)
+        {
+            ALuint buffer=0;
+            
+            AL_CHECK(alSourceUnqueueBuffers(self->source, 1, &buffer));
+            
+            if(not AudioStreamStream(self, buffer)){
+                bool shouldExit=true;
+                
+                if(self->shouldLoop){
+                    stb_vorbis_seek_start(self->stream);
+                    self->totalSamplesLeft=stb_vorbis_stream_length_in_samples(self->stream) * self->info.channels;
+                    shouldExit=not AudioStreamStream(self, buffer);
+                }
+                
+                if(shouldExit) return false;
+            }
+            AL_CHECK(alSourceQueueBuffers(self->source, 1, &buffer));
+        }
+        
+        return true;
+    }
+    
+    bool Sound::AudioStreamPlay(AudioStream* self)
+    {
+        AL_CHECK(alSourcePlay(self->source));
+        
+        return true;
+    }
 }

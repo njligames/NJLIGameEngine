@@ -8,50 +8,95 @@
 
 #define MAXCHANNELS (32)
 
+//https://www.gamedev.net/resources/_/technical/game-programming/basic-openal-sound-manager-for-your-project-r3791
+//https://www.pcworld.idg.com.au/article/62412/audio_compression_formats_compared/
+//https://ffainelli.github.io/openal-example/
+
+#define TEST_ERROR(_msg) \
+if (alGetError() != AL_NO_ERROR) {	\
+SDL_Log("%s", _msg); \
+}
+
+static inline ALenum to_al_format(short channels, short samples)
+{
+    bool stereo = (channels > 1);
+    
+    switch (samples) {
+        case 16:
+            if (stereo)
+                return AL_FORMAT_STEREO16;
+            else
+                return AL_FORMAT_MONO16;
+        case 8:
+            if (stereo)
+                return AL_FORMAT_STEREO8;
+            else
+                return AL_FORMAT_MONO8;
+        default:
+            return -1;
+    }
+}
+
+static void list_audio_devices(const ALCchar *devices)
+{
+    const ALCchar *device = devices, *next = devices + 1;
+    size_t len = 0;
+    
+    SDL_Log("%s", "Devices list:\n");
+    SDL_Log("%s", "----------\n");
+    while (device && *device != '\0' && next && *next != '\0') {
+        SDL_Log("%s", device);
+        len = strlen(device);
+        device += (len + 1);
+        next += (len + 2);
+    }
+    SDL_Log("%s", "----------\n");
+}
 
 namespace njli
 {
     WorldSound::WorldSound()
     {
-        // // Get the device we are going to use for sound.  Using NULL gets the default device
-        // m_ALCdevice = alcOpenDevice(NULL);
         
-        // // If a device has been found we then need to create a context, make it current and then
-        // // preload the OpenAL Sources
-        // if(m_ALCdevice)
-        // {
-        //     // Use the device we have now got to create a context "air"
-        //     m_ALCcontext = alcCreateContext(m_ALCdevice, NULL);
-        //     // Make the context we have just created into the active context
-        //     alcMakeContextCurrent(m_ALCcontext);
-        //     // Pre-create 32 sound sources which can be dynamically allocated to buffers (sounds)
-        //     u32 sourceID;
-        //     for(int index = 0; index < MAXCHANNELS; index++)
-        //     {
-        //         // Generate an OpenAL source
-        //         alGenSources(1, &sourceID);
-        //         m_Sources.push_back(sourceID);
-        //         // Add the generated sourceID to our array of sound sources
-        //         // [_SFXSources addObject:[NSNumber numberWithUnsignedInt:sourceID]];
-        //     }
-        // }
+        ALboolean enumeration = alcIsExtensionPresent(NULL, "ALC_ENUMERATION_EXT");
+        if (enumeration == AL_FALSE)
+            fprintf(stderr, "enumeration extension not available\n");
+        
+        list_audio_devices(alcGetString(NULL, ALC_DEVICE_SPECIFIER));
+        
+        const ALCchar *defaultDeviceName = alcGetString(NULL, ALC_DEFAULT_DEVICE_SPECIFIER);
+        
+        m_ALCdevice = alcOpenDevice(defaultDeviceName);
+        if (!m_ALCdevice)
+        {
+            SDL_LogError(SDL_LOG_CATEGORY_TEST, "%s", "unable to open default device\n");
+        }
+        
+        SDL_LogVerbose(SDL_LOG_CATEGORY_TEST, "Device: %s\n", alcGetString(m_ALCdevice, ALC_DEVICE_SPECIFIER));
+        
+        TEST_ERROR("make default device");
+        
+        m_ALCcontext = alcCreateContext(m_ALCdevice, NULL);
+        if (!alcMakeContextCurrent(m_ALCcontext)) {
+            SDL_LogError(SDL_LOG_CATEGORY_TEST, "%s", "failed to make default context\n");
+        }
+        TEST_ERROR("make default context");
+        
+        ALfloat listenerOri[] = { 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f };
+        /* set orientation */
+        alListener3f(AL_POSITION, 0, 0, 1.0f);
+        TEST_ERROR("listener position");
+        alListener3f(AL_VELOCITY, 0, 0, 0);
+        TEST_ERROR("listener velocity");
+        alListenerfv(AL_ORIENTATION, listenerOri);
+        TEST_ERROR("listener orientation");
+        
     }
     WorldSound::~WorldSound()
     {
-        // for(int index = 0; index < MAXCHANNELS; index++)
-        // {
-        //     u32 sourceID = m_Sources.at(index);
-        //     alDeleteSources(1, &sourceID);
-        // }
-
-        // // Disable and then destroy the context
-        // alcMakeContextCurrent(NULL);
-        // if(m_ALCcontext)
-        //     alcDestroyContext(m_ALCcontext);
-        
-        // // Close the device
-        // if(m_ALCdevice)
-        //     alcCloseDevice(m_ALCdevice);
+        alcMakeContextCurrent(NULL);
+        alcDestroyContext(m_ALCcontext);
+        alcCloseDevice(m_ALCdevice);
     }
     
     const s8 *WorldSound::getClassName()const
@@ -71,52 +116,58 @@ namespace njli
     
     void WorldSound::update()
     {
-        // FMOD_RESULT result = m_System->update();
-        // FMOD_ERRCHECK(result);
+        for (std::vector<Sound*>::iterator i = mPlayingSounds.begin(); i != mPlayingSounds.end(); )
+        {
+            Sound *sound = *i;
+            
+            sound->update();
+            
+            if(sound->isPlaying())
+            {
+                i++;
+            }
+            else
+            {
+                i = mPlayingSounds.erase(i);
+            }
+        }
     }
     
     
-    bool WorldSound::loadSound(const char *path, Sound& sound)
-            {
-                return false;
-                            }
-        
-        bool WorldSound::loadSound(const char* path, u32 size, Sound& sound)
-                {
-                    return false;
-                                }
-//    bool WorldSound::createSound(const char *fileContent, size_t file_size, Sound &sound)
-//    {
-//        // FMOD_CREATESOUNDEXINFO info;
-//        // memset(&info, 0, sizeof(FMOD_CREATESOUNDEXINFO));
-//        // info.cbsize = sizeof(FMOD_CREATESOUNDEXINFO);
-//        // info.length = file_size;
-//        
-//        // FMOD::Sound * s = 0;
-//        // FMOD_MODE mode = FMOD_OPENMEMORY | FMOD_LOOP_OFF;
-//        // FMOD_RESULT result = m_System->createSound(fileContent, mode, &info, &s);
-//        // FMOD_ERRCHECK(result);
-//        // sound.m_Sound = s;
-//        // sound.m_Mode = mode;
-//        return false;
-//    }
+    void WorldSound::playSound(Sound &sound, bool isPaused)
+    {
+        mPlayingSounds.push_back(&sound);
+    }
     
-    // FMOD::Channel *WorldSound::getChannel(s32 channelindex)
-    // {
-    //     // FMOD::Channel *channel;
-    //     // m_System->getChannel(channelindex, &channel);
-    //     // return channel;
-    // }
-    // 
+    bool WorldSound::loadSound(const char *path, Sound& sound)
+    {
+        if(sound.load(NULL, path))
+        {
+            mSounds.push_back(&sound);
+            return true;
+        }
+        return false;
+    }
+    
+    bool WorldSound::loadSound(const char* fileContent, u32 size, Sound& sound)
+    {
+        return sound.load(NULL, fileContent, size);
+    }
+    
+    bool WorldSound::unLoadSound(const Sound &sound)
+    {
+        return true;
+    }
+    
     void WorldSound::enablePause(bool enable)
     {
         if (enable)
         {
-            // m_System->mixerSuspend();
+            
         }
         else
         {
-            // m_System->mixerResume();
+            
         }
     }
 }

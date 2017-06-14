@@ -45,32 +45,33 @@ public:
     
     bool loadSound(const char *path, Sound& sound);
     bool loadSound(const char* fileContent, u32 file_size, Sound& sound);
+    bool unLoadSound(const Sound &sound);
 protected:
     void update();
 
     void playSound(Sound& sound, bool isPaused = false);
 
     
-
 #if defined(NJLI_SOUND_OPENAL)
-    // // OpenAL context for playing sounds
-    // ALCcontext* m_ALCcontext;
+private:
+    // OpenAL context for playing sounds
+    ALCcontext* m_ALCcontext;
+    // The device we are going to use to play sounds
+    ALCdevice* m_ALCdevice;
+    std::vector<Sound*> mSounds;
+    std::vector<Sound*> mPlayingSounds;
+    
 
-    // // The device we are going to use to play sounds
-    // ALCdevice* m_ALCdevice;
-
-    // std::vector<u32> m_Sources;
-#endif
-
-#if defined(NJLI_SOUND_FMOD)
-protected:
+#elif defined(NJLI_SOUND_FMOD)
     FMOD::Channel* getChannel(s32 channelindex);
-
+    
 private:
     FMOD::System* m_System;
     FMOD::ChannelGroup* m_MasterChannel;
     int* m_ChannelsPlaying;
+#elif defined(NJLI_SOUND_SDL)
 #endif
+    
 };
 }
 

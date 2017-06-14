@@ -33,7 +33,7 @@ OPTION(NJLI_USE_JSONCPP_LIBRARY "Use jsoncp library"                   ON)
 OPTION(NJLI_USE_NANOVG_LIBRARY "Use nanovg library"                    ON)
 OPTION(NJLI_USE_OPENCV_LIBRARY "Use opencv library"                    OFF)
 OPTION(NJLI_USE_SQLITE_LIBRARY "Use sqlite library"                    OFF)
-OPTION(NJLI_USE_STB_LIBRARY "Use stb library"                          OFF)
+OPTION(NJLI_USE_STB_LIBRARY "Use stb library"                          ON)
 OPTION(NJLI_USE_USYNERGY_LIBRARY "Use usynergy library"                ON)
 
 #OPTION(NJLI_USE_TINYXML2_LIBRARY "Use tinyxml2 library"                OFF)
@@ -692,7 +692,6 @@ FILE(GLOB NJLIGameEngine_HDRS
     ${NJLI_SOURCE_DIRECTORY} 
     ${NJLI_THIRDPARTY_DIRECTORY}
     ${NJLI_THIRDPARTY_DIRECTORY}/SDL2/include
-    ${NJLI_THIRDPARTY_DIRECTORY}/fmod/include 
     ${NJLI_SOURCE_DIRECTORY}/bullet 
     ${NJLI_SOURCE_DIRECTORY}/lua/src 
     ${NJLI_SOURCE_DIRECTORY}/lua/exts 
@@ -723,6 +722,20 @@ FILE(GLOB NJLIGameEngine_HDRS
     ${NJLI_SOURCE_DIRECTORY}/njli/platform 
     ${NJLI_SOURCE_DIRECTORY}/njli/platform/${NJLI_BUILD_PLATFORM} 
     )
+
+IF( ${NJLI_SOUND_PLATFORM} STREQUAL "fmod" )
+    SET(NJLIGameEngine_HDRS 
+        ${NJLIGameEngine_HDRS} 
+        ${NJLI_THIRDPARTY_DIRECTORY}/fmod/include 
+        )
+ENDIF( ${NJLI_SOUND_PLATFORM} STREQUAL "fmod" )
+
+IF( ${NJLI_SOUND_PLATFORM} STREQUAL "openal" )
+    SET(NJLIGameEngine_HDRS 
+        ${NJLIGameEngine_HDRS} 
+        ${NJLI_THIRDPARTY_DIRECTORY}/alut/include 
+        )
+ENDIF( ${NJLI_SOUND_PLATFORM} STREQUAL "openal" )
 
 IF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
     LIST(APPEND NJLIGameEngine_HDRS
@@ -874,6 +887,36 @@ FOREACH(filename ${src})
         LIST(APPEND group_other ${filename})
     ENDIF()
 ENDFOREACH()
+
+FILE( GLOB_RECURSE src
+    ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/alut/*.h
+    ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/alut/*.inl
+    ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/alut/*.hpp
+    )
+SET(REG "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/alut/.*([.]h|[.]inl|[.]hpp)")
+FOREACH(filename ${src})
+    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+    IF(match_group_sources)
+        LIST(APPEND alut ${filename})
+    ELSE()
+        LIST(APPEND group_other ${filename})
+    ENDIF()
+ENDFOREACH()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 FILE( GLOB src
     ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/assimp/*.h
@@ -1837,6 +1880,7 @@ ENDFOREACH()
 
 FILE( GLOB src
     ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/stb/*.h
+    ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/stb/*.c
     ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/stb/*.inl
     ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/stb/*.hpp
     )
@@ -1904,6 +1948,13 @@ IF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
         ${emscripten_include_emscripten} 
         )
 ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
+
+
+IF( ${NJLI_SOUND_PLATFORM} STREQUAL "openal" )
+    LIST(APPEND NJLIGameEngine_THIRDPARTY_INC
+        ${alut} 
+        )
+ENDIF( ${NJLI_SOUND_PLATFORM} STREQUAL "openal" )
 
 IF(NJLI_USE_ASSIMP_LIBRARY)
     LIST(APPEND NJLIGameEngine_THIRDPARTY_INC
@@ -2808,6 +2859,10 @@ IF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" )
     SET(imported_SDL2_location                        "${NJLI_THIRDPARTY_DIRECTORY}/SDL2/lib/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libSDL2.a" )
     SET(imported_uSynergy_location                    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/usynergy/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libuSynergy.a")
 
+    SET(imported_openal_location                      "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/openal/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libopenal.a")
+    SET(imported_alut_location                        "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/alut/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libalut.a")
+
+
     SET(NJLI_APPICON_NAME "App Icon & Top Shelf Image")
 
     LIST(APPEND NJLIGameEngine_HDRS /Applications/Xcode.app/Contents/Developer/Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS.sdk/System/Library/Frameworks )
@@ -2893,6 +2948,9 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
     SET(imported_SDL2_location                   "${NJLI_THIRDPARTY_DIRECTORY}/SDL2/lib/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/libSDL2.a" )
     SET(imported_uSynergy_location                    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/usynergy/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/libuSynergy.a")
 
+    SET(imported_openal_location                      "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/openal/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/libopenal.a")
+    SET(imported_alut_location                        "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/alut/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libalut.a")
+
     SET(NJLI_APPICON_NAME "AppIcon")
 
     LIST(APPEND NJLIGameEngine_HDRS /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks  )
@@ -2905,10 +2963,10 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
     SET ( EXTRA_PLATFORM_LIBS
         ${EXTRA_PLATFORM_LIBS}
         "-framework AVFoundation"
+        "-framework AudioToolbox"
         "-framework GameController"
         "-framework CoreMotion"
         "-framework CoreGraphics"
-        "-framework AudioToolbox"
         "-framework QuartzCore"
         "-framework OpenGLES"
         "-framework UIKit"
@@ -2981,6 +3039,9 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
     SET(imported_fmod_location                        "${NJLI_THIRDPARTY_DIRECTORY}/fmod/lib/${NJLI_BUILD_PLATFORM}/10.12/Release/libfmod.dylib" )
     SET(imported_SDL2_location                        "${NJLI_THIRDPARTY_DIRECTORY}/SDL2/lib/${NJLI_BUILD_PLATFORM}/10.12/Release/libSDL2.a" )
     SET(imported_uSynergy_location                    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/usynergy/${NJLI_BUILD_PLATFORM}/10.12/Release/libuSynergy.a")
+
+    SET(imported_openal_location                      "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/openal/${NJLI_BUILD_PLATFORM}/10.12/libopenal.a")
+    SET(imported_alut_location                        "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/alut/${NJLI_BUILD_PLATFORM}/10.12/Release/lib/libalut.a")
 
     SET(NJLI_APPICON_NAME "AppIcon")
 
@@ -3069,6 +3130,9 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
     SET(imported_fmod_location                        "" )
     SET(imported_SDL2_location                        "${NJLI_THIRDPARTY_DIRECTORY}/SDL2/lib/${NJLI_BUILD_PLATFORM}/Release/libSDL2.a" )
     SET(imported_uSynergy_location                    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/usynergy/${NJLI_BUILD_PLATFORM}/Release/libuSynergy.a")
+
+    SET(imported_openal_location                      "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/openal/${NJLI_BUILD_PLATFORM}/Release/libopenal.a")
+    SET(imported_alut_location                        "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/alut/${NJLI_BUILD_PLATFORM}/Release/libalut.a")
 
 
     #https://kripken.github.io/emscripten-site/docs/porting/files/packaging_files.html
@@ -3162,6 +3226,11 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "android" )
     SET(imported_fmod_location                        "${NJLI_THIRDPARTY_DIRECTORY}/fmod/lib/android/24/${ANDROID_ABI}/libfmod.so" )
     SET(imported_SDL2_location                        "${NJLI_THIRDPARTY_DIRECTORY}/SDL2/lib/android/23/Release/${ANDROID_ABI}/libSDL2.so" )
     SET(imported_uSynergy_location                    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/usynergy/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libuSynergy.a")
+    SET(imported_openal_location                      "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/openal/${NJLI_BUILD_PLATFORM}/19/Release/libopenal.a")
+    SET(imported_alut_location                        "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/alut/${NJLI_BUILD_PLATFORM}/19/Release/libalut.a")
+
+
+
     FILE(GLOB NJLIGameEngine_LBY
         ${NJLI_THIRDPARTY_DIRECTORY}/fmod/lib/android/24/${ANDROID_ABI}/Release/libfmod.so
         ${NJLI_THIRDPARTY_DIRECTORY}/SDL2/lib/android/23/Release/${ANDROID_ABI}/libSDL2.so 
@@ -3201,13 +3270,27 @@ ADD_LIBRARY(imported_SDL2 SHARED IMPORTED )
 SET_TARGET_PROPERTIES(imported_SDL2 PROPERTIES IMPORTED_LOCATION ${imported_SDL2_location})
 LIST(APPEND EXTRA_PLATFORM_LIBS imported_SDL2)
 
-IF( NOT ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
+IF( ${NJLI_SOUND_PLATFORM} STREQUAL "fmod" )
     INCLUDE_DIRECTORIES("${NJLI_THIRDPARTY_DIRECTORY}/fmod/include" )
 
     ADD_LIBRARY(imported_fmod SHARED IMPORTED )
     SET_TARGET_PROPERTIES(imported_fmod PROPERTIES IMPORTED_LOCATION ${imported_fmod_location})
     LIST(APPEND EXTRA_PLATFORM_LIBS imported_fmod)
-ENDIF( NOT ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
+ENDIF( ${NJLI_SOUND_PLATFORM} STREQUAL "fmod" )
+
+IF( ${NJLI_SOUND_PLATFORM} STREQUAL "openal" )
+    IF( ${NJLI_BUILD_PLATFORM} EQUAL android )
+        INCLUDE_DIRECTORIES("${NJLI_THIRDPARTY_DIRECTORY}/openal/include" )
+        ADD_LIBRARY(imported_openal STATIC IMPORTED )
+        SET_TARGET_PROPERTIES(imported_openal PROPERTIES IMPORTED_LOCATION ${imported_openal_location})
+        LIST(APPEND EXTRA_PLATFORM_LIBS imported_openal)
+    ENDIF( ${NJLI_BUILD_PLATFORM} EQUAL android )
+
+    INCLUDE_DIRECTORIES("${NJLI_THIRDPARTY_DIRECTORY}/alut/include" )
+    ADD_LIBRARY(imported_alut STATIC IMPORTED )
+    SET_TARGET_PROPERTIES(imported_alut PROPERTIES IMPORTED_LOCATION ${imported_alut_location})
+    LIST(APPEND EXTRA_PLATFORM_LIBS imported_alut)
+ENDIF( ${NJLI_SOUND_PLATFORM} STREQUAL "openal" )
 
 IF(NJLI_USE_ASSIMP_LIBRARY)
     INCLUDE_DIRECTORIES("${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/assimp" )
@@ -3525,6 +3608,10 @@ SET_SOURCE_FILES_PROPERTIES( ${NJLI_SOURCE_DIRECTORY}/njli/generated/swig/lua/sw
 SOURCE_GROUP("ThirdParty"                                                                   FILES ${third_party_directory} )
 SOURCE_GROUP("ThirdParty\\include"                                                          FILES ${group_other} )
 SOURCE_GROUP("ThirdParty\\include\\SDL2"                                                    FILES ${SDL2} )
+
+IF( ${NJLI_SOUND_PLATFORM} STREQUAL "openal" )
+    SOURCE_GROUP("ThirdParty\\include\\alut"                                              FILES ${alut} )
+ENDIF( ${NJLI_SOUND_PLATFORM} STREQUAL "openal" )
 
 IF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
     SOURCE_GROUP("ThirdParty\\include\\emscripten"                                              FILES ${emscripten_include} )

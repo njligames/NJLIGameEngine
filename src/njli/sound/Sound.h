@@ -18,6 +18,11 @@
 
 #include "SoundPlatform.h"
 
+#if defined(NJLI_SOUND_OPENAL)
+#define STB_VORBIS_HEADER_ONLY
+#include "stb_vorbis.c"
+#endif
+
 namespace njli {
 class SoundBuilder;
 class Node;
@@ -95,23 +100,51 @@ public:
     bool load(void *system, const char* fileContent, u32 size);
 
 #if defined(NJLI_SOUND_OPENAL)
-#endif
     
-#if defined(NJLI_SOUND_FMOD)
-protected:
-    FMOD::Channel* getChannel();
+    void update();
+private:
+    typedef struct{
+        ALuint ID;
+        
+        stb_vorbis* stream;
+        stb_vorbis_info info;
+        
+        ALuint buffers[2];
+        ALuint source;
+        ALenum format;
+        
+        size_t bufferSize;
+        
+        size_t totalSamplesLeft;
+        
+        bool shouldLoop;
+    }AudioStream;
+    
+    void AudioStreamInit(AudioStream* self);
+    void AudioStreamDeinit(AudioStream* self);
+    bool AudioStreamStream(AudioStream* self, ALuint buffer);
+    bool AudioStreamOpen(AudioStream* self, const char* filename);
+    bool AudioStreamUpdate(AudioStream* self);
+    bool AudioStreamPlay(AudioStream* self);
+    
+    AudioStream *mAudioStream;
+    
     Node* getParent();
     const Node* getParent() const;
+    
+#elif defined(NJLI_SOUND_FMOD)
+protected:
+    FMOD::Channel* getChannel();
+    
 
 private:
     FMOD::Sound* m_Sound;
     s32 m_ChannelIndex;
     btTransform* m_Transform;
+#elif defined(NJLI_SOUND_SDL)
 #endif
 
-#ifndef __EMSCRIPTEN__
-
-#endif
+    
 };
 }
 
