@@ -2919,7 +2919,7 @@ IF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" )
     SET(imported_uSynergy_location                    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/usynergy/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libuSynergy.a")
 
     SET(imported_openal_location                      "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/openal/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libopenal.a")
-    SET(imported_alut_location                        "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/alut/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libalut.a")
+    SET(imported_alut_location                        "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/alut/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libalut.a")
     SET(imported_vorbis_location                      "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libvorbis.a")
     SET(imported_vorbisenc_location                   "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libvorbisenc.a")
     SET(imported_vorbisfile_location                  "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libvorbisfile.a")
