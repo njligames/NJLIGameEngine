@@ -728,14 +728,14 @@ IF( ${NJLI_SOUND_PLATFORM} STREQUAL "fmod" )
         ${NJLIGameEngine_HDRS} 
         ${NJLI_THIRDPARTY_DIRECTORY}/fmod/include 
         )
-ENDIF( ${NJLI_SOUND_PLATFORM} STREQUAL "fmod" )
-
-IF( ${NJLI_SOUND_PLATFORM} STREQUAL "openal" )
+ELSEIF( ${NJLI_SOUND_PLATFORM} STREQUAL "openal" )
     SET(NJLIGameEngine_HDRS 
         ${NJLIGameEngine_HDRS} 
-        ${NJLI_THIRDPARTY_DIRECTORY}/alut/include 
+        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/alut
+        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/ogg
+        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/vorbis
         )
-ENDIF( ${NJLI_SOUND_PLATFORM} STREQUAL "openal" )
+ENDIF( ${NJLI_SOUND_PLATFORM} STREQUAL "fmod" )
 
 IF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
     LIST(APPEND NJLIGameEngine_HDRS
@@ -889,6 +889,25 @@ FOREACH(filename ${src})
 ENDFOREACH()
 
 FILE( GLOB_RECURSE src
+    ${NJLI_THIRDPARTY_DIRECTORY}/fmod/include/*.h
+    ${NJLI_THIRDPARTY_DIRECTORY}/fmod/include/*.inl
+    ${NJLI_THIRDPARTY_DIRECTORY}/fmod/include/*.hpp
+    )
+SET(REG "${NJLI_THIRDPARTY_DIRECTORY}/fmod/include/.*([.]h|[.]inl|[.]hpp)")
+FOREACH(filename ${src})
+    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+    IF(match_group_sources)
+        LIST(APPEND fmod ${filename})
+    ELSE()
+        LIST(APPEND group_other ${filename})
+    ENDIF()
+ENDFOREACH()
+
+
+
+
+
+FILE( GLOB_RECURSE src
     ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/alut/*.h
     ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/alut/*.inl
     ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/alut/*.hpp
@@ -903,8 +922,35 @@ FOREACH(filename ${src})
     ENDIF()
 ENDFOREACH()
 
+FILE( GLOB_RECURSE src
+    ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/ogg/*.h
+    ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/ogg/*.inl
+    ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/ogg/*.hpp
+    )
+SET(REG "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/ogg/.*([.]h|[.]inl|[.]hpp)")
+FOREACH(filename ${src})
+    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+    IF(match_group_sources)
+        LIST(APPEND ogg ${filename})
+    ELSE()
+        LIST(APPEND group_other ${filename})
+    ENDIF()
+ENDFOREACH()
 
-
+FILE( GLOB_RECURSE src
+    ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/vorbis/*.h
+    ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/vorbis/*.inl
+    ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/vorbis/*.hpp
+    )
+SET(REG "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/vorbis/.*([.]h|[.]inl|[.]hpp)")
+FOREACH(filename ${src})
+    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+    IF(match_group_sources)
+        LIST(APPEND vorbis ${filename})
+    ELSE()
+        LIST(APPEND group_other ${filename})
+    ENDIF()
+ENDFOREACH()
 
 
 
@@ -1950,11 +1996,23 @@ IF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
 ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
 
 
-IF( ${NJLI_SOUND_PLATFORM} STREQUAL "openal" )
+
+
+
+IF( ${NJLI_SOUND_PLATFORM} STREQUAL "fmod" )
+    LIST(APPEND NJLIGameEngine_THIRDPARTY_INC
+        ${fmod} 
+        )
+ELSEIF( ${NJLI_SOUND_PLATFORM} STREQUAL "openal" )
     LIST(APPEND NJLIGameEngine_THIRDPARTY_INC
         ${alut} 
+        ${ogg} 
+        ${vorbis} 
         )
-ENDIF( ${NJLI_SOUND_PLATFORM} STREQUAL "openal" )
+ENDIF( ${NJLI_SOUND_PLATFORM} STREQUAL "fmod" )
+
+
+
 
 IF(NJLI_USE_ASSIMP_LIBRARY)
     LIST(APPEND NJLIGameEngine_THIRDPARTY_INC
@@ -2833,6 +2891,7 @@ IF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" )
     SET(imported_ImGuizmo_location                    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/ImGuizmo/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libImGuizmo.a" )
     SET(imported_jsoncpp_location                     "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/jsoncpp/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libjsoncpp.a")
     SET(imported_nanovg_location                      "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/nanovg/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libnanovg.a" )
+    SET(imported_ogg_location                         "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/ogg/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libogg.a" )
     SET(imported_opencv_calib3d_location              "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libopencv_calib3d.a")
     SET(imported_opencv_core_location                 "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libopencv_core.a")
     SET(imported_opencv_features2d_location           "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libopencv_features2d.a")
@@ -2861,6 +2920,10 @@ IF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" )
 
     SET(imported_openal_location                      "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/openal/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libopenal.a")
     SET(imported_alut_location                        "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/alut/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libalut.a")
+    SET(imported_vorbis_location                      "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libvorbis.a")
+    SET(imported_vorbisenc_location                   "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libvorbisenc.a")
+    SET(imported_vorbisfile_location                  "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libvorbisfile.a")
+
 
 
     SET(NJLI_APPICON_NAME "App Icon & Top Shelf Image")
@@ -2883,6 +2946,7 @@ IF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" )
         "-framework UIKit"
         "-framework Foundation"
         )
+
     IF( ${NJLI_SOUND_PLATFORM} STREQUAL "openal" )
         SET ( EXTRA_PLATFORM_LIBS
             ${EXTRA_PLATFORM_LIBS}
@@ -2922,6 +2986,7 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
     SET(imported_ImGuizmo_location                    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/ImGuizmo/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/libImGuizmo.a" )
     SET(imported_jsoncpp_location                     "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/jsoncpp/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/libjsoncpp.a")
     SET(imported_nanovg_location                      "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/nanovg/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/libnanovg.a" )
+    SET(imported_ogg_location                         "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/ogg/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/libogg.a" )
     SET(imported_opencv_calib3d_location              "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libopencv_calib3d.a")
     SET(imported_opencv_core_location                 "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libopencv_core.a")
     SET(imported_opencv_features2d_location           "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libopencv_features2d.a")
@@ -2950,6 +3015,9 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
 
     SET(imported_openal_location                      "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/openal/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/libopenal.a")
     SET(imported_alut_location                        "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/alut/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libalut.a")
+    SET(imported_vorbis_location                      "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/libvorbis.a")
+    SET(imported_vorbisenc_location                   "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/libvorbisenc.a")
+    SET(imported_vorbisfile_location                  "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/libvorbisfile.a")
 
     SET(NJLI_APPICON_NAME "AppIcon")
 
@@ -2972,6 +3040,7 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
         "-framework UIKit"
         "-framework Foundation"
         )
+
     IF( ${NJLI_SOUND_PLATFORM} STREQUAL "openal" )
         SET ( EXTRA_PLATFORM_LIBS
             ${EXTRA_PLATFORM_LIBS}
@@ -3014,6 +3083,7 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
     SET(imported_ImGuizmo_location                    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/ImGuizmo/${NJLI_BUILD_PLATFORM}/10.12/Release/libImGuizmo.a" )
     SET(imported_jsoncpp_location                     "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/jsoncpp/${NJLI_BUILD_PLATFORM}/10.12/Release/libjsoncpp.a")
     SET(imported_nanovg_location                      "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/nanovg/${NJLI_BUILD_PLATFORM}/10.12/Release/libnanovg.a" )
+    SET(imported_ogg_location                         "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/ogg/${NJLI_BUILD_PLATFORM}/10.12/Release/libogg.a" )
     SET(imported_opencv_calib3d_location              "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.12/Release/lib/libopencv_calib3d.a")
     SET(imported_opencv_core_location                 "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.12/Release/lib/libopencv_core.a")
     SET(imported_opencv_features2d_location           "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.12/Release/lib/libopencv_features2d.a")
@@ -3042,6 +3112,9 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
 
     SET(imported_openal_location                      "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/openal/${NJLI_BUILD_PLATFORM}/10.12/libopenal.a")
     SET(imported_alut_location                        "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/alut/${NJLI_BUILD_PLATFORM}/10.12/Release/lib/libalut.a")
+    SET(imported_vorbis_location                      "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/10.12/Release/libvorbis.a")
+    SET(imported_vorbisenc_location                   "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/10.12/Release/libvorbisenc.a")
+    SET(imported_vorbisfile_location                  "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/10.12/Release/libvorbisfile.a")
 
     SET(NJLI_APPICON_NAME "AppIcon")
 
@@ -3064,6 +3137,7 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
         "-framework AudioUnit"
         "-framework Carbon"
         )
+
     IF( ${NJLI_SOUND_PLATFORM} STREQUAL "openal" )
         SET ( EXTRA_PLATFORM_LIBS
             ${EXTRA_PLATFORM_LIBS}
@@ -3105,6 +3179,7 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
     SET(imported_ImGuizmo_location                    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/ImGuizmo/${NJLI_BUILD_PLATFORM}/Release/libImGuizmo.a" )
     SET(imported_jsoncpp_location                     "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/jsoncpp/${NJLI_BUILD_PLATFORM}/Release/libjsoncpp.a")
     SET(imported_nanovg_location                      "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/nanovg/${NJLI_BUILD_PLATFORM}/Release/libnanovg.a" )
+    SET(imported_ogg_location                         "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/ogg/${NJLI_BUILD_PLATFORM}/Release/libogg.a" )
     SET(imported_opencv_calib3d_location              "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_calib3d.a")
     SET(imported_opencv_core_location                 "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_core.a")
     SET(imported_opencv_features2d_location           "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_features2d.a")
@@ -3133,6 +3208,9 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
 
     SET(imported_openal_location                      "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/openal/${NJLI_BUILD_PLATFORM}/Release/libopenal.a")
     SET(imported_alut_location                        "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/alut/${NJLI_BUILD_PLATFORM}/Release/libalut.a")
+    SET(imported_vorbis_location                      "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/Release/libvorbis.a")
+    SET(imported_vorbisenc_location                   "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/Release/libvorbisenc.a")
+    SET(imported_vorbisfile_location                  "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/Release/libvorbisfile.a")
 
 
     #https://kripken.github.io/emscripten-site/docs/porting/files/packaging_files.html
@@ -3201,6 +3279,7 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "android" )
     SET(imported_ImGuizmo_location                    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/ImGuizmo/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libImGuizmo.a" )
     SET(imported_jsoncpp_location                     "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/jsoncpp/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libjsoncpp.a")
     SET(imported_nanovg_location                      "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/nanovg/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libnanovg.a" )
+    SET(imported_ogg_location                         "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/ogg/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libogg.a" )
     SET(imported_opencv_calib3d_location              "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libopencv_calib3d.a")
     SET(imported_opencv_core_location                 "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libopencv_core.a")
     SET(imported_opencv_features2d_location           "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libopencv_features2d.a")
@@ -3226,8 +3305,11 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "android" )
     SET(imported_fmod_location                        "${NJLI_THIRDPARTY_DIRECTORY}/fmod/lib/android/24/${ANDROID_ABI}/libfmod.so" )
     SET(imported_SDL2_location                        "${NJLI_THIRDPARTY_DIRECTORY}/SDL2/lib/android/23/Release/${ANDROID_ABI}/libSDL2.so" )
     SET(imported_uSynergy_location                    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/usynergy/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libuSynergy.a")
-    SET(imported_openal_location                      "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/openal/${NJLI_BUILD_PLATFORM}/19/Release/libopenal.a")
-    SET(imported_alut_location                        "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/alut/${NJLI_BUILD_PLATFORM}/19/Release/libalut.a")
+    SET(imported_openal_location                      "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/openal/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libopenal.a")
+    SET(imported_alut_location                        "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/alut/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libalut.a")
+    SET(imported_vorbis_location                      "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libvorbis.a")
+    SET(imported_vorbisenc_location                   "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libvorbisenc.a")
+    SET(imported_vorbisfile_location                  "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libvorbisfile.a")
 
 
 
@@ -3276,9 +3358,7 @@ IF( ${NJLI_SOUND_PLATFORM} STREQUAL "fmod" )
     ADD_LIBRARY(imported_fmod SHARED IMPORTED )
     SET_TARGET_PROPERTIES(imported_fmod PROPERTIES IMPORTED_LOCATION ${imported_fmod_location})
     LIST(APPEND EXTRA_PLATFORM_LIBS imported_fmod)
-ENDIF( ${NJLI_SOUND_PLATFORM} STREQUAL "fmod" )
-
-IF( ${NJLI_SOUND_PLATFORM} STREQUAL "openal" )
+ELSEIF( ${NJLI_SOUND_PLATFORM} STREQUAL "openal" )
     IF( ${NJLI_BUILD_PLATFORM} EQUAL android )
         INCLUDE_DIRECTORIES("${NJLI_THIRDPARTY_DIRECTORY}/openal/include" )
         ADD_LIBRARY(imported_openal STATIC IMPORTED )
@@ -3290,7 +3370,25 @@ IF( ${NJLI_SOUND_PLATFORM} STREQUAL "openal" )
     ADD_LIBRARY(imported_alut STATIC IMPORTED )
     SET_TARGET_PROPERTIES(imported_alut PROPERTIES IMPORTED_LOCATION ${imported_alut_location})
     LIST(APPEND EXTRA_PLATFORM_LIBS imported_alut)
-ENDIF( ${NJLI_SOUND_PLATFORM} STREQUAL "openal" )
+
+    INCLUDE_DIRECTORIES("${NJLI_THIRDPARTY_DIRECTORY}/ogg/include" )
+    ADD_LIBRARY(imported_ogg STATIC IMPORTED )
+    SET_TARGET_PROPERTIES(imported_ogg PROPERTIES IMPORTED_LOCATION ${imported_ogg_location})
+    LIST(APPEND EXTRA_PLATFORM_LIBS imported_ogg)
+
+    INCLUDE_DIRECTORIES("${NJLI_THIRDPARTY_DIRECTORY}/vorbis/include" )
+    ADD_LIBRARY(imported_vorbis STATIC IMPORTED )
+    SET_TARGET_PROPERTIES(imported_vorbis PROPERTIES IMPORTED_LOCATION ${imported_vorbis_location})
+    LIST(APPEND EXTRA_PLATFORM_LIBS imported_vorbis)
+
+    ADD_LIBRARY(imported_vorbisenc STATIC IMPORTED )
+    SET_TARGET_PROPERTIES(imported_vorbisenc PROPERTIES IMPORTED_LOCATION ${imported_vorbisenc_location})
+    LIST(APPEND EXTRA_PLATFORM_LIBS imported_vorbisenc)
+
+    ADD_LIBRARY(imported_vorbisfile STATIC IMPORTED )
+    SET_TARGET_PROPERTIES(imported_vorbisfile PROPERTIES IMPORTED_LOCATION ${imported_vorbisfile_location})
+    LIST(APPEND EXTRA_PLATFORM_LIBS imported_vorbisfile)
+ENDIF( ${NJLI_SOUND_PLATFORM} STREQUAL "fmod" )
 
 IF(NJLI_USE_ASSIMP_LIBRARY)
     INCLUDE_DIRECTORIES("${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/assimp" )
@@ -3605,13 +3703,17 @@ SET_SOURCE_FILES_PROPERTIES( ${NJLI_SOURCE_DIRECTORY}/njli/generated/swig/lua/sw
 ##INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/lnjli.xml DESTINATION ${CMAKE_INSTALL_DATADIR}/swig/lua)
 ##INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/lbullet.xml DESTINATION ${CMAKE_INSTALL_DATADIR}/swig/lua)
 
-SOURCE_GROUP("ThirdParty"                                                                   FILES ${third_party_directory} )
-SOURCE_GROUP("ThirdParty\\include"                                                          FILES ${group_other} )
-SOURCE_GROUP("ThirdParty\\include\\SDL2"                                                    FILES ${SDL2} )
+SOURCE_GROUP("ThirdParty"                                                                     FILES ${third_party_directory} )
+SOURCE_GROUP("ThirdParty\\include"                                                            FILES ${group_other} )
+SOURCE_GROUP("ThirdParty\\include\\SDL2"                                                      FILES ${SDL2} )
 
-IF( ${NJLI_SOUND_PLATFORM} STREQUAL "openal" )
-    SOURCE_GROUP("ThirdParty\\include\\alut"                                              FILES ${alut} )
-ENDIF( ${NJLI_SOUND_PLATFORM} STREQUAL "openal" )
+IF( ${NJLI_SOUND_PLATFORM} STREQUAL "fmod" )
+    SOURCE_GROUP("ThirdParty\\include\\fmod"                                                   FILES ${fmod} )
+ELSEIF( ${NJLI_SOUND_PLATFORM} STREQUAL "openal" )
+    SOURCE_GROUP("ThirdParty\\include\\alut\\AL"                                               FILES ${alut} )
+    SOURCE_GROUP("ThirdParty\\include\\ogg\\ogg"                                               FILES ${ogg} )
+    SOURCE_GROUP("ThirdParty\\include\\vorbis\\vorbis"                                         FILES ${vorbis} )
+ENDIF( ${NJLI_SOUND_PLATFORM} STREQUAL "fmod" )
 
 IF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
     SOURCE_GROUP("ThirdParty\\include\\emscripten"                                              FILES ${emscripten_include} )
