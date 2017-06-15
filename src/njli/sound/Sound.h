@@ -24,6 +24,47 @@
 #endif
 
 namespace njli {
+    
+    
+    
+    
+#if defined(NJLI_SOUND_OPENAL)
+    typedef struct SoundInfo
+    {
+        int freqency;
+        int channels;
+        int format;
+        int bitsPerChannel;
+        
+        /* The below bitrate declarations are *hints*.
+         Combinations of the three values carry the following implications:
+         
+         all three set to the same value:
+         implies a fixed rate bitstream
+         only nominal set:
+         implies a VBR stream that averages the nominal bitrate.  No hard
+         upper/lower limit
+         upper and or lower set:
+         implies a VBR bitstream that obeys the bitrate limits. nominal
+         may also be set to give a nominal rate.
+         none set:
+         the coder does not care to speculate.
+         */
+        
+        long bitrate_upper;
+        long bitrate_nominal;
+        long bitrate_lower;
+        long bitrate_window;
+        
+        bool seekable;
+        
+    } SoundInfo;
+    
+#endif
+    
+    
+    
+    
 class SoundBuilder;
 class Node;
 
