@@ -16,6 +16,7 @@
 #include "JsonJLI.h"
 #include "NJLIInterface.h"
 #include "imgui.h"
+#include "ImGuizmo.h"
 
 #include <sys/time.h>
 #include <sys/types.h>

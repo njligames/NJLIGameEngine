@@ -16,6 +16,7 @@
 #include "JsonJLI.h"
 #include "NJLIInterface.h"
 #include "imgui.h"
+#include "ImGuizmo.h"
 
 //#include "uSynergy.h"
 
@@ -1207,6 +1208,7 @@ namespace njli
         }
         
         ImGui::NewFrame();
+        ImGuizmo::BeginFrame();
     }
     
     

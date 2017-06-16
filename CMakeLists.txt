@@ -28,7 +28,7 @@ OPTION(NJLI_USE_DEBUGDRAW_LIBRARY "Use debug-draw library"             ON)
 OPTION(NJLI_USE_FLATBUFFERS_LIBRARY "Use flatbuffers library"          OFF)
 OPTION(NJLI_USE_GLM_LIBRARY "Use glm library"                          ON)
 OPTION(NJLI_USE_IMGUI_LIBRARY "Use imgui library"                      ON)
-OPTION(NJLI_USE_IMGUIZMO_LIBRARY "Use ImGuizmo library"                ON)
+#OPTION(NJLI_USE_IMGUIZMO_LIBRARY "Use ImGuizmo library"                ON)
 OPTION(NJLI_USE_JSONCPP_LIBRARY "Use jsoncp library"                   ON)
 OPTION(NJLI_USE_NANOVG_LIBRARY "Use nanovg library"                    ON)
 OPTION(NJLI_USE_OPENCV_LIBRARY "Use opencv library"                    OFF)
@@ -84,9 +84,9 @@ IF(NJLI_USE_IMGUI_LIBRARY)
     ADD_DEFINITIONS(-DUSE_IMGUI_LIBRARY=1)
 ENDIF(NJLI_USE_IMGUI_LIBRARY)
 
-IF(NJLI_USE_IMGUIZMO_LIBRARY)
-    ADD_DEFINITIONS(-DUSE_IMGUIZMO_LIBRARY=1)
-ENDIF(NJLI_USE_IMGUIZMO_LIBRARY)
+#IF(NJLI_USE_IMGUIZMO_LIBRARY)
+#    ADD_DEFINITIONS(-DUSE_IMGUIZMO_LIBRARY=1)
+#ENDIF(NJLI_USE_IMGUIZMO_LIBRARY)
 
 IF(NJLI_USE_JSONCPP_LIBRARY)
     ADD_DEFINITIONS(-DUSE_JSONCPP_LIBRARY=1)
@@ -836,11 +836,11 @@ IF(NJLI_USE_IMGUI_LIBRARY)
         )
 ENDIF(NJLI_USE_IMGUI_LIBRARY)
 
-IF(NJLI_USE_IMGUIZMO_LIBRARY)
-    LIST(APPEND NJLIGameEngine_HDRS
-        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/ImGuizmo 
-        )
-ENDIF(NJLI_USE_IMGUIZMO_LIBRARY)
+#IF(NJLI_USE_IMGUIZMO_LIBRARY)
+#    LIST(APPEND NJLIGameEngine_HDRS
+#        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/ImGuizmo 
+#        )
+#ENDIF(NJLI_USE_IMGUIZMO_LIBRARY)
 
 IF(NJLI_USE_JSONCPP_LIBRARY)
     LIST(APPEND NJLIGameEngine_HDRS
@@ -1804,20 +1804,20 @@ FOREACH(filename ${src})
     ENDIF()
 ENDFOREACH()
 
-FILE( GLOB src
-    ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/ImGuizmo/*.h
-    ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/ImGuizmo/*.inl
-    ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/ImGuizmo/*.hpp
-    )
-SET(REG "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/ImGuizmo/.*([.]h|[.]inl|[.]hpp)")
-FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND ImGuizmo ${filename})
-    ELSE()
-        LIST(APPEND group_other ${filename})
-    ENDIF()
-ENDFOREACH()
+#FILE( GLOB src
+#    ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/ImGuizmo/*.h
+#    ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/ImGuizmo/*.inl
+#    ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/ImGuizmo/*.hpp
+#    )
+#SET(REG "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/ImGuizmo/.*([.]h|[.]inl|[.]hpp)")
+#FOREACH(filename ${src})
+#    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+#    IF(match_group_sources)
+#        LIST(APPEND ImGuizmo ${filename})
+#    ELSE()
+#        LIST(APPEND group_other ${filename})
+#    ENDIF()
+#ENDFOREACH()
 
 FILE( GLOB src
     ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/glm/*.h
@@ -2109,11 +2109,11 @@ IF(NJLI_USE_IMGUI_LIBRARY)
         )
 ENDIF(NJLI_USE_IMGUI_LIBRARY)
 
-IF(NJLI_USE_IMGUIZMO_LIBRARY)
-    LIST(APPEND NJLIGameEngine_THIRDPARTY_INC
-        ${ImGuizmo} 
-        )
-ENDIF(NJLI_USE_IMGUIZMO_LIBRARY)
+#IF(NJLI_USE_IMGUIZMO_LIBRARY)
+#    LIST(APPEND NJLIGameEngine_THIRDPARTY_INC
+#        ${ImGuizmo} 
+#        )
+#ENDIF(NJLI_USE_IMGUIZMO_LIBRARY)
 
 IF(NJLI_USE_JSONCPP_LIBRARY)
     LIST(APPEND NJLIGameEngine_THIRDPARTY_INC
@@ -2888,7 +2888,7 @@ IF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" )
     SET(imported_LinearMath_location                  "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libLinearMath.a" )
     SET(imported_flatbuffers_location                 "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/flatbuffers/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libflatbuffers.a")
     SET(imported_imgui_location                       "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/imgui/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libimgui.a" )
-    SET(imported_ImGuizmo_location                    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/ImGuizmo/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libImGuizmo.a" )
+    #SET(imported_ImGuizmo_location                    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/ImGuizmo/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libImGuizmo.a" )
     SET(imported_jsoncpp_location                     "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/jsoncpp/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libjsoncpp.a")
     SET(imported_nanovg_location                      "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/nanovg/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libnanovg.a" )
     SET(imported_ogg_location                         "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/ogg/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libogg.a" )
@@ -2983,7 +2983,7 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
     SET(imported_LinearMath_location                  "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libLinearMath.a" )
     SET(imported_flatbuffers_location                 "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/flatbuffers/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libflatbuffers.a")
     SET(imported_imgui_location                       "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/imgui/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/libimgui.a" )
-    SET(imported_ImGuizmo_location                    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/ImGuizmo/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/libImGuizmo.a" )
+    #SET(imported_ImGuizmo_location                    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/ImGuizmo/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/libImGuizmo.a" )
     SET(imported_jsoncpp_location                     "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/jsoncpp/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/libjsoncpp.a")
     SET(imported_nanovg_location                      "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/nanovg/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/libnanovg.a" )
     SET(imported_ogg_location                         "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/ogg/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/libogg.a" )
@@ -3080,7 +3080,7 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
     SET(imported_LinearMath_location                  "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.12/Release/lib/libLinearMath.a" )
     SET(imported_flatbuffers_location                 "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/flatbuffers/${NJLI_BUILD_PLATFORM}/10.12/Release/lib/libflatbuffers.a")
     SET(imported_imgui_location                       "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/imgui/${NJLI_BUILD_PLATFORM}/10.12/Release/libimgui.a" )
-    SET(imported_ImGuizmo_location                    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/ImGuizmo/${NJLI_BUILD_PLATFORM}/10.12/Release/libImGuizmo.a" )
+    #SET(imported_ImGuizmo_location                    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/ImGuizmo/macOS/10.12/Release/libImGuizmo.a" )
     SET(imported_jsoncpp_location                     "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/jsoncpp/${NJLI_BUILD_PLATFORM}/10.12/Release/libjsoncpp.a")
     SET(imported_nanovg_location                      "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/nanovg/${NJLI_BUILD_PLATFORM}/10.12/Release/libnanovg.a" )
     SET(imported_ogg_location                         "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/ogg/${NJLI_BUILD_PLATFORM}/10.12/Release/libogg.a" )
@@ -3176,7 +3176,7 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
     SET(imported_LinearMath_location                  "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/Release/lib/libLinearMath.a" )
     SET(imported_flatbuffers_location                 "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/flatbuffers/${NJLI_BUILD_PLATFORM}/Release/lib/libflatbuffers.a")
     SET(imported_imgui_location                       "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/imgui/${NJLI_BUILD_PLATFORM}/Release/libimgui.a" )
-    SET(imported_ImGuizmo_location                    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/ImGuizmo/${NJLI_BUILD_PLATFORM}/Release/libImGuizmo.a" )
+    #SET(imported_ImGuizmo_location                    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/ImGuizmo/${NJLI_BUILD_PLATFORM}/Release/libImGuizmo.a" )
     SET(imported_jsoncpp_location                     "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/jsoncpp/${NJLI_BUILD_PLATFORM}/Release/libjsoncpp.a")
     SET(imported_nanovg_location                      "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/nanovg/${NJLI_BUILD_PLATFORM}/Release/libnanovg.a" )
     SET(imported_ogg_location                         "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/ogg/${NJLI_BUILD_PLATFORM}/Release/libogg.a" )
@@ -3276,7 +3276,7 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "android" )
     SET(imported_LinearMath_location                  "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libLinearMath.a" )
     SET(imported_flatbuffers_location                 "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/flatbuffers/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/lib/libflatbuffers.a")
     SET(imported_imgui_location                       "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/imgui/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libimgui.a" )
-    SET(imported_ImGuizmo_location                    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/ImGuizmo/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libImGuizmo.a" )
+    #SET(imported_ImGuizmo_location                    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/ImGuizmo/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libImGuizmo.a" )
     SET(imported_jsoncpp_location                     "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/jsoncpp/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libjsoncpp.a")
     SET(imported_nanovg_location                      "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/nanovg/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libnanovg.a" )
     SET(imported_ogg_location                         "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/ogg/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libogg.a" )
@@ -3487,13 +3487,13 @@ IF(NJLI_USE_IMGUI_LIBRARY)
     LIST(APPEND EXTRA_PLATFORM_LIBS imported_imgui)
 ENDIF(NJLI_USE_IMGUI_LIBRARY)
 
-IF(NJLI_USE_IMGUIZMO_LIBRARY)
-    INCLUDE_DIRECTORIES("${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/ImGuizmo" )
-
-    ADD_LIBRARY(imported_ImGuizmo STATIC IMPORTED )
-    SET_TARGET_PROPERTIES(imported_ImGuizmo PROPERTIES IMPORTED_LOCATION ${imported_ImGuizmo_location})
-    LIST(APPEND EXTRA_PLATFORM_LIBS imported_ImGuizmo)
-ENDIF(NJLI_USE_IMGUIZMO_LIBRARY)
+#IF(NJLI_USE_IMGUIZMO_LIBRARY)
+#    INCLUDE_DIRECTORIES("${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/ImGuizmo" )
+#
+#    ADD_LIBRARY(imported_ImGuizmo STATIC IMPORTED )
+#    SET_TARGET_PROPERTIES(imported_ImGuizmo PROPERTIES IMPORTED_LOCATION ${imported_ImGuizmo_location})
+#    LIST(APPEND EXTRA_PLATFORM_LIBS imported_ImGuizmo)
+#ENDIF(NJLI_USE_IMGUIZMO_LIBRARY)
 
 IF(NJLI_USE_JSONCPP_LIBRARY)
     INCLUDE_DIRECTORIES("${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/jsoncpp" )
@@ -3656,9 +3656,9 @@ IF(NJLI_USE_IMGUI_LIBRARY)
     LIST(APPEND SWIG_DEFINE "USE_IMGUI_LIBRARY")
 ENDIF(NJLI_USE_IMGUI_LIBRARY)
 
-IF(NJLI_USE_IMGUIZMO_LIBRARY)
-    LIST(APPEND SWIG_DEFINE "USE_IMGUIZMO_LIBRARY")
-ENDIF(NJLI_USE_IMGUIZMO_LIBRARY)
+#IF(NJLI_USE_IMGUIZMO_LIBRARY)
+#    LIST(APPEND SWIG_DEFINE "USE_IMGUIZMO_LIBRARY")
+#ENDIF(NJLI_USE_IMGUIZMO_LIBRARY)
 
 IF(NJLI_USE_JSONCPP_LIBRARY)
     LIST(APPEND SWIG_DEFINE "USE_JSONCPP_LIBRARY")
@@ -3805,9 +3805,9 @@ IF(NJLI_USE_IMGUI_LIBRARY)
     ADD_DEFINITIONS(-DUSE_IMGUI_LIBRARY=1)
 ENDIF(NJLI_USE_IMGUI_LIBRARY)
 
-IF(NJLI_USE_IMGUIZMO_LIBRARY)
-    SOURCE_GROUP("ThirdParty\\include\\ImGuizmo"                                                FILES ${ImGuizmo} )
-ENDIF(NJLI_USE_IMGUIZMO_LIBRARY)
+#IF(NJLI_USE_IMGUIZMO_LIBRARY)
+#    SOURCE_GROUP("ThirdParty\\include\\ImGuizmo"                                                FILES ${ImGuizmo} )
+#ENDIF(NJLI_USE_IMGUIZMO_LIBRARY)
 
 IF(NJLI_USE_JSONCPP_LIBRARY)
     SOURCE_GROUP("ThirdParty\\include\\jsoncpp"                                                 FILES ${jsoncpp} )
