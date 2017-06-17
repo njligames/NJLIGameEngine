@@ -14,6 +14,38 @@
 #define TAG "Sound.cpp"
 #include "PhysicsBody.h"
 
+#include "android_file.h"
+
+
+
+
+
+
+
+
+
+
+//#include "ISoundFileWrapper.h"
+
+#include "Wrapper_OGG.h"
+#include "Wrapper_WAV.h"
+#include "Wrapper_RAW.h"
+
+//#include "../header/SoundManager.h"
+//
+//#include "../header/OpenAL.h"
+
+//#include "../../Utils/header/Logger.h"
+//#include "../../Utils/header/VFS/VFS.h"
+
+
+
+
+
+
+
+
+
 
 
 static const char * GetOpenALErrorString(int errID)
@@ -74,10 +106,30 @@ CheckOpenALError(#stmt, __FILE__, __LINE__); \
 namespace njli
 {
     Sound::Sound():
-    AbstractFactoryObject(this),
-    mAudioStream(new AudioStream())
+    AbstractFactoryObject(this)
     {
-        AudioStreamInit(mAudioStream);
+        SINGLE_BUFFER_SIZE = 64 * 1024;
+        
+        mSettings.fileName = "";
+        mSettings.name = "";
+        
+        mSettings.pitch = 1.0f;
+        mSettings.gain = 1.0f;
+        mSettings.loop = false;
+        mSettings.pos = btVector3(0, 0, 0);
+        mSettings.velocity = btVector3(0, 0, 0);
+        
+        mVfsFile = NULL;
+        mSoundFileWrapper = NULL;
+        mSoundData = NULL;
+        mDataSize = 0;
+        
+        mPlayedCount = 0;
+        
+        mState = STOPPED;
+        
+        mSpinLock = false;
+        mLoaded = false;
     }
     
     Sound::Sound(const AbstractBuilder &builder):
@@ -94,13 +146,13 @@ namespace njli
     
     Sound::~Sound()
     {
-        AudioStreamDeinit(mAudioStream);
-        delete mAudioStream;
+        Release();
     }
     
     Sound &Sound::operator=(const Sound &rhs)
     {
         SDL_assert(false);
+        
         if(this != &rhs)
         {
             
@@ -239,11 +291,7 @@ namespace njli
     
     f32 Sound::getTimePosition()
     {
-        u32 _pos = 0;
-        // FMOD::Channel *channel = getChannel();
-        // if(channel)
-        //     channel->getPosition(&_pos, FMOD_TIMEUNIT_MS);
-        return (f32)_pos/1000.0f;
+        return GetTime();
     }
     
     void Sound::setTimePosition(f32 pos)
@@ -256,44 +304,39 @@ namespace njli
     
     f32 Sound::getTimeLength()
     {
-        u32 length = 0;
-        // m_Sound->getLength(&length, FMOD_TIMEUNIT_MS);
-        return (f32)length/1000.0f;
+        return mSoundFileWrapper->GetTotalTime();
     }
     
     bool Sound::isPlaying()
     {
-        ALint val;
-        AL_CHECK(alGetSourcei(mAudioStream->source, AL_SOURCE_STATE, &val));
-        return (val == AL_PLAYING);
+        return IsPlaying();
     }
     
     void Sound::play(bool isPaused)
     {
-        AudioStreamPlay(mAudioStream);
-        njli::World::getInstance()->getWorldSound()->playSound(*this, isPaused);
+        if(mLoaded)
+            Play();
     }
     
     void Sound::stop()
     {
-        
+        if(mLoaded)
+            Stop();
     }
     
     bool Sound::isPaused()
     {
-        bool paused = false;
-        
-        return paused;
+        return (mState == PAUSED);
     }
     
     void Sound::pause()
     {
-        
+        Pause();
     }
     
     void Sound::unPause()
     {
-        
+        Play();
     }
     
     bool Sound::isMuted()
@@ -346,7 +389,12 @@ namespace njli
     
     bool Sound::load(void *system, const char *path)
     {
-        return AudioStreamOpen(mAudioStream, path);
+        mSettings.fileName = ASSET_PATH((char*)path);
+        mSettings.name = getName();
+        
+        LoadData();
+        
+        return true;
     }
     
     bool Sound::load(void *system, const char* fileContent, u32 size)
@@ -357,8 +405,7 @@ namespace njli
     
     void Sound::update()
     {
-        if(isPlaying())
-            AudioStreamUpdate(mAudioStream);
+        Update();
     }
     
      Node *Sound::getParent()
@@ -371,112 +418,545 @@ namespace njli
          return dynamic_cast<const Node*>(AbstractDecorator::getParent());
      }
     
-    void Sound::AudioStreamInit(AudioStream* self)
+    const SoundSettings & Sound::GetSettings() const
     {
-        memset(self, 0, sizeof(AudioStream));
-        
-        AL_CHECK(alGenSources(1, & self->source));
-        AL_CHECK(alGenBuffers(2, self->buffers));
-        
-        self->bufferSize=4096*8;
-        self->shouldLoop=true;//We loop by default
+        return mSettings;
     }
     
-    void Sound::AudioStreamDeinit(AudioStream* self)
+    const SoundInfo & Sound::GetInfo() const
     {
-        ALint val;
-        do
-        {
-            AL_CHECK(alGetSourcei(self->source, AL_SOURCE_STATE, &val));
-        }
-        while(val == AL_PLAYING);
-        
-        AL_CHECK(alDeleteSources(1, & self->source));
-        AL_CHECK(alDeleteBuffers(2, self->buffers));
-        
-        stb_vorbis_close(self->stream);
-        memset(self, 0, sizeof(AudioStream));
+        return mSoundInfo;
     }
     
-    bool Sound::AudioStreamStream(AudioStream* self, ALuint buffer)
+    void Sound::PlayInLoop(bool val)
     {
-        //Uncomment this to avoid VLAs
-        //#define BUFFER_SIZE 4096*32
-#ifndef BUFFER_SIZE//VLAs ftw
-#define BUFFER_SIZE (self->bufferSize)
-#endif
-        ALshort pcm[BUFFER_SIZE];
-        int  size = 0;
-        int  result = 0;
+        mSettings.loop = val;
+    }
+    
+    float Sound::GetTime() const
+    {
+        //Get duration of remaining buffer
+        float preBufferTime = this->GetBufferedTime(mRemainBuffers);
         
-        while(size < BUFFER_SIZE)
+        //get current time of file stream
+        //this stream is "in future" because of buffered data
+        //duration of buffer MUST be removed from time
+         float time =  mSoundFileWrapper->GetTime() - preBufferTime;
+        
+        if (mRemainBuffers < PRELOAD_BUFFERS_COUNT)
         {
-            result = stb_vorbis_get_samples_short_interleaved(self->stream, self->info.channels, pcm+size, BUFFER_SIZE-size);
-            if(result > 0) size += result*self->info.channels;
-            else break;
+            //file has already been read all
+            //we are currently "playing" sound from cache only
+            //and there is no loop active
+            time = mSoundFileWrapper->GetTotalTime() - preBufferTime;
         }
         
-        if(size == 0) return false;
-        
-        AL_CHECK(alBufferData(buffer, self->format, pcm, size*sizeof(ALshort), self->info.sample_rate));
-        
-        self->totalSamplesLeft-=size;
-#undef BUFFER_SIZE
-        
-        return true;
-    }
-    
-    bool Sound::AudioStreamOpen(AudioStream* self, const char* filename)
-    {
-        self->stream = stb_vorbis_open_filename(ASSET_PATH((char*)filename), NULL, NULL);
-        if(not self->stream) return false;
-        // Get file info
-        self->info = stb_vorbis_get_info(self->stream);
-        if(self->info.channels == 2) self->format = AL_FORMAT_STEREO16;
-        else self->format = AL_FORMAT_MONO16;
-        
-        if(not AudioStreamStream(self, self->buffers[0])) return false;
-        if(not AudioStreamStream(self, self->buffers[1])) return false;
-        AL_CHECK(alSourceQueueBuffers(self->source, 2, self->buffers));
-        
-        self->totalSamplesLeft=stb_vorbis_stream_length_in_samples(self->stream) * self->info.channels;
-        
-        return true;
-    }
-    
-    bool Sound::AudioStreamUpdate(AudioStream* self)
-    {
-        ALint processed=0;
-        
-        AL_CHECK(alGetSourcei(self->source, AL_BUFFERS_PROCESSED, &processed));
-        
-        while(processed--)
+        if (time < 0)
         {
-            ALuint buffer=0;
+            //file has already been read all
+            //we are currently "playing" sound from last loop cycle
+            //but file stream is already in next loop
+            //because of the cache delay
             
-            AL_CHECK(alSourceUnqueueBuffers(self->source, 1, &buffer));
+            //Signe of "+" => "- abs(time)" rewritten to "+ time"
+            time = mSoundFileWrapper->GetTotalTime() + time;
+        }
+        
+        //add current buffer play time to time from file stream
+        float result;
+        AL_CHECK(alGetSourcef(mSource->refID, AL_SEC_OFFSET, &result));
+        
+        time += result;
+        
+        //time in seconds
+        return (time);
+    }
+    
+    float Sound::GetMaxBufferedTime() const
+    {
+        return this->GetBufferedTime(PRELOAD_BUFFERS_COUNT);
+    }
+    
+    int Sound::GetPlayedCount() const
+    {
+        return mPlayedCount;
+    }
+    
+    bool Sound::IsPlaying() const
+    {
+        return (mState == PLAYING);
+    }
+    
+    void Sound::Release()
+    {
+        if (mState != STOPPED)
+        {
+            this->Stop();
+        }
+        
+        fclose(mVfsFile);
+        mVfsFile = NULL;
+        
+        if(mSoundData)
+            delete mSoundData;
+        if(mSoundFileWrapper)
+            delete mSoundFileWrapper;
+        
+        for (int i = 0; i < PRELOAD_BUFFERS_COUNT; i++)
+        {
+            njli::World::getInstance()->getWorldSound()->FreeBuffer(mBuffers[i]);
+        }
+    }
+    
+    void Sound::Play()
+    {
+        if (mState == PLAYING)
+        {
+            //can not start play same sound twice
+            return;
+        }
+        
+        if (mState == PAUSED)
+        {
+            mState = PLAYING;
             
-            if(not AudioStreamStream(self, buffer)){
-                bool shouldExit=true;
-                
-                if(self->shouldLoop){
-                    stb_vorbis_seek_start(self->stream);
-                    self->totalSamplesLeft=stb_vorbis_stream_length_in_samples(self->stream) * self->info.channels;
-                    shouldExit=not AudioStreamStream(self, buffer);
+            AL_CHECK(alSourcef(mSource->refID, AL_PITCH, mSettings.pitch));
+            AL_CHECK(alSourcef(mSource->refID, AL_GAIN, mSettings.gain));
+            AL_CHECK(alSource3f(mSource->refID, AL_POSITION, mSettings.pos.x(), mSettings.pos.y(), mSettings.pos.z()));
+            AL_CHECK(alSource3f(mSource->refID, AL_VELOCITY, mSettings.velocity.x(), mSettings.velocity.y(), mSettings.velocity.z()));
+            AL_CHECK(alSourcei(mSource->refID, AL_LOOPING, mSettings.loop));
+            
+            AL_CHECK( alSourcePlay(mSource->refID) );
+            
+            return;
+        }
+        
+        mSource = njli::World::getInstance()->getWorldSound()->GetFreeSource();
+        
+        if (mSource == NULL)
+        {
+            return;
+        }
+        
+        AL_CHECK( alSourcef(mSource->refID,  AL_PITCH, mSettings.pitch)) ;
+        AL_CHECK( alSourcef(mSource->refID,  AL_GAIN, mSettings.gain) );
+        AL_CHECK( alSource3f(mSource->refID, AL_POSITION, mSettings.pos.x(), mSettings.pos.y(), mSettings.pos.z()) );
+        AL_CHECK( alSource3f(mSource->refID, AL_VELOCITY, mSettings.velocity.x(), mSettings.velocity.y(), mSettings.velocity.z()) );
+        AL_CHECK( alSourcei(mSource->refID,  AL_LOOPING, mSettings.loop) );
+        
+        int usedBuffersCount = 0;
+        for (int i = 0; i < PRELOAD_BUFFERS_COUNT; i++)
+        {
+            if (mBuffers[i] == NULL)
+            {
+                continue;
+            }
+            AL_CHECK( alSourceQueueBuffers(mSource->refID, 1, &mBuffers[i]->refID) );
+            usedBuffersCount++;
+        }
+        
+        mPlayedCount++;
+        AL_CHECK( alSourcePlay(mSource->refID) );
+        mState = PLAYING;
+        mActiveBufferID = 0;
+        mRemainBuffers = usedBuffersCount;
+    }
+    
+    void Sound::Pause()
+    {
+        if (mState != PLAYING)
+        {
+            return;
+        }
+        
+        mState = PAUSED;
+        
+        AL_CHECK( alSourcePause(mSource->refID) );
+    }
+    
+    void Sound::Stop()
+    {
+        if (mState == STOPPED)
+        {
+            return;
+        }
+        
+        mSpinLock = true;
+        mState = STOPPED;
+        
+        AL_CHECK( alSourceStop(mSource->refID) );
+        
+        
+        for (int i = 0; i < PRELOAD_BUFFERS_COUNT; i++)
+        {
+            if (mBuffers[i] == NULL)
+            {
+                continue;
+            }
+            AL_CHECK( alSourceUnqueueBuffers(mSource->refID, 1, &mBuffers[i]->refID) );
+        }
+        
+        njli::World::getInstance()->getWorldSound()->FreeSource(mSource);
+        
+        mSoundFileWrapper->ResetStream();
+        
+        for (u32 i = 0; i < PRELOAD_BUFFERS_COUNT; i++)
+        {
+            njli::World::getInstance()->getWorldSound()->FreeBuffer(mBuffers[i]);
+            
+            SoundBuffer *buf = njli::World::getInstance()->getWorldSound()->GetFreeBuffer();
+            if (buf == NULL)
+            {
+                SDL_Log("Not enought free sound-buffers");
+                continue;
+            }
+            mBuffers[i] = buf;
+        }
+        
+        this->Preload();
+        mSpinLock = false;
+        
+    }
+    
+    void Sound::Rewind()
+    {
+        mSoundFileWrapper->ResetStream();
+        
+        AL_CHECK( alSourceRewind(mSource->refID) );
+    }
+    
+    void Sound::GetRawData(std::vector<char> * rawData)
+    {
+        if (mState == PLAYING)
+        {
+            SDL_Log("Can not get raw data for sound (%s), that is in PLAY state.", mSettings.name.c_str());
+            return;
+        }
+        
+        mSoundFileWrapper->DecompressAll(*rawData);
+    }
+    
+    template <typename T>
+    void Sound::GetRawDataNormalized(std::vector<T> * rawData)
+    {
+        std::vector<char> raw;
+        this->GetRawData(&raw);
+        
+        if (raw.size() == 0)
+        {
+            return;
+        }
+        
+        auto bytesToT = [](short a, short b) { return ((b << 8) | a) / static_cast<T>(32768.0); };
+        
+        if (mSoundInfo.bitsPerChannel == 16)
+        {
+            int pos = 0;
+            while (pos < raw.size())
+            {
+                T v = bytesToT(raw[pos], raw[pos + 1]);
+                pos += 2;
+                rawData->push_back(v);
+            }
+        }
+        else if (mSoundInfo.bitsPerChannel == 8)
+        {
+            int pos = 0;
+            while (pos < raw.size())
+            {
+                T v = raw[pos] / static_cast<T>(32768.0);
+                pos += 1;
+                rawData->push_back(v);
+            }
+        }
+    }
+    
+    void Sound::LoadData()
+    {
+        for (int i = 0; i < PRELOAD_BUFFERS_COUNT; i++)
+        {
+            mBuffers[i] = NULL;
+        }
+        
+        mSpinLock = false;
+        
+        FILE *vfsFile = mobile__fopen(mSettings.fileName.c_str(), "r");
+        
+        if (vfsFile == NULL)
+        {
+            SDL_Log("File %s not found", mSettings.fileName.c_str());
+            return;
+        }
+        
+        
+        if(mSettings.fileName.substr(mSettings.fileName.find_last_of(".") + 1) == "ogg")
+        {
+            mSoundFileWrapper = new WrapperOgg(this->SINGLE_BUFFER_SIZE);
+        }
+        else if(mSettings.fileName.substr(mSettings.fileName.find_last_of(".") + 1) == "wav")
+        {
+            mSoundFileWrapper = new WrapperWav(this->SINGLE_BUFFER_SIZE);
+        }
+        else
+        {
+            SDL_Log("File extension %s not supported.", mSettings.fileName.substr(mSettings.fileName.find_last_of(".") + 1).c_str());
+        }
+        
+
+        mSoundFileWrapper->LoadFromFile((FILE *)vfsFile, &mSoundInfo);
+        
+//        if (vfsFile->archiveInfo == NULL)
+//        {
+//            mSoundFileWrapper->LoadFromFile((FILE *)vfsFile, &mSoundInfo);
+//        }
+//        else
+//        {
+//            VFS::GetInstance()->CloseFile(mVfsFile);
+//            mVfsFile = NULL;
+//            
+//            mSoundData = VFS::GetInstance()->GetFileContent(mSettings.fileName, &mDataSize);
+//            mSoundFileWrapper->LoadFromMemory(mSoundData, mDataSize, &mSoundInfo);
+//        }
+        
+        
+        
+        //AL_CHECK( alGenSources((ALuint)1, &mSource)) ;
+        
+        //AL_CHECK( alGenBuffers((ALuint)1, &this->buffer) );
+        
+        
+        
+        
+        
+        if (mSoundInfo.bitsPerChannel == 16)
+        {
+            
+            if (mSoundInfo.channels == 1)
+            {
+                mSoundInfo.format = AL_FORMAT_MONO16;
+            }
+            else
+            {
+                mSoundInfo.format = AL_FORMAT_STEREO16;
+            }
+        }
+        else if (mSoundInfo.bitsPerChannel == 8)
+        {
+            
+            if (mSoundInfo.channels == 1)
+            {
+                mSoundInfo.format = AL_FORMAT_MONO8;
+            }
+            else
+            {
+                mSoundInfo.format = AL_FORMAT_STEREO8;
+            }
+        }
+        
+        for (u32 i = 0; i < PRELOAD_BUFFERS_COUNT; i++)
+        {
+            SoundBuffer *buf = njli::World::getInstance()->getWorldSound()->GetFreeBuffer();
+            if (buf == NULL)
+            {
+                SDL_Log("Not enought free sound-buffers");
+                continue;
+            }
+            mBuffers[i] = buf;
+        }
+        
+        this->Preload();
+        
+        mLoaded = true;
+        
+    }
+    
+    
+    /*-----------------------------------------------------------
+     Function:	LoadRawData
+     Parametrs:
+     [in] rawData -
+     [in] dataSize -
+     
+     Use raw data for this sound object¥s sound
+     Raw data are copied into sound wrapper and later read from it
+     -------------------------------------------------------------*/
+    void Sound::LoadRawData(char * rawData, u32 dataSize)
+    {
+        for (int i = 0; i < PRELOAD_BUFFERS_COUNT; i++)
+        {
+            mBuffers[i] = NULL;
+        }
+        
+        mSpinLock = false;
+        
+        mSoundFileWrapper = new WrapperRaw(mSoundInfo, this->SINGLE_BUFFER_SIZE);
+        
+        mSoundFileWrapper->LoadFromMemory(rawData, dataSize, &mSoundInfo);
+        
+        if (mSoundInfo.bitsPerChannel == 16)
+        {
+            
+            if (mSoundInfo.channels == 1)
+            {
+                mSoundInfo.format = AL_FORMAT_MONO16;
+            }
+            else
+            {
+                mSoundInfo.format = AL_FORMAT_STEREO16;
+            }
+        }
+        else if (mSoundInfo.bitsPerChannel == 8)
+        {
+            
+            if (mSoundInfo.channels == 1)
+            {
+                mSoundInfo.format = AL_FORMAT_MONO8;
+            }
+            else
+            {
+                mSoundInfo.format = AL_FORMAT_STEREO8;
+            }
+        }
+        
+        for (u32 i = 0; i < PRELOAD_BUFFERS_COUNT; i++)
+        {
+            SoundBuffer *buf = njli::World::getInstance()->getWorldSound()->GetFreeBuffer();
+            if (buf == NULL)
+            {
+                SDL_Log("Not enought free sound-buffers");
+                continue;
+            }
+            mBuffers[i] = buf;
+        }
+        
+        this->Preload();
+        
+        mLoaded = true;
+    }
+    
+    bool Sound::Preload()
+    {
+        for (int i = 0; i < PRELOAD_BUFFERS_COUNT; i++)
+        {
+            if (mBuffers[i] == NULL)
+            {
+                continue;
+            }
+            if (this->PreloadBuffer(mBuffers[i]->refID) == false)
+            {
+                //preload raw data - all buffers were not used, free them
+                for (int j = i; j < PRELOAD_BUFFERS_COUNT; j++)
+                {
+                    njli::World::getInstance()->getWorldSound()->FreeBuffer(mBuffers[j]);
+                    mBuffers[j] = NULL;
                 }
                 
-                if(shouldExit) return false;
+                return false;
             }
-            AL_CHECK(alSourceQueueBuffers(self->source, 1, &buffer));
         }
         
         return true;
     }
     
-    bool Sound::AudioStreamPlay(AudioStream* self)
+    bool Sound::PreloadBuffer(int bufferID)
     {
-        AL_CHECK(alSourcePlay(self->source));
+        std::vector<char> decompressBuffer;
+        mSoundFileWrapper->DecompressStream(decompressBuffer, mSettings.loop);
+        
+        if (decompressBuffer.size() == 0)
+        {
+            //nothing more to read
+            return false;
+        }
+        
+        AL_CHECK( alBufferData(bufferID, mSoundInfo.format, &decompressBuffer[0], static_cast<ALsizei>(decompressBuffer.size()), mSoundInfo.freqency) );
         
         return true;
     }
+    
+    
+    
+    float lastTimeTmp = 0;
+    void Sound::Update()
+    {
+        if (mState != PLAYING)
+        {
+            return;
+        }
+        
+        mSpinLock = true;
+        
+//        SDL_Log("Sound %s Time: %f of %f\n", getName(), getTimePosition(), getTimeLength());
+        
+//        float result = this->GetTime();
+//        if (lastTimeTmp != result)
+//        {
+//            SDL_Log("Sound %s Time: %f of %f\n", getName(), result, getTimeLength());
+//            lastTimeTmp = result;
+//        }
+        
+        // get the processed buffer count
+        int buffersProcessed = 0;
+        AL_CHECK( alGetSourcei(mSource->refID, AL_BUFFERS_PROCESSED, &buffersProcessed) );
+        
+        // check to see if we have a buffer to deQ
+        if (buffersProcessed > 0)
+        {
+            if (buffersProcessed > 1)
+            {
+                //we have processed more than 1 buffer since last call of Update method
+                //we should probably reload more buffers than just the one
+                SDL_Log("Processed more than 1 buffer since last Update");
+            }
+            
+            mActiveBufferID += buffersProcessed;
+            mActiveBufferID %= PRELOAD_BUFFERS_COUNT;
+            
+            // great! deQ a buffer and re-fill it
+            u32 bufferID;
+            
+            // remove the buffer form the source
+            AL_CHECK(alSourceUnqueueBuffers(mSource->refID, 1, &bufferID) );
+            
+            // fill the buffer up and reQ!
+            // if we cant fill it up then we are finished
+            // in which case we dont need to re-Q
+            // return NO if we dont have more buffers to Q
+            
+            if (mState == STOPPED)
+            {
+                //put it back
+                AL_CHECK( alSourceQueueBuffers(mSource->refID, 1, &bufferID) );
+                mSpinLock = false;
+                return;
+            }
+            
+            if (this->PreloadBuffer(bufferID) == false)
+            {
+                mRemainBuffers--;
+            }
+            
+            //put it back
+            AL_CHECK( alSourceQueueBuffers(mSource->refID, 1, &bufferID) );
+        }
+        
+        mSpinLock = false;
+        if (mRemainBuffers <= 0)
+        {
+            this->Stop();
+        }
+        
+    }
+    
+    float Sound::GetBufferedTime(int buffersCount) const
+    {
+        float preBufferTime = this->SINGLE_BUFFER_SIZE / static_cast<float>(mSoundInfo.freqency * mSoundInfo.channels * mSoundInfo.bitsPerChannel / 8);
+        preBufferTime *= buffersCount;
+        
+        return preBufferTime;
+    }
+    
+    template void Sound::GetRawDataNormalized(std::vector<float> * rawData);
+    
+    template void Sound::GetRawDataNormalized(std::vector<double> * rawData);
 }

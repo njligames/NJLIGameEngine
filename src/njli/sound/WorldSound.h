@@ -11,6 +11,12 @@
 #include "Util.h"
 #include <string>
 
+#include <unordered_map>
+#include <vector>
+#include <list>
+#include "Sound.h"
+class ISoundFileWrapper;
+
 //#if defined(DEBUG) || defined (_DEBUG)
 //#define FMOD_LOGGING_ON 1
 //#else
@@ -18,6 +24,20 @@
 //#endif
 
 //http://www.ogre3d.org/tikiwiki/tiki-index.php?page=FMOD+SoundManager
+
+#if defined(NJLI_SOUND_OPENAL)
+typedef struct SoundBuffer
+{
+    bool free;
+    u32 refID;
+} SoundBuffer;
+
+typedef struct SoundSource
+{
+    bool free;
+    u32 refID;
+} SoundSource;
+#endif
 
 namespace njli {
 class Sound;
@@ -53,16 +73,65 @@ protected:
 
     
 #if defined(NJLI_SOUND_OPENAL)
+protected:
+    ALCdevice * mDeviceAL;
+    ALCcontext * mContextAL;
+    std::string mDeviceName;
+    
+//    pthread_t updateThread;
+//    pthread_mutex_t fakeMutex;
+//    pthread_cond_t fakeCond;
+//    bool useThreadUpdate;
+//    bool ended;
+    
+    bool mEnabled;
+    float mLastVolume;
+    
+    float mMasterVolume;
+    
+    std::unordered_map<std::string, Sound *> mSounds;
+    
+    std::vector<SoundSource> mSources;
+    std::vector<SoundBuffer> mBuffers;
+    
+    std::list<SoundSource *> mFreeSources;
+    std::list<SoundBuffer *> mFreeBuffers;
+    
+    void Init();
+    
+    SoundSource * GetFreeSource();
+    SoundBuffer * GetFreeBuffer();
+    
+    void FreeSource(SoundSource * source);
+    void FreeBuffer(SoundBuffer * buffer);
+    
+    bool ExistSound(const std::string & name) const;
+    void ReleaseSound(const std::string & name);
+//    void AddSound(const std::string & fileName, const std::string & name);
+    void AddSound(Sound * sound);
+    
+    Sound * GetSound(const std::string & name);
+    
+    void Update();
+    
+    void SetMasterVolume(float volume);
+    void VolumeUp(float amount = 0.1f);
+    void VolumeDown(float amount = 0.1f);
+    
+    bool IsEnabled();
+    void Disable();
+    void Enable();
 private:
-    // OpenAL context for playing sounds
-    ALCcontext* m_ALCcontext;
-    // The device we are going to use to play sounds
-    ALCdevice* m_ALCdevice;
-    std::vector<Sound*> mSounds;
-    std::vector<Sound*> mPlayingSounds;
+//    // OpenAL context for playing sounds
+//    ALCcontext* m_ALCcontext;
+//    // The device we are going to use to play sounds
+//    ALCdevice* m_ALCdevice;
+//    std::vector<Sound*> mSounds;
+//    std::vector<Sound*> mPlayingSounds;
     
 
 #elif defined(NJLI_SOUND_FMOD)
+protected:
     FMOD::Channel* getChannel(s32 channelindex);
     
 private:

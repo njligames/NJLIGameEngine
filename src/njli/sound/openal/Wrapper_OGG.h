@@ -2,11 +2,7 @@
 #define WRAPPER_OGG_H
 
 
-
-namespace njli 
-{
-	struct SoundInfo;
-}
+struct SoundInfo;
 
 struct OggVorbis_File;
 

@@ -2,11 +2,7 @@
 #define WRAPPER_WAV_H
 
 
-
-namespace njli
-{
-	struct SoundInfo;
-}
+struct SoundInfo;
 
 
 #define WAV_BUFFER_SIZE 2048

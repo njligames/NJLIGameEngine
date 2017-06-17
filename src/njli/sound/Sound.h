@@ -18,53 +18,73 @@
 
 #include "SoundPlatform.h"
 
+//#if defined(NJLI_SOUND_OPENAL)
+//#define STB_VORBIS_HEADER_ONLY
+//#include "stb_vorbis.c"
+//#endif
+
 #if defined(NJLI_SOUND_OPENAL)
-#define STB_VORBIS_HEADER_ONLY
-#include "stb_vorbis.c"
+
+#define PRELOAD_BUFFERS_COUNT 3
+
+#include "btVector3.h"
+struct SoundSource;
+struct SoundBuffer;
+
+typedef enum SOUND_STATE { PLAYING = 1, PAUSED = 2, STOPPED = 3} SOUND_STATE;
+
+typedef struct SoundSettings
+{
+    
+    std::string name;
+    std::string fileName;
+    
+    
+    float pitch;
+    float gain;
+    bool loop;
+    btVector3 pos;
+    btVector3 velocity;
+    
+    
+} SoundSettings;
+
+typedef struct SoundInfo
+{
+    int freqency;
+    int channels;
+    int format;
+    int bitsPerChannel;
+    
+    /* The below bitrate declarations are *hints*.
+     Combinations of the three values carry the following implications:
+     
+     all three set to the same value:
+     implies a fixed rate bitstream
+     only nominal set:
+     implies a VBR stream that averages the nominal bitrate.  No hard
+     upper/lower limit
+     upper and or lower set:
+     implies a VBR bitstream that obeys the bitrate limits. nominal
+     may also be set to give a nominal rate.
+     none set:
+     the coder does not care to speculate.
+     */
+    
+    long bitrate_upper;
+    long bitrate_nominal;
+    long bitrate_lower;
+    long bitrate_window;
+    
+    bool seekable;
+    
+} SoundInfo;
+
 #endif
 
 namespace njli {
     
-    
-    
-    
-#if defined(NJLI_SOUND_OPENAL)
-    typedef struct SoundInfo
-    {
-        int freqency;
-        int channels;
-        int format;
-        int bitsPerChannel;
-        
-        /* The below bitrate declarations are *hints*.
-         Combinations of the three values carry the following implications:
-         
-         all three set to the same value:
-         implies a fixed rate bitstream
-         only nominal set:
-         implies a VBR stream that averages the nominal bitrate.  No hard
-         upper/lower limit
-         upper and or lower set:
-         implies a VBR bitstream that obeys the bitrate limits. nominal
-         may also be set to give a nominal rate.
-         none set:
-         the coder does not care to speculate.
-         */
-        
-        long bitrate_upper;
-        long bitrate_nominal;
-        long bitrate_lower;
-        long bitrate_window;
-        
-        bool seekable;
-        
-    } SoundInfo;
-    
-#endif
-    
-    
-    
-    
+    class ISoundFileWrapper;
 class SoundBuilder;
 class Node;
 
@@ -140,44 +160,103 @@ public:
     bool load(void *system, const char *path);
     bool load(void *system, const char* fileContent, u32 size);
 
-#if defined(NJLI_SOUND_OPENAL)
-    
-    void update();
-private:
-    typedef struct{
-        ALuint ID;
-        
-        stb_vorbis* stream;
-        stb_vorbis_info info;
-        
-        ALuint buffers[2];
-        ALuint source;
-        ALenum format;
-        
-        size_t bufferSize;
-        
-        size_t totalSamplesLeft;
-        
-        bool shouldLoop;
-    }AudioStream;
-    
-    void AudioStreamInit(AudioStream* self);
-    void AudioStreamDeinit(AudioStream* self);
-    bool AudioStreamStream(AudioStream* self, ALuint buffer);
-    bool AudioStreamOpen(AudioStream* self, const char* filename);
-    bool AudioStreamUpdate(AudioStream* self);
-    bool AudioStreamPlay(AudioStream* self);
-    
-    AudioStream *mAudioStream;
-    
     Node* getParent();
     const Node* getParent() const;
     
+#if defined(NJLI_SOUND_OPENAL)
+public:
+    void update();
+    
+protected:
+    const SoundSettings & GetSettings() const;
+    const SoundInfo & GetInfo() const;
+    
+    void PlayInLoop(bool val);
+    
+    float GetTime() const;
+    float GetMaxBufferedTime() const;
+    int GetPlayedCount() const;
+    
+    bool IsPlaying() const;
+    
+    void Release();
+    
+    void Play();
+    void Pause();
+    void Stop();
+    
+    void Rewind();
+    
+    
+    void GetRawData(std::vector<char> * rawData);
+    
+    template <typename T>
+    void GetRawDataNormalized(std::vector<T> * rawData);
+    
+    
+//    class ISoundFileWrapper;
+    
+    SoundSource * mSource;
+    SoundBuffer * mBuffers[PRELOAD_BUFFERS_COUNT];
+    int mActiveBufferID;
+    int SINGLE_BUFFER_SIZE;
+    
+    SoundSettings mSettings;
+    SoundInfo mSoundInfo;
+    
+    FILE * mVfsFile;
+    char * mSoundData;
+    int mDataSize;
+    ISoundFileWrapper * mSoundFileWrapper;
+    SOUND_STATE mState;
+    int mRemainBuffers;
+    int mPlayedCount;
+    
+    void LoadData();
+    void LoadRawData(char * rawData, u32 dataSize);
+    
+    bool Preload();
+    bool PreloadBuffer(int bufferID);
+    void Update();
+    
+    bool mSpinLock;
+    
+    float GetBufferedTime(int buffersCount) const;
+    
+    bool mLoaded;
+private:
+//    typedef struct{
+//        ALuint ID;
+//        
+//        stb_vorbis* stream;
+//        stb_vorbis_info info;
+//        
+//        ALuint buffers[2];
+//        ALuint source;
+//        ALenum format;
+//        
+//        size_t bufferSize;
+//        
+//        size_t totalSamplesLeft;
+//        
+//        bool shouldLoop;
+//    }AudioStream;
+//    
+//    void AudioStreamInit(AudioStream* self);
+//    void AudioStreamDeinit(AudioStream* self);
+//    bool AudioStreamStream(AudioStream* self, ALuint buffer);
+//    bool AudioStreamOpen(AudioStream* self, const char* filename);
+//    bool AudioStreamUpdate(AudioStream* self);
+//    bool AudioStreamPlay(AudioStream* self);
+//    
+//    AudioStream *mAudioStream;
+    
+    
+    
 #elif defined(NJLI_SOUND_FMOD)
+public:
 protected:
     FMOD::Channel* getChannel();
-    
-
 private:
     FMOD::Sound* m_Sound;
     s32 m_ChannelIndex;

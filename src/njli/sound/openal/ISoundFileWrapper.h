@@ -2,11 +2,7 @@
 #define INTERFACE_SOUND_WRAPPER_H
 
 
-
-namespace njli
-{
-	struct SoundInfo;
-}
+struct SoundInfo;
 
 
 
