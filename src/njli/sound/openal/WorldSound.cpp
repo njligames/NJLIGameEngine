@@ -8,6 +8,8 @@
 
 #define MAXCHANNELS (32)
 
+//https://www.gamedev.net/resources/_/technical/game-programming/basic-openal-sound-manager-for-your-project-r3791
+
 static const char * GetOpenALErrorString(int errID)
 {
     if (errID == AL_NO_ERROR) return "";

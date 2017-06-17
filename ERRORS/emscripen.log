@@ -1,7 +1,6 @@
-In file included from /Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/exts/luasocket/usocket.c:19:
-/Applications/Developer/emsdk_portable/emscripten/1.37.9/system/include/libc/sys/poll.h:1:2: warning: redirecting incorrect #include <sys/poll.h> to <poll.h> [-W#warnings]
-#warning redirecting incorrect #include <sys/poll.h> to <poll.h>
- ^
+/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/graphics/ImGuizmo.cpp:734:9: warning: case value not in enumerated type 'ImGuizmo::OPERATION' [-Wswitch]
+                 case BOUNDS:
+                      ^
 1 warning generated.
 /Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/WorldInput.cpp:236:5: warning: control reaches end of non-void function [-Wreturn-type]
     }
@@ -14,6 +13,10 @@ In file included from /Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/ext
 /Applications/Developer/emsdk_portable/emscripten/1.37.9/system/include/libc/sys/poll.h:1:2: warning: redirecting incorrect #include <sys/poll.h> to <poll.h> [-W#warnings]
 #warning redirecting incorrect #include <sys/poll.h> to <poll.h>
  ^
+1 warning generated.
+/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/graphics/ImGuizmo.cpp:734:9: warning: case value not in enumerated type 'ImGuizmo::OPERATION' [-Wswitch]
+                 case BOUNDS:
+                      ^
 1 warning generated.
 /Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/WorldInput.cpp:236:5: warning: control reaches end of non-void function [-Wreturn-type]
     }
@@ -27,6 +30,10 @@ In file included from /Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/ext
 /Applications/Developer/emsdk_portable/emscripten/1.37.9/system/include/libc/sys/poll.h:1:2: warning: redirecting incorrect #include <sys/poll.h> to <poll.h> [-W#warnings]
 #warning redirecting incorrect #include <sys/poll.h> to <poll.h>
  ^
+1 warning generated.
+/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/graphics/ImGuizmo.cpp:734:9: warning: case value not in enumerated type 'ImGuizmo::OPERATION' [-Wswitch]
+                 case BOUNDS:
+                      ^
 1 warning generated.
 /Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/WorldInput.cpp:236:5: warning: control reaches end of non-void function [-Wreturn-type]
     }

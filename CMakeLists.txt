@@ -731,7 +731,7 @@ IF( ${NJLI_SOUND_PLATFORM} STREQUAL "fmod" )
 ELSEIF( ${NJLI_SOUND_PLATFORM} STREQUAL "openal" )
     SET(NJLIGameEngine_HDRS 
         ${NJLIGameEngine_HDRS} 
-        ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/alut
+        #${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/alut
         ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/ogg
         ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/vorbis
         )
@@ -907,20 +907,20 @@ ENDFOREACH()
 
 
 
-FILE( GLOB_RECURSE src
-    ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/alut/*.h
-    ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/alut/*.inl
-    ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/alut/*.hpp
-    )
-SET(REG "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/alut/.*([.]h|[.]inl|[.]hpp)")
-FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND alut ${filename})
-    ELSE()
-        LIST(APPEND group_other ${filename})
-    ENDIF()
-ENDFOREACH()
+#FILE( GLOB_RECURSE src
+#    ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/alut/*.h
+#    ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/alut/*.inl
+#    ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/alut/*.hpp
+#    )
+#SET(REG "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/alut/.*([.]h|[.]inl|[.]hpp)")
+#FOREACH(filename ${src})
+#    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+#    IF(match_group_sources)
+#        LIST(APPEND alut ${filename})
+#    ELSE()
+#        LIST(APPEND group_other ${filename})
+#    ENDIF()
+#ENDFOREACH()
 
 FILE( GLOB_RECURSE src
     ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/include/ogg/*.h
@@ -2005,7 +2005,7 @@ IF( ${NJLI_SOUND_PLATFORM} STREQUAL "fmod" )
         )
 ELSEIF( ${NJLI_SOUND_PLATFORM} STREQUAL "openal" )
     LIST(APPEND NJLIGameEngine_THIRDPARTY_INC
-        ${alut} 
+        #${alut} 
         ${ogg} 
         ${vorbis} 
         )
@@ -2919,7 +2919,7 @@ IF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" )
     SET(imported_uSynergy_location                    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/usynergy/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libuSynergy.a")
 
     SET(imported_openal_location                      "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/openal/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libopenal.a")
-    SET(imported_alut_location                        "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/alut/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libalut.a")
+    #SET(imported_alut_location                        "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/alut/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libalut.a")
     SET(imported_vorbis_location                      "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libvorbis.a")
     SET(imported_vorbisenc_location                   "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libvorbisenc.a")
     SET(imported_vorbisfile_location                  "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/10.2/Release\$(EFFECTIVE_PLATFORM_NAME)/libvorbisfile.a")
@@ -3014,7 +3014,7 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
     SET(imported_uSynergy_location                    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/usynergy/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/libuSynergy.a")
 
     SET(imported_openal_location                      "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/openal/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/libopenal.a")
-    SET(imported_alut_location                        "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/alut/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libalut.a")
+    #SET(imported_alut_location                        "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/alut/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/lib/libalut.a")
     SET(imported_vorbis_location                      "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/libvorbis.a")
     SET(imported_vorbisenc_location                   "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/libvorbisenc.a")
     SET(imported_vorbisfile_location                  "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/libvorbisfile.a")
@@ -3111,7 +3111,7 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
     SET(imported_uSynergy_location                    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/usynergy/${NJLI_BUILD_PLATFORM}/10.12/Release/libuSynergy.a")
 
     SET(imported_openal_location                      "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/openal/${NJLI_BUILD_PLATFORM}/10.12/libopenal.a")
-    SET(imported_alut_location                        "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/alut/${NJLI_BUILD_PLATFORM}/10.12/Release/lib/libalut.a")
+    #SET(imported_alut_location                        "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/alut/${NJLI_BUILD_PLATFORM}/10.12/Release/lib/libalut.a")
     SET(imported_vorbis_location                      "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/10.12/Release/libvorbis.a")
     SET(imported_vorbisenc_location                   "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/10.12/Release/libvorbisenc.a")
     SET(imported_vorbisfile_location                  "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/10.12/Release/libvorbisfile.a")
@@ -3207,7 +3207,7 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
     SET(imported_uSynergy_location                    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/usynergy/${NJLI_BUILD_PLATFORM}/Release/libuSynergy.a")
 
     SET(imported_openal_location                      "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/openal/${NJLI_BUILD_PLATFORM}/Release/libopenal.a")
-    SET(imported_alut_location                        "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/alut/${NJLI_BUILD_PLATFORM}/Release/libalut.a")
+    #SET(imported_alut_location                        "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/alut/${NJLI_BUILD_PLATFORM}/Release/libalut.a")
     SET(imported_vorbis_location                      "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/Release/libvorbis.a")
     SET(imported_vorbisenc_location                   "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/Release/libvorbisenc.a")
     SET(imported_vorbisfile_location                  "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/Release/libvorbisfile.a")
@@ -3306,7 +3306,7 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "android" )
     SET(imported_SDL2_location                        "${NJLI_THIRDPARTY_DIRECTORY}/SDL2/lib/android/23/Release/${ANDROID_ABI}/libSDL2.so" )
     SET(imported_uSynergy_location                    "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/usynergy/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libuSynergy.a")
     SET(imported_openal_location                      "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/openal/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libopenal.a")
-    SET(imported_alut_location                        "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/alut/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libalut.a")
+    #SET(imported_alut_location                        "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/alut/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libalut.a")
     SET(imported_vorbis_location                      "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libvorbis.a")
     SET(imported_vorbisenc_location                   "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libvorbisenc.a")
     SET(imported_vorbisfile_location                  "${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/19/Release/${ANDROID_ABI}/libvorbisfile.a")
@@ -3366,10 +3366,10 @@ ELSEIF( ${NJLI_SOUND_PLATFORM} STREQUAL "openal" )
         LIST(APPEND EXTRA_PLATFORM_LIBS imported_openal)
     ENDIF( ${NJLI_BUILD_PLATFORM} EQUAL android )
 
-    INCLUDE_DIRECTORIES("${NJLI_THIRDPARTY_DIRECTORY}/alut/include" )
-    ADD_LIBRARY(imported_alut STATIC IMPORTED )
-    SET_TARGET_PROPERTIES(imported_alut PROPERTIES IMPORTED_LOCATION ${imported_alut_location})
-    LIST(APPEND EXTRA_PLATFORM_LIBS imported_alut)
+    #    INCLUDE_DIRECTORIES("${NJLI_THIRDPARTY_DIRECTORY}/alut/include" )
+    #    ADD_LIBRARY(imported_alut STATIC IMPORTED )
+    #    SET_TARGET_PROPERTIES(imported_alut PROPERTIES IMPORTED_LOCATION ${imported_alut_location})
+    #    LIST(APPEND EXTRA_PLATFORM_LIBS imported_alut)
 
     INCLUDE_DIRECTORIES("${NJLI_THIRDPARTY_DIRECTORY}/ogg/include" )
     ADD_LIBRARY(imported_ogg STATIC IMPORTED )
@@ -3710,7 +3710,7 @@ SOURCE_GROUP("ThirdParty\\include\\SDL2"                                        
 IF( ${NJLI_SOUND_PLATFORM} STREQUAL "fmod" )
     SOURCE_GROUP("ThirdParty\\include\\fmod"                                                   FILES ${fmod} )
 ELSEIF( ${NJLI_SOUND_PLATFORM} STREQUAL "openal" )
-    SOURCE_GROUP("ThirdParty\\include\\alut\\AL"                                               FILES ${alut} )
+    #SOURCE_GROUP("ThirdParty\\include\\alut\\AL"                                               FILES ${alut} )
     SOURCE_GROUP("ThirdParty\\include\\ogg\\ogg"                                               FILES ${ogg} )
     SOURCE_GROUP("ThirdParty\\include\\vorbis\\vorbis"                                         FILES ${vorbis} )
 ENDIF( ${NJLI_SOUND_PLATFORM} STREQUAL "fmod" )

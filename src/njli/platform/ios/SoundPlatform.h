@@ -4,7 +4,6 @@
 #elif defined(NJLI_SOUND_OPENAL)
 #include <OpenAL/al.h>
 #include <OpenAL/alc.h>
-#include "AL/alut.h"
 #elif defined(NJLI_SOUND_SDL)
 #include "SDL_audio.h"
 #else
