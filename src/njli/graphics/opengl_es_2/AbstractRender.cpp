@@ -38,8 +38,8 @@ void renderGL()
     glPushGroupMarkerEXT(0, "renderGL()");
 #endif
     glViewport(viewX, viewY, viewWidth, viewHeight);
-//    glClearColor(bgRed, bgGreen, bgBlue, bgAlpha);
-    glClearColor(0.52, 0.86, 0.99, 1.0f);
+    glClearColor(bgRed, bgGreen, bgBlue, bgAlpha);
+//    glClearColor(0.52, 0.86, 0.99, 1.0f);
     
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT|GL_STENCIL_BUFFER_BIT);
 //    glEnable(GL_BLEND);

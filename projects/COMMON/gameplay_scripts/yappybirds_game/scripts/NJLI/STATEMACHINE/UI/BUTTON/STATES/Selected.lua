@@ -221,6 +221,12 @@ end
 
 function Selected:mouseUp(mouse)
     BaseClass.mouseUp(self, mouse)
+
+    self:getNodeEntity():pushState("NJLI.STATEMACHINE.UI.BUTTON.STATES.Default")
+
+    if not self:getNodeEntity():disabled() then
+        self:getNodeEntity():touchUpOutside(touches)
+    end
 end
 
 function Selected:mouseMove(mouse)

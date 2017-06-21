@@ -327,14 +327,26 @@ end
 
 function Button:rayMouseDown(rayContact)
   BaseClass.rayMouseDown(self, rayContact)
+  
+  if not self:disabled() then
+      self:touchDownInside(rayContact)
+  end
 end
 
 function Button:rayMouseUp(rayContact)
   BaseClass.rayMouseUp(self, rayContact)
+  
+  if not self:disabled() then
+      self:touchUpInside(rayContact)
+  end
 end
 
 function Button:rayMouseMove(rayContact)
   BaseClass.rayMouseMove(self, rayContact)
+  
+  if not self:disabled() then
+      self:touchDragInside(rayContact)
+  end
 end
 
 function Button:rayMouseMissed(node)

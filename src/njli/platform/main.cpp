@@ -353,38 +353,26 @@ static int EventFilter(void* userdata, SDL_Event* event)
 //#endif
     
     njli::NJLIGameEngine::handleEvent(&event);
+    SDLTest_PrintEvent(event);
     
     Uint32 eventType = event->type;
     
     switch (eventType)
     {
-#if ((defined(__MACOSX__) && __MACOSX__) || (defined(__EMSCRIPTEN__) && __EMSCRIPTEN__))
+//#if ((defined(__MACOSX__) && __MACOSX__) || (defined(__EMSCRIPTEN__) && __EMSCRIPTEN__))
         case SDL_MOUSEMOTION:
-        {
-            SDL_Log("SDL EVENT: Mouse: moved to %d,%d (%d,%d) in window %d",
-                    event->motion.x, event->motion.y,
-                    event->motion.xrel, event->motion.yrel,
-                    event->motion.windowID);
-        }
-            break;
         case SDL_MOUSEBUTTONDOWN:
-        {
-            SDL_Log("SDL EVENT: Mouse: button %d pressed at %d,%d with click count %d in window %d",
-                    event->button.button, event->button.x, event->button.y, event->button.clicks,
-                    event->button.windowID);
-        }
-            break;
         case SDL_MOUSEBUTTONUP:
-        {
-            SDL_Log("SDL EVENT: Mouse: button %d released at %d,%d with click count %d in window %d",
-                    event->button.button, event->button.x, event->button.y, event->button.clicks,
-                    event->button.windowID);
             
-        }
+            NJLI_HandleMouse(event->button.button,
+                             event->type,
+                             event->button.x,
+                             event->button.y,
+                             event->button.clicks);
             break;
-#endif
+//#endif
             
-#if ((defined(__IPHONEOS__) && __IPHONEOS__) || (defined(__ANDROID__) && __ANDROID__))
+//#if ((defined(__IPHONEOS__) && __IPHONEOS__) || (defined(__ANDROID__) && __ANDROID__))
         case SDL_FINGERMOTION:
         case SDL_FINGERDOWN:
         case SDL_FINGERUP:
@@ -397,7 +385,7 @@ static int EventFilter(void* userdata, SDL_Event* event)
                              event->tfinger.dy,
                              event->tfinger.pressure);
             break;
-#endif
+//#endif
         default:
             break;
     }
