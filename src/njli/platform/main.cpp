@@ -1091,7 +1091,8 @@ int main(int argc, char** argv)
 #if (defined(__MACOSX__) && __MACOSX__)
     if(argc > 1)
     {
-        setRunningPath(argv[1]);
+//        setRunningPath(argv[1]);
+        setScriptDir(argv[1]);
     }
 #endif
     
@@ -1173,12 +1174,30 @@ int main(int argc, char** argv)
     SDL_AddEventWatch(EventFilter, NULL);
 #endif
     
-#if defined(__MACOSX__)
-    SDL_GetWindowSize(gWindow, &w, &h);
-#else
-    SDL_GL_GetDrawableSize(gWindow, &w, &h);
-#endif
-    NJLI_HandleResize(w, h, gDisplayMode.format, gDisplayMode.refresh_rate);
+    
+    
+    int drawableW, drawableH;
+    int screen_w, screen_h;
+    float pointSizeScale;
+    
+    /* The window size and drawable size may be different when highdpi is enabled,
+     * due to the increased pixel density of the drawable. */
+    SDL_GetWindowSize(gWindow, &screen_w, &screen_h);
+    SDL_GL_GetDrawableSize(gWindow, &drawableW, &drawableH);
+    
+    /* In OpenGL, point sizes are always in pixels. We don't want them looking
+     * tiny on a retina screen. */
+    pointSizeScale = (float) drawableH / (float) screen_h;
+    
+    
+    
+//#if defined(__MACOSX__)
+//    SDL_GetWindowSize(gWindow, &w, &h);
+//#else
+//    SDL_GL_GetDrawableSize(gWindow, &w, &h);
+//#endif
+    
+    NJLI_HandleResize(drawableW, drawableH, gDisplayMode.format, gDisplayMode.refresh_rate);
     
     gDone = (njli::NJLIGameEngine::start() == false)?1:0;
     

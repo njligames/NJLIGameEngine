@@ -68,15 +68,15 @@ static const char *getGLSLVarTypeName(njliGLSLVarType var)
     }
 }
 
-static void log_v_fixed_length(const GLchar* source, const GLint length) {
-//    if (LOGGING_ON) {
-        char log_buffer[length + 1];
-        memcpy(log_buffer, source, length);
-        log_buffer[length] = '\0';
-        
-        SDL_LogVerbose(SDL_LOG_CATEGORY_TEST, "<glGetShaderSource>\n%s\n</glGetShaderSource>", log_buffer);
-//    }
-}
+//static void log_v_fixed_length(const GLchar* source, const GLint length) {
+////    if (LOGGING_ON) {
+//        char log_buffer[length + 1];
+//        memcpy(log_buffer, source, length);
+//        log_buffer[length] = '\0';
+//        
+//        SDL_LogVerbose(SDL_LOG_CATEGORY_TEST, "<glGetShaderSource>\n%s\n</glGetShaderSource>", log_buffer);
+////    }
+//}
 
 static void log_shader_info_log(GLuint shader_object_id) {
 //    if (LOGGING_ON) {
@@ -125,7 +125,9 @@ static GLuint compile_shader(const GLenum type, const GLchar* source, const GLin
     str[0] = new GLchar[length];
     strcpy(str[0], source);
     
-    glShaderSource(shader_object_id, 1, (const GLchar**)&(str[0]), NULL);DEBUG_GL_ERROR_PRINT("glShaderSource", "id:%d,source:%s",shader_object_id,str[0]);
+    SDL_LogVerbose(SDL_LOG_CATEGORY_TEST, "The source on disk : %s", source);
+    
+    glShaderSource(shader_object_id, 1, (const GLchar**)&(source), NULL);DEBUG_GL_ERROR_PRINT("glShaderSource", "id:%d,source:%s",shader_object_id,str[0]);
     glCompileShader(shader_object_id);DEBUG_GL_ERROR_WRITE("glCompileShader");
     glGetShaderiv(shader_object_id, GL_COMPILE_STATUS, &compile_status);DEBUG_GL_ERROR_WRITE("glGetShaderiv");
     
@@ -133,7 +135,7 @@ static GLuint compile_shader(const GLenum type, const GLchar* source, const GLin
     delete [] str;str=NULL;
     
 //    if (false && LOGGING_ON) {
-        SDL_LogVerbose(SDL_LOG_CATEGORY_TEST, "Results of compiling shader source = %s", (compile_status==GL_TRUE)?"true":"false");
+//        SDL_LogVerbose(SDL_LOG_CATEGORY_TEST, "Results of compiling shader source = %s", (compile_status==GL_TRUE)?"true":"false");
     if(compile_status==GL_FALSE)
     {
         GLsizei bufSize = 0;
@@ -395,10 +397,11 @@ namespace njli
                     glDeleteShader(m_fragShader);DEBUG_GL_ERROR_WRITE("glDeleteShader");
                 }
                 
-                compileShader(&m_fragShader, GL_FRAGMENT_SHADER, source);
-                SDL_assert(glIsShader(m_fragShader));
-                ret = true;
-
+                if(strlen(source) > 0)
+                {
+                    ret = compileShader(&m_fragShader, GL_FRAGMENT_SHADER, source);
+                    SDL_assert(glIsShader(m_fragShader));
+                }
             }
                 break;
             case JLI_SHADER_TYPE_VERTEX:
@@ -408,9 +411,11 @@ namespace njli
                     glDeleteShader(m_vertShader);DEBUG_GL_ERROR_WRITE("glDeleteShader");
                 }
                 
-                compileShader(&m_vertShader, GL_VERTEX_SHADER, source);
-                SDL_assert(glIsShader(m_vertShader));
-                ret = true;
+                if(strlen(source) > 0)
+                {
+                    ret = compileShader(&m_vertShader, GL_VERTEX_SHADER, source);
+                    SDL_assert(glIsShader(m_vertShader));
+                }
 
             }
                 break;
@@ -615,13 +620,15 @@ namespace njli
                 glDeleteShader(m_fragShader);DEBUG_GL_ERROR_WRITE("glDeleteProgram\n");
             m_fragShader = -1;
             
-            SDL_LogError(SDL_LOG_CATEGORY_TEST, "Vertex log: `%s`\n", vertexShaderLog());
+            const char *log = vertexShaderLog();
+            if(log && strcmp(log, "(null)") != 0)
+                SDL_LogError(SDL_LOG_CATEGORY_TEST, "Vertex log: `%s`\n", log);
             return false;
         }
         
         if(!compile(m_FragmentShaderSource.c_str(), JLI_SHADER_TYPE_FRAGMENT))
         {
-            SDL_LogError(SDL_LOG_CATEGORY_TEST, "Vertex log: `%s`\n", fragmentShaderLog());
+//            SDL_LogError(SDL_LOG_CATEGORY_TEST, "Vertex log: `%s`\n", fragmentShaderLog());
             
             if(-1 != m_vertShader)
                 glDeleteShader(m_vertShader);DEBUG_GL_ERROR_WRITE("glDeleteProgram\n");
@@ -631,6 +638,10 @@ namespace njli
                 glDeleteShader(m_fragShader);DEBUG_GL_ERROR_WRITE("glDeleteProgram\n");
             m_fragShader = -1;
             
+            const char *log = fragmentShaderLog();
+            if(log && strcmp(log, "(null)") != 0)
+                SDL_LogError(SDL_LOG_CATEGORY_TEST, "Vertex log: `%s`\n", log);
+
             return false;
         }
         
@@ -776,7 +787,7 @@ namespace njli
     {
         *shader = compile_shader(type, source, (int)strlen(source) + 1);
         
-        return GL_TRUE;
+        return (*shader != 0 && *shader != GL_INVALID_ENUM);
         
     }
     

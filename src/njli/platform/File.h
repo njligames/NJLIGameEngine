@@ -20,6 +20,7 @@ void sleepThread(float milliseconds) SIMPLE_FUNCTION;
 void setupFileSystem() SIMPLE_FUNCTION;
     
     void setRunningPath(const char *file) ;
+    void setScriptDir(const char *path);
 
 #ifdef __cplusplus
 }

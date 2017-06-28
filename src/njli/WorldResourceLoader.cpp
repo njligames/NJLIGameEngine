@@ -637,10 +637,11 @@ namespace njli
                                    const char *fragmentFile,
                                    ShaderProgram *shader)
     {
-        SDL_assert(shader);
+//        SDL_assert(shader);
         bool retVal = false;
         
-        if(vertexFile &&
+        if(shader &&
+           vertexFile &&
            fragmentFile)
         {
             FileData *vertexFileData = loadFileData(vertexFile);
@@ -674,6 +675,9 @@ namespace njli
         }
         else
         {
+            if(!shader)
+                SDL_LogWarn(SDL_LOG_CATEGORY_TEST, "shader is null.");
+            
             if(!vertexFile)
                 SDL_LogWarn(SDL_LOG_CATEGORY_TEST, "Vertex filename is empty.");
             if(!fragmentFile)

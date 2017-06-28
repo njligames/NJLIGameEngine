@@ -1110,7 +1110,6 @@ end
         if(World::getInstance()->getWorldLuaVirtualMachine()->compileString(source.c_str()))
         {
             ret = World::getInstance()->getWorldLuaVirtualMachine()->compileFile("scripts/main.lua");
-//            ret = World::getInstance()->getWorldLuaVirtualMachine()->loadFile("scripts/luac.out");
             njli::World::getInstance()->createScript();
         }
         return ret;

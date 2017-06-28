@@ -304,6 +304,8 @@ namespace njli
     
     void WorldDebugDrawer::draw(Camera *camera)
     {
+        
+        
         glm::mat4 viewMatrix = bulletToGlm(camera->getModelView());
         glm::mat4 perspectiveMatrix = bulletToGlm(camera->getProjection());
         
@@ -311,7 +313,7 @@ namespace njli
         
         if (dd::hasPendingDraws())
         {
-            dd::flush(0);
+            dd::flush(njli::World::getInstance()->getWorldClock()->timeStep());
         }
     }
     
@@ -1208,7 +1210,7 @@ namespace njli
         }
         
         ImGui::NewFrame();
-        ImGuizmo::BeginFrame();
+//        ImGuizmo::BeginFrame();
     }
     
     

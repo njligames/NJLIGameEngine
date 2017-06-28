@@ -819,9 +819,16 @@ namespace njli
     
     void Geometry::hide(Camera* camera)
     {
-        SDL_assert(camera);
-        
-        m_RenderCategory = (njliBitCategories)Off(m_RenderCategory, camera->getRenderCategory());
+//        SDL_assert(camera);
+        if(camera)
+        {
+            m_RenderCategory = (njliBitCategories)Off(m_RenderCategory, camera->getRenderCategory());
+        }
+        else
+        {
+            SDL_Log("Hiding geometry with a NULL camera");
+            
+        }
     }
     
     void Geometry::show(Camera * camera)
@@ -1289,6 +1296,8 @@ namespace njli
     
     void Geometry::unLoadGPU_Internal()
     {
+        unLoadGPU();
+        
         SDL_assert(m_UnLoadGPU);
         
         if(m_modelViewBufferID == -1)
@@ -1339,7 +1348,7 @@ namespace njli
         
         if (!shader->isLinked())
         {
-            if(shader->link())
+            if(!shader->link())
             {
                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "%s\n", shader->programLog());
 //                SDL_LogError(SDL_LOG_CATEGORY_TEST, "Vertex log: %s\n", shader->vertexShaderLog());

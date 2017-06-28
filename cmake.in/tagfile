@@ -11365,6 +11365,112 @@
     </member>
   </compound>
   <compound kind="file">
+    <name>ImGuizmo.h</name>
+    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/graphics/</path>
+    <filename>_im_guizmo_8h</filename>
+    <namespace>ImGuizmo</namespace>
+    <member kind="enumeration">
+      <type></type>
+      <name>OPERATION</name>
+      <anchorfile>namespace_im_guizmo.html</anchorfile>
+      <anchor>a3559e88fd6409ce121ee4d9847867cd1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>TRANSLATE</name>
+      <anchorfile>namespace_im_guizmo.html</anchorfile>
+      <anchor>a3559e88fd6409ce121ee4d9847867cd1a87d39725b76eb0cdd7d8803632faba68</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ROTATE</name>
+      <anchorfile>namespace_im_guizmo.html</anchorfile>
+      <anchor>a3559e88fd6409ce121ee4d9847867cd1a002a0a905af7f2fd542df7d6e34c1d1f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>SCALE</name>
+      <anchorfile>namespace_im_guizmo.html</anchorfile>
+      <anchor>a3559e88fd6409ce121ee4d9847867cd1a17ec357fe247a9aa2d1f368353690fdc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>MODE</name>
+      <anchorfile>namespace_im_guizmo.html</anchorfile>
+      <anchor>a555eafa3970d08a1afb7b47bce89d05a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>LOCAL</name>
+      <anchorfile>namespace_im_guizmo.html</anchorfile>
+      <anchor>a555eafa3970d08a1afb7b47bce89d05aaf0baed0c04cc42cc097e385019888fe7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>WORLD</name>
+      <anchorfile>namespace_im_guizmo.html</anchorfile>
+      <anchor>a555eafa3970d08a1afb7b47bce89d05aa0db6bcb67dbf7b93b609e4d142320421</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>BeginFrame</name>
+      <anchorfile>namespace_im_guizmo.html</anchorfile>
+      <anchor>a2dfada1eb84fda54a892be444caf0588</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>IsOver</name>
+      <anchorfile>namespace_im_guizmo.html</anchorfile>
+      <anchor>a258cf4380b3da155f7eb721542b50f67</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>IsUsing</name>
+      <anchorfile>namespace_im_guizmo.html</anchorfile>
+      <anchor>ac9bdd0b810d82ed4fa06e0dd2d1f3cc1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Enable</name>
+      <anchorfile>namespace_im_guizmo.html</anchorfile>
+      <anchor>a849497d6fd8adb2569adfa18c2841d77</anchor>
+      <arglist>(bool enable)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>DecomposeMatrixToComponents</name>
+      <anchorfile>namespace_im_guizmo.html</anchorfile>
+      <anchor>a8cc3ef9e0b149b8276fe69817360ee25</anchor>
+      <arglist>(const float *matrix, float *translation, float *rotation, float *scale)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>RecomposeMatrixFromComponents</name>
+      <anchorfile>namespace_im_guizmo.html</anchorfile>
+      <anchor>a70bc9423194e2ab58e351ea881126b17</anchor>
+      <arglist>(const float *translation, const float *rotation, const float *scale, float *matrix)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>DrawCube</name>
+      <anchorfile>namespace_im_guizmo.html</anchorfile>
+      <anchor>acc60c99158253466671e9aac426f52f2</anchor>
+      <arglist>(const float *view, const float *projection, float *matrix)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Manipulate</name>
+      <anchorfile>namespace_im_guizmo.html</anchorfile>
+      <anchor>a6b1cb04f6a6cacb5029c1163848a510e</anchor>
+      <arglist>(const float *view, const float *projection, OPERATION operation, MODE mode, float *matrix, float *deltaMatrix=0, float *snap=0, float *localBounds=NULL, float *boundsSnap=NULL)</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
     <name>LabelHUD.h</name>
     <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/graphics/</path>
     <filename>_label_h_u_d_8h</filename>
@@ -11510,9 +11616,8 @@
     <name>WorldDebugDrawer.h</name>
     <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/graphics/</path>
     <filename>_world_debug_drawer_8h</filename>
-    <includes id="_geometry_8h" name="Geometry.h" local="yes" imported="no">Geometry.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::WorldDebugDrawer</class>
-    <class kind="struct">njli::WorldDebugDrawer::Line</class>
     <namespace>njli</namespace>
   </compound>
   <compound kind="file">
@@ -11565,32 +11670,23 @@
     <includes id="_world_resource_loader_8h" name="WorldResourceLoader.h" local="yes" imported="no">WorldResourceLoader.h</includes>
     <includes id="_world_clock_8h" name="WorldClock.h" local="yes" imported="no">WorldClock.h</includes>
     <includes id="_world_socket_8h" name="WorldSocket.h" local="yes" imported="no">WorldSocket.h</includes>
-    <includes id="_world_h_u_d_8h" name="WorldHUD.h" local="yes" imported="no">WorldHUD.h</includes>
     <includes id="_world_debug_drawer_8h" name="WorldDebugDrawer.h" local="yes" imported="no">WorldDebugDrawer.h</includes>
     <includes id="_action_8h" name="Action.h" local="yes" imported="no">Action.h</includes>
     <includes id="_action_builder_8h" name="ActionBuilder.h" local="yes" imported="no">ActionBuilder.h</includes>
-    <includes id="_button_h_u_d_8h" name="ButtonHUD.h" local="yes" imported="no">ButtonHUD.h</includes>
-    <includes id="_button_h_u_d_builder_8h" name="ButtonHUDBuilder.h" local="yes" imported="no">ButtonHUDBuilder.h</includes>
     <includes id="_camera_8h" name="Camera.h" local="yes" imported="no">Camera.h</includes>
     <includes id="_camera_builder_8h" name="CameraBuilder.h" local="yes" imported="no">CameraBuilder.h</includes>
-    <includes id="_checkbox_h_u_d_8h" name="CheckboxHUD.h" local="yes" imported="no">CheckboxHUD.h</includes>
-    <includes id="_checkbox_h_u_d_builder_8h" name="CheckboxHUDBuilder.h" local="yes" imported="no">CheckboxHUDBuilder.h</includes>
     <includes id="_clock_8h" name="Clock.h" local="yes" imported="no">Clock.h</includes>
     <includes id="_clock_builder_8h" name="ClockBuilder.h" local="yes" imported="no">ClockBuilder.h</includes>
     <includes id="_collision_response_8h" name="CollisionResponse.h" local="yes" imported="no">CollisionResponse.h</includes>
     <includes id="_collision_response_builder_8h" name="CollisionResponseBuilder.h" local="yes" imported="no">CollisionResponseBuilder.h</includes>
     <includes id="_cube_8h" name="Cube.h" local="yes" imported="no">Cube.h</includes>
     <includes id="_cube_builder_8h" name="CubeBuilder.h" local="yes" imported="no">CubeBuilder.h</includes>
-    <includes id="_dropdown_h_u_d_8h" name="DropdownHUD.h" local="yes" imported="no">DropdownHUD.h</includes>
-    <includes id="_dropdown_h_u_d_builder_8h" name="DropdownHUDBuilder.h" local="yes" imported="no">DropdownHUDBuilder.h</includes>
     <includes id="_font_8h" name="Font.h" local="yes" imported="no">Font.h</includes>
     <includes id="_font_builder_8h" name="FontBuilder.h" local="yes" imported="no">FontBuilder.h</includes>
     <includes id="_image_8h" name="Image.h" local="yes" imported="no">Image.h</includes>
     <includes id="_image_builder_8h" name="ImageBuilder.h" local="yes" imported="no">ImageBuilder.h</includes>
     <includes id="_json_j_l_i_8h" name="JsonJLI.h" local="yes" imported="no">JsonJLI.h</includes>
     <includes id="_json_j_l_i_builder_8h" name="JsonJLIBuilder.h" local="yes" imported="no">JsonJLIBuilder.h</includes>
-    <includes id="_label_h_u_d_8h" name="LabelHUD.h" local="yes" imported="no">LabelHUD.h</includes>
-    <includes id="_label_h_u_d_builder_8h" name="LabelHUDBuilder.h" local="yes" imported="no">LabelHUDBuilder.h</includes>
     <includes id="_light_8h" name="Light.h" local="yes" imported="no">Light.h</includes>
     <includes id="_light_builder_8h" name="LightBuilder.h" local="yes" imported="no">LightBuilder.h</includes>
     <includes id="_level_of_detail_8h" name="LevelOfDetail.h" local="yes" imported="no">LevelOfDetail.h</includes>
@@ -11675,8 +11771,6 @@
     <includes id="_shader_program_builder_8h" name="ShaderProgramBuilder.h" local="yes" imported="no">ShaderProgramBuilder.h</includes>
     <includes id="_skinner_8h" name="Skinner.h" local="yes" imported="no">Skinner.h</includes>
     <includes id="_skinner_builder_8h" name="SkinnerBuilder.h" local="yes" imported="no">SkinnerBuilder.h</includes>
-    <includes id="_slider_h_u_d_8h" name="SliderHUD.h" local="yes" imported="no">SliderHUD.h</includes>
-    <includes id="_slider_h_u_d_builder_8h" name="SliderHUDBuilder.h" local="yes" imported="no">SliderHUDBuilder.h</includes>
     <includes id="_sound_8h" name="Sound.h" local="yes" imported="no">Sound.h</includes>
     <includes id="_sound_builder_8h" name="SoundBuilder.h" local="yes" imported="no">SoundBuilder.h</includes>
     <includes id="_sprite2_d_8h" name="Sprite2D.h" local="yes" imported="no">Sprite2D.h</includes>
@@ -11725,8 +11819,6 @@
     <includes id="_steering_behavior_wander_builder_8h" name="SteeringBehaviorWanderBuilder.h" local="yes" imported="no">SteeringBehaviorWanderBuilder.h</includes>
     <includes id="_stop_watch_8h" name="StopWatch.h" local="yes" imported="no">StopWatch.h</includes>
     <includes id="_stop_watch_builder_8h" name="StopWatchBuilder.h" local="yes" imported="no">StopWatchBuilder.h</includes>
-    <includes id="_textbox_h_u_d_8h" name="TextboxHUD.h" local="yes" imported="no">TextboxHUD.h</includes>
-    <includes id="_textbox_h_u_d_builder_8h" name="TextboxHUDBuilder.h" local="yes" imported="no">TextboxHUDBuilder.h</includes>
     <includes id="_thread_8h" name="Thread.h" local="yes" imported="no">Thread.h</includes>
     <includes id="_thread_builder_8h" name="ThreadBuilder.h" local="yes" imported="no">ThreadBuilder.h</includes>
     <includes id="_timer_8h" name="Timer.h" local="yes" imported="no">Timer.h</includes>
@@ -12823,6 +12915,12 @@
       <name>JLI_OBJECT_TYPE_WorldSound</name>
       <anchorfile>namespacenjli.html</anchorfile>
       <anchor>a6d56d4fbaf89fcf3e3d32839df05b444aec82ab14a72ccb6cde7dff9d48fb7d4d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>JLI_OBJECT_TYPE_WorldDebugDrawer</name>
+      <anchorfile>namespacenjli.html</anchorfile>
+      <anchor>a6d56d4fbaf89fcf3e3d32839df05b444ae351a75c61f9709ce5b879e43d4078ff</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
@@ -14257,174 +14355,130 @@
     <namespace>njli</namespace>
   </compound>
   <compound kind="file">
-    <name>GLPlatform.h</name>
+    <name>GraphicsPlatform.h</name>
     <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/android/</path>
-    <filename>android_2_g_l_platform_8h</filename>
-    <member kind="define">
-      <type>#define</type>
-      <name>GL_GLEXT_PROTOTYPES</name>
-      <anchorfile>android_2_g_l_platform_8h.html</anchorfile>
-      <anchor>a120fb070bddb21f0bd899f50252c4cb5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NANOVG_GLES2_IMPLEMENTATION</name>
-      <anchorfile>android_2_g_l_platform_8h.html</anchorfile>
-      <anchor>a2abe99f80e5d2620d94bfa2361288796</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>__ANDROID__</name>
-      <anchorfile>android_2_g_l_platform_8h.html</anchorfile>
-      <anchor>af667cc2e0c93879f82fad14a0ef3b890</anchor>
-      <arglist></arglist>
-    </member>
+    <filename>android_2_graphics_platform_8h</filename>
     <member kind="define">
       <type>#define</type>
       <name>USE_FMOD</name>
-      <anchorfile>android_2_g_l_platform_8h.html</anchorfile>
+      <anchorfile>android_2_graphics_platform_8h.html</anchorfile>
       <anchor>a9123ffe1fe724cba8b1d43c5251fddbc</anchor>
       <arglist></arglist>
     </member>
   </compound>
   <compound kind="file">
-    <name>GLPlatform.h</name>
+    <name>GraphicsPlatform.h</name>
     <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/appletv/</path>
-    <filename>appletv_2_g_l_platform_8h</filename>
-    <member kind="define">
-      <type>#define</type>
-      <name>NANOVG_GLES2_IMPLEMENTATION</name>
-      <anchorfile>appletv_2_g_l_platform_8h.html</anchorfile>
-      <anchor>a2abe99f80e5d2620d94bfa2361288796</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>__IOS__</name>
-      <anchorfile>appletv_2_g_l_platform_8h.html</anchorfile>
-      <anchor>ac796fa02543f801da4346ac42d552c84</anchor>
-      <arglist></arglist>
-    </member>
+    <filename>appletv_2_graphics_platform_8h</filename>
     <member kind="define">
       <type>#define</type>
       <name>USE_FMOD</name>
-      <anchorfile>appletv_2_g_l_platform_8h.html</anchorfile>
+      <anchorfile>appletv_2_graphics_platform_8h.html</anchorfile>
       <anchor>a9123ffe1fe724cba8b1d43c5251fddbc</anchor>
       <arglist></arglist>
     </member>
   </compound>
   <compound kind="file">
-    <name>GLPlatform.h</name>
+    <name>GraphicsPlatform.h</name>
     <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/applewatchos/</path>
-    <filename>applewatchos_2_g_l_platform_8h</filename>
+    <filename>applewatchos_2_graphics_platform_8h</filename>
     <member kind="define">
       <type>#define</type>
       <name>NANOVG_GLES2_IMPLEMENTATION</name>
-      <anchorfile>applewatchos_2_g_l_platform_8h.html</anchorfile>
+      <anchorfile>applewatchos_2_graphics_platform_8h.html</anchorfile>
       <anchor>a2abe99f80e5d2620d94bfa2361288796</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>__IOS__</name>
-      <anchorfile>applewatchos_2_g_l_platform_8h.html</anchorfile>
+      <anchorfile>applewatchos_2_graphics_platform_8h.html</anchorfile>
       <anchor>ac796fa02543f801da4346ac42d552c84</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>USE_FMOD</name>
-      <anchorfile>applewatchos_2_g_l_platform_8h.html</anchorfile>
+      <anchorfile>applewatchos_2_graphics_platform_8h.html</anchorfile>
       <anchor>a9123ffe1fe724cba8b1d43c5251fddbc</anchor>
       <arglist></arglist>
     </member>
   </compound>
   <compound kind="file">
-    <name>GLPlatform.h</name>
+    <name>GraphicsPlatform.h</name>
     <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/emscripten/</path>
-    <filename>emscripten_2_g_l_platform_8h</filename>
-    <member kind="define">
-      <type>#define</type>
-      <name>GL_GLEXT_PROTOTYPES</name>
-      <anchorfile>emscripten_2_g_l_platform_8h.html</anchorfile>
-      <anchor>a120fb070bddb21f0bd899f50252c4cb5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NANOVG_GLES2_IMPLEMENTATION</name>
-      <anchorfile>emscripten_2_g_l_platform_8h.html</anchorfile>
-      <anchor>a2abe99f80e5d2620d94bfa2361288796</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>__EMSCRIPTEN__</name>
-      <anchorfile>emscripten_2_g_l_platform_8h.html</anchorfile>
-      <anchor>a6e29c45e044a8acdb932d3ad846a4a35</anchor>
-      <arglist></arglist>
-    </member>
+    <filename>emscripten_2_graphics_platform_8h</filename>
     <member kind="define">
       <type>#define</type>
       <name>USE_OPENAL</name>
-      <anchorfile>emscripten_2_g_l_platform_8h.html</anchorfile>
+      <anchorfile>emscripten_2_graphics_platform_8h.html</anchorfile>
       <anchor>ab6f5bb003660e0883454603afb5f5e06</anchor>
       <arglist></arglist>
     </member>
   </compound>
   <compound kind="file">
-    <name>GLPlatform.h</name>
+    <name>GraphicsPlatform.h</name>
     <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/ios/</path>
-    <filename>ios_2_g_l_platform_8h</filename>
-    <member kind="define">
-      <type>#define</type>
-      <name>NANOVG_GLES2_IMPLEMENTATION</name>
-      <anchorfile>ios_2_g_l_platform_8h.html</anchorfile>
-      <anchor>a2abe99f80e5d2620d94bfa2361288796</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>__IOS__</name>
-      <anchorfile>ios_2_g_l_platform_8h.html</anchorfile>
-      <anchor>ac796fa02543f801da4346ac42d552c84</anchor>
-      <arglist></arglist>
-    </member>
+    <filename>ios_2_graphics_platform_8h</filename>
     <member kind="define">
       <type>#define</type>
       <name>USE_FMOD</name>
-      <anchorfile>ios_2_g_l_platform_8h.html</anchorfile>
+      <anchorfile>ios_2_graphics_platform_8h.html</anchorfile>
       <anchor>a9123ffe1fe724cba8b1d43c5251fddbc</anchor>
       <arglist></arglist>
     </member>
   </compound>
   <compound kind="file">
-    <name>GLPlatform.h</name>
+    <name>GraphicsPlatform.h</name>
     <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/macOS/</path>
-    <filename>mac_o_s_2_g_l_platform_8h</filename>
-    <member kind="define">
-      <type>#define</type>
-      <name>NANOVG_GL2_IMPLEMENTATION</name>
-      <anchorfile>mac_o_s_2_g_l_platform_8h.html</anchorfile>
-      <anchor>ab05444bab861cf14f4d83274fa753b60</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>__MACOSX__</name>
-      <anchorfile>mac_o_s_2_g_l_platform_8h.html</anchorfile>
-      <anchor>a4c6075de0d4cf2946a530f31729743b9</anchor>
-      <arglist></arglist>
-    </member>
+    <filename>mac_o_s_2_graphics_platform_8h</filename>
     <member kind="define">
       <type>#define</type>
       <name>USE_FMOD</name>
-      <anchorfile>mac_o_s_2_g_l_platform_8h.html</anchorfile>
+      <anchorfile>mac_o_s_2_graphics_platform_8h.html</anchorfile>
       <anchor>a9123ffe1fe724cba8b1d43c5251fddbc</anchor>
       <arglist></arglist>
     </member>
+  </compound>
+  <compound kind="file">
+    <name>SoundPlatform.h</name>
+    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/android/</path>
+    <filename>android_2_sound_platform_8h</filename>
+  </compound>
+  <compound kind="file">
+    <name>SoundPlatform.h</name>
+    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/appletv/</path>
+    <filename>appletv_2_sound_platform_8h</filename>
+  </compound>
+  <compound kind="file">
+    <name>SoundPlatform.h</name>
+    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/applewatchos/</path>
+    <filename>applewatchos_2_sound_platform_8h</filename>
+  </compound>
+  <compound kind="file">
+    <name>SoundPlatform.h</name>
+    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/emscripten/</path>
+    <filename>emscripten_2_sound_platform_8h</filename>
+  </compound>
+  <compound kind="file">
+    <name>SoundPlatform.h</name>
+    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/ios/</path>
+    <filename>ios_2_sound_platform_8h</filename>
+  </compound>
+  <compound kind="file">
+    <name>SoundPlatform.h</name>
+    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/linux/</path>
+    <filename>linux_2_sound_platform_8h</filename>
+  </compound>
+  <compound kind="file">
+    <name>SoundPlatform.h</name>
+    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/macOS/</path>
+    <filename>mac_o_s_2_sound_platform_8h</filename>
+  </compound>
+  <compound kind="file">
+    <name>SoundPlatform.h</name>
+    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/windows/</path>
+    <filename>windows_2_sound_platform_8h</filename>
   </compound>
   <compound kind="file">
     <name>ColorUtil.h</name>
@@ -14577,6 +14631,13 @@
       <anchorfile>_file_8h.html</anchorfile>
       <anchor>ad3c350eea7e404325fea6e9453f5baee</anchor>
       <arglist>(const char *file)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setScriptDir</name>
+      <anchorfile>_file_8h.html</anchorfile>
+      <anchor>a1cec7a7eada03af54f0d83495aa87c36</anchor>
+      <arglist>(const char *path)</arglist>
     </member>
   </compound>
   <compound kind="file">
@@ -15460,6 +15521,108 @@
     <namespace>njli</namespace>
   </compound>
   <compound kind="file">
+    <name>ISoundFileWrapper.h</name>
+    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/sound/openal/</path>
+    <filename>_i_sound_file_wrapper_8h</filename>
+    <class kind="class">njli::ISoundFileWrapper</class>
+    <namespace>njli</namespace>
+  </compound>
+  <compound kind="file">
+    <name>Wrapper_OGG.h</name>
+    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/sound/openal/</path>
+    <filename>_wrapper___o_g_g_8h</filename>
+    <includes id="_i_sound_file_wrapper_8h" name="ISoundFileWrapper.h" local="yes" imported="no">ISoundFileWrapper.h</includes>
+    <class kind="struct">ogg_file</class>
+    <class kind="class">njli::WrapperOgg</class>
+    <namespace>njli</namespace>
+    <member kind="define">
+      <type>#define</type>
+      <name>OGG_BUFFER_SIZE</name>
+      <anchorfile>_wrapper___o_g_g_8h.html</anchorfile>
+      <anchor>a19906647bd966757e5f2acd00f34023d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>struct ogg_file</type>
+      <name>ogg_file</name>
+      <anchorfile>_wrapper___o_g_g_8h.html</anchorfile>
+      <anchor>ad39f07112cd3b7103d376e1c0c1221f9</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>Wrapper_RAW.h</name>
+    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/sound/openal/</path>
+    <filename>_wrapper___r_a_w_8h</filename>
+    <includes id="_i_sound_file_wrapper_8h" name="ISoundFileWrapper.h" local="yes" imported="no">ISoundFileWrapper.h</includes>
+    <includes id="_sound_8h" name="Sound.h" local="yes" imported="no">Sound.h</includes>
+    <class kind="struct">raw_file</class>
+    <class kind="class">njli::WrapperRaw</class>
+    <namespace>njli</namespace>
+    <member kind="define">
+      <type>#define</type>
+      <name>RAW_BUFFER_SIZE</name>
+      <anchorfile>_wrapper___r_a_w_8h.html</anchorfile>
+      <anchor>aa2cdcb113ebceb066957c13a5bc9583f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>struct raw_file</type>
+      <name>raw_file</name>
+      <anchorfile>_wrapper___r_a_w_8h.html</anchorfile>
+      <anchor>a26294bf6ad1bdf1c06bfc8575304acfc</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>Wrapper_WAV.h</name>
+    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/sound/openal/</path>
+    <filename>_wrapper___w_a_v_8h</filename>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
+    <includes id="_i_sound_file_wrapper_8h" name="ISoundFileWrapper.h" local="yes" imported="no">ISoundFileWrapper.h</includes>
+    <class kind="struct">wav_file</class>
+    <class kind="struct">WAV_DESC</class>
+    <class kind="struct">WAV_FORMAT</class>
+    <class kind="struct">WAV_CHUNK</class>
+    <class kind="class">njli::WrapperWav</class>
+    <namespace>njli</namespace>
+    <member kind="define">
+      <type>#define</type>
+      <name>WAV_BUFFER_SIZE</name>
+      <anchorfile>_wrapper___w_a_v_8h.html</anchorfile>
+      <anchor>a9a6da6d572cf36f4c8df9df32f289291</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>struct wav_file</type>
+      <name>wav_file</name>
+      <anchorfile>_wrapper___w_a_v_8h.html</anchorfile>
+      <anchor>a7ae86609c2e2f5feabd08ac3e3d14058</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>struct WAV_DESC</type>
+      <name>WAV_DESC</name>
+      <anchorfile>_wrapper___w_a_v_8h.html</anchorfile>
+      <anchor>acd413122c29737f84b9b8ceba9776d79</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>struct WAV_FORMAT</type>
+      <name>WAV_FORMAT</name>
+      <anchorfile>_wrapper___w_a_v_8h.html</anchorfile>
+      <anchor>aa043b0d74bde64d109045222bd651749</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>struct WAV_CHUNK</type>
+      <name>WAV_CHUNK</name>
+      <anchorfile>_wrapper___w_a_v_8h.html</anchorfile>
+      <anchor>adb79863e470aef564f97306765fc052d</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
     <name>Sound.h</name>
     <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/sound/</path>
     <filename>_sound_8h</filename>
@@ -15475,6 +15638,7 @@
     <filename>_world_sound_8h</filename>
     <includes id="_abstract_object_8h" name="AbstractObject.h" local="yes" imported="no">AbstractObject.h</includes>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
+    <includes id="_sound_8h" name="Sound.h" local="yes" imported="no">Sound.h</includes>
     <class kind="class">njli::WorldSound</class>
     <namespace>njli</namespace>
   </compound>
@@ -15807,7 +15971,6 @@
     <includes id="_camera_8h" name="Camera.h" local="yes" imported="no">Camera.h</includes>
     <includes id="_world_clock_8h" name="WorldClock.h" local="yes" imported="no">WorldClock.h</includes>
     <includes id="_world_debug_drawer_8h" name="WorldDebugDrawer.h" local="yes" imported="no">WorldDebugDrawer.h</includes>
-    <includes id="_world_h_u_d_8h" name="WorldHUD.h" local="yes" imported="no">WorldHUD.h</includes>
     <includes id="_world_input_8h" name="WorldInput.h" local="yes" imported="no">WorldInput.h</includes>
     <includes id="_world_resource_loader_8h" name="WorldResourceLoader.h" local="yes" imported="no">WorldResourceLoader.h</includes>
     <includes id="_world_socket_8h" name="WorldSocket.h" local="yes" imported="no">WorldSocket.h</includes>
@@ -20318,6 +20481,13 @@
       <name>WorldState</name>
       <anchorfile>classnjli_1_1_camera.html</anchorfile>
       <anchor>a59cdb6fe5b378389e35b8b2a2f4e990e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="friend" protection="private">
+      <type>friend class</type>
+      <name>WorldDebugDrawer</name>
+      <anchorfile>classnjli_1_1_camera.html</anchorfile>
+      <anchor>a1b3bfa4a6d43aea5db6bd35f03087249</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -26519,6 +26689,125 @@
       <arglist></arglist>
     </member>
   </compound>
+  <compound kind="class">
+    <name>njli::ISoundFileWrapper</name>
+    <filename>classnjli_1_1_i_sound_file_wrapper.html</filename>
+    <member kind="enumeration">
+      <type></type>
+      <name>SEEK_POS</name>
+      <anchorfile>classnjli_1_1_i_sound_file_wrapper.html</anchorfile>
+      <anchor>ab4b07720cb2823b4f3f9fa98ee07a6e7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>START</name>
+      <anchorfile>classnjli_1_1_i_sound_file_wrapper.html</anchorfile>
+      <anchor>ab4b07720cb2823b4f3f9fa98ee07a6e7a1f8c3cbe37d39eb58733a1d67615827e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>CURRENT</name>
+      <anchorfile>classnjli_1_1_i_sound_file_wrapper.html</anchorfile>
+      <anchor>ab4b07720cb2823b4f3f9fa98ee07a6e7a32ec778d5282ca8c51937d66b6db9991</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>enum njli::ISoundFileWrapper::SEEK_POS</type>
+      <name>SEEK_POS</name>
+      <anchorfile>classnjli_1_1_i_sound_file_wrapper.html</anchorfile>
+      <anchor>a5374e14efd1564c10852da7cfe31164a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>START</name>
+      <anchorfile>classnjli_1_1_i_sound_file_wrapper.html</anchorfile>
+      <anchor>ab4b07720cb2823b4f3f9fa98ee07a6e7a1f8c3cbe37d39eb58733a1d67615827e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>CURRENT</name>
+      <anchorfile>classnjli_1_1_i_sound_file_wrapper.html</anchorfile>
+      <anchor>ab4b07720cb2823b4f3f9fa98ee07a6e7a32ec778d5282ca8c51937d66b6db9991</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>ISoundFileWrapper</name>
+      <anchorfile>classnjli_1_1_i_sound_file_wrapper.html</anchorfile>
+      <anchor>a9d584c730a105374c50f9d4e435c6ca4</anchor>
+      <arglist>(int minDecompressLengthAtOnce=-1)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~ISoundFileWrapper</name>
+      <anchorfile>classnjli_1_1_i_sound_file_wrapper.html</anchorfile>
+      <anchor>a1d45f4bcf0e8229bc57907f22ce01ab7</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>LoadFromMemory</name>
+      <anchorfile>classnjli_1_1_i_sound_file_wrapper.html</anchorfile>
+      <anchor>a2c4dc8cc613f8f545b0e1ead86ee7e4d</anchor>
+      <arglist>(char *data, int dataSize, SoundInfo *soundInfo)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>LoadFromFile</name>
+      <anchorfile>classnjli_1_1_i_sound_file_wrapper.html</anchorfile>
+      <anchor>a525f86e4bbe65d5b90ee3eda171b5492</anchor>
+      <arglist>(FILE *f, SoundInfo *soundInfo)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>DecompressStream</name>
+      <anchorfile>classnjli_1_1_i_sound_file_wrapper.html</anchorfile>
+      <anchor>a2e62b8b05da06eb1f9594ffdd5aa0cfd</anchor>
+      <arglist>(std::vector&lt; char &gt; &amp;decompressBuffer, bool inLoop=false)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>DecompressAll</name>
+      <anchorfile>classnjli_1_1_i_sound_file_wrapper.html</anchorfile>
+      <anchor>a9b338a5bbcb5d07acdebce1efab332c5</anchor>
+      <arglist>(std::vector&lt; char &gt; &amp;decompressBuffer)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>ResetStream</name>
+      <anchorfile>classnjli_1_1_i_sound_file_wrapper.html</anchorfile>
+      <anchor>ab302d724c78a9a55f6dcb288d31e6854</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>Seek</name>
+      <anchorfile>classnjli_1_1_i_sound_file_wrapper.html</anchorfile>
+      <anchor>a22241a77b7d6adf55045a7a30ec5ef30</anchor>
+      <arglist>(size_t pos, SEEK_POS start)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual size_t</type>
+      <name>GetCurrentStreamPos</name>
+      <anchorfile>classnjli_1_1_i_sound_file_wrapper.html</anchorfile>
+      <anchor>a7468aaf1e53cfd6feb38eae4ecf8ab99</anchor>
+      <arglist>() const =0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual float</type>
+      <name>GetTime</name>
+      <anchorfile>classnjli_1_1_i_sound_file_wrapper.html</anchorfile>
+      <anchor>afefb180620c4a6e17e994a867726eb29</anchor>
+      <arglist>() const =0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual float</type>
+      <name>GetTotalTime</name>
+      <anchorfile>classnjli_1_1_i_sound_file_wrapper.html</anchorfile>
+      <anchor>a1b22318560969f7cc06ac03dcb78971f</anchor>
+      <arglist>() const =0</arglist>
+    </member>
+  </compound>
   <compound kind="struct">
     <name>njli::JLIGlyphPosition</name>
     <filename>structnjli_1_1_j_l_i_glyph_position.html</filename>
@@ -28283,24 +28572,6 @@
       <name>WorldFactory</name>
       <anchorfile>classnjli_1_1_light_builder.html</anchorfile>
       <anchor>acb96ebb09abe8f2a37a915a842babfac</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="struct">
-    <name>njli::WorldDebugDrawer::Line</name>
-    <filename>structnjli_1_1_world_debug_drawer_1_1_line.html</filename>
-    <member kind="variable">
-      <type>TexturedColoredVertex</type>
-      <name>pointA</name>
-      <anchorfile>structnjli_1_1_world_debug_drawer_1_1_line.html</anchorfile>
-      <anchor>a482dcfd60272237572776f19ee9bb981</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>TexturedColoredVertex</type>
-      <name>pointB</name>
-      <anchorfile>structnjli_1_1_world_debug_drawer_1_1_line.html</anchorfile>
-      <anchor>ae12b013ac2e2543f60bd18395dc1f64c</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -30432,6 +30703,13 @@
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
+      <name>handleEvent</name>
+      <anchorfile>classnjli_1_1_n_j_l_i_game_engine.html</anchorfile>
+      <anchor>af17d124611303256bff71fffe4dca8df</anchor>
+      <arglist>(void *event)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
       <name>willResignActive</name>
       <anchorfile>classnjli_1_1_n_j_l_i_game_engine.html</anchorfile>
       <anchor>ab57113e9ef7c184f12ffb7b8417639ad</anchor>
@@ -32501,6 +32779,31 @@
       <name>WorldFactory</name>
       <anchorfile>classnjli_1_1_node_state_machine_builder.html</anchorfile>
       <anchor>acb96ebb09abe8f2a37a915a842babfac</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>ogg_file</name>
+    <filename>structogg__file.html</filename>
+    <member kind="variable">
+      <type>char *</type>
+      <name>curPtr</name>
+      <anchorfile>structogg__file.html</anchorfile>
+      <anchor>a1d79fed1cd34a17c415ea361795dcf6e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>char *</type>
+      <name>filePtr</name>
+      <anchorfile>structogg__file.html</anchorfile>
+      <anchor>a6fc2ba03266798a26d28b944d9455aac</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>size_t</type>
+      <name>fileSize</name>
+      <anchorfile>structogg__file.html</anchorfile>
+      <anchor>a96db2da70b0fc374045245e7c77077ed</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -47416,6 +47719,45 @@
       <arglist></arglist>
     </member>
   </compound>
+  <compound kind="struct">
+    <name>raw_file</name>
+    <filename>structraw__file.html</filename>
+    <member kind="variable">
+      <type>FILE *</type>
+      <name>f</name>
+      <anchorfile>structraw__file.html</anchorfile>
+      <anchor>ac211dbcdb304fa78dc231c939233ca48</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>char *</type>
+      <name>curPtr</name>
+      <anchorfile>structraw__file.html</anchorfile>
+      <anchor>a21f1f2ca29c97f8786a938da639fb5fd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>char *</type>
+      <name>filePtr</name>
+      <anchorfile>structraw__file.html</anchorfile>
+      <anchor>a426ecbe92162fd69a119b7d3d5a299a4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>size_t</type>
+      <name>fileSize</name>
+      <anchorfile>structraw__file.html</anchorfile>
+      <anchor>ac3744b3c64b2b9d16e5f709c384e9132</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>size_t</type>
+      <name>processedSize</name>
+      <anchorfile>structraw__file.html</anchorfile>
+      <anchor>ac7ea6a97f86f1d5dcf21a542d596e6ae</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
   <compound kind="class">
     <name>njli::Rect</name>
     <filename>classnjli_1_1_rect.html</filename>
@@ -50779,6 +51121,34 @@
       <name>getWorldTransform</name>
       <anchorfile>classnjli_1_1_sound.html</anchorfile>
       <anchor>ac6e54aa0ca0c4e9893d9a78322f86dd3</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>load</name>
+      <anchorfile>classnjli_1_1_sound.html</anchorfile>
+      <anchor>a56f596a7daacc96a7f6127dc75d12866</anchor>
+      <arglist>(void *system, const char *path)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>load</name>
+      <anchorfile>classnjli_1_1_sound.html</anchorfile>
+      <anchor>ae1637016ca27ecf2259b5428ae3a5f41</anchor>
+      <arglist>(void *system, const char *fileContent, u32 size)</arglist>
+    </member>
+    <member kind="function">
+      <type>Node *</type>
+      <name>getParent</name>
+      <anchorfile>classnjli_1_1_sound.html</anchorfile>
+      <anchor>a14a65624a35ac8b64585bdabf001cdee</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>const Node *</type>
+      <name>getParent</name>
+      <anchorfile>classnjli_1_1_sound.html</anchorfile>
+      <anchor>aba51bc1bd1f8b72ae6a02caa706f30c4</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function" static="yes">
@@ -61311,6 +61681,148 @@
       <arglist></arglist>
     </member>
   </compound>
+  <compound kind="struct">
+    <name>WAV_CHUNK</name>
+    <filename>struct_w_a_v___c_h_u_n_k.html</filename>
+    <member kind="variable">
+      <type>u8</type>
+      <name>id</name>
+      <anchorfile>struct_w_a_v___c_h_u_n_k.html</anchorfile>
+      <anchor>ae56ae53081b52ccf0a672ba3e22f3910</anchor>
+      <arglist>[4]</arglist>
+    </member>
+    <member kind="variable">
+      <type>u64</type>
+      <name>size</name>
+      <anchorfile>struct_w_a_v___c_h_u_n_k.html</anchorfile>
+      <anchor>a202ff2b47df8f3e2bbae459b4e3180fd</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>WAV_DESC</name>
+    <filename>struct_w_a_v___d_e_s_c.html</filename>
+    <member kind="variable">
+      <type>u8</type>
+      <name>riff</name>
+      <anchorfile>struct_w_a_v___d_e_s_c.html</anchorfile>
+      <anchor>aa676949c26175b9ce912be73c0f41fb3</anchor>
+      <arglist>[4]</arglist>
+    </member>
+    <member kind="variable">
+      <type>u64</type>
+      <name>size</name>
+      <anchorfile>struct_w_a_v___d_e_s_c.html</anchorfile>
+      <anchor>ae6ad2ec7f877cb64c6b89961e209bdde</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>u8</type>
+      <name>wave</name>
+      <anchorfile>struct_w_a_v___d_e_s_c.html</anchorfile>
+      <anchor>aba4d38d3f00975867e3f36d3d11ca8b9</anchor>
+      <arglist>[4]</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>wav_file</name>
+    <filename>structwav__file.html</filename>
+    <member kind="variable">
+      <type>FILE *</type>
+      <name>f</name>
+      <anchorfile>structwav__file.html</anchorfile>
+      <anchor>a6c9f1ab95d2d33cd281db66512fa8132</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>char *</type>
+      <name>curPtr</name>
+      <anchorfile>structwav__file.html</anchorfile>
+      <anchor>a9c297f2327634372cd6018b327908fca</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>char *</type>
+      <name>filePtr</name>
+      <anchorfile>structwav__file.html</anchorfile>
+      <anchor>a1d05305462c7031096e5a57cba20a329</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>size_t</type>
+      <name>fileSize</name>
+      <anchorfile>structwav__file.html</anchorfile>
+      <anchor>a8607accef1ceb2d143e91e4468e1ca47</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>size_t</type>
+      <name>processedSize</name>
+      <anchorfile>structwav__file.html</anchorfile>
+      <anchor>ac0b004bf1255fa2ea5d4a41316a4253d</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>WAV_FORMAT</name>
+    <filename>struct_w_a_v___f_o_r_m_a_t.html</filename>
+    <member kind="variable">
+      <type>u8</type>
+      <name>id</name>
+      <anchorfile>struct_w_a_v___f_o_r_m_a_t.html</anchorfile>
+      <anchor>af7e4d036ae594f619322a763fc446ff7</anchor>
+      <arglist>[4]</arglist>
+    </member>
+    <member kind="variable">
+      <type>u64</type>
+      <name>size</name>
+      <anchorfile>struct_w_a_v___f_o_r_m_a_t.html</anchorfile>
+      <anchor>aa74155b8a7752c37742f87257f00c8d2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>u16</type>
+      <name>format</name>
+      <anchorfile>struct_w_a_v___f_o_r_m_a_t.html</anchorfile>
+      <anchor>ac134cc6cea6c862472878750b8a58071</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>u16</type>
+      <name>channels</name>
+      <anchorfile>struct_w_a_v___f_o_r_m_a_t.html</anchorfile>
+      <anchor>a770422b2ee3c7cd4088f7ab1a39e5d5e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>u64</type>
+      <name>sampleRate</name>
+      <anchorfile>struct_w_a_v___f_o_r_m_a_t.html</anchorfile>
+      <anchor>a5dc7fe93937eb8425a426c9850cbf8e7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>u64</type>
+      <name>byteRate</name>
+      <anchorfile>struct_w_a_v___f_o_r_m_a_t.html</anchorfile>
+      <anchor>adbd0c076fe11a16cd50a2a5d35073ed8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>u16</type>
+      <name>blockAlign</name>
+      <anchorfile>struct_w_a_v___f_o_r_m_a_t.html</anchorfile>
+      <anchor>a0b8b6e4f20ab7c230636ebe3dd89bed8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>u16</type>
+      <name>bitsPerSample</name>
+      <anchorfile>struct_w_a_v___f_o_r_m_a_t.html</anchorfile>
+      <anchor>a4daa49634140cfc7ba5a88222380551e</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
   <compound kind="class">
     <name>njli::World</name>
     <filename>classnjli_1_1_world.html</filename>
@@ -61383,20 +61895,6 @@
       <name>getWorldSocket</name>
       <anchorfile>classnjli_1_1_world.html</anchorfile>
       <anchor>a58cd945663087fae147a88f76a984f83</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function">
-      <type>WorldHUD *</type>
-      <name>getWorldHUD</name>
-      <anchorfile>classnjli_1_1_world.html</anchorfile>
-      <anchor>ae643c65af7dd02c0a7b17d7e55f16210</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>const WorldHUD *</type>
-      <name>getWorldHUD</name>
-      <anchorfile>classnjli_1_1_world.html</anchorfile>
-      <anchor>ae18311e30b9e260ae9ddaa31d0b73864</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
@@ -61655,15 +62153,8 @@
       <type>void</type>
       <name>enableDebugDraw</name>
       <anchorfile>classnjli_1_1_world.html</anchorfile>
-      <anchor>a319c7afd4e53395eac71c2f2e0a5a5a2</anchor>
-      <arglist>(Camera *camera, ShaderProgram *shader, Material *material)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>enableDebugDraw</name>
-      <anchorfile>classnjli_1_1_world.html</anchorfile>
-      <anchor>a0451b10adb6965957a2b9de6ff72df90</anchor>
-      <arglist>(Camera *camera, ShaderProgram *shader=NULL)</arglist>
+      <anchor>ad67785776209cbbaa6140fcc90b4913a</anchor>
+      <arglist>(Camera *camera)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -62123,20 +62614,11 @@
   <compound kind="class">
     <name>njli::WorldDebugDrawer</name>
     <filename>classnjli_1_1_world_debug_drawer.html</filename>
-    <base>njli::Geometry</base>
-    <class kind="struct">njli::WorldDebugDrawer::Line</class>
     <member kind="function">
       <type></type>
       <name>WorldDebugDrawer</name>
       <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
       <anchor>ab55308c80918b35de864ddf762be9415</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>BT_DECLARE_ALIGNED_ALLOCATOR</name>
-      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
-      <anchor>adabe6c1aca9124710655c4826cd8ba9c</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" virtualness="virtual">
@@ -62166,6 +62648,55 @@
       <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
       <anchor>ad8b4bbf6151d5f233dce54b012d9f395</anchor>
       <arglist>() const</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>beginDraw</name>
+      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
+      <anchor>a058930605d9a5adbf095701584dededf</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>endDraw</name>
+      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
+      <anchor>ad0f3fbe3f3f062800792178a1b83318e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>drawPointList</name>
+      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
+      <anchor>aa840ccc55092f26d9ed20ca1ceae1670</anchor>
+      <arglist>(const dd::DrawVertex *, int, bool)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>drawLineList</name>
+      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
+      <anchor>ab4547ab7ddab242ff2a402c691ce7c72</anchor>
+      <arglist>(const dd::DrawVertex *, int, bool)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>drawGlyphList</name>
+      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
+      <anchor>a902a5a10ef3b87d602cd87e2cd37c3e4</anchor>
+      <arglist>(const dd::DrawVertex *, int, dd::GlyphTextureHandle)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>destroyGlyphTexture</name>
+      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
+      <anchor>a7d7fc930e719f3fd0715c860df1cbca7</anchor>
+      <arglist>(dd::GlyphTextureHandle)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual dd::GlyphTextureHandle</type>
+      <name>createGlyphTexture</name>
+      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
+      <anchor>a33c8ba0bbcc08aefc27850aecbbfaeea</anchor>
+      <arglist>(int, int, const void *)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual void</type>
@@ -62209,264 +62740,201 @@
       <anchor>ace4ad17af606db8195712e15a42782b2</anchor>
       <arglist>() const</arglist>
     </member>
-    <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual void</type>
-      <name>getVertices</name>
-      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
-      <anchor>a569b99df4f3eb46a6afe036bcdaf9880</anchor>
-      <arglist>(LevelOfDetail *geometry, btVector3 **vertices, Node *node) const</arglist>
-    </member>
-    <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual u64</type>
-      <name>getNumberOfVertices</name>
-      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
-      <anchor>a2122b1958658373ef0076a6510804b74</anchor>
-      <arglist>(LevelOfDetail *geometry, Node *node) const</arglist>
-    </member>
-    <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual void</type>
-      <name>getVertexColors</name>
-      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
-      <anchor>a7f7bfac1f2def815e943764131cf991a</anchor>
-      <arglist>(LevelOfDetail *geometry, btVector4 **colorVertices, Node *node) const</arglist>
-    </member>
-    <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual u64</type>
-      <name>getNumberOfVertexColors</name>
-      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
-      <anchor>a8c34d9c75a50e6ae486e76c8d5dd6975</anchor>
-      <arglist>(LevelOfDetail *geometry, Node *node) const</arglist>
-    </member>
-    <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual void</type>
-      <name>getTextureCoordinates</name>
-      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
-      <anchor>aed9d33129cb2c17ff9c5e42b8f0f609d</anchor>
-      <arglist>(LevelOfDetail *geometry, btVector2 **textureCoordinates, Node *node) const</arglist>
-    </member>
-    <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual u64</type>
-      <name>getNumberOfTextureCoordinates</name>
-      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
-      <anchor>aec3ddf1f1648ded4ce6565c633b782c8</anchor>
-      <arglist>(LevelOfDetail *geometry, Node *node) const</arglist>
-    </member>
-    <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual void</type>
-      <name>setOpacity</name>
-      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
-      <anchor>a347cb0bae944c6d4950aec2fade0f843</anchor>
-      <arglist>(Node *node, f32 opacity)</arglist>
-    </member>
-    <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual void</type>
-      <name>setHidden</name>
-      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
-      <anchor>a8b0496743bc85bb1f1a9256f9d88a950</anchor>
-      <arglist>(Node *node, bool hidden=true)</arglist>
-    </member>
-    <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual bool</type>
-      <name>isHidden</name>
-      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
-      <anchor>a6b2c089cd713d2a8c25ecf6e2baadc94</anchor>
-      <arglist>(Node *node) const</arglist>
-    </member>
-    <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual void</type>
-      <name>transformVertices</name>
-      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
-      <anchor>a586f3c8cb5d69dbff4a694e86fbcc9ae</anchor>
-      <arglist>(Node *node, const btTransform &amp;transfrom)</arglist>
-    </member>
-    <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual void</type>
-      <name>transformVertexColors</name>
-      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
-      <anchor>adf9152296c6ba9f7988e20a9bed83645</anchor>
-      <arglist>(Node *node, const btTransform &amp;transform)</arglist>
-    </member>
-    <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual void</type>
-      <name>transformTextureCoordinates</name>
-      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
-      <anchor>ada0f75b9c0ecf6f2ffb51ceee7ef1006</anchor>
-      <arglist>(Node *node, const btTransform &amp;transform)</arglist>
-    </member>
-    <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual s32</type>
-      <name>numberOfVertices</name>
-      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
-      <anchor>a240cc2e1a2f7669a1554df84051d06fe</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual s32</type>
-      <name>numberOfIndices</name>
-      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
-      <anchor>ae8419962b43c6190a9bfb64772ac9caa</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual const void *</type>
-      <name>getArrayBuffer</name>
-      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
-      <anchor>a0f527ae1622639986fdbde0742ef4cac</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual s64</type>
-      <name>getArrayBufferSize</name>
-      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
-      <anchor>a254e34ede616e04057a2eda39eb4cd65</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual const void *</type>
-      <name>getElementArrayBuffer</name>
-      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
-      <anchor>aa24c389dd8c8a645d66caf389837f382</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual s64</type>
-      <name>getElementArrayBufferSize</name>
-      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
-      <anchor>ae9c5290e042a0fe96d12f26d52c549ee</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual void</type>
-      <name>setSize</name>
-      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
-      <anchor>a0c927aa403b010bdb051a2f15be4bf3f</anchor>
-      <arglist>(Node *node, const btVector3 &amp;position, const f32 halfSize)</arglist>
-    </member>
-    <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual void</type>
-      <name>setColor</name>
-      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
-      <anchor>ab174290c4b7eb9d79836ea0bfa1bac7a</anchor>
-      <arglist>(Node *node, const btVector4 &amp;color)</arglist>
-    </member>
-    <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual void</type>
-      <name>applyShape</name>
-      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
-      <anchor>a483398c82575076941769c37e3d65059</anchor>
-      <arglist>(Node *node, PhysicsShape *physicsShape)</arglist>
-    </member>
-    <member kind="function" protection="protected">
+    <member kind="function">
       <type>void</type>
-      <name>hideGeometry</name>
+      <name>init</name>
       <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
-      <anchor>a846f3504b58252d985402926e3202bc5</anchor>
-      <arglist>(Node *node)</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>render</name>
-      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
-      <anchor>a86b6234a730c1315e42cb61b672e0489</anchor>
-      <arglist>(Camera *camera, s32 mode=0x0004)</arglist>
-    </member>
-    <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual bool</type>
-      <name>shouldApplyShape</name>
-      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
-      <anchor>a520c5dc252d75a0d9a8a3668d015ac3e</anchor>
-      <arglist>(Node *node) const</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>swapVertexData</name>
-      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
-      <anchor>a38a9a2121e48f4e0bcc6f05197dae7d8</anchor>
-      <arglist>(const size_t idx1, const size_t idx2)</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>setVertexPositions</name>
-      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
-      <anchor>a9a85f966a7f65df9604fe5b4ebef4f83</anchor>
-      <arglist>(const u64 index, const btVector3 &amp;from, const btVector3 &amp;to)</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>getVertexPositions</name>
-      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
-      <anchor>ac6d722adc1d8ddd1f94f9777fe0773a7</anchor>
-      <arglist>(const u64 index, btVector3 &amp;from, btVector3 &amp;to) const</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>setVertexTextureCoordinates</name>
-      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
-      <anchor>a52f0c52aedf2d5d580be9d0066374a73</anchor>
-      <arglist>(const u64 index, const btVector2 &amp;from, const btVector2 &amp;to)</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>getVertexTextureCoordinates</name>
-      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
-      <anchor>aacca4ddeb5ac078df7ad18ebd7492d8b</anchor>
-      <arglist>(const u64 index, btVector2 &amp;from, btVector2 &amp;to) const</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>setVertexColors</name>
-      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
-      <anchor>aa4013e406e2cd7bf427878e57f3f0ed5</anchor>
-      <arglist>(const u64 index, const btVector4 &amp;from, const btVector4 &amp;to)</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>getVertexColors</name>
-      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
-      <anchor>a9060f0592bbb8138f6c2d482303d1a4a</anchor>
-      <arglist>(const u64 index, btVector4 &amp;from, btVector4 &amp;to) const</arglist>
-    </member>
-    <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual void</type>
-      <name>load</name>
-      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
-      <anchor>a39aafceeea406be7b0c6db4bbfbf111e</anchor>
+      <anchor>aac2655edc06413745b2ff3ff13572a2d</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual void</type>
-      <name>unLoad</name>
+    <member kind="function">
+      <type>void</type>
+      <name>unInit</name>
       <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
-      <anchor>af992a614ca9c9ff55f1a36b39f7397af</anchor>
+      <anchor>af34071bc860e89b151d779ee1c6acbbf</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="function" protection="private">
-      <type></type>
-      <name>WorldDebugDrawer</name>
+    <member kind="function">
+      <type>void</type>
+      <name>draw</name>
       <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
-      <anchor>ab9f0bad296b1c020d33c6fcb758c39be</anchor>
-      <arglist>(const WorldDebugDrawer &amp;)</arglist>
+      <anchor>a52ac5a94b12639e5450f77690ab8f5bc</anchor>
+      <arglist>(Camera *camera)</arglist>
     </member>
-    <member kind="function" protection="private">
-      <type>WorldDebugDrawer &amp;</type>
-      <name>operator=</name>
+    <member kind="function">
+      <type>void</type>
+      <name>point</name>
       <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
-      <anchor>a75eefccdb877dc3d0140b95a8997decd</anchor>
-      <arglist>(const WorldDebugDrawer &amp;)</arglist>
+      <anchor>a9de791d9497b36d0f19980cf301d05f6</anchor>
+      <arglist>(const btVector3 &amp;pos, const btVector3 &amp;color, float size=1.0f, int durationMillis=0, bool depthEnabled=true)</arglist>
     </member>
-    <member kind="variable" protection="private">
-      <type>Line *</type>
-      <name>m_Line</name>
+    <member kind="function">
+      <type>void</type>
+      <name>line</name>
       <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
-      <anchor>a54c7781c412ad0064ecf271d97a40284</anchor>
-      <arglist></arglist>
+      <anchor>ab8577e1631222c8a64ba370b4e62daa6</anchor>
+      <arglist>(const btVector3 &amp;from, const btVector3 &amp;to, const btVector3 &amp;color, int durationMillis=0, bool depthEnabled=true)</arglist>
     </member>
-    <member kind="variable" protection="private">
-      <type>u16 *</type>
-      <name>m_Indexes</name>
+    <member kind="function">
+      <type>void</type>
+      <name>screenText</name>
       <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
-      <anchor>aa2b95280664b92a53a42eb430ebfd4d7</anchor>
-      <arglist></arglist>
+      <anchor>a014bce3199ffded2f0577eb3c9a8bf19</anchor>
+      <arglist>(ddStrParam str, const btVector3 &amp;pos, const btVector3 &amp;color, float scaling=1.0f, int durationMillis=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>projectedText</name>
+      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
+      <anchor>acac1c29c7c13b5afb9553c38f304af47</anchor>
+      <arglist>(ddStrParam str, const btVector3 &amp;pos, const btVector3 &amp;color, float scaling=1.0f, int durationMillis=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>arrow</name>
+      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
+      <anchor>a247723d82e67043e246c9cf601e9a5e4</anchor>
+      <arglist>(const btVector3 &amp;from, const btVector3 &amp;to, const btVector3 &amp;color, float size, int durationMillis=0, bool depthEnabled=true)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>cross</name>
+      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
+      <anchor>afaf93a608f1cbda884f660ef626d7891</anchor>
+      <arglist>(const btVector3 &amp;center, float length, int durationMillis=0, bool depthEnabled=true)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>circle</name>
+      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
+      <anchor>adec61e26c61222671eeaae5818750ee2</anchor>
+      <arglist>(const btVector3 &amp;center, const btVector3 &amp;planeNormal, const btVector3 &amp;color, float radius, float numSteps, int durationMillis=0, bool depthEnabled=true)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>plane</name>
+      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
+      <anchor>a7a947904ddfe6665fc69fc9d04017f23</anchor>
+      <arglist>(const btVector3 &amp;center, const btVector3 &amp;planeNormal, const btVector3 &amp;planeColor, const btVector3 &amp;normalVecColor, float planeScale, float normalVecScale, int durationMillis=0, bool depthEnabled=true)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>sphere</name>
+      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
+      <anchor>af5b08f142be7d2061437d20bfdfb12a4</anchor>
+      <arglist>(const btVector3 &amp;center, const btVector3 &amp;color, float radius, int durationMillis=0, bool depthEnabled=true)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>cone</name>
+      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
+      <anchor>a3e6834506d31a8111699f184ef75c6ad</anchor>
+      <arglist>(const btVector3 &amp;apex, const btVector3 &amp;dir, const btVector3 &amp;color, float baseRadius, float apexRadius, int durationMillis=0, bool depthEnabled=true)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>box</name>
+      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
+      <anchor>ac47f08694cdd1b36a2b0a89238ef9927</anchor>
+      <arglist>(const btVector3 &amp;center, const btVector3 &amp;color, float width, float height, float depth, int durationMillis=0, bool depthEnabled=true)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>aabb</name>
+      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
+      <anchor>ae4c968319278e639f0372948fdf16729</anchor>
+      <arglist>(const btVector3 &amp;mins, const btVector3 &amp;maxs, const btVector3 &amp;color, int durationMillis=0, bool depthEnabled=true)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>vertexNormal</name>
+      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
+      <anchor>a36d81cb34d46d4e853a44e3477dba202</anchor>
+      <arglist>(const btVector3 &amp;origin, const btVector3 &amp;normal, float length, int durationMillis=0, bool depthEnabled=true)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>tangentBasis</name>
+      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
+      <anchor>a3e46b0af228eb9e8f112ad7e6d8007f0</anchor>
+      <arglist>(const btVector3 &amp;origin, const btVector3 &amp;normal, const btVector3 &amp;tangent, const btVector3 &amp;bitangent, float lengths, int durationMillis=0, bool depthEnabled=true)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>xzSquareGrid</name>
+      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
+      <anchor>a42fda06cd30581136e0e39f6682b71bd</anchor>
+      <arglist>(float mins, float maxs, float y, float step, const btVector3 &amp;color, int durationMillis=0, bool depthEnabled=true)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>processSdlEvent</name>
+      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
+      <anchor>a6472cecf79ae2d4b76fcb5e363019fbd</anchor>
+      <arglist>(SDL_Event *event)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>connectSynergyServer</name>
+      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
+      <anchor>ad39a48517294969c215ab0d02439768c</anchor>
+      <arglist>(const std::string serverName)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setupShaderPrograms</name>
+      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
+      <anchor>a909649fb3b8e4eab5b8b76370b0e66d0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setupVertexBuffers</name>
+      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
+      <anchor>ad67f8074167c127eb49596c6d2d813a4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>compileShader</name>
+      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
+      <anchor>a48de01f1761e56a8511925468f6a802a</anchor>
+      <arglist>(const GLuint shader)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>linkProgram</name>
+      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
+      <anchor>a9f85884fc0612b81a189fa42b28c6707</anchor>
+      <arglist>(const GLuint program)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>initImgui</name>
+      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
+      <anchor>aed4000f5c9f1a4b5be0fdd6b48e9d68e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>unInitImgui</name>
+      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
+      <anchor>a0c68d5133dbbebd5e9f7cf46d8e9e12f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>renderImgui</name>
+      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
+      <anchor>a303d644236ffcfe2216a0ce445b0e74c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>newFrameImgui</name>
+      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
+      <anchor>afa1b4bf7b377c085e4ed2a5b41b13adb</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="variable" protection="private">
       <type>int</type>
@@ -62476,17 +62944,101 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
-      <type>s32</type>
-      <name>m_Index</name>
+      <type>glm::mat4</type>
+      <name>m_mvpMatrix</name>
       <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
-      <anchor>af495ac72316af3288360e6f6c1649784</anchor>
+      <anchor>a376335d093590f91c0458df22c9bb866</anchor>
       <arglist></arglist>
     </member>
-    <member kind="friend" protection="private">
-      <type>friend class</type>
-      <name>World</name>
+    <member kind="variable" protection="private">
+      <type>GLuint</type>
+      <name>linePointProgram</name>
       <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
-      <anchor>a7b4bcdf992c21ae83363f25df05b1d25</anchor>
+      <anchor>ada80b31b5782b0bf85943e0d5c075c0b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>GLint</type>
+      <name>linePointProgram_MvpMatrixLocation</name>
+      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
+      <anchor>ab439977d5e3cfe2efc6f3b5445e0fd87</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>GLuint</type>
+      <name>textProgram</name>
+      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
+      <anchor>a0d63f957bea4ad8e5306d680bb2ea8e8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>GLint</type>
+      <name>textProgram_GlyphTextureLocation</name>
+      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
+      <anchor>a2b7b2612853759b92ad26de37ebe8dd1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>GLint</type>
+      <name>textProgram_ScreenDimensions</name>
+      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
+      <anchor>a8afce071c7a5a29b378bb807f1dbdf3f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>GLuint</type>
+      <name>linePointVAO</name>
+      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
+      <anchor>a61e7e986d55c6348ba96b60406e6d3c1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>GLuint</type>
+      <name>linePointVBO</name>
+      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
+      <anchor>a731ef5fbc59334c0bf3f0a0ee4ce88ee</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>GLuint</type>
+      <name>textVAO</name>
+      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
+      <anchor>a8a7f7e44c3a3ba9a1bca6c2d660f3a9d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>GLuint</type>
+      <name>textVBO</name>
+      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
+      <anchor>a1911a5f2cdd6f0b66480883d9880ba42</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>uSynergyContext</type>
+      <name>_synergyCtx</name>
+      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
+      <anchor>af0a344a583a5abb91c30d1f52c96673a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>std::thread</type>
+      <name>_synergyQueue</name>
+      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
+      <anchor>a0fe703f5587c30d9c14f56825b4ff2f9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>std::string</type>
+      <name>_serverName</name>
+      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
+      <anchor>a5292bcdbc98ce4e3de53521e043d3f26</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>bool</type>
+      <name>_synergyActive</name>
+      <anchorfile>classnjli_1_1_world_debug_drawer.html</anchorfile>
+      <anchor>a9babc2b6fae8b80dc8b1161dcaafbf42</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -66238,10 +66790,24 @@
     </member>
     <member kind="function">
       <type>bool</type>
-      <name>createSound</name>
+      <name>loadSound</name>
       <anchorfile>classnjli_1_1_world_sound.html</anchorfile>
-      <anchor>a473b836400fe7d541db9a23a1ea8113d</anchor>
-      <arglist>(const char *fileContent, size_t file_size, Sound &amp;sound)</arglist>
+      <anchor>a97885caaa2588661c1339788d8196d89</anchor>
+      <arglist>(const char *path, Sound &amp;sound)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>loadSound</name>
+      <anchorfile>classnjli_1_1_world_sound.html</anchorfile>
+      <anchor>a548876efce189ddf088d503e41d6e7f6</anchor>
+      <arglist>(const char *fileContent, u32 file_size, Sound &amp;sound)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>unLoadSound</name>
+      <anchorfile>classnjli_1_1_world_sound.html</anchorfile>
+      <anchor>a7911347b81467da066b5f8f21767a7f7</anchor>
+      <arglist>(const Sound &amp;sound)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
@@ -67011,6 +67577,392 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>njli::WrapperOgg</name>
+    <filename>classnjli_1_1_wrapper_ogg.html</filename>
+    <base>njli::ISoundFileWrapper</base>
+    <member kind="function">
+      <type></type>
+      <name>WrapperOgg</name>
+      <anchorfile>classnjli_1_1_wrapper_ogg.html</anchorfile>
+      <anchor>a48f5522a7407346d58fa69c57ffbd369</anchor>
+      <arglist>(int minDecompressLengthAtOnce=-1)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~WrapperOgg</name>
+      <anchorfile>classnjli_1_1_wrapper_ogg.html</anchorfile>
+      <anchor>a0ca14ff5c8de2e1b024081cd4ee36900</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>LoadFromMemory</name>
+      <anchorfile>classnjli_1_1_wrapper_ogg.html</anchorfile>
+      <anchor>a3ba50f99487d489f0b495cfe7fa77811</anchor>
+      <arglist>(char *data, int dataSize, SoundInfo *soundInfo)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>LoadFromFile</name>
+      <anchorfile>classnjli_1_1_wrapper_ogg.html</anchorfile>
+      <anchor>a315af49a4e484e1cb8689a11dfe9db2f</anchor>
+      <arglist>(FILE *f, SoundInfo *soundInfo)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>DecompressStream</name>
+      <anchorfile>classnjli_1_1_wrapper_ogg.html</anchorfile>
+      <anchor>a47dbddbb35d013d8250adc8e666c4fdd</anchor>
+      <arglist>(std::vector&lt; char &gt; &amp;decompressBuffer, bool inLoop=false)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>DecompressAll</name>
+      <anchorfile>classnjli_1_1_wrapper_ogg.html</anchorfile>
+      <anchor>ad33e7975379d1e4f5c15944370a4cf47</anchor>
+      <arglist>(std::vector&lt; char &gt; &amp;decompressBuffer)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>ResetStream</name>
+      <anchorfile>classnjli_1_1_wrapper_ogg.html</anchorfile>
+      <anchor>a28d1964b0a03208ebeb30e09ef625c90</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>Seek</name>
+      <anchorfile>classnjli_1_1_wrapper_ogg.html</anchorfile>
+      <anchor>adc4b8116a89e8eb48f65276ec46e8dd2</anchor>
+      <arglist>(size_t pos, SEEK_POS start)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual size_t</type>
+      <name>GetCurrentStreamPos</name>
+      <anchorfile>classnjli_1_1_wrapper_ogg.html</anchorfile>
+      <anchor>a90e11afb177a4085c5925af77436cd91</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual float</type>
+      <name>GetTime</name>
+      <anchorfile>classnjli_1_1_wrapper_ogg.html</anchorfile>
+      <anchor>a0fdf09ad6e5bde3de915140c39698a97</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual float</type>
+      <name>GetTotalTime</name>
+      <anchorfile>classnjli_1_1_wrapper_ogg.html</anchorfile>
+      <anchor>adb921d96c9d60b6539fbc05e08989ffa</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>OggVorbis_File *</type>
+      <name>ov</name>
+      <anchorfile>classnjli_1_1_wrapper_ogg.html</anchorfile>
+      <anchor>a295c445a708ee989fdc9e4baaf8aa998</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>ogg_file</type>
+      <name>t</name>
+      <anchorfile>classnjli_1_1_wrapper_ogg.html</anchorfile>
+      <anchor>a38f58ccb93324aaf7aca3aa77c810efe</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>char</type>
+      <name>bufArray</name>
+      <anchorfile>classnjli_1_1_wrapper_ogg.html</anchorfile>
+      <anchor>aa353b7ba5e112e1160689397d0a90de1</anchor>
+      <arglist>[OGG_BUFFER_SIZE]</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>minDecompressLengthAtOnce</name>
+      <anchorfile>classnjli_1_1_wrapper_ogg.html</anchorfile>
+      <anchor>ae96fb224e50879ef50c3021fa09ea890</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>bool</type>
+      <name>seekable</name>
+      <anchorfile>classnjli_1_1_wrapper_ogg.html</anchorfile>
+      <anchor>a51417abb4c7c95e860b92a95146e7b2d</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>njli::WrapperRaw</name>
+    <filename>classnjli_1_1_wrapper_raw.html</filename>
+    <base>njli::ISoundFileWrapper</base>
+    <member kind="function">
+      <type></type>
+      <name>WrapperRaw</name>
+      <anchorfile>classnjli_1_1_wrapper_raw.html</anchorfile>
+      <anchor>ad512917755c10182cb00cb0f398e58ff</anchor>
+      <arglist>(SoundInfo info, int minDecompressLengthAtOnce=-1)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~WrapperRaw</name>
+      <anchorfile>classnjli_1_1_wrapper_raw.html</anchorfile>
+      <anchor>a495e13205f68e27f66c6bcc3ff3ec0b2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>LoadFromMemory</name>
+      <anchorfile>classnjli_1_1_wrapper_raw.html</anchorfile>
+      <anchor>aca473a80ec7a02e3df6a74b171c2d1fb</anchor>
+      <arglist>(char *data, int dataSize, SoundInfo *soundInfo)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>LoadFromFile</name>
+      <anchorfile>classnjli_1_1_wrapper_raw.html</anchorfile>
+      <anchor>a9286adcc339118eac5d143ad73b646a7</anchor>
+      <arglist>(FILE *f, SoundInfo *soundInfo)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>DecompressStream</name>
+      <anchorfile>classnjli_1_1_wrapper_raw.html</anchorfile>
+      <anchor>a25b25679205b828a096535b40f3082be</anchor>
+      <arglist>(std::vector&lt; char &gt; &amp;decompressBuffer, bool inLoop=false)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>DecompressAll</name>
+      <anchorfile>classnjli_1_1_wrapper_raw.html</anchorfile>
+      <anchor>aa3e0d88a80c5af562903e445ed2a863e</anchor>
+      <arglist>(std::vector&lt; char &gt; &amp;decompressBuffer)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>ResetStream</name>
+      <anchorfile>classnjli_1_1_wrapper_raw.html</anchorfile>
+      <anchor>ab48755f1c7d217737288bfe4c6320c16</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>Seek</name>
+      <anchorfile>classnjli_1_1_wrapper_raw.html</anchorfile>
+      <anchor>a9ffac2e6ec0dca3b9592fba9e29ba3f4</anchor>
+      <arglist>(size_t pos, SEEK_POS start)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual size_t</type>
+      <name>GetCurrentStreamPos</name>
+      <anchorfile>classnjli_1_1_wrapper_raw.html</anchorfile>
+      <anchor>a66e31271020e3b7e7c48ecda73ed0351</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual float</type>
+      <name>GetTime</name>
+      <anchorfile>classnjli_1_1_wrapper_raw.html</anchorfile>
+      <anchor>a1b236f8ef4b7bffe5b5a68d29c855cf3</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual float</type>
+      <name>GetTotalTime</name>
+      <anchorfile>classnjli_1_1_wrapper_raw.html</anchorfile>
+      <anchor>a2aa8be2aa5e292b3375c1a92f007592c</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>ReadData</name>
+      <anchorfile>classnjli_1_1_wrapper_raw.html</anchorfile>
+      <anchor>a0cb793500d35360b2c404e2d8f20ced4</anchor>
+      <arglist>(void *dst, size_t size)</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>raw_file</type>
+      <name>t</name>
+      <anchorfile>classnjli_1_1_wrapper_raw.html</anchorfile>
+      <anchor>a7ba78d8632dbe232fd0daa2e95b4aa0f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>char</type>
+      <name>bufArray</name>
+      <anchorfile>classnjli_1_1_wrapper_raw.html</anchorfile>
+      <anchor>a3ab92988abb19e2d2c7ec7adf6766829</anchor>
+      <arglist>[RAW_BUFFER_SIZE]</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>minProcesssLengthAtOnce</name>
+      <anchorfile>classnjli_1_1_wrapper_raw.html</anchorfile>
+      <anchor>a3e14e31378663644b64aba5e9c70de89</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>SoundInfo</type>
+      <name>info</name>
+      <anchorfile>classnjli_1_1_wrapper_raw.html</anchorfile>
+      <anchor>a777c10f85fa37e26f01338e5fa8bf938</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>curBufSize</name>
+      <anchorfile>classnjli_1_1_wrapper_raw.html</anchorfile>
+      <anchor>ab031228efdb332e48e741564b47c962e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>u64</type>
+      <name>remainDataSize</name>
+      <anchorfile>classnjli_1_1_wrapper_raw.html</anchorfile>
+      <anchor>a99823dc02d8302ee759a206ac3263a6a</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>njli::WrapperWav</name>
+    <filename>classnjli_1_1_wrapper_wav.html</filename>
+    <base>njli::ISoundFileWrapper</base>
+    <member kind="function">
+      <type></type>
+      <name>WrapperWav</name>
+      <anchorfile>classnjli_1_1_wrapper_wav.html</anchorfile>
+      <anchor>a53dde3ca2091dae93b2153f32dba6c4d</anchor>
+      <arglist>(int minDecompressLengthAtOnce=-1)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~WrapperWav</name>
+      <anchorfile>classnjli_1_1_wrapper_wav.html</anchorfile>
+      <anchor>a8b4fecfd6d212c0df75bf5fa34239c51</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>LoadFromMemory</name>
+      <anchorfile>classnjli_1_1_wrapper_wav.html</anchorfile>
+      <anchor>a93b83be038f6d2bc269720b0fa91d841</anchor>
+      <arglist>(char *data, int dataSize, SoundInfo *soundInfo)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>LoadFromFile</name>
+      <anchorfile>classnjli_1_1_wrapper_wav.html</anchorfile>
+      <anchor>a43b8306e554b224968ef436020416765</anchor>
+      <arglist>(FILE *f, SoundInfo *soundInfo)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>DecompressStream</name>
+      <anchorfile>classnjli_1_1_wrapper_wav.html</anchorfile>
+      <anchor>aa84e533c55261000594f1889f60d1ef5</anchor>
+      <arglist>(std::vector&lt; char &gt; &amp;decompressBuffer, bool inLoop=false)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>DecompressAll</name>
+      <anchorfile>classnjli_1_1_wrapper_wav.html</anchorfile>
+      <anchor>a530b83b423d29c785889f9783ab08b9b</anchor>
+      <arglist>(std::vector&lt; char &gt; &amp;decompressBuffer)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>ResetStream</name>
+      <anchorfile>classnjli_1_1_wrapper_wav.html</anchorfile>
+      <anchor>ab24f4e589680e0abe321e105f01468bf</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>Seek</name>
+      <anchorfile>classnjli_1_1_wrapper_wav.html</anchorfile>
+      <anchor>aa75e013ec22ca84b54ee33428dcd3d09</anchor>
+      <arglist>(size_t pos, SEEK_POS start)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual size_t</type>
+      <name>GetCurrentStreamPos</name>
+      <anchorfile>classnjli_1_1_wrapper_wav.html</anchorfile>
+      <anchor>ac7f741a2d2db3126eec69b64eb2cacfc</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual float</type>
+      <name>GetTime</name>
+      <anchorfile>classnjli_1_1_wrapper_wav.html</anchorfile>
+      <anchor>a0cfe149e0e1089f153401f3c80a222df</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual float</type>
+      <name>GetTotalTime</name>
+      <anchorfile>classnjli_1_1_wrapper_wav.html</anchorfile>
+      <anchor>ae281e2ac23707e6eb2c1f2e7fcb58881</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>ReadData</name>
+      <anchorfile>classnjli_1_1_wrapper_wav.html</anchorfile>
+      <anchor>a8e5df03af7dc8f841c9e316caa00a13d</anchor>
+      <arglist>(void *dst, size_t size)</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>wav_file</type>
+      <name>t</name>
+      <anchorfile>classnjli_1_1_wrapper_wav.html</anchorfile>
+      <anchor>ad32ca04f4229e8b702a427dca72b9957</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>char</type>
+      <name>bufArray</name>
+      <anchorfile>classnjli_1_1_wrapper_wav.html</anchorfile>
+      <anchor>a9b66f4b65280f952349f526c7012e9b8</anchor>
+      <arglist>[WAV_BUFFER_SIZE]</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>minProcesssLengthAtOnce</name>
+      <anchorfile>classnjli_1_1_wrapper_wav.html</anchorfile>
+      <anchor>a89b4f2b0d96ed110de07c17f395b40b7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>WAV_DESC</type>
+      <name>desc</name>
+      <anchorfile>classnjli_1_1_wrapper_wav.html</anchorfile>
+      <anchor>abcaa318c09e942ca3a3bad1e34187d46</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>WAV_FORMAT</type>
+      <name>format</name>
+      <anchorfile>classnjli_1_1_wrapper_wav.html</anchorfile>
+      <anchor>a7ae72bc3d456ddcf99ed6e78d05c6ca7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>WAV_CHUNK</type>
+      <name>curChunk</name>
+      <anchorfile>classnjli_1_1_wrapper_wav.html</anchorfile>
+      <anchor>af0615f38310011eed743fbeab3356f86</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>curBufSize</name>
+      <anchorfile>classnjli_1_1_wrapper_wav.html</anchorfile>
+      <anchor>a4915a4654f047eedb569dbe03b73f1f6</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>njli::Xml</name>
     <filename>classnjli_1_1_xml.html</filename>
     <base>njli::AbstractFactoryObject</base>
@@ -67340,6 +68292,110 @@
     </member>
   </compound>
   <compound kind="namespace">
+    <name>ImGuizmo</name>
+    <filename>namespace_im_guizmo.html</filename>
+    <member kind="enumeration">
+      <type></type>
+      <name>OPERATION</name>
+      <anchorfile>namespace_im_guizmo.html</anchorfile>
+      <anchor>a3559e88fd6409ce121ee4d9847867cd1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>TRANSLATE</name>
+      <anchorfile>namespace_im_guizmo.html</anchorfile>
+      <anchor>a3559e88fd6409ce121ee4d9847867cd1a87d39725b76eb0cdd7d8803632faba68</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ROTATE</name>
+      <anchorfile>namespace_im_guizmo.html</anchorfile>
+      <anchor>a3559e88fd6409ce121ee4d9847867cd1a002a0a905af7f2fd542df7d6e34c1d1f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>SCALE</name>
+      <anchorfile>namespace_im_guizmo.html</anchorfile>
+      <anchor>a3559e88fd6409ce121ee4d9847867cd1a17ec357fe247a9aa2d1f368353690fdc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>MODE</name>
+      <anchorfile>namespace_im_guizmo.html</anchorfile>
+      <anchor>a555eafa3970d08a1afb7b47bce89d05a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>LOCAL</name>
+      <anchorfile>namespace_im_guizmo.html</anchorfile>
+      <anchor>a555eafa3970d08a1afb7b47bce89d05aaf0baed0c04cc42cc097e385019888fe7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>WORLD</name>
+      <anchorfile>namespace_im_guizmo.html</anchorfile>
+      <anchor>a555eafa3970d08a1afb7b47bce89d05aa0db6bcb67dbf7b93b609e4d142320421</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>BeginFrame</name>
+      <anchorfile>namespace_im_guizmo.html</anchorfile>
+      <anchor>a2dfada1eb84fda54a892be444caf0588</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>IsOver</name>
+      <anchorfile>namespace_im_guizmo.html</anchorfile>
+      <anchor>a258cf4380b3da155f7eb721542b50f67</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>IsUsing</name>
+      <anchorfile>namespace_im_guizmo.html</anchorfile>
+      <anchor>ac9bdd0b810d82ed4fa06e0dd2d1f3cc1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Enable</name>
+      <anchorfile>namespace_im_guizmo.html</anchorfile>
+      <anchor>a849497d6fd8adb2569adfa18c2841d77</anchor>
+      <arglist>(bool enable)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>DecomposeMatrixToComponents</name>
+      <anchorfile>namespace_im_guizmo.html</anchorfile>
+      <anchor>a8cc3ef9e0b149b8276fe69817360ee25</anchor>
+      <arglist>(const float *matrix, float *translation, float *rotation, float *scale)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>RecomposeMatrixFromComponents</name>
+      <anchorfile>namespace_im_guizmo.html</anchorfile>
+      <anchor>a70bc9423194e2ab58e351ea881126b17</anchor>
+      <arglist>(const float *translation, const float *rotation, const float *scale, float *matrix)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>DrawCube</name>
+      <anchorfile>namespace_im_guizmo.html</anchorfile>
+      <anchor>acc60c99158253466671e9aac426f52f2</anchor>
+      <arglist>(const float *view, const float *projection, float *matrix)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Manipulate</name>
+      <anchorfile>namespace_im_guizmo.html</anchorfile>
+      <anchor>a6b1cb04f6a6cacb5029c1163848a510e</anchor>
+      <arglist>(const float *view, const float *projection, OPERATION operation, MODE mode, float *matrix, float *deltaMatrix=0, float *snap=0, float *localBounds=NULL, float *boundsSnap=NULL)</arglist>
+    </member>
+  </compound>
+  <compound kind="namespace">
     <name>njli</name>
     <filename>namespacenjli.html</filename>
     <class kind="class">njli::AbstractActionable</class>
@@ -67378,6 +68434,7 @@
     <class kind="class">njli::Geometry</class>
     <class kind="class">njli::Image</class>
     <class kind="class">njli::ImageBuilder</class>
+    <class kind="class">njli::ISoundFileWrapper</class>
     <class kind="struct">njli::JLIGlyphPosition</class>
     <class kind="struct">njli::JLIPaint</class>
     <class kind="struct">njli::JLITextRow</class>
@@ -67545,6 +68602,9 @@
     <class kind="class">njli::WorldStateMachine</class>
     <class kind="class">njli::WorldStateMachineBuilder</class>
     <class kind="struct">njli::wrap</class>
+    <class kind="class">njli::WrapperOgg</class>
+    <class kind="class">njli::WrapperRaw</class>
+    <class kind="class">njli::WrapperWav</class>
     <class kind="class">njli::Xml</class>
     <class kind="class">njli::XmlBuilder</class>
     <member kind="typedef">
@@ -68633,6 +69693,12 @@
       <name>JLI_OBJECT_TYPE_WorldSound</name>
       <anchorfile>namespacenjli.html</anchorfile>
       <anchor>a6d56d4fbaf89fcf3e3d32839df05b444aec82ab14a72ccb6cde7dff9d48fb7d4d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>JLI_OBJECT_TYPE_WorldDebugDrawer</name>
+      <anchorfile>namespacenjli.html</anchorfile>
+      <anchor>a6d56d4fbaf89fcf3e3d32839df05b444ae351a75c61f9709ce5b879e43d4078ff</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">

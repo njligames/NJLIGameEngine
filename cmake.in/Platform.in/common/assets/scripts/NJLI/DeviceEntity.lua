@@ -42,7 +42,16 @@ end
 
 function DeviceEntity:update(timeStep)
   --print("DeviceEntity:update("..timeStep..")")
-  
+    if _done__debugging__ == nil then
+        _done__debugging__ = false
+        return
+    end
+
+    if not _done__debugging__ then
+        require("mobdebug").start()
+        _done__debugging__ = true
+    end
+  njli.World.getInstance():setBackgroundColor(0.000, 0.000, 0.000)
   
 end
 

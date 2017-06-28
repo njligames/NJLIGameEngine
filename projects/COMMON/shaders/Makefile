@@ -12,12 +12,18 @@ CP := cp
 
 #$(NJLI_BUILD_PLATFORM)
 GL_TARGET := -1
-ifeq ($(NJLI_BUILD_PLATFORM),macOS)
+
+ifeq ($(NJLI_GRAPHICS_PLATFORM),opengl_es_2)
+	GL_TARGET := -2
+else ifeq ($(NJLI_GRAPHICS_PLATFORM),opengl_es_3)
+	GL_TARGET := -3
+else ifeq ($(NJLI_GRAPHICS_PLATFORM),opengl_2)
+	GL_TARGET := -1
+else ifeq ($(NJLI_GRAPHICS_PLATFORM),opengl_3)
 	GL_TARGET := -1
 else
-	GL_TARGET := -2
+	GL_TARGET := -1
 endif
-
 
 OBJDIR := $(ASSET_DIR)/assets/shaders
 SRCDIR := .

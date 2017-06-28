@@ -13,6 +13,9 @@
 char RUNNING_PATH[4096] = "./";
 bool HAS_RUNNING_PATH = false;
 
+char SCRIPT_DIR[4096] = "";
+bool HAS_SCRIPT_DIR = false;
+
 // static int emscripten_read(void* cookie, char* buf, int size) {
 //   return AAsset_read((AAsset*)cookie, buf, size);
 // }
@@ -67,29 +70,50 @@ const char *RESOURCE_PATH()
     return tempBuffer;
 }
 
+static bool isScriptFile(const char *file, char *dir)
+{
+    if(HAS_SCRIPT_DIR && strlen(file) > 8)
+    {
+        std::string str(file);
+        if(str.find("scripts/") == 0 )
+        {
+            std::string s = str.substr(8, str.length());
+            
+            strcpy(dir, SCRIPT_DIR);
+            strcat(dir, s.c_str());
+            return true;
+        }
+    }
+    return false;
+}
+
 const char *ASSET_PATH(const char *file)
 {
     static char tempBuffer[4096];
     char *data_path = NULL;
     
-    if(HAS_RUNNING_PATH)
+    if(!isScriptFile(file, tempBuffer))
     {
-        data_path = RUNNING_PATH;
-    }
-    else
-    {
-        char *base_path = SDL_GetBasePath();
-        if (base_path) {
-            data_path = base_path;
-        } else {
-            data_path = SDL_strdup(MAC_PATH);
+        if(HAS_RUNNING_PATH)
+        {
+            data_path = RUNNING_PATH;
         }
+        else
+        {
+            char *base_path = SDL_GetBasePath();
+            if (base_path) {
+                data_path = base_path;
+            } else {
+                data_path = SDL_strdup(MAC_PATH);
+            }
+        }
+        
+        strcpy(tempBuffer, data_path);
+        if(!HAS_RUNNING_PATH)
+            strcat(tempBuffer, "assets/");
+        strcat(tempBuffer, file);
     }
     
-    strcpy(tempBuffer, data_path);
-    if(!HAS_RUNNING_PATH)
-        strcat(tempBuffer, "assets/");
-    strcat(tempBuffer, file);
     return tempBuffer;
 }
 
@@ -145,5 +169,20 @@ void setRunningPath(const char *file)
     strcpy(RUNNING_PATH, file);
     strcat(RUNNING_PATH, "/");
     
+    SDL_Log("setting the running path to: %s", RUNNING_PATH);
+    
     HAS_RUNNING_PATH = true;
+}
+
+void setScriptDir(const char *path)
+{
+    SDL_assert(path != NULL);
+    
+    strcpy(SCRIPT_DIR, path);
+    strcat(SCRIPT_DIR, "/");
+    
+    SDL_Log("setting the script dir to: %s", SCRIPT_DIR);
+    
+    HAS_SCRIPT_DIR = true;
+
 }

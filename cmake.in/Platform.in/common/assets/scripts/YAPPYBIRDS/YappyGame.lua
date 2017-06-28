@@ -71,13 +71,11 @@ end
 --#############################################################################
 
 function YappyGame:startStateMachine()
-  
   self:getWorldEntity():startStateMachine()
+end
 
-  -- for k,v in pairs(self._nodeEntityTable) do
-  --   v:startStateMachine()
-  -- end
-
+function YappyGame:stopStateMachine()
+  self:getWorldEntity():stopStateMachine()
 end
 
 function YappyGame:getWorldEntity()

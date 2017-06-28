@@ -225,7 +225,7 @@ function Selected:mouseUp(mouse)
     self:getNodeEntity():pushState("NJLI.STATEMACHINE.UI.BUTTON.STATES.Default")
 
     if not self:getNodeEntity():disabled() then
-        self:getNodeEntity():touchUpOutside(touches)
+        self:getNodeEntity():touchUpOutside(mouse)
     end
 end
 

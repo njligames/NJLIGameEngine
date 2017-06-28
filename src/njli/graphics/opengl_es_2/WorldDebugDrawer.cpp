@@ -327,7 +327,7 @@ namespace njli
         
         if (dd::hasPendingDraws())
         {
-            dd::flush(0);
+            dd::flush(njli::World::getInstance()->getWorldClock()->timeStep());
         }
     }
     

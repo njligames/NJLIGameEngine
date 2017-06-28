@@ -77,6 +77,11 @@ local Create = function()
   if gInterface then
     gInterface:getDeviceEntity():create()
   end
+
+  njli.World.getInstance():enableDebugDraw(OrthographicCameraNode:getCamera())
+
+  --print("START")
+  --print("END")
 end
   
 local Destroy = function()
@@ -88,18 +93,22 @@ local Destroy = function()
 end
 
 local Update = function(timeStep)
+    local pos = bullet.btVector3(100, 100, -1)
+    local color = bullet.btVector4(1, 0, 0, 1)
+    njli.World.getInstance():getDebugDrawer():point(pos, color, 10)--, 100000, 10)
+
   if gInterface then
     gInterface:getDeviceEntity():update(timeStep)
     
-    if _done__debugging__ == nil then
-      _done__debugging__ = false
-      return
-    end
-    
-    if not _done__debugging__ then
-      require("mobdebug").start()
-      _done__debugging__ = true
-    end
+--    if _done__debugging__ == nil then
+--      _done__debugging__ = false
+--      return
+--    end
+--    
+--    if not _done__debugging__ then
+--      require("mobdebug").start()
+--      _done__debugging__ = true
+--    end
   end
 --  njli.World.getInstance():setBackgroundColor(0.264, 1.083, 0.000)
 end

@@ -169,9 +169,11 @@ function WorldEntity:getStartStateEntity()
 end
 
 function WorldEntity:startStateMachine()
---  print(self:getWorld():getName() .. " :startStateMachine()")
-
   self:pushState(self._startStateName)
+end
+
+function WorldEntity:stopStateMachine()
+  self:pushState(nil)
 end
 
 function WorldEntity:enter()
