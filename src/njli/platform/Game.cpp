@@ -653,7 +653,6 @@ function RegisterNodeMouseMove(name, func)
 end
 
 function __NJLICreate()
-        print("__NJLICreate")
     for k, v in pairs(Runtime.Create) do v() end
 end
 

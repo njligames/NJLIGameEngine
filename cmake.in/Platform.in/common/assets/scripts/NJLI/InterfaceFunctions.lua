@@ -1,116 +1,148 @@
 
+debugging = nil
+
+local Interface = require 'NJLI.Interface'
+local BitmapFont = require 'NJLI.BitmapFont'
+local YappyGame = require "YAPPYBIRDS.YappyGame"
+
+RanchersFont = nil
+Geometry2D = nil
+OrthographicCameraNode = nil
+PerspectiveCameraNode = nil
+MyGame = nil
 gInterface = nil
-_done__debugging__ = nil
 
-local function CreatePerspectiveCameraNode(name)
-    local node = njli.Node.create()
-    node:setName(name)
+local Create = function()
 
-    local camera = njli.Camera.create()
-    camera:enableOrthographic(false)
-    camera:setRenderCategory(RenderCategories.perspective)
-    camera:setName("perspectiveCamera")
-
-    node:setCamera(camera)
-
-    return node
-end
-
-local function CreateOrthoCameraNode(name)
-    local node = njli.Node.create()
-    node:setName(name)
+  if nil == OrthographicCameraNode then
+    OrthographicCameraNode = njli.Node.create()
+    OrthographicCameraNode:setName("orthoCamera")
 
     local camera = njli.Camera.create()
     camera:enableOrthographic()
     camera:setRenderCategory(RenderCategories.orthographic)
     camera:setName("orthoCamera")
 
-    node:setCamera(camera)
-
-    return node
-end
-
-local Interface = require 'NJLI.Interface'
-local Create = function()
-  
---  print("local Create = function()")
-  
-  if gInterface == nil then
-    gInterface = Interface()
+    OrthographicCameraNode:setCamera(camera)
+    
+    njli.World.getInstance():enableDebugDraw(OrthographicCameraNode:getCamera())
   end
   
---  print("SO CLOSE To well you now")
---  print(gInterface)
-  
---  InterfaceFunctions = require "NJLI.InterfaceFunctions"
+  if nil == PerspectiveCameraNode then
+    PerspectiveCameraNode = njli.Node.create()
+    PerspectiveCameraNode:setName("perspectiveCamera")
 
+    local camera = njli.Camera.create()
+    camera:enableOrthographic(false)
+    camera:setRenderCategory(RenderCategories.perspective)
+    camera:setName("perspectiveCamera")
 
-  local BitmapFont = require 'NJLI.BitmapFont'
-  RanchersFont = BitmapFont({file='Ranchers_GlyphDesigner.fnt'})
+    PerspectiveCameraNode:setCamera(camera)
+  end
   
-  local material = njli.Material.create()
-  local shader = njli.ShaderProgram.create()
-  Geometry2D = njli.Sprite2D.create()
+  if nil == Geometry2D then
+    Geometry2D = njli.Sprite2D.create()
+    Geometry2D:setName("YappyBird Geometry")
+    
+    local material = njli.Material.create()
+    material:setName("YappyBird Material")
+    
+    local shader = njli.ShaderProgram.create()
+    shader:setName("YappyBird Shader")
+    njli.World.getInstance():getWorldResourceLoader():load("shaders/objectShader.vsh", "shaders/objectShader.fsh", shader)
+    
+    Geometry2D:setMaterial(material)
+    Geometry2D:setShaderProgram(shader)
+    Geometry2D:show(OrthographicCameraNode:getCamera())
+    Geometry2D:hide(PerspectiveCameraNode:getCamera())
+  end
   
-  OrthographicCameraNode = CreateOrthoCameraNode("orthoCamera")
-  PerspectiveCameraNode = CreatePerspectiveCameraNode("perspectiveCamera")
+  if nil == RanchersFont then
+    RanchersFont = BitmapFont({file='Ranchers_GlyphDesigner.fnt'})
+    RanchersFont:load()
+    RanchersFont:show(OrthographicCameraNode:getCamera())
+    RanchersFont:hide(PerspectiveCameraNode:getCamera())
+  end
   
-  material:setName("YappyBird Material")
-  shader:setName("YappyBird Shader")
-  Geometry2D:setName("YappyBird Geometry")
-  
-  njli.World.getInstance():getWorldResourceLoader():load("shaders/objectShader.vsh", "shaders/objectShader.fsh", shader)
-  
-  Geometry2D:setMaterial(material)
-  Geometry2D:setShaderProgram(shader)
-  Geometry2D:show(OrthographicCameraNode:getCamera())
-  Geometry2D:hide(PerspectiveCameraNode:getCamera())
-  
-  RanchersFont:load()
-  RanchersFont:show(OrthographicCameraNode:getCamera())
-  RanchersFont:hide(PerspectiveCameraNode:getCamera())
-  
-  YappyGame = require "YAPPYBIRDS.YappyGame"
-  MyGame = YappyGame(Worlds.yappygame)
-  MyGame:startStateMachine()
-  
-  if gInterface then
+  if nil == gInterface then
+    gInterface = Interface()
     gInterface:getDeviceEntity():create()
   end
-
-  njli.World.getInstance():enableDebugDraw(OrthographicCameraNode:getCamera())
-
-  --print("START")
-  --print("END")
+  
+  if nil == MyGame then
+    MyGame = YappyGame(Worlds.yappygame)
+    MyGame:startStateMachine()
+  end
+  
 end
   
 local Destroy = function()
-  if gInterface then
-    gInterface:getDeviceEntity():destroy()
+
+  if MyGame then
+    MyGame:stopStateMachine()
+    MyGame = nil
   end
   
-  gInterface = nil
+  if gInterface then
+    gInterface:getDeviceEntity():destroy()
+    gInterface = nil
+  end
+  
+  if RanchersFont then
+    RanchersFont:unLoad()
+    RanchersFont = nil
+  end
+  
+  if Geometry2D then
+    local material = Geometry2D:getMaterial()
+    njli.Material.destroy(material)
+    
+    local shader = Geometry2D:getShaderProgram()
+    njli.ShaderProgram.destroy(shader)
+    
+    njli.Sprite2D.destroy(Geometry2D)
+    Geometry2D = nil
+  end
+  
+  if PerspectiveCameraNode then
+    local camera = PerspectiveCameraNode:getCamera()
+    njli.Camera.destroy(camera)
+    
+    njli.Node.destroy(PerspectiveCameraNode)
+    PerspectiveCameraNode = nil
+  end
+  
+  if OrthographicCameraNode then
+    local camera = OrthographicCameraNode:getCamera()
+    njli.Camera.destroy(camera)
+    
+    njli.Node.destroy(OrthographicCameraNode)
+    OrthographicCameraNode = nil
+  end
+  
 end
 
 local Update = function(timeStep)
+  
+  if debugging == nil then
+    debugging = false
+    return false
+  end
+  
+  if not debugging then
+    require("mobdebug").start()
+    debugging = true
+  end
+
     local pos = bullet.btVector3(100, 100, -1)
     local color = bullet.btVector4(1, 0, 0, 1)
     njli.World.getInstance():getDebugDrawer():point(pos, color, 10)--, 100000, 10)
 
   if gInterface then
     gInterface:getDeviceEntity():update(timeStep)
-    
---    if _done__debugging__ == nil then
---      _done__debugging__ = false
---      return
---    end
---    
---    if not _done__debugging__ then
---      require("mobdebug").start()
---      _done__debugging__ = true
---    end
   end
---  njli.World.getInstance():setBackgroundColor(0.264, 1.083, 0.000)
+  
+ njli.World.getInstance():setBackgroundColor(0.453, 0.108, 0.000)
 end
 
 local Render = function()
@@ -209,7 +241,7 @@ local WorldExitState = function()
   end
 end
 
-local WorldOnMessage = function()
+local WorldOnMessage = function(message)
   if gInterface then
     gInterface:getStateMachine():_worldOnMessage(message)
   end
@@ -773,119 +805,119 @@ local NodeMouseMove = function(node, mouse)
     end
 end
 
-RegisterCreate("Create", Create) 
-RegisterDestroy("Destroy", Destroy)
-RegisterUpdate("Update", Update)
-RegisterRender("Render", Render)
-RegisterResize("Resize", Resize)
-RegisterTouchesDown("TouchesDown", TouchesDown)
-RegisterTouchesUp("TouchesUp", TouchesUp)
-RegisterTouchesMove("TouchesMove", TouchesMove)
-RegisterTouchesCancelled("TouchesCancelled", TouchesCancelled)
-RegisterTouchDown("TouchDown", TouchDown)
-RegisterTouchUp("TouchUp", TouchUp)
-RegisterTouchMove("TouchMove", TouchMove)
-RegisterTouchCancelled("TouchCancelled", TouchCancelled)
-RegisterMouseDown("MouseDown", MouseDown)
-RegisterMouseUp("MouseUp", MouseUp)
-RegisterMouseMove("MouseMove", MouseMove)
-RegisterWorldEnterState("WorldEnterState", WorldEnterState)
-RegisterWorldUpdateState("WorldUpdateState", WorldUpdateState)
-RegisterWorldExitState("WorldExitState", WorldExitState)
-RegisterWorldOnMessage("WorldOnMessage", WorldOnMessage)
-RegisterWorldKeyboardShow("WorldKeyboardShow", WorldKeyboardShow)
-RegisterWorldKeyboardCancel("WorldKeyboardCancel", WorldKeyboardCancel)
-RegisterWorldKeyboardReturn("WorldKeyboardReturn", WorldKeyboardReturn)
-RegisterWorldReceivedMemoryWarning("WorldReceivedMemoryWarning", WorldReceivedMemoryWarning)
-RegisterWorldGamePause("WorldGamePause", WorldGamePause)
-RegisterWorldGameUnPause("WorldGameUnPause", WorldGameUnPause)
-RegisterWorldRenderHUD("WorldRenderHUD", WorldRenderHUD)
-RegisterWorldTouchesDown("WorldTouchesDown", WorldTouchesDown)
-RegisterWorldTouchesUp("WorldTouchesUp", WorldTouchesUp)
-RegisterWorldTouchesMove("WorldTouchesMove", WorldTouchesMove)
-RegisterWorldTouchesCancelled("WorldTouchesCancelled", WorldTouchesCancelled)
-RegisterWorldTouchDown("WorldTouchDown", WorldTouchDown)
-RegisterWorldTouchUp("WorldTouchUp", WorldTouchUp)
-RegisterWorldTouchMove("WorldTouchMove", WorldTouchMove)
-RegisterWorldTouchCancelled("WorldTouchCancelled", WorldTouchCancelled)
-RegisterWorldMouseDown("WorldMouseDown", WorldMouseDown)
-RegisterWorldMouseUp("WorldMouseUp", WorldMouseUp)
-RegisterWorldMouseMove("WorldMouseMove", WorldMouseMove)
-RegisterWorldWillResignActive("WorldWillResignActive", WorldWillResignActive)
-RegisterWorldDidBecomeActive("WorldDidBecomeActive", WorldDidBecomeActive)
-RegisterWorldDidEnterBackground("WorldDidEnterBackground", WorldDidEnterBackground)
-RegisterWorldWillEnterForeground("WorldWillEnterForeground", WorldWillEnterForeground)
-RegisterWorldWillTerminate("WorldWillTerminate", WorldWillTerminate)
-RegisterWorldInterrupt("WorldInterrupt", WorldInterrupt)
-RegisterWorldResumeInterrupt("WorldResumeInterrupt", WorldResumeInterrupt)
-RegisterSceneEnterState("SceneEnterState", SceneEnterState)
-RegisterSceneUpdateState("SceneUpdateState", SceneUpdateState)
-RegisterSceneExitState("SceneExitState", SceneExitState)
-RegisterSceneOnMessage("SceneOnMessage", SceneOnMessage)
-RegisterSceneKeyboardShow("SceneKeyboardShow", SceneKeyboardShow)
-RegisterSceneKeyboardCancel("SceneKeyboardCancel", SceneKeyboardCancel)
-RegisterSceneKeyboardReturn("SceneKeyboardReturn", SceneKeyboardReturn)
-RegisterSceneRenderHUD("SceneRenderHUD", SceneRenderHUD)
-RegisterSceneGamePause("SceneGamePause", SceneGamePause)
-RegisterSceneGameUnPause("SceneGameUnPause", SceneGameUnPause)
-RegisterSceneTouchesDown("SceneTouchesDown", SceneTouchesDown)
-RegisterSceneTouchesUp("SceneTouchesUp", SceneTouchesUp)
-RegisterSceneTouchesMove("SceneTouchesMove", SceneTouchesMove)
-RegisterSceneTouchesCancelled("SceneTouchesCancelled", SceneTouchesCancelled)
-RegisterSceneTouchDown("SceneTouchDown", SceneTouchDown)
-RegisterSceneTouchUp("SceneTouchUp", SceneTouchUp)
-RegisterSceneTouchMove("SceneTouchMove", SceneTouchMove)
-RegisterSceneTouchCancelled("SceneTouchCancelled", SceneTouchCancelled)
-RegisterSceneMouseDown("SceneMouseDown", SceneMouseDown)
-RegisterSceneMouseUp("SceneMouseUp", SceneMouseUp)
-RegisterSceneMouseMove("SceneMouseMove", SceneMouseMove)
-RegisterSceneReceivedMemoryWarning("SceneReceivedMemoryWarning", SceneReceivedMemoryWarning)
-RegisterSceneWillResignActive("SceneWillResignActive", SceneWillResignActive)
-RegisterSceneDidBecomeActive("SceneDidBecomeActive", SceneDidBecomeActive)
-RegisterSceneDidEnterBackground("SceneDidEnterBackground", SceneDidEnterBackground)
-RegisterSceneWillEnterForeground("SceneWillEnterForeground", SceneWillEnterForeground)
-RegisterSceneWillTerminate("SceneWillTerminate", SceneWillTerminate)
-RegisterSceneInterrupt("SceneInterrupt", SceneInterrupt)
-RegisterSceneResumeInterrupt("SceneResumeInterrupt", SceneResumeInterrupt)
-RegisterNodeEnterState("NodeEnterState", NodeEnterState)
-RegisterNodeUpdateState("NodeUpdateState", NodeUpdateState)
-RegisterNodeExitState("NodeExitState", NodeExitState)
-RegisterNodeOnMessage("NodeOnMessage", NodeOnMessage)
-RegisterNodeCollide("NodeCollide", NodeCollide)
-RegisterNodeNear("NodeNear", NodeNear)
-RegisterNodeActionUpdate("NodeActionUpdate", NodeActionUpdate)
-RegisterNodeActionComplete("NodeActionComplete", NodeActionComplete)
-RegisterNodeRayTouchesDown("NodeRayTouchesDown", NodeRayTouchesDown)
-RegisterNodeRayTouchesUp("NodeRayTouchesUp", NodeRayTouchesUp)
-RegisterNodeRayTouchesMove("NodeRayTouchesMove", NodeRayTouchesMove)
-RegisterNodeRayTouchesCancelled("NodeRayTouchesCancelled", NodeRayTouchesCancelled)
-RegisterNodeRayTouchesMissed("NodeRayTouchesMissed", NodeRayTouchesMissed)
-RegisterNodeRayTouchDown("NodeRayTouchDown", NodeRayTouchDown)
-RegisterNodeRayTouchUp("NodeRayTouchUp", NodeRayTouchUp)
-RegisterNodeRayTouchMove("NodeRayTouchMove", NodeRayTouchMove)
-RegisterNodeRayTouchCancelled("NodeRayTouchCancelled", NodeRayTouchCancelled)
-RegisterNodeRayMouseDown("NodeRayMouseDown", NodeRayMouseDown)
-RegisterNodeRayMouseUp("NodeRayMouseUp", NodeRayMouseUp)
-RegisterNodeRayMouseMove("NodeRayMouseMove", NodeRayMouseMove)
-RegisterNodeRayTouchMissed("NodeRayTouchMissed", NodeRayTouchMissed)
-RegisterNodeRayMouseMissed("NodeRayMouseMissed", NodeRayMouseMissed)
-RegisterNodeKeyboardShow("NodeKeyboardShow", NodeKeyboardShow)
-RegisterNodeKeyboardCancel("NodeKeyboardCancel", NodeKeyboardCancel)
-RegisterNodeKeyboardReturn("NodeKeyboardReturn", NodeKeyboardReturn)
-RegisterNodeRenderHUD("NodeRenderHUD", NodeRenderHUD)
-RegisterNodeGamePause("NodeGamePause", NodeGamePause)
-RegisterNodeGameUnPause("NodeGameUnPause", NodeGameUnPause)
-RegisterNodeTouchesDown("NodeTouchesDown", NodeTouchesDown)
-RegisterNodeTouchesUp("NodeTouchesUp", NodeTouchesUp)
-RegisterNodeTouchesMove("NodeTouchesMove", NodeTouchesMove)
-RegisterNodeTouchesCancelled("NodeTouchesCancelled", NodeTouchesCancelled)
-RegisterNodeTouchDown("NodeTouchDown", NodeTouchDown)
-RegisterNodeTouchUp("NodeTouchUp", NodeTouchUp)
-RegisterNodeTouchMove("NodeTouchMove", NodeTouchMove)
-RegisterNodeTouchCancelled("NodeTouchCancelled", NodeTouchCancelled)
-RegisterNodeMouseDown("NodeMouseDown", NodeMouseDown)
-RegisterNodeMouseUp("NodeMouseUp", NodeMouseUp)
-RegisterNodeMouseMove("NodeMouseMove", NodeMouseMove)
+RegisterCreate("Create",                                         function() pcall(Create) end)
+RegisterDestroy("Destroy",                                       function() pcall(Destroy) end )
+RegisterUpdate("Update",                                         function() pcall(Update) end )
+RegisterRender("Render",                                         function() pcall(Render) end )
+RegisterResize("Resize",                                         function(width, height, orientation) pcall(Resize, width, height, orientation) end )
+RegisterTouchesDown("TouchesDown",                               function(touches) pcall(TouchesDown, touches) end )
+RegisterTouchesUp("TouchesUp",                                   function(touches) pcall(TouchesUp, touches) end )
+RegisterTouchesMove("TouchesMove",                               function(touches) pcall(TouchesMove, touches) end )
+RegisterTouchesCancelled("TouchesCancelled",                     function(touches) pcall(TouchesCancelled, touches) end )
+RegisterTouchDown("TouchDown",                                   function(touch) pcall(TouchDown, touch) end )
+RegisterTouchUp("TouchUp",                                       function(touch) pcall(TouchUp, touch) end )
+RegisterTouchMove("TouchMove",                                   function(touch) pcall(TouchMove, touch) end )
+RegisterTouchCancelled("TouchCancelled",                         function(touch) pcall(TouchCancelled, touch) end )
+RegisterMouseDown("MouseDown",                                   function(mouse) pcall(MouseDown, mouse) end )
+RegisterMouseUp("MouseUp",                                       function(mouse) pcall(MouseUp, mouse) end )
+RegisterMouseMove("MouseMove",                                   function(mouse) pcall(MouseMove, mouse) end )
+RegisterWorldEnterState("WorldEnterState",                       function() pcall(WorldEnterState) end )
+RegisterWorldUpdateState("WorldUpdateState",                     function(timeStep) pcall(WorldUpdateState, timeStep) end )
+RegisterWorldExitState("WorldExitState",                         function() pcall(WorldExitState) end )
+RegisterWorldOnMessage("WorldOnMessage",                         function(message) pcall(WorldOnMessage, message) end )
+RegisterWorldKeyboardShow("WorldKeyboardShow",                   function() pcall(WorldKeyboardShow) end )
+RegisterWorldKeyboardCancel("WorldKeyboardCancel",               function() pcall(WorldKeyboardCancel) end )
+RegisterWorldKeyboardReturn("WorldKeyboardReturn",               function() pcall(WorldKeyboardReturn) end )
+RegisterWorldReceivedMemoryWarning("WorldReceivedMemoryWarning", function() pcall(WorldReceivedMemoryWarning) end )
+RegisterWorldGamePause("WorldGamePause",                         function() pcall(WorldGamePause) end )
+RegisterWorldGameUnPause("WorldGameUnPause",                     function() pcall(WorldGameUnPause) end )
+RegisterWorldRenderHUD("WorldRenderHUD",                         function() pcall(WorldRenderHUD) end )
+RegisterWorldTouchesDown("WorldTouchesDown",                     function(touches) pcall(WorldTouchesDown, touches) end )
+RegisterWorldTouchesUp("WorldTouchesUp",                         function(touches) pcall(WorldTouchesUp, touches) end )
+RegisterWorldTouchesMove("WorldTouchesMove",                     function(touches) pcall(WorldTouchesMove, touches) end )
+RegisterWorldTouchesCancelled("WorldTouchesCancelled",           function(touches) pcall(WorldTouchesCancelled, touches) end )
+RegisterWorldTouchDown("WorldTouchDown",                         function(touch) pcall(WorldTouchDown, touch) end )
+RegisterWorldTouchUp("WorldTouchUp",                             function(touch) pcall(WorldTouchUp, touch) end )
+RegisterWorldTouchMove("WorldTouchMove",                         function(touch) pcall(WorldTouchMove, touch) end )
+RegisterWorldTouchCancelled("WorldTouchCancelled",               function(touch) pcall(WorldTouchCancelled, touch) end )
+RegisterWorldMouseDown("WorldMouseDown",                         function(mouse) pcall(WorldMouseDown, mouse) end )
+RegisterWorldMouseUp("WorldMouseUp",                             function(mouse) pcall(WorldMouseUp, mouse) end )
+RegisterWorldMouseMove("WorldMouseMove",                         function(mouse) pcall(WorldMouseMove, mouse) end )
+RegisterWorldWillResignActive("WorldWillResignActive",           function() pcall(WorldWillResignActive) end )
+RegisterWorldDidBecomeActive("WorldDidBecomeActive",             function() pcall(WorldDidBecomeActive) end )
+RegisterWorldDidEnterBackground("WorldDidEnterBackground",       function() pcall(WorldDidEnterBackground) end )
+RegisterWorldWillEnterForeground("WorldWillEnterForeground",     function() pcall(WorldWillEnterForeground) end )
+RegisterWorldWillTerminate("WorldWillTerminate",                 function() pcall(WorldWillTerminate) end )
+RegisterWorldInterrupt("WorldInterrupt",                         function() pcall(WorldInterrupt) end )
+RegisterWorldResumeInterrupt("WorldResumeInterrupt",             function() pcall(WorldResumeInterrupt) end )
+RegisterSceneEnterState("SceneEnterState",                       function(scene) pcall(SceneEnterState, scene) end )
+RegisterSceneUpdateState("SceneUpdateState",                     function(scene, timeStep) pcall(SceneUpdateState, scene, timeStep) end )
+RegisterSceneExitState("SceneExitState",                         function(scene) pcall(SceneExitState, scene) end )
+RegisterSceneOnMessage("SceneOnMessage",                         function(scene, message) pcall(SceneOnMessage, scene, message) end )
+RegisterSceneKeyboardShow("SceneKeyboardShow",                   function(scene) pcall(SceneKeyboardShow, scene) end )
+RegisterSceneKeyboardCancel("SceneKeyboardCancel",               function(scene) pcall(SceneKeyboardCancel, scene) end )
+RegisterSceneKeyboardReturn("SceneKeyboardReturn",               function(scene, text) pcall(SceneKeyboardReturn, scene, text) end )
+RegisterSceneRenderHUD("SceneRenderHUD",                         function(scene) pcall(SceneRenderHUD, scene) end )
+RegisterSceneGamePause("SceneGamePause",                         function(scene) pcall(SceneGamePause, scene) end )
+RegisterSceneGameUnPause("SceneGameUnPause",                     function(scene) pcall(SceneGameUnPause, scene) end )
+RegisterSceneTouchesDown("SceneTouchesDown",                     function(scene, touches) pcall(SceneTouchesDown, scene, touches) end )
+RegisterSceneTouchesUp("SceneTouchesUp",                         function(scene, touches) pcall(SceneTouchesUp, scene, touches) end )
+RegisterSceneTouchesMove("SceneTouchesMove",                     function(scene, touches) pcall(SceneTouchesMove, scene, touches) end )
+RegisterSceneTouchesCancelled("SceneTouchesCancelled",           function(scene, touches) pcall(SceneTouchesCancelled, scene, touches) end )
+RegisterSceneTouchDown("SceneTouchDown",                         function(scene, touch) pcall(SceneTouchDown, scene, touch) end )
+RegisterSceneTouchUp("SceneTouchUp",                             function(scene, touch) pcall(SceneTouchUp, scene, touch) end )
+RegisterSceneTouchMove("SceneTouchMove",                         function(scene, touch) pcall(SceneTouchMove, scene, touch) end )
+RegisterSceneTouchCancelled("SceneTouchCancelled",               function(scene, touch) pcall(SceneTouchCancelled, scene, touch) end )
+RegisterSceneMouseDown("SceneMouseDown",                         function(scene, mouse) pcall(SceneMouseDown, scene, mouse) end )
+RegisterSceneMouseUp("SceneMouseUp",                             function(scene, mouse) pcall(SceneMouseUp, scene, mouse) end )
+RegisterSceneMouseMove("SceneMouseMove",                         function(scene, mouse) pcall(SceneMouseMove, scene, mouse) end )
+RegisterSceneReceivedMemoryWarning("SceneReceivedMemoryWarning", function(scene) pcall(SceneReceivedMemoryWarning) end )
+RegisterSceneWillResignActive("SceneWillResignActive",           function(scene) pcall(SceneWillResignActive, scene) end )
+RegisterSceneDidBecomeActive("SceneDidBecomeActive",             function(scene) pcall(SceneDidBecomeActive, scene) end )
+RegisterSceneDidEnterBackground("SceneDidEnterBackground",       function(scene) pcall(SceneDidEnterBackground, scene) end )
+RegisterSceneWillEnterForeground("SceneWillEnterForeground",     function(scene) pcall(SceneWillEnterForeground, scene) end )
+RegisterSceneWillTerminate("SceneWillTerminate",                 function(scene) pcall(SceneWillTerminate, scene) end )
+RegisterSceneInterrupt("SceneInterrupt",                         function(scene) pcall(SceneInterrupt, scene) end )
+RegisterSceneResumeInterrupt("SceneResumeInterrupt",             function(scene) pcall(SceneResumeInterrupt, scene) end )
+RegisterNodeEnterState("NodeEnterState",                         function(node) pcall(NodeEnterState, node) end )
+RegisterNodeUpdateState("NodeUpdateState",                       function(node, timeStep) pcall(NodeUpdateState, node, timeStep) end )
+RegisterNodeExitState("NodeExitState",                           function(node) pcall(NodeExitState, node) end )
+RegisterNodeOnMessage("NodeOnMessage",                           function(node, message) pcall(NodeOnMessage, node, message) end )
+RegisterNodeCollide("NodeCollide",                               function(node, otherNode, collisionPoint) pcall(NodeCollide, node, otherNode, collisionPoint) end )
+RegisterNodeNear("NodeNear",                                     function(node, otherNode) pcall(NodeNear, node, otherNode) end )
+RegisterNodeActionUpdate("NodeActionUpdate",                     function(action) pcall(NodeActionUpdate, action) end )
+RegisterNodeActionComplete("NodeActionComplete",                 function(action, timeStep) pcall(NodeActionComplete, action, timeStep) end )
+RegisterNodeRayTouchesDown("NodeRayTouchesDown",                 function(rayContact) pcall(NodeRayTouchesDown, rayContact) end )
+RegisterNodeRayTouchesUp("NodeRayTouchesUp",                     function(rayContact) pcall(NodeRayTouchesUp, rayContact) end )
+RegisterNodeRayTouchesMove("NodeRayTouchesMove",                 function(rayContact) pcall(NodeRayTouchesMove, rayContact) end )
+RegisterNodeRayTouchesCancelled("NodeRayTouchesCancelled",       function(rayContact) pcall(NodeRayTouchesCancelled, rayContact) end )
+RegisterNodeRayTouchesMissed("NodeRayTouchesMissed",             function(node) pcall(NodeRayTouchesMissed, node) end )
+RegisterNodeRayTouchDown("NodeRayTouchDown",                     function(rayContact) pcall(NodeRayTouchDown, rayContact) end )
+RegisterNodeRayTouchUp("NodeRayTouchUp",                         function(rayContact) pcall(NodeRayTouchUp, rayContact) end )
+RegisterNodeRayTouchMove("NodeRayTouchMove",                     function(rayContact) pcall(NodeRayTouchMove, rayContact) end )
+RegisterNodeRayTouchCancelled("NodeRayTouchCancelled",           function(rayContact) pcall(NodeRayTouchCancelled, rayContact) end )
+RegisterNodeRayMouseDown("NodeRayMouseDown",                     function(rayContact) pcall(NodeRayMouseDown, rayContact) end )
+RegisterNodeRayMouseUp("NodeRayMouseUp",                         function(rayContact) pcall(NodeRayMouseUp, rayContact) end )
+RegisterNodeRayMouseMove("NodeRayMouseMove",                     function(rayContact) pcall(NodeRayMouseMove, rayContact) end )
+RegisterNodeRayTouchMissed("NodeRayTouchMissed",                 function(node) pcall(NodeRayTouchMissed, node) end )
+RegisterNodeRayMouseMissed("NodeRayMouseMissed",                 function(node) pcall(NodeRayMouseMissed, node) end )
+RegisterNodeKeyboardShow("NodeKeyboardShow",                     function(node) pcall(NodeKeyboardShow, node) end )
+RegisterNodeKeyboardCancel("NodeKeyboardCancel",                 function(node) pcall(NodeKeyboardCancel, node) end )
+RegisterNodeKeyboardReturn("NodeKeyboardReturn",                 function(node) pcall(NodeKeyboardReturn, node) end )
+RegisterNodeRenderHUD("NodeRenderHUD",                           function(node) pcall(NodeRenderHUD, node) end )
+RegisterNodeGamePause("NodeGamePause",                           function(node) pcall(NodeGamePause, node) end )
+RegisterNodeGameUnPause("NodeGameUnPause",                       function(node) pcall(NodeGameUnPause, node) end )
+RegisterNodeTouchesDown("NodeTouchesDown",                       function(node, touches) pcall(NodeTouchesDown, node, touches) end )
+RegisterNodeTouchesUp("NodeTouchesUp",                           function(node, touches) pcall(NodeTouchesUp, node, touches) end )
+RegisterNodeTouchesMove("NodeTouchesMove",                       function(node, touches) pcall(NodeTouchesMove, node, touches) end )
+RegisterNodeTouchesCancelled("NodeTouchesCancelled",             function(node, touches) pcall(NodeTouchesCancelled, node, touches) end )
+RegisterNodeTouchDown("NodeTouchDown",                           function(node, touch) pcall(NodeTouchDown, node, touch) end )
+RegisterNodeTouchUp("NodeTouchUp",                               function(node, touch) pcall(NodeTouchUp, node, touch) end )
+RegisterNodeTouchMove("NodeTouchMove",                           function(node, touch) pcall(NodeTouchMove, node, touch) end )
+RegisterNodeTouchCancelled("NodeTouchCancelled",                 function(node, touch) pcall(NodeTouchCancelled, node, touch) end )
+RegisterNodeMouseDown("NodeMouseDown",                           function(node, mouse) pcall(NodeMouseDown, node, mouse) end )
+RegisterNodeMouseUp("NodeMouseUp",                               function(node, mouse) pcall(NodeMouseUp, node, mouse) end )
+RegisterNodeMouseMove("NodeMouseMove",                           function(node, mouse) pcall(NodeMouseMove, node, mouse) end )
 
 --return gInterface
 

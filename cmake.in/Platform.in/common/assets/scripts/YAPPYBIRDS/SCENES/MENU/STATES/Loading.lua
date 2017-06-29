@@ -40,7 +40,6 @@ end
 
 function Loading:update(timeStep)
   BaseClass.update(self, timeStep)
-  print("loading")
 end
 
 function Loading:exit()
