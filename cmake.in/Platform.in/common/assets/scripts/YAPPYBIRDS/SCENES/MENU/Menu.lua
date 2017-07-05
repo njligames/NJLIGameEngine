@@ -28,8 +28,8 @@ local __ctor = function(self, init)
     self:getScene():addCameraNode(OrthographicCameraNode, true)
     self:getScene():addCameraNode(PerspectiveCameraNode)
 
-    self._button = self:createButtonControl("stage", 400, 400, 25)
-    --self._switch = self:createSwitchControl("stage", 313, 400, 25)
+    self._button = self:createButtonControl("stage", 400, 400, 25, true)
+    self._switch = self:createSwitchControl("stage", 313, 400, 25, true)
     self:createImageControl("ui_thanks", 0, 0, 1)
     
     
@@ -74,7 +74,7 @@ end
 
 --#############################################################################
 
-function Menu:createButtonControl(buttonName, xPos, yPos, buttonScale)
+function Menu:createButtonControl(buttonName, xPos, yPos, buttonScale, visible)
     local n = buttonName or "PLAY"
     local x = xPos or 0
     local y = yPos or 0
@@ -105,14 +105,20 @@ function Menu:createButtonControl(buttonName, xPos, yPos, buttonScale)
       self:addNodeEntity(buttonNodeEntity)
 
       buttonNodeEntity:hide(PerspectiveCameraNode:getCamera())
-      buttonNodeEntity:show(OrthographicCameraNode:getCamera())
+
+      if visible then
+        buttonNodeEntity:show(OrthographicCameraNode:getCamera())
+      else
+        buttonNodeEntity:hide(OrthographicCameraNode:getCamera())
+        buttonNodeEntity:disabled(true)
+      end
 
       buttonNodeEntity:getNode():setOrigin(bullet.btVector3(x, y, -1))
 
       return buttonNodeEntity
 end
 
-function Menu:createSwitchControl(switchName, xPos, yPos, switchScale)
+function Menu:createSwitchControl(switchName, xPos, yPos, switchScale, visible)
     local n = switchName or "PLAY"
     local x = xPos or 0
     local y = yPos or 0
@@ -126,18 +132,36 @@ function Menu:createSwitchControl(switchName, xPos, yPos, switchScale)
         geometry = Geometry2D,
         scale = s,
         disabled = false,
+        touchUpOutside = function(touches) print(#touches) end,
+        touchUpInside = function(rayContact) print(rayContact) end,
+        touchDownInside = function(rayContact) print(rayContact) end,
+        touchDragOutside = function() print("touchDragOutside") end,
+        touchDragInside = function(rayContact) print(rayContact) end,
+        touchCancelled = function(rayContact) print(rayContact) end,
+        soundTouchUpOutside = nil, --path to the sound
+        soundTouchUpInside = "sounds/interface_select-whoosh.ogg", --path to the sound
+        soundTouchDownInside = nil, --path to the sound
+        soundTouchDragOutside = nil, --path to the sound
+        soundTouchDragInside = nil, --path to the sound
+        soundTouchCancelled = nil, --path to the sound
     })
     self:addNodeEntity(switchNodeEntity)
 
     switchNodeEntity:hide(PerspectiveCameraNode:getCamera())
-    switchNodeEntity:show(OrthographicCameraNode:getCamera())
+
+    if visible then
+      switchNodeEntity:show(OrthographicCameraNode:getCamera())
+    else
+      switchNodeEntity:hide(OrthographicCameraNode:getCamera())
+      switchNodeEntity:disabled(true)
+    end
 
     switchNodeEntity:getNode():setOrigin(bullet.btVector3(x, y, -1))
 
     return switchNodeEntity
 end
 
-function Menu:createImageControl(imageName, xPos, yPos, imageScale)
+function Menu:createImageControl(imageName, xPos, yPos, imageScale, visible)
     local n = imageName or "PLAY"
     local x = xPos or 0
     local y = yPos or 0
@@ -154,14 +178,19 @@ function Menu:createImageControl(imageName, xPos, yPos, imageScale)
       self:addNodeEntity(imageNodeEntity)
 
       imageNodeEntity:hide(PerspectiveCameraNode:getCamera())
-      imageNodeEntity:show(OrthographicCameraNode:getCamera())
+
+      if visible then
+        imageNodeEntity:show(OrthographicCameraNode:getCamera())
+      else
+        imageNodeEntity:hide(OrthographicCameraNode:getCamera())
+      end
 
       imageNodeEntity:getNode():setOrigin(bullet.btVector3(x, y, -1))
 
       return imageNodeEntity
 end
 
-function Menu:createLabelControl(xPos, yPos)
+function Menu:createLabelControl(xPos, yPos, visible)
     local x = xPos or 0
     local y = yPos or 0
 
@@ -171,7 +200,12 @@ function Menu:createLabelControl(xPos, yPos)
       })
 
       labelNodeEntity:hide(PerspectiveCameraNode:getCamera())
-      labelNodeEntity:show(OrthographicCameraNode:getCamera())
+
+      if visible then
+        labelNodeEntity:show(OrthographicCameraNode:getCamera())
+      else
+        labelNodeEntity:hide(OrthographicCameraNode:getCamera())
+      end
 
       labelNodeEntity:getNode():setOrigin(bullet.btVector3(x, y, -1))
 

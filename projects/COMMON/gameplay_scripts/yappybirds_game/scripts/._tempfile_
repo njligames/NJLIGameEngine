@@ -1,0 +1,2 @@
+-- ######## Line 1 too long (127 chars) ######## :--package.path = package.path .. ":/Applications/Developer/ZeroBraneStudio.app/Contents/ZeroBraneStudio/lualibs/mobdebug/?.lua"
+-- ######## Line 3 too long (95 chars) ######## :--http://notebook.kulchenko.com/zerobrane/debugging-wireshark-lua-scripts-with-zerobrane-studio

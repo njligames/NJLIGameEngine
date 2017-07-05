@@ -122,27 +122,19 @@ local Destroy = function()
   
 end
 
+--function(event) pcall(onUpdate, event) end
+
 local Update = function(timeStep)
-  
-  if debugging == nil then
-    debugging = false
-    return false
-  end
-  
-  if not debugging then
-    require("mobdebug").start()
-    debugging = true
-  end
 
-    local pos = bullet.btVector3(100, 100, -1)
-    local color = bullet.btVector4(1, 0, 0, 1)
-    njli.World.getInstance():getDebugDrawer():point(pos, color, 10)--, 100000, 10)
-
+  local pos = bullet.btVector3(100, 100, -1)
+  local color = bullet.btVector4(0.202, 0.643, 0.000, 1)
+  njli.World.getInstance():getDebugDrawer():point(pos, color, 100)--, 100000, 10)
+  
   if gInterface then
     gInterface:getDeviceEntity():update(timeStep)
   end
   
- njli.World.getInstance():setBackgroundColor(0.453, 0.108, 0.000)
+ --njli.World.getInstance():setBackgroundColor(0.453, 0.108, 0.000)
 end
 
 local Render = function()

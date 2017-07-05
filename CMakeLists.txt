@@ -9,6 +9,12 @@ PROJECT (${NJLI_BUILD_PLATFORM})
 # The version number.
 SET ( NJLIGameEngine_VERSION_MAJOR 1 )
 SET ( NJLIGameEngine_VERSION_MINOR 0 )
+SET ( NJLIGameEngine_VERSION_RELEASE 0 )
+SET ( NJLIGameEngine_VERSION "${NJLIGameEngine_VERSION_MAJOR}.${NJLIGameEngine_VERSION_MINOR}.${NJLIGameEngine_VERSION_RELEASE}")
+
+ADD_DEFINITIONS(-DNJLI_VERSION_MAJOR=\"${NJLIGameEngine_VERSION_MAJOR}\")
+ADD_DEFINITIONS(-DNJLI_VERSION_MINOR=\"${NJLIGameEngine_VERSION_MINOR}\")
+ADD_DEFINITIONS(-DNJLI_VERSION_RELEASE=\"${NJLIGameEngine_VERSION_RELEASE}\")
 
 SET ( NJLI_PRODUCT_NAME NJLIGameEngine CACHE STRING "The name of the product" )
 SET ( CMAKE_INSTALL_INCLUDEDIR include/ CACHE STRING "The include directory" )
@@ -41,49 +47,49 @@ OPTION(NJLI_USE_USYNERGY_LIBRARY "Use usynergy library"                ON)
 #OPTION(NJLI_USE_TINYXML2_LIBRARY "Use tinyxml2 library"                OFF)
 
 IF( ${NJLI_GRAPHICS_PLATFORM} STREQUAL "opengl_es_2" )
-    ADD_DEFINITIONS(-DNJLI_GL_ES2)
+  ADD_DEFINITIONS(-DNJLI_GL_ES2)
 ELSEIF( ${NJLI_GRAPHICS_PLATFORM} STREQUAL "opengl_es_3" )
-    ADD_DEFINITIONS(-DNJLI_GL_ES3)
+  ADD_DEFINITIONS(-DNJLI_GL_ES3)
 ELSEIF( ${NJLI_GRAPHICS_PLATFORM} STREQUAL "opengl_2" )
-    ADD_DEFINITIONS(-DNJLI_GL_2)
+  ADD_DEFINITIONS(-DNJLI_GL_2)
 ELSEIF( ${NJLI_GRAPHICS_PLATFORM} STREQUAL "opengl_3" )
-    ADD_DEFINITIONS(-DNJLI_GL_3)
+  ADD_DEFINITIONS(-DNJLI_GL_3)
 ENDIF()
 
 IF( ${NJLI_SOUND_PLATFORM} STREQUAL "fmod" )
-    ADD_DEFINITIONS(-DNJLI_SOUND_FMOD)
+  ADD_DEFINITIONS(-DNJLI_SOUND_FMOD)
 ELSEIF( ${NJLI_SOUND_PLATFORM} STREQUAL "openal" )
-    ADD_DEFINITIONS(-DNJLI_SOUND_OPENAL)
+  ADD_DEFINITIONS(-DNJLI_SOUND_OPENAL)
 ELSEIF( ${NJLI_SOUND_PLATFORM} STREQUAL "sdl" )
-    ADD_DEFINITIONS(-DNJLI_SOUND_SDL)
+  ADD_DEFINITIONS(-DNJLI_SOUND_SDL)
 ENDIF( ${NJLI_SOUND_PLATFORM} STREQUAL "fmod" )
 
 IF(NJLI_USE_ASSIMP_LIBRARY)
-    ADD_DEFINITIONS(-DUSE_ASSIMP_LIBRARY=1)
+  ADD_DEFINITIONS(-DUSE_ASSIMP_LIBRARY=1)
 ENDIF(NJLI_USE_ASSIMP_LIBRARY)
 
 IF(NJLI_USE_BULLET_LIBRARY)
-    ADD_DEFINITIONS(-DUSE_BULLET_LIBRARY=1)
+  ADD_DEFINITIONS(-DUSE_BULLET_LIBRARY=1)
 ENDIF(NJLI_USE_BULLET_LIBRARY)
 
 IF(NJLI_USE_CONCURRENTQUEUE_LIBRARY)
-    ADD_DEFINITIONS(-DUSE_CONCURRENTQUEUE_LIBRARY=1)
+  ADD_DEFINITIONS(-DUSE_CONCURRENTQUEUE_LIBRARY=1)
 ENDIF(NJLI_USE_CONCURRENTQUEUE_LIBRARY)
 
 IF(NJLI_USE_DEBUGDRAW_LIBRARY)
-    ADD_DEFINITIONS(-DUSE_DEBUGDRAW_LIBRARY=1)
+  ADD_DEFINITIONS(-DUSE_DEBUGDRAW_LIBRARY=1)
 ENDIF(NJLI_USE_DEBUGDRAW_LIBRARY)
 
 IF(NJLI_USE_FLATBUFFERS_LIBRARY)
-    ADD_DEFINITIONS(-DUSE_FLATBUFFERS_LIBRARY=1)
+  ADD_DEFINITIONS(-DUSE_FLATBUFFERS_LIBRARY=1)
 ENDIF(NJLI_USE_FLATBUFFERS_LIBRARY)
 
 IF(NJLI_USE_GLM_LIBRARY)
-    ADD_DEFINITIONS(-DUSE_GLM_LIBRARY=1)
+  ADD_DEFINITIONS(-DUSE_GLM_LIBRARY=1)
 ENDIF(NJLI_USE_GLM_LIBRARY)
 
 IF(NJLI_USE_IMGUI_LIBRARY)
-    ADD_DEFINITIONS(-DUSE_IMGUI_LIBRARY=1)
+  ADD_DEFINITIONS(-DUSE_IMGUI_LIBRARY=1)
 ENDIF(NJLI_USE_IMGUI_LIBRARY)
 
 #IF(NJLI_USE_IMGUIZMO_LIBRARY)
@@ -91,27 +97,27 @@ ENDIF(NJLI_USE_IMGUI_LIBRARY)
 #ENDIF(NJLI_USE_IMGUIZMO_LIBRARY)
 
 IF(NJLI_USE_JSONCPP_LIBRARY)
-    ADD_DEFINITIONS(-DUSE_JSONCPP_LIBRARY=1)
+  ADD_DEFINITIONS(-DUSE_JSONCPP_LIBRARY=1)
 ENDIF(NJLI_USE_JSONCPP_LIBRARY)
 
 IF(NJLI_USE_NANOVG_LIBRARY)
-    ADD_DEFINITIONS(-DUSE_NANOVG_LIBRARY=1)
+  ADD_DEFINITIONS(-DUSE_NANOVG_LIBRARY=1)
 ENDIF(NJLI_USE_NANOVG_LIBRARY)
 
 IF(NJLI_USE_OPENCV_LIBRARY)
-    ADD_DEFINITIONS(-DUSE_OPENCV_LIBRARY=1)
+  ADD_DEFINITIONS(-DUSE_OPENCV_LIBRARY=1)
 ENDIF(NJLI_USE_OPENCV_LIBRARY)
 
 IF(NJLI_USE_SQLITE_LIBRARY)
-    ADD_DEFINITIONS(-DUSE_SQLITE_LIBRARY=1)
+  ADD_DEFINITIONS(-DUSE_SQLITE_LIBRARY=1)
 ENDIF(NJLI_USE_SQLITE_LIBRARY)
 
 IF(NJLI_USE_STB_LIBRARY)
-    ADD_DEFINITIONS(-DUSE_STB_LIBRARY=1)
+  ADD_DEFINITIONS(-DUSE_STB_LIBRARY=1)
 ENDIF(NJLI_USE_STB_LIBRARY)
 
 IF(NJLI_USE_USYNERGY_LIBRARY)
-    ADD_DEFINITIONS(-DUSE_USYNERGY_LIBRARY=1)
+  ADD_DEFINITIONS(-DUSE_USYNERGY_LIBRARY=1)
 ENDIF(NJLI_USE_USYNERGY_LIBRARY)
 
 #IF(NJLI_USE_TINYXML2_LIBRARY)
@@ -122,220 +128,217 @@ SET( NJLI_ASSIMP_POSTFIX "" )
 SET( NJLI_FMOD_POSTFIX "" )
 STRING( COMPARE EQUAL "${CMAKE_BUILD_TYPE}" "Debug" is_equal )
 IF( is_equal )
-    ADD_DEFINITIONS(-DDEBUG=1)
-    SET(NJLI_ASSIMP_POSTFIX "d")
-    SET(NJLI_FMOD_POSTFIX "L")
+  ADD_DEFINITIONS(-DDEBUG=1)
+  SET(NJLI_ASSIMP_POSTFIX "d")
+  SET(NJLI_FMOD_POSTFIX "L")
 ENDIF( is_equal )
 
 SET( NJLI_FMOD_EXTENSION "a")
 IF( ${NJLI_BUILD_PLATFORM} EQUAL macOS )
-    SET( NJLI_FMOD_EXTENSION "dylib" )
+  SET( NJLI_FMOD_EXTENSION "dylib" )
 ELSEIF( ${NJLI_BUILD_PLATFORM} EQUAL android )
-    SET( NJLI_FMOD_EXTENSION "so" )
+  SET( NJLI_FMOD_EXTENSION "so" )
 ENDIF()
 
 # configure a header file to pass some of the CMake settings
 # to the source code
 CONFIGURE_FILE (
-    "${CMAKE_SOURCE_DIR}/cmake.in/NJLIGameEngineConfig.h.in"
-    "${NJLI_SOURCE_DIRECTORY}/njli/generated/NJLIGameEngineConfig.h"
-    )
+  "${CMAKE_SOURCE_DIR}/cmake.in/NJLIGameEngineConfig.h.in"
+  "${NJLI_SOURCE_DIRECTORY}/njli/generated/NJLIGameEngineConfig.h"
+  )
 
 SET(NJLIGameEngine_TESTFILES
-    ${CMAKE_SOURCE_DIR}/cmake.in/Tests.in/lua/njli_test.lua
-    )
-#INSTALL(FILES ${NJLIGameEngine_TESTFILES} DESTINATION ${CMAKE_INSTALL_TESTDIR})
+  ${CMAKE_SOURCE_DIR}/cmake.in/Tests.in/lua/njli_test.lua
+  )
 
 SET(NJLIGameEngine_DATAFILES
-    ${CMAKE_SOURCE_DIR}/cmake.in/DoxyFiles.in/images/logo.png
-    )
-#INSTALL(FILES ${NJLIGameEngine_DATAFILES} DESTINATION ${CMAKE_INSTALL_DATADIR})
-
+  ${CMAKE_SOURCE_DIR}/cmake.in/DoxyFiles.in/images/logo.png
+  )
     
 FILE( GLOB src
-    ${NJLI_SOURCE_DIRECTORY}/njli/platform/*.h
-    ${NJLI_SOURCE_DIRECTORY}/njli/platform/*.cpp
-    ${NJLI_SOURCE_DIRECTORY}/njli/platform/*.c
-    )
+  ${NJLI_SOURCE_DIRECTORY}/njli/platform/*.h
+  ${NJLI_SOURCE_DIRECTORY}/njli/platform/*.cpp
+  ${NJLI_SOURCE_DIRECTORY}/njli/platform/*.c
+  )
 SET(REG "${NJLI_SOURCE_DIRECTORY}/njli/platform/.*([.]cpp|[.]c|[.]h|[.]hpp)")
 FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND njli_platform ${filename})
-    ELSE()
-        LIST(APPEND group_other ${filename})
-    ENDIF()
+  STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+  IF(match_group_sources)
+    LIST(APPEND njli_platform ${filename})
+  ELSE()
+    LIST(APPEND group_other ${filename})
+  ENDIF()
 ENDFOREACH()
 
 FILE(GLOB src
-    ${NJLI_SOURCE_DIRECTORY}/njli/platform/${NJLI_BUILD_PLATFORM}/*.h
-    ${NJLI_SOURCE_DIRECTORY}/njli/platform/${NJLI_BUILD_PLATFORM}/*.mm
-    ${NJLI_SOURCE_DIRECTORY}/njli/platform/${NJLI_BUILD_PLATFORM}/*.m
-    ${NJLI_SOURCE_DIRECTORY}/njli/platform/${NJLI_BUILD_PLATFORM}/*.cpp
-    ${NJLI_SOURCE_DIRECTORY}/njli/platform/${NJLI_BUILD_PLATFORM}/*.c
-    )
+  ${NJLI_SOURCE_DIRECTORY}/njli/platform/${NJLI_BUILD_PLATFORM}/*.h
+  ${NJLI_SOURCE_DIRECTORY}/njli/platform/${NJLI_BUILD_PLATFORM}/*.mm
+  ${NJLI_SOURCE_DIRECTORY}/njli/platform/${NJLI_BUILD_PLATFORM}/*.m
+  ${NJLI_SOURCE_DIRECTORY}/njli/platform/${NJLI_BUILD_PLATFORM}/*.cpp
+  ${NJLI_SOURCE_DIRECTORY}/njli/platform/${NJLI_BUILD_PLATFORM}/*.c
+  )
 SET(REG "${NJLI_SOURCE_DIRECTORY}/njli/platform/${NJLI_BUILD_PLATFORM}/.*([.]cpp|[.]c|[.]h|[.]hpp|[.]m|[.]mm)")
 FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND njli_platform_specific ${filename})
-    ELSE()
-        LIST(APPEND group_other ${filename})
-    ENDIF()
+  STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+  IF(match_group_sources)
+    LIST(APPEND njli_platform_specific ${filename})
+  ELSE()
+    LIST(APPEND group_other ${filename})
+  ENDIF()
 ENDFOREACH()
 
 FILE( GLOB src
-    ${NJLI_SOURCE_DIRECTORY}/bullet/*.h
-    ${NJLI_SOURCE_DIRECTORY}/bullet/*.cpp
-    )
+  ${NJLI_SOURCE_DIRECTORY}/bullet/*.h
+  ${NJLI_SOURCE_DIRECTORY}/bullet/*.cpp
+  )
 SET(REG "${NJLI_SOURCE_DIRECTORY}/bullet/.*([.]cpp|[.]c|[.]h|[.]hpp)")
 FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND bullet ${filename})
-    ELSE()
-        LIST(APPEND group_other ${filename})
-    ENDIF()
+  STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+  IF(match_group_sources)
+    LIST(APPEND bullet ${filename})
+  ELSE()
+    LIST(APPEND group_other ${filename})
+  ENDIF()
 ENDFOREACH()
 
 FILE( GLOB src
-    ${NJLI_SOURCE_DIRECTORY}/njli/*.h
-    ${NJLI_SOURCE_DIRECTORY}/njli/*.cpp
-    )
+  ${NJLI_SOURCE_DIRECTORY}/njli/*.h
+  ${NJLI_SOURCE_DIRECTORY}/njli/*.cpp
+  )
 SET(REG "${NJLI_SOURCE_DIRECTORY}/njli/.*([.]cpp|[.]c|[.]h|[.]hpp)")
 FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND njli ${filename})
-    ELSE()
-        LIST(APPEND group_other ${filename})
-    ENDIF()
+  STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+  IF(match_group_sources)
+    LIST(APPEND njli ${filename})
+  ELSE()
+    LIST(APPEND group_other ${filename})
+  ENDIF()
 ENDFOREACH()
 
 FILE( GLOB src
-    ${NJLI_SOURCE_DIRECTORY}/njli/builders/*.h
-    ${NJLI_SOURCE_DIRECTORY}/njli/builders/*.cpp
-    )
+  ${NJLI_SOURCE_DIRECTORY}/njli/builders/*.h
+  ${NJLI_SOURCE_DIRECTORY}/njli/builders/*.cpp
+  )
 SET(REG "${NJLI_SOURCE_DIRECTORY}/njli/builders/.*([.]cpp|[.]c|[.]h|[.]hpp)")
 FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND njli_builders ${filename})
-    ELSE()
-        LIST(APPEND group_other ${filename})
-    ENDIF()
+  STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+  IF(match_group_sources)
+    LIST(APPEND njli_builders ${filename})
+  ELSE()
+    LIST(APPEND group_other ${filename})
+  ENDIF()
 ENDFOREACH()
 
 FILE( GLOB src
-    ${NJLI_SOURCE_DIRECTORY}/njli/builders/graphics/*.h
-    ${NJLI_SOURCE_DIRECTORY}/njli/builders/graphics/*.cpp
-    )
+  ${NJLI_SOURCE_DIRECTORY}/njli/builders/graphics/*.h
+  ${NJLI_SOURCE_DIRECTORY}/njli/builders/graphics/*.cpp
+  )
 SET(REG "${NJLI_SOURCE_DIRECTORY}/njli/builders/graphics/.*([.]cpp|[.]c|[.]h|[.]hpp)")
 FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND njli_builders_graphics ${filename})
-    ELSE()
-        LIST(APPEND group_other ${filename})
-    ENDIF()
+  STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+  IF(match_group_sources)
+    LIST(APPEND njli_builders_graphics ${filename})
+  ELSE()
+    LIST(APPEND group_other ${filename})
+  ENDIF()
 ENDFOREACH()
 
 FILE( GLOB src
-    ${NJLI_SOURCE_DIRECTORY}/njli/builders/physics/*.h
-    ${NJLI_SOURCE_DIRECTORY}/njli/builders/physics/*.cpp
-    )
+  ${NJLI_SOURCE_DIRECTORY}/njli/builders/physics/*.h
+  ${NJLI_SOURCE_DIRECTORY}/njli/builders/physics/*.cpp
+  )
 SET(REG "${NJLI_SOURCE_DIRECTORY}/njli/builders/physics/.*([.]cpp|[.]c|[.]h|[.]hpp)")
 FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND njli_builders_physics ${filename})
-    ELSE()
-        LIST(APPEND group_other ${filename})
-    ENDIF()
+  STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+  IF(match_group_sources)
+    LIST(APPEND njli_builders_physics ${filename})
+  ELSE()
+    LIST(APPEND group_other ${filename})
+  ENDIF()
 ENDFOREACH()
 
 FILE( GLOB src
-    ${NJLI_SOURCE_DIRECTORY}/njli/builders/physics/body/*.h
-    ${NJLI_SOURCE_DIRECTORY}/njli/builders/physics/body/*.cpp
-    )
+  ${NJLI_SOURCE_DIRECTORY}/njli/builders/physics/body/*.h
+  ${NJLI_SOURCE_DIRECTORY}/njli/builders/physics/body/*.cpp
+  )
 SET(REG "${NJLI_SOURCE_DIRECTORY}/njli/builders/physics/body/.*([.]cpp|[.]c|[.]h|[.]hpp)")
 FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND njli_builders_physics_body ${filename})
-    ELSE()
-        LIST(APPEND group_other ${filename})
-    ENDIF()
+  STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+  IF(match_group_sources)
+    LIST(APPEND njli_builders_physics_body ${filename})
+  ELSE()
+    LIST(APPEND group_other ${filename})
+  ENDIF()
 ENDFOREACH()
 
 FILE( GLOB src
-    ${NJLI_SOURCE_DIRECTORY}/njli/builders/physics/constraint/*.h
-    ${NJLI_SOURCE_DIRECTORY}/njli/builders/physics/constraint/*.cpp
-    )
+  ${NJLI_SOURCE_DIRECTORY}/njli/builders/physics/constraint/*.h
+  ${NJLI_SOURCE_DIRECTORY}/njli/builders/physics/constraint/*.cpp
+  )
 SET(REG "${NJLI_SOURCE_DIRECTORY}/njli/builders/physics/constraint/.*([.]cpp|[.]c|[.]h|[.]hpp)")
 FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND njli_builders_physics_constraint ${filename})
-    ELSE()
-        LIST(APPEND group_other ${filename})
-    ENDIF()
+  STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+  IF(match_group_sources)
+    LIST(APPEND njli_builders_physics_constraint ${filename})
+  ELSE()
+    LIST(APPEND group_other ${filename})
+  ENDIF()
 ENDFOREACH()
 
 FILE( GLOB src
-    ${NJLI_SOURCE_DIRECTORY}/njli/builders/physics/shape/*.h
-    ${NJLI_SOURCE_DIRECTORY}/njli/builders/physics/shape/*.cpp
-    )
+  ${NJLI_SOURCE_DIRECTORY}/njli/builders/physics/shape/*.h
+  ${NJLI_SOURCE_DIRECTORY}/njli/builders/physics/shape/*.cpp
+  )
 SET(REG "${NJLI_SOURCE_DIRECTORY}/njli/builders/physics/shape/.*([.]cpp|[.]c|[.]h|[.]hpp)")
 FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND njli_builders_physics_shape ${filename})
-    ELSE()
-        LIST(APPEND group_other ${filename})
-    ENDIF()
+  STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+  IF(match_group_sources)
+    LIST(APPEND njli_builders_physics_shape ${filename})
+  ELSE()
+    LIST(APPEND group_other ${filename})
+  ENDIF()
 ENDFOREACH()
 
 FILE( GLOB src
-    ${NJLI_SOURCE_DIRECTORY}/njli/builders/platform/*.h
-    ${NJLI_SOURCE_DIRECTORY}/njli/builders/platform/*.cpp
-    )
+  ${NJLI_SOURCE_DIRECTORY}/njli/builders/platform/*.h
+  ${NJLI_SOURCE_DIRECTORY}/njli/builders/platform/*.cpp
+  )
 SET(REG "${NJLI_SOURCE_DIRECTORY}/njli/builders/platform/.*([.]cpp|[.]c|[.]h|[.]hpp)")
 FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND njli_builders_platform ${filename})
-    ELSE()
-        LIST(APPEND group_other ${filename})
-    ENDIF()
+  STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+  IF(match_group_sources)
+    LIST(APPEND njli_builders_platform ${filename})
+  ELSE()
+    LIST(APPEND group_other ${filename})
+  ENDIF()
 ENDFOREACH()
 
 FILE( GLOB src
-    ${NJLI_SOURCE_DIRECTORY}/njli/builders/sound/*.h
-    ${NJLI_SOURCE_DIRECTORY}/njli/builders/sound/*.cpp
-    )
+  ${NJLI_SOURCE_DIRECTORY}/njli/builders/sound/*.h
+  ${NJLI_SOURCE_DIRECTORY}/njli/builders/sound/*.cpp
+  )
 SET(REG "${NJLI_SOURCE_DIRECTORY}/njli/builders/sound/.*([.]cpp|[.]c|[.]h|[.]hpp)")
 FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND njli_builders_sound ${filename})
-    ELSE()
-        LIST(APPEND group_other ${filename})
-    ENDIF()
+  STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+  IF(match_group_sources)
+    LIST(APPEND njli_builders_sound ${filename})
+  ELSE()
+    LIST(APPEND group_other ${filename})
+  ENDIF()
 ENDFOREACH()
     
 FILE( GLOB src
-    ${NJLI_SOURCE_DIRECTORY}/njli/builders/steering/*.h
-    ${NJLI_SOURCE_DIRECTORY}/njli/builders/steering/*.cpp
-    )
+  ${NJLI_SOURCE_DIRECTORY}/njli/builders/steering/*.h
+  ${NJLI_SOURCE_DIRECTORY}/njli/builders/steering/*.cpp
+  )
 SET(REG "${NJLI_SOURCE_DIRECTORY}/njli/builders/steering/.*([.]cpp|[.]c|[.]h|[.]hpp)")
 FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND njli_builders_steering ${filename})
-    ELSE()
-        LIST(APPEND group_other ${filename})
-    ENDIF()
+  STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+  IF(match_group_sources)
+    LIST(APPEND njli_builders_steering ${filename})
+  ELSE()
+    LIST(APPEND group_other ${filename})
+  ENDIF()
 ENDFOREACH()
 
 FILE( GLOB src
@@ -2860,9 +2863,7 @@ FILE(GLOB NJLIGameEngine_THIRDPARTY_ITFS
     ${swigin_bullet3_vectormath_sse} 
 )
 
-SET( GAME_ASSETS
-    "${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/common/assets" 
-    )
+SET( GAME_ASSETS "${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/common/assets" )
 
 SET(EXTRA_PLATFORM_LIBS "")
 
@@ -3606,12 +3607,10 @@ LIST(REMOVE_ITEM NJLIGameEngine_SRCS
     )
 
 SET(Binary_FILES
-    ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/lua/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin/lua${NJLI_BINARY_EXTENSION}
-    ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/lua/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin/luac${NJLI_BINARY_EXTENSION}
-    ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/assimp/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin/assimp${NJLI_ASSIMP_POSTFIX}${NJLI_BINARY_EXTENSION}
+  #${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/lua/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin/lua${NJLI_BINARY_EXTENSION}
+  #${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/lua/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin/luac${NJLI_BINARY_EXTENSION}
+  ${NJLI_THIRDPARTY_DIRECTORY}/BUILD/lib/assimp/${NJLI_BUILD_DIR}/Release/bin/assimp${NJLI_ASSIMP_POSTFIX}${NJLI_BINARY_EXTENSION}
     )
-#INSTALL(PROGRAMS ${Binary_FILES} DESTINATION bin/thirdparty/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE} )
-#INSTALL(FILES ${NJLI_SOURCE_DIRECTORY}/njli/platform/Game.h DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
 
 
@@ -3683,23 +3682,52 @@ IF(NJLI_USE_STB_LIBRARY)
 ENDIF(NJLI_USE_STB_LIBRARY)
 
 IF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
-    ADD_CUSTOM_TARGET( SWIGLua
-        COMMAND 
-            ./swig_njli_lua.sh ${CMAKE_CURRENT_BINARY_DIR} ${SWIG_DEFINE}
-        BYPRODUCTS
-            ${NJLI_SOURCE_DIRECTORY}/njli/generated/swig/lua/lnjli.cpp
-            ${NJLI_SOURCE_DIRECTORY}/njli/generated/swig/lua/swig_runtime.h
-        WORKING_DIRECTORY
-            ${CMAKE_SOURCE_DIR}
-        COMMENT
-            "Generating SWIG module with swig"
-        VERBATIM
-        )
+#    ADD_CUSTOM_TARGET( SWIGLua
+#        COMMAND 
+#            ./swig_njli_lua.sh ${CMAKE_CURRENT_BINARY_DIR} ${SWIG_DEFINE}
+#        BYPRODUCTS
+#            ${NJLI_SOURCE_DIRECTORY}/njli/generated/swig/lua/lnjli.cpp
+#            ${NJLI_SOURCE_DIRECTORY}/njli/generated/swig/lua/lbullet.cpp
+#            ${NJLI_SOURCE_DIRECTORY}/njli/generated/swig/lua/swig_runtime.h
+#            ${CMAKE_CURRENT_BINARY_DIR}/lnjli.xml
+#            ${CMAKE_CURRENT_BINARY_DIR}/lbullet.xml
+#        WORKING_DIRECTORY
+#            ${CMAKE_SOURCE_DIR}
+#        COMMENT
+#            "Generating SWIG module with swig"
+#        VERBATIM
+#        )
+
+  ADD_CUSTOM_COMMAND( 
+    OUTPUT 
+      ${CMAKE_CURRENT_BINARY_DIR}/lnjli.xml 
+      ${CMAKE_CURRENT_BINARY_DIR}/lbullet.xml 
+    COMMAND 
+      ./swig_njli_lua.sh ${CMAKE_CURRENT_BINARY_DIR} ${SWIG_DEFINE}
+    WORKING_DIRECTORY 
+      ${CMAKE_SOURCE_DIR}
+    COMMENT 
+      "Generating SWIG module with swig"
+    VERBATIM
+    )
+  ADD_CUSTOM_TARGET(SWIGLua
+    DEPENDS 
+      ${CMAKE_CURRENT_BINARY_DIR}/lnjli.xml 
+      ${CMAKE_CURRENT_BINARY_DIR}/lbullet.xml 
+    )
+
+  SET_SOURCE_FILES_PROPERTIES( ${NJLI_SOURCE_DIRECTORY}/njli/generated/swig/lua/lnjli.cpp PROPERTIES GENERATED TRUE )
+  SET_SOURCE_FILES_PROPERTIES( ${NJLI_SOURCE_DIRECTORY}/njli/generated/swig/lua/lbullet.cpp PROPERTIES GENERATED TRUE )
+  SET_SOURCE_FILES_PROPERTIES( ${NJLI_SOURCE_DIRECTORY}/njli/generated/swig/lua/swig_runtime.h PROPERTIES GENERATED TRUE )
+  SET_SOURCE_FILES_PROPERTIES( ${CMAKE_CURRENT_BINARY_DIR}/lnjli.xml PROPERTIES GENERATED TRUE )
+  SET_SOURCE_FILES_PROPERTIES( ${CMAKE_CURRENT_BINARY_DIR}/lbullet.xml PROPERTIES GENERATED TRUE )
+
+
 ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
 
-SET_SOURCE_FILES_PROPERTIES( ${NJLI_SOURCE_DIRECTORY}/njli/generated/swig/lua/lnjli.cpp PROPERTIES GENERATED TRUE )
+#SET_SOURCE_FILES_PROPERTIES( ${NJLI_SOURCE_DIRECTORY}/njli/generated/swig/lua/lnjli.cpp PROPERTIES GENERATED TRUE )
 #SET_SOURCE_FILES_PROPERTIES( ${NJLI_SOURCE_DIRECTORY}/njli/generated/swig/lua/lbullet.cpp PROPERTIES GENERATED TRUE )
-SET_SOURCE_FILES_PROPERTIES( ${NJLI_SOURCE_DIRECTORY}/njli/generated/swig/lua/swig_runtime.h PROPERTIES GENERATED TRUE )
+#SET_SOURCE_FILES_PROPERTIES( ${NJLI_SOURCE_DIRECTORY}/njli/generated/swig/lua/swig_runtime.h PROPERTIES GENERATED TRUE )
 ##SET_SOURCE_FILES_PROPERTIES( ${CMAKE_CURRENT_BINARY_DIR}/lnjli.xml PROPERTIES GENERATED TRUE )
 ##SET_SOURCE_FILES_PROPERTIES( ${CMAKE_CURRENT_BINARY_DIR}/lbullet.xml PROPERTIES GENERATED TRUE )
 ##INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/lnjli.xml DESTINATION ${CMAKE_INSTALL_DATADIR}/swig/lua)
@@ -3914,30 +3942,57 @@ SOURCE_GROUP("Interfaces\\swig.in\\lua\\thirdparty\\bullet3\\vectormath\\scalar"
 SOURCE_GROUP("Interfaces\\swig.in\\lua\\thirdparty\\bullet3\\vectormath\\sse" FILES ${swigin_bullet3_vectormath_sse} )
 
 IF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
-    ADD_CUSTOM_TARGET(ldoc ALL
-        ldoc ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/ldoc.in/
-        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in
-        COMMENT "Generating API documentation with LDoc" VERBATIM
-        )
-    SET_SOURCE_FILES_PROPERTIES( ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/ldoc/index.html PROPERTIES GENERATED TRUE )
-    #INSTALL(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/ldoc DESTINATION ${CMAKE_INSTALL_DOCDIR})
 
-    FIND_PACKAGE(Doxygen)
-    IF(DOXYGEN_FOUND)
-        SET_SOURCE_FILES_PROPERTIES( ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/html/index.html  PROPERTIES GENERATED TRUE )
+  ADD_CUSTOM_COMMAND( 
+    OUTPUT 
+      ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/ldoc/index.html
+    COMMAND 
+      ldoc ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/ldoc.in/
+    WORKING_DIRECTORY 
+      ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in
+    COMMENT 
+      "Generating API documentation with LDoc"
+    VERBATIM
+    )
 
-        CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Doxyfile.in ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Doxyfile @ONLY)
-        ADD_CUSTOM_TARGET(doxygen ALL
-            ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Doxyfile
-            WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in
-            COMMENT "Generating API documentation with Doxygen" VERBATIM
-            )
-        #INSTALL(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/docbook DESTINATION ${CMAKE_INSTALL_DOCDIR})
-        #INSTALL(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/html DESTINATION ${CMAKE_INSTALL_DOCDIR})
-        #INSTALL(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/latex DESTINATION ${CMAKE_INSTALL_DOCDIR})
-        #INSTALL(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/rtf DESTINATION ${CMAKE_INSTALL_DOCDIR})
-        #INSTALL(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/xml DESTINATION ${CMAKE_INSTALL_DOCDIR})
-    ENDIF(DOXYGEN_FOUND)
+  ADD_CUSTOM_TARGET(Ldoc
+    DEPENDS 
+      ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/ldoc/index.html
+    )
+
+  SET_SOURCE_FILES_PROPERTIES( ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/ldoc/index.html PROPERTIES GENERATED TRUE )
+
+  ADD_CUSTOM_COMMAND( 
+    OUTPUT 
+      ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/html/index.html
+    COMMAND 
+      doxygen ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Doxyfile
+    WORKING_DIRECTORY 
+      ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in
+    COMMENT 
+      "Generating API documentation with Doxygen"
+    VERBATIM
+    )
+
+  ADD_CUSTOM_TARGET(Doxygen
+    DEPENDS 
+      ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/html/index.html
+    )
+
+  SET_SOURCE_FILES_PROPERTIES( ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/html/index.html PROPERTIES GENERATED TRUE )
+
+      #        CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Doxyfile.in ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Doxyfile @ONLY)
+      #        ADD_CUSTOM_TARGET(doxygen ALL
+      #            ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Doxyfile
+      #            WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in
+      #            COMMENT "Generating API documentation with Doxygen" VERBATIM
+      #            )
+      #        SET_SOURCE_FILES_PROPERTIES( ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/html/index.html  PROPERTIES GENERATED TRUE )
+      #        #INSTALL(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/docbook DESTINATION ${CMAKE_INSTALL_DOCDIR})
+      #        #INSTALL(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/html DESTINATION ${CMAKE_INSTALL_DOCDIR})
+      #        #INSTALL(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/latex DESTINATION ${CMAKE_INSTALL_DOCDIR})
+      #        #INSTALL(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/rtf DESTINATION ${CMAKE_INSTALL_DOCDIR})
+      #        #INSTALL(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/xml DESTINATION ${CMAKE_INSTALL_DOCDIR})
 ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
 
 IF( ${NJLI_BUILD_PLATFORM} STREQUAL "android" )
@@ -3976,32 +4031,58 @@ IF( ${NJLI_BUILD_PLATFORM} STREQUAL "android" )
         )
 
 ELSE()
+  IF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" OR ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" OR ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
+    ADD_LIBRARY( NJLIGameEngine
+      SHARED
+      ${NJLIGameEngine_SRCS} ${njli_generated} ${njli_generated_swig} ${njli_generated_swig_lua} 
+      ${NJLI_SOURCE_DIRECTORY}/njli/platform/Game.h
+    )
+    SET_TARGET_PROPERTIES( NJLIGameEngine PROPERTIES VERSION ${NJLIGameEngine_VERSION})
+    SET_TARGET_PROPERTIES( NJLIGameEngine PROPERTIES SOVERSION ${NJLIGameEngine_VERSION})
+    SET_TARGET_PROPERTIES( NJLIGameEngine PROPERTIES FRAMEWORK true)
+    SET_TARGET_PROPERTIES( NJLIGameEngine PROPERTIES PUBLIC_HEADER ${NJLI_SOURCE_DIRECTORY}/njli/platform/Game.h)
+
+    TARGET_LINK_LIBRARIES( NJLIGameEngine ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} )
+
+    #    TARGET_LINL_LIBRARIES(
+    #    NJLIGameEngine
+    #    libnjli_shared
+    #    )
+  ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" OR ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" OR ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
 
     ADD_LIBRARY( libnjli_static STATIC 
         ${NJLIGameEngine_SRCS} ${njli_generated} ${njli_generated_swig} ${njli_generated_swig_lua} 
         )
-    #ADD_DEPENDENCIES(libnjli_static SWIGLua)
     SET_TARGET_PROPERTIES( libnjli_static PROPERTIES OUTPUT_NAME libnjli )
     SET_TARGET_PROPERTIES( libnjli_static PROPERTIES PREFIX "")
     TARGET_LINK_LIBRARIES( libnjli_static ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} )
     #INSTALL( TARGETS libnjli_static DESTINATION lib/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE} )
 
+
+    IF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
+      ADD_EXECUTABLE ( lua ${NJLIGameEngine_SRCS} ${njli_generated} ${njli_generated_swig} ${njli_generated_swig_lua} "${NJLI_SOURCE_DIRECTORY}/lua/src/lua.c" "${NJLI_SOURCE_DIRECTORY}/lua/src/lua.rc" )
+      TARGET_LINK_LIBRARIES( lua ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} )
+
+      ADD_EXECUTABLE ( luac ${NJLIGameEngine_SRCS} ${njli_generated} ${njli_generated_swig} ${njli_generated_swig_lua} "${NJLI_SOURCE_DIRECTORY}/lua/src/luac.c" "${NJLI_SOURCE_DIRECTORY}/lua/src/lua.rc" )
+      TARGET_LINK_LIBRARIES( luac ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} )
+
+      ADD_LIBRARY( libnjli_lua_module MODULE ${NJLIGameEngine_SRCS} ${njli_generated} ${njli_generated_swig} ${njli_generated_swig_lua} )
+      SET_TARGET_PROPERTIES( libnjli_lua_module PROPERTIES OUTPUT_NAME njli )
+      SET_TARGET_PROPERTIES( libnjli_lua_module PROPERTIES PREFIX "")
+      TARGET_LINK_LIBRARIES( libnjli_lua_module ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} )
+      #INSTALL( TARGETS libnjli_lua_module DESTINATION module/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE} )
+    ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
+
     IF( NOT ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
         ADD_LIBRARY( libnjli_shared SHARED 
             ${NJLIGameEngine_SRCS} ${njli_generated} ${njli_generated_swig} ${njli_generated_swig_lua} 
             )
-        #ADD_DEPENDENCIES(libnjli_shared SWIGLua)
         SET_TARGET_PROPERTIES( libnjli_shared PROPERTIES OUTPUT_NAME libnjli )
         SET_TARGET_PROPERTIES( libnjli_shared PROPERTIES PREFIX "")
         TARGET_LINK_LIBRARIES( libnjli_shared ${EXTRA_PLATFORM_LIBS} ${NJLIGameEngine_LBY} )
         #INSTALL( TARGETS libnjli_shared DESTINATION lib/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE} )
 
-        ADD_LIBRARY( libnjli_lua_module MODULE ${NJLIGameEngine_SRCS} ${njli_generated} ${njli_generated_swig} ${njli_generated_swig_lua} )
-        #ADD_DEPENDENCIES(libnjli_lua_module SWIGLua)
-        SET_TARGET_PROPERTIES( libnjli_lua_module PROPERTIES OUTPUT_NAME njli )
-        SET_TARGET_PROPERTIES( libnjli_lua_module PROPERTIES PREFIX "")
-        TARGET_LINK_LIBRARIES( libnjli_lua_module ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} )
-        #INSTALL( TARGETS libnjli_lua_module DESTINATION module/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE} )
+
     ENDIF()
 
     ADD_EXECUTABLE( EngineSource
@@ -4011,7 +4092,6 @@ ELSE()
         ${NJLIGameEngine_THIRDPARTY_INC}
         )
     SET_TARGET_PROPERTIES( EngineSource PROPERTIES OUTPUT_NAME ${NJLI_PRODUCT_NAME} )
-    #ADD_DEPENDENCIES(EngineSource SWIGLua)
     
     IF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" OR ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
         SET_TARGET_PROPERTIES (
@@ -4026,6 +4106,7 @@ ELSE()
     ENDIF()
 
     IF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" OR ${NJLI_BUILD_PLATFORM} STREQUAL "ios" OR ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
+
         SET_SOURCE_FILES_PROPERTIES(
             ${NJLI_RESOURCES}
             PROPERTIES
@@ -4076,6 +4157,7 @@ ELSE()
     ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
     
     IF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" OR ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
+
         SET_TARGET_PROPERTIES (
             EngineLibrary PROPERTIES
             XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY "iPhone Developer"
@@ -4085,9 +4167,11 @@ ELSE()
             XCODE_ATTRIBUTE_COMBINE_HIDPI_IMAGES "NO"
             XCODE_ATTRIBUTE_ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME "LaunchImage"
             )
+
     ENDIF()
 
     IF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" OR ${NJLI_BUILD_PLATFORM} STREQUAL "ios" OR ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
+
         SET_SOURCE_FILES_PROPERTIES(
             ${NJLI_RESOURCES}
             PROPERTIES
@@ -4121,13 +4205,72 @@ ELSE()
         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/projects/COMMON 
         )
 
-    IF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
-        #INSTALL(TARGETS EngineLibrary DESTINATION /Applications)
-        #https://cmake.org/cmake/help/v3.0/command/install.html
-        #INSTALL(TARGETS EngineLibrary
-        #    BUNDLE DESTINATION /Applications
-        #    )
-    ENDIF()
+    IF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" OR ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" OR ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
+      INSTALL(TARGETS NJLIGameEngine
+        ARCHIVE DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/lib/static/
+        LIBRARY DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/lib/
+        RUNTIME DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin/
+        FRAMEWORK DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/framework/
+        BUNDLE DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bundle/
+        PRIVATE_HEADER DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/private_header
+        PUBLIC_HEADER DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/public_header
+        RESOURCE DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/${CMAKE_INSTALL_DATADIR}
+      )
+    ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" OR ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" OR ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
 
+    IF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
+      #https://cmake.org/cmake/help/v3.0/command/install.html
+      #INSTALL(TARGETS lua luac EngineSource EngineLibrary libnjli_static libnjli_shared libnjli_lua_module
+      INSTALL(TARGETS libnjli_lua_module 
+        ARCHIVE DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/lib/static/
+        LIBRARY DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/lib/
+        RUNTIME DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin/
+        FRAMEWORK DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/framework/
+        BUNDLE DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bundle/
+        PRIVATE_HEADER DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/private_header
+        PUBLIC_HEADER DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/public_header
+        RESOURCE DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/${CMAKE_INSTALL_DATADIR}
+      )
+      INSTALL(PROGRAMS ${Binary_FILES} DESTINATION ${NJLI_BUILD_DIR}/bin/thirdparty/ )
+      INSTALL(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/ldoc DESTINATION ${CMAKE_INSTALL_DOCDIR})
+      INSTALL(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/html DESTINATION ${CMAKE_INSTALL_DOCDIR})
+      INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/lnjli.xml DESTINATION ${CMAKE_INSTALL_DATADIR}/swig/lua)
+      INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/lbullet.xml DESTINATION ${CMAKE_INSTALL_DATADIR}/swig/lua)
+      INSTALL(FILES ${NJLI_SOURCE_DIRECTORY}/njli/platform/Game.h DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+    ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
+
+    INSTALL(TARGETS libnjli_shared 
+      ARCHIVE DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/lib/static/
+      LIBRARY DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/lib/
+      RUNTIME DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin/
+      FRAMEWORK DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/framework/
+      BUNDLE DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bundle/
+      PRIVATE_HEADER DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/private_header
+      PUBLIC_HEADER DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/public_header
+      RESOURCE DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/${CMAKE_INSTALL_DATADIR}
+    )
+
+    IF( NOT ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
+      INSTALL(TARGETS libnjli_shared 
+        ARCHIVE DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/lib/static/
+        LIBRARY DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/lib/
+        RUNTIME DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin/
+        FRAMEWORK DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/framework/
+        BUNDLE DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bundle/
+        PRIVATE_HEADER DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/private_header
+        PUBLIC_HEADER DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/public_header
+        RESOURCE DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/${CMAKE_INSTALL_DATADIR}
+      )
+    ENDIF( NOT ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
+
+    INSTALL(FILES ${NJLIGameEngine_DATAFILES} DESTINATION ${CMAKE_INSTALL_DATADIR})
+    INSTALL(FILES ${NJLIGameEngine_TESTFILES} DESTINATION ${CMAKE_INSTALL_TESTDIR})
+
+#INSTALL(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/ldoc DESTINATION ${CMAKE_INSTALL_DOCDIR})
+#INSTALL(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/docbook DESTINATION ${CMAKE_INSTALL_DOCDIR})
+#INSTALL(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/html DESTINATION ${CMAKE_INSTALL_DOCDIR})
+#INSTALL(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/latex DESTINATION ${CMAKE_INSTALL_DOCDIR})
+#INSTALL(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/rtf DESTINATION ${CMAKE_INSTALL_DOCDIR})
+#INSTALL(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/xml DESTINATION ${CMAKE_INSTALL_DOCDIR})
 
 ENDIF()

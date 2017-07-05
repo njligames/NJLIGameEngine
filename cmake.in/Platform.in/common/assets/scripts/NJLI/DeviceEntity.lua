@@ -41,13 +41,20 @@ function DeviceEntity:destroy()
 end
 
 function DeviceEntity:update(timeStep)
-  
-  
-  --print("DeviceEntity:update("..timeStep..")")
-    
-    
-  njli.World.getInstance():setBackgroundColor(0.000, 1.000, 0.000)
-  
+    if debugging == nil then
+        debugging = false
+        return false
+    end
+
+    if not debugging then
+        require("mobdebug").start()
+        require("mobdebug").coro()
+        debugging = true
+    end
+
+    --print("DeviceEntity:update("..timeStep..")")
+    --njli.World.getInstance():setBackgroundColor(0.000, 1.000, 0.000)
+
 end
 
 function DeviceEntity:render()
@@ -131,56 +138,56 @@ function DeviceEntity:superClass()
 end
 
 function DeviceEntity:isa(theClass)
-  local b_isa = false
-  local cur_class = theClass:class()
-  while ( nil ~= cur_class ) and ( false == b_isa ) do
+    local b_isa = false
+    local cur_class = theClass:class()
+    while ( nil ~= cur_class ) and ( false == b_isa ) do
     if cur_class == theClass then
-      b_isa = true
+        b_isa = true
     else
-      cur_class = cur_class:superClass()
+        cur_class = cur_class:superClass()
     end
-  end
+end
 
-  return b_isa
+return b_isa
 end
 
 function DeviceEntity:__gc()
-  DeviceEntity._destroy(self)
+    DeviceEntity._destroy(self)
 end
 
 function DeviceEntity:__tostring()
-  local ret = self:className() .. " =\n{\n"
+    local ret = self:className() .. " =\n{\n"
 
-  for pos,val in pairs(self) do
-    ret = ret .. "\t" .. "["..pos.."]" .. " => " .. type(val) .. " = " .. tostring(val) .. "\n"
-  end
+    for pos,val in pairs(self) do
+        ret = ret .. "\t" .. "["..pos.."]" .. " => " .. type(val) .. " = " .. tostring(val) .. "\n"
+    end
 
-  return ret .. "\n\t" .. tostring_r(getmetatable(self)) .. "\n}"
+    return ret .. "\n\t" .. tostring_r(getmetatable(self)) .. "\n}"
 end
 
 function DeviceEntity:_destroy()
-  assert(not self.__DeviceCalledLoad, "Must unload before you destroy")
+    assert(not self.__DeviceCalledLoad, "Must unload before you destroy")
 
-  __dtor(self)
+    __dtor(self)
 end
 
 function DeviceEntity:_create(init)
-  self.__DeviceCalledLoad = false
+    self.__DeviceCalledLoad = false
 
-  __ctor(self, init)
+    __ctor(self, init)
 end
 
 function DeviceEntity:load()
-  __load(self)
+    __load(self)
 
-  self.__DeviceCalledLoad = true
+    self.__DeviceCalledLoad = true
 end
 
 function DeviceEntity:unLoad()
-  assert(self.__DeviceCalledLoad, "Must load before unloading")
+    assert(self.__DeviceCalledLoad, "Must load before unloading")
 
-  __unLoad(self)
-  self.__DeviceCalledLoad = false
+    __unLoad(self)
+    self.__DeviceCalledLoad = false
 end
 
 return DeviceEntity

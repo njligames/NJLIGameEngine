@@ -6904,6 +6904,27 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>NJLI_VERSION</name>
+      <anchorfile>lua_8h.html</anchorfile>
+      <anchor>a5035a2755ead74602c44b7a9c4834e1a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>NJLI_RELEASE</name>
+      <anchorfile>lua_8h.html</anchorfile>
+      <anchor>af4a89bd59d91b409c19fa82fdf10510e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>NJLI_COPYRIGHT</name>
+      <anchorfile>lua_8h.html</anchorfile>
+      <anchor>af0f28dd6020cadf6fdb622c9fdacd18f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>LUA_COPYRIGHT</name>
       <anchorfile>lua_8h.html</anchorfile>
       <anchor>a5126fa04dbeee0b9118c769beadcd62d</anchor>

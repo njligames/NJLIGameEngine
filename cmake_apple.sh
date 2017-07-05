@@ -65,6 +65,58 @@ build_apple_xcode()
     fi
 }
 
+build_apple_unix()
+{
+    MY_PLATFORM=$1
+    MY_VERSION=$2
+    MY_BUILD_PLAT=$3
+
+    MY_BUILD_DIR="${MY_PLATFORM}/${MY_VERSION}/${MY_BUILD_PLAT}"
+
+    MY_GRAPHICS_PLATFORM=opengl_es_2
+    if [ $MY_PLATFORM == macOS ]
+    then
+        MY_GRAPHICS_PLATFORM=opengl_2
+    fi
+
+
+    cmake ../.. -G "Unix Makefiles" \
+        -DCMAKE_CXX_FLAGS='-std=gnu++11' \
+        -DCMAKE_INSTALL_PREFIX=../../generated/ \
+        -DNJLI_THIRDPARTY_DIRECTORY:STRING=${MY_THIRDPARTY_DIR} \
+        -DNJLI_BUILD_PLATFORM=${MY_PLATFORM} \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DNJLI_GRAPHICS_PLATFORM=${MY_GRAPHICS_PLATFORM} \
+        -DNJLI_SOUND_PLATFORM=openal \
+        -DNJLI_BUILD_DIR=${MY_BUILD_DIR}
+}
+
+#build_apple_ninja()
+#{
+#    MY_PLATFORM=$1
+#    MY_VERSION=$2
+#    MY_BUILD_PLAT=$3
+#
+#    MY_BUILD_DIR="${MY_PLATFORM}/${MY_VERSION}/${MY_BUILD_PLAT}"
+#
+#    MY_GRAPHICS_PLATFORM=opengl_es_2
+#    if [ $MY_PLATFORM == macOS ]
+#    then
+#        MY_GRAPHICS_PLATFORM=opengl_2
+#    fi
+#
+#
+#    cmake ../.. -G "Ninja" \
+#        -DCMAKE_CXX_FLAGS='-std=gnu++11' \
+#        -DCMAKE_INSTALL_PREFIX=../../generated/ \
+#        -DNJLI_THIRDPARTY_DIRECTORY:STRING=${MY_THIRDPARTY_DIR} \
+#        -DNJLI_BUILD_PLATFORM=${MY_PLATFORM} \
+#        -DCMAKE_BUILD_TYPE=Release \
+#        -DNJLI_GRAPHICS_PLATFORM=${MY_GRAPHICS_PLATFORM} \
+#        -DNJLI_SOUND_PLATFORM=openal \
+#        -DNJLI_BUILD_DIR=${MY_BUILD_DIR}
+#}
+
 build_apple()
 {
     #Debug Release MinsizeRel RelWithDebugInfo
@@ -78,25 +130,31 @@ build_apple()
 
     MY_BUILD_DIR="${MY_PLATFORM}/${MY_VERSION}/${MY_BUILD_PLAT}"
 
+    MY_GRAPHICS_PLATFORM=opengl_es_2
+
     MY_BUILD_DIRECTORY=.build
     rm -rf ${MY_BUILD_DIRECTORY}
     mkdir -p ${MY_BUILD_DIRECTORY}
     cd ${MY_BUILD_DIRECTORY}
 
-    cmake .. -G "Ninja" \
+    cmake ../.. -G "Unix Makefiles" \
         -DCMAKE_CXX_FLAGS='-std=gnu++11' \
-        -DCMAKE_INSTALL_PREFIX=../generated/ \
+        -DCMAKE_INSTALL_PREFIX=../../generated/ \
         -DNJLI_THIRDPARTY_DIRECTORY:STRING=${MY_THIRDPARTY_DIR} \
         -DNJLI_BUILD_PLATFORM=${MY_PLATFORM} \
         -DCMAKE_BUILD_TYPE=${MY_BUILD_TYPE} \
+        -DNJLI_GRAPHICS_PLATFORM=${MY_GRAPHICS_PLATFORM} \
+        -DNJLI_SOUND_PLATFORM=openal \
         -DNJLI_BUILD_DIR=${MY_BUILD_DIR} \
         -DCMAKE_TOOLCHAIN_FILE=${MY_THIRDPARTY_DIR}/apple.toolchain.cmake \
         -DSIMULATOR:BOOL=${MY_SIMULATOR} \
         -DENABLE_BITCODE:BOOL=OFF \
         -DPLATFORM=${MY_PLATFORM}
 
-    ninja -C.
-    ninja install
+    #ninja -C.
+    make -j8
+    #ninja install
+    make install
 
     cd ..
 }
@@ -109,11 +167,11 @@ build_ios()
     build_apple Release ios ON iphonesimulator ${MY_IOS_PATH} ${CMAKE_IOS_SYSTEM_VERSION}
     build_apple Release ios OFF iphoneos ${MY_IOS_PATH} ${CMAKE_IOS_SYSTEM_VERSION}
 
-    build_apple MinsizeRel ios ON iphonesimulator ${MY_IOS_PATH} ${CMAKE_IOS_SYSTEM_VERSION}
-    build_apple MinsizeRel ios OFF iphoneos ${MY_IOS_PATH} ${CMAKE_IOS_SYSTEM_VERSION}
-
-    build_apple RelWithDebugInfo ios ON iphonesimulator ${MY_IOS_PATH} ${CMAKE_IOS_SYSTEM_VERSION}
-    build_apple RelWithDebugInfo ios OFF iphoneos ${MY_IOS_PATH} ${CMAKE_IOS_SYSTEM_VERSION}
+#    build_apple MinsizeRel ios ON iphonesimulator ${MY_IOS_PATH} ${CMAKE_IOS_SYSTEM_VERSION}
+#    build_apple MinsizeRel ios OFF iphoneos ${MY_IOS_PATH} ${CMAKE_IOS_SYSTEM_VERSION}
+#
+#    build_apple RelWithDebugInfo ios ON iphonesimulator ${MY_IOS_PATH} ${CMAKE_IOS_SYSTEM_VERSION}
+#    build_apple RelWithDebugInfo ios OFF iphoneos ${MY_IOS_PATH} ${CMAKE_IOS_SYSTEM_VERSION}
 }
 
 build_appletvos()
@@ -124,11 +182,11 @@ build_appletvos()
     build_apple Release appletvos ON appletvsimulator ${MY_IOS_PATH} ${CMAKE_TVOS_SYSTEM_VERSION}
     build_apple Release appletvos OFF appletvos ${MY_IOS_PATH} ${CMAKE_TVOS_SYSTEM_VERSION}
 
-    build_apple MinsizeRel appletvos ON appletvsimulator ${MY_IOS_PATH} ${CMAKE_TVOS_SYSTEM_VERSION}
-    build_apple MinsizeRel appletvos OFF appletvos ${MY_IOS_PATH} ${CMAKE_TVOS_SYSTEM_VERSION}
-
-    build_apple RelWithDebugInfo appletvos ON appletvsimulator ${MY_IOS_PATH} ${CMAKE_TVOS_SYSTEM_VERSION}
-    build_apple RelWithDebugInfo appletvos OFF appletvos ${MY_IOS_PATH} ${CMAKE_TVOS_SYSTEM_VERSION}
+#    build_apple MinsizeRel appletvos ON appletvsimulator ${MY_IOS_PATH} ${CMAKE_TVOS_SYSTEM_VERSION}
+#    build_apple MinsizeRel appletvos OFF appletvos ${MY_IOS_PATH} ${CMAKE_TVOS_SYSTEM_VERSION}
+#
+#    build_apple RelWithDebugInfo appletvos ON appletvsimulator ${MY_IOS_PATH} ${CMAKE_TVOS_SYSTEM_VERSION}
+#    build_apple RelWithDebugInfo appletvos OFF appletvos ${MY_IOS_PATH} ${CMAKE_TVOS_SYSTEM_VERSION}
 }
 
 build_applewatchos()
@@ -158,26 +216,28 @@ _build_macos()
     MY_VERSION=$2
     MY_BUILD_DIR="macOS/${MY_VERSION}"
 
-    cmake .. -G "Ninja" \
+    cmake ../.. -G "Unix Makefiles" \
         -DGL_GLEXT_PROTOTYPES:BOOL=ON \
         -DCMAKE_CXX_FLAGS='-std=gnu++11' \
-        -DCMAKE_INSTALL_PREFIX=../generated/ \
+        -DCMAKE_INSTALL_PREFIX=../../generated/ \
         -DNJLI_THIRDPARTY_DIRECTORY:STRING=${MY_THIRDPARTY_DIR} \
         -DNJLI_GRAPHICS_PLATFORM=opengl_2 \
-        -DCMAKE_OSX_ARCHITECTURES="i386;x86_64" \
         -DNJLI_BUILD_PLATFORM="macOS" \
         -DCMAKE_BUILD_TYPE=${MY_BUILD_TYPE} \
+        -DNJLI_SOUND_PLATFORM=openal \
         -DNJLI_BUILD_DIR=${MY_BUILD_DIR}
 
-    ninja -C.
-    ninja install
+    make SWIGLua
+    make -j8
+    make install
 
     cd ..
 }
 
 build_macos()
 {
-    BUILD_TYPES=(Debug Release MinsizeRel RelWithDebugInfo)
+    #BUILD_TYPES=(Debug Release MinsizeRel RelWithDebugInfo)
+    BUILD_TYPES=(Debug Release)
 
     for BUILD_TYPE in ${BUILD_TYPES[@]};do
         _build_macos ${BUILD_TYPE} ${CMAKE_MACOS_SYSTEM_VERSION}
@@ -191,11 +251,15 @@ build_macos()
 
 cd projects
 
+##########################################3
+
 rm -rf ios_Xcode
 mkdir -p ios_Xcode
 cd ios_Xcode
 build_apple_xcode ios ${CMAKE_IOS_SYSTEM_VERSION} iphoneos 
 cd ..
+
+##########################################3
 
 rm -rf tvos_Xcode
 mkdir -p tvos_Xcode
@@ -203,9 +267,14 @@ cd tvos_Xcode
 build_apple_xcode appletv ${CMAKE_TVOS_SYSTEM_VERSION} appletvos 
 cd ..
 
+##########################################3
+
 rm -rf macOS_Xcode
 mkdir -p macOS_Xcode
 cd macOS_Xcode
 build_apple_xcode macOS ${CMAKE_MACOS_SYSTEM_VERSION}
 cd ..
 
+#build_ios
+#build_appletvos
+#build_macos

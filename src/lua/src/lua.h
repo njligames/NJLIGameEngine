@@ -23,7 +23,12 @@
 
 #define LUA_VERSION	"Lua " LUA_VERSION_MAJOR "." LUA_VERSION_MINOR
 #define LUA_RELEASE	LUA_VERSION "." LUA_VERSION_RELEASE
-#define LUA_COPYRIGHT	LUA_RELEASE "  Copyright (C) 1994-2015 Lua.org, PUC-Rio"
+
+#define NJLI_VERSION "NJLIGameEngine " NJLI_VERSION_MAJOR "." NJLI_VERSION_MINOR
+#define NJLI_RELEASE	NJLI_VERSION "." NJLI_VERSION_RELEASE
+#define NJLI_COPYRIGHT	"(Built with " NJLI_RELEASE " Copyright (C) 2017 njligames.com)"
+
+#define LUA_COPYRIGHT	LUA_RELEASE " Copyright (C) 1994-2015 Lua.org, PUC-Rio " NJLI_COPYRIGHT
 #define LUA_AUTHORS	"R. Ierusalimschy, L. H. de Figueiredo, W. Celes"
 
 

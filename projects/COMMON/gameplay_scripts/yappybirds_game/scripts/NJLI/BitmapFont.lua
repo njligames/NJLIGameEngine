@@ -32,17 +32,17 @@ local __ctor = function(self, init)
 end
 
 local __dtor = function(self)
-  self._geometry:removeShaderProgram(self._shader)
-  self._geometry:removeMaterial(self._material)
-  
-  njli.Sprite2D.destroy(self._geometry)
-  self._geometry = nil
-  
-  njli.ShaderProgram.destroy(self._shader)
-  self._shader = nil
-  
-  njli.Material.destroy(self._material)
-  self._material = nil
+    self._geometry:removeShaderProgram(self._shader)
+    self._geometry:removeMaterial(self._material)
+
+    njli.Sprite2D.destroy(self._geometry)
+    self._geometry = nil
+
+    njli.ShaderProgram.destroy(self._shader)
+    self._shader = nil
+
+    njli.Material.destroy(self._material)
+    self._material = nil
 end
 
 local __load = function(self)
@@ -132,7 +132,7 @@ local __load = function(self)
 end
 
 local __unLoad = function(self)
-  self._font = nil
+    self._font = nil
 end
 
 --#############################################################################
