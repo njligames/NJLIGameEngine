@@ -131,15 +131,19 @@ build_apple()
     MY_BUILD_DIR="${MY_PLATFORM}/${MY_VERSION}/${MY_BUILD_PLAT}"
 
     MY_GRAPHICS_PLATFORM=opengl_es_2
+    if [ $MY_PLATFORM == macOS ]
+    then
+        MY_GRAPHICS_PLATFORM=opengl_2
+    fi
 
     MY_BUILD_DIRECTORY=.build
     rm -rf ${MY_BUILD_DIRECTORY}
     mkdir -p ${MY_BUILD_DIRECTORY}
     cd ${MY_BUILD_DIRECTORY}
 
-    cmake ../.. -G "Unix Makefiles" \
+    cmake .. -G "Unix Makefiles" \
         -DCMAKE_CXX_FLAGS='-std=gnu++11' \
-        -DCMAKE_INSTALL_PREFIX=../../generated/ \
+        -DCMAKE_INSTALL_PREFIX=../generated/ \
         -DNJLI_THIRDPARTY_DIRECTORY:STRING=${MY_THIRDPARTY_DIR} \
         -DNJLI_BUILD_PLATFORM=${MY_PLATFORM} \
         -DCMAKE_BUILD_TYPE=${MY_BUILD_TYPE} \
@@ -151,6 +155,7 @@ build_apple()
         -DENABLE_BITCODE:BOOL=OFF \
         -DPLATFORM=${MY_PLATFORM}
 
+    make SWIGLua
     #ninja -C.
     make -j8
     #ninja install
@@ -227,7 +232,7 @@ _build_macos()
         -DNJLI_BUILD_DIR=${MY_BUILD_DIR}
 
     #make SWIGLua
-    #make -j8
+    #make -j8 install
     make install
 
     cd ..
@@ -243,39 +248,33 @@ build_macos()
     done
 }
 
-#build_macos
 #build_ios
 #build_appletvos
-#build_applewatchos
+#build_macos
 
 cd projects
 
-###########################################3
-#
-#rm -rf ios_Xcode
-#mkdir -p ios_Xcode
-#cd ios_Xcode
-#build_apple_xcode ios ${CMAKE_IOS_SYSTEM_VERSION} iphoneos 
-#cd ..
-#
-###########################################3
-#
-#rm -rf tvos_Xcode
-#mkdir -p tvos_Xcode
-#cd tvos_Xcode
-#build_apple_xcode appletv ${CMAKE_TVOS_SYSTEM_VERSION} appletvos 
-#cd ..
-#
-###########################################3
-#
-#rm -rf macOS_Xcode
-#mkdir -p macOS_Xcode
-#cd macOS_Xcode
-#build_apple_xcode macOS ${CMAKE_MACOS_SYSTEM_VERSION}
-#cd ..
+##########################################3
 
-#build_ios
-#build_appletvos
-#build_macos
+rm -rf ios_Xcode
+mkdir -p ios_Xcode
+cd ios_Xcode
+build_apple_xcode ios ${CMAKE_IOS_SYSTEM_VERSION} iphoneos 
+cd ..
 
-_build_macos Release ${CMAKE_MACOS_SYSTEM_VERSION}
+##########################################3
+
+rm -rf tvos_Xcode
+mkdir -p tvos_Xcode
+cd tvos_Xcode
+build_apple_xcode appletv ${CMAKE_TVOS_SYSTEM_VERSION} appletvos 
+cd ..
+
+##########################################3
+
+rm -rf macOS_Xcode
+mkdir -p macOS_Xcode
+cd macOS_Xcode
+build_apple_xcode macOS ${CMAKE_MACOS_SYSTEM_VERSION}
+cd ..
+
