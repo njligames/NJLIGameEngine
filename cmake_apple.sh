@@ -207,7 +207,7 @@ build_applewatchos()
 _build_macos()
 {
     MY_BUILD_DIRECTORY=.build
-    rm -rf ${MY_BUILD_DIRECTORY}
+    #rm -rf ${MY_BUILD_DIRECTORY}
     mkdir -p ${MY_BUILD_DIRECTORY}
     cd ${MY_BUILD_DIRECTORY}
 
@@ -217,7 +217,6 @@ _build_macos()
     MY_BUILD_DIR="macOS/${MY_VERSION}"
 
     cmake ../.. -G "Unix Makefiles" \
-        -DGL_GLEXT_PROTOTYPES:BOOL=ON \
         -DCMAKE_CXX_FLAGS='-std=gnu++11' \
         -DCMAKE_INSTALL_PREFIX=../../generated/ \
         -DNJLI_THIRDPARTY_DIRECTORY:STRING=${MY_THIRDPARTY_DIR} \
@@ -227,8 +226,8 @@ _build_macos()
         -DNJLI_SOUND_PLATFORM=openal \
         -DNJLI_BUILD_DIR=${MY_BUILD_DIR}
 
-    make SWIGLua
-    make -j8
+    #make SWIGLua
+    #make -j8
     make install
 
     cd ..
@@ -251,30 +250,32 @@ build_macos()
 
 cd projects
 
-##########################################3
-
-rm -rf ios_Xcode
-mkdir -p ios_Xcode
-cd ios_Xcode
-build_apple_xcode ios ${CMAKE_IOS_SYSTEM_VERSION} iphoneos 
-cd ..
-
-##########################################3
-
-rm -rf tvos_Xcode
-mkdir -p tvos_Xcode
-cd tvos_Xcode
-build_apple_xcode appletv ${CMAKE_TVOS_SYSTEM_VERSION} appletvos 
-cd ..
-
-##########################################3
-
-rm -rf macOS_Xcode
-mkdir -p macOS_Xcode
-cd macOS_Xcode
-build_apple_xcode macOS ${CMAKE_MACOS_SYSTEM_VERSION}
-cd ..
+###########################################3
+#
+#rm -rf ios_Xcode
+#mkdir -p ios_Xcode
+#cd ios_Xcode
+#build_apple_xcode ios ${CMAKE_IOS_SYSTEM_VERSION} iphoneos 
+#cd ..
+#
+###########################################3
+#
+#rm -rf tvos_Xcode
+#mkdir -p tvos_Xcode
+#cd tvos_Xcode
+#build_apple_xcode appletv ${CMAKE_TVOS_SYSTEM_VERSION} appletvos 
+#cd ..
+#
+###########################################3
+#
+#rm -rf macOS_Xcode
+#mkdir -p macOS_Xcode
+#cd macOS_Xcode
+#build_apple_xcode macOS ${CMAKE_MACOS_SYSTEM_VERSION}
+#cd ..
 
 #build_ios
 #build_appletvos
 #build_macos
+
+_build_macos Release ${CMAKE_MACOS_SYSTEM_VERSION}
