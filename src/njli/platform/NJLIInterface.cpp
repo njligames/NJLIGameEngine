@@ -94,11 +94,11 @@ void NJLI_HandleKeyboardFocusLost()
 }
 
 void NJLI_HandleMouse(int button, int eventType, float x, float y, int clicks)
-{   
+{
     njli::NJLIGameEngine::mouse(button,
                                 eventType,
                                 x,
-                                y,
+                                gDisplayMode.h - y,
                                 clicks);
     
 }

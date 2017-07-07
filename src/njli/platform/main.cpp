@@ -466,7 +466,7 @@ static void handleInput()
     while (SDL_PollEvent(&event))
     {
         njli::NJLIGameEngine::handleEvent(&event);
-        SDLTest_PrintEvent(&event);
+//        SDLTest_PrintEvent(&event);
         switch (event.type)
         {
                 
