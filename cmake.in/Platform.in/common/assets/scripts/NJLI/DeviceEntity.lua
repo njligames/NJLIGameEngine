@@ -41,16 +41,16 @@ function DeviceEntity:destroy()
 end
 
 function DeviceEntity:update(timeStep)
-    if debugging == nil then
-        debugging = false
-        return false
-    end
+--    if debugging == nil then
+--        debugging = false
+--        return false
+--    end
 
-    if not debugging then
-        require("mobdebug").start()
-        require("mobdebug").coro()
-        debugging = true
-    end
+--    if not debugging then
+--        require("mobdebug").start()
+--        require("mobdebug").coro()
+--        debugging = true
+--    end
 
     --print("DeviceEntity:update("..timeStep..")")
     --njli.World.getInstance():setBackgroundColor(0.000, 1.000, 0.000)

@@ -30,6 +30,10 @@ local __ctor = function(self, init)
     self._touchCancelled = init.touchCancelled
 
     self._scale = init.scale or 1.0
+    
+    self._screenPercentWidth = init.screenPercentWidth or 1.0
+    self._screenPercentHeight = init.screenPercentHeight or 1.0
+    
     self._disabled = init.disabled or false
 
     local node = self:getNode()
@@ -120,11 +124,67 @@ end
 --Button Specific
 --#############################################################################
 
+function Button:screenPercentWidth(s)
+    if s ~= nil then
+        self._screenPercentWidth = s
+    end
+    return self._screenPercentWidth
+end
+
+function Button:screenPercentHeight(s)
+    if s ~= nil then
+        self._screenPercentHeight = s
+    end
+    return self._screenPercentHeight
+end
+
 function Button:scale(s)
     if s ~= nil then
         self._scale = s
     end
     return self._scale
+end
+
+function Button:touchUpOutsideCallback(cb)
+  if cb ~= nil then
+    self._touchUpOutside = cb
+  end
+  return self._touchUpOutside
+end
+
+function Button:touchUpInsideCallback(cb)
+  if cb ~= nil then
+    self._touchUpInside = cb
+  end
+  return self._touchUpInside
+end
+
+function Button:touchDownInsideCallback(cb)
+  if cb ~= nil then
+    self._touchDownInside = cb
+  end
+  return self._touchDownInside
+end
+
+function Button:touchDragOutsideCallback(cb)
+  if cb ~= nil then
+    self._touchDragOutside = cb
+  end
+  return self._touchDragOutside
+end
+
+function Button:touchDragInsideCallback(cb)
+  if cb ~= nil then
+    self._touchDragInside = cb
+  end
+  return self._touchDragInside
+end
+
+function Button:touchCancelledCallback(cb)
+  if cb ~= nil then
+    self._touchCancelled = cb
+  end
+  return self._touchCancelled
 end
 
 function Button:disabled(b)

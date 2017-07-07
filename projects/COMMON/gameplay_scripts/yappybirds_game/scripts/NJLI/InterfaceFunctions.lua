@@ -126,6 +126,19 @@ end
 
 local Update = function(timeStep)
 
+  if debugging == nil then
+        debugging = false
+        return false
+    end
+
+    if not debugging then
+        require("mobdebug").start()
+        require("mobdebug").coro()
+        debugging = true
+    end
+    
+    
+
   local pos = bullet.btVector3(100, 100, -1)
   local color = bullet.btVector4(0.202, 0.643, 0.000, 1)
   njli.World.getInstance():getDebugDrawer():point(pos, color, 100)--, 100000, 10)

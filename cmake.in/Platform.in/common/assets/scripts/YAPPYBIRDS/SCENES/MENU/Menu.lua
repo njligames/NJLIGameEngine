@@ -28,9 +28,30 @@ local __ctor = function(self, init)
     self:getScene():addCameraNode(OrthographicCameraNode, true)
     self:getScene():addCameraNode(PerspectiveCameraNode)
 
-    self._button = self:createButtonControl("stage", 400, 400, 25, true)
-    self._switch = self:createSwitchControl("stage", 313, 400, 25, true)
-    self:createImageControl("ui_thanks", 0, 0, 1)
+    local play_button = self:createButtonControl("PLAY", 
+    njli.SCREEN():x() * 0.5, 
+    (njli.SCREEN():y() * 0.3),
+    0.3,
+    0.3,
+    true)
+    
+--    self._switch = self:createSwitchControl("stage", 313, 400, 25, true)
+    
+    self._imageStack = -0.1
+    
+    local ui_background = self:createImageControl("ui_background", 
+    njli.SCREEN():x() * 0.5, 
+    njli.SCREEN():y() * 0.5,
+    1.0,
+    1.0,
+    true)
+    
+    local logo_yb = self:createImageControl("logo_yb", 
+    njli.SCREEN():x() * 0.5, 
+    (njli.SCREEN():y() * 0.7),
+    0.9,
+    0.9,
+    true)
     
     
     
@@ -74,11 +95,34 @@ end
 
 --#############################################################################
 
-function Menu:createButtonControl(buttonName, xPos, yPos, buttonScale, visible)
+--function Menu:scaleDimension(dimSprite, screenPercentWidth, screenPercentHeight)
+--  assert(screenPercentWidth >= 0.0 and screenPercentWidth <= 1.0)
+--  assert(screenPercentHeight >= 0.0 and screenPercentHeight <= 1.0)
+  
+--  local wi = dimSprite:x()
+--  local hi = dimSprite:y()
+--  local ri = wi / hi
+  
+--  local ws = njli.SCREEN():x()
+--  local hs = njli.SCREEN():y()
+--  local rs = ws / hs
+  
+--  local resultw = ws
+--  local resulth = hi * ws / wi
+--  if rs > ri then
+--    resultw = wi * hs / hi
+--    resulth = hs
+--  end
+  
+--  return bullet.btVector2( resultw * screenPercentWidth, resulth * screenPercentHeight ) * 2
+--end
+
+function Menu:createButtonControl(buttonName, xPos, yPos, screenPercentWidth, screenPercentHeight, visible)
     local n = buttonName or "PLAY"
     local x = xPos or 0
     local y = yPos or 0
-    local s = buttonScale or 25
+    local pw = screenPercentWidth or 1.0
+    local ph = screenPercentHeight or 1.0
 
     local buttonNodeEntity = NJLIButtonControl.class({
         name = n,
@@ -86,7 +130,9 @@ function Menu:createButtonControl(buttonName, xPos, yPos, buttonScale, visible)
         entityOwner = self,
         atlas = self._spriteAtlas,
         geometry = Geometry2D,
-        scale = s,
+        scale = 1.0,
+        screenPercentWidth = pw,
+        screenPercentHeight = ph,
         disabled = false,
         touchUpOutside = function(touches) print(#touches) end,
         touchUpInside = function(rayContact) print(rayContact) end,
@@ -118,11 +164,10 @@ function Menu:createButtonControl(buttonName, xPos, yPos, buttonScale, visible)
       return buttonNodeEntity
 end
 
-function Menu:createSwitchControl(switchName, xPos, yPos, switchScale, visible)
+function Menu:createSwitchControl(switchName, xPos, yPos, visible)
     local n = switchName or "PLAY"
     local x = xPos or 0
     local y = yPos or 0
-    local s = switchScale or 25
 
     local switchNodeEntity = NJLISwitchControl.class({
         name = n,
@@ -130,7 +175,7 @@ function Menu:createSwitchControl(switchName, xPos, yPos, switchScale, visible)
         entityOwner = self,
         atlas = self._spriteAtlas,
         geometry = Geometry2D,
-        scale = s,
+        scale = 1.0,
         disabled = false,
         touchUpOutside = function(touches) print(#touches) end,
         touchUpInside = function(rayContact) print(rayContact) end,
@@ -161,11 +206,12 @@ function Menu:createSwitchControl(switchName, xPos, yPos, switchScale, visible)
     return switchNodeEntity
 end
 
-function Menu:createImageControl(imageName, xPos, yPos, imageScale, visible)
+function Menu:createImageControl(imageName, xPos, yPos, screenPercentWidth, screenPercentHeight, visible)
     local n = imageName or "PLAY"
     local x = xPos or 0
     local y = yPos or 0
-    local s = imageScale or 25
+    local pw = screenPercentWidth or 1.0
+    local ph = screenPercentHeight or 1.0
 
     local imageNodeEntity = NJLIImageControl.class({
         name = n,
@@ -173,7 +219,9 @@ function Menu:createImageControl(imageName, xPos, yPos, imageScale, visible)
         entityOwner = self,
         atlas = self._spriteAtlas,
         geometry = Geometry2D,
-        scale = s,
+        scale = 1.0,
+        screenPercentWidth = pw,
+        screenPercentHeight = ph,
       })
       self:addNodeEntity(imageNodeEntity)
 
@@ -185,8 +233,10 @@ function Menu:createImageControl(imageName, xPos, yPos, imageScale, visible)
         imageNodeEntity:hide(OrthographicCameraNode:getCamera())
       end
 
-      imageNodeEntity:getNode():setOrigin(bullet.btVector3(x, y, -1))
+      imageNodeEntity:getNode():setOrigin(bullet.btVector3(x, y, self._imageStack))
 
+      self._imageStack = self._imageStack - 0.01
+      
       return imageNodeEntity
 end
 

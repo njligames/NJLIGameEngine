@@ -23,6 +23,9 @@ local __ctor = function(self, init)
     assert(init.geometry ~= nil, "init.geometry variable is nil")
 
     self._scale = init.scale or 1.0
+    
+    self._screenPercentWidth = init.screenPercentWidth or 1.0
+    self._screenPercentHeight = init.screenPercentHeight or 1.0
 
     local node = self:getNode()
 
@@ -46,6 +49,23 @@ end
 --#############################################################################
 --Image Specific
 --#############################################################################
+
+--self._screenPercentWidth = screenPercentWidth
+--self._screenPercentHeight = screenPercentHeight
+
+function Image:screenPercentWidth(s)
+    if s ~= nil then
+        self._screenPercentWidth = s
+    end
+    return self._screenPercentWidth
+end
+
+function Image:screenPercentHeight(s)
+    if s ~= nil then
+        self._screenPercentHeight = s
+    end
+    return self._screenPercentHeight
+end
 
 function Image:scale(s)
     if s ~= nil then

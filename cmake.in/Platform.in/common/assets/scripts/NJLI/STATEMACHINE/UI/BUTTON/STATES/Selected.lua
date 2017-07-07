@@ -37,12 +37,23 @@ end
 function Selected:enter()
     BaseClass.enter(self)
 
-    local frameName = "butn_" .. self:getNodeEntity():getNode():getName() .. "_on"
-    local scale = self:getNodeEntity():scale()
+--    local frameName = "butn_" .. self:getNodeEntity():getNode():getName() .. "_on"
+--    local scale = self:getNodeEntity():scale()
 
-    self:getNodeEntity():setSpriteAtlasFrame(frameName, true)
-    local dimSprite = self:getNodeEntity():getDimensions()
-    self:getNodeEntity():setDimensions(bullet.btVector2( (dimSprite:x() * scale), (dimSprite:y() * scale) ))
+--    self:getNodeEntity():setSpriteAtlasFrame(frameName, true)
+--    local dimSprite = self:getNodeEntity():getDimensions()
+--    self:getNodeEntity():setDimensions(bullet.btVector2( (dimSprite:x() * scale), (dimSprite:y() * scale) ))
+
+  local frameName = "butn_" .. self:getNodeEntity():getNode():getName() .. "_on"
+  local scale = self:getNodeEntity():scale()
+  
+  local pw = self:getNodeEntity():screenPercentWidth()
+  local ph = self:getNodeEntity():screenPercentHeight()
+
+  self:getNodeEntity():setSpriteAtlasFrame(frameName, true)
+  local dimSprite = self:getNodeEntity():getDimensions()
+  
+  self:getNodeEntity():setDimensions(scaleDimension(dimSprite, pw, ph))
 end
 
 function Selected:update(timeStep)

@@ -761,3 +761,27 @@ string.split = function(str, pattern)
 	parts.__index = nil
 	return parts
 end
+
+
+
+function scaleDimension(dimSprite, screenPercentWidth, screenPercentHeight)
+  assert(screenPercentWidth >= 0.0 and screenPercentWidth <= 1.0)
+  assert(screenPercentHeight >= 0.0 and screenPercentHeight <= 1.0)
+  
+  local wi = dimSprite:x()
+  local hi = dimSprite:y()
+  local ri = wi / hi
+  
+  local ws = njli.SCREEN():x()
+  local hs = njli.SCREEN():y()
+  local rs = ws / hs
+  
+  local resultw = ws
+  local resulth = hi * ws / wi
+  if rs > ri then
+    resultw = wi * hs / hi
+    resulth = hs
+  end
+  
+  return bullet.btVector2( resultw * screenPercentWidth, resulth * screenPercentHeight ) * 2
+end

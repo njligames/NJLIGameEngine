@@ -36,13 +36,24 @@ end
 
 function Disabled:enter()
 	BaseClass.enter(self)
+  
+  local frameName = "butn_" .. self:getNodeEntity():getNode():getName() .. "_dis"
+  local scale = self:getNodeEntity():scale()
+  
+  local pw = self:getNodeEntity():screenPercentWidth()
+  local ph = self:getNodeEntity():screenPercentHeight()
 
-    local frameName = "butn_" .. self:getNodeEntity():getNode():getName() .. "_dis"
-    local scale = self:getNodeEntity():scale()
+  self:getNodeEntity():setSpriteAtlasFrame(frameName, true)
+  local dimSprite = self:getNodeEntity():getDimensions()
+  
+  self:getNodeEntity():setDimensions(scaleDimension(dimSprite, pw, ph))
 
-    self:getNodeEntity():setSpriteAtlasFrame(frameName, true)
-    local dimSprite = self:getNodeEntity():getDimensions()
-    self:getNodeEntity():setDimensions(bullet.btVector2( (dimSprite:x() * scale), (dimSprite:y() * scale) ))
+--    local frameName = "butn_" .. self:getNodeEntity():getNode():getName() .. "_dis"
+--    local scale = self:getNodeEntity():scale()
+
+--    self:getNodeEntity():setSpriteAtlasFrame(frameName, true)
+--    local dimSprite = self:getNodeEntity():getDimensions()
+--    self:getNodeEntity():setDimensions(bullet.btVector2( (dimSprite:x() * scale), (dimSprite:y() * scale) ))
 end
 
 function Disabled:update(timeStep)

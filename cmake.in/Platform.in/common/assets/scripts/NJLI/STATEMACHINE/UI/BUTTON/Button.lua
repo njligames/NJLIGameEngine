@@ -30,6 +30,10 @@ local __ctor = function(self, init)
     self._touchCancelled = init.touchCancelled
 
     self._scale = init.scale or 1.0
+    
+    self._screenPercentWidth = init.screenPercentWidth or 1.0
+    self._screenPercentHeight = init.screenPercentHeight or 1.0
+    
     self._disabled = init.disabled or false
 
     local node = self:getNode()
@@ -119,6 +123,20 @@ end
 --#############################################################################
 --Button Specific
 --#############################################################################
+
+function Button:screenPercentWidth(s)
+    if s ~= nil then
+        self._screenPercentWidth = s
+    end
+    return self._screenPercentWidth
+end
+
+function Button:screenPercentHeight(s)
+    if s ~= nil then
+        self._screenPercentHeight = s
+    end
+    return self._screenPercentHeight
+end
 
 function Button:scale(s)
     if s ~= nil then
