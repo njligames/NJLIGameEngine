@@ -50,37 +50,63 @@ local __ctor = function(self, init)
 
     node:setPhysicsBody(self._physicsBody)
 
+    buttonSoundNameTable = buttonSoundNameTable or {}
+    
     self._soundTouchUpOutside = njli.Sound.create()
+    self._soundTouchUpOutside:setName("button_sound" )
+    generateUniqueName(self._soundTouchUpOutside, buttonSoundNameTable)
+    buttonSoundNameTable[self._soundTouchUpOutside:getName()] = self._soundTouchUpOutside
+    
     if init.soundTouchUpOutside and type(init.soundTouchUpOutside) == "string" then
         njli.World.getInstance():getWorldResourceLoader():load(init.soundTouchUpOutside, self._soundTouchUpOutside)
     end
 
     self._soundTouchUpInside = njli.Sound.create()
+    self._soundTouchUpInside:setName("button_sound" )
+    generateUniqueName(self._soundTouchUpInside, buttonSoundNameTable)
+    buttonSoundNameTable[self._soundTouchUpInside:getName()] = self._soundTouchUpInside
+    
     if init.soundTouchUpInside and type(init.soundTouchUpInside) == "string" then
         njli.World.getInstance():getWorldResourceLoader():load(init.soundTouchUpInside, self._soundTouchUpInside)
     end
 
     self._soundTouchDownInside = njli.Sound.create()
+    self._soundTouchDownInside:setName("button_sound" )
+    generateUniqueName(self._soundTouchDownInside, buttonSoundNameTable)
+    buttonSoundNameTable[self._soundTouchDownInside:getName()] = self._soundTouchDownInside
+    
     if init.soundTouchDownInside and type(init.soundTouchDownInside) == "string" then
         njli.World.getInstance():getWorldResourceLoader():load(init.soundTouchDownInside, self._soundTouchDownInside)
     end
 
     self._soundTouchDragOutside = njli.Sound.create()
+    self._soundTouchDragOutside:setName("button_sound" )
+    generateUniqueName(self._soundTouchDragOutside, buttonSoundNameTable)
+    buttonSoundNameTable[self._soundTouchDragOutside:getName()] = self._soundTouchDragOutside
+    
     if init.soundTouchDragOutside and type(init.soundTouchDragOutside) == "string" then
         njli.World.getInstance():getWorldResourceLoader():load(init.soundTouchDragOutside, self._soundTouchDragOutside)
     end
 
     self._soundTouchDragInside = njli.Sound.create()
+    self._soundTouchDragInside:setName("button_sound" )
+    generateUniqueName(self._soundTouchDragInside, buttonSoundNameTable)
+    buttonSoundNameTable[self._soundTouchDragInside:getName()] = self._soundTouchDragInside
+    
     if init.soundTouchDragInside and type(init.soundTouchDragInside) == "string" then
         njli.World.getInstance():getWorldResourceLoader():load(init.soundTouchDragInside, self._soundTouchDragInside)
     end
 
     self._soundTouchCancelled = njli.Sound.create()
+    self._soundTouchCancelled:setName("button_sound" )
+    generateUniqueName(self._soundTouchCancelled, buttonSoundNameTable)
+    buttonSoundNameTable[self._soundTouchCancelled:getName()] = self._soundTouchCancelled
+    
     if init.soundTouchCancelled and type(init.soundTouchCancelled) == "string" then
         njli.World.getInstance():getWorldResourceLoader():load(init.soundTouchCancelled, self._soundTouchCancelled)
     end
     
-    
+    --Create The default state of the button.
     local frameName = "butn_" .. self:getNode():getName() .. "_off"
     local scale = self:scale()
     
@@ -89,7 +115,6 @@ local __ctor = function(self, init)
 
     self:setSpriteAtlasFrame(frameName, true)
     local dimSprite = self:getDimensions()
-    
     
     self:setDimensions(scaleDimension(dimSprite, pw, ph))
 end

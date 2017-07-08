@@ -80,18 +80,19 @@ function EntityManager:getWorldEntityState(key)
 end
 
 function EntityManager:__generateUniqueName(object, tbl)
-    local baseName = object:getName()
-    local name = baseName
-    local instance = 1
-    if tbl[name] ~= nil then
-        repeat
-            name = baseName .. ",." .. tostring(instance) .. ","
-            instance = instance + 1
-        until(tbl[name] == nil)
-    end
-    object:setName(name)
+  generateUniqueName(object, tbl)
+--    local baseName = object:getName()
+--    local name = baseName
+--    local instance = 1
+--    if tbl[name] ~= nil then
+--        repeat
+--            name = baseName .. ",." .. tostring(instance) .. ","
+--            instance = instance + 1
+--        until(tbl[name] == nil)
+--    end
+--    object:setName(name)
 
-    assert(nil == tbl[name], "__generateUniqueName didn't function correctly")
+--    assert(nil == tbl[name], "__generateUniqueName didn't function correctly")
 end
 
 function EntityManager:addNodeEntity(entity)

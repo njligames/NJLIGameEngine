@@ -785,3 +785,21 @@ function scaleDimension(dimSprite, screenPercentWidth, screenPercentHeight)
   
   return bullet.btVector2( resultw * screenPercentWidth, resulth * screenPercentHeight ) * 2
 end
+
+function generateUniqueName(object, tbl)
+    local baseName = object:getName()
+    local name = baseName
+    local instance = 1
+    if tbl[name] ~= nil then
+        repeat
+            name = baseName .. ",." .. tostring(instance) .. ","
+            instance = instance + 1
+        until(tbl[name] == nil)
+    end
+    print("set the name as " .. name)
+    object:setName(name)
+    
+--    tbl[name] = object
+
+    assert(nil == tbl[name], "__generateUniqueName didn't function correctly")
+end

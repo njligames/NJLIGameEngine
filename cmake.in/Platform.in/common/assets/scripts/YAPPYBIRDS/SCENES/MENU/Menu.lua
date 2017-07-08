@@ -84,39 +84,65 @@ function Menu:createLevelSelectUI()
     true)
     
   
-  local margin = (1.0 / 12.0)
-  local section = (1.0 / 12.0)
+  local dimension = (1.0 / 6.0)
   
-  local function createStageButton(row, column)
+  local function createStageButton(row, column, level)
     local r = row or 0
     local c = column or 0
     
-    local section_width = (1.0 / 12.0)
-    local section_height = (1.0 / 9.0)
-    local dimension = (1.0 / 6.0)
-    
     local stage = self:createButtonControl("stage",
-    ((njli.SCREEN():x() * section_width) * c),
-    ((njli.SCREEN():y() * section_height) * r),
+      0,
+      0,
       dimension,
       dimension,
       true)
-    stage:touchUpInsideCallback(function(r) print("push to LevelSelect") end)
+    stage:touchUpInsideCallback(function(r) print("push to LevelSelect " .. level) end)
     
-    stage:setOrigin(stage:getDimensions() * 0.5)
+    local dim_x = stage:getDimensions():x()
+    local dim_y = stage:getDimensions():y()
     
-    print(stage:scale())
-    print(stage:getDimensions())
+    local margin_x = njli.SCREEN():x() * (1.0 / 6.0)
+    local margin_y = njli.SCREEN():y() * (1.0 / 4.0)
+    
+    local x = (dim_x * 0.5) + (dim_x * c)
+    local y = (dim_y * 0.5) + (dim_y * r)
+    
+    local gutter_x = (dim_x * c) * 0.5
+    local gutter_y = (dim_y * r) * 0.3
+    
+    stage:setOrigin(bullet.btVector2( margin_x + x + gutter_x, margin_y + y + gutter_y ))
     
     return stage
   end
   
-  createStageButton(0,0)
---  createStageButton(1,0)
---  createStageButton(0,1)
---  createStageButton(1,1)
+  createStageButton(0,0, 11)
+  createStageButton(0,1, 12)
+  createStageButton(0,2, 13)
+  createStageButton(0,3, 14)
+  createStageButton(0,4, 15)
   
+  createStageButton(1,0, 6)
+  createStageButton(1,1, 7)
+  createStageButton(1,2, 8)
+  createStageButton(1,3, 9)
+  createStageButton(1,4, 10)
   
+  createStageButton(2,0, 1)
+  createStageButton(2,1, 2)
+  createStageButton(2,2, 3)
+  createStageButton(2,3, 4)
+  createStageButton(2,4, 5)
+  
+  local back = self:createButtonControl("BACK",
+    0,
+    0,
+    dimension,
+    dimension,
+    true)
+  back:touchUpInsideCallback(function(r) print("push to LevelSelect " .. level) end)
+  local x = back:getDimensions():x() * 0.5 + (njli.SCREEN():x() * (1.0 / 60.0))
+  local y = back:getDimensions():y() * 0.5 + (njli.SCREEN():y() * (1.0 / 60.0))
+  back:setOrigin(bullet.btVector2( x, y ))
   
 end
 
