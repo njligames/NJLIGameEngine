@@ -206,11 +206,11 @@ function SceneEntity:removeNodeEntity(name)
     self.__nodeEntities[name] = nil
 end
 
-function SceneEntity:startNodeEntities()
-   for k, v in pairs(self.__nodeEntities) do
-       v:startStateMachine()
-   end
-end
+--function SceneEntity:startNodeEntities()
+--   for k, v in pairs(self.__nodeEntities) do
+--       v:startStateMachine()
+--   end
+--end
 
 --#############################################################################
 --General

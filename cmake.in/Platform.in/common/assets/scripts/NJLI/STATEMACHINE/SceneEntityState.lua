@@ -98,7 +98,7 @@ end
 function SceneEntityState:enter()
   --print(self:getSceneState():getName() .. " :enter()")
 
-  self:getSceneEntity():startNodeEntities()
+  --self:getSceneEntity():startNodeEntities()
 end
 
 function SceneEntityState:update(timeStep)

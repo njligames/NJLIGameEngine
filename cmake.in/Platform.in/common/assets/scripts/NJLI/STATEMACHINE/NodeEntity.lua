@@ -60,6 +60,8 @@ local __ctor = function(self, init)
   gInterface:getStateMachine():getEntityManager():addNodeEntity(self)
 
   self._startStateName = startState:getNodeState():getName()
+  
+  self:startStateMachine()
 end
 
 local __dtor = function(self)

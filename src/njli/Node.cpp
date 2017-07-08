@@ -391,7 +391,8 @@ namespace njli
     
     void Node::setOrigin(const btVector2 &origin)
     {
-        btVector3 _origin(origin.x(), origin.y(), 0);
+        btVector3 o(getOrigin());
+        btVector3 _origin(origin.x(), origin.y(), o.z());
         Node::setOrigin(_origin);
     }
     

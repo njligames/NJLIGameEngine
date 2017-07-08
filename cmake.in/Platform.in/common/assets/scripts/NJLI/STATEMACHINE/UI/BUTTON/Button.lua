@@ -79,6 +79,19 @@ local __ctor = function(self, init)
     if init.soundTouchCancelled and type(init.soundTouchCancelled) == "string" then
         njli.World.getInstance():getWorldResourceLoader():load(init.soundTouchCancelled, self._soundTouchCancelled)
     end
+    
+    
+    local frameName = "butn_" .. self:getNode():getName() .. "_off"
+    local scale = self:scale()
+    
+    local pw = self:screenPercentWidth()
+    local ph = self:screenPercentHeight()
+
+    self:setSpriteAtlasFrame(frameName, true)
+    local dimSprite = self:getDimensions()
+    
+    
+    self:setDimensions(scaleDimension(dimSprite, pw, ph))
 end
 
 local __dtor = function(self)
@@ -124,6 +137,14 @@ end
 --Button Specific
 --#############################################################################
 
+function Button:startStateMachine()
+	
+
+  
+  
+  BaseClass.startStateMachine(self)
+end
+
 function Button:screenPercentWidth(s)
     if s ~= nil then
         self._screenPercentWidth = s
@@ -143,6 +164,48 @@ function Button:scale(s)
         self._scale = s
     end
     return self._scale
+end
+
+function Button:touchUpOutsideCallback(cb)
+  if cb ~= nil then
+    self._touchUpOutside = cb
+  end
+  return self._touchUpOutside
+end
+
+function Button:touchUpInsideCallback(cb)
+  if cb ~= nil then
+    self._touchUpInside = cb
+  end
+  return self._touchUpInside
+end
+
+function Button:touchDownInsideCallback(cb)
+  if cb ~= nil then
+    self._touchDownInside = cb
+  end
+  return self._touchDownInside
+end
+
+function Button:touchDragOutsideCallback(cb)
+  if cb ~= nil then
+    self._touchDragOutside = cb
+  end
+  return self._touchDragOutside
+end
+
+function Button:touchDragInsideCallback(cb)
+  if cb ~= nil then
+    self._touchDragInside = cb
+  end
+  return self._touchDragInside
+end
+
+function Button:touchCancelledCallback(cb)
+  if cb ~= nil then
+    self._touchCancelled = cb
+  end
+  return self._touchCancelled
 end
 
 function Button:disabled(b)
@@ -167,7 +230,17 @@ function Button:setSpriteAtlasFrame(nodeStateName, match)
 	if #parts ~= 1 then
 		name = parts[1] .. parts[3]
 	end
+    assert(self:getNode())
+    assert(self:getNode():getGeometry())
     self:getNode():getGeometry():setSpriteAtlasFrame(self:getNode(), self._spriteFrameAtlas, name, match)
+end
+
+function Button:setOrigin(origin)
+  self:getNode():setOrigin(origin)
+end
+
+function Button:getOrigin()
+  return self:getNode():getOrigin()
 end
 
 function Button:getDimensions()

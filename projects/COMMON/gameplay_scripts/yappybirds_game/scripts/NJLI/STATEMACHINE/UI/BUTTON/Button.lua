@@ -79,6 +79,19 @@ local __ctor = function(self, init)
     if init.soundTouchCancelled and type(init.soundTouchCancelled) == "string" then
         njli.World.getInstance():getWorldResourceLoader():load(init.soundTouchCancelled, self._soundTouchCancelled)
     end
+    
+    
+    local frameName = "butn_" .. self:getNode():getName() .. "_off"
+    local scale = self:scale()
+    
+    local pw = self:screenPercentWidth()
+    local ph = self:screenPercentHeight()
+
+    self:setSpriteAtlasFrame(frameName, true)
+    local dimSprite = self:getDimensions()
+    
+    
+    self:setDimensions(scaleDimension(dimSprite, pw, ph))
 end
 
 local __dtor = function(self)
@@ -123,6 +136,14 @@ end
 --#############################################################################
 --Button Specific
 --#############################################################################
+
+function Button:startStateMachine()
+	
+
+  
+  
+  BaseClass.startStateMachine(self)
+end
 
 function Button:screenPercentWidth(s)
     if s ~= nil then
@@ -209,7 +230,17 @@ function Button:setSpriteAtlasFrame(nodeStateName, match)
 	if #parts ~= 1 then
 		name = parts[1] .. parts[3]
 	end
+    assert(self:getNode())
+    assert(self:getNode():getGeometry())
     self:getNode():getGeometry():setSpriteAtlasFrame(self:getNode(), self._spriteFrameAtlas, name, match)
+end
+
+function Button:setOrigin(origin)
+  self:getNode():setOrigin(origin)
+end
+
+function Button:getOrigin()
+  return self:getNode():getOrigin()
 end
 
 function Button:getDimensions()

@@ -28,31 +28,9 @@ local __ctor = function(self, init)
     self:getScene():addCameraNode(OrthographicCameraNode, true)
     self:getScene():addCameraNode(PerspectiveCameraNode)
 
-    local play_button = self:createButtonControl("PLAY", 
-    njli.SCREEN():x() * 0.5, 
-    (njli.SCREEN():y() * 0.3),
-    0.3,
-    0.3,
-    true)
     
---    self._switch = self:createSwitchControl("stage", 313, 400, 25, true)
-    
-    self._imageStack = -0.1
-    
-    local ui_background = self:createImageControl("ui_background", 
-    njli.SCREEN():x() * 0.5, 
-    njli.SCREEN():y() * 0.5,
-    1.0,
-    1.0,
-    true)
-    
-    local logo_yb = self:createImageControl("logo_yb", 
-    njli.SCREEN():x() * 0.5, 
-    (njli.SCREEN():y() * 0.7),
-    0.9,
-    0.9,
-    true)
-    
+--    self:createMainMenuUI()
+  self:createLevelSelectUI()
     
     
 
@@ -95,6 +73,79 @@ end
 
 --#############################################################################
 
+function Menu:createLevelSelectUI()
+  self._imageStack = -0.1
+  
+  local ui_background = self:createImageControl("ui_background", 
+    (njli.SCREEN():x() * 0.5),
+    (njli.SCREEN():y() * 0.5),
+    1.0,
+    1.0,
+    true)
+    
+  
+  local margin = (1.0 / 12.0)
+  local section = (1.0 / 12.0)
+  
+  local function createStageButton(row, column)
+    local r = row or 0
+    local c = column or 0
+    
+    local section_width = (1.0 / 12.0)
+    local section_height = (1.0 / 9.0)
+    local dimension = (1.0 / 6.0)
+    
+    local stage = self:createButtonControl("stage",
+    ((njli.SCREEN():x() * section_width) * c),
+    ((njli.SCREEN():y() * section_height) * r),
+      dimension,
+      dimension,
+      true)
+    stage:touchUpInsideCallback(function(r) print("push to LevelSelect") end)
+    
+    stage:setOrigin(stage:getDimensions() * 0.5)
+    
+    print(stage:scale())
+    print(stage:getDimensions())
+    
+    return stage
+  end
+  
+  createStageButton(0,0)
+--  createStageButton(1,0)
+--  createStageButton(0,1)
+--  createStageButton(1,1)
+  
+  
+  
+end
+
+function Menu:createMainMenuUI()
+  self._imageStack = -0.1
+  
+  local ui_background = self:createImageControl("ui_background", 
+    (njli.SCREEN():x() * 0.5),
+    (njli.SCREEN():y() * 0.5),
+    1.0,
+    1.0,
+    true)
+
+  local logo_yb = self:createImageControl("logo_yb", 
+    njli.SCREEN():x() * 0.5, 
+    (njli.SCREEN():y() * 0.7),
+    0.9,
+    0.9,
+    true)
+    
+  local play_button = self:createButtonControl("PLAY",
+    (njli.SCREEN():x() * 0.5),
+    (njli.SCREEN():y() * 0.3),
+    0.3,
+    0.3,
+    true)
+  play_button:touchUpInsideCallback(function(r) print("push to LevelSelect") end)
+end
+
 --function Menu:scaleDimension(dimSprite, screenPercentWidth, screenPercentHeight)
 --  assert(screenPercentWidth >= 0.0 and screenPercentWidth <= 1.0)
 --  assert(screenPercentHeight >= 0.0 and screenPercentHeight <= 1.0)
@@ -134,12 +185,12 @@ function Menu:createButtonControl(buttonName, xPos, yPos, screenPercentWidth, sc
         screenPercentWidth = pw,
         screenPercentHeight = ph,
         disabled = false,
-        touchUpOutside = function(touches) print(#touches) end,
-        touchUpInside = function(rayContact) print(rayContact) end,
-        touchDownInside = function(rayContact) print(rayContact) end,
-        touchDragOutside = function() print("touchDragOutside") end,
-        touchDragInside = function(rayContact) print(rayContact) end,
-        touchCancelled = function(rayContact) print(rayContact) end,
+        touchUpOutside = function(touches) end,
+        touchUpInside = function(rayContact) end,
+        touchDownInside = function(rayContact) end,
+        touchDragOutside = function() end,
+        touchDragInside = function(rayContact) end,
+        touchCancelled = function(rayContact) end,
         soundTouchUpOutside = nil, --path to the sound
         soundTouchUpInside = "sounds/interface_select-whoosh.ogg", --path to the sound
         soundTouchDownInside = nil, --path to the sound
