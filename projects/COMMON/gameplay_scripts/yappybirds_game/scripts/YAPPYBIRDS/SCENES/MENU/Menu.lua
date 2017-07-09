@@ -75,9 +75,9 @@ end
 --#############################################################################
 
 function Menu:createAboutUI()
-print(os.setlocale(nil))
+
   local label = self:createLabelControl( 0, 0, true )
-  label:text("THE TEXT\nTHE TEXT")
+  label:text(njli.LOCALIZED_TEXT("jim", "jim", "jim"))
 --  label:getNode():setOrigin(bullet.btVector2(njli.SCREEN():x() * 0.5, njli.SCREEN():y() * 0.5))
   label:getNode():setOrigin(bullet.btVector3( 0.0, 0.0, -1.0 ))
 end

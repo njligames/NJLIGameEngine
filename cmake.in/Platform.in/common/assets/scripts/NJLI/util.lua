@@ -796,7 +796,7 @@ function generateUniqueName(object, tbl)
             instance = instance + 1
         until(tbl[name] == nil)
     end
-    print("set the name as " .. name)
+--    print("set the name as " .. name)
     object:setName(name)
     
 --    tbl[name] = object
