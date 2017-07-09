@@ -1560,7 +1560,8 @@ namespace njli
     
     void Node::setGeometryIndex(s64 index)
     {
-        SDL_assert(index >= 0 && index < NUMBER_OF_MESHES);
+        SDL_assert(index >= 0);
+        SDL_assert(index < NUMBER_OF_MESHES);
         m_GeometryIndex = index;
 //        m_ApplyPhysicsShape = true;
     }

@@ -22,7 +22,7 @@
 
 class btTransform;
 
-#define NUMBER_OF_MESHES (100)
+#define NUMBER_OF_MESHES (5000)
 
 namespace njli {
 class GeometryBuilder;
