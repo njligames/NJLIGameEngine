@@ -14,8 +14,8 @@ OUTDIRS := $(addprefix $(OBJDIR)/../, $(STRUCTURE))
 
 COMPILED_LUA := $(OBJDIR)/luac.out
 
-yappybirds_game: $(OUTDIRS) $(OBJFILES) $(COMPILED_LUA)
-#yappybirds_game: $(OUTDIRS) $(OBJFILES) 
+#yappybirds_game: $(OUTDIRS) $(OBJFILES) $(COMPILED_LUA)
+yappybirds_game: $(OUTDIRS) $(OBJFILES) 
 
 $(OBJDIR)/%.lua: $(addprefix $(SRCDIR)/, %.lua)
 	$(CP) $^ $@

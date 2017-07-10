@@ -135,8 +135,289 @@ local __unLoad = function(self)
 end
 
 --#############################################################################
-_count_ = 1
+
+function BitmapFont:_sentenceToTable(sentence)
+  local _start = 1
+  local _end = string.find(sentence, " ")
+  string.sub(_start, _end)
+end
+
+function BitmapFont:wordWidth(word)
+end
+
+function BitmapFont:_preprocess(text, maxWidth)
+
+  local function word_width(text)
+    local word = ""
+    local currentWidth = 0
+    local font = self._font
+    local t =
+    {
+      raw_font = font,
+      raw_text = text,
+    }
+    local x = 0
+    local last = ''; local xMax = 0
+    
+    for c in string.gmatch( t.raw_text..'\n', '(.)' ) do
+      local rfc = t.raw_font.chars[ c ]
+      
+      if c == '\n' or c == '\t' or c == ' ' or rfc == nil then
+        return currentWidth, word
+      else
+        if 0 + rfc.width > 0 and 0 + rfc.height > 0 then
+        
+          if t.raw_font.kernings[ last .. c ] then
+            x = x + font.kernings[ last .. c ]
+            currentWidth = currentWidth + font.kernings[ last .. c ]
+          end
+
+          last = c
+        end
+        x = x + rfc.xadvance + (t.raw_font.info.outline or 0)
+        currentWidth = currentWidth + rfc.xadvance + (t.raw_font.info.outline or 0)
+        word = word .. c
+      end
+    end
+    return currentWidth, word
+  end
+  
+  
+  local outText = ""
+  currentWidth = 0
+  currentTextIndex = 1
+  
+  local font = self._font
+--  local geometry = self._geometry
+
+--  local function Count_Substring( s1, s2 )
+--    local magic = "[%^%$%(%)%%%.%[%]%*%+%-%?]"
+--    local percent = function(s)return "%"..s end
+--    return select( 2, s1:gsub( s2:gsub(magic,percent), "" ) )
+--  end
+
+--  local mainNode = njli.Node.create()
+--  mainNode:setName(text)
+
+  local t =
+  {
+    raw_font = font,
+    raw_text = text,
+  }
+
+--  local rect =
+--  {
+--    0, 0, 0, 0
+--  }
+
+--  local numLines = tonumber(Count_Substring( text, "\n" )) + 1
+--  local oldAlign = ( t.align or 'left' )
+--  t.align = 'left'
+  local x = 0; --local y = -(numLines - 1) * t.raw_font.info.lineHeight
+  local last = ''; local xMax = 0; --local yMax = numLines * t.raw_font.info.lineHeight
+  local found_space = false
+  
+  if t.raw_font then
+    local substring = string.sub(t.raw_text, currentTextIndex)
+    currentWidth, word = word_width(substring)
+    
+--    print("start width is " .. currentWidth .. " the word is `" .. word .. "`")
+
+    for c in string.gmatch( t.raw_text..'\n', '(.)' ) do
+--      print("last = " .. last)
+      if found_space then
+        found_space = false
+        
+        local substring = string.sub(t.raw_text, currentTextIndex)
+--        print(substring)
+        local this_word_width, word = word_width(substring)
+        
+--        print("the width is " .. this_word_width .. " the word is `" .. word .. "`")
+        currentWidth = currentWidth + this_word_width
+        
+        if (currentWidth) > maxWidth then
+        
+          print(outText)
+          
+          local ret_text = outText .. "\n"
+          
+          ret_text = ret_text .. substring
+          
+          return ret_text, true
+        end
+      end
+--      outText = outText .. last
+      
+      if c == '\n' then
+        x = 0; --y = y + t.raw_font.info.lineHeight
+        currentWidth = 0
+      elseif c == '\t' then
+        local numSpaces = 2
+        c = " "
+
+        for i=1,numSpaces do
+          if 0 + t.raw_font.chars[ c ].width > 0 and 0 + t.raw_font.chars[ c ].height > 0 then
+--            local node = njli.Node.create()
+--            node:setName(c)
+--            node:setGeometry(geometry)
+
+--            local letter = {}
+
+            if t.raw_font.kernings[ last .. c ] then
+              x = x + font.kernings[ last .. c ]
+            end
+
+--            letter.anchorX = 0
+--            letter.anchorY = 0
+
+--            letter.x = t.raw_font.chars[ c ].xoffset + x
+--            letter.y = (t.raw_font.info.lineHeight - t.raw_font.chars[ c ].yoffset) - t.raw_font.chars[ c ].height - (t.raw_font.info.lineHeight - t.raw_font.info.base) - y
+            
+
+--            geometry:setSpriteAtlasFrame(node,
+--              t.raw_font.chars[ c ].x,
+--              t.raw_font.chars[ c ].y,
+--              t.raw_font.chars[ c ].width,
+--              t.raw_font.chars[ c ].height)
+--            geometry:setDimensions(node,
+--              bullet.btVector2( t.raw_font.chars[ c ].width*2, t.raw_font.chars[ c ].height*2),
+--              bullet.btVector2( letter.anchorX, letter.anchorY ))
+
+--            node:setOrigin(bullet.btVector3(letter.x, letter.y, 0))
+
+--            mainNode:addChildNode(node)
+
+            last = c 
+          end
+          x = x + t.raw_font.chars[ c ].xadvance + (t.raw_font.info.outline or 0)
+--          if x >= xMax then
+--            xMax = x
+--          end
+        end
+      elseif t.raw_font.chars[ c ] then
+      
+        --print the character.
+        
+        
+        local rfc = t.raw_font.chars[ c ]
+
+        if 0 + t.raw_font.chars[ c ].width > 0 and 0 + t.raw_font.chars[ c ].height > 0 then
+
+--          local node = njli.Node.create()
+--          node:setName(c)
+--          node:setGeometry(geometry)
+
+--          local letter = {}
+
+          if t.raw_font.kernings[ last .. c ] then
+            x = x + font.kernings[ last .. c ]
+          end
+
+--          letter.anchorX = 0
+--          letter.anchorY = 0
+
+--          print(c .. "(" .. _count_ .. ")")
+--          print_r(t.raw_font.chars[c])
+          
+--          letter.x = t.raw_font.chars[ c ].xoffset + x
+--          letter.y = (t.raw_font.info.lineHeight - t.raw_font.chars[ c ].yoffset) - t.raw_font.chars[ c ].height - (t.raw_font.info.lineHeight - t.raw_font.info.base) - y
+
+--          print_r(letter)
+          
+          
+--          geometry:setSpriteAtlasFrame(node,
+--            t.raw_font.chars[ c ].x,
+--            t.raw_font.chars[ c ].y,
+--            t.raw_font.chars[ c ].width,
+--            t.raw_font.chars[ c ].height)
+            
+--          geometry:setDimensions(node,
+--            bullet.btVector2( t.raw_font.chars[ c ].width*2, t.raw_font.chars[ c ].height*2),
+--            bullet.btVector2( letter.anchorX, letter.anchorY ))
+          
+--          print(tostring(bullet.btVector2( t.raw_font.chars[ c ].width*2, t.raw_font.chars[ c ].height*2)))
+
+--          node:setOrigin(bullet.btVector3(letter.x, letter.y, 0))
+
+--          mainNode:addChildNode(node)
+
+
+--          local o = tostring(bullet.btVector3(letter.x, letter.y, 0))
+--          local d = tostring(geometry:getDimensions(node))
+--          print(c .. "(" .. _count_ .. ")")
+--          print("\t origin: " .. o)
+--          print("\t dimension: " .. d)
+--          _count_ = _count_ + 1
+
+          last = c
+          
+        end
+        x = x + t.raw_font.chars[ c ].xadvance + (t.raw_font.info.outline or 0)
+--        if x >= xMax then
+--          xMax = x
+--        end
+      end
+      
+      if c == " " then
+        found_space = true
+      end
+      outText = outText .. c
+      currentTextIndex = currentTextIndex + 1
+    end
+
+--    rect =
+--    {
+--      x=x, y=(yMax-y), width=xMax, height=yMax
+--    }
+  end
+
+--  return mainNode, rect
+
+  
+  return outText, true
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--_count_ = 1
 function BitmapFont:printf(text)
+
+--  print(Allen.capitalizeFirst("james"))
+--  local processed_text, cont = self:_preprocess(text, njli.SCREEN():x())
+--  while cont do
+--    processed_text, cont = self:_preprocess(processed_text, njli.SCREEN():x())
+--  end
+--  print(processed_text)
+  
   local font = self._font
   local geometry = self._geometry
 
@@ -160,7 +441,7 @@ function BitmapFont:printf(text)
     0, 0, 0, 0
   }
 
-  local numLines = tonumber(Count_Substring( text, "\n" )) + 1
+  local numLines = tonumber(Count_Substring( t.raw_text, "\n" )) + 1
   local oldAlign = ( t.align or 'left' )
   t.align = 'left'
   local x = 0; local y = -(numLines - 1) * t.raw_font.info.lineHeight
@@ -170,7 +451,7 @@ function BitmapFont:printf(text)
       if c == '\n' then
         x = 0; y = y + t.raw_font.info.lineHeight
       elseif c == '\t' then
-        local numSpaces = 4
+        local numSpaces = 2
         c = " "
 
         for i=1,numSpaces do
@@ -254,15 +535,15 @@ function BitmapFont:printf(text)
             bullet.btVector2( t.raw_font.chars[ c ].width*2, t.raw_font.chars[ c ].height*2),
             bullet.btVector2( letter.anchorX, letter.anchorY ))
           
-          print(tostring(bullet.btVector2( t.raw_font.chars[ c ].width*2, t.raw_font.chars[ c ].height*2)))
+--          print(tostring(bullet.btVector2( t.raw_font.chars[ c ].width*2, t.raw_font.chars[ c ].height*2)))
 
           node:setOrigin(bullet.btVector3(letter.x, letter.y, 0))
 
           mainNode:addChildNode(node)
 
 
-          local o = tostring(bullet.btVector3(letter.x, letter.y, 0))
-          local d = tostring(geometry:getDimensions(node))
+--          local o = tostring(bullet.btVector3(letter.x, letter.y, 0))
+--          local d = tostring(geometry:getDimensions(node))
 --          print(c .. "(" .. _count_ .. ")")
 --          print("\t origin: " .. o)
 --          print("\t dimension: " .. d)

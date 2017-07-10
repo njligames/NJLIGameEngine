@@ -1,3 +1,18 @@
 [submodule "src/njli/lua"]
 	path = src/lua
 	url = https://github.com/njligames/lua.git
+[submodule "projects/COMMON/gameplay_scripts/yappybirds_game/scripts/thirdparty/guard"]
+	path = projects/COMMON/gameplay_scripts/yappybirds_game/scripts/thirdparty/guard
+	url = https://github.com/njligames/guard.lua.git
+[submodule "projects/COMMON/gameplay_scripts/yappybirds_game/scripts/thirdparty/allen"]
+	path = projects/COMMON/gameplay_scripts/yappybirds_game/scripts/thirdparty/allen
+	url = https://github.com/njligames/Allen.git
+[submodule "projects/COMMON/gameplay_scripts/yappybirds_game/scripts/thirdparty/moses"]
+	path = projects/COMMON/gameplay_scripts/yappybirds_game/scripts/thirdparty/moses
+	url = https://github.com/njligames/Moses.git
+[submodule "projects/COMMON/gameplay_scripts/yappybirds_game/scripts/thirdparty/i18n"]
+	path = projects/COMMON/gameplay_scripts/yappybirds_game/scripts/thirdparty/i18n
+	url = https://github.com/njligames/i18n.lua.git
+[submodule "projects/COMMON/gameplay_scripts/yappybirds_game/scripts/thirdparty/30log"]
+	path = projects/COMMON/gameplay_scripts/yappybirds_game/scripts/thirdparty/30log
+	url = https://github.com/njligames/30log.git

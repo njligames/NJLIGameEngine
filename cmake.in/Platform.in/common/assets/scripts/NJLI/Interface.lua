@@ -19,6 +19,8 @@ require "NJLI.util"
 local StateMachineEntity = require "NJLI.STATEMACHINE.StateMachineEntity"
 local DeviceEntity = require "NJLI.DeviceEntity"
 
+local Allen = require "thirdparty.Allen.allen"
+
 local __ctor = function(self, init)
   self._stateMachineEntity = StateMachineEntity()
   self._deviceEntity = DeviceEntity()
