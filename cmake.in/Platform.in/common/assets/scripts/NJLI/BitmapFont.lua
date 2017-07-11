@@ -212,7 +212,8 @@ function BitmapFont:fitTextInWidth(text, maxPixelWidth)
   local words = Allen.words(text)
   local currentPixelWidth = 0.0
   local ret = ""
-  local endCharacterIndex = 1
+  
+  local temp = ""
 
   local function nwords(str)
     local _words = {}
@@ -221,11 +222,15 @@ function BitmapFont:fitTextInWidth(text, maxPixelWidth)
   end
   
   local notwords = nwords(text)
+  local notword = ''
   
   for i=1, #words do
   
     local word = words[i]
-    local notword = notwords[i] or ''
+    notword = notwords[i] or ''
+    
+    temp = temp .. word
+    temp = temp .. notword
   
     local wordPixelWidth = self:wordPixelWidth(word) + self:wordPixelWidth(notword)
     
@@ -241,6 +246,11 @@ function BitmapFont:fitTextInWidth(text, maxPixelWidth)
     ret = ret .. notword
     
   end
+  
+  if string.len(temp) < string.len(text) then
+    ret = ret .. string.sub(text, string.len(temp) + 1)
+  end
+  
   return ret
 end
 

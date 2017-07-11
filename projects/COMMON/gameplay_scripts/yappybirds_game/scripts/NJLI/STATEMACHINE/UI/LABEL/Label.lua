@@ -46,7 +46,7 @@ function Label:text(t)
 
         gInterface:getStateMachine():getEntityManager():removeNodeEntity(self)
 
-        local node, rect = RanchersFont:printf(self._text)
+        local node, rect = RanchersFont:printf(self._text, njli.SCREEN():x())
         node:setOrigin(self:getNode():getOrigin())
         node:setRenderCategory(self:getNode())
         node:setCurrentScene(self:getNode())
