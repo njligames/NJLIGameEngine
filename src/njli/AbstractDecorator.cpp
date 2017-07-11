@@ -246,6 +246,7 @@ namespace njli
     
     void AbstractDecorator::setName(const char *name)
     {
+        SDL_assert(name != NULL);
         m_Name = name;
     }
     
