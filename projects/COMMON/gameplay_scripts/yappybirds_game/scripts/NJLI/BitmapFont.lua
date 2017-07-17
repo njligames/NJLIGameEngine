@@ -207,6 +207,67 @@ function BitmapFont:wordPixelWidth(word, previousCharacter)
   return pixelWidth
 end
 
+function BitmapFont:trim(s)
+  return (s:gsub("^%s*(.-)%s*$", "%1"))
+end
+
+function BitmapFont:lines(text)
+  local totalLength = string.len(text)
+  local currentString = text
+  local _end = string.find(currentString, "\n")
+  
+  local lines = {}
+  local line = ""
+  while nil ~= _end do
+    line = string.sub(currentString, 1, _end - 1)
+    table.insert(lines, self:trim(line))
+    currentString = string.sub(currentString, _end + 1)
+    _end = string.find(currentString, "\n")
+  end
+  table.insert(lines, self:trim(currentString))
+  
+  return lines
+end
+
+function BitmapFont:linePixelWidth(line)
+  local text = line or ''
+  
+  local currentPixelWidth = 0.0
+  
+  local words = Allen.words(text)
+  local temp = ""
+  
+  local function nwords(str)
+    local _words = {}
+    for word in str:gmatch('%p*%s+') do table.insert(_words,word) end
+    return #_words>0 and _words or nil
+  end
+  
+  local notwords = nwords(text)
+  local notword = ''
+  
+  for i=1, #words do
+  
+    local word = words[i]
+    notword = notwords[i] or ''
+    
+    temp = temp .. word
+    temp = temp .. notword
+  
+    local wordPixelWidth = self:wordPixelWidth(word) + self:wordPixelWidth(notword)
+    currentPixelWidth = currentPixelWidth + wordPixelWidth
+    
+  end
+  
+  if string.len(temp) < string.len(text) then
+    local word = string.sub(text, string.len(temp) + 1)
+    local wordPixelWidth = self:wordPixelWidth(word)
+    currentPixelWidth = currentPixelWidth + wordPixelWidth
+  end
+  
+  return currentPixelWidth
+end
+
 function BitmapFont:fitTextInWidth(text, maxPixelWidth)
   
   local words = Allen.words(text)
@@ -255,9 +316,12 @@ function BitmapFont:fitTextInWidth(text, maxPixelWidth)
 end
 
 --_count_ = 1
-function BitmapFont:printf(text, maxWidth)
+function BitmapFont:printf(text, maxWidth, align)
   
   local processed_text = text
+  local lineWidths = {}
+  local currentLine = 1
+  
   if maxWidth then
     processed_text = self:fitTextInWidth(text, maxWidth)
   end
@@ -284,16 +348,42 @@ function BitmapFont:printf(text, maxWidth)
   {
     0, 0, 0, 0
   }
-
+  
   local numLines = tonumber(Count_Substring( t.raw_text, "\n" )) + 1
+  local lines = self:lines(processed_text)
+  
+  if align == 'right' or align == 'center' then
+    for k, line in ipairs(lines) do
+      local lineWidth = self:linePixelWidth(line)
+      
+      local offset = (maxWidth - lineWidth)
+      
+      if align == 'center' then
+        offset = offset * 0.5
+      end
+      
+      table.insert(lineWidths, offset)
+    end
+  else
+    for k, line in ipairs(lines) do
+      table.insert(lineWidths, 0)
+    end
+  end
+  
   local oldAlign = ( t.align or 'left' )
   t.align = 'center'
-  local x = 0; local y = -(numLines - 1) * t.raw_font.info.lineHeight
-  local last = ''; local xMax = 0; local yMax = numLines * t.raw_font.info.lineHeight
+  local x = lineWidths[currentLine]; local y = -(numLines - 1) * t.raw_font.info.lineHeight
+  currentLine = currentLine + 1
+  
+  local last = ''; local xMax = 0; local yMax = (numLines * t.raw_font.info.lineHeight) --+ (numLines * (t.raw_font.info.lineHeight - t.raw_font.info.base))
+  
   if t.raw_font then
     for c in string.gmatch( t.raw_text..'\n', '(.)' ) do
       if c == '\n' then
-        x = 0; y = y + t.raw_font.info.lineHeight
+        x = lineWidths[currentLine]
+        currentLine = currentLine + 1
+        
+        y = y + t.raw_font.info.lineHeight
       elseif c == '\t' then
         local numSpaces = 2
         c = " "
