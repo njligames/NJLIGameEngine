@@ -285,6 +285,16 @@ function Button:hide(camera)
   self:getNode():hide(camera)
 end
 
+function Button:display(enable)
+  if nil ~= enable and nil ~= OrthographicCameraNode and OrthographicCameraNode:getCamera() then
+    if enable then
+      self:show(OrthographicCameraNode:getCamera())
+    else
+      self:hide(OrthographicCameraNode:getCamera())
+    end
+  end
+end
+
 function Button:touchUpOutside(touches)
     if not self._touchedUp then
         if self._touchUpOutside then

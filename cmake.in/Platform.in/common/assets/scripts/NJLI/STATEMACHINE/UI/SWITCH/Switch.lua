@@ -189,6 +189,16 @@ function Switch:hide(camera)
   self:getNode():hide(camera)
 end
 
+function Switch:display(enable)
+  if nil ~= enable and nil ~= OrthographicCameraNode and OrthographicCameraNode:getCamera() then
+    if enable then
+      self:show(OrthographicCameraNode:getCamera())
+    else
+      self:hide(OrthographicCameraNode:getCamera())
+    end
+  end
+end
+
 function Switch:touchUpOutside(touches)
     if not self._touchedUp then
         if self._touchUpOutside then

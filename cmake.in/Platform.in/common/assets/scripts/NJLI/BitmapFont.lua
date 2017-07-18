@@ -230,8 +230,11 @@ function BitmapFont:lines(text)
 end
 
 function BitmapFont:linePixelWidth(line)
-  local words = Allen.words(text)
+  local text = line or ''
+  
   local currentPixelWidth = 0.0
+  
+  local words = Allen.words(text)
   local temp = ""
   
   local function nwords(str)
@@ -316,6 +319,9 @@ end
 function BitmapFont:printf(text, maxWidth, align)
   
   local processed_text = text
+  local lineWidths = {}
+  local currentLine = 1
+  
   if maxWidth then
     processed_text = self:fitTextInWidth(text, maxWidth)
   end
@@ -344,14 +350,40 @@ function BitmapFont:printf(text, maxWidth, align)
   }
   
   local numLines = tonumber(Count_Substring( t.raw_text, "\n" )) + 1
+  local lines = self:lines(processed_text)
+  
+  if align == 'right' or align == 'center' then
+    for k, line in ipairs(lines) do
+      local lineWidth = self:linePixelWidth(line)
+      
+      local offset = (maxWidth - lineWidth)
+      
+      if align == 'center' then
+        offset = offset * 0.5
+      end
+      
+      table.insert(lineWidths, offset)
+    end
+  else
+    for k, line in ipairs(lines) do
+      table.insert(lineWidths, 0)
+    end
+  end
+  
   local oldAlign = ( t.align or 'left' )
   t.align = 'center'
-  local x = 0; local y = -(numLines - 1) * t.raw_font.info.lineHeight
-  local last = ''; local xMax = 0; local yMax = (numLines * t.raw_font.info.lineHeight) + (numLines * (t.raw_font.info.lineHeight - t.raw_font.info.base))
+  local x = lineWidths[currentLine]; local y = -(numLines - 1) * t.raw_font.info.lineHeight
+  currentLine = currentLine + 1
+  
+  local last = ''; local xMax = 0; local yMax = (numLines * t.raw_font.info.lineHeight) --+ (numLines * (t.raw_font.info.lineHeight - t.raw_font.info.base))
+  
   if t.raw_font then
     for c in string.gmatch( t.raw_text..'\n', '(.)' ) do
       if c == '\n' then
-        x = 0; y = y + t.raw_font.info.lineHeight
+        x = lineWidths[currentLine]
+        currentLine = currentLine + 1
+        
+        y = y + t.raw_font.info.lineHeight
       elseif c == '\t' then
         local numSpaces = 2
         c = " "

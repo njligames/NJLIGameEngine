@@ -90,6 +90,16 @@ function Label:hide(camera)
   self:getNode():hide(camera)
 end
 
+function Label:display(enable)
+  if nil ~= enable and nil ~= OrthographicCameraNode and OrthographicCameraNode:getCamera() then
+    if enable then
+      self:show(OrthographicCameraNode:getCamera())
+    else
+      self:hide(OrthographicCameraNode:getCamera())
+    end
+  end
+end
+
 --#############################################################################
 --NodeEntity overwrite
 --#############################################################################

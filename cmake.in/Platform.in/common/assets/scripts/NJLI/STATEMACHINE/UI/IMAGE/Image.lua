@@ -75,8 +75,21 @@ function Image:scale(s)
 end
 
 function Image:setSpriteAtlasFrame(nodeStateName, match)
-    self:getNode():getGeometry():setSpriteAtlasFrame(self:getNode(), self._spriteFrameAtlas, nodeStateName, match)
+	local parts = nodeStateName:split("[^,%s]+")
+  
+	local name = nodeStateName
+	if #parts ~= 1 then
+		name = parts[1] -- .. parts[3]
+	end
+  
+  assert(self:getNode())
+  assert(self:getNode():getGeometry())
+  self:getNode():getGeometry():setSpriteAtlasFrame(self:getNode(), self._spriteFrameAtlas, name, match)
 end
+
+--function Image:setSpriteAtlasFrame(nodeStateName, match)
+--    self:getNode():getGeometry():setSpriteAtlasFrame(self:getNode(), self._spriteFrameAtlas, nodeStateName, match)
+--end
 
 function Image:getDimensions()
     return self:getNode():getGeometry():getDimensions(self:getNode())
@@ -92,6 +105,16 @@ end
 
 function Image:hide(camera)
   self:getNode():hide(camera)
+end
+
+function Image:display(enable)
+  if nil ~= enable and nil ~= OrthographicCameraNode and OrthographicCameraNode:getCamera() then
+    if enable then
+      self:show(OrthographicCameraNode:getCamera())
+    else
+      self:hide(OrthographicCameraNode:getCamera())
+    end
+  end
 end
 
 --#############################################################################

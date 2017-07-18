@@ -29,9 +29,23 @@ local __ctor = function(self, init)
   self:getScene():addCameraNode(PerspectiveCameraNode)
 
 
---  self:createMainMenuUI()
-    self:createLevelSelectUI()
---    self:createAboutUI()
+--  local mm = self:createMainMenuUI()
+--  for k, v in pairs(mm) do
+--    v:display(false)
+--  end
+--  for k, v in pairs(mm) do
+--    v:display(true)
+--  end
+  
+--  local ls = self:createLevelSelectUI()
+--  for k, v in pairs(ls) do
+--    v:display(false)
+--  end
+--  for k, v in pairs(ls) do
+--    v:display(true)
+--  end
+
+--  self:createAboutUI()
 
 
 
@@ -82,6 +96,8 @@ function Menu:createAboutUI()
 end
 
 function Menu:createLevelSelectUI()
+  local ret = {}
+  
   self._imageStack = -0.1
 
   local ui_background = self:createImageControl("ui_background", 
@@ -90,11 +106,11 @@ function Menu:createLevelSelectUI()
     1.0,
     1.0,
     true)
-
+  table.insert(ret, ui_background)
 
   local dimension = (1.0 / 6.0)
 
-  local function createStageButton(row, column, level)
+  local function createStageButton(row, column, level, tbl)
     local r = row or 0
     local c = column or 0
 
@@ -111,6 +127,7 @@ function Menu:createLevelSelectUI()
         print("push to LevelSelect " .. level) 
       end
     )
+    table.insert(tbl, stage)
 
     local dim_x = stage:getDimensions():x()
     local dim_y = stage:getDimensions():y()
@@ -125,27 +142,27 @@ function Menu:createLevelSelectUI()
     local gutter_y = (dim_y * r) * 0.3
 
     stage:setOrigin(bullet.btVector2( margin_x + x + gutter_x, margin_y + y + gutter_y ))
-
+  
     return stage
   end
 
-  createStageButton(0,0, 11)
-  createStageButton(0,1, 12)
-  createStageButton(0,2, 13)
-  createStageButton(0,3, 14)
-  createStageButton(0,4, 15)
+  createStageButton(0,0, 11, ret)
+  createStageButton(0,1, 12, ret)
+  createStageButton(0,2, 13, ret)
+  createStageButton(0,3, 14, ret)
+  createStageButton(0,4, 15, ret)
 
-  createStageButton(1,0, 6)
-  createStageButton(1,1, 7)
-  createStageButton(1,2, 8)
-  createStageButton(1,3, 9)
-  createStageButton(1,4, 10)
+  createStageButton(1,0, 6, ret)
+  createStageButton(1,1, 7, ret)
+  createStageButton(1,2, 8, ret)
+  createStageButton(1,3, 9, ret)
+  createStageButton(1,4, 10, ret)
 
-  createStageButton(2,0, 1)
-  createStageButton(2,1, 2)
-  createStageButton(2,2, 3)
-  createStageButton(2,3, 4)
-  createStageButton(2,4, 5)
+  createStageButton(2,0, 1, ret)
+  createStageButton(2,1, 2, ret)
+  createStageButton(2,2, 3, ret)
+  createStageButton(2,3, 4, ret)
+  createStageButton(2,4, 5, ret)
 
   local back = self:createButtonControl("BACK",
     0,
@@ -153,6 +170,8 @@ function Menu:createLevelSelectUI()
     dimension,
     dimension,
     true)
+  table.insert(ret, back)
+  
   back:touchUpInsideCallback(
     function(r)
       local stateName = ""
@@ -160,14 +179,17 @@ function Menu:createLevelSelectUI()
       print("BACK") 
     end
   )
+
   local x = back:getDimensions():x() * 0.5 + (njli.SCREEN():x() * (1.0 / 60.0))
   local y = back:getDimensions():y() * 0.5 + (njli.SCREEN():y() * (1.0 / 60.0))
   back:setOrigin(bullet.btVector2( x, y ))
 
+  return ret
 end
 
 function Menu:createMainMenuUI()
-
+  local ret = {}
+  
   self._imageStack = -0.1
 
   local ui_background = self:createImageControl("ui_background", 
@@ -176,6 +198,7 @@ function Menu:createMainMenuUI()
     1.0,
     1.0,
     true)
+  table.insert(ret, ui_background)
 
   local logo_yb = self:createImageControl("logo_yb", 
     njli.SCREEN():x() * 0.5, 
@@ -183,6 +206,7 @@ function Menu:createMainMenuUI()
     0.9,
     0.9,
     true)
+  table.insert(ret, logo_yb)
 
   local play_button = self:createButtonControl("PLAY",
     (njli.SCREEN():x() * 0.5),
@@ -190,6 +214,8 @@ function Menu:createMainMenuUI()
     0.3,
     0.3,
     true)
+  table.insert(ret, play_button)
+  
   play_button:touchUpInsideCallback(
     function(r)
       local stateName = ""
@@ -197,6 +223,9 @@ function Menu:createMainMenuUI()
       print("PLAY") 
     end
   )
+  
+  
+  return ret
 end
 
 --function Menu:scaleDimension(dimSprite, screenPercentWidth, screenPercentHeight)
