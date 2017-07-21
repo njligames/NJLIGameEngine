@@ -66,6 +66,10 @@ function BirdBeak:rayTouchesCancelled(rayContact)
   BaseClass.rayTouchesCancelled(self, rayContact)
 end
 
+function BirdBeak:rayTouchesMissed(node)
+  BaseClass.rayTouchesMissed(self, node)
+end
+
 function BirdBeak:rayTouchDown(rayContact)
   BaseClass.rayTouchDown(self, rayContact)
 end
@@ -82,6 +86,26 @@ function BirdBeak:rayTouchCancelled(rayContact)
   BaseClass.rayTouchCancelled(self, rayContact)
 end
 
+function BirdBeak:rayTouchMissed(node)
+  BaseClass.rayTouchMissed(self, node)
+end
+
+function BirdBeak:rayMouseDown(rayContact)
+  BaseClass.rayMouseDown(self, rayContact)
+end
+
+function BirdBeak:rayMouseUp(rayContact)
+  BaseClass.rayMouseUp(self, rayContact)
+end
+
+function BirdBeak:rayMouseMove(rayContact)
+  BaseClass.rayMouseMove(self, rayContact)
+end
+
+function BirdBeak:rayMouseMissed(node)
+  BaseClass.rayMouseMissed(self, node)
+end
+
 function BirdBeak:collide(otherNode, collisionPoint)
   BaseClass.collide(self, otherNode, collisionPoint)
 end
@@ -96,6 +120,74 @@ end
 
 function BirdBeak:actionComplete(action)
   BaseClass.actionComplete(self, action)
+end
+
+function BirdBeak:keyboardShow()
+  BaseClass.keyboardShow(self)
+end
+
+function BirdBeak:keyboardCancel()
+  BaseClass.keyboardCancel(self)
+end
+
+function BirdBeak:keyboardReturn()
+  BaseClass.keyboardReturn(self)
+end
+
+function BirdBeak:renderHUD()
+  BaseClass.renderHUD(self)
+end
+
+function BirdBeak:gamePause()
+  BaseClass.gamePause(self)
+end
+
+function BirdBeak:gameUnPause()
+  BaseClass.gameUnPause(self)
+end
+
+function BirdBeak:touchesDown(touches)
+  BaseClass.touchesDown(self, touches)
+end
+
+function BirdBeak:touchesUp(touches)
+  BaseClass.touchesUp(self, touches)
+end
+
+function BirdBeak:touchesMove(touches)
+  BaseClass.touchesMove(self, touches)
+end
+
+function BirdBeak:touchesCancelled(touches)
+  BaseClass.touchesCancelled(self, touches)
+end
+
+function BirdBeak:touchDown(touch)
+  BaseClass.touchDown(self, touch)
+end
+
+function BirdBeak:touchUp(touch)
+  BaseClass.touchUp(self, touch)
+end
+
+function BirdBeak:touchMove(touch)
+  BaseClass.touchMove(self, touch)
+end
+
+function BirdBeak:touchCancelled(touch)
+  BaseClass.touchCancelled(self, touch)
+end
+
+function BirdBeak:mouseDown(mouse)
+  BaseClass.mouseDown(self, mouse)
+end
+
+function BirdBeak:mouseUp(mouse)
+  BaseClass.mouseUp(self, mouse)
+end
+
+function BirdBeak:mouseMove(mouse)
+  BaseClass.mouseMove(self, mouse)
 end
 
 --#############################################################################

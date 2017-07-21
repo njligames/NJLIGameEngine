@@ -32,7 +32,7 @@ local __unLoad = function(self)
   --TODO: unload this Entity
 end
 
---#############################################################################
+--############################################################################# 
 
 function Fly:enter()
   BaseClass.enter(self)
@@ -50,40 +50,64 @@ function Fly:onMessage()
   BaseClass.onMessage(self)
 end
 
-function Fly:touchesDown(rayContact)
-  BaseClass.touchesDown(self, rayContact)
+function Fly:rayTouchesDown(rayContact)
+  BaseClass.rayTouchesDown(self, rayContact)
 end
 
-function Fly:touchesUp(rayContact)
-  BaseClass.touchesUp(self, rayContact)
+function Fly:rayTouchesUp(rayContact)
+  BaseClass.rayTouchesUp(self, rayContact)
 end
 
-function Fly:touchesMove(rayContact)
-  BaseClass.touchesMove(self, rayContact)
+function Fly:rayTouchesMove(rayContact)
+  BaseClass.rayTouchesMove(self, rayContact)
 end
 
-function Fly:touchesCancelled(rayContact)
-  BaseClass.touchesCancelled(self, rayContact)
+function Fly:rayTouchesCancelled(rayContact)
+  BaseClass.rayTouchesCancelled(self, rayContact)
 end
 
-function Fly:touchDown(rayContact)
-  BaseClass.touchDown(self, rayContact)
+function Fly:rayTouchesMissed(node)
+  BaseClass.rayTouchesMissed(self, node)
 end
 
-function Fly:touchUp(rayContact)
-  BaseClass.touchUp(self, rayContact)
+function Fly:rayTouchDown(rayContact)
+  BaseClass.rayTouchDown(self, rayContact)
 end
 
-function Fly:touchMove(rayContact)
-  BaseClass.touchMove(self, rayContact)
+function Fly:rayTouchUp(rayContact)
+  BaseClass.rayTouchUp(self, rayContact)
 end
 
-function Fly:touchCancelled(rayContact)
-  BaseClass.touchCancelled(self, rayContact)
+function Fly:rayTouchMove(rayContact)
+  BaseClass.rayTouchMove(self, rayContact)
+end
+
+function Fly:rayTouchCancelled(rayContact)
+  BaseClass.rayTouchCancelled(self, rayContact)
+end
+
+function Fly:rayTouchMissed(node)
+  BaseClass.rayTouchMissed(self, node)
+end
+
+function Fly:rayMouseDown(rayContact)
+  BaseClass.rayMouseDown(self, rayContact)
+end
+
+function Fly:rayMouseUp(rayContact)
+  BaseClass.rayMouseUp(self, rayContact)
+end
+
+function Fly:rayMouseMove(rayContact)
+  BaseClass.rayMouseMove(self, rayContact)
+end
+
+function Fly:rayMouseMissed(node)
+  BaseClass.rayMouseMissed(self, node)
 end
 
 function Fly:collide(otherNode, collisionPoint)
-  BaseClass.collide(self, collisionPoint)
+  BaseClass.collide(self, otherNode, collisionPoint)
 end
 
 function Fly:near(otherNode)
@@ -91,11 +115,79 @@ function Fly:near(otherNode)
 end
 
 function Fly:actionUpdate(action, timeStep)
-  BaseClass.actionUpdate(self, timeStep)
+  BaseClass.actionUpdate(self, action, timeStep)
 end
 
 function Fly:actionComplete(action)
   BaseClass.actionComplete(self, action)
+end
+
+function Fly:keyboardShow()
+  BaseClass.keyboardShow(self)
+end
+
+function Fly:keyboardCancel()
+  BaseClass.keyboardCancel(self)
+end
+
+function Fly:keyboardReturn()
+  BaseClass.keyboardReturn(self)
+end
+
+function Fly:renderHUD()
+  BaseClass.renderHUD(self)
+end
+
+function Fly:gamePause()
+  BaseClass.gamePause(self)
+end
+
+function Fly:gameUnPause()
+  BaseClass.gameUnPause(self)
+end
+
+function Fly:touchesDown(touches)
+  BaseClass.touchesDown(self, touches)
+end
+
+function Fly:touchesUp(touches)
+  BaseClass.touchesUp(self, touches)
+end
+
+function Fly:touchesMove(touches)
+  BaseClass.touchesMove(self, touches)
+end
+
+function Fly:touchesCancelled(touches)
+  BaseClass.touchesCancelled(self, touches)
+end
+
+function Fly:touchDown(touch)
+  BaseClass.touchDown(self, touch)
+end
+
+function Fly:touchUp(touch)
+  BaseClass.touchUp(self, touch)
+end
+
+function Fly:touchMove(touch)
+  BaseClass.touchMove(self, touch)
+end
+
+function Fly:touchCancelled(touch)
+  BaseClass.touchCancelled(self, touch)
+end
+
+function Fly:mouseDown(mouse)
+  BaseClass.mouseDown(self, mouse)
+end
+
+function Fly:mouseUp(mouse)
+  BaseClass.mouseUp(self, mouse)
+end
+
+function Fly:mouseMove(mouse)
+  BaseClass.mouseMove(self, mouse)
 end
 
 --#############################################################################
@@ -138,8 +230,8 @@ end
 
 function Fly:__tostring()
   local ret = self:className() .. " =\n{\n"
-
-  for pos,val in pairs(self) do
+  
+  for pos,val in pairs(self) do 
     ret = ret .. "\t" .. "["..pos.."]" .. " => " .. type(val) .. " = " .. tostring(val) .. "\n"
   end
 

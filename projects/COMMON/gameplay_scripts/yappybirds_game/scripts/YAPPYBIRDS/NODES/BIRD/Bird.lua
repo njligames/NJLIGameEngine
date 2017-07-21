@@ -66,6 +66,10 @@ function Bird:rayTouchesCancelled(rayContact)
   BaseClass.rayTouchesCancelled(self, rayContact)
 end
 
+function Bird:rayTouchesMissed(node)
+  BaseClass.rayTouchesMissed(self, node)
+end
+
 function Bird:rayTouchDown(rayContact)
   BaseClass.rayTouchDown(self, rayContact)
 end
@@ -82,6 +86,26 @@ function Bird:rayTouchCancelled(rayContact)
   BaseClass.rayTouchCancelled(self, rayContact)
 end
 
+function Bird:rayTouchMissed(node)
+  BaseClass.rayTouchMissed(self, node)
+end
+
+function Bird:rayMouseDown(rayContact)
+  BaseClass.rayMouseDown(self, rayContact)
+end
+
+function Bird:rayMouseUp(rayContact)
+  BaseClass.rayMouseUp(self, rayContact)
+end
+
+function Bird:rayMouseMove(rayContact)
+  BaseClass.rayMouseMove(self, rayContact)
+end
+
+function Bird:rayMouseMissed(node)
+  BaseClass.rayMouseMissed(self, node)
+end
+
 function Bird:collide(otherNode, collisionPoint)
   BaseClass.collide(self, otherNode, collisionPoint)
 end
@@ -96,6 +120,74 @@ end
 
 function Bird:actionComplete(action)
   BaseClass.actionComplete(self, action)
+end
+
+function Bird:keyboardShow()
+  BaseClass.keyboardShow(self)
+end
+
+function Bird:keyboardCancel()
+  BaseClass.keyboardCancel(self)
+end
+
+function Bird:keyboardReturn()
+  BaseClass.keyboardReturn(self)
+end
+
+function Bird:renderHUD()
+  BaseClass.renderHUD(self)
+end
+
+function Bird:gamePause()
+  BaseClass.gamePause(self)
+end
+
+function Bird:gameUnPause()
+  BaseClass.gameUnPause(self)
+end
+
+function Bird:touchesDown(touches)
+  BaseClass.touchesDown(self, touches)
+end
+
+function Bird:touchesUp(touches)
+  BaseClass.touchesUp(self, touches)
+end
+
+function Bird:touchesMove(touches)
+  BaseClass.touchesMove(self, touches)
+end
+
+function Bird:touchesCancelled(touches)
+  BaseClass.touchesCancelled(self, touches)
+end
+
+function Bird:touchDown(touch)
+  BaseClass.touchDown(self, touch)
+end
+
+function Bird:touchUp(touch)
+  BaseClass.touchUp(self, touch)
+end
+
+function Bird:touchMove(touch)
+  BaseClass.touchMove(self, touch)
+end
+
+function Bird:touchCancelled(touch)
+  BaseClass.touchCancelled(self, touch)
+end
+
+function Bird:mouseDown(mouse)
+  BaseClass.mouseDown(self, mouse)
+end
+
+function Bird:mouseUp(mouse)
+  BaseClass.mouseUp(self, mouse)
+end
+
+function Bird:mouseMove(mouse)
+  BaseClass.mouseMove(self, mouse)
 end
 
 --#############################################################################

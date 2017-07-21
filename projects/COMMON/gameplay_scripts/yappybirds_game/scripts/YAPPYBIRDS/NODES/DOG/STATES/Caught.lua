@@ -1,7 +1,7 @@
-local BaseClass = require "NJLI.STATEMACHINE.NodeEntity"
+local BaseClass = require "NJLI.STATEMACHINE.NodeEntityState"
 
-local BirdBeak = {}
-BirdBeak.__index = BirdBeak
+local Caught = {}
+Caught.__index = Caught
 
 --#############################################################################
 --DO NOT EDIT ABOVE
@@ -32,161 +32,161 @@ local __unLoad = function(self)
   --TODO: unload this Entity
 end
 
---#############################################################################
+--############################################################################# 
 
-function BirdBeak:enter()
+function Caught:enter()
   BaseClass.enter(self)
 end
 
-function BirdBeak:update(timeStep)
+function Caught:update(timeStep)
   BaseClass.update(self, timeStep)
 end
 
-function BirdBeak:exit()
+function Caught:exit()
   BaseClass.exit(self)
 end
 
-function BirdBeak:onMessage()
+function Caught:onMessage()
   BaseClass.onMessage(self)
 end
 
-function BirdBeak:rayTouchesDown(rayContact)
+function Caught:rayTouchesDown(rayContact)
   BaseClass.rayTouchesDown(self, rayContact)
 end
 
-function BirdBeak:rayTouchesUp(rayContact)
+function Caught:rayTouchesUp(rayContact)
   BaseClass.rayTouchesUp(self, rayContact)
 end
 
-function BirdBeak:rayTouchesMove(rayContact)
+function Caught:rayTouchesMove(rayContact)
   BaseClass.rayTouchesMove(self, rayContact)
 end
 
-function BirdBeak:rayTouchesCancelled(rayContact)
+function Caught:rayTouchesCancelled(rayContact)
   BaseClass.rayTouchesCancelled(self, rayContact)
 end
 
-function BirdBeak:rayTouchesMissed(node)
+function Caught:rayTouchesMissed(node)
   BaseClass.rayTouchesMissed(self, node)
 end
 
-function BirdBeak:rayTouchDown(rayContact)
+function Caught:rayTouchDown(rayContact)
   BaseClass.rayTouchDown(self, rayContact)
 end
 
-function BirdBeak:rayTouchUp(rayContact)
+function Caught:rayTouchUp(rayContact)
   BaseClass.rayTouchUp(self, rayContact)
 end
 
-function BirdBeak:rayTouchMove(rayContact)
+function Caught:rayTouchMove(rayContact)
   BaseClass.rayTouchMove(self, rayContact)
 end
 
-function BirdBeak:rayTouchCancelled(rayContact)
+function Caught:rayTouchCancelled(rayContact)
   BaseClass.rayTouchCancelled(self, rayContact)
 end
 
-function BirdBeak:rayTouchMissed(node)
+function Caught:rayTouchMissed(node)
   BaseClass.rayTouchMissed(self, node)
 end
 
-function BirdBeak:rayMouseDown(rayContact)
+function Caught:rayMouseDown(rayContact)
   BaseClass.rayMouseDown(self, rayContact)
 end
 
-function BirdBeak:rayMouseUp(rayContact)
+function Caught:rayMouseUp(rayContact)
   BaseClass.rayMouseUp(self, rayContact)
 end
 
-function BirdBeak:rayMouseMove(rayContact)
+function Caught:rayMouseMove(rayContact)
   BaseClass.rayMouseMove(self, rayContact)
 end
 
-function BirdBeak:rayMouseMissed(node)
+function Caught:rayMouseMissed(node)
   BaseClass.rayMouseMissed(self, node)
 end
 
-function BirdBeak:collide(otherNode, collisionPoint)
+function Caught:collide(otherNode, collisionPoint)
   BaseClass.collide(self, otherNode, collisionPoint)
 end
 
-function BirdBeak:near(otherNode)
+function Caught:near(otherNode)
   BaseClass.near(self, otherNode)
 end
 
-function BirdBeak:actionUpdate(action, timeStep)
+function Caught:actionUpdate(action, timeStep)
   BaseClass.actionUpdate(self, action, timeStep)
 end
 
-function BirdBeak:actionComplete(action)
+function Caught:actionComplete(action)
   BaseClass.actionComplete(self, action)
 end
 
-function BirdBeak:keyboardShow()
+function Caught:keyboardShow()
   BaseClass.keyboardShow(self)
 end
 
-function BirdBeak:keyboardCancel()
+function Caught:keyboardCancel()
   BaseClass.keyboardCancel(self)
 end
 
-function BirdBeak:keyboardReturn()
+function Caught:keyboardReturn()
   BaseClass.keyboardReturn(self)
 end
 
-function BirdBeak:renderHUD()
+function Caught:renderHUD()
   BaseClass.renderHUD(self)
 end
 
-function BirdBeak:gamePause()
+function Caught:gamePause()
   BaseClass.gamePause(self)
 end
 
-function BirdBeak:gameUnPause()
+function Caught:gameUnPause()
   BaseClass.gameUnPause(self)
 end
 
-function BirdBeak:touchesDown(touches)
+function Caught:touchesDown(touches)
   BaseClass.touchesDown(self, touches)
 end
 
-function BirdBeak:touchesUp(touches)
+function Caught:touchesUp(touches)
   BaseClass.touchesUp(self, touches)
 end
 
-function BirdBeak:touchesMove(touches)
+function Caught:touchesMove(touches)
   BaseClass.touchesMove(self, touches)
 end
 
-function BirdBeak:touchesCancelled(touches)
+function Caught:touchesCancelled(touches)
   BaseClass.touchesCancelled(self, touches)
 end
 
-function BirdBeak:touchDown(touch)
+function Caught:touchDown(touch)
   BaseClass.touchDown(self, touch)
 end
 
-function BirdBeak:touchUp(touch)
+function Caught:touchUp(touch)
   BaseClass.touchUp(self, touch)
 end
 
-function BirdBeak:touchMove(touch)
+function Caught:touchMove(touch)
   BaseClass.touchMove(self, touch)
 end
 
-function BirdBeak:touchCancelled(touch)
+function Caught:touchCancelled(touch)
   BaseClass.touchCancelled(self, touch)
 end
 
-function BirdBeak:mouseDown(mouse)
+function Caught:mouseDown(mouse)
   BaseClass.mouseDown(self, mouse)
 end
 
-function BirdBeak:mouseUp(mouse)
+function Caught:mouseUp(mouse)
   BaseClass.mouseUp(self, mouse)
 end
 
-function BirdBeak:mouseMove(mouse)
+function Caught:mouseMove(mouse)
   BaseClass.mouseMove(self, mouse)
 end
 
@@ -198,7 +198,7 @@ end
 --DO NOT EDIT BELOW
 --#############################################################################
 
-setmetatable(BirdBeak, {
+setmetatable(Caught, {
     __index = BaseClass,
     __call = function (cls, ...)
       local self = setmetatable({}, cls)
@@ -209,29 +209,29 @@ setmetatable(BirdBeak, {
     end,
   })
 
-function BirdBeak:className()
-  return "BirdBeak"
+function Caught:className()
+  return "Caught"
 end
 
-function BirdBeak:class()
+function Caught:class()
   return self
 end
 
-function BirdBeak:superClass()
+function Caught:superClass()
   return BaseClass
 end
 
-function BirdBeak:__gc()
+function Caught:__gc()
   --Destroy derived class first
-  BirdBeak._destroy(self)
+  Caught._destroy(self)
   --Destroy base class after derived class
   BaseClass._destroy(self)
 end
 
-function BirdBeak:__tostring()
+function Caught:__tostring()
   local ret = self:className() .. " =\n{\n"
-
-  for pos,val in pairs(self) do
+  
+  for pos,val in pairs(self) do 
     ret = ret .. "\t" .. "["..pos.."]" .. " => " .. type(val) .. " = " .. tostring(val) .. "\n"
   end
 
@@ -239,35 +239,35 @@ function BirdBeak:__tostring()
   return ret .. "\n\t" .. tostring_r(getmetatable(self)) .. "\n}"
 end
 
-function BirdBeak:_destroy()
-  assert(not self.__BirdBeakCalledLoad, "Must unload before you destroy")
+function Caught:_destroy()
+  assert(not self.__CaughtCalledLoad, "Must unload before you destroy")
   __dtor(self)
 end
 
-function BirdBeak:_create(init)
-  self.__BirdBeakCalledLoad = false
+function Caught:_create(init)
+  self.__CaughtCalledLoad = false
   __ctor(self, init)
 end
 
-function BirdBeak:load()
+function Caught:load()
   --load base first
   BaseClass.load(self)
 
   --load derived last...
   __load(self)
 
-  self.__BirdBeakCalledLoad = true
+  self.__CaughtCalledLoad = true
 end
 
-function BirdBeak:unLoad()
-  assert(self.__BirdBeakCalledLoad, "Must load before unloading")
+function Caught:unLoad()
+  assert(self.__CaughtCalledLoad, "Must load before unloading")
 
   --unload derived first...
   __unLoad(self)
-  self.__BirdBeakCalledLoad = false
+  self.__CaughtCalledLoad = false
 
   --unload base last...
   BaseClass.unLoad(self)
 end
 
-return BirdBeak
+return Caught

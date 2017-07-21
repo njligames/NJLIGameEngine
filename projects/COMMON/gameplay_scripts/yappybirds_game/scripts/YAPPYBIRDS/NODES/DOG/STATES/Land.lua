@@ -1,7 +1,7 @@
-local BaseClass = require "NJLI.STATEMACHINE.NodeEntity"
+local BaseClass = require "NJLI.STATEMACHINE.NodeEntityState"
 
-local BirdBeak = {}
-BirdBeak.__index = BirdBeak
+local Land = {}
+Land.__index = Land
 
 --#############################################################################
 --DO NOT EDIT ABOVE
@@ -32,161 +32,161 @@ local __unLoad = function(self)
   --TODO: unload this Entity
 end
 
---#############################################################################
+--############################################################################# 
 
-function BirdBeak:enter()
+function Land:enter()
   BaseClass.enter(self)
 end
 
-function BirdBeak:update(timeStep)
+function Land:update(timeStep)
   BaseClass.update(self, timeStep)
 end
 
-function BirdBeak:exit()
+function Land:exit()
   BaseClass.exit(self)
 end
 
-function BirdBeak:onMessage()
+function Land:onMessage()
   BaseClass.onMessage(self)
 end
 
-function BirdBeak:rayTouchesDown(rayContact)
+function Land:rayTouchesDown(rayContact)
   BaseClass.rayTouchesDown(self, rayContact)
 end
 
-function BirdBeak:rayTouchesUp(rayContact)
+function Land:rayTouchesUp(rayContact)
   BaseClass.rayTouchesUp(self, rayContact)
 end
 
-function BirdBeak:rayTouchesMove(rayContact)
+function Land:rayTouchesMove(rayContact)
   BaseClass.rayTouchesMove(self, rayContact)
 end
 
-function BirdBeak:rayTouchesCancelled(rayContact)
+function Land:rayTouchesCancelled(rayContact)
   BaseClass.rayTouchesCancelled(self, rayContact)
 end
 
-function BirdBeak:rayTouchesMissed(node)
+function Land:rayTouchesMissed(node)
   BaseClass.rayTouchesMissed(self, node)
 end
 
-function BirdBeak:rayTouchDown(rayContact)
+function Land:rayTouchDown(rayContact)
   BaseClass.rayTouchDown(self, rayContact)
 end
 
-function BirdBeak:rayTouchUp(rayContact)
+function Land:rayTouchUp(rayContact)
   BaseClass.rayTouchUp(self, rayContact)
 end
 
-function BirdBeak:rayTouchMove(rayContact)
+function Land:rayTouchMove(rayContact)
   BaseClass.rayTouchMove(self, rayContact)
 end
 
-function BirdBeak:rayTouchCancelled(rayContact)
+function Land:rayTouchCancelled(rayContact)
   BaseClass.rayTouchCancelled(self, rayContact)
 end
 
-function BirdBeak:rayTouchMissed(node)
+function Land:rayTouchMissed(node)
   BaseClass.rayTouchMissed(self, node)
 end
 
-function BirdBeak:rayMouseDown(rayContact)
+function Land:rayMouseDown(rayContact)
   BaseClass.rayMouseDown(self, rayContact)
 end
 
-function BirdBeak:rayMouseUp(rayContact)
+function Land:rayMouseUp(rayContact)
   BaseClass.rayMouseUp(self, rayContact)
 end
 
-function BirdBeak:rayMouseMove(rayContact)
+function Land:rayMouseMove(rayContact)
   BaseClass.rayMouseMove(self, rayContact)
 end
 
-function BirdBeak:rayMouseMissed(node)
+function Land:rayMouseMissed(node)
   BaseClass.rayMouseMissed(self, node)
 end
 
-function BirdBeak:collide(otherNode, collisionPoint)
+function Land:collide(otherNode, collisionPoint)
   BaseClass.collide(self, otherNode, collisionPoint)
 end
 
-function BirdBeak:near(otherNode)
+function Land:near(otherNode)
   BaseClass.near(self, otherNode)
 end
 
-function BirdBeak:actionUpdate(action, timeStep)
+function Land:actionUpdate(action, timeStep)
   BaseClass.actionUpdate(self, action, timeStep)
 end
 
-function BirdBeak:actionComplete(action)
+function Land:actionComplete(action)
   BaseClass.actionComplete(self, action)
 end
 
-function BirdBeak:keyboardShow()
+function Land:keyboardShow()
   BaseClass.keyboardShow(self)
 end
 
-function BirdBeak:keyboardCancel()
+function Land:keyboardCancel()
   BaseClass.keyboardCancel(self)
 end
 
-function BirdBeak:keyboardReturn()
+function Land:keyboardReturn()
   BaseClass.keyboardReturn(self)
 end
 
-function BirdBeak:renderHUD()
+function Land:renderHUD()
   BaseClass.renderHUD(self)
 end
 
-function BirdBeak:gamePause()
+function Land:gamePause()
   BaseClass.gamePause(self)
 end
 
-function BirdBeak:gameUnPause()
+function Land:gameUnPause()
   BaseClass.gameUnPause(self)
 end
 
-function BirdBeak:touchesDown(touches)
+function Land:touchesDown(touches)
   BaseClass.touchesDown(self, touches)
 end
 
-function BirdBeak:touchesUp(touches)
+function Land:touchesUp(touches)
   BaseClass.touchesUp(self, touches)
 end
 
-function BirdBeak:touchesMove(touches)
+function Land:touchesMove(touches)
   BaseClass.touchesMove(self, touches)
 end
 
-function BirdBeak:touchesCancelled(touches)
+function Land:touchesCancelled(touches)
   BaseClass.touchesCancelled(self, touches)
 end
 
-function BirdBeak:touchDown(touch)
+function Land:touchDown(touch)
   BaseClass.touchDown(self, touch)
 end
 
-function BirdBeak:touchUp(touch)
+function Land:touchUp(touch)
   BaseClass.touchUp(self, touch)
 end
 
-function BirdBeak:touchMove(touch)
+function Land:touchMove(touch)
   BaseClass.touchMove(self, touch)
 end
 
-function BirdBeak:touchCancelled(touch)
+function Land:touchCancelled(touch)
   BaseClass.touchCancelled(self, touch)
 end
 
-function BirdBeak:mouseDown(mouse)
+function Land:mouseDown(mouse)
   BaseClass.mouseDown(self, mouse)
 end
 
-function BirdBeak:mouseUp(mouse)
+function Land:mouseUp(mouse)
   BaseClass.mouseUp(self, mouse)
 end
 
-function BirdBeak:mouseMove(mouse)
+function Land:mouseMove(mouse)
   BaseClass.mouseMove(self, mouse)
 end
 
@@ -198,7 +198,7 @@ end
 --DO NOT EDIT BELOW
 --#############################################################################
 
-setmetatable(BirdBeak, {
+setmetatable(Land, {
     __index = BaseClass,
     __call = function (cls, ...)
       local self = setmetatable({}, cls)
@@ -209,29 +209,29 @@ setmetatable(BirdBeak, {
     end,
   })
 
-function BirdBeak:className()
-  return "BirdBeak"
+function Land:className()
+  return "Land"
 end
 
-function BirdBeak:class()
+function Land:class()
   return self
 end
 
-function BirdBeak:superClass()
+function Land:superClass()
   return BaseClass
 end
 
-function BirdBeak:__gc()
+function Land:__gc()
   --Destroy derived class first
-  BirdBeak._destroy(self)
+  Land._destroy(self)
   --Destroy base class after derived class
   BaseClass._destroy(self)
 end
 
-function BirdBeak:__tostring()
+function Land:__tostring()
   local ret = self:className() .. " =\n{\n"
-
-  for pos,val in pairs(self) do
+  
+  for pos,val in pairs(self) do 
     ret = ret .. "\t" .. "["..pos.."]" .. " => " .. type(val) .. " = " .. tostring(val) .. "\n"
   end
 
@@ -239,35 +239,35 @@ function BirdBeak:__tostring()
   return ret .. "\n\t" .. tostring_r(getmetatable(self)) .. "\n}"
 end
 
-function BirdBeak:_destroy()
-  assert(not self.__BirdBeakCalledLoad, "Must unload before you destroy")
+function Land:_destroy()
+  assert(not self.__LandCalledLoad, "Must unload before you destroy")
   __dtor(self)
 end
 
-function BirdBeak:_create(init)
-  self.__BirdBeakCalledLoad = false
+function Land:_create(init)
+  self.__LandCalledLoad = false
   __ctor(self, init)
 end
 
-function BirdBeak:load()
+function Land:load()
   --load base first
   BaseClass.load(self)
 
   --load derived last...
   __load(self)
 
-  self.__BirdBeakCalledLoad = true
+  self.__LandCalledLoad = true
 end
 
-function BirdBeak:unLoad()
-  assert(self.__BirdBeakCalledLoad, "Must load before unloading")
+function Land:unLoad()
+  assert(self.__LandCalledLoad, "Must load before unloading")
 
   --unload derived first...
   __unLoad(self)
-  self.__BirdBeakCalledLoad = false
+  self.__LandCalledLoad = false
 
   --unload base last...
   BaseClass.unLoad(self)
 end
 
-return BirdBeak
+return Land

@@ -32,7 +32,7 @@ local __unLoad = function(self)
   --TODO: unload this Entity
 end
 
---#############################################################################
+--############################################################################# 
 
 function Hit:enter()
   BaseClass.enter(self)
@@ -50,40 +50,64 @@ function Hit:onMessage()
   BaseClass.onMessage(self)
 end
 
-function Hit:touchesDown(rayContact)
-  BaseClass.touchesDown(self, rayContact)
+function Hit:rayTouchesDown(rayContact)
+  BaseClass.rayTouchesDown(self, rayContact)
 end
 
-function Hit:touchesUp(rayContact)
-  BaseClass.touchesUp(self, rayContact)
+function Hit:rayTouchesUp(rayContact)
+  BaseClass.rayTouchesUp(self, rayContact)
 end
 
-function Hit:touchesMove(rayContact)
-  BaseClass.touchesMove(self, rayContact)
+function Hit:rayTouchesMove(rayContact)
+  BaseClass.rayTouchesMove(self, rayContact)
 end
 
-function Hit:touchesCancelled(rayContact)
-  BaseClass.touchesCancelled(self, rayContact)
+function Hit:rayTouchesCancelled(rayContact)
+  BaseClass.rayTouchesCancelled(self, rayContact)
 end
 
-function Hit:touchDown(rayContact)
-  BaseClass.touchDown(self, rayContact)
+function Hit:rayTouchesMissed(node)
+  BaseClass.rayTouchesMissed(self, node)
 end
 
-function Hit:touchUp(rayContact)
-  BaseClass.touchUp(self, rayContact)
+function Hit:rayTouchDown(rayContact)
+  BaseClass.rayTouchDown(self, rayContact)
 end
 
-function Hit:touchMove(rayContact)
-  BaseClass.touchMove(self, rayContact)
+function Hit:rayTouchUp(rayContact)
+  BaseClass.rayTouchUp(self, rayContact)
 end
 
-function Hit:touchCancelled(rayContact)
-  BaseClass.touchCancelled(self, rayContact)
+function Hit:rayTouchMove(rayContact)
+  BaseClass.rayTouchMove(self, rayContact)
+end
+
+function Hit:rayTouchCancelled(rayContact)
+  BaseClass.rayTouchCancelled(self, rayContact)
+end
+
+function Hit:rayTouchMissed(node)
+  BaseClass.rayTouchMissed(self, node)
+end
+
+function Hit:rayMouseDown(rayContact)
+  BaseClass.rayMouseDown(self, rayContact)
+end
+
+function Hit:rayMouseUp(rayContact)
+  BaseClass.rayMouseUp(self, rayContact)
+end
+
+function Hit:rayMouseMove(rayContact)
+  BaseClass.rayMouseMove(self, rayContact)
+end
+
+function Hit:rayMouseMissed(node)
+  BaseClass.rayMouseMissed(self, node)
 end
 
 function Hit:collide(otherNode, collisionPoint)
-  BaseClass.collide(self, collisionPoint)
+  BaseClass.collide(self, otherNode, collisionPoint)
 end
 
 function Hit:near(otherNode)
@@ -91,11 +115,79 @@ function Hit:near(otherNode)
 end
 
 function Hit:actionUpdate(action, timeStep)
-  BaseClass.actionUpdate(self, timeStep)
+  BaseClass.actionUpdate(self, action, timeStep)
 end
 
 function Hit:actionComplete(action)
   BaseClass.actionComplete(self, action)
+end
+
+function Hit:keyboardShow()
+  BaseClass.keyboardShow(self)
+end
+
+function Hit:keyboardCancel()
+  BaseClass.keyboardCancel(self)
+end
+
+function Hit:keyboardReturn()
+  BaseClass.keyboardReturn(self)
+end
+
+function Hit:renderHUD()
+  BaseClass.renderHUD(self)
+end
+
+function Hit:gamePause()
+  BaseClass.gamePause(self)
+end
+
+function Hit:gameUnPause()
+  BaseClass.gameUnPause(self)
+end
+
+function Hit:touchesDown(touches)
+  BaseClass.touchesDown(self, touches)
+end
+
+function Hit:touchesUp(touches)
+  BaseClass.touchesUp(self, touches)
+end
+
+function Hit:touchesMove(touches)
+  BaseClass.touchesMove(self, touches)
+end
+
+function Hit:touchesCancelled(touches)
+  BaseClass.touchesCancelled(self, touches)
+end
+
+function Hit:touchDown(touch)
+  BaseClass.touchDown(self, touch)
+end
+
+function Hit:touchUp(touch)
+  BaseClass.touchUp(self, touch)
+end
+
+function Hit:touchMove(touch)
+  BaseClass.touchMove(self, touch)
+end
+
+function Hit:touchCancelled(touch)
+  BaseClass.touchCancelled(self, touch)
+end
+
+function Hit:mouseDown(mouse)
+  BaseClass.mouseDown(self, mouse)
+end
+
+function Hit:mouseUp(mouse)
+  BaseClass.mouseUp(self, mouse)
+end
+
+function Hit:mouseMove(mouse)
+  BaseClass.mouseMove(self, mouse)
 end
 
 --#############################################################################
@@ -138,8 +230,8 @@ end
 
 function Hit:__tostring()
   local ret = self:className() .. " =\n{\n"
-
-  for pos,val in pairs(self) do
+  
+  for pos,val in pairs(self) do 
     ret = ret .. "\t" .. "["..pos.."]" .. " => " .. type(val) .. " = " .. tostring(val) .. "\n"
   end
 

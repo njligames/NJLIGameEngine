@@ -32,7 +32,7 @@ local __unLoad = function(self)
   --TODO: unload this Entity
 end
 
---#############################################################################
+--############################################################################# 
 
 function Grabbed:enter()
   BaseClass.enter(self)
@@ -50,40 +50,64 @@ function Grabbed:onMessage()
   BaseClass.onMessage(self)
 end
 
-function Grabbed:touchesDown(rayContact)
-  BaseClass.touchesDown(self, rayContact)
+function Grabbed:rayTouchesDown(rayContact)
+  BaseClass.rayTouchesDown(self, rayContact)
 end
 
-function Grabbed:touchesUp(rayContact)
-  BaseClass.touchesUp(self, rayContact)
+function Grabbed:rayTouchesUp(rayContact)
+  BaseClass.rayTouchesUp(self, rayContact)
 end
 
-function Grabbed:touchesMove(rayContact)
-  BaseClass.touchesMove(self, rayContact)
+function Grabbed:rayTouchesMove(rayContact)
+  BaseClass.rayTouchesMove(self, rayContact)
 end
 
-function Grabbed:touchesCancelled(rayContact)
-  BaseClass.touchesCancelled(self, rayContact)
+function Grabbed:rayTouchesCancelled(rayContact)
+  BaseClass.rayTouchesCancelled(self, rayContact)
 end
 
-function Grabbed:touchDown(rayContact)
-  BaseClass.touchDown(self, rayContact)
+function Grabbed:rayTouchesMissed(node)
+  BaseClass.rayTouchesMissed(self, node)
 end
 
-function Grabbed:touchUp(rayContact)
-  BaseClass.touchUp(self, rayContact)
+function Grabbed:rayTouchDown(rayContact)
+  BaseClass.rayTouchDown(self, rayContact)
 end
 
-function Grabbed:touchMove(rayContact)
-  BaseClass.touchMove(self, rayContact)
+function Grabbed:rayTouchUp(rayContact)
+  BaseClass.rayTouchUp(self, rayContact)
 end
 
-function Grabbed:touchCancelled(rayContact)
-  BaseClass.touchCancelled(self, rayContact)
+function Grabbed:rayTouchMove(rayContact)
+  BaseClass.rayTouchMove(self, rayContact)
+end
+
+function Grabbed:rayTouchCancelled(rayContact)
+  BaseClass.rayTouchCancelled(self, rayContact)
+end
+
+function Grabbed:rayTouchMissed(node)
+  BaseClass.rayTouchMissed(self, node)
+end
+
+function Grabbed:rayMouseDown(rayContact)
+  BaseClass.rayMouseDown(self, rayContact)
+end
+
+function Grabbed:rayMouseUp(rayContact)
+  BaseClass.rayMouseUp(self, rayContact)
+end
+
+function Grabbed:rayMouseMove(rayContact)
+  BaseClass.rayMouseMove(self, rayContact)
+end
+
+function Grabbed:rayMouseMissed(node)
+  BaseClass.rayMouseMissed(self, node)
 end
 
 function Grabbed:collide(otherNode, collisionPoint)
-  BaseClass.collide(self, collisionPoint)
+  BaseClass.collide(self, otherNode, collisionPoint)
 end
 
 function Grabbed:near(otherNode)
@@ -91,11 +115,79 @@ function Grabbed:near(otherNode)
 end
 
 function Grabbed:actionUpdate(action, timeStep)
-  BaseClass.actionUpdate(self, timeStep)
+  BaseClass.actionUpdate(self, action, timeStep)
 end
 
 function Grabbed:actionComplete(action)
   BaseClass.actionComplete(self, action)
+end
+
+function Grabbed:keyboardShow()
+  BaseClass.keyboardShow(self)
+end
+
+function Grabbed:keyboardCancel()
+  BaseClass.keyboardCancel(self)
+end
+
+function Grabbed:keyboardReturn()
+  BaseClass.keyboardReturn(self)
+end
+
+function Grabbed:renderHUD()
+  BaseClass.renderHUD(self)
+end
+
+function Grabbed:gamePause()
+  BaseClass.gamePause(self)
+end
+
+function Grabbed:gameUnPause()
+  BaseClass.gameUnPause(self)
+end
+
+function Grabbed:touchesDown(touches)
+  BaseClass.touchesDown(self, touches)
+end
+
+function Grabbed:touchesUp(touches)
+  BaseClass.touchesUp(self, touches)
+end
+
+function Grabbed:touchesMove(touches)
+  BaseClass.touchesMove(self, touches)
+end
+
+function Grabbed:touchesCancelled(touches)
+  BaseClass.touchesCancelled(self, touches)
+end
+
+function Grabbed:touchDown(touch)
+  BaseClass.touchDown(self, touch)
+end
+
+function Grabbed:touchUp(touch)
+  BaseClass.touchUp(self, touch)
+end
+
+function Grabbed:touchMove(touch)
+  BaseClass.touchMove(self, touch)
+end
+
+function Grabbed:touchCancelled(touch)
+  BaseClass.touchCancelled(self, touch)
+end
+
+function Grabbed:mouseDown(mouse)
+  BaseClass.mouseDown(self, mouse)
+end
+
+function Grabbed:mouseUp(mouse)
+  BaseClass.mouseUp(self, mouse)
+end
+
+function Grabbed:mouseMove(mouse)
+  BaseClass.mouseMove(self, mouse)
 end
 
 --#############################################################################
@@ -138,8 +230,8 @@ end
 
 function Grabbed:__tostring()
   local ret = self:className() .. " =\n{\n"
-
-  for pos,val in pairs(self) do
+  
+  for pos,val in pairs(self) do 
     ret = ret .. "\t" .. "["..pos.."]" .. " => " .. type(val) .. " = " .. tostring(val) .. "\n"
   end
 

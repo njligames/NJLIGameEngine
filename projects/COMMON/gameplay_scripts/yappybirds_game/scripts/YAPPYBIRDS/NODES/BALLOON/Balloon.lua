@@ -66,6 +66,10 @@ function Balloon:rayTouchesCancelled(rayContact)
   BaseClass.rayTouchesCancelled(self, rayContact)
 end
 
+function Balloon:rayTouchesMissed(node)
+  BaseClass.rayTouchesMissed(self, node)
+end
+
 function Balloon:rayTouchDown(rayContact)
   BaseClass.rayTouchDown(self, rayContact)
 end
@@ -82,6 +86,26 @@ function Balloon:rayTouchCancelled(rayContact)
   BaseClass.rayTouchCancelled(self, rayContact)
 end
 
+function Balloon:rayTouchMissed(node)
+  BaseClass.rayTouchMissed(self, node)
+end
+
+function Balloon:rayMouseDown(rayContact)
+  BaseClass.rayMouseDown(self, rayContact)
+end
+
+function Balloon:rayMouseUp(rayContact)
+  BaseClass.rayMouseUp(self, rayContact)
+end
+
+function Balloon:rayMouseMove(rayContact)
+  BaseClass.rayMouseMove(self, rayContact)
+end
+
+function Balloon:rayMouseMissed(node)
+  BaseClass.rayMouseMissed(self, node)
+end
+
 function Balloon:collide(otherNode, collisionPoint)
   BaseClass.collide(self, otherNode, collisionPoint)
 end
@@ -96,6 +120,74 @@ end
 
 function Balloon:actionComplete(action)
   BaseClass.actionComplete(self, action)
+end
+
+function Balloon:keyboardShow()
+  BaseClass.keyboardShow(self)
+end
+
+function Balloon:keyboardCancel()
+  BaseClass.keyboardCancel(self)
+end
+
+function Balloon:keyboardReturn()
+  BaseClass.keyboardReturn(self)
+end
+
+function Balloon:renderHUD()
+  BaseClass.renderHUD(self)
+end
+
+function Balloon:gamePause()
+  BaseClass.gamePause(self)
+end
+
+function Balloon:gameUnPause()
+  BaseClass.gameUnPause(self)
+end
+
+function Balloon:touchesDown(touches)
+  BaseClass.touchesDown(self, touches)
+end
+
+function Balloon:touchesUp(touches)
+  BaseClass.touchesUp(self, touches)
+end
+
+function Balloon:touchesMove(touches)
+  BaseClass.touchesMove(self, touches)
+end
+
+function Balloon:touchesCancelled(touches)
+  BaseClass.touchesCancelled(self, touches)
+end
+
+function Balloon:touchDown(touch)
+  BaseClass.touchDown(self, touch)
+end
+
+function Balloon:touchUp(touch)
+  BaseClass.touchUp(self, touch)
+end
+
+function Balloon:touchMove(touch)
+  BaseClass.touchMove(self, touch)
+end
+
+function Balloon:touchCancelled(touch)
+  BaseClass.touchCancelled(self, touch)
+end
+
+function Balloon:mouseDown(mouse)
+  BaseClass.mouseDown(self, mouse)
+end
+
+function Balloon:mouseUp(mouse)
+  BaseClass.mouseUp(self, mouse)
+end
+
+function Balloon:mouseMove(mouse)
+  BaseClass.mouseMove(self, mouse)
 end
 
 --#############################################################################

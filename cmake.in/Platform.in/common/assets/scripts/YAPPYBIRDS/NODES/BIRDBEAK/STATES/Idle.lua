@@ -32,7 +32,7 @@ local __unLoad = function(self)
   --TODO: unload this Entity
 end
 
---#############################################################################
+--############################################################################# 
 
 function Idle:enter()
   BaseClass.enter(self)
@@ -50,40 +50,64 @@ function Idle:onMessage()
   BaseClass.onMessage(self)
 end
 
-function Idle:touchesDown(rayContact)
-  BaseClass.touchesDown(self, rayContact)
+function Idle:rayTouchesDown(rayContact)
+  BaseClass.rayTouchesDown(self, rayContact)
 end
 
-function Idle:touchesUp(rayContact)
-  BaseClass.touchesUp(self, rayContact)
+function Idle:rayTouchesUp(rayContact)
+  BaseClass.rayTouchesUp(self, rayContact)
 end
 
-function Idle:touchesMove(rayContact)
-  BaseClass.touchesMove(self, rayContact)
+function Idle:rayTouchesMove(rayContact)
+  BaseClass.rayTouchesMove(self, rayContact)
 end
 
-function Idle:touchesCancelled(rayContact)
-  BaseClass.touchesCancelled(self, rayContact)
+function Idle:rayTouchesCancelled(rayContact)
+  BaseClass.rayTouchesCancelled(self, rayContact)
 end
 
-function Idle:touchDown(rayContact)
-  BaseClass.touchDown(self, rayContact)
+function Idle:rayTouchesMissed(node)
+  BaseClass.rayTouchesMissed(self, node)
 end
 
-function Idle:touchUp(rayContact)
-  BaseClass.touchUp(self, rayContact)
+function Idle:rayTouchDown(rayContact)
+  BaseClass.rayTouchDown(self, rayContact)
 end
 
-function Idle:touchMove(rayContact)
-  BaseClass.touchMove(self, rayContact)
+function Idle:rayTouchUp(rayContact)
+  BaseClass.rayTouchUp(self, rayContact)
 end
 
-function Idle:touchCancelled(rayContact)
-  BaseClass.touchCancelled(self, rayContact)
+function Idle:rayTouchMove(rayContact)
+  BaseClass.rayTouchMove(self, rayContact)
+end
+
+function Idle:rayTouchCancelled(rayContact)
+  BaseClass.rayTouchCancelled(self, rayContact)
+end
+
+function Idle:rayTouchMissed(node)
+  BaseClass.rayTouchMissed(self, node)
+end
+
+function Idle:rayMouseDown(rayContact)
+  BaseClass.rayMouseDown(self, rayContact)
+end
+
+function Idle:rayMouseUp(rayContact)
+  BaseClass.rayMouseUp(self, rayContact)
+end
+
+function Idle:rayMouseMove(rayContact)
+  BaseClass.rayMouseMove(self, rayContact)
+end
+
+function Idle:rayMouseMissed(node)
+  BaseClass.rayMouseMissed(self, node)
 end
 
 function Idle:collide(otherNode, collisionPoint)
-  BaseClass.collide(self, collisionPoint)
+  BaseClass.collide(self, otherNode, collisionPoint)
 end
 
 function Idle:near(otherNode)
@@ -91,11 +115,79 @@ function Idle:near(otherNode)
 end
 
 function Idle:actionUpdate(action, timeStep)
-  BaseClass.actionUpdate(self, timeStep)
+  BaseClass.actionUpdate(self, action, timeStep)
 end
 
 function Idle:actionComplete(action)
   BaseClass.actionComplete(self, action)
+end
+
+function Idle:keyboardShow()
+  BaseClass.keyboardShow(self)
+end
+
+function Idle:keyboardCancel()
+  BaseClass.keyboardCancel(self)
+end
+
+function Idle:keyboardReturn()
+  BaseClass.keyboardReturn(self)
+end
+
+function Idle:renderHUD()
+  BaseClass.renderHUD(self)
+end
+
+function Idle:gamePause()
+  BaseClass.gamePause(self)
+end
+
+function Idle:gameUnPause()
+  BaseClass.gameUnPause(self)
+end
+
+function Idle:touchesDown(touches)
+  BaseClass.touchesDown(self, touches)
+end
+
+function Idle:touchesUp(touches)
+  BaseClass.touchesUp(self, touches)
+end
+
+function Idle:touchesMove(touches)
+  BaseClass.touchesMove(self, touches)
+end
+
+function Idle:touchesCancelled(touches)
+  BaseClass.touchesCancelled(self, touches)
+end
+
+function Idle:touchDown(touch)
+  BaseClass.touchDown(self, touch)
+end
+
+function Idle:touchUp(touch)
+  BaseClass.touchUp(self, touch)
+end
+
+function Idle:touchMove(touch)
+  BaseClass.touchMove(self, touch)
+end
+
+function Idle:touchCancelled(touch)
+  BaseClass.touchCancelled(self, touch)
+end
+
+function Idle:mouseDown(mouse)
+  BaseClass.mouseDown(self, mouse)
+end
+
+function Idle:mouseUp(mouse)
+  BaseClass.mouseUp(self, mouse)
+end
+
+function Idle:mouseMove(mouse)
+  BaseClass.mouseMove(self, mouse)
 end
 
 --#############################################################################
@@ -138,8 +230,8 @@ end
 
 function Idle:__tostring()
   local ret = self:className() .. " =\n{\n"
-
-  for pos,val in pairs(self) do
+  
+  for pos,val in pairs(self) do 
     ret = ret .. "\t" .. "["..pos.."]" .. " => " .. type(val) .. " = " .. tostring(val) .. "\n"
   end
 

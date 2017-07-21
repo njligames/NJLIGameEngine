@@ -1,7 +1,7 @@
 local BaseClass = require "NJLI.STATEMACHINE.NodeEntity"
 
-local BirdBeak = {}
-BirdBeak.__index = BirdBeak
+local Billboard = {}
+Billboard.__index = Billboard
 
 --#############################################################################
 --DO NOT EDIT ABOVE
@@ -34,159 +34,159 @@ end
 
 --#############################################################################
 
-function BirdBeak:enter()
+function Billboard:enter()
   BaseClass.enter(self)
 end
 
-function BirdBeak:update(timeStep)
+function Billboard:update(timeStep)
   BaseClass.update(self, timeStep)
 end
 
-function BirdBeak:exit()
+function Billboard:exit()
   BaseClass.exit(self)
 end
 
-function BirdBeak:onMessage()
+function Billboard:onMessage()
   BaseClass.onMessage(self)
 end
 
-function BirdBeak:rayTouchesDown(rayContact)
+function Billboard:rayTouchesDown(rayContact)
   BaseClass.rayTouchesDown(self, rayContact)
 end
 
-function BirdBeak:rayTouchesUp(rayContact)
+function Billboard:rayTouchesUp(rayContact)
   BaseClass.rayTouchesUp(self, rayContact)
 end
 
-function BirdBeak:rayTouchesMove(rayContact)
+function Billboard:rayTouchesMove(rayContact)
   BaseClass.rayTouchesMove(self, rayContact)
 end
 
-function BirdBeak:rayTouchesCancelled(rayContact)
+function Billboard:rayTouchesCancelled(rayContact)
   BaseClass.rayTouchesCancelled(self, rayContact)
 end
 
-function BirdBeak:rayTouchesMissed(node)
+function Billboard:rayTouchesMissed(node)
   BaseClass.rayTouchesMissed(self, node)
 end
 
-function BirdBeak:rayTouchDown(rayContact)
+function Billboard:rayTouchDown(rayContact)
   BaseClass.rayTouchDown(self, rayContact)
 end
 
-function BirdBeak:rayTouchUp(rayContact)
+function Billboard:rayTouchUp(rayContact)
   BaseClass.rayTouchUp(self, rayContact)
 end
 
-function BirdBeak:rayTouchMove(rayContact)
+function Billboard:rayTouchMove(rayContact)
   BaseClass.rayTouchMove(self, rayContact)
 end
 
-function BirdBeak:rayTouchCancelled(rayContact)
+function Billboard:rayTouchCancelled(rayContact)
   BaseClass.rayTouchCancelled(self, rayContact)
 end
 
-function BirdBeak:rayTouchMissed(node)
+function Billboard:rayTouchMissed(node)
   BaseClass.rayTouchMissed(self, node)
 end
 
-function BirdBeak:rayMouseDown(rayContact)
+function Billboard:rayMouseDown(rayContact)
   BaseClass.rayMouseDown(self, rayContact)
 end
 
-function BirdBeak:rayMouseUp(rayContact)
+function Billboard:rayMouseUp(rayContact)
   BaseClass.rayMouseUp(self, rayContact)
 end
 
-function BirdBeak:rayMouseMove(rayContact)
+function Billboard:rayMouseMove(rayContact)
   BaseClass.rayMouseMove(self, rayContact)
 end
 
-function BirdBeak:rayMouseMissed(node)
+function Billboard:rayMouseMissed(node)
   BaseClass.rayMouseMissed(self, node)
 end
 
-function BirdBeak:collide(otherNode, collisionPoint)
+function Billboard:collide(otherNode, collisionPoint)
   BaseClass.collide(self, otherNode, collisionPoint)
 end
 
-function BirdBeak:near(otherNode)
+function Billboard:near(otherNode)
   BaseClass.near(self, otherNode)
 end
 
-function BirdBeak:actionUpdate(action, timeStep)
+function Billboard:actionUpdate(action, timeStep)
   BaseClass.actionUpdate(self, action, timeStep)
 end
 
-function BirdBeak:actionComplete(action)
+function Billboard:actionComplete(action)
   BaseClass.actionComplete(self, action)
 end
 
-function BirdBeak:keyboardShow()
+function Billboard:keyboardShow()
   BaseClass.keyboardShow(self)
 end
 
-function BirdBeak:keyboardCancel()
+function Billboard:keyboardCancel()
   BaseClass.keyboardCancel(self)
 end
 
-function BirdBeak:keyboardReturn()
+function Billboard:keyboardReturn()
   BaseClass.keyboardReturn(self)
 end
 
-function BirdBeak:renderHUD()
+function Billboard:renderHUD()
   BaseClass.renderHUD(self)
 end
 
-function BirdBeak:gamePause()
+function Billboard:gamePause()
   BaseClass.gamePause(self)
 end
 
-function BirdBeak:gameUnPause()
+function Billboard:gameUnPause()
   BaseClass.gameUnPause(self)
 end
 
-function BirdBeak:touchesDown(touches)
+function Billboard:touchesDown(touches)
   BaseClass.touchesDown(self, touches)
 end
 
-function BirdBeak:touchesUp(touches)
+function Billboard:touchesUp(touches)
   BaseClass.touchesUp(self, touches)
 end
 
-function BirdBeak:touchesMove(touches)
+function Billboard:touchesMove(touches)
   BaseClass.touchesMove(self, touches)
 end
 
-function BirdBeak:touchesCancelled(touches)
+function Billboard:touchesCancelled(touches)
   BaseClass.touchesCancelled(self, touches)
 end
 
-function BirdBeak:touchDown(touch)
+function Billboard:touchDown(touch)
   BaseClass.touchDown(self, touch)
 end
 
-function BirdBeak:touchUp(touch)
+function Billboard:touchUp(touch)
   BaseClass.touchUp(self, touch)
 end
 
-function BirdBeak:touchMove(touch)
+function Billboard:touchMove(touch)
   BaseClass.touchMove(self, touch)
 end
 
-function BirdBeak:touchCancelled(touch)
+function Billboard:touchCancelled(touch)
   BaseClass.touchCancelled(self, touch)
 end
 
-function BirdBeak:mouseDown(mouse)
+function Billboard:mouseDown(mouse)
   BaseClass.mouseDown(self, mouse)
 end
 
-function BirdBeak:mouseUp(mouse)
+function Billboard:mouseUp(mouse)
   BaseClass.mouseUp(self, mouse)
 end
 
-function BirdBeak:mouseMove(mouse)
+function Billboard:mouseMove(mouse)
   BaseClass.mouseMove(self, mouse)
 end
 
@@ -198,7 +198,7 @@ end
 --DO NOT EDIT BELOW
 --#############################################################################
 
-setmetatable(BirdBeak, {
+setmetatable(Billboard, {
     __index = BaseClass,
     __call = function (cls, ...)
       local self = setmetatable({}, cls)
@@ -209,26 +209,26 @@ setmetatable(BirdBeak, {
     end,
   })
 
-function BirdBeak:className()
-  return "BirdBeak"
+function Billboard:className()
+  return "Billboard"
 end
 
-function BirdBeak:class()
+function Billboard:class()
   return self
 end
 
-function BirdBeak:superClass()
+function Billboard:superClass()
   return BaseClass
 end
 
-function BirdBeak:__gc()
+function Billboard:__gc()
   --Destroy derived class first
-  BirdBeak._destroy(self)
+  Billboard._destroy(self)
   --Destroy base class after derived class
   BaseClass._destroy(self)
 end
 
-function BirdBeak:__tostring()
+function Billboard:__tostring()
   local ret = self:className() .. " =\n{\n"
 
   for pos,val in pairs(self) do
@@ -239,35 +239,35 @@ function BirdBeak:__tostring()
   return ret .. "\n\t" .. tostring_r(getmetatable(self)) .. "\n}"
 end
 
-function BirdBeak:_destroy()
-  assert(not self.__BirdBeakCalledLoad, "Must unload before you destroy")
+function Billboard:_destroy()
+  assert(not self.__BillboardCalledLoad, "Must unload before you destroy")
   __dtor(self)
 end
 
-function BirdBeak:_create(init)
-  self.__BirdBeakCalledLoad = false
+function Billboard:_create(init)
+  self.__BillboardCalledLoad = false
   __ctor(self, init)
 end
 
-function BirdBeak:load()
+function Billboard:load()
   --load base first
   BaseClass.load(self)
 
   --load derived last...
   __load(self)
 
-  self.__BirdBeakCalledLoad = true
+  self.__BillboardCalledLoad = true
 end
 
-function BirdBeak:unLoad()
-  assert(self.__BirdBeakCalledLoad, "Must load before unloading")
+function Billboard:unLoad()
+  assert(self.__BillboardCalledLoad, "Must load before unloading")
 
   --unload derived first...
   __unLoad(self)
-  self.__BirdBeakCalledLoad = false
+  self.__BillboardCalledLoad = false
 
   --unload base last...
   BaseClass.unLoad(self)
 end
 
-return BirdBeak
+return Billboard

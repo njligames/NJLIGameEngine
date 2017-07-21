@@ -1,7 +1,7 @@
-local BaseClass = require "NJLI.STATEMACHINE.NodeEntity"
+local BaseClass = require "NJLI.STATEMACHINE.NodeEntityState"
 
-local BirdBeak = {}
-BirdBeak.__index = BirdBeak
+local Released = {}
+Released.__index = Released
 
 --#############################################################################
 --DO NOT EDIT ABOVE
@@ -32,161 +32,161 @@ local __unLoad = function(self)
   --TODO: unload this Entity
 end
 
---#############################################################################
+--############################################################################# 
 
-function BirdBeak:enter()
+function Released:enter()
   BaseClass.enter(self)
 end
 
-function BirdBeak:update(timeStep)
+function Released:update(timeStep)
   BaseClass.update(self, timeStep)
 end
 
-function BirdBeak:exit()
+function Released:exit()
   BaseClass.exit(self)
 end
 
-function BirdBeak:onMessage()
+function Released:onMessage()
   BaseClass.onMessage(self)
 end
 
-function BirdBeak:rayTouchesDown(rayContact)
+function Released:rayTouchesDown(rayContact)
   BaseClass.rayTouchesDown(self, rayContact)
 end
 
-function BirdBeak:rayTouchesUp(rayContact)
+function Released:rayTouchesUp(rayContact)
   BaseClass.rayTouchesUp(self, rayContact)
 end
 
-function BirdBeak:rayTouchesMove(rayContact)
+function Released:rayTouchesMove(rayContact)
   BaseClass.rayTouchesMove(self, rayContact)
 end
 
-function BirdBeak:rayTouchesCancelled(rayContact)
+function Released:rayTouchesCancelled(rayContact)
   BaseClass.rayTouchesCancelled(self, rayContact)
 end
 
-function BirdBeak:rayTouchesMissed(node)
+function Released:rayTouchesMissed(node)
   BaseClass.rayTouchesMissed(self, node)
 end
 
-function BirdBeak:rayTouchDown(rayContact)
+function Released:rayTouchDown(rayContact)
   BaseClass.rayTouchDown(self, rayContact)
 end
 
-function BirdBeak:rayTouchUp(rayContact)
+function Released:rayTouchUp(rayContact)
   BaseClass.rayTouchUp(self, rayContact)
 end
 
-function BirdBeak:rayTouchMove(rayContact)
+function Released:rayTouchMove(rayContact)
   BaseClass.rayTouchMove(self, rayContact)
 end
 
-function BirdBeak:rayTouchCancelled(rayContact)
+function Released:rayTouchCancelled(rayContact)
   BaseClass.rayTouchCancelled(self, rayContact)
 end
 
-function BirdBeak:rayTouchMissed(node)
+function Released:rayTouchMissed(node)
   BaseClass.rayTouchMissed(self, node)
 end
 
-function BirdBeak:rayMouseDown(rayContact)
+function Released:rayMouseDown(rayContact)
   BaseClass.rayMouseDown(self, rayContact)
 end
 
-function BirdBeak:rayMouseUp(rayContact)
+function Released:rayMouseUp(rayContact)
   BaseClass.rayMouseUp(self, rayContact)
 end
 
-function BirdBeak:rayMouseMove(rayContact)
+function Released:rayMouseMove(rayContact)
   BaseClass.rayMouseMove(self, rayContact)
 end
 
-function BirdBeak:rayMouseMissed(node)
+function Released:rayMouseMissed(node)
   BaseClass.rayMouseMissed(self, node)
 end
 
-function BirdBeak:collide(otherNode, collisionPoint)
+function Released:collide(otherNode, collisionPoint)
   BaseClass.collide(self, otherNode, collisionPoint)
 end
 
-function BirdBeak:near(otherNode)
+function Released:near(otherNode)
   BaseClass.near(self, otherNode)
 end
 
-function BirdBeak:actionUpdate(action, timeStep)
+function Released:actionUpdate(action, timeStep)
   BaseClass.actionUpdate(self, action, timeStep)
 end
 
-function BirdBeak:actionComplete(action)
+function Released:actionComplete(action)
   BaseClass.actionComplete(self, action)
 end
 
-function BirdBeak:keyboardShow()
+function Released:keyboardShow()
   BaseClass.keyboardShow(self)
 end
 
-function BirdBeak:keyboardCancel()
+function Released:keyboardCancel()
   BaseClass.keyboardCancel(self)
 end
 
-function BirdBeak:keyboardReturn()
+function Released:keyboardReturn()
   BaseClass.keyboardReturn(self)
 end
 
-function BirdBeak:renderHUD()
+function Released:renderHUD()
   BaseClass.renderHUD(self)
 end
 
-function BirdBeak:gamePause()
+function Released:gamePause()
   BaseClass.gamePause(self)
 end
 
-function BirdBeak:gameUnPause()
+function Released:gameUnPause()
   BaseClass.gameUnPause(self)
 end
 
-function BirdBeak:touchesDown(touches)
+function Released:touchesDown(touches)
   BaseClass.touchesDown(self, touches)
 end
 
-function BirdBeak:touchesUp(touches)
+function Released:touchesUp(touches)
   BaseClass.touchesUp(self, touches)
 end
 
-function BirdBeak:touchesMove(touches)
+function Released:touchesMove(touches)
   BaseClass.touchesMove(self, touches)
 end
 
-function BirdBeak:touchesCancelled(touches)
+function Released:touchesCancelled(touches)
   BaseClass.touchesCancelled(self, touches)
 end
 
-function BirdBeak:touchDown(touch)
+function Released:touchDown(touch)
   BaseClass.touchDown(self, touch)
 end
 
-function BirdBeak:touchUp(touch)
+function Released:touchUp(touch)
   BaseClass.touchUp(self, touch)
 end
 
-function BirdBeak:touchMove(touch)
+function Released:touchMove(touch)
   BaseClass.touchMove(self, touch)
 end
 
-function BirdBeak:touchCancelled(touch)
+function Released:touchCancelled(touch)
   BaseClass.touchCancelled(self, touch)
 end
 
-function BirdBeak:mouseDown(mouse)
+function Released:mouseDown(mouse)
   BaseClass.mouseDown(self, mouse)
 end
 
-function BirdBeak:mouseUp(mouse)
+function Released:mouseUp(mouse)
   BaseClass.mouseUp(self, mouse)
 end
 
-function BirdBeak:mouseMove(mouse)
+function Released:mouseMove(mouse)
   BaseClass.mouseMove(self, mouse)
 end
 
@@ -198,7 +198,7 @@ end
 --DO NOT EDIT BELOW
 --#############################################################################
 
-setmetatable(BirdBeak, {
+setmetatable(Released, {
     __index = BaseClass,
     __call = function (cls, ...)
       local self = setmetatable({}, cls)
@@ -209,29 +209,29 @@ setmetatable(BirdBeak, {
     end,
   })
 
-function BirdBeak:className()
-  return "BirdBeak"
+function Released:className()
+  return "Released"
 end
 
-function BirdBeak:class()
+function Released:class()
   return self
 end
 
-function BirdBeak:superClass()
+function Released:superClass()
   return BaseClass
 end
 
-function BirdBeak:__gc()
+function Released:__gc()
   --Destroy derived class first
-  BirdBeak._destroy(self)
+  Released._destroy(self)
   --Destroy base class after derived class
   BaseClass._destroy(self)
 end
 
-function BirdBeak:__tostring()
+function Released:__tostring()
   local ret = self:className() .. " =\n{\n"
-
-  for pos,val in pairs(self) do
+  
+  for pos,val in pairs(self) do 
     ret = ret .. "\t" .. "["..pos.."]" .. " => " .. type(val) .. " = " .. tostring(val) .. "\n"
   end
 
@@ -239,35 +239,35 @@ function BirdBeak:__tostring()
   return ret .. "\n\t" .. tostring_r(getmetatable(self)) .. "\n}"
 end
 
-function BirdBeak:_destroy()
-  assert(not self.__BirdBeakCalledLoad, "Must unload before you destroy")
+function Released:_destroy()
+  assert(not self.__ReleasedCalledLoad, "Must unload before you destroy")
   __dtor(self)
 end
 
-function BirdBeak:_create(init)
-  self.__BirdBeakCalledLoad = false
+function Released:_create(init)
+  self.__ReleasedCalledLoad = false
   __ctor(self, init)
 end
 
-function BirdBeak:load()
+function Released:load()
   --load base first
   BaseClass.load(self)
 
   --load derived last...
   __load(self)
 
-  self.__BirdBeakCalledLoad = true
+  self.__ReleasedCalledLoad = true
 end
 
-function BirdBeak:unLoad()
-  assert(self.__BirdBeakCalledLoad, "Must load before unloading")
+function Released:unLoad()
+  assert(self.__ReleasedCalledLoad, "Must load before unloading")
 
   --unload derived first...
   __unLoad(self)
-  self.__BirdBeakCalledLoad = false
+  self.__ReleasedCalledLoad = false
 
   --unload base last...
   BaseClass.unLoad(self)
 end
 
-return BirdBeak
+return Released

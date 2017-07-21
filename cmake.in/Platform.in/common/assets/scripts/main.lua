@@ -107,28 +107,16 @@ local BalloonNodeEntity =
   nodes = {} --The childen Nodes for the Node.
 }
 
-local BirdBeakNodeEntity =
+local BillboardNodeEntity =
 {
-  name = "YAPPYBIRDS.NODES.BIRDBEAK.BirdBeak",
-  class = require "YAPPYBIRDS.NODES.BIRDBEAK.BirdBeak",
+  class = require "YAPPYBIRDS.NODES.BILLBOARD.Billboard",
+  name = "YAPPYBIRDS.NODES.BILLBOARD.Billboard",
   --The first state is the start state.
   states =
   {
     {
-      class = require "YAPPYBIRDS.NODES.BIRDBEAK.STATES.Idle",
-      name = "YAPPYBIRDS.NODES.BIRDBEAK.STATES.Idle"
-    },
-    {
-      class = require "YAPPYBIRDS.NODES.BIRDBEAK.STATES.Grab",
-      name = "YAPPYBIRDS.NODES.BIRDBEAK.STATES.Grab"
-    },
-    {
-      class = require "YAPPYBIRDS.NODES.BIRDBEAK.STATES.Hit",
-      name = "YAPPYBIRDS.NODES.BIRDBEAK.STATES.Hit"
-    },
-    {
-      class = require "YAPPYBIRDS.NODES.BIRDBEAK.STATES.Yap",
-      name = "YAPPYBIRDS.NODES.BIRDBEAK.STATES.Yap"
+      class = require "YAPPYBIRDS.NODES.BILLBOARD.STATES.Default",
+      name = "YAPPYBIRDS.NODES.BILLBOARD.STATES.Default"
     },
   },
   nodes = {} --The childen Nodes for the Node.
@@ -169,6 +157,68 @@ local BirdNodeEntity =
   nodes = {
     BirdBeakNodeEntity,
   } --The childe Nodes for the Node.
+}
+
+local BirdBeakNodeEntity =
+{
+  name = "YAPPYBIRDS.NODES.BIRDBEAK.BirdBeak",
+  class = require "YAPPYBIRDS.NODES.BIRDBEAK.BirdBeak",
+  --The first state is the start state.
+  states =
+  {
+    {
+      class = require "YAPPYBIRDS.NODES.BIRDBEAK.STATES.Idle",
+      name = "YAPPYBIRDS.NODES.BIRDBEAK.STATES.Idle"
+    },
+    {
+      class = require "YAPPYBIRDS.NODES.BIRDBEAK.STATES.Grab",
+      name = "YAPPYBIRDS.NODES.BIRDBEAK.STATES.Grab"
+    },
+    {
+      class = require "YAPPYBIRDS.NODES.BIRDBEAK.STATES.Hit",
+      name = "YAPPYBIRDS.NODES.BIRDBEAK.STATES.Hit"
+    },
+    {
+      class = require "YAPPYBIRDS.NODES.BIRDBEAK.STATES.Yap",
+      name = "YAPPYBIRDS.NODES.BIRDBEAK.STATES.Yap"
+    },
+  },
+  nodes = {} --The childen Nodes for the Node.
+}
+
+local DogNodeEntity =
+{
+  name = "YAPPYBIRDS.NODES.DOG.Dog",
+  class = require "YAPPYBIRDS.NODES.DOG.Dog",
+  --The first state is the start state.
+  states =
+  {
+    {
+      class = require "YAPPYBIRDS.NODES.DOG.STATES.Spawn",
+      name = "YAPPYBIRDS.NODES.DOG.STATES.Spawn"
+    },
+    {
+      class = require "YAPPYBIRDS.NODES.DOG.STATES.Caught",
+      name = "YAPPYBIRDS.NODES.DOG.STATES.Caught"
+    },
+    {
+      class = require "YAPPYBIRDS.NODES.DOG.STATES.Dazed",
+      name = "YAPPYBIRDS.NODES.DOG.STATES.Dazed"
+    },
+    {
+      class = require "YAPPYBIRDS.NODES.DOG.STATES.Land",
+      name = "YAPPYBIRDS.NODES.DOG.STATES.Land"
+    },
+    {
+      class = require "YAPPYBIRDS.NODES.DOG.STATES.Released",
+      name = "YAPPYBIRDS.NODES.DOG.STATES.Released"
+    },
+    {
+      class = require "YAPPYBIRDS.NODES.DOG.STATES.Run",
+      name = "YAPPYBIRDS.NODES.DOG.STATES.Run"
+    },
+  },
+  nodes = {} --The childen Nodes for the Node.
 }
 
 local MenuScene =

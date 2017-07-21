@@ -32,7 +32,7 @@ local __unLoad = function(self)
   --TODO: unload this Entity
 end
 
---#############################################################################
+--############################################################################# 
 
 function Lob:enter()
   BaseClass.enter(self)
@@ -40,7 +40,6 @@ end
 
 function Lob:update(timeStep)
   BaseClass.update(self, timeStep)
-  
 end
 
 function Lob:exit()
@@ -51,40 +50,64 @@ function Lob:onMessage()
   BaseClass.onMessage(self)
 end
 
-function Lob:touchesDown(rayContact)
-  BaseClass.touchesDown(self, rayContact)
+function Lob:rayTouchesDown(rayContact)
+  BaseClass.rayTouchesDown(self, rayContact)
 end
 
-function Lob:touchesUp(rayContact)
-  BaseClass.touchesUp(self, rayContact)
+function Lob:rayTouchesUp(rayContact)
+  BaseClass.rayTouchesUp(self, rayContact)
 end
 
-function Lob:touchesMove(rayContact)
-  BaseClass.touchesMove(self, rayContact)
+function Lob:rayTouchesMove(rayContact)
+  BaseClass.rayTouchesMove(self, rayContact)
 end
 
-function Lob:touchesCancelled(rayContact)
-  BaseClass.touchesCancelled(self, rayContact)
+function Lob:rayTouchesCancelled(rayContact)
+  BaseClass.rayTouchesCancelled(self, rayContact)
 end
 
-function Lob:touchDown(rayContact)
-  BaseClass.touchDown(self, rayContact)
+function Lob:rayTouchesMissed(node)
+  BaseClass.rayTouchesMissed(self, node)
 end
 
-function Lob:touchUp(rayContact)
-  BaseClass.touchUp(self, rayContact)
+function Lob:rayTouchDown(rayContact)
+  BaseClass.rayTouchDown(self, rayContact)
 end
 
-function Lob:touchMove(rayContact)
-  BaseClass.touchMove(self, rayContact)
+function Lob:rayTouchUp(rayContact)
+  BaseClass.rayTouchUp(self, rayContact)
 end
 
-function Lob:touchCancelled(rayContact)
-  BaseClass.touchCancelled(self, rayContact)
+function Lob:rayTouchMove(rayContact)
+  BaseClass.rayTouchMove(self, rayContact)
+end
+
+function Lob:rayTouchCancelled(rayContact)
+  BaseClass.rayTouchCancelled(self, rayContact)
+end
+
+function Lob:rayTouchMissed(node)
+  BaseClass.rayTouchMissed(self, node)
+end
+
+function Lob:rayMouseDown(rayContact)
+  BaseClass.rayMouseDown(self, rayContact)
+end
+
+function Lob:rayMouseUp(rayContact)
+  BaseClass.rayMouseUp(self, rayContact)
+end
+
+function Lob:rayMouseMove(rayContact)
+  BaseClass.rayMouseMove(self, rayContact)
+end
+
+function Lob:rayMouseMissed(node)
+  BaseClass.rayMouseMissed(self, node)
 end
 
 function Lob:collide(otherNode, collisionPoint)
-  BaseClass.collide(self, collisionPoint)
+  BaseClass.collide(self, otherNode, collisionPoint)
 end
 
 function Lob:near(otherNode)
@@ -92,11 +115,79 @@ function Lob:near(otherNode)
 end
 
 function Lob:actionUpdate(action, timeStep)
-  BaseClass.actionUpdate(self, timeStep)
+  BaseClass.actionUpdate(self, action, timeStep)
 end
 
 function Lob:actionComplete(action)
   BaseClass.actionComplete(self, action)
+end
+
+function Lob:keyboardShow()
+  BaseClass.keyboardShow(self)
+end
+
+function Lob:keyboardCancel()
+  BaseClass.keyboardCancel(self)
+end
+
+function Lob:keyboardReturn()
+  BaseClass.keyboardReturn(self)
+end
+
+function Lob:renderHUD()
+  BaseClass.renderHUD(self)
+end
+
+function Lob:gamePause()
+  BaseClass.gamePause(self)
+end
+
+function Lob:gameUnPause()
+  BaseClass.gameUnPause(self)
+end
+
+function Lob:touchesDown(touches)
+  BaseClass.touchesDown(self, touches)
+end
+
+function Lob:touchesUp(touches)
+  BaseClass.touchesUp(self, touches)
+end
+
+function Lob:touchesMove(touches)
+  BaseClass.touchesMove(self, touches)
+end
+
+function Lob:touchesCancelled(touches)
+  BaseClass.touchesCancelled(self, touches)
+end
+
+function Lob:touchDown(touch)
+  BaseClass.touchDown(self, touch)
+end
+
+function Lob:touchUp(touch)
+  BaseClass.touchUp(self, touch)
+end
+
+function Lob:touchMove(touch)
+  BaseClass.touchMove(self, touch)
+end
+
+function Lob:touchCancelled(touch)
+  BaseClass.touchCancelled(self, touch)
+end
+
+function Lob:mouseDown(mouse)
+  BaseClass.mouseDown(self, mouse)
+end
+
+function Lob:mouseUp(mouse)
+  BaseClass.mouseUp(self, mouse)
+end
+
+function Lob:mouseMove(mouse)
+  BaseClass.mouseMove(self, mouse)
 end
 
 --#############################################################################
@@ -139,8 +230,8 @@ end
 
 function Lob:__tostring()
   local ret = self:className() .. " =\n{\n"
-
-  for pos,val in pairs(self) do
+  
+  for pos,val in pairs(self) do 
     ret = ret .. "\t" .. "["..pos.."]" .. " => " .. type(val) .. " = " .. tostring(val) .. "\n"
   end
 

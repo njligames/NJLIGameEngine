@@ -32,7 +32,7 @@ local __unLoad = function(self)
   --TODO: unload this Entity
 end
 
---#############################################################################
+--############################################################################# 
 
 function Pursue:enter()
   BaseClass.enter(self)
@@ -50,40 +50,64 @@ function Pursue:onMessage()
   BaseClass.onMessage(self)
 end
 
-function Pursue:touchesDown(rayContact)
-  BaseClass.touchesDown(self, rayContact)
+function Pursue:rayTouchesDown(rayContact)
+  BaseClass.rayTouchesDown(self, rayContact)
 end
 
-function Pursue:touchesUp(rayContact)
-  BaseClass.touchesUp(self, rayContact)
+function Pursue:rayTouchesUp(rayContact)
+  BaseClass.rayTouchesUp(self, rayContact)
 end
 
-function Pursue:touchesMove(rayContact)
-  BaseClass.touchesMove(self, rayContact)
+function Pursue:rayTouchesMove(rayContact)
+  BaseClass.rayTouchesMove(self, rayContact)
 end
 
-function Pursue:touchesCancelled(rayContact)
-  BaseClass.touchesCancelled(self, rayContact)
+function Pursue:rayTouchesCancelled(rayContact)
+  BaseClass.rayTouchesCancelled(self, rayContact)
 end
 
-function Pursue:touchDown(rayContact)
-  BaseClass.touchDown(self, rayContact)
+function Pursue:rayTouchesMissed(node)
+  BaseClass.rayTouchesMissed(self, node)
 end
 
-function Pursue:touchUp(rayContact)
-  BaseClass.touchUp(self, rayContact)
+function Pursue:rayTouchDown(rayContact)
+  BaseClass.rayTouchDown(self, rayContact)
 end
 
-function Pursue:touchMove(rayContact)
-  BaseClass.touchMove(self, rayContact)
+function Pursue:rayTouchUp(rayContact)
+  BaseClass.rayTouchUp(self, rayContact)
 end
 
-function Pursue:touchCancelled(rayContact)
-  BaseClass.touchCancelled(self, rayContact)
+function Pursue:rayTouchMove(rayContact)
+  BaseClass.rayTouchMove(self, rayContact)
+end
+
+function Pursue:rayTouchCancelled(rayContact)
+  BaseClass.rayTouchCancelled(self, rayContact)
+end
+
+function Pursue:rayTouchMissed(node)
+  BaseClass.rayTouchMissed(self, node)
+end
+
+function Pursue:rayMouseDown(rayContact)
+  BaseClass.rayMouseDown(self, rayContact)
+end
+
+function Pursue:rayMouseUp(rayContact)
+  BaseClass.rayMouseUp(self, rayContact)
+end
+
+function Pursue:rayMouseMove(rayContact)
+  BaseClass.rayMouseMove(self, rayContact)
+end
+
+function Pursue:rayMouseMissed(node)
+  BaseClass.rayMouseMissed(self, node)
 end
 
 function Pursue:collide(otherNode, collisionPoint)
-  BaseClass.collide(self, collisionPoint)
+  BaseClass.collide(self, otherNode, collisionPoint)
 end
 
 function Pursue:near(otherNode)
@@ -91,11 +115,79 @@ function Pursue:near(otherNode)
 end
 
 function Pursue:actionUpdate(action, timeStep)
-  BaseClass.actionUpdate(self, timeStep)
+  BaseClass.actionUpdate(self, action, timeStep)
 end
 
 function Pursue:actionComplete(action)
   BaseClass.actionComplete(self, action)
+end
+
+function Pursue:keyboardShow()
+  BaseClass.keyboardShow(self)
+end
+
+function Pursue:keyboardCancel()
+  BaseClass.keyboardCancel(self)
+end
+
+function Pursue:keyboardReturn()
+  BaseClass.keyboardReturn(self)
+end
+
+function Pursue:renderHUD()
+  BaseClass.renderHUD(self)
+end
+
+function Pursue:gamePause()
+  BaseClass.gamePause(self)
+end
+
+function Pursue:gameUnPause()
+  BaseClass.gameUnPause(self)
+end
+
+function Pursue:touchesDown(touches)
+  BaseClass.touchesDown(self, touches)
+end
+
+function Pursue:touchesUp(touches)
+  BaseClass.touchesUp(self, touches)
+end
+
+function Pursue:touchesMove(touches)
+  BaseClass.touchesMove(self, touches)
+end
+
+function Pursue:touchesCancelled(touches)
+  BaseClass.touchesCancelled(self, touches)
+end
+
+function Pursue:touchDown(touch)
+  BaseClass.touchDown(self, touch)
+end
+
+function Pursue:touchUp(touch)
+  BaseClass.touchUp(self, touch)
+end
+
+function Pursue:touchMove(touch)
+  BaseClass.touchMove(self, touch)
+end
+
+function Pursue:touchCancelled(touch)
+  BaseClass.touchCancelled(self, touch)
+end
+
+function Pursue:mouseDown(mouse)
+  BaseClass.mouseDown(self, mouse)
+end
+
+function Pursue:mouseUp(mouse)
+  BaseClass.mouseUp(self, mouse)
+end
+
+function Pursue:mouseMove(mouse)
+  BaseClass.mouseMove(self, mouse)
 end
 
 --#############################################################################
@@ -138,8 +230,8 @@ end
 
 function Pursue:__tostring()
   local ret = self:className() .. " =\n{\n"
-
-  for pos,val in pairs(self) do
+  
+  for pos,val in pairs(self) do 
     ret = ret .. "\t" .. "["..pos.."]" .. " => " .. type(val) .. " = " .. tostring(val) .. "\n"
   end
 

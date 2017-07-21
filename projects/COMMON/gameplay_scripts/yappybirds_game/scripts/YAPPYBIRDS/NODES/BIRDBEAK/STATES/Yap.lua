@@ -32,7 +32,7 @@ local __unLoad = function(self)
   --TODO: unload this Entity
 end
 
---#############################################################################
+--############################################################################# 
 
 function Yap:enter()
   BaseClass.enter(self)
@@ -50,40 +50,64 @@ function Yap:onMessage()
   BaseClass.onMessage(self)
 end
 
-function Yap:touchesDown(rayContact)
-  BaseClass.touchesDown(self, rayContact)
+function Yap:rayTouchesDown(rayContact)
+  BaseClass.rayTouchesDown(self, rayContact)
 end
 
-function Yap:touchesUp(rayContact)
-  BaseClass.touchesUp(self, rayContact)
+function Yap:rayTouchesUp(rayContact)
+  BaseClass.rayTouchesUp(self, rayContact)
 end
 
-function Yap:touchesMove(rayContact)
-  BaseClass.touchesMove(self, rayContact)
+function Yap:rayTouchesMove(rayContact)
+  BaseClass.rayTouchesMove(self, rayContact)
 end
 
-function Yap:touchesCancelled(rayContact)
-  BaseClass.touchesCancelled(self, rayContact)
+function Yap:rayTouchesCancelled(rayContact)
+  BaseClass.rayTouchesCancelled(self, rayContact)
 end
 
-function Yap:touchDown(rayContact)
-  BaseClass.touchDown(self, rayContact)
+function Yap:rayTouchesMissed(node)
+  BaseClass.rayTouchesMissed(self, node)
 end
 
-function Yap:touchUp(rayContact)
-  BaseClass.touchUp(self, rayContact)
+function Yap:rayTouchDown(rayContact)
+  BaseClass.rayTouchDown(self, rayContact)
 end
 
-function Yap:touchMove(rayContact)
-  BaseClass.touchMove(self, rayContact)
+function Yap:rayTouchUp(rayContact)
+  BaseClass.rayTouchUp(self, rayContact)
 end
 
-function Yap:touchCancelled(rayContact)
-  BaseClass.touchCancelled(self, rayContact)
+function Yap:rayTouchMove(rayContact)
+  BaseClass.rayTouchMove(self, rayContact)
+end
+
+function Yap:rayTouchCancelled(rayContact)
+  BaseClass.rayTouchCancelled(self, rayContact)
+end
+
+function Yap:rayTouchMissed(node)
+  BaseClass.rayTouchMissed(self, node)
+end
+
+function Yap:rayMouseDown(rayContact)
+  BaseClass.rayMouseDown(self, rayContact)
+end
+
+function Yap:rayMouseUp(rayContact)
+  BaseClass.rayMouseUp(self, rayContact)
+end
+
+function Yap:rayMouseMove(rayContact)
+  BaseClass.rayMouseMove(self, rayContact)
+end
+
+function Yap:rayMouseMissed(node)
+  BaseClass.rayMouseMissed(self, node)
 end
 
 function Yap:collide(otherNode, collisionPoint)
-  BaseClass.collide(self, collisionPoint)
+  BaseClass.collide(self, otherNode, collisionPoint)
 end
 
 function Yap:near(otherNode)
@@ -91,11 +115,79 @@ function Yap:near(otherNode)
 end
 
 function Yap:actionUpdate(action, timeStep)
-  BaseClass.actionUpdate(self, timeStep)
+  BaseClass.actionUpdate(self, action, timeStep)
 end
 
 function Yap:actionComplete(action)
   BaseClass.actionComplete(self, action)
+end
+
+function Yap:keyboardShow()
+  BaseClass.keyboardShow(self)
+end
+
+function Yap:keyboardCancel()
+  BaseClass.keyboardCancel(self)
+end
+
+function Yap:keyboardReturn()
+  BaseClass.keyboardReturn(self)
+end
+
+function Yap:renderHUD()
+  BaseClass.renderHUD(self)
+end
+
+function Yap:gamePause()
+  BaseClass.gamePause(self)
+end
+
+function Yap:gameUnPause()
+  BaseClass.gameUnPause(self)
+end
+
+function Yap:touchesDown(touches)
+  BaseClass.touchesDown(self, touches)
+end
+
+function Yap:touchesUp(touches)
+  BaseClass.touchesUp(self, touches)
+end
+
+function Yap:touchesMove(touches)
+  BaseClass.touchesMove(self, touches)
+end
+
+function Yap:touchesCancelled(touches)
+  BaseClass.touchesCancelled(self, touches)
+end
+
+function Yap:touchDown(touch)
+  BaseClass.touchDown(self, touch)
+end
+
+function Yap:touchUp(touch)
+  BaseClass.touchUp(self, touch)
+end
+
+function Yap:touchMove(touch)
+  BaseClass.touchMove(self, touch)
+end
+
+function Yap:touchCancelled(touch)
+  BaseClass.touchCancelled(self, touch)
+end
+
+function Yap:mouseDown(mouse)
+  BaseClass.mouseDown(self, mouse)
+end
+
+function Yap:mouseUp(mouse)
+  BaseClass.mouseUp(self, mouse)
+end
+
+function Yap:mouseMove(mouse)
+  BaseClass.mouseMove(self, mouse)
 end
 
 --#############################################################################
@@ -138,8 +230,8 @@ end
 
 function Yap:__tostring()
   local ret = self:className() .. " =\n{\n"
-
-  for pos,val in pairs(self) do
+  
+  for pos,val in pairs(self) do 
     ret = ret .. "\t" .. "["..pos.."]" .. " => " .. type(val) .. " = " .. tostring(val) .. "\n"
   end
 

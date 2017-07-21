@@ -33,7 +33,6 @@ local __ctor = function(self, init)
 --  for k, v in pairs(mm) do
 --    v:display(false)
 --  end
-  
 --  for k, v in pairs(mm) do
 --    v:display(true)
 --  end
@@ -42,7 +41,6 @@ local __ctor = function(self, init)
 --  for k, v in pairs(ls) do
 --    v:display(false)
 --  end
-  
 --  for k, v in pairs(ls) do
 --    v:display(true)
 --  end

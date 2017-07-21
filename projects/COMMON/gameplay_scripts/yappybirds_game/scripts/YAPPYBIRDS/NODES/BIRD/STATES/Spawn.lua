@@ -32,7 +32,7 @@ local __unLoad = function(self)
   --TODO: unload this Entity
 end
 
---#############################################################################
+--############################################################################# 
 
 function Spawn:enter()
   BaseClass.enter(self)
@@ -50,40 +50,64 @@ function Spawn:onMessage()
   BaseClass.onMessage(self)
 end
 
-function Spawn:touchesDown(rayContact)
-  BaseClass.touchesDown(self, rayContact)
+function Spawn:rayTouchesDown(rayContact)
+  BaseClass.rayTouchesDown(self, rayContact)
 end
 
-function Spawn:touchesUp(rayContact)
-  BaseClass.touchesUp(self, rayContact)
+function Spawn:rayTouchesUp(rayContact)
+  BaseClass.rayTouchesUp(self, rayContact)
 end
 
-function Spawn:touchesMove(rayContact)
-  BaseClass.touchesMove(self, rayContact)
+function Spawn:rayTouchesMove(rayContact)
+  BaseClass.rayTouchesMove(self, rayContact)
 end
 
-function Spawn:touchesCancelled(rayContact)
-  BaseClass.touchesCancelled(self, rayContact)
+function Spawn:rayTouchesCancelled(rayContact)
+  BaseClass.rayTouchesCancelled(self, rayContact)
 end
 
-function Spawn:touchDown(rayContact)
-  BaseClass.touchDown(self, rayContact)
+function Spawn:rayTouchesMissed(node)
+  BaseClass.rayTouchesMissed(self, node)
 end
 
-function Spawn:touchUp(rayContact)
-  BaseClass.touchUp(self, rayContact)
+function Spawn:rayTouchDown(rayContact)
+  BaseClass.rayTouchDown(self, rayContact)
 end
 
-function Spawn:touchMove(rayContact)
-  BaseClass.touchMove(self, rayContact)
+function Spawn:rayTouchUp(rayContact)
+  BaseClass.rayTouchUp(self, rayContact)
 end
 
-function Spawn:touchCancelled(rayContact)
-  BaseClass.touchCancelled(self, rayContact)
+function Spawn:rayTouchMove(rayContact)
+  BaseClass.rayTouchMove(self, rayContact)
+end
+
+function Spawn:rayTouchCancelled(rayContact)
+  BaseClass.rayTouchCancelled(self, rayContact)
+end
+
+function Spawn:rayTouchMissed(node)
+  BaseClass.rayTouchMissed(self, node)
+end
+
+function Spawn:rayMouseDown(rayContact)
+  BaseClass.rayMouseDown(self, rayContact)
+end
+
+function Spawn:rayMouseUp(rayContact)
+  BaseClass.rayMouseUp(self, rayContact)
+end
+
+function Spawn:rayMouseMove(rayContact)
+  BaseClass.rayMouseMove(self, rayContact)
+end
+
+function Spawn:rayMouseMissed(node)
+  BaseClass.rayMouseMissed(self, node)
 end
 
 function Spawn:collide(otherNode, collisionPoint)
-  BaseClass.collide(self, collisionPoint)
+  BaseClass.collide(self, otherNode, collisionPoint)
 end
 
 function Spawn:near(otherNode)
@@ -91,11 +115,79 @@ function Spawn:near(otherNode)
 end
 
 function Spawn:actionUpdate(action, timeStep)
-  BaseClass.actionUpdate(self, timeStep)
+  BaseClass.actionUpdate(self, action, timeStep)
 end
 
 function Spawn:actionComplete(action)
   BaseClass.actionComplete(self, action)
+end
+
+function Spawn:keyboardShow()
+  BaseClass.keyboardShow(self)
+end
+
+function Spawn:keyboardCancel()
+  BaseClass.keyboardCancel(self)
+end
+
+function Spawn:keyboardReturn()
+  BaseClass.keyboardReturn(self)
+end
+
+function Spawn:renderHUD()
+  BaseClass.renderHUD(self)
+end
+
+function Spawn:gamePause()
+  BaseClass.gamePause(self)
+end
+
+function Spawn:gameUnPause()
+  BaseClass.gameUnPause(self)
+end
+
+function Spawn:touchesDown(touches)
+  BaseClass.touchesDown(self, touches)
+end
+
+function Spawn:touchesUp(touches)
+  BaseClass.touchesUp(self, touches)
+end
+
+function Spawn:touchesMove(touches)
+  BaseClass.touchesMove(self, touches)
+end
+
+function Spawn:touchesCancelled(touches)
+  BaseClass.touchesCancelled(self, touches)
+end
+
+function Spawn:touchDown(touch)
+  BaseClass.touchDown(self, touch)
+end
+
+function Spawn:touchUp(touch)
+  BaseClass.touchUp(self, touch)
+end
+
+function Spawn:touchMove(touch)
+  BaseClass.touchMove(self, touch)
+end
+
+function Spawn:touchCancelled(touch)
+  BaseClass.touchCancelled(self, touch)
+end
+
+function Spawn:mouseDown(mouse)
+  BaseClass.mouseDown(self, mouse)
+end
+
+function Spawn:mouseUp(mouse)
+  BaseClass.mouseUp(self, mouse)
+end
+
+function Spawn:mouseMove(mouse)
+  BaseClass.mouseMove(self, mouse)
 end
 
 --#############################################################################
@@ -138,8 +230,8 @@ end
 
 function Spawn:__tostring()
   local ret = self:className() .. " =\n{\n"
-
-  for pos,val in pairs(self) do
+  
+  for pos,val in pairs(self) do 
     ret = ret .. "\t" .. "["..pos.."]" .. " => " .. type(val) .. " = " .. tostring(val) .. "\n"
   end
 
