@@ -32,7 +32,7 @@ local __unLoad = function(self)
   --TODO: unload this Entity
 end
 
---#############################################################################
+--############################################################################# 
 
 function Win:enter()
   BaseClass.enter(self)
@@ -84,6 +84,18 @@ end
 
 function Win:touchCancelled(touches)
   BaseClass.touchCancelled(self, touches)
+end
+
+function Win:mouseDown(mouse)
+  BaseClass.mouseDown(self, mouse)
+end
+
+function Win:mouseUp(mouse)
+  BaseClass.mouseUp(self, mouse)
+end
+
+function Win:mouseMove(mouse)
+  BaseClass.mouseMove(self, mouse)
 end
 
 function Win:pause()
@@ -178,8 +190,8 @@ end
 
 function Win:__tostring()
   local ret = self:className() .. " =\n{\n"
-
-  for pos,val in pairs(self) do
+  
+  for pos,val in pairs(self) do 
     ret = ret .. "\t" .. "["..pos.."]" .. " => " .. type(val) .. " = " .. tostring(val) .. "\n"
   end
 

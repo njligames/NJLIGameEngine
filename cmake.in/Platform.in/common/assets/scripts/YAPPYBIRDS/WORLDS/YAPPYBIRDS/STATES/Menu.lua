@@ -86,6 +86,18 @@ function Menu:touchCancelled(touches)
   BaseClass.touchCancelled(self, touches)
 end
 
+function Menu:mouseDown(mouse)
+  BaseClass.mouseDown(self, mouse)
+end
+
+function Menu:mouseUp(mouse)
+  BaseClass.mouseUp(self, mouse)
+end
+
+function Menu:mouseMove(mouse)
+  BaseClass.mouseMove(self, mouse)
+end
+
 function Menu:pause()
   BaseClass.pause(self)
 end
@@ -188,12 +200,12 @@ function Menu:__tostring()
 end
 
 function Menu:_destroy()
-  assert(not self.__GameplayCalledLoad, "Must unload before you destroy")
+  assert(not self.__MenuCalledLoad, "Must unload before you destroy")
   __dtor(self)
 end
 
 function Menu:_create(init)
-  self.__GameplayCalledLoad = false
+  self.__MenuCalledLoad = false
   __ctor(self, init)
 end
 
@@ -204,15 +216,15 @@ function Menu:load()
   --load derived last...
   __load(self)
 
-  self.__GameplayCalledLoad = true
+  self.__MenuCalledLoad = true
 end
 
 function Menu:unLoad()
-  assert(self.__GameplayCalledLoad, "Must load before unloading")
+  assert(self.__MenuCalledLoad, "Must load before unloading")
 
   --unload derived first...
   __unLoad(self)
-  self.__GameplayCalledLoad = false
+  self.__MenuCalledLoad = false
 
   --unload base last...
   BaseClass.unLoad(self)

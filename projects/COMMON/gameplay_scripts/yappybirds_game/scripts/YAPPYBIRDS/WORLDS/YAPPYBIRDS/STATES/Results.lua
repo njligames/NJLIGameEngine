@@ -86,6 +86,18 @@ function Results:touchCancelled(touches)
   BaseClass.touchCancelled(self, touches)
 end
 
+function Results:mouseDown(mouse)
+  BaseClass.mouseDown(self, mouse)
+end
+
+function Results:mouseUp(mouse)
+  BaseClass.mouseUp(self, mouse)
+end
+
+function Results:mouseMove(mouse)
+  BaseClass.mouseMove(self, mouse)
+end
+
 function Results:pause()
   BaseClass.pause(self)
 end
@@ -188,12 +200,12 @@ function Results:__tostring()
 end
 
 function Results:_destroy()
-  assert(not self.__GameplayCalledLoad, "Must unload before you destroy")
+  assert(not self.__ResultsCalledLoad, "Must unload before you destroy")
   __dtor(self)
 end
 
 function Results:_create(init)
-  self.__GameplayCalledLoad = false
+  self.__ResultsCalledLoad = false
   __ctor(self, init)
 end
 
@@ -204,15 +216,15 @@ function Results:load()
   --load derived last...
   __load(self)
 
-  self.__GameplayCalledLoad = true
+  self.__ResultsCalledLoad = true
 end
 
 function Results:unLoad()
-  assert(self.__GameplayCalledLoad, "Must load before unloading")
+  assert(self.__ResultsCalledLoad, "Must load before unloading")
 
   --unload derived first...
   __unLoad(self)
-  self.__GameplayCalledLoad = false
+  self.__ResultsCalledLoad = false
 
   --unload base last...
   BaseClass.unLoad(self)

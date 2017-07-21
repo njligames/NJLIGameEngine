@@ -33,7 +33,6 @@ local __unLoad = function(self)
 end
 
 --#############################################################################
---#############################################################################
 
 function YappyBirdWorldEntity:enter()
   BaseClass.enter(self)
@@ -47,8 +46,8 @@ function YappyBirdWorldEntity:exit()
   BaseClass.exit(self)
 end
 
-function YappyBirdWorldEntity:onMessage()
-  BaseClass.onMessage(self)
+function YappyBirdWorldEntity:onMessage(message)
+  BaseClass.onMessage(self, message)
 end
 
 function YappyBirdWorldEntity:renderHUD()
@@ -85,6 +84,18 @@ end
 
 function YappyBirdWorldEntity:touchCancelled(touches)
   BaseClass.touchCancelled(self, touches)
+end
+
+function YappyBirdWorldEntity:mouseDown(mouse)
+  BaseClass.mouseDown(self, mouse)
+end
+
+function YappyBirdWorldEntity:mouseUp(mouse)
+  BaseClass.mouseUp(self, mouse)
+end
+
+function YappyBirdWorldEntity:mouseMove(mouse)
+  BaseClass.mouseMove(self, mouse)
 end
 
 function YappyBirdWorldEntity:pause()

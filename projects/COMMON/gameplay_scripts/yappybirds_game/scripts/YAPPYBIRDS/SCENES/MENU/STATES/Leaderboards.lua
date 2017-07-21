@@ -32,7 +32,7 @@ local __unLoad = function(self)
   --TODO: unload this Entity
 end
 
---#############################################################################
+--############################################################################# 
 
 function Leaderboards:enter()
   BaseClass.enter(self)
@@ -84,6 +84,18 @@ end
 
 function Leaderboards:touchCancelled(touches)
   BaseClass.touchCancelled(self, touches)
+end
+
+function Leaderboards:mouseDown(mouse)
+  BaseClass.mouseDown(self, mouse)
+end
+
+function Leaderboards:mouseUp(mouse)
+  BaseClass.mouseUp(self, mouse)
+end
+
+function Leaderboards:mouseMove(mouse)
+  BaseClass.mouseMove(self, mouse)
 end
 
 function Leaderboards:pause()
@@ -178,8 +190,8 @@ end
 
 function Leaderboards:__tostring()
   local ret = self:className() .. " =\n{\n"
-
-  for pos,val in pairs(self) do
+  
+  for pos,val in pairs(self) do 
     ret = ret .. "\t" .. "["..pos.."]" .. " => " .. type(val) .. " = " .. tostring(val) .. "\n"
   end
 

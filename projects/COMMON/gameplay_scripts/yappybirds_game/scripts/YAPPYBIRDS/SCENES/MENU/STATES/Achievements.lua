@@ -32,7 +32,7 @@ local __unLoad = function(self)
   --TODO: unload this Entity
 end
 
---#############################################################################
+--############################################################################# 
 
 function Achievements:enter()
   BaseClass.enter(self)
@@ -84,6 +84,18 @@ end
 
 function Achievements:touchCancelled(touches)
   BaseClass.touchCancelled(self, touches)
+end
+
+function Achievements:mouseDown(mouse)
+  BaseClass.mouseDown(self, mouse)
+end
+
+function Achievements:mouseUp(mouse)
+  BaseClass.mouseUp(self, mouse)
+end
+
+function Achievements:mouseMove(mouse)
+  BaseClass.mouseMove(self, mouse)
 end
 
 function Achievements:pause()
@@ -178,8 +190,8 @@ end
 
 function Achievements:__tostring()
   local ret = self:className() .. " =\n{\n"
-
-  for pos,val in pairs(self) do
+  
+  for pos,val in pairs(self) do 
     ret = ret .. "\t" .. "["..pos.."]" .. " => " .. type(val) .. " = " .. tostring(val) .. "\n"
   end
 

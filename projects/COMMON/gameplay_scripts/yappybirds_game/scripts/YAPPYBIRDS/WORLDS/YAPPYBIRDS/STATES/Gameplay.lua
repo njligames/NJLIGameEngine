@@ -86,6 +86,18 @@ function Gameplay:touchCancelled(touches)
   BaseClass.touchCancelled(self, touches)
 end
 
+function Gameplay:mouseDown(mouse)
+  BaseClass.mouseDown(self, mouse)
+end
+
+function Gameplay:mouseUp(mouse)
+  BaseClass.mouseUp(self, mouse)
+end
+
+function Gameplay:mouseMove(mouse)
+  BaseClass.mouseMove(self, mouse)
+end
+
 function Gameplay:pause()
   BaseClass.pause(self)
 end

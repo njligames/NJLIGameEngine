@@ -17,6 +17,7 @@ Results.__index = Results
 --#############################################################################
 
 local __ctor = function(self, init)
+
   --TODO: construct this Entity
 end
 
@@ -48,6 +49,10 @@ end
 
 function Results:onMessage(message)
   BaseClass.onMessage(self, message)
+end
+
+function Results:renderHUD()
+  BaseClass.renderHUD(self)
 end
 
 function Results:touchesDown(touches)
@@ -82,8 +87,16 @@ function Results:touchCancelled(touches)
   BaseClass.touchCancelled(self, touches)
 end
 
-function Results:renderHUD()
-  BaseClass.renderHUD(self)
+function Results:mouseDown(mouse)
+  BaseClass.mouseDown(self, mouse)
+end
+
+function Results:mouseUp(mouse)
+  BaseClass.mouseUp(self, mouse)
+end
+
+function Results:mouseMove(mouse)
+  BaseClass.mouseMove(self, mouse)
 end
 
 function Results:pause()
@@ -92,6 +105,18 @@ end
 
 function Results:unPause()
   BaseClass.unPause(self)
+end
+
+function Results:keyboardShow()
+  BaseClass.keyboardShow(self)
+end
+
+function Results:keyboardCancel()
+  BaseClass.keyboardCancel(self)
+end
+
+function Results:keyboardReturn(text)
+  BaseClass.keyboardReturn(self, text)
 end
 
 function Results:willResignActive()

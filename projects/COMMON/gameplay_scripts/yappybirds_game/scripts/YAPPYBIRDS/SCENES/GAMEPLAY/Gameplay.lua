@@ -17,6 +17,7 @@ Gameplay.__index = Gameplay
 --#############################################################################
 
 local __ctor = function(self, init)
+
   --TODO: construct this Entity
 end
 
@@ -48,6 +49,10 @@ end
 
 function Gameplay:onMessage(message)
   BaseClass.onMessage(self, message)
+end
+
+function Gameplay:renderHUD()
+  BaseClass.renderHUD(self)
 end
 
 function Gameplay:touchesDown(touches)
@@ -82,8 +87,16 @@ function Gameplay:touchCancelled(touches)
   BaseClass.touchCancelled(self, touches)
 end
 
-function Gameplay:renderHUD()
-  BaseClass.renderHUD(self)
+function Gameplay:mouseDown(mouse)
+  BaseClass.mouseDown(self, mouse)
+end
+
+function Gameplay:mouseUp(mouse)
+  BaseClass.mouseUp(self, mouse)
+end
+
+function Gameplay:mouseMove(mouse)
+  BaseClass.mouseMove(self, mouse)
 end
 
 function Gameplay:pause()
@@ -92,6 +105,18 @@ end
 
 function Gameplay:unPause()
   BaseClass.unPause(self)
+end
+
+function Gameplay:keyboardShow()
+  BaseClass.keyboardShow(self)
+end
+
+function Gameplay:keyboardCancel()
+  BaseClass.keyboardCancel(self)
+end
+
+function Gameplay:keyboardReturn(text)
+  BaseClass.keyboardReturn(self, text)
 end
 
 function Gameplay:willResignActive()

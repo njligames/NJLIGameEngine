@@ -29,7 +29,7 @@ local __ctor = function(self, init)
   self:getScene():addCameraNode(PerspectiveCameraNode)
 
 
-  local mm = self:createMainMenuUI()
+--  local mm = self:createMainMenuUI()
 --  for k, v in pairs(mm) do
 --    v:display(false)
 --  end
@@ -45,7 +45,7 @@ local __ctor = function(self, init)
 --    v:display(true)
 --  end
 
---  self:createAboutUI()
+  self:createAboutUI()
 
 
 
