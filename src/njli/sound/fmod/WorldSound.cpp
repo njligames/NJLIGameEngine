@@ -575,6 +575,11 @@ namespace njli
     {
         return sound.load(m_System, path, size);
     }
+
+    bool WorldSound::unLoadSound(const Sound &sound)
+    {
+        return true;
+    }
     
     void WorldSound::enablePause(bool enable)
     {

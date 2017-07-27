@@ -118,6 +118,7 @@ void sleepThread(float milliseconds)
 }
 
 void setRunningPath(const char *file){}
+void setScriptDir(const char *path) {}
 
 const char* DOCUMENT_BASEPATH()
 {

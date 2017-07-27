@@ -100,7 +100,7 @@ if("${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMP
 endif()
 
 if("${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/macOS/10.12/bin/thirdparty" TYPE PROGRAM FILES "/Users/jamesfolk/Dropbox/Developer/NJLI/External/thirdparty/BUILD/lib/assimp/macOS/10.12//Release/bin/assimp")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/macOS/10.12/bin/thirdparty" TYPE PROGRAM FILES "/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/../External/thirdparty/BUILD/lib/assimp/macOS/10.12//Release/bin/assimp")
 endif()
 
 if("${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)

@@ -155,7 +155,8 @@ namespace njli
         
         for (u32 i = 0; i < mBuffers.size(); i++)
         {
-            AL_CHECK( alDeleteBuffers(1, &mBuffers[i].refID) );
+          SoundBuffer buffer = mBuffers[i];
+          AL_CHECK( alDeleteBuffers(1, &buffer.refID) );
         }
         
         for (u32 i = 0; i < mSources.size(); i++)

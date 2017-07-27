@@ -198,7 +198,7 @@
     <script>
 
         (function() {
-          var memoryInitializer = 'emscripten_Sublime/EngineSource.js.mem';
+          var memoryInitializer = 'emscripten_Sublime/NJLIGameEngine.js.mem';
           if (typeof Module['locateFile'] === 'function') {
             memoryInitializer = Module['locateFile'](memoryInitializer);
           } else if (Module['memoryInitializerPrefixURL']) {
@@ -211,7 +211,7 @@
         })();
 
         var script = document.createElement('script');
-        script.src = "emscripten_Sublime/EngineSource.js";
+        script.src = "emscripten_Sublime/NJLIGameEngine.js";
         document.body.appendChild(script);
 
 </script>
