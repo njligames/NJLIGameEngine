@@ -39,14 +39,14 @@ local __ctor = function(self, init)
   
   for k,v in pairs(init.states) do
     assert(v.class ~= nil, "")
-    assert(v.scene ~= nil, "is nil")
-    assert(type(v.scene) == "table", "not a table")
+    assert(v.sceneTemplate ~= nil, "is nil")
+    assert(type(v.sceneTemplate) == "table", "not a table")
 
     --Create a WorldEntityState...
     local stateEntity = v.class({
         name = v.name,
         entityOwner = self,
-        scene = v.scene
+        scene = v.sceneTemplate
       })
     
     local key = stateEntity:getEntityName()

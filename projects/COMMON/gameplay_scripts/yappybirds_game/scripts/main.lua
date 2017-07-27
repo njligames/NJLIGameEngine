@@ -221,7 +221,7 @@ local DogNodeEntity =
   nodes = {} --The childen Nodes for the Node.
 }
 
-local MenuScene =
+local MenuSceneTemplate =
 {
   name = "YAPPYBIRDS.SCENES.MENU.Menu",
   entityOwner = nil,
@@ -289,7 +289,7 @@ local MenuScene =
   } --The nodes for the Scene.
 }
 
-local GameplayScene =
+local GameplaySceneTemplate =
 {
   name = "YAPPYBIRDS.SCENES.GAMEPLAY.Gameplay",
   entityOwner = nil,
@@ -300,10 +300,7 @@ local GameplayScene =
     {
       name = "YAPPYBIRDS.SCENES.GAMEPLAY.STATES.Loading",
       class = require "YAPPYBIRDS.SCENES.GAMEPLAY.STATES.Loading",
-      nodes = {
-        BalloonNodeEntity,
-        BirdNodeEntity,
-      } --The nodes for the SceneState.
+      nodes = {}, --The nodes for the SceneState.
     },
     {
       name = "YAPPYBIRDS.SCENES.GAMEPLAY.STATES.Lose",
@@ -327,13 +324,10 @@ local GameplayScene =
     },
   },
   nodes = {
-    BalloonNodeEntity,
-    BirdNodeEntity,
-  }
-  --The nodes for the Scene.
+  } --The nodes for the Scene.
 }
 
-local ResultsScene =
+local ResultsSceneTemplate =
 {
   name = "YAPPYBIRDS.SCENES.RESULTS.Results",
   entityOwner = nil,
@@ -369,21 +363,23 @@ Worlds =
     states =
     {
       --The first state is the start state.
+--      {
+--        name = "YAPPYBIRDS.WORLDS.YAPPYBIRDS.STATES.Menu",
+--        class = require "YAPPYBIRDS.WORLDS.YAPPYBIRDS.STATES.Menu",
+--        sceneTemplate = MenuSceneTemplate
+--      },
+      
       {
-        name = "YAPPYBIRDS.WORLDS.YAPPYBIRDS.STATES.Menu",
-        class = require "YAPPYBIRDS.WORLDS.YAPPYBIRDS.STATES.Menu",
-        scene = MenuScene
+        name = "YAPPYBIRDS.WORLDS.YAPPYBIRDS.STATES.Gameplay",
+        class = require "YAPPYBIRDS.WORLDS.YAPPYBIRDS.STATES.Gameplay",
+        sceneTemplate = GameplaySceneTemplate
       },
-      -- {
-      -- name = "YAPPYBIRDS.WORLDS.YAPPYBIRDS.STATES.Gameplay",
-      -- class = require "YAPPYBIRDS.WORLDS.YAPPYBIRDS.STATES.Gameplay",
-      -- scene = GameplayScene
-      -- },
-      -- {
-      -- name = "YAPPYBIRDS.WORLDS.YAPPYBIRDS.STATES.Results",
-      -- class = require "YAPPYBIRDS.WORLDS.YAPPYBIRDS.STATES.Results",
-      -- scene = ResultsScene
-      -- },
+      
+--       {
+--       name = "YAPPYBIRDS.WORLDS.YAPPYBIRDS.STATES.Results",
+--       class = require "YAPPYBIRDS.WORLDS.YAPPYBIRDS.STATES.Results",
+--       sceneTemplate = ResultsSceneTemplate
+--       },
     }
   }
 }

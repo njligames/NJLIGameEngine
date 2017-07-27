@@ -17,12 +17,60 @@ Gameplay.__index = Gameplay
 --#############################################################################
 
 local __ctor = function(self, init)
+  
+  local spriteAtlasPath = njli.ASSET_PATH("scripts/generated/texturepacker/country0.lua")
+  self._spriteAtlas_country0 = njli.build((loadfile(spriteAtlasPath))():getSheet(), njli.JLI_OBJECT_TYPE_SpriteFrameAtlas)
 
-  --TODO: construct this Entity
+  local image = njli.Image.create()
+  njli.World.getInstance():getWorldResourceLoader():load("images/generated/country0.png", image)
+  Geometry2D[1]:getMaterial():getDiffuse():loadGPU(image)
+  njli.Image.destroy(image)
+  
+  
+  
+  
+  
+  spriteAtlasPath = njli.ASSET_PATH("scripts/generated/texturepacker/gameplay0.lua")
+  self._spriteAtlas_gameplay0 = njli.build((loadfile(spriteAtlasPath))():getSheet(), njli.JLI_OBJECT_TYPE_SpriteFrameAtlas)
+
+  image = njli.Image.create()
+  njli.World.getInstance():getWorldResourceLoader():load("images/generated/gameplay0.png", image)
+  Geometry2D[2]:getMaterial():getDiffuse():loadGPU(image)
+  njli.Image.destroy(image)
+  
+  
+  
+  
+  spriteAtlasPath = njli.ASSET_PATH("scripts/generated/texturepacker/gameplay1.lua")
+  self._spriteAtlas_gameplay1 = njli.build((loadfile(spriteAtlasPath))():getSheet(), njli.JLI_OBJECT_TYPE_SpriteFrameAtlas)
+
+  image = njli.Image.create()
+  njli.World.getInstance():getWorldResourceLoader():load("images/generated/gameplay1.png", image)
+  Geometry2D[3]:getMaterial():getDiffuse():loadGPU(image)
+  njli.Image.destroy(image)
+  
+  
+  
+  
+  
+
+  self:getScene():addCameraNode(OrthographicCameraNode, true)
+  self:getScene():addCameraNode(PerspectiveCameraNode)
+  
+  local yappyBirdLevelLoader = require "YAPPYBIRDS.yappyBirdLevelLoader"
+  self.level = yappyBirdLevelLoader.new(self)
+  
 end
 
 local __dtor = function(self)
-  --TODO: destruct this Entity
+  njli.SpriteFrameAtlas.destroy(self._spriteAtlas_gameplay1)
+  self._spriteAtlas_gameplay1 = nil
+  
+  njli.SpriteFrameAtlas.destroy(self._spriteAtlas_gameplay0)
+  self._spriteAtlas_gameplay0 = nil
+  
+  njli.SpriteFrameAtlas.destroy(self._spriteAtlas_country0)
+  self._spriteAtlas_country0 = nil
 end
 
 local __load = function(self)
@@ -31,6 +79,20 @@ end
 
 local __unLoad = function(self)
   --TODO: unload this Entity
+end
+
+--#############################################################################
+
+function Gameplay:createBalloon()
+end
+
+function Gameplay:createBillboard()
+end
+
+function Gameplay:createBird()
+end
+
+function Gameplay:createDog()
 end
 
 --#############################################################################

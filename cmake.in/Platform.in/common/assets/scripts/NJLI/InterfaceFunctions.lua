@@ -41,20 +41,24 @@ local Create = function()
   end
   
   if nil == Geometry2D then
-    Geometry2D = njli.Sprite2D.create()
-    Geometry2D:setName("YappyBird Geometry")
+    Geometry2D = {}
     
-    local material = njli.Material.create()
-    material:setName("YappyBird Material")
-    
-    local shader = njli.ShaderProgram.create()
-    shader:setName("YappyBird Shader")
-    njli.World.getInstance():getWorldResourceLoader():load("shaders/objectShader.vsh", "shaders/objectShader.fsh", shader)
-    
-    Geometry2D:setMaterial(material)
-    Geometry2D:setShaderProgram(shader)
-    Geometry2D:show(OrthographicCameraNode:getCamera())
-    Geometry2D:hide(PerspectiveCameraNode:getCamera())
+    for i=1,4 do
+      Geometry2D[i] = njli.Sprite2D.create()
+      Geometry2D[i]:setName("YappyBird Geometry " .. i)
+      
+      local material = njli.Material.create()
+      material:setName("YappyBird Material "  .. i)
+      
+      local shader = njli.ShaderProgram.create()
+      shader:setName("YappyBird Shader " .. i)
+      njli.World.getInstance():getWorldResourceLoader():load("shaders/objectShader.vsh", "shaders/objectShader.fsh", shader)
+      
+      Geometry2D[i]:setMaterial(material)
+      Geometry2D[i]:setShaderProgram(shader)
+      Geometry2D[i]:show(OrthographicCameraNode:getCamera())
+      Geometry2D[i]:hide(PerspectiveCameraNode:getCamera())
+    end
   end
   
   if nil == RanchersFont then
@@ -93,15 +97,15 @@ local Destroy = function()
     RanchersFont = nil
   end
   
-  if Geometry2D then
-    local material = Geometry2D:getMaterial()
+  if Geometry2D[1] then
+    local material = Geometry2D[1]:getMaterial()
     njli.Material.destroy(material)
     
-    local shader = Geometry2D:getShaderProgram()
+    local shader = Geometry2D[1]:getShaderProgram()
     njli.ShaderProgram.destroy(shader)
     
-    njli.Sprite2D.destroy(Geometry2D)
-    Geometry2D = nil
+    njli.Sprite2D.destroy(Geometry2D[1])
+--    Geometry2D = nil
   end
   
   if PerspectiveCameraNode then
@@ -139,9 +143,9 @@ local Update = function(timeStep)
     
     
 
-  local pos = bullet.btVector3(100, 100, -1)
-  local color = bullet.btVector4(0.202, 0.643, 0.000, 1)
-  njli.World.getInstance():getDebugDrawer():point(pos, color, 100)--, 100000, 10)
+--  local pos = bullet.btVector3(100, 100, -1)
+--  local color = bullet.btVector4(0.202, 0.643, 0.000, 1)
+--  njli.World.getInstance():getDebugDrawer():point(pos, color, 100)--, 100000, 10)
   
   if gInterface then
     gInterface:getDeviceEntity():update(timeStep)

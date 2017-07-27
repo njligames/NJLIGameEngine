@@ -22,7 +22,7 @@ local __ctor = function(self, init)
 
   local image = njli.Image.create()
   njli.World.getInstance():getWorldResourceLoader():load("images/generated/interface0.png", image)
-  Geometry2D:getMaterial():getDiffuse():loadGPU(image)
+  Geometry2D[1]:getMaterial():getDiffuse():loadGPU(image)
   njli.Image.destroy(image)
 
   self:getScene():addCameraNode(OrthographicCameraNode, true)
@@ -262,7 +262,7 @@ function Menu:createButtonControl(buttonName, xPos, yPos, screenPercentWidth, sc
       states = NJLIButtonControl.states,
       entityOwner = self,
       atlas = self._spriteAtlas,
-      geometry = Geometry2D,
+      geometry = Geometry2D[1],
       scale = 1.0,
       screenPercentWidth = pw,
       screenPercentHeight = ph,
@@ -307,7 +307,7 @@ function Menu:createSwitchControl(switchName, xPos, yPos, visible)
       states = NJLISwitchControl.states,
       entityOwner = self,
       atlas = self._spriteAtlas,
-      geometry = Geometry2D,
+      geometry = Geometry2D[1],
       scale = 1.0,
       disabled = false,
       touchUpOutside = function(touches) print(#touches) end,
@@ -351,7 +351,7 @@ function Menu:createImageControl(imageName, xPos, yPos, screenPercentWidth, scre
       states = NJLIImageControl.states,
       entityOwner = self,
       atlas = self._spriteAtlas,
-      geometry = Geometry2D,
+      geometry = Geometry2D[1],
       scale = 1.0,
       screenPercentWidth = pw,
       screenPercentHeight = ph,

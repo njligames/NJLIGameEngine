@@ -1162,7 +1162,7 @@ namespace njli
         
 //        SDL_LogVerbose(SDL_LOG_CATEGORY_TEST, "Lua version: %s\n", LUA_VERSION);
         
-#if defined(LUAI_THROW)
+/*#if defined(LUAI_THROW)
         SDL_LogVerbose(SDL_LOG_CATEGORY_TEST, "%s", "Lua LUAI_THROW: yes\n");
 #else
         SDL_LogVerbose(SDL_LOG_CATEGORY_TEST, "%s", "Lua LUAI_THROW: no\n");
@@ -1184,12 +1184,12 @@ namespace njli
         SDL_LogVerbose(SDL_LOG_CATEGORY_TEST, "%s", "Lua LUA_USE_ULONGJMP: yes\n");
 #else
         SDL_LogVerbose(SDL_LOG_CATEGORY_TEST, "%s", "Lua LUA_USE_ULONGJMP: no\n");
-#endif
+#endif*/
         
         m_lua_State = luaL_newstate();
         luaL_checkversion(m_lua_State);
         
-        SDL_LogVerbose(SDL_LOG_CATEGORY_TEST, "Lua version: %s\n", LUA_VERSION);
+        //SDL_LogVerbose(SDL_LOG_CATEGORY_TEST, "Lua version: %s\n", LUA_VERSION);
         
         luaL_openlibs(m_lua_State);
         

@@ -565,7 +565,7 @@ namespace njli
     
     void WorldDebugDrawer::setupShaderPrograms()
     {
-        std::cout << "> DDRenderInterfaceCoreGL::setupShaderPrograms()" << std::endl;
+        //std::cout << "> DDRenderInterfaceCoreGL::setupShaderPrograms()" << std::endl;
         
         const char *_linePointVertShaderSource = linePointVertShaderSource.c_str();
         const char *_linePointFragShaderSource = linePointFragShaderSource.c_str();
@@ -632,7 +632,7 @@ namespace njli
     
     void WorldDebugDrawer::setupVertexBuffers()
     {
-        std::cout << "> DDRenderInterfaceCoreGL::setupVertexBuffers()" << std::endl;
+        //std::cout << "> DDRenderInterfaceCoreGL::setupVertexBuffers()" << std::endl;
         
         //
         // Lines/points vertex buffer:

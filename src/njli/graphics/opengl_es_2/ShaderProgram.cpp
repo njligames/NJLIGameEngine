@@ -125,7 +125,7 @@ static GLuint compile_shader(const GLenum type, const GLchar* source, const GLin
     str[0] = new GLchar[length];
     strcpy(str[0], source);
     
-    SDL_LogVerbose(SDL_LOG_CATEGORY_TEST, "The source on disk : %s", source);
+    //SDL_LogVerbose(SDL_LOG_CATEGORY_TEST, "The source on disk : %s", source);
     
     glShaderSource(shader_object_id, 1, (const GLchar**)&(source), NULL);DEBUG_GL_ERROR_PRINT("glShaderSource", "id:%d,source:%s",shader_object_id,str[0]);
     glCompileShader(shader_object_id);DEBUG_GL_ERROR_WRITE("glCompileShader");
@@ -184,7 +184,7 @@ static GLint validate_program(const GLuint program)
     glValidateProgram(program);DEBUG_GL_ERROR_WRITE("glValidateProgram");
     
     glGetProgramiv(program, GL_VALIDATE_STATUS, &validate_status);DEBUG_GL_ERROR_WRITE("glGetProgramiv");
-    SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "Results of validating program = %s\n", (validate_status==GL_TRUE)?"true":"false");
+    //SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "Results of validating program = %s\n", (validate_status==GL_TRUE)?"true":"false");
     
     if(validate_status==GL_FALSE)
     {
@@ -692,7 +692,7 @@ namespace njli
             for(GLuint index = 0; index < active; ++index)
             {
                 glGetActiveUniform(m_Program, index, nameMaxLength, &length, &size, &type, variableName);DEBUG_GL_ERROR_WRITE("glGetActiveUniform\n");
-                SDL_LogVerbose(SDL_LOG_CATEGORY_TEST, "Uniform Variable Loaded: %s %s (size=%d)", getGLSLVarTypeName((njliGLSLVarType)type), variableName, size);
+                //SDL_LogVerbose(SDL_LOG_CATEGORY_TEST, "Uniform Variable Loaded: %s %s (size=%d)", getGLSLVarTypeName((njliGLSLVarType)type), variableName, size);
                 
             }
             delete [] variableName;
@@ -705,7 +705,7 @@ namespace njli
             for(GLuint index = 0; index < active; ++index)
             {
                 glGetActiveAttrib(m_Program, index, nameMaxLength, &length, &size, &type, variableName);DEBUG_GL_ERROR_WRITE("glGetActiveAttrib\n");
-                SDL_LogVerbose(SDL_LOG_CATEGORY_TEST, "Attribute Variable Loaded: %s %s (size=%d)", getGLSLVarTypeName((njliGLSLVarType)type), variableName, size);
+                //SDL_LogVerbose(SDL_LOG_CATEGORY_TEST, "Attribute Variable Loaded: %s %s (size=%d)", getGLSLVarTypeName((njliGLSLVarType)type), variableName, size);
                 
             }
             delete [] variableName;

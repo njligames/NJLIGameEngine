@@ -1,2 +1,3 @@
-[0;33mwarning:[0m emitted code will contain very large numbers of local variables, which is bad for performance (build to JS with -O2 or above to avoid this - make sure to do so both on source files, and during 'linking')
-[0;33mwarning:[0m emitted code will contain very large numbers of local variables, which is bad for performance (build to JS with -O2 or above to avoid this - make sure to do so both on source files, and during 'linking')
+make[2]: *** No rule to make target `CMakeFiles/EngineSource.dir/build'.  Stop.
+make[1]: *** [CMakeFiles/EngineSource.dir/all] Error 2
+make: *** [all] Error 2

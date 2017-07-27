@@ -747,7 +747,7 @@ namespace njli
         }
         else
         {
-            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState\n");
+            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState in touchDown\n");
         }
     }
     
@@ -761,7 +761,7 @@ namespace njli
         }
         else
         {
-            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState\n");
+            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState in touchUp\n");
         }
     }
     
@@ -775,7 +775,7 @@ namespace njli
         }
         else
         {
-            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState\n");
+            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState in touchMove\n");
         }
     }
     
@@ -789,7 +789,7 @@ namespace njli
         }
         else
         {
-            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState\n");
+            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState in touchCancelled\n");
         }
     }
     
@@ -808,7 +808,7 @@ namespace njli
         }
         else
         {
-            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState\n");
+            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState in touchDown\n");
         }
     }
     
@@ -822,7 +822,7 @@ namespace njli
         }
         else
         {
-            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState\n");
+            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState in touchUp\n");
         }
     }
     
@@ -836,7 +836,7 @@ namespace njli
         }
         else
         {
-            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState\n");
+            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState in touchMove\n");
         }
     }
     
@@ -850,7 +850,7 @@ namespace njli
         }
         else
         {
-            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState\n");
+            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState in mouseDown\n");
         }
     }
     
@@ -864,7 +864,7 @@ namespace njli
         }
         else
         {
-            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState\n");
+            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState in mouseUp\n");
         }
     }
     
@@ -878,7 +878,7 @@ namespace njli
         }
         else
         {
-            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState\n");
+            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState in mouseMove\n");
         }
     }
     
@@ -892,7 +892,7 @@ namespace njli
         }
         else
         {
-            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState\n");
+            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState in touchCancelled\n");
         }
     }
     
@@ -906,7 +906,7 @@ namespace njli
         }
         else
         {
-            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState\n");
+            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState in keyboardShow\n");
         }
     }
     
@@ -920,7 +920,7 @@ namespace njli
         }
         else
         {
-            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState\n");
+            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState in keyboardCancel\n");
         }
     }
     
@@ -934,7 +934,7 @@ namespace njli
         }
         else
         {
-            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState\n");
+            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState in keyboardReturn\n");
         }
     }
     
@@ -948,7 +948,7 @@ namespace njli
         }
         else
         {
-            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState\n");
+            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState in renderHUD\n");
         }
     }
     
@@ -962,7 +962,7 @@ namespace njli
         }
         else
         {
-            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState\n");
+            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState in pauseGame\n");
         }
     }
     
@@ -976,7 +976,7 @@ namespace njli
         }
         else
         {
-            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState\n");
+            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState in unPauseGame\n");
         }
     }
     
@@ -990,7 +990,7 @@ namespace njli
         }
         else
         {
-            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState\n");
+            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState in willResignActive\n");
         }
     }
     
@@ -1004,7 +1004,7 @@ namespace njli
         }
         else
         {
-            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState\n");
+            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState in didBecomeActive\n");
         }
     }
     
@@ -1018,7 +1018,7 @@ namespace njli
         }
         else
         {
-            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState\n");
+            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState in didEnterBackground\n");
         }
     }
     
@@ -1032,7 +1032,7 @@ namespace njli
         }
         else
         {
-            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState\n");
+            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState in willEnterForeground\n");
         }
     }
     
@@ -1046,7 +1046,7 @@ namespace njli
         }
         else
         {
-            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState\n");
+            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState in willTerminate\n");
         }
     }
     
@@ -1060,7 +1060,7 @@ namespace njli
         }
         else
         {
-            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState\n");
+            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState in interrupt\n");
         }
     }
     
@@ -1074,7 +1074,7 @@ namespace njli
         }
         else
         {
-            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState\n");
+            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState in resumeInterrupt\n");
         }
     }
     
@@ -1088,7 +1088,7 @@ namespace njli
         }
         else
         {
-            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState\n");
+            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState in receivedMemoryWarning\n");
         }
     }
     

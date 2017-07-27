@@ -46,7 +46,7 @@ bool NJLIGameEngine::create(const char* deviceName, bool initLua)
         SDL_LogVerbose(SDL_LOG_CATEGORY_TEST, "Device Name = `%s`\n", deviceName);
 
         //        printGLInfo();
-        printGLInfo();
+        //printGLInfo();
 //    }
 
     initGL();

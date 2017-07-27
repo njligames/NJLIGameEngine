@@ -47,7 +47,7 @@ build_emscripten_xcode()
 
 cd projects
 
-#rm -rf emscripten_Sublime
+rm -rf emscripten_Sublime
 mkdir -p emscripten_Sublime
 cd emscripten_Sublime
 build_emscripten_sublime
