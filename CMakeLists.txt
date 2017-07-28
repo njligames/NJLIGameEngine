@@ -2,15 +2,20 @@ cmake_minimum_required(VERSION 3.4.1)
 
 PROJECT (${NJLI_BUILD_PLATFORM})
 
-
-#set(CMAKE_CXX_FLAGS_DEBUG "-DDEBUG")
-#set(CMAKE_C_FLAGS_DEBUG "-DDEBUG")
-
 # The version number.
+
+SET ( NJLIGameEngine_PACKAGE "NJLIGameEngine" )
+SET ( NJLIGameEngine_PACKAGE_TARNAME "NJLIGameEngine" )
+SET ( NJLIGameEngine_PACKAGE_NAME "The NJLIGames LLC. Game Engine" )
+SET ( NJLIGameEngine_BUGREPORT "jamesfolk1@gmail.com" )
+SET ( OPERATING_SYSTEM "${CMAKE_SYSTEM_NAME}")
+
 SET ( NJLIGameEngine_VERSION_MAJOR 1 )
 SET ( NJLIGameEngine_VERSION_MINOR 0 )
 SET ( NJLIGameEngine_VERSION_RELEASE 0 )
 SET ( NJLIGameEngine_VERSION "${NJLIGameEngine_VERSION_MAJOR}.${NJLIGameEngine_VERSION_MINOR}.${NJLIGameEngine_VERSION_RELEASE}")
+
+SET ( NJLIGameEngine_PACKAGE_STRING "${NJLIGameEngine_PACKAGE_NAME} ${NJLIGameEngine_VERSION}")
 
 ADD_DEFINITIONS(-DNJLI_VERSION_MAJOR=\"${NJLIGameEngine_VERSION_MAJOR}\")
 ADD_DEFINITIONS(-DNJLI_VERSION_MINOR=\"${NJLIGameEngine_VERSION_MINOR}\")
@@ -3357,6 +3362,82 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "android" )
     SET( NJLI_RESOURCES ${GAME_ASSETS} )
     SET( NJLI_RESOURCES_FILES ${GAME_ASSETS_FILES} )
 
+ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "linux" )
+  SET(imported_assimp_location                      "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/assimp/${NJLI_BUILD_PLATFORM}/Release/lib/libassimp.a" )
+    SET(imported_Bullet2FileLoader_location           "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/Release/lib/libBullet2FileLoader.a")
+    SET(imported_Bullet3Collision_location            "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/Release/lib/libBullet3Collision.a")
+    SET(imported_Bullet3Common_location               "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/Release/lib/libBullet3Common.a")
+    SET(imported_Bullet3Dynamics_location             "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/Release/lib/libBullet3Dynamics.a")
+    SET(imported_Bullet3Geometry_location             "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/Release/lib/libBullet3Geometry.a")
+    SET(imported_Bullet3OpenCL_clew_location          "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/Release/lib/libBullet3OpenCL_clew.a")
+    SET(imported_BulletCollision_location             "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/Release/lib/libBulletCollision.a" )
+    SET(imported_BulletDynamics_location              "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/Release/lib/libBulletDynamics.a" )
+    SET(imported_BulletFileLoader_location            "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/Release/lib/libBulletFileLoader.a" )
+    SET(imported_BulletInverseDynamics_location       "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/Release/lib/libBulletInverseDynamics.a")
+    SET(imported_BulletInverseDynamicsUtils_location  "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/Release/lib/libBulletInverseDynamicsUtils.a")
+    SET(imported_BulletSoftBody_location              "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/Release/lib/libBulletSoftBody.a" )
+    SET(imported_BulletWorldImporter_location         "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/Release/lib/libBulletWorldImporter.a" )
+    SET(imported_BulletXmlWorldImporter_location      "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/Release/lib/libBulletXmlWorldImporter.a" )
+    SET(imported_ConvexDecomposition_location         "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/Release/lib/libConvexDecomposition.a" )
+    SET(imported_GIMPACTUtils_location                "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/Release/lib/libGIMPACTUtils.a" )
+    SET(imported_HACD_location                        "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/Release/lib/libHACD.a" )
+    SET(imported_LinearMath_location                  "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/Release/lib/libLinearMath.a" )
+    SET(imported_flatbuffers_location                 "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/flatbuffers/${NJLI_BUILD_PLATFORM}/lib/Release/libflatbuffers.a")
+    SET(imported_imgui_location                       "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/imgui/${NJLI_BUILD_PLATFORM}/Release/libimgui.a" )
+    #SET(imported_ImGuizmo_location                   "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/ImGuizmo/${NJLI_BUILD_PLATFORM}/Release/libImGuizmo.a" )
+    SET(imported_jsoncpp_location                     "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/jsoncpp/${NJLI_BUILD_PLATFORM}/Release/libjsoncpp.a")
+    SET(imported_nanovg_location                      "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/nanovg/${NJLI_BUILD_PLATFORM}/Release/libnanovg.a" )
+    SET(imported_ogg_location                         "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/ogg/${NJLI_BUILD_PLATFORM}/Release/libogg.a" )
+    #SET(imported_opencv_calib3d_location              "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_calib3d.a")
+    #SET(imported_opencv_core_location                 "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/libopencv_core.a")
+    #SET(imported_opencv_features2d_location           "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_features2d.a")
+    #SET(imported_opencv_flann_location                "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_flann.a")
+    #SET(imported_opencv_imgcodecs_location            "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_imgcodecs.a")
+    #SET(imported_opencv_imgproc_location              "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_imgproc.a")
+    #SET(imported_opencv_ml_location                   "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_ml.a")
+    #SET(imported_opencv_objdetect_location            "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_objdetect.a")
+    #SET(imported_opencv_photo_location                "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_photo.a")
+    #SET(imported_opencv_shape_location                "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_shape.a")
+    #SET(imported_opencv_stitching_location            "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_stitching.a")
+    #SET(imported_opencv_video_location                "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_video.a")
+    #SET(imported_opencv_videostab_location            "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_videostab.a")
+    #SET(imported_IlmImf_location                     "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/share/OpenCV/3rdparty/lib/libIlmImf.a")
+    #SET(imported_libjasper_location                  "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/share/OpenCV/3rdparty/lib/liblibjasper.a")
+    #SET(imported_libjpeg_location                    "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/share/OpenCV/3rdparty/lib/liblibjpeg.a")
+    #SET(imported_libtiff_location                    "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/share/OpenCV/3rdparty/lib/liblibtiff.a")
+    #SET(imported_libwebp_location                    "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/share/OpenCV/3rdparty/lib/liblibwebp.a")
+    #SET(imported_zlib_location                       "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/share/OpenCV/3rdparty/lib/libzlib.a")
+    #SET(imported_sqlite_location                      "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/sqlite/${NJLI_BUILD_PLATFORM}/Release/libsqlite3.a")
+    SET(imported_stb_location                         "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/stb/${NJLI_BUILD_PLATFORM}/Release/libstb.a" )
+    #SET(imported_tinyxml2_location                   "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/tinyxml2/${NJLI_BUILD_PLATFORM}/Release/libtinyxml2.a" )
+    SET(imported_fmod_location                        "" )
+    SET(imported_SDL2_location                        "${CMAKE_SOURCE_DIR}/../External/thirdparty/SDL2/lib/linux/16.04.2_LTS/Release/libSDL2.a" )
+    SET(imported_uSynergy_location                    "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/usynergy/${NJLI_BUILD_PLATFORM}/Release/libuSynergy.a")
+    SET(imported_openal_location                      "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/openal/${NJLI_BUILD_PLATFORM}/Release/libopenal.a")
+    #SET(imported_alut_location                       "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/alut/${NJLI_BUILD_PLATFORM}/Release/libalut.a")
+    SET(imported_vorbis_location                      "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/Release/libvorbis.a")
+    SET(imported_vorbisenc_location                   "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/Release/libvorbisenc.a")
+    SET(imported_vorbisfile_location                  "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/Release/libvorbisfile.a")
+
+
+    #FIND_LIBRARY(log-lib log)
+    FIND_LIBRARY(dl-lib dl)
+    #FIND_LIBRARY(GLESv2-lib GLESv2)
+    FIND_LIBRARY(m-lib m)
+    FIND_LIBRARY(c-lib c)
+    #FIND_LIBRARY(EGL-lib EGL)
+    #FIND_LIBRARY(stdc++-lib stdc++)
+
+    SET(EXTRA_PLATFORM_LIBS
+        ${EXTRA_PLATFORM_LIBS}
+        ${dl-lib}
+        ${m-lib}
+        ${c-lib}
+        )
+
+    SET( NJLI_RESOURCES ${GAME_ASSETS} )
+    SET( NJLI_RESOURCES_FILES ${GAME_ASSETS_FILES} )
+
 ENDIF()
 
 #https://developer.android.com/studio/projects/add-native-code.html
@@ -4036,6 +4117,7 @@ IF( ${NJLI_BUILD_PLATFORM} STREQUAL "android" )
     TARGET_LINK_LIBRARIES( njli ${EXTRA_PLATFORM_LIBS} 
         ${NJLIGameEngine_LBY} 
         )
+    SET_TARGET_PROPERTIES( njli PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
 
     ADD_CUSTOM_COMMAND(TARGET njli
         PRE_BUILD
@@ -4066,6 +4148,7 @@ ELSE()
     SET_TARGET_PROPERTIES( libnjli_static PROPERTIES OUTPUT_NAME libnjli )
     SET_TARGET_PROPERTIES( libnjli_static PROPERTIES PREFIX "")
     TARGET_LINK_LIBRARIES( libnjli_static ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} )
+    SET_TARGET_PROPERTIES( libnjli_static PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
     #INSTALL( TARGETS libnjli_static DESTINATION lib/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE} )
 
 
@@ -4080,6 +4163,7 @@ ELSE()
       SET_TARGET_PROPERTIES( libnjli_lua_module PROPERTIES OUTPUT_NAME njli )
       SET_TARGET_PROPERTIES( libnjli_lua_module PROPERTIES PREFIX "")
       TARGET_LINK_LIBRARIES( libnjli_lua_module ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} )
+        SET_TARGET_PROPERTIES( libnjli_lua_module PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
       #INSTALL( TARGETS libnjli_lua_module DESTINATION module/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE} )
     ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
 
@@ -4090,6 +4174,7 @@ ELSE()
         SET_TARGET_PROPERTIES( libnjli_shared PROPERTIES OUTPUT_NAME libnjli )
         SET_TARGET_PROPERTIES( libnjli_shared PROPERTIES PREFIX "")
         TARGET_LINK_LIBRARIES( libnjli_shared ${EXTRA_PLATFORM_LIBS} ${NJLIGameEngine_LBY} )
+        SET_TARGET_PROPERTIES( libnjli_shared PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
         #INSTALL( TARGETS libnjli_shared DESTINATION lib/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE} )
 
 
@@ -4107,6 +4192,7 @@ ELSE()
       )
 
     SET_TARGET_PROPERTIES( EngineSource PROPERTIES OUTPUT_NAME ${NJLI_PRODUCT_NAME} )
+    SET_TARGET_PROPERTIES( EngineSource PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
     
     IF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" OR ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
         SET_TARGET_PROPERTIES (

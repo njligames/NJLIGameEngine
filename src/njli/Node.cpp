@@ -38,6 +38,7 @@
 #include "SteeringBehaviorMachine.h"
 #include "SDL_log.h"
 
+#include <algorithm>
 
 
 

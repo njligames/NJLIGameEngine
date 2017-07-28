@@ -9,7 +9,9 @@
 #include "DeviceUtil.h"
 
 #include <sys/types.h>
-#if defined(__ANDROID__) || defined(__EMSCRIPTEN__)
+
+
+#if defined(__ANDROID__) || defined(__EMSCRIPTEN__) || defined(__linux__)
 #include <sys/utsname.h>
 #else
 #include <sys/sysctl.h>
@@ -17,13 +19,13 @@
 
 std::string DeviceUtil::hardwareString()
 {
-#if defined(__ANDROID__) || defined(__EMSCRIPTEN__)
+#if defined(__ANDROID__) || defined(__EMSCRIPTEN__) || defined(__linux__)
 
     std::string hardware;
 
     struct utsname buffer;
 
-    int errno = 0;
+    //int errno = 0;
     if (uname(&buffer) != 0)
     {
         perror("uname");

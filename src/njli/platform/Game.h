@@ -67,7 +67,8 @@ public:
         PlatformID_Android,
         PlatformID_Emscripten,
         PlatformID_MacOSx,
-        PlatformID_tvOS
+        PlatformID_tvOS,
+        PlatformID_Linux
     };
 
     static PlatformID platformID();

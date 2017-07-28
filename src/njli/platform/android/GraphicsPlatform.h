@@ -26,4 +26,3 @@
 #define __ANDROID__
 #endif
 
-#define USE_FMOD

@@ -9,6 +9,7 @@ struct SoundInfo;
 #include <vector>
 //#include "../../Macros.h"
 #include <cstring>
+#include <cstdio>
 
 
 

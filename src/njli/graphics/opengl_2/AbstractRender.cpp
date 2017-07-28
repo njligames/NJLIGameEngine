@@ -14,6 +14,7 @@
 #include "AbstractRender.h"
 #include "Log.h"
 #include <string>
+#include <cstring>
 #include "Util.h"
 
 static f32 bgRed = 0.0f;

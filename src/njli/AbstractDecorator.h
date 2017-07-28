@@ -12,6 +12,8 @@
 #include "Util.h"
 #include <vector>
 #include <string>
+#include <cstring>
+#include <algorithm>
 
 namespace njli
 {

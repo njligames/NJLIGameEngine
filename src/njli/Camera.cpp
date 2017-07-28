@@ -24,6 +24,7 @@
 #define FORMATSTRING "{\"njli::Camera\":[]}"
 #include "btPrint.h"
 #include "JsonJLI.h"
+#include <cmath>
 
 static inline btTransform setFrom4x4Matrix(const btScalar *m)
 {
@@ -272,9 +273,9 @@ s32 gluProject(f32 objx, f32 objy, f32 objz,
     *winy=in[1];
     *winz=in[2];
     
-    SDL_assert(!isnan(*winx));
-    SDL_assert(!isnan(*winy));
-    SDL_assert(!isnan(*winz));
+    SDL_assert(!std::isnan(*winx));
+    SDL_assert(!std::isnan(*winy));
+    SDL_assert(!std::isnan(*winz));
     
     return(1);
 }
@@ -293,32 +294,32 @@ gluUnProject(f32 winx, f32 winy, f32 winz,
     __gluMultMatricesd(modelMatrix, projMatrix, finalMatrix);
     if (!__gluInvertMatrixd(finalMatrix, finalMatrix)) return(0);
     
-    in[0]=winx;SDL_assert(!isnan(in[0]));
-    in[1]=winy;SDL_assert(!isnan(in[1]));
-    in[2]=winz;SDL_assert(!isnan(in[2]));
+    in[0]=winx;SDL_assert(!std::isnan(in[0]));
+    in[1]=winy;SDL_assert(!std::isnan(in[1]));
+    in[2]=winz;SDL_assert(!std::isnan(in[2]));
     in[3]=1.0;
     
     /* Map x and y from window coordinates */
-    in[0] = (in[0] - viewport[0]) / viewport[2];SDL_assert(!isnan(in[0]));
-    in[1] = (in[1] - viewport[1]) / viewport[3];SDL_assert(!isnan(in[1]));
+    in[0] = (in[0] - viewport[0]) / viewport[2];SDL_assert(!std::isnan(in[0]));
+    in[1] = (in[1] - viewport[1]) / viewport[3];SDL_assert(!std::isnan(in[1]));
     
     /* Map to range -1 to 1 */
-    in[0] = in[0] * 2 - 1;SDL_assert(!isnan(in[0]));
-    in[1] = in[1] * 2 - 1;SDL_assert(!isnan(in[1]));
-    in[2] = in[2] * 2 - 1;SDL_assert(!isnan(in[2]));
+    in[0] = in[0] * 2 - 1;SDL_assert(!std::isnan(in[0]));
+    in[1] = in[1] * 2 - 1;SDL_assert(!std::isnan(in[1]));
+    in[2] = in[2] * 2 - 1;SDL_assert(!std::isnan(in[2]));
     
     __gluMultMatrixVecd(finalMatrix, in, out);
     if (out[3] == 0.0) return(0);
-    out[0] /= out[3];SDL_assert(!isnan(in[0]));
-    out[1] /= out[3];SDL_assert(!isnan(in[1]));
-    out[2] /= out[3];SDL_assert(!isnan(in[2]));
+    out[0] /= out[3];SDL_assert(!std::isnan(in[0]));
+    out[1] /= out[3];SDL_assert(!std::isnan(in[1]));
+    out[2] /= out[3];SDL_assert(!std::isnan(in[2]));
     *objx = out[0];
     *objy = out[1];
     *objz = out[2];
     
-    SDL_assert(!isnan(*objx));
-    SDL_assert(!isnan(*objy));
-    SDL_assert(!isnan(*objz));
+    SDL_assert(!std::isnan(*objx));
+    SDL_assert(!std::isnan(*objy));
+    SDL_assert(!std::isnan(*objz));
     return(1);
 }
 
@@ -1715,7 +1716,7 @@ namespace njli
         else
         {
             f32 aspectRatio = njli::World::getInstance()->getAspectRatio();
-            SDL_assert(!isnan(aspectRatio));
+            SDL_assert(!std::isnan(aspectRatio));
             
             top = getZNear() * btTan(btRadians(getFov()));
             bottom = -top;
