@@ -25,7 +25,7 @@ build_linux()
 
 cd projects
 
-#rm -rf linux_Makefiles
+rm -rf linux_Makefiles
 mkdir -p linux_Makefiles
 cd linux_Makefiles
 build_linux

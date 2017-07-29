@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.4.1)
 
-PROJECT (${NJLI_BUILD_PLATFORM})
+PROJECT (${NJLI_BUILD_PLATFORM}, C)
 
 # The version number.
 
@@ -9,6 +9,8 @@ SET ( NJLIGameEngine_PACKAGE_TARNAME "NJLIGameEngine" )
 SET ( NJLIGameEngine_PACKAGE_NAME "The NJLIGames LLC. Game Engine" )
 SET ( NJLIGameEngine_BUGREPORT "jamesfolk1@gmail.com" )
 SET ( OPERATING_SYSTEM "${CMAKE_SYSTEM_NAME}")
+
+STRING( COMPARE EQUAL "${OPERATING_SYSTEM}" "Linux" IS_LINUX )
 
 SET ( NJLIGameEngine_VERSION_MAJOR 1 )
 SET ( NJLIGameEngine_VERSION_MINOR 0 )
@@ -3411,7 +3413,7 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "linux" )
     SET(imported_stb_location                         "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/stb/${NJLI_BUILD_PLATFORM}/Release/libstb.a" )
     #SET(imported_tinyxml2_location                   "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/tinyxml2/${NJLI_BUILD_PLATFORM}/Release/libtinyxml2.a" )
     SET(imported_fmod_location                        "" )
-    SET(imported_SDL2_location                        "${CMAKE_SOURCE_DIR}/../External/thirdparty/SDL2/lib/linux/16.04.2_LTS/Release/libSDL2.a" )
+    SET(imported_SDL2_location                        "${CMAKE_SOURCE_DIR}/../External/thirdparty/SDL2/lib/linux/16.04.2_LTS/Release/libSDL2.so" )
     SET(imported_uSynergy_location                    "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/usynergy/${NJLI_BUILD_PLATFORM}/Release/libuSynergy.a")
     SET(imported_openal_location                      "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/openal/${NJLI_BUILD_PLATFORM}/Release/libopenal.a")
     #SET(imported_alut_location                       "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/alut/${NJLI_BUILD_PLATFORM}/Release/libalut.a")
@@ -4167,7 +4169,7 @@ ELSE()
       #INSTALL( TARGETS libnjli_lua_module DESTINATION module/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE} )
     ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
 
-    IF( NOT ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
+    IF( NOT ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" AND NOT ${NJLI_BUILD_PLATFORM} STREQUAL "linux")
         ADD_LIBRARY( libnjli_shared SHARED 
             ${NJLIGameEngine_SRCS} ${njli_generated} ${njli_generated_swig} ${njli_generated_swig_lua} 
             )
@@ -4349,8 +4351,8 @@ ELSE()
       INSTALL(FILES ${NJLI_SOURCE_DIRECTORY}/njli/platform/Game.h DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
     ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
 
-    IF( NOT ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
-      INSTALL(TARGETS libnjli_shared 
+    IF( NOT ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" AND NOT ${NJLI_BUILD_PLATFORM} STREQUAL "linux")
+      INSTALL(TARGETS libnjli_shared
         ARCHIVE DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/lib/static/
         LIBRARY DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/lib/
         RUNTIME DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin/
@@ -4360,7 +4362,7 @@ ELSE()
         PUBLIC_HEADER DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/public_header
         RESOURCE DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/${CMAKE_INSTALL_DATADIR}
       )
-    ENDIF( NOT ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
+    ENDIF( NOT ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" AND NOT ${NJLI_BUILD_PLATFORM} STREQUAL "linux")
 
     INSTALL(FILES ${NJLIGameEngine_DATAFILES} DESTINATION ${CMAKE_INSTALL_DATADIR})
     INSTALL(FILES ${NJLIGameEngine_TESTFILES} DESTINATION ${CMAKE_INSTALL_TESTDIR})

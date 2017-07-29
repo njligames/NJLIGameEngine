@@ -62,9 +62,12 @@ In file included from /usr/include/c++/5/memory:81:0,
 /home/jamesfolk/Downloads/Engine/src/njli/sound/openal/Wrapper_OGG.cpp:294:72: warning: format ‘%i’ expects argument of type ‘int’, but argument 2 has type ‘long int’ [-Wformat=]
                  SDL_Log("OGG stream ov_read error - returned %i", bytes);
                                                                         ^
-/usr/bin/ld: ../../../External/thirdparty/SDL2/lib/linux/16.04.2_LTS/Release/libSDL2.a(SDL_dynapi.o): relocation R_X86_64_32S against `.data' can not be used when making a shared object; recompile with -fPIC
-../../../External/thirdparty/SDL2/lib/linux/16.04.2_LTS/Release/libSDL2.a: error adding symbols: Bad value
-collect2: error: ld returned 1 exit status
-make[2]: *** [libnjli.so.1.0.0] Error 1
-make[1]: *** [CMakeFiles/libnjli_shared.dir/all] Error 2
+/bin/sh: 1: /Applications/Developer/TexturePacker.app/Contents/MacOS/TexturePacker: not found
+make[4]: *** [/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/cmake.in/Platform.in/common/assets/images/generated/country0.png] Error 127
+make[3]: *** [all] Error 2
+make[2]: *** [NJLIGameEngine-1.0.0] Error 2
+make[1]: *** [CMakeFiles/EngineSource.dir/all] Error 2
 make: *** [all] Error 2
+make[2]: *** [CMakeFiles/libnjli_static.dir/depend] Terminated
+make[1]: *** [CMakeFiles/libnjli_static.dir/all] Terminated
+make: *** [all] Terminated
