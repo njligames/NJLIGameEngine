@@ -16,7 +16,11 @@
 * Wait for readable/writable/connected socket with timeout
 \*-------------------------------------------------------------------------*/
 #ifndef SOCKET_SELECT
+#if defined(EMSCRIPTEN)
+#include <poll.h>
+#else
 #include <sys/poll.h>
+#endif
 
 #define WAITFD_R        POLLIN
 #define WAITFD_W        POLLOUT

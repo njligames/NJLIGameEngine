@@ -12,7 +12,10 @@ build_emscripten_sublime()
         -DNJLI_BUILD_PLATFORM="emscripten" \
         -DCMAKE_BUILD_TYPE=Debug \
         -DNJLI_BUILD_DIR="emscripten" \
-        -DNJLI_SOUND_PLATFORM=openal
+        -DNJLI_SOUND_PLATFORM=openal \
+        -DCMAKE_AR=/Applications/Developer/emsdk_portable/emscripten/1.37.9/emar \
+        -DCMAKE_CXX_COMPILER=/Applications/Developer/emsdk_portable/emscripten/1.37.9/em++ \
+        -DCMAKE_C_COMPILER=/Applications/Developer/emsdk_portable/emscripten/1.37.9/emcc
 
     if [ ! -z ${BUILD} ]
     then

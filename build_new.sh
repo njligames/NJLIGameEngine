@@ -16,4 +16,4 @@ export MY_ANDROID_NDK=/Users/jamesfolk/Library/Android/sdk/ndk-bundle
 export MY_ANDROID_API_LEVEL=24
 
 ./cmake_apple.sh
-#./cmake_emscripten.sh 
+./cmake_emscripten.sh 

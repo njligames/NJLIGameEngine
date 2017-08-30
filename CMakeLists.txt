@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.4.1)
 
-PROJECT (${NJLI_BUILD_PLATFORM}, C)
+
+PROJECT (${NJLI_BUILD_PLATFORM})
 
 # The version number.
 
@@ -9,6 +10,8 @@ SET ( NJLIGameEngine_PACKAGE_TARNAME "NJLIGameEngine" )
 SET ( NJLIGameEngine_PACKAGE_NAME "The NJLIGames LLC. Game Engine" )
 SET ( NJLIGameEngine_BUGREPORT "jamesfolk1@gmail.com" )
 SET ( OPERATING_SYSTEM "${CMAKE_SYSTEM_NAME}")
+
+SET( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11")
 
 STRING( COMPARE EQUAL "${OPERATING_SYSTEM}" "Linux" IS_LINUX )
 
@@ -3201,7 +3204,7 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
     #SET(imported_ImGuizmo_location                    "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/ImGuizmo/${NJLI_BUILD_PLATFORM}/Release/libImGuizmo.a" )
     SET(imported_jsoncpp_location                     "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/jsoncpp/${NJLI_BUILD_PLATFORM}/Release/libjsoncpp.a")
     SET(imported_nanovg_location                      "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/nanovg/${NJLI_BUILD_PLATFORM}/Release/libnanovg.a" )
-    SET(imported_ogg_location                         "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/ogg/${NJLI_BUILD_PLATFORM}/Release/libogg.a" )
+    SET(imported_ogg_location                         "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/ogg/${NJLI_BUILD_PLATFORM}/Release/libogg.so" )
     SET(imported_opencv_calib3d_location              "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_calib3d.a")
     SET(imported_opencv_core_location                 "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_core.a")
     SET(imported_opencv_features2d_location           "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_features2d.a")
@@ -3230,9 +3233,9 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
 
     SET(imported_openal_location                      "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/openal/${NJLI_BUILD_PLATFORM}/Release/libopenal.a")
     #SET(imported_alut_location                        "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/alut/${NJLI_BUILD_PLATFORM}/Release/libalut.a")
-    SET(imported_vorbis_location                      "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/Release/libvorbis.a")
-    SET(imported_vorbisenc_location                   "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/Release/libvorbisenc.a")
-    SET(imported_vorbisfile_location                  "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/Release/libvorbisfile.a")
+    SET(imported_vorbis_location                      "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/Release/libvorbis.so")
+    SET(imported_vorbisenc_location                   "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/Release/libvorbisenc.so")
+    SET(imported_vorbisfile_location                  "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/Release/libvorbisfile.so")
 
 
     #https://kripken.github.io/emscripten-site/docs/porting/files/packaging_files.html
@@ -3248,6 +3251,8 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
     LIST(APPEND EXTRA_PLATFORM_LIBS "-g3")
     LIST(APPEND EXTRA_PLATFORM_LIBS "-s ALLOW_MEMORY_GROWTH=1")
     LIST(APPEND EXTRA_PLATFORM_LIBS "-s FULL_ES2=1")
+    #LIST(APPEND EXTRA_PLATFORM_LIBS "-s EXPORTED_FUNCTIONS=\"['_vorbis_synthesis_idheader', '_ogg_stream_reset_serialno', '_oggpack_read', '_oggpack_readinit']\"")
+    
 
     #    SET( EXTRA_PLATFORM_LIBS 
     #        ${EXTRA_PLATFORM_LIBS}
@@ -3474,11 +3479,13 @@ ELSEIF( ${NJLI_SOUND_PLATFORM} STREQUAL "openal" )
     ADD_LIBRARY(imported_ogg STATIC IMPORTED )
     SET_TARGET_PROPERTIES(imported_ogg PROPERTIES IMPORTED_LOCATION ${imported_ogg_location})
     LIST(APPEND EXTRA_PLATFORM_LIBS imported_ogg)
+    MESSAGE("imported_ogg_location ${imported_ogg_location}")
 
     INCLUDE_DIRECTORIES("${CMAKE_SOURCE_DIR}/../External/thirdparty/vorbis/include" )
     ADD_LIBRARY(imported_vorbis STATIC IMPORTED )
     SET_TARGET_PROPERTIES(imported_vorbis PROPERTIES IMPORTED_LOCATION ${imported_vorbis_location})
     LIST(APPEND EXTRA_PLATFORM_LIBS imported_vorbis)
+    MESSAGE("imported_vorbis_location ${imported_vorbis_location}")
 
     ADD_LIBRARY(imported_vorbisenc STATIC IMPORTED )
     SET_TARGET_PROPERTIES(imported_vorbisenc PROPERTIES IMPORTED_LOCATION ${imported_vorbisenc_location})
@@ -4119,7 +4126,7 @@ IF( ${NJLI_BUILD_PLATFORM} STREQUAL "android" )
     TARGET_LINK_LIBRARIES( njli ${EXTRA_PLATFORM_LIBS} 
         ${NJLIGameEngine_LBY} 
         )
-    SET_TARGET_PROPERTIES( njli PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
+      #SET_TARGET_PROPERTIES( njli PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
 
     ADD_CUSTOM_COMMAND(TARGET njli
         PRE_BUILD
@@ -4136,7 +4143,7 @@ ELSE()
       ${NJLI_SOURCE_DIRECTORY}/njli/platform/Game.h
     )
     SET_TARGET_PROPERTIES( NJLIGameEngine PROPERTIES VERSION ${NJLIGameEngine_VERSION})
-    SET_TARGET_PROPERTIES( NJLIGameEngine PROPERTIES SOVERSION ${NJLIGameEngine_VERSION})
+    #SET_TARGET_PROPERTIES( NJLIGameEngine PROPERTIES SOVERSION ${NJLIGameEngine_VERSION})
     SET_TARGET_PROPERTIES( NJLIGameEngine PROPERTIES FRAMEWORK true)
     SET_TARGET_PROPERTIES( NJLIGameEngine PROPERTIES PUBLIC_HEADER ${NJLI_SOURCE_DIRECTORY}/njli/platform/Game.h)
 
@@ -4150,7 +4157,7 @@ ELSE()
     SET_TARGET_PROPERTIES( libnjli_static PROPERTIES OUTPUT_NAME libnjli )
     SET_TARGET_PROPERTIES( libnjli_static PROPERTIES PREFIX "")
     TARGET_LINK_LIBRARIES( libnjli_static ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} )
-    SET_TARGET_PROPERTIES( libnjli_static PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
+    #SET_TARGET_PROPERTIES( libnjli_static PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
     #INSTALL( TARGETS libnjli_static DESTINATION lib/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE} )
 
 
@@ -4165,7 +4172,7 @@ ELSE()
       SET_TARGET_PROPERTIES( libnjli_lua_module PROPERTIES OUTPUT_NAME njli )
       SET_TARGET_PROPERTIES( libnjli_lua_module PROPERTIES PREFIX "")
       TARGET_LINK_LIBRARIES( libnjli_lua_module ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} )
-        SET_TARGET_PROPERTIES( libnjli_lua_module PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
+      #SET_TARGET_PROPERTIES( libnjli_lua_module PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
       #INSTALL( TARGETS libnjli_lua_module DESTINATION module/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE} )
     ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
 
@@ -4176,7 +4183,7 @@ ELSE()
         SET_TARGET_PROPERTIES( libnjli_shared PROPERTIES OUTPUT_NAME libnjli )
         SET_TARGET_PROPERTIES( libnjli_shared PROPERTIES PREFIX "")
         TARGET_LINK_LIBRARIES( libnjli_shared ${EXTRA_PLATFORM_LIBS} ${NJLIGameEngine_LBY} )
-        SET_TARGET_PROPERTIES( libnjli_shared PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
+        #SET_TARGET_PROPERTIES( libnjli_shared PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
         #INSTALL( TARGETS libnjli_shared DESTINATION lib/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE} )
 
 
@@ -4194,7 +4201,7 @@ ELSE()
       )
 
     SET_TARGET_PROPERTIES( EngineSource PROPERTIES OUTPUT_NAME ${NJLI_PRODUCT_NAME} )
-    SET_TARGET_PROPERTIES( EngineSource PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
+    #SET_TARGET_PROPERTIES( EngineSource PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
     
     IF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" OR ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
         SET_TARGET_PROPERTIES (

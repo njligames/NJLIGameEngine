@@ -2,9 +2,9 @@
 # Custom rules for Ldoc
 .SUFFIXES: 
 all: \
-	/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/cmake.in/ldoc/index.html
+	/Users/jamesfolk/Documents/NJLI/Engine/cmake.in/ldoc/index.html
 
 
-/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/cmake.in/ldoc/index.html: 
+/Users/jamesfolk/Documents/NJLI/Engine/cmake.in/ldoc/index.html: 
 	echo "Generating API documentation with LDoc"
-	cd /Users/jamesfolk/Dropbox/Developer/NJLI/Engine/cmake.in && ldoc /Users/jamesfolk/Dropbox/Developer/NJLI/Engine/cmake.in/ldoc.in/
+	cd /Users/jamesfolk/Documents/NJLI/Engine/cmake.in && ldoc /Users/jamesfolk/Documents/NJLI/Engine/cmake.in/ldoc.in/

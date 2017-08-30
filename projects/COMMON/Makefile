@@ -1,6 +1,7 @@
 MAKEFILE_PATH := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 
-export ASSET_DIR = /Users/jamesfolk/Dropbox/Developer/NJLI/Engine/cmake.in/Platform.in/common
+#export ASSET_DIR = /Users/jamesfolk/Dropbox/Developer/NJLI/Engine/cmake.in/Platform.in/common
+export ASSET_DIR=/Users/jamesfolk/Documents/NJLI/Engine/cmake.in/Platform.in/common
 
 all: 
 	echo ${MAKEFILE_PATH}
@@ -23,7 +24,7 @@ all:
 	@cd $(MAKEFILE_PATH)/audio && make
 	@cd $(MAKEFILE_PATH)/gameplay_scripts/yappybirds_game && make
 	@cd $(MAKEFILE_PATH)/fonts && make
-	@cd $(MAKEFILE_PATH)/shaders && make clean && make
+	cd $(MAKEFILE_PATH)/shaders && make clean && make
 
 clean: 
 	@cd $(MAKEFILE_PATH)/gameplay_scripts/yappybirds_game && make clean

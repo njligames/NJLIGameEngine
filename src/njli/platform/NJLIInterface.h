@@ -10,6 +10,14 @@
 #define NJLIInterface_hpp
 
 #include "SDL.h"
+#include <vector>
+#include <map>
+
+extern std::vector<SDL_Joystick*> gGameJoysticks;
+typedef std::map<int, SDL_Joystick*> JoystickMap;
+typedef std::pair<int, SDL_Joystick*> JoystickPair;
+
+extern JoystickMap gGameJoystickMap;
 
 extern SDL_Window* gWindow;
 extern SDL_Renderer *gRenderer;

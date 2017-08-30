@@ -4,11 +4,11 @@ empty:=
 space:= $(empty) $(empty)
 spaceplus:= $(empty)\ $(empty)
 
-TARGETS += $(subst $(space),$(spaceplus),$(wildcard /Users/jamesfolk/Dropbox/Developer/NJLI/Engine/CMakeLists.txt))
-TARGETS += $(subst $(space),$(spaceplus),$(wildcard /Users/jamesfolk/Dropbox/Developer/NJLI/Engine/cmake.in/NJLIGameEngineConfig.h.in))
-TARGETS += $(subst $(space),$(spaceplus),$(wildcard /Users/jamesfolk/Dropbox/Developer/NJLI/Engine/projects/macOS_Xcode/CMakeFiles/3.7.2/CMakeCCompiler.cmake))
-TARGETS += $(subst $(space),$(spaceplus),$(wildcard /Users/jamesfolk/Dropbox/Developer/NJLI/Engine/projects/macOS_Xcode/CMakeFiles/3.7.2/CMakeCXXCompiler.cmake))
-TARGETS += $(subst $(space),$(spaceplus),$(wildcard /Users/jamesfolk/Dropbox/Developer/NJLI/Engine/projects/macOS_Xcode/CMakeFiles/3.7.2/CMakeSystem.cmake))
+TARGETS += $(subst $(space),$(spaceplus),$(wildcard /Users/jamesfolk/Documents/NJLI/Engine/CMakeLists.txt))
+TARGETS += $(subst $(space),$(spaceplus),$(wildcard /Users/jamesfolk/Documents/NJLI/Engine/cmake.in/NJLIGameEngineConfig.h.in))
+TARGETS += $(subst $(space),$(spaceplus),$(wildcard /Users/jamesfolk/Documents/NJLI/Engine/projects/macOS_Xcode/CMakeFiles/3.7.2/CMakeCCompiler.cmake))
+TARGETS += $(subst $(space),$(spaceplus),$(wildcard /Users/jamesfolk/Documents/NJLI/Engine/projects/macOS_Xcode/CMakeFiles/3.7.2/CMakeCXXCompiler.cmake))
+TARGETS += $(subst $(space),$(spaceplus),$(wildcard /Users/jamesfolk/Documents/NJLI/Engine/projects/macOS_Xcode/CMakeFiles/3.7.2/CMakeSystem.cmake))
 TARGETS += $(subst $(space),$(spaceplus),$(wildcard /usr/local/Cellar/cmake/3.7.2/share/cmake/Modules/CMakeCInformation.cmake))
 TARGETS += $(subst $(space),$(spaceplus),$(wildcard /usr/local/Cellar/cmake/3.7.2/share/cmake/Modules/CMakeCXXInformation.cmake))
 TARGETS += $(subst $(space),$(spaceplus),$(wildcard /usr/local/Cellar/cmake/3.7.2/share/cmake/Modules/CMakeCommonLanguageInclude.cmake))
@@ -29,5 +29,5 @@ TARGETS += $(subst $(space),$(spaceplus),$(wildcard /usr/local/Cellar/cmake/3.7.
 TARGETS += $(subst $(space),$(spaceplus),$(wildcard /usr/local/Cellar/cmake/3.7.2/share/cmake/Modules/Platform/Darwin.cmake))
 TARGETS += $(subst $(space),$(spaceplus),$(wildcard /usr/local/Cellar/cmake/3.7.2/share/cmake/Modules/Platform/UnixPaths.cmake))
 
-/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/projects/macOS_Xcode/CMakeFiles/cmake.check_cache: $(TARGETS)
-	/usr/local/Cellar/cmake/3.7.2/bin/cmake -H/Users/jamesfolk/Dropbox/Developer/NJLI/Engine -B/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/projects/macOS_Xcode
+/Users/jamesfolk/Documents/NJLI/Engine/projects/macOS_Xcode/CMakeFiles/cmake.check_cache: $(TARGETS)
+	/usr/local/Cellar/cmake/3.7.2/bin/cmake -H/Users/jamesfolk/Documents/NJLI/Engine -B/Users/jamesfolk/Documents/NJLI/Engine/projects/macOS_Xcode

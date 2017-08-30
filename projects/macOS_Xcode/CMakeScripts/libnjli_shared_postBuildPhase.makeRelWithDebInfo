@@ -7,4 +7,4 @@ all: \
 
 libnjli_shared_buildpart_0: 
 	echo "Creating symlinks"
-	/usr/local/Cellar/cmake/3.7.2/bin/cmake -E cmake_symlink_library /Users/jamesfolk/Dropbox/Developer/NJLI/Engine/projects/macOS_Xcode/RelWithDebInfo/libnjli.dylib /Users/jamesfolk/Dropbox/Developer/NJLI/Engine/projects/macOS_Xcode/RelWithDebInfo/libnjli.dylib /Users/jamesfolk/Dropbox/Developer/NJLI/Engine/projects/macOS_Xcode/RelWithDebInfo/libnjli.dylib
+	/usr/local/Cellar/cmake/3.7.2/bin/cmake -E cmake_symlink_library /Users/jamesfolk/Documents/NJLI/Engine/projects/macOS_Xcode/RelWithDebInfo/libnjli.dylib /Users/jamesfolk/Documents/NJLI/Engine/projects/macOS_Xcode/RelWithDebInfo/libnjli.dylib /Users/jamesfolk/Documents/NJLI/Engine/projects/macOS_Xcode/RelWithDebInfo/libnjli.dylib

@@ -37,7 +37,10 @@ android {
                 cppFlags "-std=gnu++11"
                 arguments "-DNJLI_BUILD_PLATFORM=android",
                         "-DCMAKE_SOURCE_DIR:STRING=${CMAKE_SOURCE_DIR}",
-                        "-DANDROID_STL=c++_shared"
+                        "-DANDROID_STL=c++_shared",
+                        "-DNJLI_SOUND_PLATFORM=${NJLI_SOUND_PLATFORM}",
+                        "-DNJLI_GRAPHICS_PLATFORM=${NJLI_GRAPHICS_PLATFORM}",
+                        "-DCMAKE_THIRDPARTY_DIR=${CMAKE_THIRDPARTY_DIR}"
             }
         }
 

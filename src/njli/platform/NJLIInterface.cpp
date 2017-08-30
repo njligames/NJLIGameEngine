@@ -8,6 +8,14 @@
 
 #include "NJLIInterface.h"
 #include "Game.h"
+#include <vector>
+#include <map>
+
+std::vector<SDL_Joystick*> gGameJoysticks;
+typedef std::map<int, SDL_Joystick*> JoystickMap;
+typedef std::pair<int, SDL_Joystick*> JoystickPair;
+
+JoystickMap gGameJoystickMap;
 
 SDL_Window* gWindow = nullptr;
 SDL_Renderer *gRenderer = nullptr;
@@ -150,6 +158,14 @@ void NJLI_HandleSurfaceChanged()
 void NJLI_HandleSurfaceDestroyed()
 {
     njli::NJLIGameEngine::destroy();
+    
+    for (JoystickMap::iterator i = gGameJoystickMap.begin(); i != gGameJoystickMap.end(); )
+    {
+        SDL_Joystick *joystick = i->second;
+        
+        SDL_JoystickClose(joystick);
+        i = gGameJoystickMap.erase(i);
+    }
     
     SDL_GL_DeleteContext(gGlContext);
     SDL_DestroyWindow(gWindow);

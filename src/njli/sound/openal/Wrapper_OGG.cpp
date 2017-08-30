@@ -94,7 +94,7 @@ WrapperOgg::WrapperOgg(int minDecompressLengthAtOnce)
 		if (this->minDecompressLengthAtOnce % OGG_BUFFER_SIZE != 0)
 		{
 			SDL_Log("OGG buffer size and OpenAL buffer size are not modulable !!");
-			SDL_Log("this->minDecompressLengthAtOnce % OGG_BUFFER_SIZE != 0");
+			SDL_Log("this->minDecompressLengthAtOnce %% OGG_BUFFER_SIZE != 0");
 		}
 	}
 
@@ -254,7 +254,7 @@ void WrapperOgg::DecompressAll(std::vector<char> & decompressBuffer)
 
 		if (bytes < 0)
 		{
-			SDL_Log("OGG stream ov_read error - returned %i", bytes);
+			SDL_Log("OGG stream ov_read error - returned %li", bytes);
 			continue;
 		}
 
@@ -291,7 +291,7 @@ void WrapperOgg::DecompressStream(std::vector<char> & decompressBuffer, bool inL
 
             if(bytes < 0)
             {
-                SDL_Log("OGG stream ov_read error - returned %i", bytes);
+                SDL_Log("OGG stream ov_read error - returned %li", bytes);
                 continue;
             }
             

@@ -643,7 +643,7 @@ namespace njli
     {
         GLint level = 0;
         GLint internalformat = GL_RGBA;
-        GLint border = 0;
+        //GLint border = 0;
         GLenum format = GL_RGBA;
         GLenum type = GL_UNSIGNED_BYTE;
         const GLvoid* pixels = (const GLvoid*)img.getDataPtr();

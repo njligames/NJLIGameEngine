@@ -43,11 +43,11 @@ OBJFILES_FRAGMENT := $(subst $(SRCDIR)/, $(OBJDIR)/, $(SRCFILES:%.fsh=%.fsh))
 shaders_opengl: $(OBJFILES_VERTEX) $(OBJFILES_FRAGMENT)
 
 $(OBJDIR)/%.vsh: $(addprefix $(SRCDIR)/, %.vsh)
-	@$(BIN) -v $(GL_TARGET) $^ $@
+	$(BIN) -v $(GL_TARGET) $^ $@
 	@$(CP) $^ $@_DEBUG
 
 $(OBJDIR)/%.fsh: $(addprefix $(SRCDIR)/, %.fsh)
-	@$(BIN) -f $(GL_TARGET) $^ $@
+	$(BIN) -f $(GL_TARGET) $^ $@
 	@$(CP) $^ $@_DEBUG
 
 clean:

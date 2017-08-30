@@ -24,7 +24,7 @@ WrapperWav::WrapperWav(int minProcesssLengthAtOnce)
 		if (this->minProcesssLengthAtOnce % WAV_BUFFER_SIZE != 0)
 		{
 			SDL_Log("OGG buffer size and OpenAL buffer size are not modulable !!");
-			SDL_Log("this->minProcesssLengthAtOnce % WAV_BUFFER_SIZE != 0");
+			SDL_Log("this->minProcesssLengthAtOnce %% WAV_BUFFER_SIZE != 0");
 		}
 	}
 

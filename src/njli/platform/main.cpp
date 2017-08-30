@@ -213,17 +213,47 @@ SDLTest_PrintEvent(SDL_Event * event)
                     event->wheel.x, event->wheel.y, event->wheel.direction, event->wheel.windowID);
             break;
         case SDL_JOYDEVICEADDED:
+        {
             SDL_Log("SDL EVENT: Joystick index %d attached",
                     event->jdevice.which);
+            
+            //Load joystick
+            SDL_Joystick *joystick = SDL_JoystickOpen( event->jdevice.which );
+            
+            if( joystick == NULL )
+            {
+                printf( "Warning: Unable to open game controller! SDL Error: %s\n", SDL_GetError() );
+            }
+            else
+            {
+                gGameJoystickMap.insert(JoystickPair(SDL_JoystickInstanceID(joystick), joystick));
+            }
+        }
             break;
         case SDL_JOYDEVICEREMOVED:
+        {
+            
             SDL_Log("SDL EVENT: Joystick %d removed",
                     event->jdevice.which);
+            
+            JoystickMap::iterator iter = gGameJoystickMap.find(event->jdevice.which);
+            if(iter != gGameJoystickMap.end())
+            {
+                SDL_Joystick *joystick = iter->second;
+                SDL_JoystickClose(joystick);
+            }
+        }
             break;
         case SDL_JOYBALLMOTION:
             SDL_Log("SDL EVENT: Joystick %d: ball %d moved by %d,%d",
                     event->jball.which, event->jball.ball, event->jball.xrel,
                     event->jball.yrel);
+            break;
+        case SDL_JOYAXISMOTION:
+        {
+            SDL_Log("SDL EVENT: Joystick %d: axis %d, value %d",
+                    event->jaxis.which, event->jaxis.axis, event->jaxis.value);
+        }
             break;
         case SDL_JOYHATMOTION:
         {
@@ -353,7 +383,7 @@ static int EventFilter(void* userdata, SDL_Event* event)
 //#endif
     
     njli::NJLIGameEngine::handleEvent(&event);
-    SDLTest_PrintEvent(event);
+//    SDLTest_PrintEvent(event);
     
     Uint32 eventType = event->type;
     
@@ -896,6 +926,14 @@ static void mainloop()
         njli::NJLIGameEngine::destroy();
         
         SDL_GL_DeleteContext(gGlContext);
+        
+        while(!gGameJoysticks.empty())
+        {
+            SDL_Joystick *joystick = gGameJoysticks.back();
+            gGameJoysticks.pop_back();
+            SDL_JoystickClose(joystick);
+        }
+        
         SDL_DestroyWindow(gWindow);
         SDL_Quit();
     }
@@ -1097,10 +1135,16 @@ int main(int argc, char** argv)
 #endif
     
     /* initialize SDL */
-    if (SDL_Init(SDL_INIT_VIDEO) < 0)
+    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK) < 0)
     {
-        printf("Could not initialize SDL\n");
+        printf( "SDL could not initialize! SDL Error: %s\n", SDL_GetError() );
         return 1;
+    }
+    
+    //Check for joysticks
+    if( SDL_NumJoysticks() < 1 )
+    {
+        printf( "Warning: No joysticks connected!\n" );
     }
     
 #if !defined (__ANDROID__)

@@ -233,11 +233,13 @@ namespace njli
     bool WorldInput::isPortraitOrientation()const
     {
 //        return (((UIInterfaceOrientation)m_Orientation == UIInterfaceOrientationPortrait) || ((UIInterfaceOrientation)m_Orientation == UIInterfaceOrientationPortraitUpsideDown));
+      return false;
     }
     
     bool WorldInput::isLandscapeOrientation()const
     {
 //        return (((UIInterfaceOrientation)m_Orientation == UIInterfaceOrientationLandscapeLeft) || ((UIInterfaceOrientation)m_Orientation == UIInterfaceOrientationLandscapeRight));
+      return false;
     }
     
     s32 WorldInput::getOrientation()const
