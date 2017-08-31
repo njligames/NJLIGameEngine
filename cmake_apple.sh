@@ -54,10 +54,15 @@ build_apple_xcode()
         -DNJLI_SOUND_PLATFORM=openal \
         -DNJLI_BUILD_DIR=${MY_BUILD_DIR}
 
+    xcodebuild -project ${MY_PLATFORM}.xcodeproj -target EngineSource -showBuildSettings
+
     if [ ! -z "${BUILD}" ]; then
         mkdir -p ../../ERRORS
         echo "" > ../../ERRORS/${MY_PLATFORM}.log
+
         xcodebuild -project ${MY_PLATFORM}.xcodeproj -target EngineSource -configuration Release DEVELOPMENT_TEAM=SRBQ5SCF5X 2> ../../ERRORS/${MY_PLATFORM}.log || { echo "${MY_PLATFORM} failed"; exit 1; }
+
+
         #cmake install
         #/usr/bin/xcrun -sdk iphoneos PackageApplication -v "${RELEASE_BUILDDIR}/${APPLICATION_NAME}.app" -o "${BUILD_HISTORY_DIR}/${APPLICATION_NAME}.ipa" --sign "${DEVELOPER_NAME}" --embed "${PROVISONING_PROFILE}"
 

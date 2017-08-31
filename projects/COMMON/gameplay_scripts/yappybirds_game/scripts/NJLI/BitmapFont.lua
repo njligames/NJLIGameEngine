@@ -248,8 +248,12 @@ function BitmapFont:linePixelWidth(line)
   
   for i=1, #words do
   
-    local word = words[i]
-    notword = notwords[i] or ''
+    local word = words[i] or ''
+    notword = ''
+    if notwords then
+      notword = notwords[i] or ''
+    end
+      
     
     temp = temp .. word
     temp = temp .. notword
@@ -288,7 +292,10 @@ function BitmapFont:fitTextInWidth(text, maxPixelWidth)
   for i=1, #words do
   
     local word = words[i]
-    notword = notwords[i] or ''
+    notword = ''
+    if notwords then
+      notword = notwords[i] or ''
+    end
     
     temp = temp .. word
     temp = temp .. notword

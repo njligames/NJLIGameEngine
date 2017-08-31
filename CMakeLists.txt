@@ -3237,48 +3237,35 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
     SET(imported_vorbisenc_location                   "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/Release/libvorbisenc.so")
     SET(imported_vorbisfile_location                  "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/Release/libvorbisfile.so")
 
-
     #https://kripken.github.io/emscripten-site/docs/porting/files/packaging_files.html
-
-    #-Wno-warn-absolute-paths --memory-init-file 0 -s DISABLE_EXCEPTION_CATCHING=0 -s ALLOW_MEMORY_GROWTH=1 -s LEGACY_GL_EMULATION=1
-
     SET (CMAKE_EXE_LINKER_FLAGS "--memory-init-file 1 --embed-file  ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/common/assets" )
 
-    ADD_DEFINITIONS(-DEMCC_DEBUG=1)
-    #ADD_DEFINITIONS(-DDEBUG=1)
-    LIST(APPEND EXTRA_PLATFORM_LIBS "-O0")
-    LIST(APPEND EXTRA_PLATFORM_LIBS "--js-opts 0")
-    LIST(APPEND EXTRA_PLATFORM_LIBS "-g3")
+    STRING( COMPARE EQUAL "${CMAKE_BUILD_TYPE}" "Debug" IS_DEBUG )
+    IF( IS_DEBUG)
+      # DEBUGGING: https://kripken.github.io/emscripten-site/docs/porting/Debugging.html#debugging-emcc-debug
+
+      SET( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g4")
+      SET( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -g4")
+
+      LIST(APPEND EXTRA_PLATFORM_LIBS "--profiling")
+      LIST(APPEND EXTRA_PLATFORM_LIBS "--js-opts 0")
+
+      #LIST(APPEND EXTRA_PLATFORM_LIBS "--cpuprofiler")
+      #LIST(APPEND EXTRA_PLATFORM_LIBS "--memoryprofiler")
+      #LIST(APPEND EXTRA_PLATFORM_LIBS "--threadprofiler")
+      
+    ELSE()
+      # OPTIMIZING: https://kripken.github.io/emscripten-site/docs/optimizing/Optimizing-Code.html
+      # SEPERATE ASM: https://kripken.github.io/emscripten-site/docs/optimizing/Optimizing-Code.html#avoid-memory-spikes-by-separating-out-asm-js
+
+      SET( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
+      SET( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O3")
+
+      #LIST(APPEND EXTRA_PLATFORM_LIBS "-s TOTAL_MEMORY=16*1024*1024")
+    ENDIF( IS_DEBUG)
+
     LIST(APPEND EXTRA_PLATFORM_LIBS "-s ALLOW_MEMORY_GROWTH=1")
     LIST(APPEND EXTRA_PLATFORM_LIBS "-s FULL_ES2=1")
-    #LIST(APPEND EXTRA_PLATFORM_LIBS "-s EXPORTED_FUNCTIONS=\"['_vorbis_synthesis_idheader', '_ogg_stream_reset_serialno', '_oggpack_read', '_oggpack_readinit']\"")
-    
-
-    #    SET( EXTRA_PLATFORM_LIBS 
-    #        ${EXTRA_PLATFORM_LIBS}
-    #        "-O0"
-    #        "--js-opts 0"
-    #        "-g4" 
-    #        "-s ALLOW_MEMORY_GROWTH=1"
-    #        #"-s ASSERTIONS=1"
-    #        #"-s DEMANGLE_SUPPORT=1"
-    #        "-s FULL_ES2=1"
-    #        )
-
-    #STRING( COMPARE EQUAL "${CMAKE_BUILD_TYPE}" "Debug" is_equal )
-    #IF( is_equal )
-    #    #https://kripken.github.io/emscripten-site/docs/porting/Debugging.html
-    #    ADD_DEFINITIONS(-DEMCC_DEBUG=1)
-    #    #ADD_DEFINITIONS(-DEMCC_AUTODEBUG=1)
-    #    SET ( EXTRA_PLATFORM_LIBS
-    #        ${EXTRA_PLATFORM_LIBS}
-    #        "-s ASSERTIONS=1"
-    #        "-s SAFE_HEAP=1"
-    #        "-s STACK_OVERFLOW_CHECK=1"
-    #        "--js-opts 0"
-    #        "-g4"
-    #        )
-    #ENDIF( is_equal )
 
 ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "android" )
 

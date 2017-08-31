@@ -1,2 +1,1 @@
-[0;33mwarning:[0m emitted code will contain very large numbers of local variables, which is bad for performance (build to JS with -O2 or above to avoid this - make sure to do so both on source files, and during 'linking')
-warning: unresolved symbol: setScriptDir
+WARNING:root:not all asm.js optimizations are possible with ALLOW_MEMORY_GROWTH, disabling those. [-Walmost-asm]
