@@ -211,7 +211,14 @@
         })();
 
         var script = document.createElement('script');
-        script.src = "emscripten_Sublime/NJLIGameEngine.js";
+        script.src = "emscripten_Sublime/the_asm.js";
+        script.onload = function() {
+          setTimeout(function() {
+            var script = document.createElement('script');
+            script.src = "emscripten_Sublime/the_rest.js";
+            document.body.appendChild(script);
+          }, 1); // delaying even 1ms is enough
+        };
         document.body.appendChild(script);
 
 </script>

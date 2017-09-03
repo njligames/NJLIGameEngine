@@ -11,8 +11,7 @@
 
 #include "Log.h"
 
-//#define EMSCRIPTEN_PATH "/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/cmake.in/Platform.in/common/assets/"
-#define EMSCRIPTEN_PATH "/Users/jamesfolk/Documents/NJLI/Engine/cmake.in/Platform.in/common/assets/"
+#define EMSCRIPTEN_PATH "./"
 
 // static int emscripten_read(void* cookie, char* buf, int size) {
 //   return AAsset_read((AAsset*)cookie, buf, size);

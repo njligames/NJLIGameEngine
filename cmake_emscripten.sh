@@ -37,11 +37,18 @@ build_emscripten_sublime()
 }
 
 cd projects
+rm emscripten_Sublime/NJLIGameEngine.js.mem
 
-#rm -rf emscripten_Sublime
+rm -rf emscripten_Sublime
 mkdir -p emscripten_Sublime
 cd emscripten_Sublime
+
 #build_emscripten_sublime Debug
 build_emscripten_sublime
+
 cd ..
 
+if [ ! -z ${BUILD} ]
+then
+  ./seperate_asm.sh
+fi

@@ -54,7 +54,7 @@ build_apple_xcode()
         -DNJLI_SOUND_PLATFORM=openal \
         -DNJLI_BUILD_DIR=${MY_BUILD_DIR}
 
-    xcodebuild -project ${MY_PLATFORM}.xcodeproj -target EngineSource -showBuildSettings
+    #xcodebuild -project ${MY_PLATFORM}.xcodeproj -target EngineSource -showBuildSettings
 
     if [ ! -z "${BUILD}" ]; then
         mkdir -p ../../ERRORS
