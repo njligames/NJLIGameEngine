@@ -1,6 +1,5 @@
 cmake_minimum_required(VERSION 3.4.1)
 
-
 PROJECT (${NJLI_BUILD_PLATFORM})
 
 # The version number.
@@ -11,7 +10,8 @@ SET ( NJLIGameEngine_PACKAGE_NAME "The NJLIGames LLC. Game Engine" )
 SET ( NJLIGameEngine_BUGREPORT "jamesfolk1@gmail.com" )
 SET ( OPERATING_SYSTEM "${CMAKE_SYSTEM_NAME}")
 
-SET( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11")
+SET( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11 -fno-exceptions -fno-stack-protector -m32 -fomit-frame-pointer -fno-unwind-tables -fno-asynchronous-unwind-tables -fno-math-errno")
+SET( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fno-exceptions -fno-stack-protector -m32 -fomit-frame-pointer -fno-unwind-tables -fno-asynchronous-unwind-tables -fno-math-errno")
 
 STRING( COMPARE EQUAL "${OPERATING_SYSTEM}" "Linux" IS_LINUX )
 
@@ -4181,7 +4181,6 @@ ELSE()
       #INSTALL( TARGETS libnjli_lua_module DESTINATION module/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE} )
     ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
 
-    #IF( NOT ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" AND NOT ${NJLI_BUILD_PLATFORM} STREQUAL "linux")
     IF( NOT ${NJLI_BUILD_PLATFORM} STREQUAL "linux")
         ADD_LIBRARY( libnjli_shared SHARED 
             ${NJLIGameEngine_SRCS} ${njli_generated} ${njli_generated_swig} ${njli_generated_swig_lua} 
