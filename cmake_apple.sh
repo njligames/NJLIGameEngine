@@ -54,16 +54,30 @@ build_apple_xcode()
         -DNJLI_SOUND_PLATFORM=openal \
         -DNJLI_BUILD_DIR=${MY_BUILD_DIR}
 
-    #xcodebuild -project ${MY_PLATFORM}.xcodeproj -target EngineSource -showBuildSettings
+    mkdir -p ../../SETTINGS
 
     if [ ! -z "${BUILD}" ]; then
         mkdir -p ../../ERRORS
         echo "" > ../../ERRORS/${MY_PLATFORM}.log
 
-        xcodebuild -project ${MY_PLATFORM}.xcodeproj -target EngineSource -configuration Release DEVELOPMENT_TEAM=SRBQ5SCF5X 2> ../../ERRORS/${MY_PLATFORM}.log || { echo "${MY_PLATFORM} failed"; exit 1; }
+        xcodebuild -project ${MY_PLATFORM}.xcodeproj -target install build -showBuildSettings > ../../SETTINGS/${MY_PLATFORM}.txt
+        #xcodebuild -configuration Release DEVELOPMENT_TEAM=SRBQ5SCF5X -target SWIGLua Ldoc Doxygen
+        xcodebuild -configuration Release DEVELOPMENT_TEAM=SRBQ5SCF5X -target install build
+
+
+
+
+
+
+
+        #cmake --build . --config Release
+        #xcodebuild -project ${MY_PLATFORM}.xcodeproj -target EngineSource -configuration Release DEVELOPMENT_TEAM=SRBQ5SCF5X 2> ../../ERRORS/${MY_PLATFORM}.log || { echo "${MY_PLATFORM} failed"; exit 1; }
+        #<cmake> --build . [--config <config>] [--target <target>] [-- -i]
+        #cmake install
 
 
         #cmake install
+        #xcodebuild -target install
         #/usr/bin/xcrun -sdk iphoneos PackageApplication -v "${RELEASE_BUILDDIR}/${APPLICATION_NAME}.app" -o "${BUILD_HISTORY_DIR}/${APPLICATION_NAME}.ipa" --sign "${DEVELOPER_NAME}" --embed "${PROVISONING_PROFILE}"
 
         
@@ -261,19 +275,19 @@ cd projects
 
 ##########################################3
 
-rm -rf ios_Xcode
-mkdir -p ios_Xcode
-cd ios_Xcode
-build_apple_xcode ios ${CMAKE_IOS_SYSTEM_VERSION} iphoneos 
-cd ..
+#rm -rf ios_Xcode
+#mkdir -p ios_Xcode
+#cd ios_Xcode
+#build_apple_xcode ios ${CMAKE_IOS_SYSTEM_VERSION} iphoneos 
+#cd ..
 
 ##########################################3
 
-rm -rf tvos_Xcode
-mkdir -p tvos_Xcode
-cd tvos_Xcode
-build_apple_xcode appletv ${CMAKE_TVOS_SYSTEM_VERSION} appletvos 
-cd ..
+#rm -rf tvos_Xcode
+#mkdir -p tvos_Xcode
+#cd tvos_Xcode
+#build_apple_xcode appletv ${CMAKE_TVOS_SYSTEM_VERSION} appletvos 
+#cd ..
 
 ##########################################3
 
