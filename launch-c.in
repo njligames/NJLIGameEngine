@@ -1,0 +1,5 @@
+#!/bin/sh
+export CCACHE_CCP2=true
+exec "${RULE_LAUNCH_COMPILE}" "${CMAKE_C_COMPILER}" "$@"
+
+

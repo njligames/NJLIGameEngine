@@ -1,6 +1,28 @@
 cmake_minimum_required(VERSION 3.4.1)
 
+#find_program(CCACHE_PROGRAM ccache)
+#if(CCACHE_PROGRAM)
+#  #Support Unit Makefiles and Ninja
+#  set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE "${CCACHE_PROGRAM}")
+#else()
+#  message("Supports ccache, but it isn't installed")
+#endif()
+
 PROJECT (${NJLI_BUILD_PLATFORM})
+
+#get_property(RULE_LAUNCH_COMPILE GLOBAL PROPERTY RULE_LAUNCH_COMPILE)
+#if(RULE_LAUNCH_COMPILE AND CMAKE_GENERATOR STREQUAL "Xcode")
+#  message("supporting ccache")
+#
+#  #Set up wrapper scripts
+#  configure_file(launch-c.in launch-c)
+#  configure_file(launch-cxx.in launch-cxx)
+#  execute_process(COMMAND chmod a+rx "${CMAKE_BINARY_DIR}/launch-c" "${CMAKE_BINARY_DIR}/launch-cxx")
+#
+#  #Set Xcode project attributes to route compilation through our scripts
+#  set(CMAKE_XCODE_ATTRIBUTE_CC "${CMAKE_BINARY_DIR}/launch-c")
+#  set(CMAKE_XCODE_ATTRIBUTE_CXX "${CMAKE_BINARY_DIR}/launch-cxx")
+#endif()
 
 # The version number.
 
@@ -144,10 +166,14 @@ IF( is_equal )
 ENDIF( is_equal )
 
 SET( NJLI_FMOD_EXTENSION "a")
+SET( NJLI_BINARY_EXTENSION "" )
+
 IF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
   SET( NJLI_FMOD_EXTENSION "dylib" )
 ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "android" )
   SET( NJLI_FMOD_EXTENSION "so" )
+ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
+  SET( NJLI_BINARY_EXTENSION ".js" )
 ENDIF()
 
 # configure a header file to pass some of the CMake settings
@@ -3107,7 +3133,7 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
     #SET(imported_ImGuizmo_location                    "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/ImGuizmo/macOS/10.12/Release/libImGuizmo.a" )
     SET(imported_jsoncpp_location                     "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/jsoncpp/${NJLI_BUILD_PLATFORM}/10.12/Release/libjsoncpp.a")
     SET(imported_nanovg_location                      "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/nanovg/${NJLI_BUILD_PLATFORM}/10.12/Release/libnanovg.a" )
-    SET(imported_ogg_location                         "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/ogg/${NJLI_BUILD_PLATFORM}/10.12/Release/libogg.dylib" )
+    SET(imported_ogg_location                         "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/ogg/${NJLI_BUILD_PLATFORM}/10.12/Release/libogg.a" )
     SET(imported_opencv_calib3d_location              "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.12/Release/lib/libopencv_calib3d.a")
     SET(imported_opencv_core_location                 "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.12/Release/lib/libopencv_core.a")
     SET(imported_opencv_features2d_location           "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/10.12/Release/lib/libopencv_features2d.a")
@@ -3136,9 +3162,9 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
 
     SET(imported_openal_location                      "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/openal/${NJLI_BUILD_PLATFORM}/10.12/libopenal.a")
     #SET(imported_alut_location                        "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/alut/${NJLI_BUILD_PLATFORM}/10.12/Release/lib/libalut.a")
-    SET(imported_vorbis_location                      "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/10.12/Release/libvorbis.dylib")
-    SET(imported_vorbisenc_location                   "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/10.12/Release/libvorbisenc.dylib")
-    SET(imported_vorbisfile_location                  "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/10.12/Release/libvorbisfile.dylib")
+    SET(imported_vorbis_location                      "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/10.12/Release/libvorbis.a")
+    SET(imported_vorbisenc_location                   "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/10.12/Release/libvorbisenc.a")
+    SET(imported_vorbisfile_location                  "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/10.12/Release/libvorbisfile.a")
 
     SET(NJLI_APPICON_NAME "AppIcon")
 
@@ -3484,13 +3510,13 @@ ELSEIF( ${NJLI_SOUND_PLATFORM} STREQUAL "openal" )
     ADD_LIBRARY(imported_ogg STATIC IMPORTED )
     SET_TARGET_PROPERTIES(imported_ogg PROPERTIES IMPORTED_LOCATION ${imported_ogg_location})
     LIST(APPEND EXTRA_PLATFORM_LIBS imported_ogg)
-    MESSAGE("imported_ogg_location ${imported_ogg_location}")
+    ##MESSAGE("imported_ogg_location ${imported_ogg_location}")
 
     #INCLUDE_DIRECTORIES("${CMAKE_SOURCE_DIR}/../External/thirdparty/vorbis/include" )
     ADD_LIBRARY(imported_vorbis STATIC IMPORTED )
     SET_TARGET_PROPERTIES(imported_vorbis PROPERTIES IMPORTED_LOCATION ${imported_vorbis_location})
     LIST(APPEND EXTRA_PLATFORM_LIBS imported_vorbis)
-    MESSAGE("imported_vorbis_location ${imported_vorbis_location}")
+    #MESSAGE("imported_vorbis_location ${imported_vorbis_location}")
 
     ADD_LIBRARY(imported_vorbisenc STATIC IMPORTED )
     SET_TARGET_PROPERTIES(imported_vorbisenc PROPERTIES IMPORTED_LOCATION ${imported_vorbisenc_location})
@@ -3715,10 +3741,10 @@ LIST(REMOVE_ITEM NJLIGameEngine_SRCS
     )
 
 SET(Binary_FILES
-  #${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/lua/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin/lua${NJLI_BINARY_EXTENSION}
-  #${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/lua/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin/luac${NJLI_BINARY_EXTENSION}
+  ${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/lua/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin/lua${NJLI_BINARY_EXTENSION}
+  ${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/lua/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin/luac${NJLI_BINARY_EXTENSION}
   ${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/assimp/${NJLI_BUILD_DIR}/Release/bin/assimp${NJLI_ASSIMP_POSTFIX}${NJLI_BINARY_EXTENSION}
-    )
+  )
 
 
 
@@ -4166,7 +4192,7 @@ ELSE()
     #INSTALL( TARGETS libnjli_static DESTINATION lib/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE} )
 
 
-    IF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
+    IF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" OR ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
       ADD_EXECUTABLE ( lua ${NJLIGameEngine_SRCS} ${njli_generated} ${njli_generated_swig} ${njli_generated_swig_lua} "${NJLI_SOURCE_DIRECTORY}/lua/src/lua.c" "${NJLI_SOURCE_DIRECTORY}/lua/src/lua.rc" )
       TARGET_LINK_LIBRARIES( lua ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} )
 
@@ -4179,9 +4205,9 @@ ELSE()
       TARGET_LINK_LIBRARIES( libnjli_lua_module ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} )
       #SET_TARGET_PROPERTIES( libnjli_lua_module PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
       #INSTALL( TARGETS libnjli_lua_module DESTINATION module/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE} )
-    ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
+    ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" OR ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten")
 
-    IF( NOT ${NJLI_BUILD_PLATFORM} STREQUAL "linux")
+    #IF( NOT ${NJLI_BUILD_PLATFORM} STREQUAL "linux")
         ADD_LIBRARY( libnjli_shared SHARED 
             ${NJLIGameEngine_SRCS} ${njli_generated} ${njli_generated_swig} ${njli_generated_swig_lua} 
             )
@@ -4192,9 +4218,9 @@ ELSE()
         #INSTALL( TARGETS libnjli_shared DESTINATION lib/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE} )
 
 
-    ENDIF()
+        #ENDIF()
 
-    MESSAGE("CMAKE_SOURCE_DIR ${CMAKE_SOURCE_DIR}/../External/thirdparty/android_file.h")
+        #MESSAGE("CMAKE_SOURCE_DIR ${CMAKE_SOURCE_DIR}/../External/thirdparty/android_file.h")
 
     ADD_EXECUTABLE( EngineSource
       ${CMAKE_SOURCE_DIR}/../External/thirdparty/android_file.cpp
@@ -4328,24 +4354,24 @@ ELSE()
     #    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/projects/COMMON 
     #    )
 
-    IF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" OR ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" OR ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
-      INSTALL(TARGETS NJLIGameEngine
-        ARCHIVE DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/lib/static/
-        LIBRARY DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/lib/
-        RUNTIME DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin/
-        FRAMEWORK DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/framework/
-        BUNDLE DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bundle/
-        PRIVATE_HEADER DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/private_header
-        PUBLIC_HEADER DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/public_header
-        #RESOURCE DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/${CMAKE_INSTALL_DATADIR}
-        RESOURCE DESTINATION ${NJLI_PRODUCT_NAME}/Contents/Resources
-      )
-    ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" OR ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" OR ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
+    #IF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" OR ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" OR ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
+    #  INSTALL(TARGETS NJLIGameEngine
+    #    ARCHIVE DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/lib/static/
+    #    LIBRARY DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/lib/
+    #    RUNTIME DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin/
+    #    FRAMEWORK DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/framework/
+    #    BUNDLE DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bundle/
+    #    PRIVATE_HEADER DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/private_header
+    #    PUBLIC_HEADER DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/public_header
+    #    #RESOURCE DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/${CMAKE_INSTALL_DATADIR}
+    #    RESOURCE DESTINATION ${NJLI_PRODUCT_NAME}/Contents/Resources
+    #  )
+    #ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" OR ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" OR ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
 
-    IF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
+    #IF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" OR ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
       #https://cmake.org/cmake/help/v3.0/command/install.html
-      #INSTALL(TARGETS lua luac EngineSource EngineLibrary libnjli_static libnjli_shared libnjli_lua_module
-      INSTALL(TARGETS libnjli_lua_module
+      INSTALL(TARGETS lua luac EngineSource libnjli_static libnjli_shared libnjli_lua_module
+      #INSTALL(TARGETS libnjli_lua_module
         ARCHIVE DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/lib/static/
         LIBRARY DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/lib/
         RUNTIME DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin/
@@ -4356,28 +4382,38 @@ ELSE()
         RESOURCE DESTINATION ${NJLI_PRODUCT_NAME}/Contents/Resources/
       )
       INSTALL(PROGRAMS ${Binary_FILES} DESTINATION ${NJLI_BUILD_DIR}/bin/thirdparty/ )
+
+    IF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
       INSTALL(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/ldoc DESTINATION ${CMAKE_INSTALL_DOCDIR})
       INSTALL(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/html DESTINATION ${CMAKE_INSTALL_DOCDIR})
       INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/lnjli.xml DESTINATION ${CMAKE_INSTALL_DATADIR}/swig/lua)
       INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/lbullet.xml DESTINATION ${CMAKE_INSTALL_DATADIR}/swig/lua)
-      INSTALL(FILES ${NJLI_SOURCE_DIRECTORY}/njli/platform/Game.h DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
     ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
 
-    IF( NOT ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" AND NOT ${NJLI_BUILD_PLATFORM} STREQUAL "linux")
-      INSTALL(TARGETS libnjli_shared
-        ARCHIVE DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/lib/static/
-        LIBRARY DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/lib/
-        RUNTIME DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin/
-        FRAMEWORK DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/framework/
-        BUNDLE DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bundle/
-        PRIVATE_HEADER DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/private_header
-        PUBLIC_HEADER DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/public_header
-        RESOURCE DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/${CMAKE_INSTALL_DATADIR}
-      )
-    ENDIF( NOT ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" AND NOT ${NJLI_BUILD_PLATFORM} STREQUAL "linux")
+    #INSTALL(FILES ${NJLI_SOURCE_DIRECTORY}/njli/platform/Game.h DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+
+    #ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" OR ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
+
+#    IF( NOT ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" AND NOT ${NJLI_BUILD_PLATFORM} STREQUAL "linux")
+#      INSTALL(TARGETS libnjli_shared
+#        ARCHIVE DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/lib/static/
+#        LIBRARY DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/lib/
+#        RUNTIME DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin/
+#        FRAMEWORK DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/framework/
+#        BUNDLE DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bundle/
+#        PRIVATE_HEADER DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/private_header
+#        PUBLIC_HEADER DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/public_header
+#        RESOURCE DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/${CMAKE_INSTALL_DATADIR}
+#      )
+#    ENDIF( NOT ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" AND NOT ${NJLI_BUILD_PLATFORM} STREQUAL "linux")
 
     INSTALL(FILES ${NJLIGameEngine_DATAFILES} DESTINATION ${CMAKE_INSTALL_DATADIR})
     INSTALL(FILES ${NJLIGameEngine_TESTFILES} DESTINATION ${CMAKE_INSTALL_TESTDIR})
+    IF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
+      INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/${NJLI_PRODUCT_NAME}.js.mem DESTINATION ${CMAKE_INSTALL_DATADIR}/emscripten)
+      INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/lua.js.mem DESTINATION ${CMAKE_INSTALL_DATADIR}/emscripten)
+      INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/luac.js.mem DESTINATION ${CMAKE_INSTALL_DATADIR}/emscripten)
+    ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
 
 #INSTALL(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/ldoc DESTINATION ${CMAKE_INSTALL_DOCDIR})
 #INSTALL(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/docbook DESTINATION ${CMAKE_INSTALL_DOCDIR})
@@ -4387,3 +4423,4 @@ ELSE()
 #INSTALL(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/xml DESTINATION ${CMAKE_INSTALL_DOCDIR})
 
 ENDIF()
+

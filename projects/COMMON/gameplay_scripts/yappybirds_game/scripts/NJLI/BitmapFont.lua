@@ -273,7 +273,7 @@ function BitmapFont:linePixelWidth(line)
 end
 
 function BitmapFont:fitTextInWidth(text, maxPixelWidth)
-  
+
   local words = Allen.words(text)
   local currentPixelWidth = 0.0
   local ret = ""
@@ -310,6 +310,7 @@ function BitmapFont:fitTextInWidth(text, maxPixelWidth)
     else
       currentPixelWidth = (currentPixelWidth + wordPixelWidth)
     end
+    
     ret = ret .. word
     ret = ret .. notword
     
