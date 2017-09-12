@@ -2,7 +2,7 @@
 BIN := sox
 OUT_FORMAT := ogg
 
-OBJDIR := $(ASSET_DIR)/assets/sounds
+OBJDIR := $(NJLI_GAME_ENGINE_ASSET_DIR)/assets/sounds
 SRCDIR := .
 
 SRCFILES := $(addsuffix /*, $(SRCDIR))

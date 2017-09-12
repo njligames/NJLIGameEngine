@@ -23,7 +23,7 @@ TEXTUREPACKER_SRCFILES := $(addsuffix /*, $(TEXTUREPACKER_SRCDIR))
 TEXTUREPACKER_SRCFILES := $(wildcard $(TEXTUREPACKER_SRCFILES))
 
 TEXTUREPACKER_LUA_OBJDIR   := ../gameplay_scripts/yappybirds_game/scripts/generated/texturepacker
-TEXTUREPACKER_PNG_OBJDIR   := $(ASSET_DIR)/assets/images/generated
+TEXTUREPACKER_PNG_OBJDIR   := $(NJLI_GAME_ENGINE_ASSET_DIR)/assets/images/generated
 
 TEXTUREPACKER_OBJECTS := $(TEXTUREPACKER_PNG_OBJDIR)/country0.png
 

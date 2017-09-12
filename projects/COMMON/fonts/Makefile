@@ -9,7 +9,7 @@ ECHO := echo
 
 OUT_FORMAT := fnt
 
-FNT_OBJDIR := $(ASSET_DIR)/assets/fonts
+FNT_OBJDIR := $(NJLI_GAME_ENGINE_ASSET_DIR)/assets/fonts
 FNT_SRCDIR := .
 
 FNT_SRCFILES := $(addsuffix /*, $(FNT_SRCDIR))
@@ -18,7 +18,7 @@ FNT_SRCFILES := $(filter %.GlyphProject, $(FNT_SRCFILES))
 
 FNT_OBJFILES := $(subst $(FNT_SRCDIR)/, $(FNT_OBJDIR)/, $(FNT_SRCFILES:%.GlyphProject=%.$(OUT_FORMAT)))
 
-IMG_OBJDIR := $(ASSET_DIR)/assets/images/generated
+IMG_OBJDIR := $(NJLI_GAME_ENGINE_ASSET_DIR)/assets/images/generated
 
 fonts: $(FNT_OBJFILES)
 

@@ -44,25 +44,30 @@ build_apple_xcode()
     fi
 
 
+        #-DCMAKE_BUILD_TYPE=Release \
+        #-DCMAKE_IOS_INSTALL_UNIVERSAL_LIBS=YES \
+        #-DCMAKE_XCODE_ATTRIBUTE_ONLY_ACTIVE_ARCH=NO \
     cmake ../.. -G "Xcode" \
         -DCMAKE_CXX_FLAGS='-std=gnu++11' \
         -DCMAKE_INSTALL_PREFIX=../../generated/ \
         -DNJLI_THIRDPARTY_DIRECTORY:STRING=${MY_THIRDPARTY_DIR} \
         -DNJLI_BUILD_PLATFORM=${MY_PLATFORM} \
-        -DCMAKE_BUILD_TYPE=Release \
         -DNJLI_GRAPHICS_PLATFORM=${MY_GRAPHICS_PLATFORM} \
         -DNJLI_SOUND_PLATFORM=openal \
+        -DCMAKE_BUILD_TYPE=Release \
         -DNJLI_BUILD_DIR=${MY_BUILD_DIR}
 
     mkdir -p ../../SETTINGS
 
     if [ ! -z "${BUILD}" ]; then
-        mkdir -p ../../ERRORS
-        echo "" > ../../ERRORS/${MY_PLATFORM}.log
+        mkdir -p ../../generated/ERRORS
+        echo "" > ../../generated/ERRORS/${MY_PLATFORM}.log
 
-        xcodebuild -project ${MY_PLATFORM}.xcodeproj -target install build -showBuildSettings > ../../SETTINGS/${MY_PLATFORM}.txt
-        #xcodebuild -configuration Release DEVELOPMENT_TEAM=SRBQ5SCF5X -target SWIGLua Ldoc Doxygen
-        xcodebuild -configuration Release DEVELOPMENT_TEAM=SRBQ5SCF5X -target install build
+        xcodebuild -project ${MY_PLATFORM}.xcodeproj -target install build -showBuildSettings > ../../generated/SETTINGS/${MY_PLATFORM}.txt
+        xcodebuild -configuration Release DEVELOPMENT_TEAM=SRBQ5SCF5X -target install build #> ../../generated/ERRORS/${MY_PLATFORM}.log
+
+        #cpack ../.. --config CPackConfig.cmake
+        cpack ../.. --config CPackSourceConfig.cmake
 
 
 

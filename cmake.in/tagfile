@@ -2,7 +2,7 @@
 <tagfile>
   <compound kind="file">
     <name>btPrint.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/bullet/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/bullet/</path>
     <filename>bt_print_8h</filename>
     <member kind="variable">
       <type>const btVector3</type>
@@ -14,7 +14,7 @@
   </compound>
   <compound kind="file">
     <name>btVector2.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/bullet/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/bullet/</path>
     <filename>bt_vector2_8h</filename>
     <class kind="class">btVector2</class>
     <class kind="struct">btVector2FloatData</class>
@@ -204,7 +204,7 @@
   </compound>
   <compound kind="file">
     <name>lualoadexts.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/exts/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/lua/exts/</path>
     <filename>lualoadexts_8h</filename>
     <includes id="lauxlib_8h" name="lauxlib.h" local="yes" imported="no">lauxlib.h</includes>
     <member kind="function">
@@ -217,7 +217,7 @@
   </compound>
   <compound kind="file">
     <name>auxiliar.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/exts/luasocket/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/lua/exts/luasocket/</path>
     <filename>auxiliar_8h</filename>
     <includes id="lua_8h" name="lua.h" local="yes" imported="no">lua.h</includes>
     <includes id="lauxlib_8h" name="lauxlib.h" local="yes" imported="no">lauxlib.h</includes>
@@ -302,7 +302,7 @@
   </compound>
   <compound kind="file">
     <name>buffer.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/exts/luasocket/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/lua/exts/luasocket/</path>
     <filename>buffer_8h</filename>
     <includes id="lua_8h" name="lua.h" local="yes" imported="no">lua.h</includes>
     <includes id="io_8h" name="io.h" local="yes" imported="no">io.h</includes>
@@ -381,14 +381,14 @@
   </compound>
   <compound kind="file">
     <name>compat.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/exts/luasocket/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/lua/exts/luasocket/</path>
     <filename>compat_8h</filename>
     <includes id="lua_8h" name="lua.h" local="yes" imported="no">lua.h</includes>
     <includes id="lauxlib_8h" name="lauxlib.h" local="yes" imported="no">lauxlib.h</includes>
   </compound>
   <compound kind="file">
     <name>except.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/exts/luasocket/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/lua/exts/luasocket/</path>
     <filename>except_8h</filename>
     <includes id="lua_8h" name="lua.h" local="yes" imported="no">lua.h</includes>
     <member kind="function">
@@ -401,7 +401,7 @@
   </compound>
   <compound kind="file">
     <name>inet.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/exts/luasocket/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/lua/exts/luasocket/</path>
     <filename>inet_8h</filename>
     <includes id="lua_8h" name="lua.h" local="yes" imported="no">lua.h</includes>
     <includes id="socket_8h" name="socket.h" local="yes" imported="no">socket.h</includes>
@@ -479,7 +479,7 @@
   </compound>
   <compound kind="file">
     <name>io.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/exts/luasocket/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/lua/exts/luasocket/</path>
     <filename>io_8h</filename>
     <includes id="lua_8h" name="lua.h" local="yes" imported="no">lua.h</includes>
     <includes id="timeout_8h" name="timeout.h" local="yes" imported="no">timeout.h</includes>
@@ -560,7 +560,7 @@
   </compound>
   <compound kind="file">
     <name>luasocket.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/exts/luasocket/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/lua/exts/luasocket/</path>
     <filename>luasocket_8h</filename>
     <includes id="lua_8h" name="lua.h" local="yes" imported="no">lua.h</includes>
     <member kind="define">
@@ -594,7 +594,7 @@
   </compound>
   <compound kind="file">
     <name>mime.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/exts/luasocket/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/lua/exts/luasocket/</path>
     <filename>mime_8h</filename>
     <includes id="lua_8h" name="lua.h" local="yes" imported="no">lua.h</includes>
     <member kind="define">
@@ -635,7 +635,7 @@
   </compound>
   <compound kind="file">
     <name>options.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/exts/luasocket/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/lua/exts/luasocket/</path>
     <filename>options_8h</filename>
     <includes id="lua_8h" name="lua.h" local="yes" imported="no">lua.h</includes>
     <includes id="socket_8h" name="socket.h" local="yes" imported="no">socket.h</includes>
@@ -895,7 +895,7 @@
   </compound>
   <compound kind="file">
     <name>pierror.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/exts/luasocket/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/lua/exts/luasocket/</path>
     <filename>pierror_8h</filename>
     <member kind="define">
       <type>#define</type>
@@ -1033,7 +1033,7 @@
   </compound>
   <compound kind="file">
     <name>select.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/exts/luasocket/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/lua/exts/luasocket/</path>
     <filename>select_8h</filename>
     <member kind="function">
       <type>int</type>
@@ -1045,7 +1045,7 @@
   </compound>
   <compound kind="file">
     <name>socket.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/exts/luasocket/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/lua/exts/luasocket/</path>
     <filename>socket_8h</filename>
     <includes id="io_8h" name="io.h" local="yes" imported="no">io.h</includes>
     <includes id="usocket_8h" name="usocket.h" local="yes" imported="no">usocket.h</includes>
@@ -1235,7 +1235,7 @@
   </compound>
   <compound kind="file">
     <name>tcp.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/exts/luasocket/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/lua/exts/luasocket/</path>
     <filename>tcp_8h</filename>
     <includes id="lua_8h" name="lua.h" local="yes" imported="no">lua.h</includes>
     <includes id="buffer_8h" name="buffer.h" local="yes" imported="no">buffer.h</includes>
@@ -1266,7 +1266,7 @@
   </compound>
   <compound kind="file">
     <name>timeout.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/exts/luasocket/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/lua/exts/luasocket/</path>
     <filename>timeout_8h</filename>
     <includes id="lua_8h" name="lua.h" local="yes" imported="no">lua.h</includes>
     <class kind="struct">t_timeout_</class>
@@ -1357,7 +1357,7 @@
   </compound>
   <compound kind="file">
     <name>udp.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/exts/luasocket/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/lua/exts/luasocket/</path>
     <filename>udp_8h</filename>
     <includes id="lua_8h" name="lua.h" local="yes" imported="no">lua.h</includes>
     <includes id="timeout_8h" name="timeout.h" local="yes" imported="no">timeout.h</includes>
@@ -1394,7 +1394,7 @@
   </compound>
   <compound kind="file">
     <name>unix.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/exts/luasocket/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/lua/exts/luasocket/</path>
     <filename>unix_8h</filename>
     <includes id="lua_8h" name="lua.h" local="yes" imported="no">lua.h</includes>
     <includes id="buffer_8h" name="buffer.h" local="yes" imported="no">buffer.h</includes>
@@ -1432,7 +1432,7 @@
   </compound>
   <compound kind="file">
     <name>unixdgram.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/exts/luasocket/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/lua/exts/luasocket/</path>
     <filename>unixdgram_8h</filename>
     <includes id="unix_8h" name="unix.h" local="yes" imported="no">unix.h</includes>
     <member kind="function">
@@ -1445,7 +1445,7 @@
   </compound>
   <compound kind="file">
     <name>unixstream.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/exts/luasocket/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/lua/exts/luasocket/</path>
     <filename>unixstream_8h</filename>
     <includes id="unix_8h" name="unix.h" local="yes" imported="no">unix.h</includes>
     <member kind="function">
@@ -1458,7 +1458,7 @@
   </compound>
   <compound kind="file">
     <name>usocket.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/exts/luasocket/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/lua/exts/luasocket/</path>
     <filename>usocket_8h</filename>
     <member kind="define">
       <type>#define</type>
@@ -1498,7 +1498,7 @@
   </compound>
   <compound kind="file">
     <name>wsocket.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/exts/luasocket/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/lua/exts/luasocket/</path>
     <filename>wsocket_8h</filename>
     <member kind="define">
       <type>#define</type>
@@ -1559,7 +1559,7 @@
   </compound>
   <compound kind="file">
     <name>luasocketscripts.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/exts/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/lua/exts/</path>
     <filename>luasocketscripts_8h</filename>
     <includes id="lua_8h" name="lua.h" local="yes" imported="no">lua.h</includes>
     <member kind="define">
@@ -1628,7 +1628,7 @@
   </compound>
   <compound kind="file">
     <name>lapi.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/src/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/lua/src/</path>
     <filename>lapi_8h</filename>
     <includes id="llimits_8h" name="llimits.h" local="yes" imported="no">llimits.h</includes>
     <includes id="lstate_8h" name="lstate.h" local="yes" imported="no">lstate.h</includes>
@@ -1656,7 +1656,7 @@
   </compound>
   <compound kind="file">
     <name>lauxlib.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/src/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/lua/src/</path>
     <filename>lauxlib_8h</filename>
     <includes id="lua_8h" name="lua.h" local="yes" imported="no">lua.h</includes>
     <class kind="struct">luaL_Reg</class>
@@ -2155,7 +2155,7 @@
   </compound>
   <compound kind="file">
     <name>lcode.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/src/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/lua/src/</path>
     <filename>lcode_8h</filename>
     <includes id="llex_8h" name="llex.h" local="yes" imported="no">llex.h</includes>
     <includes id="lobject_8h" name="lobject.h" local="yes" imported="no">lobject.h</includes>
@@ -2620,7 +2620,7 @@
   </compound>
   <compound kind="file">
     <name>lctype.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/src/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/lua/src/</path>
     <filename>lctype_8h</filename>
     <includes id="lua_8h" name="lua.h" local="yes" imported="no">lua.h</includes>
     <member kind="define">
@@ -2682,7 +2682,7 @@
   </compound>
   <compound kind="file">
     <name>ldebug.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/src/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/lua/src/</path>
     <filename>ldebug_8h</filename>
     <includes id="lstate_8h" name="lstate.h" local="yes" imported="no">lstate.h</includes>
     <member kind="define">
@@ -2772,7 +2772,7 @@
   </compound>
   <compound kind="file">
     <name>ldo.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/src/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/lua/src/</path>
     <filename>ldo_8h</filename>
     <includes id="lobject_8h" name="lobject.h" local="yes" imported="no">lobject.h</includes>
     <includes id="lstate_8h" name="lstate.h" local="yes" imported="no">lstate.h</includes>
@@ -2906,7 +2906,7 @@
   </compound>
   <compound kind="file">
     <name>lfunc.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/src/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/lua/src/</path>
     <filename>lfunc_8h</filename>
     <includes id="lobject_8h" name="lobject.h" local="yes" imported="no">lobject.h</includes>
     <class kind="struct">UpVal</class>
@@ -3004,7 +3004,7 @@
   </compound>
   <compound kind="file">
     <name>lgc.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/src/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/lua/src/</path>
     <filename>lgc_8h</filename>
     <includes id="lobject_8h" name="lobject.h" local="yes" imported="no">lobject.h</includes>
     <includes id="lstate_8h" name="lstate.h" local="yes" imported="no">lstate.h</includes>
@@ -3368,7 +3368,7 @@
   </compound>
   <compound kind="file">
     <name>llex.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/src/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/lua/src/</path>
     <filename>llex_8h</filename>
     <includes id="lobject_8h" name="lobject.h" local="yes" imported="no">lobject.h</includes>
     <includes id="lzio_8h" name="lzio.h" local="yes" imported="no">lzio.h</includes>
@@ -3691,7 +3691,7 @@
   </compound>
   <compound kind="file">
     <name>llimits.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/src/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/lua/src/</path>
     <filename>llimits_8h</filename>
     <includes id="lua_8h" name="lua.h" local="yes" imported="no">lua.h</includes>
     <class kind="union">L_Umaxalign</class>
@@ -4090,7 +4090,7 @@
   </compound>
   <compound kind="file">
     <name>lmem.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/src/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/lua/src/</path>
     <filename>lmem_8h</filename>
     <includes id="llimits_8h" name="llimits.h" local="yes" imported="no">llimits.h</includes>
     <includes id="lua_8h" name="lua.h" local="yes" imported="no">lua.h</includes>
@@ -4195,7 +4195,7 @@
   </compound>
   <compound kind="file">
     <name>lobject.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/src/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/lua/src/</path>
     <filename>lobject_8h</filename>
     <includes id="llimits_8h" name="llimits.h" local="yes" imported="no">llimits.h</includes>
     <includes id="lua_8h" name="lua.h" local="yes" imported="no">lua.h</includes>
@@ -5142,7 +5142,7 @@
   </compound>
   <compound kind="file">
     <name>lopcodes.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/src/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/lua/src/</path>
     <filename>lopcodes_8h</filename>
     <includes id="llimits_8h" name="llimits.h" local="yes" imported="no">llimits.h</includes>
     <member kind="define">
@@ -5877,7 +5877,7 @@
   </compound>
   <compound kind="file">
     <name>lparser.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/src/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/lua/src/</path>
     <filename>lparser_8h</filename>
     <includes id="llimits_8h" name="llimits.h" local="yes" imported="no">llimits.h</includes>
     <includes id="lobject_8h" name="lobject.h" local="yes" imported="no">lobject.h</includes>
@@ -6051,7 +6051,7 @@
   </compound>
   <compound kind="file">
     <name>lprefix.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/src/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/lua/src/</path>
     <filename>lprefix_8h</filename>
     <member kind="define">
       <type>#define</type>
@@ -6077,7 +6077,7 @@
   </compound>
   <compound kind="file">
     <name>lstate.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/src/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/lua/src/</path>
     <filename>lstate_8h</filename>
     <includes id="lua_8h" name="lua.h" local="yes" imported="no">lua.h</includes>
     <includes id="lobject_8h" name="lobject.h" local="yes" imported="no">lobject.h</includes>
@@ -6336,7 +6336,7 @@
   </compound>
   <compound kind="file">
     <name>lstring.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/src/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/lua/src/</path>
     <filename>lstring_8h</filename>
     <includes id="lgc_8h" name="lgc.h" local="yes" imported="no">lgc.h</includes>
     <includes id="lobject_8h" name="lobject.h" local="yes" imported="no">lobject.h</includes>
@@ -6463,7 +6463,7 @@
   </compound>
   <compound kind="file">
     <name>ltable.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/src/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/lua/src/</path>
     <filename>ltable_8h</filename>
     <includes id="lobject_8h" name="lobject.h" local="yes" imported="no">lobject.h</includes>
     <member kind="define">
@@ -6609,7 +6609,7 @@
   </compound>
   <compound kind="file">
     <name>ltm.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/src/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/lua/src/</path>
     <filename>ltm_8h</filename>
     <includes id="lobject_8h" name="lobject.h" local="yes" imported="no">lobject.h</includes>
     <member kind="define">
@@ -6856,7 +6856,7 @@
   </compound>
   <compound kind="file">
     <name>lua.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/src/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/lua/src/</path>
     <filename>lua_8h</filename>
     <includes id="luaconf_8h" name="luaconf.h" local="yes" imported="no">luaconf.h</includes>
     <class kind="struct">lua_Debug</class>
@@ -8263,7 +8263,7 @@
   </compound>
   <compound kind="file">
     <name>luaconf.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/src/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/lua/src/</path>
     <filename>luaconf_8h</filename>
     <member kind="define">
       <type>#define</type>
@@ -8597,7 +8597,7 @@
   </compound>
   <compound kind="file">
     <name>lualib.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/src/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/lua/src/</path>
     <filename>lualib_8h</filename>
     <includes id="lua_8h" name="lua.h" local="yes" imported="no">lua.h</includes>
     <member kind="define">
@@ -8792,7 +8792,7 @@
   </compound>
   <compound kind="file">
     <name>lundump.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/src/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/lua/src/</path>
     <filename>lundump_8h</filename>
     <includes id="llimits_8h" name="llimits.h" local="yes" imported="no">llimits.h</includes>
     <includes id="lobject_8h" name="lobject.h" local="yes" imported="no">lobject.h</includes>
@@ -8856,7 +8856,7 @@
   </compound>
   <compound kind="file">
     <name>lvm.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/src/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/lua/src/</path>
     <filename>lvm_8h</filename>
     <includes id="ldo_8h" name="ldo.h" local="yes" imported="no">ldo.h</includes>
     <includes id="lobject_8h" name="lobject.h" local="yes" imported="no">lobject.h</includes>
@@ -9039,7 +9039,7 @@
   </compound>
   <compound kind="file">
     <name>lzio.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/lua/src/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/lua/src/</path>
     <filename>lzio_8h</filename>
     <includes id="lua_8h" name="lua.h" local="yes" imported="no">lua.h</includes>
     <includes id="lmem_8h" name="lmem.h" local="yes" imported="no">lmem.h</includes>
@@ -9153,7 +9153,7 @@
   </compound>
   <compound kind="file">
     <name>AbstractActionable.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/</path>
     <filename>_abstract_actionable_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::AbstractActionable</class>
@@ -9162,7 +9162,7 @@
   </compound>
   <compound kind="file">
     <name>AbstractClock.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/</path>
     <filename>_abstract_clock_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::AbstractClock</class>
@@ -9170,7 +9170,7 @@
   </compound>
   <compound kind="file">
     <name>AbstractDecorator.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/</path>
     <filename>_abstract_decorator_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::AbstractDecorator</class>
@@ -9178,7 +9178,7 @@
   </compound>
   <compound kind="file">
     <name>AbstractFactoryObject.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/</path>
     <filename>_abstract_factory_object_8h</filename>
     <includes id="_abstract_object_8h" name="AbstractObject.h" local="yes" imported="no">AbstractObject.h</includes>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
@@ -9187,7 +9187,7 @@
   </compound>
   <compound kind="file">
     <name>AbstractObject.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/</path>
     <filename>_abstract_object_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_decorator_8h" name="AbstractDecorator.h" local="yes" imported="no">AbstractDecorator.h</includes>
@@ -9196,7 +9196,7 @@
   </compound>
   <compound kind="file">
     <name>AbstractState.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/</path>
     <filename>_abstract_state_8h</filename>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
@@ -9213,7 +9213,7 @@
   </compound>
   <compound kind="file">
     <name>AbstractStateMachine.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/</path>
     <filename>_abstract_state_machine_8h</filename>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_state_8h" name="AbstractState.h" local="yes" imported="no">AbstractState.h</includes>
@@ -9222,7 +9222,7 @@
   </compound>
   <compound kind="file">
     <name>AbstractTransform.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/</path>
     <filename>_abstract_transform_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::AbstractTransform</class>
@@ -9230,7 +9230,7 @@
   </compound>
   <compound kind="file">
     <name>Action.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/</path>
     <filename>_action_8h</filename>
     <includes id="_abstract_actionable_8h" name="AbstractActionable.h" local="yes" imported="no">AbstractActionable.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9242,7 +9242,7 @@
   </compound>
   <compound kind="file">
     <name>AbstractBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_abstract_builder_8h</filename>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
@@ -9251,7 +9251,7 @@
   </compound>
   <compound kind="file">
     <name>ActionBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_action_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9260,7 +9260,7 @@
   </compound>
   <compound kind="file">
     <name>CameraBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_camera_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9269,7 +9269,7 @@
   </compound>
   <compound kind="file">
     <name>ClockBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_clock_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9278,7 +9278,7 @@
   </compound>
   <compound kind="file">
     <name>CollisionResponseBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_collision_response_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9287,7 +9287,7 @@
   </compound>
   <compound kind="file">
     <name>FontBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_font_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9296,7 +9296,7 @@
   </compound>
   <compound kind="file">
     <name>ButtonHUDBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/graphics/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/graphics/</path>
     <filename>_button_h_u_d_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9305,7 +9305,7 @@
   </compound>
   <compound kind="file">
     <name>CheckboxHUDBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/graphics/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/graphics/</path>
     <filename>_checkbox_h_u_d_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9314,7 +9314,7 @@
   </compound>
   <compound kind="file">
     <name>DropdownHUDBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/graphics/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/graphics/</path>
     <filename>_dropdown_h_u_d_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9323,7 +9323,7 @@
   </compound>
   <compound kind="file">
     <name>LabelHUDBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/graphics/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/graphics/</path>
     <filename>_label_h_u_d_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9332,7 +9332,7 @@
   </compound>
   <compound kind="file">
     <name>MaterialBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/graphics/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/graphics/</path>
     <filename>_material_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9341,7 +9341,7 @@
   </compound>
   <compound kind="file">
     <name>MaterialPropertyBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/graphics/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/graphics/</path>
     <filename>_material_property_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9350,7 +9350,7 @@
   </compound>
   <compound kind="file">
     <name>ShaderProgramBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/graphics/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/graphics/</path>
     <filename>_shader_program_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9359,7 +9359,7 @@
   </compound>
   <compound kind="file">
     <name>SliderHUDBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/graphics/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/graphics/</path>
     <filename>_slider_h_u_d_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9368,7 +9368,7 @@
   </compound>
   <compound kind="file">
     <name>Sprite2DBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/graphics/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/graphics/</path>
     <filename>_sprite2_d_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9377,7 +9377,7 @@
   </compound>
   <compound kind="file">
     <name>TextboxHUDBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/graphics/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/graphics/</path>
     <filename>_textbox_h_u_d_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9386,7 +9386,7 @@
   </compound>
   <compound kind="file">
     <name>ImageBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_image_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9395,7 +9395,7 @@
   </compound>
   <compound kind="file">
     <name>JsonJLIBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_json_j_l_i_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9404,7 +9404,7 @@
   </compound>
   <compound kind="file">
     <name>LevelOfDetailBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_level_of_detail_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9413,7 +9413,7 @@
   </compound>
   <compound kind="file">
     <name>LightBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_light_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9422,7 +9422,7 @@
   </compound>
   <compound kind="file">
     <name>NodeBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_node_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9431,7 +9431,7 @@
   </compound>
   <compound kind="file">
     <name>NodeStateBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_node_state_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9440,7 +9440,7 @@
   </compound>
   <compound kind="file">
     <name>NodeStateMachineBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_node_state_machine_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9449,7 +9449,7 @@
   </compound>
   <compound kind="file">
     <name>ParticleEmitterBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_particle_emitter_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9458,7 +9458,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsBodyGhostBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/physics/body/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/body/</path>
     <filename>_physics_body_ghost_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9467,7 +9467,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsBodyRigidBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/physics/body/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/body/</path>
     <filename>_physics_body_rigid_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9476,7 +9476,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsBodySoftBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/physics/body/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/body/</path>
     <filename>_physics_body_soft_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9485,7 +9485,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsConstraintBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/physics/constraint/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/constraint/</path>
     <filename>_physics_constraint_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9495,7 +9495,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsConstraintConeTwistBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/physics/constraint/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/constraint/</path>
     <filename>_physics_constraint_cone_twist_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9505,7 +9505,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsConstraintFixedBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/physics/constraint/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/constraint/</path>
     <filename>_physics_constraint_fixed_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9515,7 +9515,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsConstraintGeneric6DofBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/physics/constraint/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/constraint/</path>
     <filename>_physics_constraint_generic6_dof_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9525,7 +9525,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsConstraintGeneric6DofSpringBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/physics/constraint/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/constraint/</path>
     <filename>_physics_constraint_generic6_dof_spring_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9535,7 +9535,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsConstraintHingeBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/physics/constraint/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/constraint/</path>
     <filename>_physics_constraint_hinge_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9545,7 +9545,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsConstraintPointToPointBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/physics/constraint/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/constraint/</path>
     <filename>_physics_constraint_point_to_point_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9555,7 +9555,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsConstraintSliderBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/physics/constraint/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/constraint/</path>
     <filename>_physics_constraint_slider_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9565,7 +9565,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsCloseContactBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/physics/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/</path>
     <filename>_physics_close_contact_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9574,7 +9574,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsContactBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/physics/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/</path>
     <filename>_physics_contact_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9583,7 +9583,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsFieldBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/physics/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/</path>
     <filename>_physics_field_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9592,7 +9592,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsRayContactBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/physics/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/</path>
     <filename>_physics_ray_contact_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9601,7 +9601,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsWorldBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/physics/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/</path>
     <filename>_physics_world_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9610,7 +9610,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsShapeBox2DBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/physics/shape/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/shape/</path>
     <filename>_physics_shape_box2_d_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9619,7 +9619,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsShapeBoxBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/physics/shape/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/shape/</path>
     <filename>_physics_shape_box_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9628,7 +9628,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsShapeBvhTriangleMeshBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/physics/shape/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/shape/</path>
     <filename>_physics_shape_bvh_triangle_mesh_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9638,7 +9638,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsShapeCapsuleBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/physics/shape/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/shape/</path>
     <filename>_physics_shape_capsule_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9648,7 +9648,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsShapeConeBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/physics/shape/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/shape/</path>
     <filename>_physics_shape_cone_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9658,7 +9658,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsShapeConvexHullBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/physics/shape/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/shape/</path>
     <filename>_physics_shape_convex_hull_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9668,7 +9668,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsShapeConvexTriangleMeshBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/physics/shape/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/shape/</path>
     <filename>_physics_shape_convex_triangle_mesh_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9678,7 +9678,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsShapeCylinderBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/physics/shape/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/shape/</path>
     <filename>_physics_shape_cylinder_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9688,7 +9688,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsShapeHeightfieldTerrainBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/physics/shape/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/shape/</path>
     <filename>_physics_shape_heightfield_terrain_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9698,7 +9698,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsShapeMultiSphereBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/physics/shape/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/shape/</path>
     <filename>_physics_shape_multi_sphere_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9708,7 +9708,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsShapeSphereBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/physics/shape/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/shape/</path>
     <filename>_physics_shape_sphere_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9718,7 +9718,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsShapeStaticPlaneBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/physics/shape/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/shape/</path>
     <filename>_physics_shape_static_plane_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9728,7 +9728,7 @@
   </compound>
   <compound kind="file">
     <name>PlaneBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_plane_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9737,7 +9737,7 @@
   </compound>
   <compound kind="file">
     <name>SceneBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_scene_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9746,7 +9746,7 @@
   </compound>
   <compound kind="file">
     <name>SceneStateBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_scene_state_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9755,7 +9755,7 @@
   </compound>
   <compound kind="file">
     <name>SceneStateMachineBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_scene_state_machine_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9764,7 +9764,7 @@
   </compound>
   <compound kind="file">
     <name>SkinnerBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_skinner_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9773,7 +9773,7 @@
   </compound>
   <compound kind="file">
     <name>SoundBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/sound/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/sound/</path>
     <filename>_sound_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9782,7 +9782,7 @@
   </compound>
   <compound kind="file">
     <name>SpriteFrameAtlasBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_sprite_frame_atlas_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9791,7 +9791,7 @@
   </compound>
   <compound kind="file">
     <name>SteeringBehaviorAlignmentBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/steering/behavior/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/steering/behavior/</path>
     <filename>_steering_behavior_alignment_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9801,7 +9801,7 @@
   </compound>
   <compound kind="file">
     <name>SteeringBehaviorArriveBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/steering/behavior/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/steering/behavior/</path>
     <filename>_steering_behavior_arrive_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9811,7 +9811,7 @@
   </compound>
   <compound kind="file">
     <name>SteeringBehaviorBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/steering/behavior/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/steering/behavior/</path>
     <filename>_steering_behavior_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9821,7 +9821,7 @@
   </compound>
   <compound kind="file">
     <name>SteeringBehaviorCohesionBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/steering/behavior/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/steering/behavior/</path>
     <filename>_steering_behavior_cohesion_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9831,7 +9831,7 @@
   </compound>
   <compound kind="file">
     <name>SteeringBehaviorEvadeBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/steering/behavior/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/steering/behavior/</path>
     <filename>_steering_behavior_evade_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9841,7 +9841,7 @@
   </compound>
   <compound kind="file">
     <name>SteeringBehaviorFleeBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/steering/behavior/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/steering/behavior/</path>
     <filename>_steering_behavior_flee_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9851,7 +9851,7 @@
   </compound>
   <compound kind="file">
     <name>SteeringBehaviorFollowPathBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/steering/behavior/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/steering/behavior/</path>
     <filename>_steering_behavior_follow_path_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9861,7 +9861,7 @@
   </compound>
   <compound kind="file">
     <name>SteeringBehaviorHideBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/steering/behavior/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/steering/behavior/</path>
     <filename>_steering_behavior_hide_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9871,7 +9871,7 @@
   </compound>
   <compound kind="file">
     <name>SteeringBehaviorInterposeBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/steering/behavior/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/steering/behavior/</path>
     <filename>_steering_behavior_interpose_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9881,7 +9881,7 @@
   </compound>
   <compound kind="file">
     <name>SteeringBehaviorObstacleAvoidanceBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/steering/behavior/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/steering/behavior/</path>
     <filename>_steering_behavior_obstacle_avoidance_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9891,7 +9891,7 @@
   </compound>
   <compound kind="file">
     <name>SteeringBehaviorOffsetPursuitBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/steering/behavior/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/steering/behavior/</path>
     <filename>_steering_behavior_offset_pursuit_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9901,7 +9901,7 @@
   </compound>
   <compound kind="file">
     <name>SteeringBehaviorPursuitBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/steering/behavior/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/steering/behavior/</path>
     <filename>_steering_behavior_pursuit_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9911,7 +9911,7 @@
   </compound>
   <compound kind="file">
     <name>SteeringBehaviorSeekBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/steering/behavior/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/steering/behavior/</path>
     <filename>_steering_behavior_seek_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9921,7 +9921,7 @@
   </compound>
   <compound kind="file">
     <name>SteeringBehaviorSeparationBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/steering/behavior/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/steering/behavior/</path>
     <filename>_steering_behavior_separation_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9931,7 +9931,7 @@
   </compound>
   <compound kind="file">
     <name>SteeringBehaviorWallAvoidanceBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/steering/behavior/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/steering/behavior/</path>
     <filename>_steering_behavior_wall_avoidance_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9941,7 +9941,7 @@
   </compound>
   <compound kind="file">
     <name>SteeringBehaviorWanderBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/steering/behavior/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/steering/behavior/</path>
     <filename>_steering_behavior_wander_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9951,7 +9951,7 @@
   </compound>
   <compound kind="file">
     <name>SteeringBehaviorMachineBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/steering/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/steering/</path>
     <filename>_steering_behavior_machine_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9961,7 +9961,7 @@
   </compound>
   <compound kind="file">
     <name>SteeringBehaviorMachineDitheredBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/steering/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/steering/</path>
     <filename>_steering_behavior_machine_dithered_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9971,7 +9971,7 @@
   </compound>
   <compound kind="file">
     <name>SteeringBehaviorMachinePrioritizedBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/steering/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/steering/</path>
     <filename>_steering_behavior_machine_prioritized_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9981,7 +9981,7 @@
   </compound>
   <compound kind="file">
     <name>SteeringBehaviorMachineWeightedBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/steering/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/steering/</path>
     <filename>_steering_behavior_machine_weighted_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -9991,7 +9991,7 @@
   </compound>
   <compound kind="file">
     <name>StopWatchBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_stop_watch_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -10000,7 +10000,7 @@
   </compound>
   <compound kind="file">
     <name>ThreadBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_thread_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -10010,7 +10010,7 @@
   </compound>
   <compound kind="file">
     <name>TimerBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_timer_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -10019,7 +10019,7 @@
   </compound>
   <compound kind="file">
     <name>WorldStateBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_world_state_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -10028,7 +10028,7 @@
   </compound>
   <compound kind="file">
     <name>WorldStateMachineBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_world_state_machine_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -10037,7 +10037,7 @@
   </compound>
   <compound kind="file">
     <name>XmlBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/builders/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_xml_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -10046,7 +10046,7 @@
   </compound>
   <compound kind="file">
     <name>Camera.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/</path>
     <filename>_camera_8h</filename>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
@@ -10056,7 +10056,7 @@
   </compound>
   <compound kind="file">
     <name>Clock.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/</path>
     <filename>_clock_8h</filename>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
     <includes id="_abstract_clock_8h" name="AbstractClock.h" local="yes" imported="no">AbstractClock.h</includes>
@@ -10066,7 +10066,7 @@
   </compound>
   <compound kind="file">
     <name>CollisionResponse.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/</path>
     <filename>_collision_response_8h</filename>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
@@ -10075,7 +10075,7 @@
   </compound>
   <compound kind="file">
     <name>CubeBuilder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/</path>
     <filename>_cube_builder_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -10084,7 +10084,7 @@
   </compound>
   <compound kind="file">
     <name>Font.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/</path>
     <filename>_font_8h</filename>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
@@ -10093,7 +10093,7 @@
   </compound>
   <compound kind="file">
     <name>GameClock.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/</path>
     <filename>_game_clock_8h</filename>
     <includes id="_abstract_clock_8h" name="AbstractClock.h" local="yes" imported="no">AbstractClock.h</includes>
     <class kind="class">njli::GameClock</class>
@@ -10101,7 +10101,7 @@
   </compound>
   <compound kind="file">
     <name>NJLIGameEngineConfig.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/generated/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/generated/</path>
     <filename>_n_j_l_i_game_engine_config_8h</filename>
     <member kind="define">
       <type>#define</type>
@@ -10120,7 +10120,7 @@
   </compound>
   <compound kind="file">
     <name>swig_runtime.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/generated/swig/lua/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/generated/swig/lua/</path>
     <filename>swig__runtime_8h</filename>
     <includes id="lua_8h" name="lua.h" local="yes" imported="no">lua.h</includes>
     <includes id="lauxlib_8h" name="lauxlib.h" local="yes" imported="no">lauxlib.h</includes>
@@ -11278,7 +11278,7 @@
   </compound>
   <compound kind="file">
     <name>AbstractFrameBufferObject.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/graphics/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/graphics/</path>
     <filename>_abstract_frame_buffer_object_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::AbstractFrameBufferObject</class>
@@ -11286,7 +11286,7 @@
   </compound>
   <compound kind="file">
     <name>AbstractRender.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/graphics/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/graphics/</path>
     <filename>_abstract_render_8h</filename>
     <member kind="function">
       <type>void</type>
@@ -11326,7 +11326,7 @@
   </compound>
   <compound kind="file">
     <name>ButtonHUD.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/graphics/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/graphics/</path>
     <filename>_button_h_u_d_8h</filename>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
@@ -11336,7 +11336,7 @@
   </compound>
   <compound kind="file">
     <name>CheckboxHUD.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/graphics/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/graphics/</path>
     <filename>_checkbox_h_u_d_8h</filename>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
@@ -11347,7 +11347,7 @@
   </compound>
   <compound kind="file">
     <name>Cube.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/graphics/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/graphics/</path>
     <filename>_cube_8h</filename>
     <includes id="_geometry_8h" name="Geometry.h" local="yes" imported="no">Geometry.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -11357,7 +11357,7 @@
   </compound>
   <compound kind="file">
     <name>DropdownHUD.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/graphics/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/graphics/</path>
     <filename>_dropdown_h_u_d_8h</filename>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
@@ -11367,7 +11367,7 @@
   </compound>
   <compound kind="file">
     <name>Geometry.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/graphics/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/graphics/</path>
     <filename>_geometry_8h</filename>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
@@ -11387,7 +11387,7 @@
   </compound>
   <compound kind="file">
     <name>ImGuizmo.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/graphics/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/graphics/</path>
     <filename>_im_guizmo_8h</filename>
     <namespace>ImGuizmo</namespace>
     <member kind="enumeration">
@@ -11493,7 +11493,7 @@
   </compound>
   <compound kind="file">
     <name>LabelHUD.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/graphics/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/graphics/</path>
     <filename>_label_h_u_d_8h</filename>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
@@ -11503,7 +11503,7 @@
   </compound>
   <compound kind="file">
     <name>LevelOfDetail.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/graphics/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/graphics/</path>
     <filename>_level_of_detail_8h</filename>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
@@ -11512,7 +11512,7 @@
   </compound>
   <compound kind="file">
     <name>Light.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/graphics/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/graphics/</path>
     <filename>_light_8h</filename>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
@@ -11521,7 +11521,7 @@
   </compound>
   <compound kind="file">
     <name>Material.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/graphics/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/graphics/</path>
     <filename>_material_8h</filename>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
@@ -11531,7 +11531,7 @@
   </compound>
   <compound kind="file">
     <name>MaterialProperty.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/graphics/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/graphics/</path>
     <filename>_material_property_8h</filename>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
@@ -11542,7 +11542,7 @@
   </compound>
   <compound kind="file">
     <name>ParticleEmitter.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/graphics/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/graphics/</path>
     <filename>_particle_emitter_8h</filename>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
@@ -11553,7 +11553,7 @@
   </compound>
   <compound kind="file">
     <name>Plane.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/graphics/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/graphics/</path>
     <filename>_plane_8h</filename>
     <includes id="_geometry_8h" name="Geometry.h" local="yes" imported="no">Geometry.h</includes>
     <class kind="class">njli::Plane</class>
@@ -11561,7 +11561,7 @@
   </compound>
   <compound kind="file">
     <name>ShaderProgram.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/graphics/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/graphics/</path>
     <filename>_shader_program_8h</filename>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
@@ -11585,7 +11585,7 @@
   </compound>
   <compound kind="file">
     <name>Skinner.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/graphics/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/graphics/</path>
     <filename>_skinner_8h</filename>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
@@ -11594,7 +11594,7 @@
   </compound>
   <compound kind="file">
     <name>SliderHUD.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/graphics/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/graphics/</path>
     <filename>_slider_h_u_d_8h</filename>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
@@ -11604,7 +11604,7 @@
   </compound>
   <compound kind="file">
     <name>Sprite2D.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/graphics/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/graphics/</path>
     <filename>_sprite2_d_8h</filename>
     <includes id="_geometry_8h" name="Geometry.h" local="yes" imported="no">Geometry.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -11615,7 +11615,7 @@
   </compound>
   <compound kind="file">
     <name>SpriteFrameAtlas.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/graphics/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/graphics/</path>
     <filename>_sprite_frame_atlas_8h</filename>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
@@ -11625,7 +11625,7 @@
   </compound>
   <compound kind="file">
     <name>TextboxHUD.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/graphics/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/graphics/</path>
     <filename>_textbox_h_u_d_8h</filename>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
@@ -11635,7 +11635,7 @@
   </compound>
   <compound kind="file">
     <name>WorldDebugDrawer.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/graphics/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/graphics/</path>
     <filename>_world_debug_drawer_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::WorldDebugDrawer</class>
@@ -11643,7 +11643,7 @@
   </compound>
   <compound kind="file">
     <name>WorldHUD.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/graphics/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/graphics/</path>
     <filename>_world_h_u_d_8h</filename>
     <includes id="_abstract_object_8h" name="AbstractObject.h" local="yes" imported="no">AbstractObject.h</includes>
     <includes id="_file_8h" name="File.h" local="yes" imported="no">File.h</includes>
@@ -11658,7 +11658,7 @@
   </compound>
   <compound kind="file">
     <name>Image.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/</path>
     <filename>_image_8h</filename>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
@@ -11670,7 +11670,7 @@
   </compound>
   <compound kind="file">
     <name>JLIEngine.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/</path>
     <filename>_j_l_i_engine_8h</filename>
     <includes id="_abstract_actionable_8h" name="AbstractActionable.h" local="yes" imported="no">AbstractActionable.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -11853,7 +11853,7 @@
   </compound>
   <compound kind="file">
     <name>JLIFactoryTypes.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/</path>
     <filename>_j_l_i_factory_types_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <namespace>njli</namespace>
@@ -14004,7 +14004,7 @@
   </compound>
   <compound kind="file">
     <name>JsonJLI.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/</path>
     <filename>_json_j_l_i_8h</filename>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
@@ -14013,7 +14013,7 @@
   </compound>
   <compound kind="file">
     <name>Node.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/</path>
     <filename>_node_8h</filename>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
@@ -14026,7 +14026,7 @@
   </compound>
   <compound kind="file">
     <name>NodeState.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/</path>
     <filename>_node_state_8h</filename>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
     <includes id="_abstract_state_8h" name="AbstractState.h" local="yes" imported="no">AbstractState.h</includes>
@@ -14036,7 +14036,7 @@
   </compound>
   <compound kind="file">
     <name>NodeStateMachine.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/</path>
     <filename>_node_state_machine_8h</filename>
     <includes id="_node_8h" name="Node.h" local="yes" imported="no">Node.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -14046,7 +14046,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsBody.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/physics/body/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/body/</path>
     <filename>_physics_body_8h</filename>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
@@ -14056,7 +14056,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsBodyGhost.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/physics/body/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/body/</path>
     <filename>_physics_body_ghost_8h</filename>
     <includes id="_physics_body_8h" name="PhysicsBody.h" local="yes" imported="no">PhysicsBody.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -14065,7 +14065,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsBodyRigid.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/physics/body/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/body/</path>
     <filename>_physics_body_rigid_8h</filename>
     <includes id="_physics_body_8h" name="PhysicsBody.h" local="yes" imported="no">PhysicsBody.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -14075,7 +14075,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsBodySoft.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/physics/body/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/body/</path>
     <filename>_physics_body_soft_8h</filename>
     <includes id="_physics_body_8h" name="PhysicsBody.h" local="yes" imported="no">PhysicsBody.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -14084,7 +14084,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsConstraint.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/physics/constraint/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/constraint/</path>
     <filename>_physics_constraint_8h</filename>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
@@ -14094,7 +14094,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsConstraintConeTwist.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/physics/constraint/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/constraint/</path>
     <filename>_physics_constraint_cone_twist_8h</filename>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -14105,7 +14105,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsConstraintFixed.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/physics/constraint/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/constraint/</path>
     <filename>_physics_constraint_fixed_8h</filename>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -14116,7 +14116,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsConstraintGeneric6Dof.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/physics/constraint/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/constraint/</path>
     <filename>_physics_constraint_generic6_dof_8h</filename>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -14127,7 +14127,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsConstraintGeneric6DofSpring.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/physics/constraint/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/constraint/</path>
     <filename>_physics_constraint_generic6_dof_spring_8h</filename>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -14138,7 +14138,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsConstraintHinge.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/physics/constraint/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/constraint/</path>
     <filename>_physics_constraint_hinge_8h</filename>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -14149,7 +14149,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsConstraintPointToPoint.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/physics/constraint/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/constraint/</path>
     <filename>_physics_constraint_point_to_point_8h</filename>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -14160,7 +14160,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsConstraintSlider.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/physics/constraint/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/constraint/</path>
     <filename>_physics_constraint_slider_8h</filename>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -14171,7 +14171,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsCloseContact.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/physics/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/</path>
     <filename>_physics_close_contact_8h</filename>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
@@ -14180,7 +14180,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsContact.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/physics/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/</path>
     <filename>_physics_contact_8h</filename>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
@@ -14189,7 +14189,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsField.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/physics/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/</path>
     <filename>_physics_field_8h</filename>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
@@ -14198,7 +14198,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsRayContact.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/physics/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/</path>
     <filename>_physics_ray_contact_8h</filename>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
@@ -14207,7 +14207,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsWorld.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/physics/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/</path>
     <filename>_physics_world_8h</filename>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
@@ -14240,7 +14240,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsShape.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/physics/shape/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/shape/</path>
     <filename>_physics_shape_8h</filename>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
@@ -14249,7 +14249,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsShapeBox.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/physics/shape/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/shape/</path>
     <filename>_physics_shape_box_8h</filename>
     <includes id="_physics_shape_8h" name="PhysicsShape.h" local="yes" imported="no">PhysicsShape.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -14258,7 +14258,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsShapeBox2D.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/physics/shape/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/shape/</path>
     <filename>_physics_shape_box2_d_8h</filename>
     <includes id="_physics_shape_8h" name="PhysicsShape.h" local="yes" imported="no">PhysicsShape.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -14267,7 +14267,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsShapeBvhTriangleMesh.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/physics/shape/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/shape/</path>
     <filename>_physics_shape_bvh_triangle_mesh_8h</filename>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -14278,7 +14278,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsShapeCapsule.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/physics/shape/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/shape/</path>
     <filename>_physics_shape_capsule_8h</filename>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -14289,7 +14289,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsShapeCone.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/physics/shape/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/shape/</path>
     <filename>_physics_shape_cone_8h</filename>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -14300,7 +14300,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsShapeConvexHull.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/physics/shape/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/shape/</path>
     <filename>_physics_shape_convex_hull_8h</filename>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -14311,7 +14311,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsShapeConvexTriangleMesh.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/physics/shape/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/shape/</path>
     <filename>_physics_shape_convex_triangle_mesh_8h</filename>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -14322,7 +14322,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsShapeCylinder.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/physics/shape/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/shape/</path>
     <filename>_physics_shape_cylinder_8h</filename>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -14333,7 +14333,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsShapeHeightfieldTerrain.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/physics/shape/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/shape/</path>
     <filename>_physics_shape_heightfield_terrain_8h</filename>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -14344,7 +14344,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsShapeMultiSphere.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/physics/shape/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/shape/</path>
     <filename>_physics_shape_multi_sphere_8h</filename>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -14355,7 +14355,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsShapeSphere.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/physics/shape/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/shape/</path>
     <filename>_physics_shape_sphere_8h</filename>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -14366,7 +14366,7 @@
   </compound>
   <compound kind="file">
     <name>PhysicsShapeStaticPlane.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/physics/shape/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/shape/</path>
     <filename>_physics_shape_static_plane_8h</filename>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -14377,19 +14377,12 @@
   </compound>
   <compound kind="file">
     <name>GraphicsPlatform.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/android/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/platform/android/</path>
     <filename>android_2_graphics_platform_8h</filename>
-    <member kind="define">
-      <type>#define</type>
-      <name>USE_FMOD</name>
-      <anchorfile>android_2_graphics_platform_8h.html</anchorfile>
-      <anchor>a9123ffe1fe724cba8b1d43c5251fddbc</anchor>
-      <arglist></arglist>
-    </member>
   </compound>
   <compound kind="file">
     <name>GraphicsPlatform.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/appletv/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/platform/appletv/</path>
     <filename>appletv_2_graphics_platform_8h</filename>
     <member kind="define">
       <type>#define</type>
@@ -14401,7 +14394,7 @@
   </compound>
   <compound kind="file">
     <name>GraphicsPlatform.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/applewatchos/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/platform/applewatchos/</path>
     <filename>applewatchos_2_graphics_platform_8h</filename>
     <member kind="define">
       <type>#define</type>
@@ -14427,7 +14420,7 @@
   </compound>
   <compound kind="file">
     <name>GraphicsPlatform.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/emscripten/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/platform/emscripten/</path>
     <filename>emscripten_2_graphics_platform_8h</filename>
     <member kind="define">
       <type>#define</type>
@@ -14439,7 +14432,7 @@
   </compound>
   <compound kind="file">
     <name>GraphicsPlatform.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/ios/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/platform/ios/</path>
     <filename>ios_2_graphics_platform_8h</filename>
     <member kind="define">
       <type>#define</type>
@@ -14451,7 +14444,12 @@
   </compound>
   <compound kind="file">
     <name>GraphicsPlatform.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/macOS/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/platform/linux/</path>
+    <filename>linux_2_graphics_platform_8h</filename>
+  </compound>
+  <compound kind="file">
+    <name>GraphicsPlatform.h</name>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/platform/macOS/</path>
     <filename>mac_o_s_2_graphics_platform_8h</filename>
     <member kind="define">
       <type>#define</type>
@@ -14463,47 +14461,47 @@
   </compound>
   <compound kind="file">
     <name>SoundPlatform.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/android/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/platform/android/</path>
     <filename>android_2_sound_platform_8h</filename>
   </compound>
   <compound kind="file">
     <name>SoundPlatform.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/appletv/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/platform/appletv/</path>
     <filename>appletv_2_sound_platform_8h</filename>
   </compound>
   <compound kind="file">
     <name>SoundPlatform.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/applewatchos/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/platform/applewatchos/</path>
     <filename>applewatchos_2_sound_platform_8h</filename>
   </compound>
   <compound kind="file">
     <name>SoundPlatform.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/emscripten/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/platform/emscripten/</path>
     <filename>emscripten_2_sound_platform_8h</filename>
   </compound>
   <compound kind="file">
     <name>SoundPlatform.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/ios/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/platform/ios/</path>
     <filename>ios_2_sound_platform_8h</filename>
   </compound>
   <compound kind="file">
     <name>SoundPlatform.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/linux/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/platform/linux/</path>
     <filename>linux_2_sound_platform_8h</filename>
   </compound>
   <compound kind="file">
     <name>SoundPlatform.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/macOS/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/platform/macOS/</path>
     <filename>mac_o_s_2_sound_platform_8h</filename>
   </compound>
   <compound kind="file">
     <name>SoundPlatform.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/windows/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/platform/windows/</path>
     <filename>windows_2_sound_platform_8h</filename>
   </compound>
   <compound kind="file">
     <name>ColorUtil.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/platform/</path>
     <filename>_color_util_8h</filename>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
@@ -14561,7 +14559,7 @@
   </compound>
   <compound kind="file">
     <name>DeviceInputTime.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/platform/</path>
     <filename>_device_input_time_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::DeviceInputTime</class>
@@ -14569,7 +14567,7 @@
   </compound>
   <compound kind="file">
     <name>DeviceMouse.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/platform/</path>
     <filename>_device_mouse_8h</filename>
     <includes id="_device_input_time_8h" name="DeviceInputTime.h" local="yes" imported="no">DeviceInputTime.h</includes>
     <includes id="bt_vector2_8h" name="btVector2.h" local="yes" imported="no">btVector2.h</includes>
@@ -14578,7 +14576,7 @@
   </compound>
   <compound kind="file">
     <name>DeviceTouch.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/platform/</path>
     <filename>_device_touch_8h</filename>
     <includes id="_device_input_time_8h" name="DeviceInputTime.h" local="yes" imported="no">DeviceInputTime.h</includes>
     <includes id="bt_vector2_8h" name="btVector2.h" local="yes" imported="no">btVector2.h</includes>
@@ -14588,13 +14586,13 @@
   </compound>
   <compound kind="file">
     <name>DeviceUtil.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/platform/</path>
     <filename>_device_util_8h</filename>
     <class kind="class">DeviceUtil</class>
   </compound>
   <compound kind="file">
     <name>File.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/platform/</path>
     <filename>_file_8h</filename>
     <includes id="_macros_8h" name="Macros.h" local="yes" imported="no">Macros.h</includes>
     <member kind="function">
@@ -14663,19 +14661,19 @@
   </compound>
   <compound kind="file">
     <name>Game.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/platform/</path>
     <filename>_game_8h</filename>
     <class kind="class">njli::NJLIGameEngine</class>
     <namespace>njli</namespace>
   </compound>
   <compound kind="file">
     <name>JLIAssetUtil.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/platform/</path>
     <filename>_j_l_i_asset_util_8h</filename>
   </compound>
   <compound kind="file">
     <name>Localization.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/platform/</path>
     <filename>_localization_8h</filename>
     <member kind="function">
       <type>std::string</type>
@@ -14694,7 +14692,7 @@
   </compound>
   <compound kind="file">
     <name>Log.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/platform/</path>
     <filename>_log_8h</filename>
     <includes id="_macros_8h" name="Macros.h" local="yes" imported="no">Macros.h</includes>
     <member kind="define">
@@ -15043,7 +15041,7 @@
   </compound>
   <compound kind="file">
     <name>Macros.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/platform/</path>
     <filename>_macros_8h</filename>
     <member kind="define">
       <type>#define</type>
@@ -15083,8 +15081,22 @@
   </compound>
   <compound kind="file">
     <name>NJLIInterface.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/platform/</path>
     <filename>_n_j_l_i_interface_8h</filename>
+    <member kind="typedef">
+      <type>std::map&lt; int, SDL_Joystick * &gt;</type>
+      <name>JoystickMap</name>
+      <anchorfile>_n_j_l_i_interface_8h.html</anchorfile>
+      <anchor>ada9fd1c9869a427aceb750e959c0a27e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>std::pair&lt; int, SDL_Joystick * &gt;</type>
+      <name>JoystickPair</name>
+      <anchorfile>_n_j_l_i_interface_8h.html</anchorfile>
+      <anchor>a587b12aa1e7e74156e8b1709ce05a5c9</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="function">
       <type>void</type>
       <name>NJLI_HandleUpdate</name>
@@ -15268,6 +15280,20 @@
       <arglist>(const char *text, int newCursorPosition)</arglist>
     </member>
     <member kind="variable">
+      <type>std::vector&lt; SDL_Joystick * &gt;</type>
+      <name>gGameJoysticks</name>
+      <anchorfile>_n_j_l_i_interface_8h.html</anchorfile>
+      <anchor>a697cce88e66e5fd7a4955dbb2db83497</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>JoystickMap</type>
+      <name>gGameJoystickMap</name>
+      <anchorfile>_n_j_l_i_interface_8h.html</anchorfile>
+      <anchor>adb79376dd8a0fe575d83acde08cb1047</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
       <type>SDL_Window *</type>
       <name>gWindow</name>
       <anchorfile>_n_j_l_i_interface_8h.html</anchorfile>
@@ -15333,7 +15359,7 @@
   </compound>
   <compound kind="file">
     <name>Util.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/platform/</path>
     <filename>_util_8h</filename>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <class kind="struct">rgb</class>
@@ -15502,7 +15528,7 @@
   </compound>
   <compound kind="file">
     <name>WorldInput.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/platform/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/platform/</path>
     <filename>_world_input_8h</filename>
     <includes id="_abstract_object_8h" name="AbstractObject.h" local="yes" imported="no">AbstractObject.h</includes>
     <includes id="_device_touch_8h" name="DeviceTouch.h" local="yes" imported="no">DeviceTouch.h</includes>
@@ -15512,7 +15538,7 @@
   </compound>
   <compound kind="file">
     <name>Scene.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/</path>
     <filename>_scene_8h</filename>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
@@ -15522,7 +15548,7 @@
   </compound>
   <compound kind="file">
     <name>SceneState.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/</path>
     <filename>_scene_state_8h</filename>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
     <includes id="_abstract_state_8h" name="AbstractState.h" local="yes" imported="no">AbstractState.h</includes>
@@ -15533,7 +15559,7 @@
   </compound>
   <compound kind="file">
     <name>SceneStateMachine.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/</path>
     <filename>_scene_state_machine_8h</filename>
     <includes id="_scene_8h" name="Scene.h" local="yes" imported="no">Scene.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -15543,14 +15569,14 @@
   </compound>
   <compound kind="file">
     <name>ISoundFileWrapper.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/sound/openal/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/sound/openal/</path>
     <filename>_i_sound_file_wrapper_8h</filename>
     <class kind="class">njli::ISoundFileWrapper</class>
     <namespace>njli</namespace>
   </compound>
   <compound kind="file">
     <name>Wrapper_OGG.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/sound/openal/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/sound/openal/</path>
     <filename>_wrapper___o_g_g_8h</filename>
     <includes id="_i_sound_file_wrapper_8h" name="ISoundFileWrapper.h" local="yes" imported="no">ISoundFileWrapper.h</includes>
     <class kind="struct">ogg_file</class>
@@ -15573,7 +15599,7 @@
   </compound>
   <compound kind="file">
     <name>Wrapper_RAW.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/sound/openal/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/sound/openal/</path>
     <filename>_wrapper___r_a_w_8h</filename>
     <includes id="_i_sound_file_wrapper_8h" name="ISoundFileWrapper.h" local="yes" imported="no">ISoundFileWrapper.h</includes>
     <includes id="_sound_8h" name="Sound.h" local="yes" imported="no">Sound.h</includes>
@@ -15597,7 +15623,7 @@
   </compound>
   <compound kind="file">
     <name>Wrapper_WAV.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/sound/openal/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/sound/openal/</path>
     <filename>_wrapper___w_a_v_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_i_sound_file_wrapper_8h" name="ISoundFileWrapper.h" local="yes" imported="no">ISoundFileWrapper.h</includes>
@@ -15645,7 +15671,7 @@
   </compound>
   <compound kind="file">
     <name>Sound.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/sound/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/sound/</path>
     <filename>_sound_8h</filename>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
@@ -15655,7 +15681,7 @@
   </compound>
   <compound kind="file">
     <name>WorldSound.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/sound/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/sound/</path>
     <filename>_world_sound_8h</filename>
     <includes id="_abstract_object_8h" name="AbstractObject.h" local="yes" imported="no">AbstractObject.h</includes>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
@@ -15665,7 +15691,7 @@
   </compound>
   <compound kind="file">
     <name>SteeringBehavior.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/steering/behavior/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/steering/behavior/</path>
     <filename>_steering_behavior_8h</filename>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -15675,7 +15701,7 @@
   </compound>
   <compound kind="file">
     <name>SteeringBehaviorAlignment.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/steering/behavior/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/steering/behavior/</path>
     <filename>_steering_behavior_alignment_8h</filename>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -15686,7 +15712,7 @@
   </compound>
   <compound kind="file">
     <name>SteeringBehaviorArrive.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/steering/behavior/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/steering/behavior/</path>
     <filename>_steering_behavior_arrive_8h</filename>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -15697,7 +15723,7 @@
   </compound>
   <compound kind="file">
     <name>SteeringBehaviorCohesion.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/steering/behavior/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/steering/behavior/</path>
     <filename>_steering_behavior_cohesion_8h</filename>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -15708,7 +15734,7 @@
   </compound>
   <compound kind="file">
     <name>SteeringBehaviorEvade.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/steering/behavior/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/steering/behavior/</path>
     <filename>_steering_behavior_evade_8h</filename>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -15719,7 +15745,7 @@
   </compound>
   <compound kind="file">
     <name>SteeringBehaviorFlee.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/steering/behavior/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/steering/behavior/</path>
     <filename>_steering_behavior_flee_8h</filename>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -15730,7 +15756,7 @@
   </compound>
   <compound kind="file">
     <name>SteeringBehaviorFollowPath.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/steering/behavior/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/steering/behavior/</path>
     <filename>_steering_behavior_follow_path_8h</filename>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -15741,7 +15767,7 @@
   </compound>
   <compound kind="file">
     <name>SteeringBehaviorHide.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/steering/behavior/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/steering/behavior/</path>
     <filename>_steering_behavior_hide_8h</filename>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -15752,7 +15778,7 @@
   </compound>
   <compound kind="file">
     <name>SteeringBehaviorInterpose.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/steering/behavior/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/steering/behavior/</path>
     <filename>_steering_behavior_interpose_8h</filename>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -15763,7 +15789,7 @@
   </compound>
   <compound kind="file">
     <name>SteeringBehaviorObstacleAvoidance.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/steering/behavior/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/steering/behavior/</path>
     <filename>_steering_behavior_obstacle_avoidance_8h</filename>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -15774,7 +15800,7 @@
   </compound>
   <compound kind="file">
     <name>SteeringBehaviorOffsetPursuit.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/steering/behavior/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/steering/behavior/</path>
     <filename>_steering_behavior_offset_pursuit_8h</filename>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -15785,7 +15811,7 @@
   </compound>
   <compound kind="file">
     <name>SteeringBehaviorPursuit.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/steering/behavior/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/steering/behavior/</path>
     <filename>_steering_behavior_pursuit_8h</filename>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -15796,7 +15822,7 @@
   </compound>
   <compound kind="file">
     <name>SteeringBehaviorSeek.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/steering/behavior/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/steering/behavior/</path>
     <filename>_steering_behavior_seek_8h</filename>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -15807,7 +15833,7 @@
   </compound>
   <compound kind="file">
     <name>SteeringBehaviorSeparation.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/steering/behavior/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/steering/behavior/</path>
     <filename>_steering_behavior_separation_8h</filename>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -15818,7 +15844,7 @@
   </compound>
   <compound kind="file">
     <name>SteeringBehaviorWallAvoidance.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/steering/behavior/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/steering/behavior/</path>
     <filename>_steering_behavior_wall_avoidance_8h</filename>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -15829,7 +15855,7 @@
   </compound>
   <compound kind="file">
     <name>SteeringBehaviorWander.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/steering/behavior/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/steering/behavior/</path>
     <filename>_steering_behavior_wander_8h</filename>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -15840,7 +15866,7 @@
   </compound>
   <compound kind="file">
     <name>SteeringBehaviorMachine.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/steering/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/steering/</path>
     <filename>_steering_behavior_machine_8h</filename>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -15850,7 +15876,7 @@
   </compound>
   <compound kind="file">
     <name>SteeringBehaviorMachineDithered.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/steering/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/steering/</path>
     <filename>_steering_behavior_machine_dithered_8h</filename>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -15861,7 +15887,7 @@
   </compound>
   <compound kind="file">
     <name>SteeringBehaviorMachinePrioritized.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/steering/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/steering/</path>
     <filename>_steering_behavior_machine_prioritized_8h</filename>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -15872,7 +15898,7 @@
   </compound>
   <compound kind="file">
     <name>SteeringBehaviorMachineWeighted.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/steering/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/steering/</path>
     <filename>_steering_behavior_machine_weighted_8h</filename>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -15883,7 +15909,7 @@
   </compound>
   <compound kind="file">
     <name>StopWatch.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/</path>
     <filename>_stop_watch_8h</filename>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
     <includes id="_abstract_clock_8h" name="AbstractClock.h" local="yes" imported="no">AbstractClock.h</includes>
@@ -15893,7 +15919,7 @@
   </compound>
   <compound kind="file">
     <name>Thread.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/</path>
     <filename>_thread_8h</filename>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
@@ -15973,7 +15999,7 @@
   </compound>
   <compound kind="file">
     <name>Timer.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/</path>
     <filename>_timer_8h</filename>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
     <includes id="_abstract_clock_8h" name="AbstractClock.h" local="yes" imported="no">AbstractClock.h</includes>
@@ -15983,7 +16009,7 @@
   </compound>
   <compound kind="file">
     <name>World.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/</path>
     <filename>_world_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_world_factory_8h" name="WorldFactory.h" local="yes" imported="no">WorldFactory.h</includes>
@@ -16009,7 +16035,7 @@
   </compound>
   <compound kind="file">
     <name>WorldClock.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/</path>
     <filename>_world_clock_8h</filename>
     <includes id="_abstract_clock_8h" name="AbstractClock.h" local="yes" imported="no">AbstractClock.h</includes>
     <includes id="_abstract_object_8h" name="AbstractObject.h" local="yes" imported="no">AbstractObject.h</includes>
@@ -16018,7 +16044,7 @@
   </compound>
   <compound kind="file">
     <name>WorldFactory.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/</path>
     <filename>_world_factory_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
@@ -16029,7 +16055,7 @@
   </compound>
   <compound kind="file">
     <name>WorldLuaVirtualMachine.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/</path>
     <filename>_world_lua_virtual_machine_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_state_8h" name="AbstractState.h" local="yes" imported="no">AbstractState.h</includes>
@@ -16044,7 +16070,7 @@
   </compound>
   <compound kind="file">
     <name>WorldResourceLoader.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/</path>
     <filename>_world_resource_loader_8h</filename>
     <includes id="_abstract_object_8h" name="AbstractObject.h" local="yes" imported="no">AbstractObject.h</includes>
     <includes id="_j_l_i_factory_types_8h" name="JLIFactoryTypes.h" local="yes" imported="no">JLIFactoryTypes.h</includes>
@@ -16055,7 +16081,7 @@
   </compound>
   <compound kind="file">
     <name>WorldSocket.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/</path>
     <filename>_world_socket_8h</filename>
     <includes id="_abstract_object_8h" name="AbstractObject.h" local="yes" imported="no">AbstractObject.h</includes>
     <includes id="_file_8h" name="File.h" local="yes" imported="no">File.h</includes>
@@ -16064,7 +16090,7 @@
   </compound>
   <compound kind="file">
     <name>WorldState.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/</path>
     <filename>_world_state_8h</filename>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
     <includes id="_abstract_state_8h" name="AbstractState.h" local="yes" imported="no">AbstractState.h</includes>
@@ -16075,7 +16101,7 @@
   </compound>
   <compound kind="file">
     <name>WorldStateMachine.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/</path>
     <filename>_world_state_machine_8h</filename>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
     <includes id="_abstract_state_machine_8h" name="AbstractStateMachine.h" local="yes" imported="no">AbstractStateMachine.h</includes>
@@ -16084,7 +16110,7 @@
   </compound>
   <compound kind="file">
     <name>Xml.h</name>
-    <path>/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/src/njli/</path>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/</path>
     <filename>_xml_8h</filename>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
@@ -30574,6 +30600,12 @@
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
+      <name>PlatformID_Linux</name>
+      <anchorfile>classnjli_1_1_n_j_l_i_game_engine.html</anchorfile>
+      <anchor>a5a2bbb7c337d3918056ba12307f2a4edaaa85a957f94a226990385d06106eee62</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
       <name>PlatformID_iOS</name>
       <anchorfile>classnjli_1_1_n_j_l_i_game_engine.html</anchorfile>
       <anchor>a5a2bbb7c337d3918056ba12307f2a4eda6cf2daab29241b0e763ff97c8f4f53e7</anchor>
@@ -30601,6 +30633,12 @@
       <name>PlatformID_tvOS</name>
       <anchorfile>classnjli_1_1_n_j_l_i_game_engine.html</anchorfile>
       <anchor>a5a2bbb7c337d3918056ba12307f2a4eda9e5108023740f93fa7a49845aa0d72dc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>PlatformID_Linux</name>
+      <anchorfile>classnjli_1_1_n_j_l_i_game_engine.html</anchorfile>
+      <anchor>a5a2bbb7c337d3918056ba12307f2a4edaaa85a957f94a226990385d06106eee62</anchor>
       <arglist></arglist>
     </member>
     <member kind="function" static="yes">

@@ -1,6 +1,6 @@
 CP=cp
 
-OBJDIR=$(ASSET_DIR)/assets/scripts
+OBJDIR=$(NJLI_GAME_ENGINE_ASSET_DIR)/assets/scripts
 SRCDIR=scripts
 
 STRUCTURE := $(shell find $(SRCDIR) -type d)

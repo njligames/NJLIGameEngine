@@ -25,7 +25,7 @@ else
 	GL_TARGET := -1
 endif
 
-OBJDIR := $(ASSET_DIR)/assets/shaders
+OBJDIR := $(NJLI_GAME_ENGINE_ASSET_DIR)/assets/shaders
 SRCDIR := .
 
 SRCFILES := $(addsuffix /*, $(SRCDIR))

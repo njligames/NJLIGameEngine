@@ -1,0 +1,26 @@
+//
+//  Engine.h
+//
+//  @NJLIGameEngine_PACKAGE@
+//  @NJLIGameEngine_PACKAGE_NAME@
+//
+//  Created by James Folk.
+//  Bug Reports to: @NJLIGameEngine_BUGREPORT@
+//
+//
+
+#ifndef Engine_h
+#define Engine_h
+
+#define NJLIGameEngine_VERSION_MAJOR @NJLIGameEngine_VERSION_MAJOR@
+#define NJLIGameEngine_VERSION_MINOR @NJLIGameEngine_VERSION_MINOR@
+#define NJLIGameEngine_VERSION_RELEASE @NJLIGameEngine_VERSION_RELEASE@
+
+#include "SDL.h"
+
+namespace njli
+{
+    int run_main(int argc, char** argv);
+}
+
+#endif /* Engine_h */

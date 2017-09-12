@@ -29,17 +29,23 @@ build_emscripten_sublime()
 
     if [ ! -z ${BUILD} ]
     then
-        mkdir -p ../../ERRORS
-        echo "" > ../../ERRORS/emscripen.log
-        emmake make 2> ../../ERRORS/emscripen.log
+        mkdir -p ../../generated/ERRORS
+        echo "" > ../../generated/ERRORS/${MY_PLATFORM}.log
+
+        #mkdir -p ../../ERRORS
+        #echo "" > ../../ERRORS/emscripen.log
+        emmake make 2> ../../generated/ERRORS/emscripen.log
         emmake make install
+
+        cpack ../.. --config CPackConfig.cmake      
+
     fi
 }
 
 cd projects
 rm emscripten_Sublime/NJLIGameEngine.js.mem
 
-#rm -rf emscripten_Sublime
+rm -rf emscripten_Sublime
 mkdir -p emscripten_Sublime
 cd emscripten_Sublime
 

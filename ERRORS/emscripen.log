@@ -1,1 +1,0 @@
-WARNING:root:not all asm.js optimizations are possible with ALLOW_MEMORY_GROWTH, disabling those. [-Walmost-asm]
