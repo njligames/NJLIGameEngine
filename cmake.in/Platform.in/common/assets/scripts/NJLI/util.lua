@@ -693,7 +693,9 @@ function DeviceNameDownsizeAmount(name)
     local origAssert = assert
     assert = function(b, message)
     if not b then
+    print("ASSERT MESSAGE: " .. message)
     print(debug.traceback())
+    
     end
     origAssert (b, message)
     end

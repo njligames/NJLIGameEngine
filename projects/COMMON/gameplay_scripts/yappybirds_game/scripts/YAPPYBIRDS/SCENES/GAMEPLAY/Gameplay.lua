@@ -29,7 +29,6 @@ local __ctor = function(self, init)
   
   
   
-  
   spriteAtlasPath = njli.ASSET_PATH("scripts/generated/texturepacker/gameplay0.lua")
   self._spriteAtlas_gameplay0 = njli.build((loadfile(spriteAtlasPath))():getSheet(), njli.JLI_OBJECT_TYPE_SpriteFrameAtlas)
 
@@ -37,8 +36,6 @@ local __ctor = function(self, init)
   njli.World.getInstance():getWorldResourceLoader():load("images/generated/gameplay0.png", image)
   Geometry2D[2]:getMaterial():getDiffuse():loadGPU(image)
   njli.Image.destroy(image)
-  
-  
   
   
   spriteAtlasPath = njli.ASSET_PATH("scripts/generated/texturepacker/gameplay1.lua")
@@ -50,15 +47,17 @@ local __ctor = function(self, init)
   njli.Image.destroy(image)
   
   
-  
-  
-  
 
   self:getScene():addCameraNode(OrthographicCameraNode, true)
   self:getScene():addCameraNode(PerspectiveCameraNode)
   
-  local yappyBirdLevelLoader = require "YAPPYBIRDS.yappyBirdLevelLoader"
-  self.level = yappyBirdLevelLoader.new(self)
+  -- local yappyBirdLevelLoader = require "YAPPYBIRDS.yappyBirdLevelLoader"
+  -- self.level = yappyBirdLevelLoader.new(self)
+  
+--  self:createBillboard()
+--  self:createBalloon()
+--  self:createDog()
+  self:createBird({name="jim"})
   
 end
 
@@ -83,16 +82,139 @@ end
 
 --#############################################################################
 
-function Gameplay:createBalloon()
+function Gameplay:transfromLevelPositionAndWidth( ... )
+  local arg=...
+  
+  assert(arg, "the paramters are nil in transfromLevelPositionAndWidth")
+  
+  local x = arg.x or 0
+  local y = arg.y or 0
+  local layer = arg.layer or 1
+  local sublayer = arg.sublayer or 1
+  local width = arg.width or 1.0
+  local height = arg.height or 1.0
+  local pivotPoint = bullet.btVector2(0.0, 0.0)
+  
+--  local function getGameViewDivisor()
+--      local scale = 89.0
+--      return math.floor(2048 / scale)
+--  end
+  
+  
+  
+--  local subLayerOffset = -0.1
+--  local divisor = getGameViewDivisor()
+--  local x_offset = (0.5 * self.scale )
+--  local y_offset = (0.5 * self.scale )
+
+--  local xx = ((self.WORLD_XOFFSET) + ((x/divisor)-x_offset))
+--  local yy = ((self.WORLD_YOFFSET) + ((y/divisor)-y_offset))
+--  local offset = 0
+--  if sublayer ~= nil then
+--      offset = (sublayer * subLayerOffset)
+--  end
+
+--  local zz = self.LAYER_MAX + (0.1 - (self.LAYER_DISTANCE * (layer - 1))) + offset
+
+--  return bullet.btVector3(xx, yy, zz)
+  
+  
+  
 end
 
-function Gameplay:createBillboard()
+function Gameplay:updateTimerDisplay( ... )
+  -- body
 end
 
-function Gameplay:createBird()
+function Gameplay:updateBirdCounterDisplay( ... )
+  -- body
 end
 
-function Gameplay:createDog()
+function Gameplay:updatePointsCounterDisplay( ... )
+  -- body
+end
+
+function Gameplay:createBird( ... )
+
+  local arg = ...
+  assert(arg, "the paramters are nil in createBird")
+  assert(arg.name ~= nil, "init.name is nil")
+  
+  
+  local beakNodeEntity = BirdBeakNodeEntity.class({
+  entityOwner = self,
+  states = BirdBeakNodeEntity.states,
+  atlasArray = {self._spriteAtlas_gameplay0, self._spriteAtlas_gameplay1},
+  geometryArray = {Geometry2D[2], Geometry2D[3]},
+  })
+  
+  local birdNodeEntity = BirdNodeEntity.class({
+  name = arg.name,
+  entityOwner = self,
+  states = BirdNodeEntity.states,
+  beakNodeEntity = beakNodeEntity,
+  atlasArray = {self._spriteAtlas_gameplay0, self._spriteAtlas_gameplay1},
+  geometryArray = {Geometry2D[2], Geometry2D[3]},
+  })
+  self:addNodeEntity(birdNodeEntity)
+  
+  return birdNodeEntity
+  
+end
+
+function Gameplay:createDog( ... )
+
+  local dogNodeEntity = DogNodeEntity.class({
+  entityOwner = self,
+  states = DogNodeEntity.states,
+  atlasArray = {self._spriteAtlas_gameplay0, self._spriteAtlas_gameplay1},
+  geometryArray = {Geometry2D[2], Geometry2D[3]},
+  })
+  self:addNodeEntity(dogNodeEntity)
+  
+  return dogNodeEntity
+  
+end
+
+function Gameplay:createBalloon( ... )
+
+  local balloonNodeEntity = BalloonNodeEntity.class({
+  entityOwner = self,
+  states = BalloonNodeEntity.states,
+  atlasArray = {self._spriteAtlas_gameplay0, self._spriteAtlas_gameplay1},
+  geometryArray = {Geometry2D[2], Geometry2D[3]},
+  })
+  self:addNodeEntity(balloonNodeEntity)
+  
+  return balloonNodeEntity
+  
+end
+
+function Gameplay:createBillboard( ... )
+
+  local billboardNodeEntity = BillboardNodeEntity.class({
+  entityOwner = self,
+  states = BillboardNodeEntity.states,
+  atlasArray = {self._spriteAtlas_country0},
+  geometryArray = {Geometry2D[1]},
+  })
+  
+  self:addNodeEntity(billboardNodeEntity)
+  
+  return billboardNodeEntity
+  
+end
+
+function Gameplay:createTimerCounter( ... )
+  -- body
+end
+
+function Gameplay:createBirdCounter( ... )
+  -- body
+end
+
+function Gameplay:createPointsCounter( ... )
+  -- body
 end
 
 --#############################################################################
@@ -103,6 +225,8 @@ end
 
 function Gameplay:update(timeStep)
   BaseClass.update(self, timeStep)
+
+--  print("updating gameplay")
 end
 
 function Gameplay:exit()

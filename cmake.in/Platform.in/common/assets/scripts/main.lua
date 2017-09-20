@@ -84,7 +84,7 @@ NJLILabelControl =
   }
 }
 
-local BalloonNodeEntity =
+BalloonNodeEntity =
 {
   class = require "YAPPYBIRDS.NODES.BALLOON.Balloon",
   name = "YAPPYBIRDS.NODES.BALLOON.Balloon",
@@ -107,7 +107,7 @@ local BalloonNodeEntity =
   nodes = {} --The childen Nodes for the Node.
 }
 
-local BillboardNodeEntity =
+BillboardNodeEntity =
 {
   class = require "YAPPYBIRDS.NODES.BILLBOARD.Billboard",
   name = "YAPPYBIRDS.NODES.BILLBOARD.Billboard",
@@ -122,7 +122,7 @@ local BillboardNodeEntity =
   nodes = {} --The childen Nodes for the Node.
 }
 
-local BirdNodeEntity =
+BirdNodeEntity =
 {
   name = "YAPPYBIRDS.NODES.BIRD.Bird",
   class = require "YAPPYBIRDS.NODES.BIRD.Bird",
@@ -159,7 +159,7 @@ local BirdNodeEntity =
   } --The childe Nodes for the Node.
 }
 
-local BirdBeakNodeEntity =
+BirdBeakNodeEntity =
 {
   name = "YAPPYBIRDS.NODES.BIRDBEAK.BirdBeak",
   class = require "YAPPYBIRDS.NODES.BIRDBEAK.BirdBeak",
@@ -186,7 +186,7 @@ local BirdBeakNodeEntity =
   nodes = {} --The childen Nodes for the Node.
 }
 
-local DogNodeEntity =
+DogNodeEntity =
 {
   name = "YAPPYBIRDS.NODES.DOG.Dog",
   class = require "YAPPYBIRDS.NODES.DOG.Dog",
@@ -363,17 +363,17 @@ Worlds =
     states =
     {
       --The first state is the start state.
-      {
-        name = "YAPPYBIRDS.WORLDS.YAPPYBIRDS.STATES.Menu",
-        class = require "YAPPYBIRDS.WORLDS.YAPPYBIRDS.STATES.Menu",
-        sceneTemplate = MenuSceneTemplate
-      },
+      -- {
+      --   name = "YAPPYBIRDS.WORLDS.YAPPYBIRDS.STATES.Menu",
+      --   class = require "YAPPYBIRDS.WORLDS.YAPPYBIRDS.STATES.Menu",
+      --   sceneTemplate = MenuSceneTemplate
+      -- },
       
---      {
---        name = "YAPPYBIRDS.WORLDS.YAPPYBIRDS.STATES.Gameplay",
---        class = require "YAPPYBIRDS.WORLDS.YAPPYBIRDS.STATES.Gameplay",
---        sceneTemplate = GameplaySceneTemplate
---      },
+     {
+       name = "YAPPYBIRDS.WORLDS.YAPPYBIRDS.STATES.Gameplay",
+       class = require "YAPPYBIRDS.WORLDS.YAPPYBIRDS.STATES.Gameplay",
+       sceneTemplate = GameplaySceneTemplate
+     },
       
 --       {
 --       name = "YAPPYBIRDS.WORLDS.YAPPYBIRDS.STATES.Results",

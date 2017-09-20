@@ -1,4 +1,4 @@
-local BaseClass = require "YAPPYBIRDS.NODES.BaseGameplayNode"
+local BaseClass = require "NJLI.STATEMACHINE.NodeEntity"
 
 local Billboard = {}
 Billboard.__index = Billboard

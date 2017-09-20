@@ -18,6 +18,8 @@ Bird.__index = Bird
 
 local __ctor = function(self, init)
   --TODO: construct this Entity
+  
+  print("inside bird node")
 end
 
 local __dtor = function(self)

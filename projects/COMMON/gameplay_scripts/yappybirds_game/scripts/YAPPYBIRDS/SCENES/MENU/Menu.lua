@@ -29,24 +29,24 @@ local __ctor = function(self, init)
   self:getScene():addCameraNode(PerspectiveCameraNode)
 
 
---  local mm = self:createMainMenuUI()
---  for k, v in pairs(mm) do
---    v:display(false)
---  end
---  for k, v in pairs(mm) do
---    v:display(true)
---  end
+ -- local mm = self:createMainMenuUI()
+ -- for k, v in pairs(mm) do
+ --   v:display(false)
+ -- end
+ -- for k, v in pairs(mm) do
+ --   v:display(true)
+ -- end
   
---  local ls = self:createLevelSelectUI()
---  for k, v in pairs(ls) do
---    v:display(false)
---  end
---  for k, v in pairs(ls) do
---    v:display(true)
---  end
+ local ls = self:createLevelSelectUI()
+ for k, v in pairs(ls) do
+   v:display(false)
+ end
+ for k, v in pairs(ls) do
+   v:display(true)
+ end
 
-  self:createAboutUI()
-  print("self:createAboutUI()")
+  -- self:createAboutUI()
+  -- print("self:createAboutUI()")
 
 
 
