@@ -1616,7 +1616,7 @@ namespace njli
         glShaderSource(g_FragHandle, 1, &fragment_shader, 0);
         glCompileShader(g_VertHandle);
         
-#if defined(DEBUG)
+#if !(defined(NDEBUG))
         GLint logLength;
         glGetShaderiv( g_VertHandle, GL_INFO_LOG_LENGTH, &logLength);
         if (logLength > 0) {
@@ -1629,7 +1629,7 @@ namespace njli
         
         glCompileShader(g_FragHandle);
         
-#if defined(DEBUG)
+#if !(defined(NDEBUG))
         glGetShaderiv( g_FragHandle, GL_INFO_LOG_LENGTH, &logLength);
         if (logLength > 0) {
             GLchar *log = (GLchar *)malloc(logLength);

@@ -1,13 +1,14 @@
+precision mediump float;
 varying vec4 destinationColor;
 varying vec2 destinationTexCoord2D;
 varying float destinationOpacity;
 varying float destinationHidden;
 varying mat4 destinationColorTransform;
 uniform sampler2D diffuseTexture2D;
-uniform int u_opacityModifyRGB;
+uniform highp int u_opacityModifyRGB;
 void main ()
 {
-  vec4 color_1;
+  lowp vec4 color_1;
   vec4 tmpvar_2;
   tmpvar_2.xyz = vec3(1.0, 1.0, 1.0);
   tmpvar_2.w = destinationOpacity;
@@ -15,10 +16,10 @@ void main ()
     discard;
   };
   color_1 = destinationColor;
-  vec4 tmpvar_3;
+  lowp vec4 tmpvar_3;
   tmpvar_3 = texture2D (diffuseTexture2D, destinationTexCoord2D);
   if ((u_opacityModifyRGB == 1)) {
-    vec4 tmpvar_4;
+    lowp vec4 tmpvar_4;
     tmpvar_4.x = (destinationColor.x * destinationColor.w);
     tmpvar_4.y = (destinationColor.y * destinationColor.w);
     tmpvar_4.z = (destinationColor.z * destinationColor.w);
@@ -26,7 +27,7 @@ void main ()
     color_1 = tmpvar_4;
   };
   color_1 = ((color_1 * tmpvar_3) * tmpvar_2);
-  vec4 tmpvar_5;
+  lowp vec4 tmpvar_5;
   tmpvar_5.x = (((
     (color_1.x * destinationColorTransform[0].x)
    + 
@@ -43,7 +44,7 @@ void main ()
     (color_1.y * destinationColorTransform[1].z)
   ) + (color_1.z * destinationColorTransform[2].z)) + destinationColorTransform[3].z);
   tmpvar_5.w = color_1.w;
-  vec4 tmpvar_6;
+  lowp vec4 tmpvar_6;
   tmpvar_6 = clamp (tmpvar_5, 0.0, 1.0);
   color_1 = tmpvar_6;
   if ((tmpvar_6.w == 0.0)) {

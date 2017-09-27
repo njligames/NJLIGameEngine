@@ -33,7 +33,7 @@ static inline void CheckOpenALError(const char* stmt, const char* fname, int lin
 };
 
 #ifndef AL_CHECK
-//#ifdef DEBUG
+//#if !(defined(NDEBUG))
 #define AL_CHECK(stmt) do { \
 stmt; \
 CheckOpenALError(#stmt, __FILE__, __LINE__); \

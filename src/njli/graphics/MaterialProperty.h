@@ -366,7 +366,7 @@ private:
     static bool hasReference(MaterialProperty*);
 
     static std::bitset<16> s_TextureIDReferences;
-#if defined(DEBUG) || defined(_DEBUG)
+#if !(defined(NDEBUG))
     static u64 s_MaxTextureUnits;
     static u64 s_MaxTextureSize;
 #endif

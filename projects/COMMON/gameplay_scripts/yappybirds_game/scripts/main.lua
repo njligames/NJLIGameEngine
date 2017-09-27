@@ -363,17 +363,17 @@ Worlds =
     states =
     {
       --The first state is the start state.
-      -- {
-      --   name = "YAPPYBIRDS.WORLDS.YAPPYBIRDS.STATES.Menu",
-      --   class = require "YAPPYBIRDS.WORLDS.YAPPYBIRDS.STATES.Menu",
-      --   sceneTemplate = MenuSceneTemplate
-      -- },
+       {
+         name = "YAPPYBIRDS.WORLDS.YAPPYBIRDS.STATES.Menu",
+         class = require "YAPPYBIRDS.WORLDS.YAPPYBIRDS.STATES.Menu",
+         sceneTemplate = MenuSceneTemplate
+       },
       
-     {
-       name = "YAPPYBIRDS.WORLDS.YAPPYBIRDS.STATES.Gameplay",
-       class = require "YAPPYBIRDS.WORLDS.YAPPYBIRDS.STATES.Gameplay",
-       sceneTemplate = GameplaySceneTemplate
-     },
+--     {
+--       name = "YAPPYBIRDS.WORLDS.YAPPYBIRDS.STATES.Gameplay",
+--       class = require "YAPPYBIRDS.WORLDS.YAPPYBIRDS.STATES.Gameplay",
+--       sceneTemplate = GameplaySceneTemplate
+--     },
       
 --       {
 --       name = "YAPPYBIRDS.WORLDS.YAPPYBIRDS.STATES.Results",

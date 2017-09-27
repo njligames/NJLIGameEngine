@@ -783,7 +783,7 @@ namespace njli
     
     void Geometry::render(Camera *camera, s32 mode)
     {
-#if (defined(DEBUG) || defined (_DEBUG)) && defined(__APPLE__)
+#if !(defined(NDEBUG)) && defined(__APPLE__)
         GLchar buffer[2048];
         sprintf(buffer, "%s, %s", getName(), camera->getName());
         glPushGroupMarkerEXT(0, buffer);
@@ -943,7 +943,7 @@ namespace njli
         glDisable(GL_DEPTH_TEST);
         glDisable(GL_BLEND);
         
-#if (defined(DEBUG) || defined (_DEBUG)) && defined(__APPLE__)
+#if !(defined(NDEBUG)) && defined(__APPLE__)
         glPopGroupMarkerEXT();
 #endif
     }

@@ -299,7 +299,7 @@ void AbstractStateMachine<OWNER_TYPE>::clear(bool callExit)
 template <class OWNER_TYPE>
 AbstractFactoryObject* AbstractStateMachine<OWNER_TYPE>::getOwner()
 {
-//#if defined(DEBUG) || defined(_DEBUG)
+//#if !(defined(NDEBUG))
 //    return dynamic_cast<AbstractFactoryObject*>(getParent());
 //#else
 //    SDL_assert(dynamic_cast<AbstractFactoryObject*>(getParent()));
@@ -313,7 +313,7 @@ AbstractFactoryObject* AbstractStateMachine<OWNER_TYPE>::getOwner()
 template <class OWNER_TYPE>
 const AbstractFactoryObject* AbstractStateMachine<OWNER_TYPE>::getOwner() const
 {
-//#if defined(DEBUG) || defined(_DEBUG)
+//#if !(defined(NDEBUG))
 //    return dynamic_cast<const AbstractFactoryObject*>(getParent());
 //#else
 //    SDL_assert(dynamic_cast<const AbstractFactoryObject*>(getParent()));

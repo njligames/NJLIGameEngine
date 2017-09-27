@@ -24,7 +24,7 @@
 
 #define PI 3.14159265358979323846264338327f
 
-//#if defined(DEBUG) || defined(_DEBUG)
+//#if !(defined(NDEBUG))
 //#define JLI_DEBUG
 //#endif
 

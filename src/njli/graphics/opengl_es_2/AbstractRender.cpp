@@ -35,7 +35,7 @@ void initGL()
 
 void renderGL()
 {
-#if (defined(DEBUG) || defined (_DEBUG)) && defined(__APPLE__)
+#if !(defined(NDEBUG)) && defined(__APPLE__)
     glPushGroupMarkerEXT(0, "renderGL()");
 #endif
     glViewport(viewX, viewY, viewWidth, viewHeight);
@@ -49,7 +49,7 @@ void renderGL()
     
     glEnable(GL_STENCIL_TEST);
     glEnable(GL_DEPTH_TEST);
-#if (defined(DEBUG) || defined (_DEBUG)) && defined(__APPLE__)
+#if !(defined(NDEBUG)) && defined(__APPLE__)
     glPopGroupMarkerEXT();
 #endif
 }

@@ -17,7 +17,7 @@
 #include "Sound.h"
 class ISoundFileWrapper;
 
-//#if defined(DEBUG) || defined (_DEBUG)
+//#if !(defined(NDEBUG))
 //#define FMOD_LOGGING_ON 1
 //#else
 //#define FMOD_LOGGING_ON 0

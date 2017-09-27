@@ -207,7 +207,7 @@ namespace njli
     {
         s32 idx = getChildIndex(m_WorldLuaVirtualMachine);
         if(idx != -1)
-//#if defined(DEBUG) || defined(_DEBUG)
+//#if !(defined(NDEBUG))
 //        {
 //            return dynamic_cast<WorldLuaVirtualMachine*>(getChild(idx));
 //        }
@@ -224,7 +224,7 @@ namespace njli
     {
         s32 idx = getChildIndex(m_WorldLuaVirtualMachine);
         if(idx != -1)
-//#if defined(DEBUG) || defined(_DEBUG)
+//#if !(defined(NDEBUG))
 //        {
 //            return dynamic_cast<const WorldLuaVirtualMachine*>(getChild(idx));
 //        }
@@ -885,7 +885,7 @@ namespace njli
     {
         s32 idx = getChildIndex(m_Scene);
         if(idx != -1)
-//#if defined(DEBUG) || defined(_DEBUG)
+//#if !(defined(NDEBUG))
 //        {
 //            return dynamic_cast<Scene*>(getChild(idx));
 //        }
@@ -903,7 +903,7 @@ namespace njli
     {
         s32 idx = getChildIndex(m_Scene);
         if(idx != -1)
-//#if defined(DEBUG) || defined(_DEBUG)
+//#if !(defined(NDEBUG))
 //        {
 //            return dynamic_cast<const Scene*>(getChild(idx));
 //        }
@@ -1095,7 +1095,7 @@ namespace njli
     
     bool World::isDebug()const
     {
-#if defined(DEBUG) || defined (_DEBUG)
+#if !(defined(NDEBUG))
         return true;
 #endif
         return false;

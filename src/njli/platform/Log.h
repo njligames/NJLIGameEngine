@@ -9,7 +9,7 @@
 #include "SDL_test_log.h"
 
 
-#if defined(DEBUG) || defined(_DEBUG)
+#if !(defined(NDEBUG))
 #define LOGGING_ON 1
 #define LUA_WRAPPER_LOGGING 1
 #define FMOD_LOGGING_ON 1
@@ -45,7 +45,7 @@ void _debug_log_stderr(const char* tag, const char* fmt, ...);
 #endif
 
 
-#if defined(DEBUG) || defined(_DEBUG)
+#if !(defined(NDEBUG))
 #define SCRIPT_ERROR(tag, fmt, ...) \
 _script_error(tag, "%s:%d:%s(): " fmt, __FILE__, __LINE__, __func__, __VA_ARGS__);
 #else
@@ -55,7 +55,7 @@ _script_error(tag, "%s:%d:%s(): " fmt, __FILE__, __LINE__, __func__, __VA_ARGS__
 #endif
 
 
-#if defined(DEBUG) || defined(_DEBUG)
+#if !(defined(NDEBUG))
 #define CRASH() \
     /*__builtin_trap()*/_script_crash()
 #else
@@ -67,7 +67,7 @@ _script_error(tag, "%s:%d:%s(): " fmt, __FILE__, __LINE__, __func__, __VA_ARGS__
 
 
 
-//#if defined(DEBUG) || defined(_DEBUG)
+//#if !(defined(NDEBUG))
 //#define DEBUG_ASSERT(cond) \
 //    do {                   \
 //        SDL_assert((cond));\
@@ -119,7 +119,7 @@ _script_error(tag, "%s:%d:%s(): " fmt, __FILE__, __LINE__, __func__, __VA_ARGS__
     } while (0)
 
 
-#if defined(DEBUG) || defined(_DEBUG)
+#if !(defined(NDEBUG))
     #define SDL_assertCheck(condition, fmt, args...) \
         do {                   \
             char string[3584];\
@@ -142,7 +142,7 @@ _script_error(tag, "%s:%d:%s(): " fmt, __FILE__, __LINE__, __func__, __VA_ARGS__
 
 
 
-#if defined(DEBUG) || defined(_DEBUG)
+#if !(defined(NDEBUG))
 #define SDL_assertPrint(condition, fmt, args...)\
     do { \
         SDL_assertCheck((condition), fmt, ##args); \
@@ -155,7 +155,7 @@ _script_error(tag, "%s:%d:%s(): " fmt, __FILE__, __LINE__, __func__, __VA_ARGS__
 #endif
 
 
-#if defined(DEBUG) || defined(_DEBUG)
+#if !(defined(NDEBUG))
 #define DEBUG_ASSERT_PRINT(condition, fmt, ...)                                                   \
     do {                                                                                          \
         if (!(condition)) {                                                                       \
@@ -175,7 +175,7 @@ _script_error(tag, "%s:%d:%s(): " fmt, __FILE__, __LINE__, __func__, __VA_ARGS__
 
 
 
-#if defined(DEBUG) || defined(_DEBUG)
+#if !(defined(NDEBUG))
 #define DEBUG_WARN_PRINT(condition, fmt, ...)                                                   \
 do {                                                                                          \
 if (!(condition)) {                                                                       \
@@ -252,7 +252,7 @@ _debug_log_w("%s:%d:%s(): " fmt, __FILE__, __LINE__, __func__, __VA_ARGS__); \
 
 
 
-#if defined(DEBUG) || defined(_DEBUG)
+#if !(defined(NDEBUG))
 #define DEBUG_WARN_LOG(condition, fmt, ...)        \
 do {                                             \
 if (!(condition)) {                          \
@@ -336,7 +336,7 @@ void njliSleep(unsigned int _ms);
     }
 #endif
 
-#if defined(DEBUG) || defined(_DEBUG)
+#if !(defined(NDEBUG))
 #define DEBUG_GL_ERROR_WRITE(op) DEBUG_GL_ERROR_PRINT(op, "%s", "")
 #else
 #define DEBUG_GL_ERROR_WRITE(op) \

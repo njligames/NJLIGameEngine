@@ -42,11 +42,11 @@
     %{}
     
     static TYPE *NAME##_getitem(TYPE **ary, int index) {
-        SDL_assertPrint(index > 0, "index must be greater than zero.");
+        SDL_assertPrint(index > 0, "%s", "index must be greater than zero.");
         return ary[index-1];
     }
     static void NAME##_setitem(TYPE **ary, int index, TYPE *value) {
-        SDL_assertPrint(index > 0, "index must be greater than zero.");
+        SDL_assertPrint(index > 0, "%s", "index must be greater than zero.");
         ary[index-1] = value;
     }
     %}

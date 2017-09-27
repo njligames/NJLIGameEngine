@@ -1219,7 +1219,7 @@ namespace njli
         }
         
         
-#if defined(DEBUG) || defined (_DEBUG)
+#if !(defined(NDEBUG))
 //        printWrappedClasses();
 #endif
     }

@@ -375,7 +375,7 @@ namespace njli
             }
             else
             {
-#if defined(DEBUG) || defined(_DEBUG)
+#if !(defined(NDEBUG))
                 if(node->getPhysicsBody() && !node->getPhysicsBody()->isKinematicPhysics())
                     SDL_LogWarn(SDL_LOG_CATEGORY_TEST, "The PhysicsBody needs to be Kinematic for steering.");
 #endif

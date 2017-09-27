@@ -87,7 +87,7 @@ void _script_crash()
 
 void LUA_WRITE(const char * c)
 {
-#if defined(DEBUG) || defined (_DEBUG)
+#if !(defined(NDEBUG))
     fwrite(c, sizeof(char), strlen(c), stdout);
     if(njli::World::hasInstance())
         njli::World::getInstance()->getWorldSocket()->sendMessage(c);

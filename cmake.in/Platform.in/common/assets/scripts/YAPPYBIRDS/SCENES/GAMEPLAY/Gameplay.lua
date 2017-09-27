@@ -54,10 +54,10 @@ local __ctor = function(self, init)
   -- local yappyBirdLevelLoader = require "YAPPYBIRDS.yappyBirdLevelLoader"
   -- self.level = yappyBirdLevelLoader.new(self)
   
---  self:createBillboard()
+  self:createBillboard()
 --  self:createBalloon()
 --  self:createDog()
-  self:createBird({name="jim"})
+--  self:createBird({name="jim"})
   
 end
 
@@ -135,8 +135,7 @@ function Gameplay:updatePointsCounterDisplay( ... )
 end
 
 function Gameplay:createBird( ... )
-  -- https://www.lua.org/pil/5.2.html
-  
+
   local arg = ...
   assert(arg, "the paramters are nil in createBird")
   assert(arg.name ~= nil, "init.name is nil")
@@ -145,8 +144,8 @@ function Gameplay:createBird( ... )
   local beakNodeEntity = BirdBeakNodeEntity.class({
   entityOwner = self,
   states = BirdBeakNodeEntity.states,
-  atlasArray = {self._spriteAtlas_country0, self._spriteAtlas_gameplay0, self._spriteAtlas_gameplay1},
-  geometryArray = {Geometry2D[1], Geometry2D[2], Geometry2D[3]},
+  atlasArray = {self._spriteAtlas_gameplay0, self._spriteAtlas_gameplay1},
+  geometryArray = {Geometry2D[2], Geometry2D[3]},
   })
   
   local birdNodeEntity = BirdNodeEntity.class({
@@ -168,6 +167,8 @@ function Gameplay:createDog( ... )
   local dogNodeEntity = DogNodeEntity.class({
   entityOwner = self,
   states = DogNodeEntity.states,
+  atlasArray = {self._spriteAtlas_gameplay0, self._spriteAtlas_gameplay1},
+  geometryArray = {Geometry2D[2], Geometry2D[3]},
   })
   self:addNodeEntity(dogNodeEntity)
   
@@ -180,6 +181,8 @@ function Gameplay:createBalloon( ... )
   local balloonNodeEntity = BalloonNodeEntity.class({
   entityOwner = self,
   states = BalloonNodeEntity.states,
+  atlasArray = {self._spriteAtlas_gameplay0, self._spriteAtlas_gameplay1},
+  geometryArray = {Geometry2D[2], Geometry2D[3]},
   })
   self:addNodeEntity(balloonNodeEntity)
   
@@ -192,6 +195,8 @@ function Gameplay:createBillboard( ... )
   local billboardNodeEntity = BillboardNodeEntity.class({
   entityOwner = self,
   states = BillboardNodeEntity.states,
+  atlasArray = {self._spriteAtlas_country0},
+  geometryArray = {Geometry2D[1]},
   })
   
   self:addNodeEntity(billboardNodeEntity)

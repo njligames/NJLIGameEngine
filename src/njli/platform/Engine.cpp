@@ -1200,11 +1200,11 @@ namespace njli
         SDL_GetWindowSize(gWindow, &w, &h);
         SDL_Log("SDL_GetWindowSize #%d: current display mode is %dx%dpx", 0, w, h);
         
-#if defined(__MACOSX__) 
-#if !(defined(NDEBUG))
-        SDL_SetWindowSize(gWindow, w * 0.25f, h * 0.25f);
-#endif
-#endif
+//#if defined(__MACOSX__)
+//#if !(defined(NDEBUG))
+//        SDL_SetWindowSize(gWindow, w * 0.25f, h * 0.25f);
+//#endif
+//#endif
         
         SDL_GL_GetDrawableSize(gWindow, &w, &h);
         SDL_Log("SDL_GL_GetDrawableSize #%d: current display mode is %dx%dpx", 0, w, h);
@@ -1256,9 +1256,9 @@ namespace njli
         //#else
         //    SDL_GL_GetDrawableSize(gWindow, &w, &h);
         //#endif
-#if defined(__EMSCRIPTEN__)
+//#if defined(__EMSCRIPTEN__)
         NJLI_HandleResize(drawableW, drawableH, gDisplayMode.format, gDisplayMode.refresh_rate);
-#endif
+//#endif
         
         gDone = (njli::NJLIGameEngine::start() == false)?1:0;
         

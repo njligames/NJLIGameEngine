@@ -1131,7 +1131,7 @@ namespace njli
     {
         if (m_FBOvector.size() > 0)
         {
-#if (defined(DEBUG) || defined (_DEBUG)) && defined(__APPLE__)
+#if !(defined(NDEBUG)) && defined(__APPLE__)
             glPushGroupMarkerEXT(0, "WorldHUD::renderFBOs()");
 #endif
             glEnable(GL_BLEND);
@@ -1148,7 +1148,7 @@ namespace njli
                 }
             }
             glDisable(GL_BLEND);
-#if (defined(DEBUG) || defined (_DEBUG)) && defined(__APPLE__)
+#if !(defined(NDEBUG)) && defined(__APPLE__)
             glPopGroupMarkerEXT();
 #endif
         }

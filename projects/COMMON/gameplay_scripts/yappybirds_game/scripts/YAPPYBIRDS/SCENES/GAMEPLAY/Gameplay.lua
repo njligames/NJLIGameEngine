@@ -54,10 +54,10 @@ local __ctor = function(self, init)
   -- local yappyBirdLevelLoader = require "YAPPYBIRDS.yappyBirdLevelLoader"
   -- self.level = yappyBirdLevelLoader.new(self)
   
---  self:createBillboard()
+  self:createBillboard()
 --  self:createBalloon()
 --  self:createDog()
-  self:createBird({name="jim"})
+--  self:createBird({name="jim"})
   
 end
 
