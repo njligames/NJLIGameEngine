@@ -46,6 +46,7 @@ SET ( NJLIGameEngine_PACKAGE_STRING "${NJLIGameEngine_PACKAGE_NAME} ${NJLIGameEn
 
 SET ( NJLIGameEngine_COMMON_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/common")
 
+ADD_DEFINITIONS(-DSWIG_TYPE_TABLE=myprojectname)
 
 ADD_DEFINITIONS(-DNJLI_VERSION_MAJOR=\"${NJLIGameEngine_VERSION_MAJOR}\")
 ADD_DEFINITIONS(-DNJLI_VERSION_MINOR=\"${NJLIGameEngine_VERSION_MINOR}\")
@@ -440,6 +441,21 @@ FOREACH(filename ${src})
         LIST(APPEND group_other ${filename})
     ENDIF()
 ENDFOREACH()
+
+
+FILE( GLOB src
+    ${NJLI_SOURCE_DIRECTORY}/njli/generated/swig/lua/${NJLI_GRAPHICS_PLATFORM}/*
+    )
+SET(REG "${NJLI_SOURCE_DIRECTORY}/njli/generated/swig/lua/${NJLI_GRAPHICS_PLATFORM}/.*([.]cpp|[.]c|[.]h|[.]hpp)")
+FOREACH(filename ${src})
+    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+    IF(match_group_sources)
+        LIST(APPEND njli_generated_swig_lua_platform ${filename})
+    ELSE()
+        LIST(APPEND group_other ${filename})
+    ENDIF()
+ENDFOREACH()
+
 
 FILE( GLOB src
     ${NJLI_SOURCE_DIRECTORY}/njli/graphics/*.h
@@ -3274,7 +3290,7 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
     SET(imported_vorbisfile_location                  "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/Release/libvorbisfile.so")
 
     #https://kripken.github.io/emscripten-site/docs/porting/files/packaging_files.html
-    SET (CMAKE_EXE_LINKER_FLAGS "--memory-init-file 1 --embed-file  ${NJLIGameEngine_COMMON_DIRECTORY}/assets@/" )
+    SET (CMAKE_EXE_LINKER_FLAGS "-DSWIG_TYPE_TABLE=myprojectname --memory-init-file 1 --embed-file  ${NJLIGameEngine_COMMON_DIRECTORY}/assets@/" )
 
     STRING( COMPARE EQUAL "${CMAKE_BUILD_TYPE}" "Debug" IS_DEBUG )
 
@@ -3979,39 +3995,40 @@ IF(NJLI_USE_STB_LIBRARY)
     SOURCE_GROUP("ThirdParty\\include\\stb"                                                     FILES ${stb} )
 ENDIF(NJLI_USE_STB_LIBRARY)
 
-SOURCE_GROUP("GameEngine\\bullet"                                    FILES ${bullet} )
-SOURCE_GROUP("GameEngine\\lua"                                       FILES ${group_other})
-SOURCE_GROUP("GameEngine\\lua\\exts"                                 FILES ${lua_exts} )
-SOURCE_GROUP("GameEngine\\lua\\exts\\luasocket"                      FILES ${lua_exts_luasocket} )
-SOURCE_GROUP("GameEngine\\lua\\src"                                  FILES ${lua_src} )
-SOURCE_GROUP("GameEngine\\njli"                                      FILES ${njli} )
-SOURCE_GROUP("GameEngine\\njli\\builders"                            FILES ${njli_builders})
-SOURCE_GROUP("GameEngine\\njli\\builders\\graphics"                  FILES ${njli_builders_graphics})
-SOURCE_GROUP("GameEngine\\njli\\builders\\physics"                   FILES ${njli_builders_physics})
-SOURCE_GROUP("GameEngine\\njli\\builders\\physics\\body"             FILES ${njli_builders_physics_body})
-SOURCE_GROUP("GameEngine\\njli\\builders\\physics\\constraint"       FILES ${njli_builders_physics_constraint})
-SOURCE_GROUP("GameEngine\\njli\\builders\\physics\\shape"            FILES ${njli_builders_physics_shape})
-SOURCE_GROUP("GameEngine\\njli\\builders\\platform"                  FILES ${njli_builders_platform})
-SOURCE_GROUP("GameEngine\\njli\\builders\\sound"                     FILES ${njli_builders_sound})
-SOURCE_GROUP("GameEngine\\njli\\builders\\steering"                  FILES ${njli_builders_steering})
-SOURCE_GROUP("GameEngine\\njli\\builders\\steering\\behavior"        FILES ${njli_builders_steering_behavior})
-SOURCE_GROUP("GameEngine\\njli\\generated"                           FILES ${njli_generated})
-SOURCE_GROUP("GameEngine\\njli\\generated\\swig"                     FILES ${njli_generated_swig})
-SOURCE_GROUP("GameEngine\\njli\\generated\\swig\\lua"                FILES ${njli_generated_swig_lua})
-SOURCE_GROUP("GameEngine\\njli\\graphics"                            FILES ${njli_graphics})
-SOURCE_GROUP("GameEngine\\njli\\graphics\\${NJLI_GRAPHICS_PLATFORM}" FILES ${njli_graphics_specific})
-SOURCE_GROUP("GameEngine\\njli\\modules"                             FILES ${njli_modules})
-SOURCE_GROUP("GameEngine\\njli\\modules\\lua"                        FILES ${njli_modules_lua})
-SOURCE_GROUP("GameEngine\\njli\\physics"                             FILES ${njli_physics})
-SOURCE_GROUP("GameEngine\\njli\\physics\\body"                       FILES ${njli_physics_body})
-SOURCE_GROUP("GameEngine\\njli\\physics\\constraint"                 FILES ${njli_physics_constraint})
-SOURCE_GROUP("GameEngine\\njli\\physics\\shape"                      FILES ${njli_physics_shape})
-SOURCE_GROUP("GameEngine\\njli\\platform"                            FILES ${njli_platform} )
-SOURCE_GROUP("GameEngine\\njli\\platform\\${NJLI_BUILD_PLATFORM}"    FILES ${njli_platform_specific} )
-SOURCE_GROUP("GameEngine\\njli\\sound"                               FILES ${njli_sound})
-SOURCE_GROUP("GameEngine\\njli\\sound\\${NJLI_SOUND_PLATFORM}"       FILES ${njli_sound_specific})
-SOURCE_GROUP("GameEngine\\njli\\steering"                            FILES ${njli_steering})
-SOURCE_GROUP("GameEngine\\njli\\steering\\behavior"                  FILES ${njli_steering_behavior})
+SOURCE_GROUP("GameEngine\\bullet"                                                 FILES ${bullet} )
+SOURCE_GROUP("GameEngine\\lua"                                                    FILES ${group_other})
+SOURCE_GROUP("GameEngine\\lua\\exts"                                              FILES ${lua_exts} )
+SOURCE_GROUP("GameEngine\\lua\\exts\\luasocket"                                   FILES ${lua_exts_luasocket} )
+SOURCE_GROUP("GameEngine\\lua\\src"                                               FILES ${lua_src} )
+SOURCE_GROUP("GameEngine\\njli"                                                   FILES ${njli} )
+SOURCE_GROUP("GameEngine\\njli\\builders"                                         FILES ${njli_builders})
+SOURCE_GROUP("GameEngine\\njli\\builders\\graphics"                               FILES ${njli_builders_graphics})
+SOURCE_GROUP("GameEngine\\njli\\builders\\physics"                                FILES ${njli_builders_physics})
+SOURCE_GROUP("GameEngine\\njli\\builders\\physics\\body"                          FILES ${njli_builders_physics_body})
+SOURCE_GROUP("GameEngine\\njli\\builders\\physics\\constraint"                    FILES ${njli_builders_physics_constraint})
+SOURCE_GROUP("GameEngine\\njli\\builders\\physics\\shape"                         FILES ${njli_builders_physics_shape})
+SOURCE_GROUP("GameEngine\\njli\\builders\\platform"                               FILES ${njli_builders_platform})
+SOURCE_GROUP("GameEngine\\njli\\builders\\sound"                                  FILES ${njli_builders_sound})
+SOURCE_GROUP("GameEngine\\njli\\builders\\steering"                               FILES ${njli_builders_steering})
+SOURCE_GROUP("GameEngine\\njli\\builders\\steering\\behavior"                     FILES ${njli_builders_steering_behavior})
+SOURCE_GROUP("GameEngine\\njli\\generated"                                        FILES ${njli_generated})
+SOURCE_GROUP("GameEngine\\njli\\generated\\swig"                                  FILES ${njli_generated_swig})
+SOURCE_GROUP("GameEngine\\njli\\generated\\swig\\lua"                             FILES ${njli_generated_swig_lua})
+SOURCE_GROUP("GameEngine\\njli\\generated\\swig\\lua\\${NJLI_GRAPHICS_PLATFORM}"  FILES ${njli_generated_swig_lua_platform})
+SOURCE_GROUP("GameEngine\\njli\\graphics"                                         FILES ${njli_graphics})
+SOURCE_GROUP("GameEngine\\njli\\graphics\\${NJLI_GRAPHICS_PLATFORM}"              FILES ${njli_graphics_specific})
+SOURCE_GROUP("GameEngine\\njli\\modules"                                          FILES ${njli_modules})
+SOURCE_GROUP("GameEngine\\njli\\modules\\lua"                                     FILES ${njli_modules_lua})
+SOURCE_GROUP("GameEngine\\njli\\physics"                                          FILES ${njli_physics})
+SOURCE_GROUP("GameEngine\\njli\\physics\\body"                                    FILES ${njli_physics_body})
+SOURCE_GROUP("GameEngine\\njli\\physics\\constraint"                              FILES ${njli_physics_constraint})
+SOURCE_GROUP("GameEngine\\njli\\physics\\shape"                                   FILES ${njli_physics_shape})
+SOURCE_GROUP("GameEngine\\njli\\platform"                                         FILES ${njli_platform} )
+SOURCE_GROUP("GameEngine\\njli\\platform\\${NJLI_BUILD_PLATFORM}"                 FILES ${njli_platform_specific} )
+SOURCE_GROUP("GameEngine\\njli\\sound"                                            FILES ${njli_sound})
+SOURCE_GROUP("GameEngine\\njli\\sound\\${NJLI_SOUND_PLATFORM}"                    FILES ${njli_sound_specific})
+SOURCE_GROUP("GameEngine\\njli\\steering"                                         FILES ${njli_steering})
+SOURCE_GROUP("GameEngine\\njli\\steering\\behavior"                               FILES ${njli_steering_behavior})
 
 SOURCE_GROUP("Interfaces\\swig.in" )
 SOURCE_GROUP("Interfaces\\swig.in\\lua" )
@@ -4121,6 +4138,7 @@ IF( ${NJLI_BUILD_PLATFORM} STREQUAL "android" )
         ${njli_generated} 
         ${njli_generated_swig} 
         ${njli_generated_swig_lua} 
+        ${njli_generated_swig_lua_platform}
         ${CMAKE_SOURCE_DIR}/../External/thirdparty/SDL2-2.0.5/src/main/android/SDL_android_main.c
         ${CMAKE_SOURCE_DIR}/../External/thirdparty/android_file.h
         ${CMAKE_SOURCE_DIR}/../External/thirdparty/android_file.cpp
@@ -4147,7 +4165,11 @@ ELSE()
 
     ADD_LIBRARY( NJLIGameEngine
       SHARED
-      ${NJLIGameEngine_SRCS} ${njli_generated} ${njli_generated_swig} ${njli_generated_swig_lua} 
+      ${NJLIGameEngine_SRCS} 
+${njli_generated} 
+${njli_generated_swig} 
+${njli_generated_swig_lua} 
+${njli_generated_swig_lua_platform}
       ${NJLI_SOURCE_DIRECTORY}/njli/platform/Engine.h
     )
     SET_TARGET_PROPERTIES( NJLIGameEngine PROPERTIES VERSION ${NJLIGameEngine_VERSION})
@@ -4160,7 +4182,11 @@ ELSE()
   ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" OR ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" OR ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
 
     ADD_LIBRARY( libnjli_static STATIC 
-        ${NJLIGameEngine_SRCS} ${njli_generated} ${njli_generated_swig} ${njli_generated_swig_lua} 
+        ${NJLIGameEngine_SRCS} 
+${njli_generated} 
+${njli_generated_swig} 
+${njli_generated_swig_lua} 
+${njli_generated_swig_lua_platform}
         )
     SET_TARGET_PROPERTIES( libnjli_static PROPERTIES OUTPUT_NAME libnjli )
     SET_TARGET_PROPERTIES( libnjli_static PROPERTIES PREFIX "")
@@ -4170,13 +4196,35 @@ ELSE()
 
 
     IF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" OR ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
-      ADD_EXECUTABLE ( lua ${NJLIGameEngine_SRCS} ${njli_generated} ${njli_generated_swig} ${njli_generated_swig_lua} "${NJLI_SOURCE_DIRECTORY}/lua/src/lua.c" "${NJLI_SOURCE_DIRECTORY}/lua/src/lua.rc" )
+      ADD_EXECUTABLE ( lua 
+        ${NJLIGameEngine_SRCS} 
+        ${njli_generated} 
+        ${njli_generated_swig} 
+        ${njli_generated_swig_lua} 
+        ${njli_generated_swig_lua_platform} 
+        "${NJLI_SOURCE_DIRECTORY}/lua/src/lua.c" 
+        "${NJLI_SOURCE_DIRECTORY}/lua/src/lua.rc" 
+        )
       TARGET_LINK_LIBRARIES( lua ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} )
 
-      ADD_EXECUTABLE ( luac ${NJLIGameEngine_SRCS} ${njli_generated} ${njli_generated_swig} ${njli_generated_swig_lua} "${NJLI_SOURCE_DIRECTORY}/lua/src/luac.c" "${NJLI_SOURCE_DIRECTORY}/lua/src/lua.rc" )
+      ADD_EXECUTABLE ( luac 
+        ${NJLIGameEngine_SRCS} 
+        ${njli_generated} 
+        ${njli_generated_swig} 
+        ${njli_generated_swig_lua} 
+        ${njli_generated_swig_lua_platform} 
+        "${NJLI_SOURCE_DIRECTORY}/lua/src/luac.c" 
+        "${NJLI_SOURCE_DIRECTORY}/lua/src/lua.rc" 
+        )
       TARGET_LINK_LIBRARIES( luac ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} )
 
-      ADD_LIBRARY( libnjli_lua_module MODULE ${NJLIGameEngine_SRCS} ${njli_generated} ${njli_generated_swig} ${njli_generated_swig_lua} )
+      ADD_LIBRARY( libnjli_lua_module MODULE 
+        ${NJLIGameEngine_SRCS} 
+        ${njli_generated} 
+        ${njli_generated_swig} 
+        ${njli_generated_swig_lua}
+        ${njli_generated_swig_lua_platform}
+        )
       SET_TARGET_PROPERTIES( libnjli_lua_module PROPERTIES OUTPUT_NAME njli )
       SET_TARGET_PROPERTIES( libnjli_lua_module PROPERTIES PREFIX "")
       TARGET_LINK_LIBRARIES( libnjli_lua_module ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} )
@@ -4186,7 +4234,11 @@ ELSE()
 
     #IF( NOT ${NJLI_BUILD_PLATFORM} STREQUAL "linux")
         ADD_LIBRARY( libnjli_shared SHARED 
-            ${NJLIGameEngine_SRCS} ${njli_generated} ${njli_generated_swig} ${njli_generated_swig_lua} 
+            ${NJLIGameEngine_SRCS} 
+            ${njli_generated} 
+            ${njli_generated_swig}
+            ${njli_generated_swig_lua}
+            ${njli_generated_swig_lua_platform} 
             )
         SET_TARGET_PROPERTIES( libnjli_shared PROPERTIES OUTPUT_NAME libnjli )
         SET_TARGET_PROPERTIES( libnjli_shared PROPERTIES PREFIX "")
@@ -4202,7 +4254,11 @@ ELSE()
     ADD_EXECUTABLE( EngineSource
       ${CMAKE_SOURCE_DIR}/../External/thirdparty/android_file.cpp
       ${CMAKE_SOURCE_DIR}/../External/thirdparty/android_file.h
-      ${NJLIGameEngine_SRCS} ${njli_generated} ${njli_generated_swig} ${njli_generated_swig_lua}
+      ${NJLIGameEngine_SRCS} 
+      ${njli_generated} 
+      ${njli_generated_swig} 
+      ${njli_generated_swig_lua} 
+      ${njli_generated_swig_lua_platform}
       ${NJLI_SOURCE_DIRECTORY}/njli/platform/main.cpp
       ${NJLI_RESOURCES}
       ${NJLIGameEngine_THIRDPARTY_INC}

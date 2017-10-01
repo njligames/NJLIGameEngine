@@ -17,12 +17,14 @@
 #include "uSynergy.h"
 #include <thread>
 
+using namespace dd;
+
 namespace njli
 {
     class Camera;
 
     class WorldDebugDrawer
-    : public dd::RenderInterface,
+    : public RenderInterface,
     public btIDebugDraw
     {
     public:

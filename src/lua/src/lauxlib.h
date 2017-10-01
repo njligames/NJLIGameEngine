@@ -13,7 +13,7 @@
 #include <stdio.h>
 
 #include "lua.h"
-
+#include "Log.h"
 
 
 /* extra error code for 'luaL_load' */
@@ -212,7 +212,8 @@ LUALIB_API void (luaL_openlib) (lua_State *L, const char *libname,
 
 /* print a string */
 #if !defined(lua_writestring)
-#define lua_writestring(s,l)   fwrite((s), sizeof(char), (l), stdout)
+//#define lua_writestring(s,l)   fwrite((s), sizeof(char), (l), stdout)
+#define lua_writestring(s,l)   njli_luawrite((s), (l))
 #endif
 
 /* print a newline and flush the output */

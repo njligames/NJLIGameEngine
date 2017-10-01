@@ -11,11 +11,11 @@
 
 #if !(defined(NDEBUG))
 #define LOGGING_ON 1
-#define LUA_WRAPPER_LOGGING 1
+#define LUA_WRAPPER_LOGGING 0
 #define FMOD_LOGGING_ON 1
 #else
 #define LOGGING_ON 0
-#define LUA_WRAPPER_LOGGING 1
+#define LUA_WRAPPER_LOGGING 0
 #define FMOD_LOGGING_ON 0
 #endif
 
@@ -34,6 +34,12 @@ void _script_error(const char* tag, const char* text, ...) PRINTF(2, 3);
     void _script_crash();
 
 void LUA_WRITE(const char* c);
+    
+#if defined(NDEBUG)
+#define njli_luawrite(c,l) NULL
+#else
+#define njli_luawrite(c,l) LUA_WRITE(c)
+#endif
 
 void _debug_log_stderr(const char* tag, const char* fmt, ...);
     

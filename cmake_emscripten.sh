@@ -34,8 +34,7 @@ build_emscripten_sublime()
 
         #mkdir -p ../../ERRORS
         #echo "" > ../../ERRORS/emscripen.log
-        emmake make 2> ../../generated/ERRORS/emscripen.log
-        #emmake make install
+        emmake make install 2> ../../generated/ERRORS/emscripen.log
 
         #cpack ../.. --config CPackConfig.cmake      
 

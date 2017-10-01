@@ -51,7 +51,7 @@ typedef struct SoundSettings
 
 typedef struct SoundInfo
 {
-    int freqency;
+    long freqency;
     int channels;
     int format;
     int bitsPerChannel;
