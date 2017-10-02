@@ -2923,6 +2923,17 @@ SWIGINTERN void SWIG_write_ptr_array(lua_State* L,void **array,int size,swig_typ
 }
 
 
+GLfloat *newfv4(GLfloat a, GLfloat b, GLfloat c, GLfloat d)
+{
+  GLfloat *f = (GLfloat*) malloc(4 * sizeof(GLfloat));
+  f[0] = a;
+  f[1] = b;
+  f[2] = c;
+  f[3] = d;
+  return f;
+}
+
+
 #undef SWIG_fail_arg
 #define SWIG_fail_arg(func_name,argnum,type) \
 {lua_Debug ar;\
@@ -3056,6 +3067,16 @@ static swig_lua_class *swig_string_bases[] = {0};
 static const char *swig_string_base_names[] = {0};
 static swig_lua_class _wrap_class_string = { "string", "string", &SWIGTYPE_p_std__string,_proxy__wrap_new_string, swig_delete_string, swig_string_methods, swig_string_attributes, &swig_string_Sf_SwigStatic, swig_string_meta, swig_string_bases, swig_string_base_names };
 
+static int _wrap_newfv4(lua_State* L) { int SWIG_arg = 0; GLfloat arg1 ; GLfloat arg2 ; GLfloat arg3 ; GLfloat arg4 ;
+  GLfloat *result = 0 ; SWIG_check_num_args("newfv4",4,4) if(!lua_isnumber(L,1)) SWIG_fail_arg("newfv4",1,"GLfloat");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("newfv4",2,"GLfloat"); if(!lua_isnumber(L,3)) SWIG_fail_arg("newfv4",3,"GLfloat");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("newfv4",4,"GLfloat"); arg1 = (GLfloat)lua_tonumber(L, 1);
+  arg2 = (GLfloat)lua_tonumber(L, 2); arg3 = (GLfloat)lua_tonumber(L, 3); arg4 = (GLfloat)lua_tonumber(L, 4);
+  result = (GLfloat *)newfv4(arg1,arg2,arg3,arg4); SWIG_NewPointerObj(L,result,SWIGTYPE_p_float,0); SWIG_arg++; 
+  return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_delfv(lua_State* L) { int SWIG_arg = 0; void *arg1 = (void *) 0 ; SWIG_check_num_args("free",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("free",1,"void *"); arg1=(void *)SWIG_MustGetPtr(L,1,0,0,1,"delfv"); free(arg1);
+  return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
 static swig_lua_attribute swig_SwigModule_attributes[] = {
     {0,0,0}
 };
@@ -3063,6 +3084,8 @@ static swig_lua_const_info swig_SwigModule_constants[]= {
     {0,0,0,0,0,0}
 };
 static swig_lua_method swig_SwigModule_methods[]= {
+    { "newfv4", _wrap_newfv4},
+    { "delfv", _wrap_delfv},
     {0,0}
 };
 static swig_lua_class* swig_SwigModule_classes[]= {

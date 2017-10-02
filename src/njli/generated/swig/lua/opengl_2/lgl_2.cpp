@@ -2981,8 +2981,6 @@ if (lua_gettop(L)<a || lua_gettop(L)>b) \
 goto fail;}
     
 
-  //#include "/Users/jamesfolk/Library/Android/sdk/ndk-bundle/platforms/android-19/arch-arm/usr/include/GLES2/gl2.h"
-  //#include "/Users/jamesfolk/Library/Android/sdk/ndk-bundle/platforms/android-19/arch-arm/usr/include/GLES2/gl2ext.h"
 
 #ifdef __cplusplus
 extern "C" {
