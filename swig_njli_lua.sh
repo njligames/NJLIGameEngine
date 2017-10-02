@@ -6,9 +6,13 @@ MY_NJLI_INTERFACE_DIRECTORY=${PWD}/src/swig.in/lua
 
 MY_NJLI_SOURCE_DIRECTORY=${PWD}/src/njli
 MY_NJLI_BULLET_SOURCE_DIRECTORY=${PWD}/src/bullet
-MY_BULLET_SOURCE_DIRECTORY=${PWD}/../External/thirdparty/bullet3/src
+#MY_BULLET_SOURCE_DIRECTORY=${PWD}/../External/thirdparty/bullet3/src
+MY_BULLET_SOURCE_DIRECTORY=${PWD}/../External/thirdparty/BUILD/include/bullet3
+MY_DEBUG_DRAW_DIRECTORY=${PWD}/../External/thirdparty/BUILD/include/debug-draw
 
 MY_XML_OUTPUT_DIRECTORY=$1
+shift
+MY_OPENGL=$2
 shift
 MY_DEFINES=""
 for var in "$@"
@@ -27,9 +31,9 @@ fi
 
 if [[ ${MY_DEFINES} == *"USE_BULLET_LIBRARY"* ]]; then
   #bullet.
-  /usr/local/bin/swig -v -w201 -w312 -c++ -lua -includeall -ignoremissing -features directors,autodoc=1 -DBT_INFINITY \
+  /usr/local/bin/swig -fcompact -fvirtual -v -w201 -w312 -c++ -lua -includeall -ignoremissing -features directors,autodoc=1 -DBT_INFINITY \
     -DSWIG_TYPE_TABLE=myprojectname \
-    -I${PWD}/../External/thirdparty/bullet3/src \
+    -I${PWD}/../External/thirdparty/BUILD/include/bullet3 \
     -I${PWD}/src/bullet \
     -xmlout ${MY_XML_OUTPUT_DIRECTORY}/lbullet.xml \
     -o ${PWD}/src/njli/generated/swig/lua/lbullet.cpp \
@@ -37,15 +41,23 @@ if [[ ${MY_DEFINES} == *"USE_BULLET_LIBRARY"* ]]; then
 fi
 
 mkdir -p ${PWD}/src/njli/generated/swig/lua/opengl_es_2/
-/usr/local/bin/swig -v -c++ -lua -includeall -ignoremissing -features directors,autodoc=1 \
+/usr/local/bin/swig -fcompact -fvirtual -v -w201 -w312 -c++ -lua -includeall -ignoremissing -features directors,autodoc=1 \
   -DSWIG_TYPE_TABLE=myprojectname \
   -DGL_GLEXT_PROTOTYPES=1 \
   -xmlout ${MY_XML_OUTPUT_DIRECTORY}/opengl_es_2.xml \
-  -o ${PWD}/src/njli/generated/swig/lua/opengl_es_2/gl_es_2.cpp \
+  -o ${PWD}/src/njli/generated/swig/lua/opengl_es_2/lgl_es_2.cpp \
   ${PWD}/../External/thirdparty/swig.in/lua/opengl_es_2/_LuaEntry.i
 
+mkdir -p ${PWD}/src/njli/generated/swig/lua/opengl_2/
+/usr/local/bin/swig -fcompact -fvirtual -v -w201 -w312 -c++ -lua -includeall -ignoremissing -features directors,autodoc=1 \
+  -DSWIG_TYPE_TABLE=myprojectname \
+  -xmlout ${MY_XML_OUTPUT_DIRECTORY}/opengl_2.xml \
+  -o ${PWD}/src/njli/generated/swig/lua/opengl_2/lgl_2.cpp \
+  ${PWD}/../External/thirdparty/swig.in/lua/opengl_2/_LuaEntry.i
+
 #njli
-/usr/local/bin/swig ${MY_DEFINES} -v -w201 -w312 -c++ -lua -includeall -ignoremissing -features directors,autodoc=1 \
+/usr/local/bin/swig ${MY_DEFINES} -fcompact -fvirtual -v -w201 -w312 -c++ -lua -includeall -ignoremissing -features directors,autodoc=1 \
+  -DOPENGL=\"${MY_OPENGL}\" \
   -DSWIG_TYPE_TABLE=myprojectname \
     -I${MY_BULLET_SOURCE_DIRECTORY} \
     -I${MY_BULLET_SOURCE_DIRECTORY}/BulletCollision/BroadphaseCollision \
@@ -110,28 +122,9 @@ mkdir -p ${PWD}/src/njli/generated/swig/lua/opengl_es_2/
     -I${MY_NJLI_INTERFACE_DIRECTORY}/njli/steering \
     -I${MY_NJLI_INTERFACE_DIRECTORY}/njli/steering/behavior \
     \
+    -I${MY_DEBUG_DRAW_DIRECTORY} \
+    \
     -xmlout ${MY_XML_OUTPUT_DIRECTORY}/lnjli.xml \
     -o ${MY_NJLI_SOURCE_DIRECTORY}/generated/swig/lua/lnjli.cpp \
     ${MY_NJLI_INTERFACE_DIRECTORY}/njli/_LuaEntry.i
 
-#mkdir -p ${PWD}/src/njli/generated/swig/lua/opengl_es_3/
-#/usr/local/bin/swig -v -c++ -lua -includeall -ignoremissing -features directors,autodoc=1 \
-#  -I/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/include \
-#  -xmlout ${MY_XML_OUTPUT_DIRECTORY}/opengl_es_3.xml \
-#  -o ${PWD}/src/njli/generated/swig/lua/opengl_es_3/gl_es_3.cpp \
-#  ${PWD}/../External/thirdparty/swig.in/lua/opengl_es_3/_LuaEntry.i
-#
-#mkdir -p ${PWD}/src/njli/generated/swig/lua/opengl_2/
-#/usr/local/bin/swig -v -c++ -lua -includeall -ignoremissing -features directors,autodoc=1 \
-#  -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include \
-#  -xmlout ${MY_XML_OUTPUT_DIRECTORY}/opengl_2.xml \
-#  -o ${PWD}/src/njli/generated/swig/lua/opengl_2/gl_2.cpp \
-#  ${PWD}/../External/thirdparty/swig.in/lua/opengl_2/_LuaEntry.i
-#
-#mkdir -p ${PWD}/src/njli/generated/swig/lua/opengl_3/
-#/usr/local/bin/swig -v -c++ -lua -includeall -ignoremissing -features directors,autodoc=1 \
-#  -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include \
-#  -xmlout ${MY_XML_OUTPUT_DIRECTORY}/opengl_3.xml \
-#  -o ${PWD}/src/njli/generated/swig/lua/opengl_3/gl_3.cpp \
-#  ${PWD}/../External/thirdparty/swig.in/lua/opengl_3/_LuaEntry.i
-#

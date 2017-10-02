@@ -3846,7 +3846,7 @@ ADD_CUSTOM_COMMAND(
     ${CMAKE_CURRENT_BINARY_DIR}/lnjli.xml 
     ${CMAKE_CURRENT_BINARY_DIR}/lbullet.xml 
   COMMAND 
-    ./swig_njli_lua.sh ${CMAKE_CURRENT_BINARY_DIR} ${SWIG_DEFINE}
+    ./swig_njli_lua.sh ${CMAKE_CURRENT_BINARY_DIR} ${NJLI_GRAPHICS_PLATFORM} ${SWIG_DEFINE}
   WORKING_DIRECTORY 
     ${CMAKE_SOURCE_DIR}
   COMMENT 
@@ -4149,6 +4149,7 @@ IF( ${NJLI_BUILD_PLATFORM} STREQUAL "android" )
         ${NJLIGameEngine_LBY} 
         )
       SET_TARGET_PROPERTIES( njli PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
+      ADD_DEPENDENCIES(njli SWIGLua)
 
     ADD_CUSTOM_COMMAND(TARGET njli
         PRE_BUILD
@@ -4166,10 +4167,10 @@ ELSE()
     ADD_LIBRARY( NJLIGameEngine
       SHARED
       ${NJLIGameEngine_SRCS} 
-${njli_generated} 
-${njli_generated_swig} 
-${njli_generated_swig_lua} 
-${njli_generated_swig_lua_platform}
+      ${njli_generated} 
+      ${njli_generated_swig} 
+      ${njli_generated_swig_lua} 
+      ${njli_generated_swig_lua_platform}
       ${NJLI_SOURCE_DIRECTORY}/njli/platform/Engine.h
     )
     SET_TARGET_PROPERTIES( NJLIGameEngine PROPERTIES VERSION ${NJLIGameEngine_VERSION})
@@ -4178,21 +4179,23 @@ ${njli_generated_swig_lua_platform}
     SET_TARGET_PROPERTIES( NJLIGameEngine PROPERTIES PUBLIC_HEADER ${NJLI_SOURCE_DIRECTORY}/njli/platform/Engine.h)
 
     TARGET_LINK_LIBRARIES( NJLIGameEngine ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} )
+    ADD_DEPENDENCIES(NJLIGameEngine SWIGLua)
 
   ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" OR ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" OR ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
 
     ADD_LIBRARY( libnjli_static STATIC 
         ${NJLIGameEngine_SRCS} 
-${njli_generated} 
-${njli_generated_swig} 
-${njli_generated_swig_lua} 
-${njli_generated_swig_lua_platform}
+        ${njli_generated} 
+        ${njli_generated_swig} 
+        ${njli_generated_swig_lua} 
+        ${njli_generated_swig_lua_platform}
         )
     SET_TARGET_PROPERTIES( libnjli_static PROPERTIES OUTPUT_NAME libnjli )
     SET_TARGET_PROPERTIES( libnjli_static PROPERTIES PREFIX "")
     TARGET_LINK_LIBRARIES( libnjli_static ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} )
     SET_TARGET_PROPERTIES( libnjli_static PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
     SET_TARGET_PROPERTIES( libnjli_static PROPERTIES PUBLIC_HEADER ${NJLI_SOURCE_DIRECTORY}/njli/platform/Engine.h)
+    ADD_DEPENDENCIES(libnjli_static SWIGLua)
 
 
     IF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" OR ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
@@ -4206,6 +4209,7 @@ ${njli_generated_swig_lua_platform}
         "${NJLI_SOURCE_DIRECTORY}/lua/src/lua.rc" 
         )
       TARGET_LINK_LIBRARIES( lua ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} )
+      ADD_DEPENDENCIES(lua SWIGLua)
 
       ADD_EXECUTABLE ( luac 
         ${NJLIGameEngine_SRCS} 
@@ -4217,6 +4221,7 @@ ${njli_generated_swig_lua_platform}
         "${NJLI_SOURCE_DIRECTORY}/lua/src/lua.rc" 
         )
       TARGET_LINK_LIBRARIES( luac ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} )
+      ADD_DEPENDENCIES(luac SWIGLua)
 
       ADD_LIBRARY( libnjli_lua_module MODULE 
         ${NJLIGameEngine_SRCS} 
@@ -4230,6 +4235,7 @@ ${njli_generated_swig_lua_platform}
       TARGET_LINK_LIBRARIES( libnjli_lua_module ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} )
       SET_TARGET_PROPERTIES( libnjli_lua_module PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
       SET_TARGET_PROPERTIES( libnjli_lua_module PROPERTIES PUBLIC_HEADER ${NJLI_SOURCE_DIRECTORY}/njli/platform/Engine.h)
+      ADD_DEPENDENCIES(libnjli_lua_module SWIGLua)
     ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" OR ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten")
 
     #IF( NOT ${NJLI_BUILD_PLATFORM} STREQUAL "linux")
@@ -4245,6 +4251,7 @@ ${njli_generated_swig_lua_platform}
         TARGET_LINK_LIBRARIES( libnjli_shared ${EXTRA_PLATFORM_LIBS} ${NJLIGameEngine_LBY} )
         SET_TARGET_PROPERTIES( libnjli_shared PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
         SET_TARGET_PROPERTIES( libnjli_shared PROPERTIES PUBLIC_HEADER ${NJLI_SOURCE_DIRECTORY}/njli/platform/Engine.h)
+        ADD_DEPENDENCIES(libnjli_shared SWIGLua)
 
 
         #ENDIF()
@@ -4263,6 +4270,7 @@ ${njli_generated_swig_lua_platform}
       ${NJLI_RESOURCES}
       ${NJLIGameEngine_THIRDPARTY_INC}
       )
+    ADD_DEPENDENCIES(EngineSource SWIGLua)
 
     SET_TARGET_PROPERTIES( EngineSource PROPERTIES OUTPUT_NAME ${NJLI_PRODUCT_NAME} )
     #SET_TARGET_PROPERTIES( EngineSource PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})

@@ -5,12 +5,12 @@
 //MARK: Tested Ignore, successfully
 %include "_IgnoreNJLI.i"
 %include "_IgnorePlatform.i"
-//%include "_IgnoreBullet.i"
-//%include "_IgnoreGLES2.i"
+%import "/Users/jamesfolk/Documents/NJLI/External/thirdparty/swig.in/lua/bullet3/_IgnoreBullet.i"
+%import "/Users/jamesfolk/Documents/NJLI/External/thirdparty/swig.in/lua/OPENGL/_Ignore.i"
 
 //MARK: Tested ModuleBullet, succesfully
 %include "_Module_Bullet.i"
-%include "_Module_GLES2.i"
+%import "/Users/jamesfolk/Documents/NJLI/External/thirdparty/swig.in/lua/OPENGL/_LuaEntry.i"
 
 %include "AbstractActionable.i"
 %include "AbstractBuilder.i"
@@ -50,14 +50,10 @@
 //MARK: Tested Apply, successfully
 %include "_ApplyNJLI.i"
 %include "_ApplyPlatform.i"
-//%include "_ApplyBullet.i"
-//%include "_ApplyGLES2.i"
 
 //MARK: Tested Rename, successfully
 %include "_RenameNJLI.i"
 %include "_RenamePlatform.i"
-//%include "_RenameBullet.i"
-//%include "_RenameGLES2.i"
 
 //MARK: %luacode wrapper doesn't work in an external file.
 %luacode
@@ -293,15 +289,11 @@
 %}
 
 //MARK: Tested Template, successfully
-//%include "_TemplateBullet.i"
-//%include "_TemplateGLES2.i"
 %include "_TemplatePlatform.i"
 %include "_TemplateNJLI.i"
 
 
 //MARK: Tested Array, succesfully.
-//%include "_ArrayBullet.i"
-//%include "_ArrayGLES2.i"
 %include "_ArrayPlatform.i"
 %include "_ArrayNJLI.i"
 
