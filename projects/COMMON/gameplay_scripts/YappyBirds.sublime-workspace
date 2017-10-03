@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"no",
+				"nodeEntityChild	nodeEntity"
+			],
+			[
+				"nod",
+				"nodeEntityStateChild	nodeEntityState"
+			],
+			[
 				"nodeE",
 				"nodeEntity"
 			],
@@ -320,10 +328,66 @@
 	"buffers":
 	[
 		{
-			"file": "yappybirds_game/scripts/NJLI/InterfaceFunctions.lua",
+			"file": "yappybirds_game/scripts/main.lua",
 			"settings":
 			{
-				"buffer_size": 25006,
+				"buffer_size": 11226,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "yappybirds_game/scripts/YAPPYBIRDS/SCENES/MENU/Menu.lua",
+			"settings":
+			{
+				"buffer_size": 15075,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "yappybirds_game/scripts/YAPPYBIRDS/SCENES/GAMEPLAY/Gameplay.lua",
+			"settings":
+			{
+				"buffer_size": 10128,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "yappybirds_game/scripts/YAPPYBIRDS/SCENES/GAMEPLAY/STATES/Loading.lua",
+			"settings":
+			{
+				"buffer_size": 4912,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "yappybirds_game/scripts/YAPPYBIRDS/NODES/BIRD/Bird.lua",
+			"settings":
+			{
+				"buffer_size": 5727,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "yappybirds_game/scripts/YAPPYBIRDS/NODES/BIRD/STATES/Spawn.lua",
+			"settings":
+			{
+				"buffer_size": 5765,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "yappybirds_game/scripts/NJLI/STATEMACHINE/UI/BUTTON/Button.lua",
+			"settings":
+			{
+				"buffer_size": 16587,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "yappybirds_game/scripts/YAPPYBIRDS/NODES/BILLBOARD/Billboard.lua",
+			"settings":
+			{
+				"buffer_size": 5996,
 				"line_ending": "Unix"
 			}
 		}
@@ -440,6 +504,9 @@
 	},
 	"file_history":
 	[
+		"/Users/jamesfolk/Desktop/find_first_usb.py",
+		"/Users/jamesfolk/Documents/NJLI/Engine/projects/COMMON/gameplay_scripts/yappybirds_game/scripts/YAPPYBIRDS/birdSpawnMachine.lua",
+		"/Users/jamesfolk/Documents/NJLI/Engine/projects/COMMON/gameplay_scripts/yappybirds_game/scripts/NJLI/InterfaceFunctions.lua",
 		"/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/projects/COMMON/gameplay_scripts/yappybirds_game/scripts/NJLI/InterfaceFunctions.lua",
 		"/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/projects/COMMON/gameplay_scripts/yappybirds_game/scripts/YAPPYBIRDS/SCENES/MENU/Menu.lua",
 		"/Users/jamesfolk/Dropbox/Developer/NJLI/Engine/projects/COMMON/gameplay_scripts/yappybirds_game/scripts/NJLI/STATEMACHINE/UI/BUTTON/Button.lua",
@@ -564,10 +631,7 @@
 		"/Users/jamesfolk/Dropbox/YappyBirds/COMMON/gameplay_scripts/scripts/njli/util.lua",
 		"/Users/jamesfolk/Dropbox/YappyBirds/COMMON/gameplay_scripts/scripts/yappybirds/util.lua",
 		"/Users/jamesfolk/Dropbox/YappyBirds/COMMON/gameplay_scripts/scripts/njli/device.lua",
-		"/Users/jamesfolk/Dropbox/YappyBirds/COMMON/gameplay_scripts/scripts/njli/entitymanager.lua",
-		"/Users/jamesfolk/Dropbox/YappyBirds/COMMON/gameplay_scripts/scripts/njli/game.lua",
-		"/Users/jamesfolk/Dropbox/YappyBirds/COMMON/gameplay_scripts/Makefile",
-		"/Users/jamesfolk/NJLI/YappyBirds/COMMON/assets/scripts/njli/statemachine/sceneentity.lua"
+		"/Users/jamesfolk/Dropbox/YappyBirds/COMMON/gameplay_scripts/scripts/njli/entitymanager.lua"
 	],
 	"find":
 	{
@@ -899,15 +963,15 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 7,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "yappybirds_game/scripts/NJLI/InterfaceFunctions.lua",
+					"file": "yappybirds_game/scripts/main.lua",
 					"settings":
 					{
-						"buffer_size": 25006,
+						"buffer_size": 11226,
 						"regions":
 						{
 						},
@@ -925,7 +989,203 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 4684.0,
+						"translation.y": 5081.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "yappybirds_game/scripts/YAPPYBIRDS/SCENES/MENU/Menu.lua",
+					"settings":
+					{
+						"buffer_size": 15075,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1281,
+								1416
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Lua/Lua.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 423.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "yappybirds_game/scripts/YAPPYBIRDS/SCENES/GAMEPLAY/Gameplay.lua",
+					"settings":
+					{
+						"buffer_size": 10128,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Lua/Lua.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 631.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "yappybirds_game/scripts/YAPPYBIRDS/SCENES/GAMEPLAY/STATES/Loading.lua",
+					"settings":
+					{
+						"buffer_size": 4912,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Lua/Lua.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 558.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "yappybirds_game/scripts/YAPPYBIRDS/NODES/BIRD/Bird.lua",
+					"settings":
+					{
+						"buffer_size": 5727,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Lua/Lua.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3356.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "yappybirds_game/scripts/YAPPYBIRDS/NODES/BIRD/STATES/Spawn.lua",
+					"settings":
+					{
+						"buffer_size": 5765,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5765,
+								5765
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Lua/Lua.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3356.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "yappybirds_game/scripts/NJLI/STATEMACHINE/UI/BUTTON/Button.lua",
+					"settings":
+					{
+						"buffer_size": 16587,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								709,
+								713
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Lua/Lua.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "yappybirds_game/scripts/YAPPYBIRDS/NODES/BILLBOARD/Billboard.lua",
+					"settings":
+					{
+						"buffer_size": 5996,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5996,
+								5996
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Lua/Lua.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

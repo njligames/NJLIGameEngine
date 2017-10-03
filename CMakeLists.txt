@@ -32,8 +32,9 @@ SET ( NJLIGameEngine_PACKAGE_NAME "The NJLIGames LLC. Game Engine" )
 SET ( NJLIGameEngine_BUGREPORT "jamesfolk1@gmail.com" )
 SET ( OPERATING_SYSTEM "${CMAKE_SYSTEM_NAME}")
 
-SET( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11 -fno-exceptions -fno-stack-protector -m32 -fomit-frame-pointer -fno-unwind-tables -fno-asynchronous-unwind-tables -fno-math-errno")
-SET( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fno-exceptions -fno-stack-protector -m32 -fomit-frame-pointer -fno-unwind-tables -fno-asynchronous-unwind-tables -fno-math-errno")
+#SET( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11 -fno-exceptions -fno-stack-protector -m32 -fomit-frame-pointer -fno-unwind-tables -fno-asynchronous-unwind-tables -fno-math-errno")
+SET( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11")
+#SET( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fno-exceptions -fno-stack-protector -m32 -fomit-frame-pointer -fno-unwind-tables -fno-asynchronous-unwind-tables -fno-math-errno")
 
 STRING( COMPARE EQUAL "${OPERATING_SYSTEM}" "Linux" IS_LINUX )
 
@@ -2593,7 +2594,7 @@ FILE( GLOB src
     "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/*.i"
     "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/*.swg"
     )
-SET(REG "${NJLI_SOURCE_DIRECTORY}/swig.in/lua/bullet3/.*([.]i|[.]swg)")
+SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/.*([.]i|[.]swg)")
 FOREACH(filename ${src})
     STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
     IF(match_group_sources)
@@ -2897,6 +2898,33 @@ FOREACH(filename ${src})
     ENDIF()
 ENDFOREACH()
 
+FILE( GLOB src
+    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/${NJLI_GRAPHICS_PLATFORM}/*.i"
+    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/${NJLI_GRAPHICS_PLATFORM}/*.swg"
+    )
+SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/${NJLI_GRAPHICS_PLATFORM}/.*([.]i|[.]swg)")
+FOREACH(filename ${src})
+    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+    IF(match_group_sources)
+        LIST(APPEND swigin_graphics_platform ${filename})
+    ELSE()
+        LIST(APPEND interface_group_other ${filename})
+    ENDIF()
+ENDFOREACH()
+
+#FILE( GLOB src
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/vectormath/sse/*.i"
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/vectormath/sse/*.swg"
+#    )
+#SET(REG "${NJLI_SOURCE_DIRECTORY}/njli/generated/swig/lua/${NJLI_GRAPHICS_PLATFORM}/.*([.]cpp|[.]c|[.]h|[.]hpp)")
+#FOREACH(filename ${src})
+#    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+#    IF(match_group_sources)
+#        LIST(APPEND njli_generated_swig_lua_platform ${filename})
+#    ELSE()
+#        LIST(APPEND group_other ${filename})
+#    ENDIF()
+#ENDFOREACH()
 
 FILE(GLOB NJLIGameEngine_THIRDPARTY_ITFS
     ${swigin_bullet3} 
@@ -2921,6 +2949,7 @@ FILE(GLOB NJLIGameEngine_THIRDPARTY_ITFS
     ${swigin_bullet3_vectormath_neon} 
     ${swigin_bullet3_vectormath_scalar} 
     ${swigin_bullet3_vectormath_sse} 
+    ${swigin_graphics_platform}
 )
 
 SET( GAME_ASSETS "${NJLIGameEngine_COMMON_DIRECTORY}/assets" )
@@ -3289,36 +3318,34 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
     SET(imported_vorbisenc_location                   "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/Release/libvorbisenc.so")
     SET(imported_vorbisfile_location                  "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/Release/libvorbisfile.so")
 
-    #https://kripken.github.io/emscripten-site/docs/porting/files/packaging_files.html
-    SET (CMAKE_EXE_LINKER_FLAGS "-DSWIG_TYPE_TABLE=myprojectname --memory-init-file 1 --embed-file  ${NJLIGameEngine_COMMON_DIRECTORY}/assets@/" )
 
-    STRING( COMPARE EQUAL "${CMAKE_BUILD_TYPE}" "Debug" IS_DEBUG )
+    STRING( COMPARE EQUAL "${NJLI_BUILD_TYPE}" "Debug" IS_DEBUG )
 
     IF( IS_DEBUG)
       # DEBUGGING: https://kripken.github.io/emscripten-site/docs/porting/Debugging.html#debugging-emcc-debug
 
-      SET( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g4")
-      SET( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -g4")
-
+      LIST(APPEND EXTRA_PLATFORM_LIBS "--bind")
       LIST(APPEND EXTRA_PLATFORM_LIBS "--profiling")
+      LIST(APPEND EXTRA_PLATFORM_LIBS "--profiling-funcs")
+      LIST(APPEND EXTRA_PLATFORM_LIBS "--tracing")
+      LIST(APPEND EXTRA_PLATFORM_LIBS "--emit-symbol-map")
       LIST(APPEND EXTRA_PLATFORM_LIBS "--js-opts 0")
-
-      #LIST(APPEND EXTRA_PLATFORM_LIBS "--cpuprofiler")
-      #LIST(APPEND EXTRA_PLATFORM_LIBS "--memoryprofiler")
-      #LIST(APPEND EXTRA_PLATFORM_LIBS "--threadprofiler")
+      LIST(APPEND EXTRA_PLATFORM_LIBS "-g4")
       
     ELSE()
       # OPTIMIZING: https://kripken.github.io/emscripten-site/docs/optimizing/Optimizing-Code.html
       # SEPERATE ASM: https://kripken.github.io/emscripten-site/docs/optimizing/Optimizing-Code.html#avoid-memory-spikes-by-separating-out-asm-js
 
-      SET( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Os")
-      SET( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Os")
+      LIST(APPEND EXTRA_PLATFORM_LIBS "-s -O2 --llvm-opts 2")
 
-      #LIST(APPEND EXTRA_PLATFORM_LIBS "-s TOTAL_MEMORY=16*1024*1024")
     ENDIF( IS_DEBUG)
 
-    LIST(APPEND EXTRA_PLATFORM_LIBS "-s ALLOW_MEMORY_GROWTH=1")
+    LIST(APPEND EXTRA_PLATFORM_LIBS "-s TOTAL_MEMORY=256*1024*1024")
+    #LIST(APPEND EXTRA_PLATFORM_LIBS "-s ALLOW_MEMORY_GROWTH=1")
     LIST(APPEND EXTRA_PLATFORM_LIBS "-s FULL_ES2=1")
+
+    #https://kripken.github.io/emscripten-site/docs/porting/files/packaging_files.html
+    SET (CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -DSWIG_TYPE_TABLE=myprojectname --memory-init-file 1 --embed-file  ${NJLIGameEngine_COMMON_DIRECTORY}/assets@/" )
 
 ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "android" )
 
@@ -3857,6 +3884,9 @@ ADD_CUSTOM_TARGET(SWIGLua ALL
   DEPENDS 
     ${CMAKE_CURRENT_BINARY_DIR}/lnjli.xml 
     ${CMAKE_CURRENT_BINARY_DIR}/lbullet.xml 
+  SOURCES
+    ${NJLIGameEngine_ITFS}
+    ${NJLIGameEngine_THIRDPARTY_ITFS}
   )
 
 SET_SOURCE_FILES_PROPERTIES( ${NJLI_SOURCE_DIRECTORY}/njli/generated/swig/lua/lnjli.cpp PROPERTIES GENERATED TRUE )
@@ -4076,6 +4106,7 @@ SOURCE_GROUP("Interfaces\\swig.in\\lua\\thirdparty\\bullet3\\vectormath" FILES $
 SOURCE_GROUP("Interfaces\\swig.in\\lua\\thirdparty\\bullet3\\vectormath\\neon" FILES ${swigin_bullet3_vectormath_neon} )
 SOURCE_GROUP("Interfaces\\swig.in\\lua\\thirdparty\\bullet3\\vectormath\\scalar" FILES ${swigin_bullet3_vectormath_scalar} )
 SOURCE_GROUP("Interfaces\\swig.in\\lua\\thirdparty\\bullet3\\vectormath\\sse" FILES ${swigin_bullet3_vectormath_sse} )
+SOURCE_GROUP("Interfaces\\swig.in\\lua\\thirdparty\\${NJLI_GRAPHICS_PLATFORM}" FILES ${swigin_graphics_platform} )
 
 #IF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
 

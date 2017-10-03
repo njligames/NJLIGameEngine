@@ -2694,30 +2694,31 @@ SWIG_Lua_dostring(lua_State *L, const char *str) {
 
 #define SWIGTYPE_p_char swig_types[0]
 #define SWIGTYPE_p_float swig_types[1]
-#define SWIGTYPE_p_int swig_types[2]
+#define SWIGTYPE_p_int16_t swig_types[2]
 #define SWIGTYPE_p_int32_t swig_types[3]
 #define SWIGTYPE_p_int64_t swig_types[4]
-#define SWIGTYPE_p_long swig_types[5]
-#define SWIGTYPE_p_short swig_types[6]
-#define SWIGTYPE_p_signed_char swig_types[7]
-#define SWIGTYPE_p_std__string swig_types[8]
-#define SWIGTYPE_p_uint64_t swig_types[9]
-#define SWIGTYPE_p_unsigned_char swig_types[10]
-#define SWIGTYPE_p_unsigned_int swig_types[11]
-#define SWIGTYPE_p_unsigned_short swig_types[12]
-#define SWIGTYPE_p_void swig_types[13]
-static swig_type_info *swig_types[15];
-static swig_module_info swig_module = {swig_types, 14, 0, 0, 0, 0};
+#define SWIGTYPE_p_int8_t swig_types[5]
+#define SWIGTYPE_p_intptr_t swig_types[6]
+#define SWIGTYPE_p_p_char swig_types[7]
+#define SWIGTYPE_p_p_void swig_types[8]
+#define SWIGTYPE_p_std__string swig_types[9]
+#define SWIGTYPE_p_uint16_t swig_types[10]
+#define SWIGTYPE_p_uint32_t swig_types[11]
+#define SWIGTYPE_p_uint64_t swig_types[12]
+#define SWIGTYPE_p_uint8_t swig_types[13]
+#define SWIGTYPE_p_void swig_types[14]
+static swig_type_info *swig_types[16];
+static swig_module_info swig_module = {swig_types, 15, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
 /* -------- TYPES TABLE (END) -------- */
 
-#define SWIG_name      "gles2"
-#define SWIG_init      luaopen_gles2
-#define SWIG_init_user luaopen_gles2_user
+#define SWIG_name      "gl"
+#define SWIG_init      luaopen_gl
+#define SWIG_init_user luaopen_gl_user
 
-#define SWIG_LUACODE   luaopen_gles2_luacode
+#define SWIG_LUACODE   luaopen_gl_luacode
 
 namespace swig {
 typedef struct{} LANGUAGE_OBJ;
@@ -2923,17 +2924,6 @@ SWIGINTERN void SWIG_write_ptr_array(lua_State* L,void **array,int size,swig_typ
 }
 
 
-GLfloat *newfv4(GLfloat a, GLfloat b, GLfloat c, GLfloat d)
-{
-  GLfloat *f = (GLfloat*) malloc(4 * sizeof(GLfloat));
-  f[0] = a;
-  f[1] = b;
-  f[2] = c;
-  f[3] = d;
-  return f;
-}
-
-
 #undef SWIG_fail_arg
 #define SWIG_fail_arg(func_name,argnum,type) \
 {lua_Debug ar;\
@@ -2958,6 +2948,24 @@ if (lua_gettop(L)<a || lua_gettop(L)>b) \
 goto fail;}
     
 
+    #include "GraphicsPlatform.h"
+
+
+GLfloat *newfv4(GLfloat a, GLfloat b, GLfloat c, GLfloat d)
+{
+  GLfloat *f = (GLfloat*) malloc(4 * sizeof(GLfloat));
+  f[0] = a;
+  f[1] = b;
+  f[2] = c;
+  f[3] = d;
+  return f;
+}
+
+
+void delfv(void *m)
+{
+    free(m);
+}
 
 #ifdef __cplusplus
 extern "C" {
@@ -3074,18 +3082,1948 @@ static int _wrap_newfv4(lua_State* L) { int SWIG_arg = 0; GLfloat arg1 ; GLfloat
   arg2 = (GLfloat)lua_tonumber(L, 2); arg3 = (GLfloat)lua_tonumber(L, 3); arg4 = (GLfloat)lua_tonumber(L, 4);
   result = (GLfloat *)newfv4(arg1,arg2,arg3,arg4); SWIG_NewPointerObj(L,result,SWIGTYPE_p_float,0); SWIG_arg++; 
   return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
-static int _wrap_delfv(lua_State* L) { int SWIG_arg = 0; void *arg1 = (void *) 0 ; SWIG_check_num_args("free",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("free",1,"void *"); arg1=(void *)SWIG_MustGetPtr(L,1,0,0,1,"delfv"); free(arg1);
+static int _wrap_delfv(lua_State* L) { int SWIG_arg = 0; void *arg1 = (void *) 0 ; SWIG_check_num_args("delfv",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("delfv",1,"void *"); arg1=(void *)SWIG_MustGetPtr(L,1,0,0,1,"delfv"); delfv(arg1);
   return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glActiveTexture(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLenum *argp1 ;
+  SWIG_check_num_args("glActiveTexture",1,1) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glActiveTexture",1,"GLenum");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glActiveTexture",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1; glActiveTexture(arg1); return SWIG_arg;
+  if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glAttachShader(lua_State* L) { int SWIG_arg = 0; GLuint arg1 ; GLuint arg2 ; GLuint *argp1 ; GLuint *argp2 ;
+  SWIG_check_num_args("glAttachShader",2,2) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glAttachShader",1,"GLuint");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glAttachShader",2,"GLuint");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glAttachShader",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glAttachShader",2,SWIGTYPE_p_uint32_t); }  arg2 = *argp2; glAttachShader(arg1,arg2); return SWIG_arg;
+  if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glBindAttribLocation(lua_State* L) { int SWIG_arg = 0; GLuint arg1 ; GLuint arg2 ;
+  GLchar *arg3 = (GLchar *) 0 ; GLuint *argp1 ; GLuint *argp2 ; SWIG_check_num_args("glBindAttribLocation",3,3)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glBindAttribLocation",1,"GLuint");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glBindAttribLocation",2,"GLuint");
+  if(!SWIG_lua_isnilstring(L,3)) SWIG_fail_arg("glBindAttribLocation",3,"GLchar const *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glBindAttribLocation",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glBindAttribLocation",2,SWIGTYPE_p_uint32_t); }  arg2 = *argp2; arg3 = (GLchar *)lua_tostring(L, 3);
+  glBindAttribLocation(arg1,arg2,(char const *)arg3); return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glBindBuffer(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLuint arg2 ; GLenum *argp1 ; GLuint *argp2 ;
+  SWIG_check_num_args("glBindBuffer",2,2) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glBindBuffer",1,"GLenum");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glBindBuffer",2,"GLuint");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glBindBuffer",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glBindBuffer",2,SWIGTYPE_p_uint32_t); }  arg2 = *argp2; glBindBuffer(arg1,arg2); return SWIG_arg;
+  if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glBindFramebuffer(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLuint arg2 ; GLenum *argp1 ; GLuint *argp2 ;
+  SWIG_check_num_args("glBindFramebuffer",2,2) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glBindFramebuffer",1,"GLenum");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glBindFramebuffer",2,"GLuint");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glBindFramebuffer",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glBindFramebuffer",2,SWIGTYPE_p_uint32_t); }  arg2 = *argp2; glBindFramebuffer(arg1,arg2); return SWIG_arg;
+  if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glBindRenderbuffer(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLuint arg2 ; GLenum *argp1 ;
+  GLuint *argp2 ; SWIG_check_num_args("glBindRenderbuffer",2,2)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glBindRenderbuffer",1,"GLenum");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glBindRenderbuffer",2,"GLuint");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glBindRenderbuffer",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glBindRenderbuffer",2,SWIGTYPE_p_uint32_t); }  arg2 = *argp2; glBindRenderbuffer(arg1,arg2); return SWIG_arg;
+  if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glBindTexture(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLuint arg2 ; GLenum *argp1 ; GLuint *argp2 ;
+  SWIG_check_num_args("glBindTexture",2,2) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glBindTexture",1,"GLenum");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glBindTexture",2,"GLuint");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glBindTexture",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glBindTexture",2,SWIGTYPE_p_uint32_t); }  arg2 = *argp2; glBindTexture(arg1,arg2); return SWIG_arg;
+  if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glBlendColor(lua_State* L) { int SWIG_arg = 0; GLfloat arg1 ; GLfloat arg2 ; GLfloat arg3 ; GLfloat arg4 ;
+  SWIG_check_num_args("glBlendColor",4,4) if(!lua_isnumber(L,1)) SWIG_fail_arg("glBlendColor",1,"GLfloat");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("glBlendColor",2,"GLfloat");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("glBlendColor",3,"GLfloat");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("glBlendColor",4,"GLfloat"); arg1 = (GLfloat)lua_tonumber(L, 1);
+  arg2 = (GLfloat)lua_tonumber(L, 2); arg3 = (GLfloat)lua_tonumber(L, 3); arg4 = (GLfloat)lua_tonumber(L, 4);
+  glBlendColor(arg1,arg2,arg3,arg4); return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glBlendEquation(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLenum *argp1 ;
+  SWIG_check_num_args("glBlendEquation",1,1) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glBlendEquation",1,"GLenum");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glBlendEquation",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1; glBlendEquation(arg1); return SWIG_arg;
+  if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glBlendEquationSeparate(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLenum arg2 ; GLenum *argp1 ;
+  GLenum *argp2 ; SWIG_check_num_args("glBlendEquationSeparate",2,2)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glBlendEquationSeparate",1,"GLenum");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glBlendEquationSeparate",2,"GLenum");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glBlendEquationSeparate",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glBlendEquationSeparate",2,SWIGTYPE_p_uint32_t); }  arg2 = *argp2; glBlendEquationSeparate(arg1,arg2);
+  return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glBlendFunc(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLenum arg2 ; GLenum *argp1 ; GLenum *argp2 ;
+  SWIG_check_num_args("glBlendFunc",2,2) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glBlendFunc",1,"GLenum");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glBlendFunc",2,"GLenum");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glBlendFunc",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glBlendFunc",2,SWIGTYPE_p_uint32_t); }  arg2 = *argp2; glBlendFunc(arg1,arg2); return SWIG_arg;
+  if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glBlendFuncSeparate(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLenum arg2 ; GLenum arg3 ; GLenum arg4 ;
+  GLenum *argp1 ; GLenum *argp2 ; GLenum *argp3 ; GLenum *argp4 ; SWIG_check_num_args("glBlendFuncSeparate",4,4)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glBlendFuncSeparate",1,"GLenum");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glBlendFuncSeparate",2,"GLenum");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("glBlendFuncSeparate",3,"GLenum");
+  if(!lua_isuserdata(L,4)) SWIG_fail_arg("glBlendFuncSeparate",4,"GLenum");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glBlendFuncSeparate",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glBlendFuncSeparate",2,SWIGTYPE_p_uint32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&argp3,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glBlendFuncSeparate",3,SWIGTYPE_p_uint32_t); }  arg3 = *argp3;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,4,(void**)&argp4,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glBlendFuncSeparate",4,SWIGTYPE_p_uint32_t); }  arg4 = *argp4; glBlendFuncSeparate(arg1,arg2,arg3,arg4);
+  return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glBufferData(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLsizeiptr arg2 ; GLvoid *arg3 = (GLvoid *) 0 ;
+  GLenum arg4 ; GLenum *argp1 ; GLsizeiptr *argp2 ; GLenum *argp4 ; SWIG_check_num_args("glBufferData",4,4)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glBufferData",1,"GLenum");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glBufferData",2,"GLsizeiptr");
+  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("glBufferData",3,"GLvoid const *");
+  if(!lua_isuserdata(L,4)) SWIG_fail_arg("glBufferData",4,"GLenum");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glBufferData",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_intptr_t,0))){
+    SWIG_fail_ptr("glBufferData",2,SWIGTYPE_p_intptr_t); }  arg2 = *argp2;
+  arg3=(GLvoid *)SWIG_MustGetPtr(L,3,0,0,3,"glBufferData");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,4,(void**)&argp4,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glBufferData",4,SWIGTYPE_p_uint32_t); }  arg4 = *argp4; glBufferData(arg1,arg2,(void const *)arg3,arg4);
+  return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glBufferSubData(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLintptr arg2 ; GLsizeiptr arg3 ;
+  GLvoid *arg4 = (GLvoid *) 0 ; GLenum *argp1 ; GLintptr *argp2 ; GLsizeiptr *argp3 ; SWIG_check_num_args("glBufferSubData",4,4)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glBufferSubData",1,"GLenum");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glBufferSubData",2,"GLintptr");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("glBufferSubData",3,"GLsizeiptr");
+  if(!SWIG_isptrtype(L,4)) SWIG_fail_arg("glBufferSubData",4,"GLvoid const *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glBufferSubData",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_intptr_t,0))){
+    SWIG_fail_ptr("glBufferSubData",2,SWIGTYPE_p_intptr_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&argp3,SWIGTYPE_p_intptr_t,0))){
+    SWIG_fail_ptr("glBufferSubData",3,SWIGTYPE_p_intptr_t); }  arg3 = *argp3;
+  arg4=(GLvoid *)SWIG_MustGetPtr(L,4,0,0,4,"glBufferSubData"); glBufferSubData(arg1,arg2,arg3,(void const *)arg4);
+  return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glCheckFramebufferStatus(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLenum *argp1 ; GLenum result;
+  SWIG_check_num_args("glCheckFramebufferStatus",1,1)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glCheckFramebufferStatus",1,"GLenum");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glCheckFramebufferStatus",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1; result = glCheckFramebufferStatus(arg1);
+  { GLenum * resultptr = new GLenum((const GLenum &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_uint32_t,1); SWIG_arg++; }  return SWIG_arg; if(0) SWIG_fail; fail:
+  lua_error(L); return SWIG_arg; }
+static int _wrap_glClear(lua_State* L) { int SWIG_arg = 0; GLbitfield arg1 ; GLbitfield *argp1 ;
+  SWIG_check_num_args("glClear",1,1) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glClear",1,"GLbitfield");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){ SWIG_fail_ptr("glClear",1,SWIGTYPE_p_uint32_t); } 
+  arg1 = *argp1; glClear(arg1); return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glClearColor(lua_State* L) { int SWIG_arg = 0; GLfloat arg1 ; GLfloat arg2 ; GLfloat arg3 ; GLfloat arg4 ;
+  SWIG_check_num_args("glClearColor",4,4) if(!lua_isnumber(L,1)) SWIG_fail_arg("glClearColor",1,"GLfloat");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("glClearColor",2,"GLfloat");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("glClearColor",3,"GLfloat");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("glClearColor",4,"GLfloat"); arg1 = (GLfloat)lua_tonumber(L, 1);
+  arg2 = (GLfloat)lua_tonumber(L, 2); arg3 = (GLfloat)lua_tonumber(L, 3); arg4 = (GLfloat)lua_tonumber(L, 4);
+  glClearColor(arg1,arg2,arg3,arg4); return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glClearDepthf(lua_State* L) { int SWIG_arg = 0; GLclampf arg1 ; SWIG_check_num_args("glClearDepthf",1,1)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("glClearDepthf",1,"GLclampf"); arg1 = (GLclampf)lua_tonumber(L, 1); glClearDepthf(arg1);
+  return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glClearStencil(lua_State* L) { int SWIG_arg = 0; GLint arg1 ; GLint *argp1 ;
+  SWIG_check_num_args("glClearStencil",1,1) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glClearStencil",1,"GLint");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glClearStencil",1,SWIGTYPE_p_int32_t); }  arg1 = *argp1; glClearStencil(arg1); return SWIG_arg;
+  if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glColorMask(lua_State* L) { int SWIG_arg = 0; GLboolean arg1 ; GLboolean arg2 ; GLboolean arg3 ;
+  GLboolean arg4 ; GLboolean *argp1 ; GLboolean *argp2 ; GLboolean *argp3 ; GLboolean *argp4 ;
+  SWIG_check_num_args("glColorMask",4,4) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glColorMask",1,"GLboolean");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glColorMask",2,"GLboolean");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("glColorMask",3,"GLboolean");
+  if(!lua_isuserdata(L,4)) SWIG_fail_arg("glColorMask",4,"GLboolean");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint8_t,0))){ SWIG_fail_ptr("glColorMask",1,SWIGTYPE_p_uint8_t); }
+   arg1 = *argp1; if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_uint8_t,0))){
+    SWIG_fail_ptr("glColorMask",2,SWIGTYPE_p_uint8_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&argp3,SWIGTYPE_p_uint8_t,0))){ SWIG_fail_ptr("glColorMask",3,SWIGTYPE_p_uint8_t); }
+   arg3 = *argp3; if (!SWIG_IsOK(SWIG_ConvertPtr(L,4,(void**)&argp4,SWIGTYPE_p_uint8_t,0))){
+    SWIG_fail_ptr("glColorMask",4,SWIGTYPE_p_uint8_t); }  arg4 = *argp4; glColorMask(arg1,arg2,arg3,arg4); return SWIG_arg;
+  if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glCompileShader(lua_State* L) { int SWIG_arg = 0; GLuint arg1 ; GLuint *argp1 ;
+  SWIG_check_num_args("glCompileShader",1,1) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glCompileShader",1,"GLuint");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glCompileShader",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1; glCompileShader(arg1); return SWIG_arg;
+  if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glCompressedTexImage2D(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLint arg2 ; GLenum arg3 ;
+  GLsizei arg4 ; GLsizei arg5 ; GLint arg6 ; GLsizei arg7 ; GLvoid *arg8 = (GLvoid *) 0 ; GLenum *argp1 ; GLint *argp2 ;
+  GLenum *argp3 ; GLsizei *argp4 ; GLsizei *argp5 ; GLint *argp6 ; GLsizei *argp7 ;
+  SWIG_check_num_args("glCompressedTexImage2D",8,8) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glCompressedTexImage2D",1,"GLenum");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glCompressedTexImage2D",2,"GLint");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("glCompressedTexImage2D",3,"GLenum");
+  if(!lua_isuserdata(L,4)) SWIG_fail_arg("glCompressedTexImage2D",4,"GLsizei");
+  if(!lua_isuserdata(L,5)) SWIG_fail_arg("glCompressedTexImage2D",5,"GLsizei");
+  if(!lua_isuserdata(L,6)) SWIG_fail_arg("glCompressedTexImage2D",6,"GLint");
+  if(!lua_isuserdata(L,7)) SWIG_fail_arg("glCompressedTexImage2D",7,"GLsizei");
+  if(!SWIG_isptrtype(L,8)) SWIG_fail_arg("glCompressedTexImage2D",8,"GLvoid const *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glCompressedTexImage2D",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glCompressedTexImage2D",2,SWIGTYPE_p_int32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&argp3,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glCompressedTexImage2D",3,SWIGTYPE_p_uint32_t); }  arg3 = *argp3;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,4,(void**)&argp4,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glCompressedTexImage2D",4,SWIGTYPE_p_int32_t); }  arg4 = *argp4;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,5,(void**)&argp5,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glCompressedTexImage2D",5,SWIGTYPE_p_int32_t); }  arg5 = *argp5;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,6,(void**)&argp6,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glCompressedTexImage2D",6,SWIGTYPE_p_int32_t); }  arg6 = *argp6;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,7,(void**)&argp7,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glCompressedTexImage2D",7,SWIGTYPE_p_int32_t); }  arg7 = *argp7;
+  arg8=(GLvoid *)SWIG_MustGetPtr(L,8,0,0,8,"glCompressedTexImage2D");
+  glCompressedTexImage2D(arg1,arg2,arg3,arg4,arg5,arg6,arg7,(void const *)arg8); return SWIG_arg; if(0) SWIG_fail; fail:
+  lua_error(L); return SWIG_arg; }
+static int _wrap_glCompressedTexSubImage2D(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLint arg2 ; GLint arg3 ;
+  GLint arg4 ; GLsizei arg5 ; GLsizei arg6 ; GLenum arg7 ; GLsizei arg8 ; GLvoid *arg9 = (GLvoid *) 0 ; GLenum *argp1 ;
+  GLint *argp2 ; GLint *argp3 ; GLint *argp4 ; GLsizei *argp5 ; GLsizei *argp6 ; GLenum *argp7 ; GLsizei *argp8 ;
+  SWIG_check_num_args("glCompressedTexSubImage2D",9,9)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glCompressedTexSubImage2D",1,"GLenum");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glCompressedTexSubImage2D",2,"GLint");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("glCompressedTexSubImage2D",3,"GLint");
+  if(!lua_isuserdata(L,4)) SWIG_fail_arg("glCompressedTexSubImage2D",4,"GLint");
+  if(!lua_isuserdata(L,5)) SWIG_fail_arg("glCompressedTexSubImage2D",5,"GLsizei");
+  if(!lua_isuserdata(L,6)) SWIG_fail_arg("glCompressedTexSubImage2D",6,"GLsizei");
+  if(!lua_isuserdata(L,7)) SWIG_fail_arg("glCompressedTexSubImage2D",7,"GLenum");
+  if(!lua_isuserdata(L,8)) SWIG_fail_arg("glCompressedTexSubImage2D",8,"GLsizei");
+  if(!SWIG_isptrtype(L,9)) SWIG_fail_arg("glCompressedTexSubImage2D",9,"GLvoid const *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glCompressedTexSubImage2D",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glCompressedTexSubImage2D",2,SWIGTYPE_p_int32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&argp3,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glCompressedTexSubImage2D",3,SWIGTYPE_p_int32_t); }  arg3 = *argp3;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,4,(void**)&argp4,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glCompressedTexSubImage2D",4,SWIGTYPE_p_int32_t); }  arg4 = *argp4;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,5,(void**)&argp5,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glCompressedTexSubImage2D",5,SWIGTYPE_p_int32_t); }  arg5 = *argp5;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,6,(void**)&argp6,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glCompressedTexSubImage2D",6,SWIGTYPE_p_int32_t); }  arg6 = *argp6;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,7,(void**)&argp7,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glCompressedTexSubImage2D",7,SWIGTYPE_p_uint32_t); }  arg7 = *argp7;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,8,(void**)&argp8,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glCompressedTexSubImage2D",8,SWIGTYPE_p_int32_t); }  arg8 = *argp8;
+  arg9=(GLvoid *)SWIG_MustGetPtr(L,9,0,0,9,"glCompressedTexSubImage2D");
+  glCompressedTexSubImage2D(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,(void const *)arg9); return SWIG_arg; if(0) SWIG_fail; fail:
+  lua_error(L); return SWIG_arg; }
+static int _wrap_glCopyTexImage2D(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLint arg2 ; GLenum arg3 ; GLint arg4 ;
+  GLint arg5 ; GLsizei arg6 ; GLsizei arg7 ; GLint arg8 ; GLenum *argp1 ; GLint *argp2 ; GLenum *argp3 ; GLint *argp4 ;
+  GLint *argp5 ; GLsizei *argp6 ; GLsizei *argp7 ; GLint *argp8 ; SWIG_check_num_args("glCopyTexImage2D",8,8)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glCopyTexImage2D",1,"GLenum");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glCopyTexImage2D",2,"GLint");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("glCopyTexImage2D",3,"GLenum");
+  if(!lua_isuserdata(L,4)) SWIG_fail_arg("glCopyTexImage2D",4,"GLint");
+  if(!lua_isuserdata(L,5)) SWIG_fail_arg("glCopyTexImage2D",5,"GLint");
+  if(!lua_isuserdata(L,6)) SWIG_fail_arg("glCopyTexImage2D",6,"GLsizei");
+  if(!lua_isuserdata(L,7)) SWIG_fail_arg("glCopyTexImage2D",7,"GLsizei");
+  if(!lua_isuserdata(L,8)) SWIG_fail_arg("glCopyTexImage2D",8,"GLint");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glCopyTexImage2D",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glCopyTexImage2D",2,SWIGTYPE_p_int32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&argp3,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glCopyTexImage2D",3,SWIGTYPE_p_uint32_t); }  arg3 = *argp3;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,4,(void**)&argp4,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glCopyTexImage2D",4,SWIGTYPE_p_int32_t); }  arg4 = *argp4;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,5,(void**)&argp5,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glCopyTexImage2D",5,SWIGTYPE_p_int32_t); }  arg5 = *argp5;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,6,(void**)&argp6,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glCopyTexImage2D",6,SWIGTYPE_p_int32_t); }  arg6 = *argp6;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,7,(void**)&argp7,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glCopyTexImage2D",7,SWIGTYPE_p_int32_t); }  arg7 = *argp7;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,8,(void**)&argp8,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glCopyTexImage2D",8,SWIGTYPE_p_int32_t); }  arg8 = *argp8;
+  glCopyTexImage2D(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8); return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L);
+  return SWIG_arg; }
+static int _wrap_glCopyTexSubImage2D(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLint arg2 ; GLint arg3 ; GLint arg4 ;
+  GLint arg5 ; GLint arg6 ; GLsizei arg7 ; GLsizei arg8 ; GLenum *argp1 ; GLint *argp2 ; GLint *argp3 ; GLint *argp4 ;
+  GLint *argp5 ; GLint *argp6 ; GLsizei *argp7 ; GLsizei *argp8 ; SWIG_check_num_args("glCopyTexSubImage2D",8,8)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glCopyTexSubImage2D",1,"GLenum");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glCopyTexSubImage2D",2,"GLint");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("glCopyTexSubImage2D",3,"GLint");
+  if(!lua_isuserdata(L,4)) SWIG_fail_arg("glCopyTexSubImage2D",4,"GLint");
+  if(!lua_isuserdata(L,5)) SWIG_fail_arg("glCopyTexSubImage2D",5,"GLint");
+  if(!lua_isuserdata(L,6)) SWIG_fail_arg("glCopyTexSubImage2D",6,"GLint");
+  if(!lua_isuserdata(L,7)) SWIG_fail_arg("glCopyTexSubImage2D",7,"GLsizei");
+  if(!lua_isuserdata(L,8)) SWIG_fail_arg("glCopyTexSubImage2D",8,"GLsizei");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glCopyTexSubImage2D",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glCopyTexSubImage2D",2,SWIGTYPE_p_int32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&argp3,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glCopyTexSubImage2D",3,SWIGTYPE_p_int32_t); }  arg3 = *argp3;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,4,(void**)&argp4,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glCopyTexSubImage2D",4,SWIGTYPE_p_int32_t); }  arg4 = *argp4;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,5,(void**)&argp5,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glCopyTexSubImage2D",5,SWIGTYPE_p_int32_t); }  arg5 = *argp5;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,6,(void**)&argp6,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glCopyTexSubImage2D",6,SWIGTYPE_p_int32_t); }  arg6 = *argp6;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,7,(void**)&argp7,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glCopyTexSubImage2D",7,SWIGTYPE_p_int32_t); }  arg7 = *argp7;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,8,(void**)&argp8,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glCopyTexSubImage2D",8,SWIGTYPE_p_int32_t); }  arg8 = *argp8;
+  glCopyTexSubImage2D(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8); return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L);
+  return SWIG_arg; }
+static int _wrap_glCreateProgram(lua_State* L) { int SWIG_arg = 0; GLuint result; SWIG_check_num_args("glCreateProgram",0,0)
+  result = glCreateProgram(); { GLuint * resultptr = new GLuint((const GLuint &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_uint32_t,1); SWIG_arg++; }  return SWIG_arg; if(0) SWIG_fail; fail:
+  lua_error(L); return SWIG_arg; }
+static int _wrap_glCreateShader(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLenum *argp1 ; GLuint result;
+  SWIG_check_num_args("glCreateShader",1,1) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glCreateShader",1,"GLenum");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glCreateShader",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1; result = glCreateShader(arg1); {
+    GLuint * resultptr = new GLuint((const GLuint &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_uint32_t,1); SWIG_arg++; }  return SWIG_arg; if(0) SWIG_fail; fail:
+  lua_error(L); return SWIG_arg; }
+static int _wrap_glCullFace(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLenum *argp1 ;
+  SWIG_check_num_args("glCullFace",1,1) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glCullFace",1,"GLenum");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glCullFace",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1; glCullFace(arg1); return SWIG_arg; if(0) SWIG_fail;
+  fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glDeleteBuffers(lua_State* L) { int SWIG_arg = 0; GLsizei arg1 ; GLuint *arg2 = (GLuint *) 0 ; GLsizei *argp1 ;
+  SWIG_check_num_args("glDeleteBuffers",2,2) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glDeleteBuffers",1,"GLsizei");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("glDeleteBuffers",2,"GLuint const *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glDeleteBuffers",1,SWIGTYPE_p_int32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glDeleteBuffers",2,SWIGTYPE_p_uint32_t); }  glDeleteBuffers(arg1,(uint32_t const *)arg2); return SWIG_arg;
+  if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glDeleteFramebuffers(lua_State* L) { int SWIG_arg = 0; GLsizei arg1 ; GLuint *arg2 = (GLuint *) 0 ;
+  GLsizei *argp1 ; SWIG_check_num_args("glDeleteFramebuffers",2,2)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glDeleteFramebuffers",1,"GLsizei");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("glDeleteFramebuffers",2,"GLuint const *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glDeleteFramebuffers",1,SWIGTYPE_p_int32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glDeleteFramebuffers",2,SWIGTYPE_p_uint32_t); }  glDeleteFramebuffers(arg1,(uint32_t const *)arg2);
+  return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glDeleteProgram(lua_State* L) { int SWIG_arg = 0; GLuint arg1 ; GLuint *argp1 ;
+  SWIG_check_num_args("glDeleteProgram",1,1) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glDeleteProgram",1,"GLuint");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glDeleteProgram",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1; glDeleteProgram(arg1); return SWIG_arg;
+  if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glDeleteRenderbuffers(lua_State* L) { int SWIG_arg = 0; GLsizei arg1 ; GLuint *arg2 = (GLuint *) 0 ;
+  GLsizei *argp1 ; SWIG_check_num_args("glDeleteRenderbuffers",2,2)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glDeleteRenderbuffers",1,"GLsizei");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("glDeleteRenderbuffers",2,"GLuint const *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glDeleteRenderbuffers",1,SWIGTYPE_p_int32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glDeleteRenderbuffers",2,SWIGTYPE_p_uint32_t); }  glDeleteRenderbuffers(arg1,(uint32_t const *)arg2);
+  return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glDeleteShader(lua_State* L) { int SWIG_arg = 0; GLuint arg1 ; GLuint *argp1 ;
+  SWIG_check_num_args("glDeleteShader",1,1) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glDeleteShader",1,"GLuint");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glDeleteShader",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1; glDeleteShader(arg1); return SWIG_arg;
+  if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glDeleteTextures(lua_State* L) { int SWIG_arg = 0; GLsizei arg1 ; GLuint *arg2 = (GLuint *) 0 ;
+  GLsizei *argp1 ; SWIG_check_num_args("glDeleteTextures",2,2)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glDeleteTextures",1,"GLsizei");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("glDeleteTextures",2,"GLuint const *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glDeleteTextures",1,SWIGTYPE_p_int32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glDeleteTextures",2,SWIGTYPE_p_uint32_t); }  glDeleteTextures(arg1,(uint32_t const *)arg2); return SWIG_arg;
+  if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glDepthFunc(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLenum *argp1 ;
+  SWIG_check_num_args("glDepthFunc",1,1) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glDepthFunc",1,"GLenum");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glDepthFunc",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1; glDepthFunc(arg1); return SWIG_arg; if(0) SWIG_fail;
+  fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glDepthMask(lua_State* L) { int SWIG_arg = 0; GLboolean arg1 ; GLboolean *argp1 ;
+  SWIG_check_num_args("glDepthMask",1,1) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glDepthMask",1,"GLboolean");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint8_t,0))){ SWIG_fail_ptr("glDepthMask",1,SWIGTYPE_p_uint8_t); }
+   arg1 = *argp1; glDepthMask(arg1); return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glDepthRangef(lua_State* L) { int SWIG_arg = 0; GLclampf arg1 ; GLclampf arg2 ;
+  SWIG_check_num_args("glDepthRangef",2,2) if(!lua_isnumber(L,1)) SWIG_fail_arg("glDepthRangef",1,"GLclampf");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("glDepthRangef",2,"GLclampf"); arg1 = (GLclampf)lua_tonumber(L, 1);
+  arg2 = (GLclampf)lua_tonumber(L, 2); glDepthRangef(arg1,arg2); return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L);
+  return SWIG_arg; }
+static int _wrap_glDetachShader(lua_State* L) { int SWIG_arg = 0; GLuint arg1 ; GLuint arg2 ; GLuint *argp1 ; GLuint *argp2 ;
+  SWIG_check_num_args("glDetachShader",2,2) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glDetachShader",1,"GLuint");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glDetachShader",2,"GLuint");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glDetachShader",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glDetachShader",2,SWIGTYPE_p_uint32_t); }  arg2 = *argp2; glDetachShader(arg1,arg2); return SWIG_arg;
+  if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glDisable(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLenum *argp1 ; SWIG_check_num_args("glDisable",1,1)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glDisable",1,"GLenum");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){ SWIG_fail_ptr("glDisable",1,SWIGTYPE_p_uint32_t); }
+   arg1 = *argp1; glDisable(arg1); return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glDisableVertexAttribArray(lua_State* L) { int SWIG_arg = 0; GLuint arg1 ; GLuint *argp1 ;
+  SWIG_check_num_args("glDisableVertexAttribArray",1,1)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glDisableVertexAttribArray",1,"GLuint");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glDisableVertexAttribArray",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1; glDisableVertexAttribArray(arg1);
+  return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glDrawArrays(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLint arg2 ; GLsizei arg3 ; GLenum *argp1 ;
+  GLint *argp2 ; GLsizei *argp3 ; SWIG_check_num_args("glDrawArrays",3,3)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glDrawArrays",1,"GLenum");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glDrawArrays",2,"GLint");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("glDrawArrays",3,"GLsizei");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glDrawArrays",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glDrawArrays",2,SWIGTYPE_p_int32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&argp3,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glDrawArrays",3,SWIGTYPE_p_int32_t); }  arg3 = *argp3; glDrawArrays(arg1,arg2,arg3); return SWIG_arg;
+  if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glDrawElements(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLsizei arg2 ; GLenum arg3 ;
+  GLvoid *arg4 = (GLvoid *) 0 ; GLenum *argp1 ; GLsizei *argp2 ; GLenum *argp3 ; SWIG_check_num_args("glDrawElements",4,4)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glDrawElements",1,"GLenum");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glDrawElements",2,"GLsizei");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("glDrawElements",3,"GLenum");
+  if(!SWIG_isptrtype(L,4)) SWIG_fail_arg("glDrawElements",4,"GLvoid const *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glDrawElements",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glDrawElements",2,SWIGTYPE_p_int32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&argp3,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glDrawElements",3,SWIGTYPE_p_uint32_t); }  arg3 = *argp3;
+  arg4=(GLvoid *)SWIG_MustGetPtr(L,4,0,0,4,"glDrawElements"); glDrawElements(arg1,arg2,arg3,(void const *)arg4);
+  return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glEnable(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLenum *argp1 ; SWIG_check_num_args("glEnable",1,1)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glEnable",1,"GLenum");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){ SWIG_fail_ptr("glEnable",1,SWIGTYPE_p_uint32_t); }
+   arg1 = *argp1; glEnable(arg1); return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glEnableVertexAttribArray(lua_State* L) { int SWIG_arg = 0; GLuint arg1 ; GLuint *argp1 ;
+  SWIG_check_num_args("glEnableVertexAttribArray",1,1)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glEnableVertexAttribArray",1,"GLuint");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glEnableVertexAttribArray",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1; glEnableVertexAttribArray(arg1);
+  return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glFinish(lua_State* L) { int SWIG_arg = 0; SWIG_check_num_args("glFinish",0,0) glFinish(); return SWIG_arg;
+  if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glFlush(lua_State* L) { int SWIG_arg = 0; SWIG_check_num_args("glFlush",0,0) glFlush(); return SWIG_arg;
+  if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glFramebufferRenderbuffer(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLenum arg2 ; GLenum arg3 ;
+  GLuint arg4 ; GLenum *argp1 ; GLenum *argp2 ; GLenum *argp3 ; GLuint *argp4 ;
+  SWIG_check_num_args("glFramebufferRenderbuffer",4,4)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glFramebufferRenderbuffer",1,"GLenum");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glFramebufferRenderbuffer",2,"GLenum");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("glFramebufferRenderbuffer",3,"GLenum");
+  if(!lua_isuserdata(L,4)) SWIG_fail_arg("glFramebufferRenderbuffer",4,"GLuint");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glFramebufferRenderbuffer",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glFramebufferRenderbuffer",2,SWIGTYPE_p_uint32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&argp3,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glFramebufferRenderbuffer",3,SWIGTYPE_p_uint32_t); }  arg3 = *argp3;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,4,(void**)&argp4,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glFramebufferRenderbuffer",4,SWIGTYPE_p_uint32_t); }  arg4 = *argp4;
+  glFramebufferRenderbuffer(arg1,arg2,arg3,arg4); return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glFramebufferTexture2D(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLenum arg2 ; GLenum arg3 ;
+  GLuint arg4 ; GLint arg5 ; GLenum *argp1 ; GLenum *argp2 ; GLenum *argp3 ; GLuint *argp4 ; GLint *argp5 ;
+  SWIG_check_num_args("glFramebufferTexture2D",5,5) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glFramebufferTexture2D",1,"GLenum");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glFramebufferTexture2D",2,"GLenum");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("glFramebufferTexture2D",3,"GLenum");
+  if(!lua_isuserdata(L,4)) SWIG_fail_arg("glFramebufferTexture2D",4,"GLuint");
+  if(!lua_isuserdata(L,5)) SWIG_fail_arg("glFramebufferTexture2D",5,"GLint");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glFramebufferTexture2D",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glFramebufferTexture2D",2,SWIGTYPE_p_uint32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&argp3,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glFramebufferTexture2D",3,SWIGTYPE_p_uint32_t); }  arg3 = *argp3;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,4,(void**)&argp4,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glFramebufferTexture2D",4,SWIGTYPE_p_uint32_t); }  arg4 = *argp4;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,5,(void**)&argp5,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glFramebufferTexture2D",5,SWIGTYPE_p_int32_t); }  arg5 = *argp5;
+  glFramebufferTexture2D(arg1,arg2,arg3,arg4,arg5); return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glFrontFace(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLenum *argp1 ;
+  SWIG_check_num_args("glFrontFace",1,1) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glFrontFace",1,"GLenum");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glFrontFace",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1; glFrontFace(arg1); return SWIG_arg; if(0) SWIG_fail;
+  fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glGenBuffers(lua_State* L) { int SWIG_arg = 0; GLsizei arg1 ; GLuint *arg2 = (GLuint *) 0 ; GLsizei *argp1 ;
+  SWIG_check_num_args("glGenBuffers",2,2) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glGenBuffers",1,"GLsizei");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("glGenBuffers",2,"GLuint *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glGenBuffers",1,SWIGTYPE_p_int32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glGenBuffers",2,SWIGTYPE_p_uint32_t); }  glGenBuffers(arg1,arg2); return SWIG_arg; if(0) SWIG_fail; fail:
+  lua_error(L); return SWIG_arg; }
+static int _wrap_glGenerateMipmap(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLenum *argp1 ;
+  SWIG_check_num_args("glGenerateMipmap",1,1) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glGenerateMipmap",1,"GLenum");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glGenerateMipmap",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1; glGenerateMipmap(arg1); return SWIG_arg;
+  if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glGenFramebuffers(lua_State* L) { int SWIG_arg = 0; GLsizei arg1 ; GLuint *arg2 = (GLuint *) 0 ;
+  GLsizei *argp1 ; SWIG_check_num_args("glGenFramebuffers",2,2)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glGenFramebuffers",1,"GLsizei");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("glGenFramebuffers",2,"GLuint *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glGenFramebuffers",1,SWIGTYPE_p_int32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glGenFramebuffers",2,SWIGTYPE_p_uint32_t); }  glGenFramebuffers(arg1,arg2); return SWIG_arg; if(0) SWIG_fail;
+  fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glGenRenderbuffers(lua_State* L) { int SWIG_arg = 0; GLsizei arg1 ; GLuint *arg2 = (GLuint *) 0 ;
+  GLsizei *argp1 ; SWIG_check_num_args("glGenRenderbuffers",2,2)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glGenRenderbuffers",1,"GLsizei");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("glGenRenderbuffers",2,"GLuint *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glGenRenderbuffers",1,SWIGTYPE_p_int32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glGenRenderbuffers",2,SWIGTYPE_p_uint32_t); }  glGenRenderbuffers(arg1,arg2); return SWIG_arg;
+  if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glGenTextures(lua_State* L) { int SWIG_arg = 0; GLsizei arg1 ; GLuint *arg2 = (GLuint *) 0 ; GLsizei *argp1 ;
+  SWIG_check_num_args("glGenTextures",2,2) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glGenTextures",1,"GLsizei");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("glGenTextures",2,"GLuint *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glGenTextures",1,SWIGTYPE_p_int32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glGenTextures",2,SWIGTYPE_p_uint32_t); }  glGenTextures(arg1,arg2); return SWIG_arg; if(0) SWIG_fail; fail:
+  lua_error(L); return SWIG_arg; }
+static int _wrap_glGetActiveAttrib(lua_State* L) { int SWIG_arg = 0; GLuint arg1 ; GLuint arg2 ; GLsizei arg3 ;
+  GLsizei *arg4 = (GLsizei *) 0 ; GLint *arg5 = (GLint *) 0 ; GLenum *arg6 = (GLenum *) 0 ; GLchar *arg7 = (GLchar *) 0 ;
+  GLuint *argp1 ; GLuint *argp2 ; GLsizei *argp3 ; SWIG_check_num_args("glGetActiveAttrib",7,7)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glGetActiveAttrib",1,"GLuint");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glGetActiveAttrib",2,"GLuint");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("glGetActiveAttrib",3,"GLsizei");
+  if(!SWIG_isptrtype(L,4)) SWIG_fail_arg("glGetActiveAttrib",4,"GLsizei *");
+  if(!SWIG_isptrtype(L,5)) SWIG_fail_arg("glGetActiveAttrib",5,"GLint *");
+  if(!SWIG_isptrtype(L,6)) SWIG_fail_arg("glGetActiveAttrib",6,"GLenum *");
+  if(!SWIG_lua_isnilstring(L,7)) SWIG_fail_arg("glGetActiveAttrib",7,"GLchar *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glGetActiveAttrib",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glGetActiveAttrib",2,SWIGTYPE_p_uint32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&argp3,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glGetActiveAttrib",3,SWIGTYPE_p_int32_t); }  arg3 = *argp3;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,4,(void**)&arg4,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glGetActiveAttrib",4,SWIGTYPE_p_int32_t); } 
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,5,(void**)&arg5,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glGetActiveAttrib",5,SWIGTYPE_p_int32_t); } 
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,6,(void**)&arg6,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glGetActiveAttrib",6,SWIGTYPE_p_uint32_t); }  arg7 = (GLchar *)lua_tostring(L, 7);
+  glGetActiveAttrib(arg1,arg2,arg3,arg4,arg5,arg6,arg7); return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glGetActiveUniform(lua_State* L) { int SWIG_arg = 0; GLuint arg1 ; GLuint arg2 ; GLsizei arg3 ;
+  GLsizei *arg4 = (GLsizei *) 0 ; GLint *arg5 = (GLint *) 0 ; GLenum *arg6 = (GLenum *) 0 ; GLchar *arg7 = (GLchar *) 0 ;
+  GLuint *argp1 ; GLuint *argp2 ; GLsizei *argp3 ; SWIG_check_num_args("glGetActiveUniform",7,7)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glGetActiveUniform",1,"GLuint");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glGetActiveUniform",2,"GLuint");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("glGetActiveUniform",3,"GLsizei");
+  if(!SWIG_isptrtype(L,4)) SWIG_fail_arg("glGetActiveUniform",4,"GLsizei *");
+  if(!SWIG_isptrtype(L,5)) SWIG_fail_arg("glGetActiveUniform",5,"GLint *");
+  if(!SWIG_isptrtype(L,6)) SWIG_fail_arg("glGetActiveUniform",6,"GLenum *");
+  if(!SWIG_lua_isnilstring(L,7)) SWIG_fail_arg("glGetActiveUniform",7,"GLchar *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glGetActiveUniform",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glGetActiveUniform",2,SWIGTYPE_p_uint32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&argp3,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glGetActiveUniform",3,SWIGTYPE_p_int32_t); }  arg3 = *argp3;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,4,(void**)&arg4,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glGetActiveUniform",4,SWIGTYPE_p_int32_t); } 
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,5,(void**)&arg5,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glGetActiveUniform",5,SWIGTYPE_p_int32_t); } 
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,6,(void**)&arg6,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glGetActiveUniform",6,SWIGTYPE_p_uint32_t); }  arg7 = (GLchar *)lua_tostring(L, 7);
+  glGetActiveUniform(arg1,arg2,arg3,arg4,arg5,arg6,arg7); return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L);
+  return SWIG_arg; }
+static int _wrap_glGetAttachedShaders(lua_State* L) { int SWIG_arg = 0; GLuint arg1 ; GLsizei arg2 ;
+  GLsizei *arg3 = (GLsizei *) 0 ; GLuint *arg4 = (GLuint *) 0 ; GLuint *argp1 ; GLsizei *argp2 ;
+  SWIG_check_num_args("glGetAttachedShaders",4,4) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glGetAttachedShaders",1,"GLuint");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glGetAttachedShaders",2,"GLsizei");
+  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("glGetAttachedShaders",3,"GLsizei *");
+  if(!SWIG_isptrtype(L,4)) SWIG_fail_arg("glGetAttachedShaders",4,"GLuint *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glGetAttachedShaders",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glGetAttachedShaders",2,SWIGTYPE_p_int32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glGetAttachedShaders",3,SWIGTYPE_p_int32_t); } 
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,4,(void**)&arg4,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glGetAttachedShaders",4,SWIGTYPE_p_uint32_t); }  glGetAttachedShaders(arg1,arg2,arg3,arg4); return SWIG_arg;
+  if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glGetAttribLocation(lua_State* L) { int SWIG_arg = 0; GLuint arg1 ; GLchar *arg2 = (GLchar *) 0 ;
+  GLuint *argp1 ; int result; SWIG_check_num_args("glGetAttribLocation",2,2)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glGetAttribLocation",1,"GLuint");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("glGetAttribLocation",2,"GLchar const *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glGetAttribLocation",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1; arg2 = (GLchar *)lua_tostring(L, 2);
+  result = (int)glGetAttribLocation(arg1,(char const *)arg2); lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glGetBooleanv(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLboolean *arg2 = (GLboolean *) 0 ;
+  GLenum *argp1 ; SWIG_check_num_args("glGetBooleanv",2,2) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glGetBooleanv",1,"GLenum");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("glGetBooleanv",2,"GLboolean *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glGetBooleanv",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_uint8_t,0))){
+    SWIG_fail_ptr("glGetBooleanv",2,SWIGTYPE_p_uint8_t); }  glGetBooleanv(arg1,arg2); return SWIG_arg; if(0) SWIG_fail; fail:
+  lua_error(L); return SWIG_arg; }
+static int _wrap_glGetBufferParameteriv(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLenum arg2 ;
+  GLint *arg3 = (GLint *) 0 ; GLenum *argp1 ; GLenum *argp2 ; SWIG_check_num_args("glGetBufferParameteriv",3,3)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glGetBufferParameteriv",1,"GLenum");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glGetBufferParameteriv",2,"GLenum");
+  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("glGetBufferParameteriv",3,"GLint *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glGetBufferParameteriv",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glGetBufferParameteriv",2,SWIGTYPE_p_uint32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glGetBufferParameteriv",3,SWIGTYPE_p_int32_t); }  glGetBufferParameteriv(arg1,arg2,arg3); return SWIG_arg;
+  if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glGetError(lua_State* L) { int SWIG_arg = 0; GLenum result; SWIG_check_num_args("glGetError",0,0)
+  result = glGetError(); { GLenum * resultptr = new GLenum((const GLenum &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_uint32_t,1); SWIG_arg++; }  return SWIG_arg; if(0) SWIG_fail; fail:
+  lua_error(L); return SWIG_arg; }
+static int _wrap_glGetFloatv(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLfloat *arg2 = (GLfloat *) 0 ; GLenum *argp1 ;
+  SWIG_check_num_args("glGetFloatv",2,2) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glGetFloatv",1,"GLenum");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("glGetFloatv",2,"GLfloat *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glGetFloatv",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_float,0))){ SWIG_fail_ptr("glGetFloatv",2,SWIGTYPE_p_float); } 
+  glGetFloatv(arg1,arg2); return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glGetFramebufferAttachmentParameteriv(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLenum arg2 ;
+  GLenum arg3 ; GLint *arg4 = (GLint *) 0 ; GLenum *argp1 ; GLenum *argp2 ; GLenum *argp3 ;
+  SWIG_check_num_args("glGetFramebufferAttachmentParameteriv",4,4)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glGetFramebufferAttachmentParameteriv",1,"GLenum");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glGetFramebufferAttachmentParameteriv",2,"GLenum");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("glGetFramebufferAttachmentParameteriv",3,"GLenum");
+  if(!SWIG_isptrtype(L,4)) SWIG_fail_arg("glGetFramebufferAttachmentParameteriv",4,"GLint *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glGetFramebufferAttachmentParameteriv",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glGetFramebufferAttachmentParameteriv",2,SWIGTYPE_p_uint32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&argp3,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glGetFramebufferAttachmentParameteriv",3,SWIGTYPE_p_uint32_t); }  arg3 = *argp3;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,4,(void**)&arg4,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glGetFramebufferAttachmentParameteriv",4,SWIGTYPE_p_int32_t); } 
+  glGetFramebufferAttachmentParameteriv(arg1,arg2,arg3,arg4); return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L);
+  return SWIG_arg; }
+static int _wrap_glGetIntegerv(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLint *arg2 = (GLint *) 0 ; GLenum *argp1 ;
+  SWIG_check_num_args("glGetIntegerv",2,2) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glGetIntegerv",1,"GLenum");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("glGetIntegerv",2,"GLint *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glGetIntegerv",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glGetIntegerv",2,SWIGTYPE_p_int32_t); }  glGetIntegerv(arg1,arg2); return SWIG_arg; if(0) SWIG_fail; fail:
+  lua_error(L); return SWIG_arg; }
+static int _wrap_glGetProgramiv(lua_State* L) { int SWIG_arg = 0; GLuint arg1 ; GLenum arg2 ; GLint *arg3 = (GLint *) 0 ;
+  GLuint *argp1 ; GLenum *argp2 ; SWIG_check_num_args("glGetProgramiv",3,3)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glGetProgramiv",1,"GLuint");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glGetProgramiv",2,"GLenum");
+  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("glGetProgramiv",3,"GLint *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glGetProgramiv",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glGetProgramiv",2,SWIGTYPE_p_uint32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glGetProgramiv",3,SWIGTYPE_p_int32_t); }  glGetProgramiv(arg1,arg2,arg3); return SWIG_arg; if(0) SWIG_fail;
+  fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glGetProgramInfoLog(lua_State* L) { int SWIG_arg = 0; GLuint arg1 ; GLsizei arg2 ;
+  GLsizei *arg3 = (GLsizei *) 0 ; GLchar *arg4 = (GLchar *) 0 ; GLuint *argp1 ; GLsizei *argp2 ;
+  SWIG_check_num_args("glGetProgramInfoLog",4,4) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glGetProgramInfoLog",1,"GLuint");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glGetProgramInfoLog",2,"GLsizei");
+  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("glGetProgramInfoLog",3,"GLsizei *");
+  if(!SWIG_lua_isnilstring(L,4)) SWIG_fail_arg("glGetProgramInfoLog",4,"GLchar *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glGetProgramInfoLog",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glGetProgramInfoLog",2,SWIGTYPE_p_int32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glGetProgramInfoLog",3,SWIGTYPE_p_int32_t); }  arg4 = (GLchar *)lua_tostring(L, 4);
+  glGetProgramInfoLog(arg1,arg2,arg3,arg4); return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glGetRenderbufferParameteriv(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLenum arg2 ;
+  GLint *arg3 = (GLint *) 0 ; GLenum *argp1 ; GLenum *argp2 ; SWIG_check_num_args("glGetRenderbufferParameteriv",3,3)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glGetRenderbufferParameteriv",1,"GLenum");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glGetRenderbufferParameteriv",2,"GLenum");
+  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("glGetRenderbufferParameteriv",3,"GLint *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glGetRenderbufferParameteriv",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glGetRenderbufferParameteriv",2,SWIGTYPE_p_uint32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glGetRenderbufferParameteriv",3,SWIGTYPE_p_int32_t); }  glGetRenderbufferParameteriv(arg1,arg2,arg3);
+  return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glGetShaderiv(lua_State* L) { int SWIG_arg = 0; GLuint arg1 ; GLenum arg2 ; GLint *arg3 = (GLint *) 0 ;
+  GLuint *argp1 ; GLenum *argp2 ; SWIG_check_num_args("glGetShaderiv",3,3)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glGetShaderiv",1,"GLuint");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glGetShaderiv",2,"GLenum");
+  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("glGetShaderiv",3,"GLint *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glGetShaderiv",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glGetShaderiv",2,SWIGTYPE_p_uint32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glGetShaderiv",3,SWIGTYPE_p_int32_t); }  glGetShaderiv(arg1,arg2,arg3); return SWIG_arg; if(0) SWIG_fail;
+  fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glGetShaderInfoLog(lua_State* L) { int SWIG_arg = 0; GLuint arg1 ; GLsizei arg2 ;
+  GLsizei *arg3 = (GLsizei *) 0 ; GLchar *arg4 = (GLchar *) 0 ; GLuint *argp1 ; GLsizei *argp2 ;
+  SWIG_check_num_args("glGetShaderInfoLog",4,4) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glGetShaderInfoLog",1,"GLuint");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glGetShaderInfoLog",2,"GLsizei");
+  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("glGetShaderInfoLog",3,"GLsizei *");
+  if(!SWIG_lua_isnilstring(L,4)) SWIG_fail_arg("glGetShaderInfoLog",4,"GLchar *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glGetShaderInfoLog",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glGetShaderInfoLog",2,SWIGTYPE_p_int32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glGetShaderInfoLog",3,SWIGTYPE_p_int32_t); }  arg4 = (GLchar *)lua_tostring(L, 4);
+  glGetShaderInfoLog(arg1,arg2,arg3,arg4); return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glGetShaderPrecisionFormat(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLenum arg2 ;
+  GLint *arg3 = (GLint *) 0 ; GLint *arg4 = (GLint *) 0 ; GLenum *argp1 ; GLenum *argp2 ;
+  SWIG_check_num_args("glGetShaderPrecisionFormat",4,4)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glGetShaderPrecisionFormat",1,"GLenum");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glGetShaderPrecisionFormat",2,"GLenum");
+  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("glGetShaderPrecisionFormat",3,"GLint *");
+  if(!SWIG_isptrtype(L,4)) SWIG_fail_arg("glGetShaderPrecisionFormat",4,"GLint *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glGetShaderPrecisionFormat",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glGetShaderPrecisionFormat",2,SWIGTYPE_p_uint32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glGetShaderPrecisionFormat",3,SWIGTYPE_p_int32_t); } 
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,4,(void**)&arg4,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glGetShaderPrecisionFormat",4,SWIGTYPE_p_int32_t); }  glGetShaderPrecisionFormat(arg1,arg2,arg3,arg4);
+  return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glGetShaderSource(lua_State* L) { int SWIG_arg = 0; GLuint arg1 ; GLsizei arg2 ;
+  GLsizei *arg3 = (GLsizei *) 0 ; GLchar *arg4 = (GLchar *) 0 ; GLuint *argp1 ; GLsizei *argp2 ;
+  SWIG_check_num_args("glGetShaderSource",4,4) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glGetShaderSource",1,"GLuint");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glGetShaderSource",2,"GLsizei");
+  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("glGetShaderSource",3,"GLsizei *");
+  if(!SWIG_lua_isnilstring(L,4)) SWIG_fail_arg("glGetShaderSource",4,"GLchar *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glGetShaderSource",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glGetShaderSource",2,SWIGTYPE_p_int32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glGetShaderSource",3,SWIGTYPE_p_int32_t); }  arg4 = (GLchar *)lua_tostring(L, 4);
+  glGetShaderSource(arg1,arg2,arg3,arg4); return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glGetString(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLenum *argp1 ; GLubyte *result = 0 ;
+  SWIG_check_num_args("glGetString",1,1) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glGetString",1,"GLenum");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glGetString",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1; result = (GLubyte *)glGetString(arg1);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_uint8_t,0); SWIG_arg++;  return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L);
+  return SWIG_arg; }
+static int _wrap_glGetTexParameterfv(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLenum arg2 ;
+  GLfloat *arg3 = (GLfloat *) 0 ; GLenum *argp1 ; GLenum *argp2 ; SWIG_check_num_args("glGetTexParameterfv",3,3)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glGetTexParameterfv",1,"GLenum");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glGetTexParameterfv",2,"GLenum");
+  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("glGetTexParameterfv",3,"GLfloat *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glGetTexParameterfv",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glGetTexParameterfv",2,SWIGTYPE_p_uint32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_float,0))){
+    SWIG_fail_ptr("glGetTexParameterfv",3,SWIGTYPE_p_float); }  glGetTexParameterfv(arg1,arg2,arg3); return SWIG_arg;
+  if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glGetTexParameteriv(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLenum arg2 ; GLint *arg3 = (GLint *) 0 ;
+  GLenum *argp1 ; GLenum *argp2 ; SWIG_check_num_args("glGetTexParameteriv",3,3)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glGetTexParameteriv",1,"GLenum");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glGetTexParameteriv",2,"GLenum");
+  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("glGetTexParameteriv",3,"GLint *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glGetTexParameteriv",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glGetTexParameteriv",2,SWIGTYPE_p_uint32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glGetTexParameteriv",3,SWIGTYPE_p_int32_t); }  glGetTexParameteriv(arg1,arg2,arg3); return SWIG_arg;
+  if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glGetUniformfv(lua_State* L) { int SWIG_arg = 0; GLuint arg1 ; GLint arg2 ; GLfloat *arg3 = (GLfloat *) 0 ;
+  GLuint *argp1 ; GLint *argp2 ; SWIG_check_num_args("glGetUniformfv",3,3)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glGetUniformfv",1,"GLuint");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glGetUniformfv",2,"GLint");
+  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("glGetUniformfv",3,"GLfloat *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glGetUniformfv",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glGetUniformfv",2,SWIGTYPE_p_int32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_float,0))){ SWIG_fail_ptr("glGetUniformfv",3,SWIGTYPE_p_float); } 
+  glGetUniformfv(arg1,arg2,arg3); return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glGetUniformiv(lua_State* L) { int SWIG_arg = 0; GLuint arg1 ; GLint arg2 ; GLint *arg3 = (GLint *) 0 ;
+  GLuint *argp1 ; GLint *argp2 ; SWIG_check_num_args("glGetUniformiv",3,3)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glGetUniformiv",1,"GLuint");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glGetUniformiv",2,"GLint");
+  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("glGetUniformiv",3,"GLint *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glGetUniformiv",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glGetUniformiv",2,SWIGTYPE_p_int32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glGetUniformiv",3,SWIGTYPE_p_int32_t); }  glGetUniformiv(arg1,arg2,arg3); return SWIG_arg; if(0) SWIG_fail;
+  fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glGetUniformLocation(lua_State* L) { int SWIG_arg = 0; GLuint arg1 ; GLchar *arg2 = (GLchar *) 0 ;
+  GLuint *argp1 ; int result; SWIG_check_num_args("glGetUniformLocation",2,2)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glGetUniformLocation",1,"GLuint");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("glGetUniformLocation",2,"GLchar const *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glGetUniformLocation",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1; arg2 = (GLchar *)lua_tostring(L, 2);
+  result = (int)glGetUniformLocation(arg1,(char const *)arg2); lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glGetVertexAttribfv(lua_State* L) { int SWIG_arg = 0; GLuint arg1 ; GLenum arg2 ;
+  GLfloat *arg3 = (GLfloat *) 0 ; GLuint *argp1 ; GLenum *argp2 ; SWIG_check_num_args("glGetVertexAttribfv",3,3)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glGetVertexAttribfv",1,"GLuint");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glGetVertexAttribfv",2,"GLenum");
+  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("glGetVertexAttribfv",3,"GLfloat *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glGetVertexAttribfv",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glGetVertexAttribfv",2,SWIGTYPE_p_uint32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_float,0))){
+    SWIG_fail_ptr("glGetVertexAttribfv",3,SWIGTYPE_p_float); }  glGetVertexAttribfv(arg1,arg2,arg3); return SWIG_arg;
+  if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glGetVertexAttribiv(lua_State* L) { int SWIG_arg = 0; GLuint arg1 ; GLenum arg2 ; GLint *arg3 = (GLint *) 0 ;
+  GLuint *argp1 ; GLenum *argp2 ; SWIG_check_num_args("glGetVertexAttribiv",3,3)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glGetVertexAttribiv",1,"GLuint");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glGetVertexAttribiv",2,"GLenum");
+  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("glGetVertexAttribiv",3,"GLint *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glGetVertexAttribiv",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glGetVertexAttribiv",2,SWIGTYPE_p_uint32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glGetVertexAttribiv",3,SWIGTYPE_p_int32_t); }  glGetVertexAttribiv(arg1,arg2,arg3); return SWIG_arg;
+  if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glGetVertexAttribPointerv(lua_State* L) { int SWIG_arg = 0; GLuint arg1 ; GLenum arg2 ;
+  GLvoid **arg3 = (GLvoid **) 0 ; GLuint *argp1 ; GLenum *argp2 ; SWIG_check_num_args("glGetVertexAttribPointerv",3,3)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glGetVertexAttribPointerv",1,"GLuint");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glGetVertexAttribPointerv",2,"GLenum");
+  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("glGetVertexAttribPointerv",3,"GLvoid **");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glGetVertexAttribPointerv",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glGetVertexAttribPointerv",2,SWIGTYPE_p_uint32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_p_void,0))){
+    SWIG_fail_ptr("glGetVertexAttribPointerv",3,SWIGTYPE_p_p_void); }  glGetVertexAttribPointerv(arg1,arg2,arg3);
+  return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glHint(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLenum arg2 ; GLenum *argp1 ; GLenum *argp2 ;
+  SWIG_check_num_args("glHint",2,2) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glHint",1,"GLenum");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glHint",2,"GLenum");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){ SWIG_fail_ptr("glHint",1,SWIGTYPE_p_uint32_t); } 
+  arg1 = *argp1; if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glHint",2,SWIGTYPE_p_uint32_t); }  arg2 = *argp2; glHint(arg1,arg2); return SWIG_arg; if(0) SWIG_fail; fail:
+  lua_error(L); return SWIG_arg; }
+static int _wrap_glIsBuffer(lua_State* L) { int SWIG_arg = 0; GLuint arg1 ; GLuint *argp1 ; GLboolean result;
+  SWIG_check_num_args("glIsBuffer",1,1) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glIsBuffer",1,"GLuint");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glIsBuffer",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1; result = glIsBuffer(arg1); {
+    GLboolean * resultptr = new GLboolean((const GLboolean &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_uint8_t,1); SWIG_arg++; }  return SWIG_arg; if(0) SWIG_fail; fail:
+  lua_error(L); return SWIG_arg; }
+static int _wrap_glIsEnabled(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLenum *argp1 ; GLboolean result;
+  SWIG_check_num_args("glIsEnabled",1,1) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glIsEnabled",1,"GLenum");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glIsEnabled",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1; result = glIsEnabled(arg1); {
+    GLboolean * resultptr = new GLboolean((const GLboolean &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_uint8_t,1); SWIG_arg++; }  return SWIG_arg; if(0) SWIG_fail; fail:
+  lua_error(L); return SWIG_arg; }
+static int _wrap_glIsFramebuffer(lua_State* L) { int SWIG_arg = 0; GLuint arg1 ; GLuint *argp1 ; GLboolean result;
+  SWIG_check_num_args("glIsFramebuffer",1,1) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glIsFramebuffer",1,"GLuint");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glIsFramebuffer",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1; result = glIsFramebuffer(arg1); {
+    GLboolean * resultptr = new GLboolean((const GLboolean &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_uint8_t,1); SWIG_arg++; }  return SWIG_arg; if(0) SWIG_fail; fail:
+  lua_error(L); return SWIG_arg; }
+static int _wrap_glIsProgram(lua_State* L) { int SWIG_arg = 0; GLuint arg1 ; GLuint *argp1 ; GLboolean result;
+  SWIG_check_num_args("glIsProgram",1,1) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glIsProgram",1,"GLuint");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glIsProgram",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1; result = glIsProgram(arg1); {
+    GLboolean * resultptr = new GLboolean((const GLboolean &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_uint8_t,1); SWIG_arg++; }  return SWIG_arg; if(0) SWIG_fail; fail:
+  lua_error(L); return SWIG_arg; }
+static int _wrap_glIsRenderbuffer(lua_State* L) { int SWIG_arg = 0; GLuint arg1 ; GLuint *argp1 ; GLboolean result;
+  SWIG_check_num_args("glIsRenderbuffer",1,1) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glIsRenderbuffer",1,"GLuint");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glIsRenderbuffer",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1; result = glIsRenderbuffer(arg1); {
+    GLboolean * resultptr = new GLboolean((const GLboolean &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_uint8_t,1); SWIG_arg++; }  return SWIG_arg; if(0) SWIG_fail; fail:
+  lua_error(L); return SWIG_arg; }
+static int _wrap_glIsShader(lua_State* L) { int SWIG_arg = 0; GLuint arg1 ; GLuint *argp1 ; GLboolean result;
+  SWIG_check_num_args("glIsShader",1,1) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glIsShader",1,"GLuint");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glIsShader",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1; result = glIsShader(arg1); {
+    GLboolean * resultptr = new GLboolean((const GLboolean &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_uint8_t,1); SWIG_arg++; }  return SWIG_arg; if(0) SWIG_fail; fail:
+  lua_error(L); return SWIG_arg; }
+static int _wrap_glIsTexture(lua_State* L) { int SWIG_arg = 0; GLuint arg1 ; GLuint *argp1 ; GLboolean result;
+  SWIG_check_num_args("glIsTexture",1,1) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glIsTexture",1,"GLuint");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glIsTexture",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1; result = glIsTexture(arg1); {
+    GLboolean * resultptr = new GLboolean((const GLboolean &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_uint8_t,1); SWIG_arg++; }  return SWIG_arg; if(0) SWIG_fail; fail:
+  lua_error(L); return SWIG_arg; }
+static int _wrap_glLineWidth(lua_State* L) { int SWIG_arg = 0; GLfloat arg1 ; SWIG_check_num_args("glLineWidth",1,1)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("glLineWidth",1,"GLfloat"); arg1 = (GLfloat)lua_tonumber(L, 1); glLineWidth(arg1);
+  return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glLinkProgram(lua_State* L) { int SWIG_arg = 0; GLuint arg1 ; GLuint *argp1 ;
+  SWIG_check_num_args("glLinkProgram",1,1) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glLinkProgram",1,"GLuint");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glLinkProgram",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1; glLinkProgram(arg1); return SWIG_arg;
+  if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glPixelStorei(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLint arg2 ; GLenum *argp1 ; GLint *argp2 ;
+  SWIG_check_num_args("glPixelStorei",2,2) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glPixelStorei",1,"GLenum");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glPixelStorei",2,"GLint");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glPixelStorei",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glPixelStorei",2,SWIGTYPE_p_int32_t); }  arg2 = *argp2; glPixelStorei(arg1,arg2); return SWIG_arg;
+  if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glPolygonOffset(lua_State* L) { int SWIG_arg = 0; GLfloat arg1 ; GLfloat arg2 ;
+  SWIG_check_num_args("glPolygonOffset",2,2) if(!lua_isnumber(L,1)) SWIG_fail_arg("glPolygonOffset",1,"GLfloat");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("glPolygonOffset",2,"GLfloat"); arg1 = (GLfloat)lua_tonumber(L, 1);
+  arg2 = (GLfloat)lua_tonumber(L, 2); glPolygonOffset(arg1,arg2); return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L);
+  return SWIG_arg; }
+static int _wrap_glReadPixels(lua_State* L) { int SWIG_arg = 0; GLint arg1 ; GLint arg2 ; GLsizei arg3 ; GLsizei arg4 ;
+  GLenum arg5 ; GLenum arg6 ; GLvoid *arg7 = (GLvoid *) 0 ; GLint *argp1 ; GLint *argp2 ; GLsizei *argp3 ; GLsizei *argp4 ;
+  GLenum *argp5 ; GLenum *argp6 ; SWIG_check_num_args("glReadPixels",7,7)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glReadPixels",1,"GLint");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glReadPixels",2,"GLint");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("glReadPixels",3,"GLsizei");
+  if(!lua_isuserdata(L,4)) SWIG_fail_arg("glReadPixels",4,"GLsizei");
+  if(!lua_isuserdata(L,5)) SWIG_fail_arg("glReadPixels",5,"GLenum");
+  if(!lua_isuserdata(L,6)) SWIG_fail_arg("glReadPixels",6,"GLenum");
+  if(!SWIG_isptrtype(L,7)) SWIG_fail_arg("glReadPixels",7,"GLvoid *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glReadPixels",1,SWIGTYPE_p_int32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glReadPixels",2,SWIGTYPE_p_int32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&argp3,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glReadPixels",3,SWIGTYPE_p_int32_t); }  arg3 = *argp3;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,4,(void**)&argp4,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glReadPixels",4,SWIGTYPE_p_int32_t); }  arg4 = *argp4;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,5,(void**)&argp5,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glReadPixels",5,SWIGTYPE_p_uint32_t); }  arg5 = *argp5;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,6,(void**)&argp6,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glReadPixels",6,SWIGTYPE_p_uint32_t); }  arg6 = *argp6;
+  arg7=(GLvoid *)SWIG_MustGetPtr(L,7,0,0,7,"glReadPixels"); glReadPixels(arg1,arg2,arg3,arg4,arg5,arg6,arg7); return SWIG_arg;
+  if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glReleaseShaderCompiler(lua_State* L) { int SWIG_arg = 0; SWIG_check_num_args("glReleaseShaderCompiler",0,0)
+  glReleaseShaderCompiler(); return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glRenderbufferStorage(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLenum arg2 ; GLsizei arg3 ;
+  GLsizei arg4 ; GLenum *argp1 ; GLenum *argp2 ; GLsizei *argp3 ; GLsizei *argp4 ;
+  SWIG_check_num_args("glRenderbufferStorage",4,4) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glRenderbufferStorage",1,"GLenum");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glRenderbufferStorage",2,"GLenum");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("glRenderbufferStorage",3,"GLsizei");
+  if(!lua_isuserdata(L,4)) SWIG_fail_arg("glRenderbufferStorage",4,"GLsizei");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glRenderbufferStorage",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glRenderbufferStorage",2,SWIGTYPE_p_uint32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&argp3,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glRenderbufferStorage",3,SWIGTYPE_p_int32_t); }  arg3 = *argp3;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,4,(void**)&argp4,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glRenderbufferStorage",4,SWIGTYPE_p_int32_t); }  arg4 = *argp4; glRenderbufferStorage(arg1,arg2,arg3,arg4);
+  return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glSampleCoverage(lua_State* L) { int SWIG_arg = 0; GLclampf arg1 ; GLboolean arg2 ; GLboolean *argp2 ;
+  SWIG_check_num_args("glSampleCoverage",2,2) if(!lua_isnumber(L,1)) SWIG_fail_arg("glSampleCoverage",1,"GLclampf");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glSampleCoverage",2,"GLboolean"); arg1 = (GLclampf)lua_tonumber(L, 1);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_uint8_t,0))){
+    SWIG_fail_ptr("glSampleCoverage",2,SWIGTYPE_p_uint8_t); }  arg2 = *argp2; glSampleCoverage(arg1,arg2); return SWIG_arg;
+  if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glScissor(lua_State* L) { int SWIG_arg = 0; GLint arg1 ; GLint arg2 ; GLsizei arg3 ; GLsizei arg4 ;
+  GLint *argp1 ; GLint *argp2 ; GLsizei *argp3 ; GLsizei *argp4 ; SWIG_check_num_args("glScissor",4,4)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glScissor",1,"GLint"); if(!lua_isuserdata(L,2)) SWIG_fail_arg("glScissor",2,"GLint");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("glScissor",3,"GLsizei");
+  if(!lua_isuserdata(L,4)) SWIG_fail_arg("glScissor",4,"GLsizei");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_int32_t,0))){ SWIG_fail_ptr("glScissor",1,SWIGTYPE_p_int32_t); } 
+  arg1 = *argp1; if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glScissor",2,SWIGTYPE_p_int32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&argp3,SWIGTYPE_p_int32_t,0))){ SWIG_fail_ptr("glScissor",3,SWIGTYPE_p_int32_t); } 
+  arg3 = *argp3; if (!SWIG_IsOK(SWIG_ConvertPtr(L,4,(void**)&argp4,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glScissor",4,SWIGTYPE_p_int32_t); }  arg4 = *argp4; glScissor(arg1,arg2,arg3,arg4); return SWIG_arg;
+  if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glShaderBinary(lua_State* L) { int SWIG_arg = 0; GLsizei arg1 ; GLuint *arg2 = (GLuint *) 0 ; GLenum arg3 ;
+  GLvoid *arg4 = (GLvoid *) 0 ; GLsizei arg5 ; GLsizei *argp1 ; GLenum *argp3 ; GLsizei *argp5 ;
+  SWIG_check_num_args("glShaderBinary",5,5) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glShaderBinary",1,"GLsizei");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("glShaderBinary",2,"GLuint const *");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("glShaderBinary",3,"GLenum");
+  if(!SWIG_isptrtype(L,4)) SWIG_fail_arg("glShaderBinary",4,"GLvoid const *");
+  if(!lua_isuserdata(L,5)) SWIG_fail_arg("glShaderBinary",5,"GLsizei");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glShaderBinary",1,SWIGTYPE_p_int32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glShaderBinary",2,SWIGTYPE_p_uint32_t); } 
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&argp3,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glShaderBinary",3,SWIGTYPE_p_uint32_t); }  arg3 = *argp3;
+  arg4=(GLvoid *)SWIG_MustGetPtr(L,4,0,0,4,"glShaderBinary");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,5,(void**)&argp5,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glShaderBinary",5,SWIGTYPE_p_int32_t); }  arg5 = *argp5;
+  glShaderBinary(arg1,(uint32_t const *)arg2,arg3,(void const *)arg4,arg5); return SWIG_arg; if(0) SWIG_fail; fail:
+  lua_error(L); return SWIG_arg; }
+static int _wrap_glShaderSource(lua_State* L) { int SWIG_arg = 0; GLuint arg1 ; GLsizei arg2 ; GLchar **arg3 = (GLchar **) 0 ;
+  GLint *arg4 = (GLint *) 0 ; GLuint *argp1 ; GLsizei *argp2 ; SWIG_check_num_args("glShaderSource",4,4)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glShaderSource",1,"GLuint");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glShaderSource",2,"GLsizei");
+  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("glShaderSource",3,"GLchar const *const *");
+  if(!SWIG_isptrtype(L,4)) SWIG_fail_arg("glShaderSource",4,"GLint const *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glShaderSource",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glShaderSource",2,SWIGTYPE_p_int32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_p_char,0))){ SWIG_fail_ptr("glShaderSource",3,SWIGTYPE_p_p_char); }
+   if (!SWIG_IsOK(SWIG_ConvertPtr(L,4,(void**)&arg4,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glShaderSource",4,SWIGTYPE_p_int32_t); } 
+  glShaderSource(arg1,arg2,(char const *const *)arg3,(int32_t const *)arg4); return SWIG_arg; if(0) SWIG_fail; fail:
+  lua_error(L); return SWIG_arg; }
+static int _wrap_glStencilFunc(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLint arg2 ; GLuint arg3 ; GLenum *argp1 ;
+  GLint *argp2 ; GLuint *argp3 ; SWIG_check_num_args("glStencilFunc",3,3)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glStencilFunc",1,"GLenum");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glStencilFunc",2,"GLint");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("glStencilFunc",3,"GLuint");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glStencilFunc",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glStencilFunc",2,SWIGTYPE_p_int32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&argp3,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glStencilFunc",3,SWIGTYPE_p_uint32_t); }  arg3 = *argp3; glStencilFunc(arg1,arg2,arg3); return SWIG_arg;
+  if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glStencilFuncSeparate(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLenum arg2 ; GLint arg3 ; GLuint arg4 ;
+  GLenum *argp1 ; GLenum *argp2 ; GLint *argp3 ; GLuint *argp4 ; SWIG_check_num_args("glStencilFuncSeparate",4,4)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glStencilFuncSeparate",1,"GLenum");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glStencilFuncSeparate",2,"GLenum");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("glStencilFuncSeparate",3,"GLint");
+  if(!lua_isuserdata(L,4)) SWIG_fail_arg("glStencilFuncSeparate",4,"GLuint");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glStencilFuncSeparate",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glStencilFuncSeparate",2,SWIGTYPE_p_uint32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&argp3,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glStencilFuncSeparate",3,SWIGTYPE_p_int32_t); }  arg3 = *argp3;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,4,(void**)&argp4,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glStencilFuncSeparate",4,SWIGTYPE_p_uint32_t); }  arg4 = *argp4; glStencilFuncSeparate(arg1,arg2,arg3,arg4);
+  return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glStencilMask(lua_State* L) { int SWIG_arg = 0; GLuint arg1 ; GLuint *argp1 ;
+  SWIG_check_num_args("glStencilMask",1,1) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glStencilMask",1,"GLuint");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glStencilMask",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1; glStencilMask(arg1); return SWIG_arg;
+  if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glStencilMaskSeparate(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLuint arg2 ; GLenum *argp1 ;
+  GLuint *argp2 ; SWIG_check_num_args("glStencilMaskSeparate",2,2)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glStencilMaskSeparate",1,"GLenum");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glStencilMaskSeparate",2,"GLuint");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glStencilMaskSeparate",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glStencilMaskSeparate",2,SWIGTYPE_p_uint32_t); }  arg2 = *argp2; glStencilMaskSeparate(arg1,arg2);
+  return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glStencilOp(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLenum arg2 ; GLenum arg3 ; GLenum *argp1 ;
+  GLenum *argp2 ; GLenum *argp3 ; SWIG_check_num_args("glStencilOp",3,3)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glStencilOp",1,"GLenum");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glStencilOp",2,"GLenum");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("glStencilOp",3,"GLenum");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glStencilOp",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glStencilOp",2,SWIGTYPE_p_uint32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&argp3,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glStencilOp",3,SWIGTYPE_p_uint32_t); }  arg3 = *argp3; glStencilOp(arg1,arg2,arg3); return SWIG_arg;
+  if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glStencilOpSeparate(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLenum arg2 ; GLenum arg3 ; GLenum arg4 ;
+  GLenum *argp1 ; GLenum *argp2 ; GLenum *argp3 ; GLenum *argp4 ; SWIG_check_num_args("glStencilOpSeparate",4,4)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glStencilOpSeparate",1,"GLenum");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glStencilOpSeparate",2,"GLenum");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("glStencilOpSeparate",3,"GLenum");
+  if(!lua_isuserdata(L,4)) SWIG_fail_arg("glStencilOpSeparate",4,"GLenum");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glStencilOpSeparate",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glStencilOpSeparate",2,SWIGTYPE_p_uint32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&argp3,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glStencilOpSeparate",3,SWIGTYPE_p_uint32_t); }  arg3 = *argp3;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,4,(void**)&argp4,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glStencilOpSeparate",4,SWIGTYPE_p_uint32_t); }  arg4 = *argp4; glStencilOpSeparate(arg1,arg2,arg3,arg4);
+  return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glTexImage2D(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLint arg2 ; GLint arg3 ; GLsizei arg4 ;
+  GLsizei arg5 ; GLint arg6 ; GLenum arg7 ; GLenum arg8 ; GLvoid *arg9 = (GLvoid *) 0 ; GLenum *argp1 ; GLint *argp2 ;
+  GLint *argp3 ; GLsizei *argp4 ; GLsizei *argp5 ; GLint *argp6 ; GLenum *argp7 ; GLenum *argp8 ;
+  SWIG_check_num_args("glTexImage2D",9,9) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glTexImage2D",1,"GLenum");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glTexImage2D",2,"GLint");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("glTexImage2D",3,"GLint");
+  if(!lua_isuserdata(L,4)) SWIG_fail_arg("glTexImage2D",4,"GLsizei");
+  if(!lua_isuserdata(L,5)) SWIG_fail_arg("glTexImage2D",5,"GLsizei");
+  if(!lua_isuserdata(L,6)) SWIG_fail_arg("glTexImage2D",6,"GLint");
+  if(!lua_isuserdata(L,7)) SWIG_fail_arg("glTexImage2D",7,"GLenum");
+  if(!lua_isuserdata(L,8)) SWIG_fail_arg("glTexImage2D",8,"GLenum");
+  if(!SWIG_isptrtype(L,9)) SWIG_fail_arg("glTexImage2D",9,"GLvoid const *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glTexImage2D",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glTexImage2D",2,SWIGTYPE_p_int32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&argp3,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glTexImage2D",3,SWIGTYPE_p_int32_t); }  arg3 = *argp3;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,4,(void**)&argp4,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glTexImage2D",4,SWIGTYPE_p_int32_t); }  arg4 = *argp4;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,5,(void**)&argp5,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glTexImage2D",5,SWIGTYPE_p_int32_t); }  arg5 = *argp5;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,6,(void**)&argp6,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glTexImage2D",6,SWIGTYPE_p_int32_t); }  arg6 = *argp6;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,7,(void**)&argp7,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glTexImage2D",7,SWIGTYPE_p_uint32_t); }  arg7 = *argp7;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,8,(void**)&argp8,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glTexImage2D",8,SWIGTYPE_p_uint32_t); }  arg8 = *argp8;
+  arg9=(GLvoid *)SWIG_MustGetPtr(L,9,0,0,9,"glTexImage2D");
+  glTexImage2D(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,(void const *)arg9); return SWIG_arg; if(0) SWIG_fail; fail:
+  lua_error(L); return SWIG_arg; }
+static int _wrap_glTexParameterf(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLenum arg2 ; GLfloat arg3 ; GLenum *argp1 ;
+  GLenum *argp2 ; SWIG_check_num_args("glTexParameterf",3,3)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glTexParameterf",1,"GLenum");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glTexParameterf",2,"GLenum");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("glTexParameterf",3,"GLfloat");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glTexParameterf",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glTexParameterf",2,SWIGTYPE_p_uint32_t); }  arg2 = *argp2; arg3 = (GLfloat)lua_tonumber(L, 3);
+  glTexParameterf(arg1,arg2,arg3); return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glTexParameterfv(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLenum arg2 ; GLfloat *arg3 = (GLfloat *) 0 ;
+  GLenum *argp1 ; GLenum *argp2 ; SWIG_check_num_args("glTexParameterfv",3,3)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glTexParameterfv",1,"GLenum");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glTexParameterfv",2,"GLenum");
+  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("glTexParameterfv",3,"GLfloat const *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glTexParameterfv",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glTexParameterfv",2,SWIGTYPE_p_uint32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_float,0))){ SWIG_fail_ptr("glTexParameterfv",3,SWIGTYPE_p_float); }
+   glTexParameterfv(arg1,arg2,(float const *)arg3); return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glTexParameteri(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLenum arg2 ; GLint arg3 ; GLenum *argp1 ;
+  GLenum *argp2 ; GLint *argp3 ; SWIG_check_num_args("glTexParameteri",3,3)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glTexParameteri",1,"GLenum");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glTexParameteri",2,"GLenum");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("glTexParameteri",3,"GLint");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glTexParameteri",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glTexParameteri",2,SWIGTYPE_p_uint32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&argp3,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glTexParameteri",3,SWIGTYPE_p_int32_t); }  arg3 = *argp3; glTexParameteri(arg1,arg2,arg3); return SWIG_arg;
+  if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glTexParameteriv(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLenum arg2 ; GLint *arg3 = (GLint *) 0 ;
+  GLenum *argp1 ; GLenum *argp2 ; SWIG_check_num_args("glTexParameteriv",3,3)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glTexParameteriv",1,"GLenum");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glTexParameteriv",2,"GLenum");
+  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("glTexParameteriv",3,"GLint const *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glTexParameteriv",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glTexParameteriv",2,SWIGTYPE_p_uint32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glTexParameteriv",3,SWIGTYPE_p_int32_t); }  glTexParameteriv(arg1,arg2,(int32_t const *)arg3);
+  return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glTexSubImage2D(lua_State* L) { int SWIG_arg = 0; GLenum arg1 ; GLint arg2 ; GLint arg3 ; GLint arg4 ;
+  GLsizei arg5 ; GLsizei arg6 ; GLenum arg7 ; GLenum arg8 ; GLvoid *arg9 = (GLvoid *) 0 ; GLenum *argp1 ; GLint *argp2 ;
+  GLint *argp3 ; GLint *argp4 ; GLsizei *argp5 ; GLsizei *argp6 ; GLenum *argp7 ; GLenum *argp8 ;
+  SWIG_check_num_args("glTexSubImage2D",9,9) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glTexSubImage2D",1,"GLenum");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glTexSubImage2D",2,"GLint");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("glTexSubImage2D",3,"GLint");
+  if(!lua_isuserdata(L,4)) SWIG_fail_arg("glTexSubImage2D",4,"GLint");
+  if(!lua_isuserdata(L,5)) SWIG_fail_arg("glTexSubImage2D",5,"GLsizei");
+  if(!lua_isuserdata(L,6)) SWIG_fail_arg("glTexSubImage2D",6,"GLsizei");
+  if(!lua_isuserdata(L,7)) SWIG_fail_arg("glTexSubImage2D",7,"GLenum");
+  if(!lua_isuserdata(L,8)) SWIG_fail_arg("glTexSubImage2D",8,"GLenum");
+  if(!SWIG_isptrtype(L,9)) SWIG_fail_arg("glTexSubImage2D",9,"GLvoid const *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glTexSubImage2D",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glTexSubImage2D",2,SWIGTYPE_p_int32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&argp3,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glTexSubImage2D",3,SWIGTYPE_p_int32_t); }  arg3 = *argp3;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,4,(void**)&argp4,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glTexSubImage2D",4,SWIGTYPE_p_int32_t); }  arg4 = *argp4;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,5,(void**)&argp5,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glTexSubImage2D",5,SWIGTYPE_p_int32_t); }  arg5 = *argp5;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,6,(void**)&argp6,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glTexSubImage2D",6,SWIGTYPE_p_int32_t); }  arg6 = *argp6;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,7,(void**)&argp7,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glTexSubImage2D",7,SWIGTYPE_p_uint32_t); }  arg7 = *argp7;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,8,(void**)&argp8,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glTexSubImage2D",8,SWIGTYPE_p_uint32_t); }  arg8 = *argp8;
+  arg9=(GLvoid *)SWIG_MustGetPtr(L,9,0,0,9,"glTexSubImage2D");
+  glTexSubImage2D(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,(void const *)arg9); return SWIG_arg; if(0) SWIG_fail; fail:
+  lua_error(L); return SWIG_arg; }
+static int _wrap_glUniform1f(lua_State* L) { int SWIG_arg = 0; GLint arg1 ; GLfloat arg2 ; GLint *argp1 ;
+  SWIG_check_num_args("glUniform1f",2,2) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glUniform1f",1,"GLint");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("glUniform1f",2,"GLfloat");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_int32_t,0))){ SWIG_fail_ptr("glUniform1f",1,SWIGTYPE_p_int32_t); }
+   arg1 = *argp1; arg2 = (GLfloat)lua_tonumber(L, 2); glUniform1f(arg1,arg2); return SWIG_arg; if(0) SWIG_fail; fail:
+  lua_error(L); return SWIG_arg; }
+static int _wrap_glUniform1fv(lua_State* L) { int SWIG_arg = 0; GLint arg1 ; GLsizei arg2 ; GLfloat *arg3 = (GLfloat *) 0 ;
+  GLint *argp1 ; GLsizei *argp2 ; SWIG_check_num_args("glUniform1fv",3,3)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glUniform1fv",1,"GLint");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glUniform1fv",2,"GLsizei");
+  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("glUniform1fv",3,"GLfloat const *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glUniform1fv",1,SWIGTYPE_p_int32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glUniform1fv",2,SWIGTYPE_p_int32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_float,0))){ SWIG_fail_ptr("glUniform1fv",3,SWIGTYPE_p_float); } 
+  glUniform1fv(arg1,arg2,(float const *)arg3); return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glUniform1i(lua_State* L) { int SWIG_arg = 0; GLint arg1 ; GLint arg2 ; GLint *argp1 ; GLint *argp2 ;
+  SWIG_check_num_args("glUniform1i",2,2) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glUniform1i",1,"GLint");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glUniform1i",2,"GLint");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_int32_t,0))){ SWIG_fail_ptr("glUniform1i",1,SWIGTYPE_p_int32_t); }
+   arg1 = *argp1; if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glUniform1i",2,SWIGTYPE_p_int32_t); }  arg2 = *argp2; glUniform1i(arg1,arg2); return SWIG_arg;
+  if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glUniform1iv(lua_State* L) { int SWIG_arg = 0; GLint arg1 ; GLsizei arg2 ; GLint *arg3 = (GLint *) 0 ;
+  GLint *argp1 ; GLsizei *argp2 ; SWIG_check_num_args("glUniform1iv",3,3)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glUniform1iv",1,"GLint");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glUniform1iv",2,"GLsizei");
+  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("glUniform1iv",3,"GLint const *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glUniform1iv",1,SWIGTYPE_p_int32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glUniform1iv",2,SWIGTYPE_p_int32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_int32_t,0))){ SWIG_fail_ptr("glUniform1iv",3,SWIGTYPE_p_int32_t); }
+   glUniform1iv(arg1,arg2,(int32_t const *)arg3); return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glUniform2f(lua_State* L) { int SWIG_arg = 0; GLint arg1 ; GLfloat arg2 ; GLfloat arg3 ; GLint *argp1 ;
+  SWIG_check_num_args("glUniform2f",3,3) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glUniform2f",1,"GLint");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("glUniform2f",2,"GLfloat");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("glUniform2f",3,"GLfloat");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_int32_t,0))){ SWIG_fail_ptr("glUniform2f",1,SWIGTYPE_p_int32_t); }
+   arg1 = *argp1; arg2 = (GLfloat)lua_tonumber(L, 2); arg3 = (GLfloat)lua_tonumber(L, 3); glUniform2f(arg1,arg2,arg3);
+  return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glUniform2fv(lua_State* L) { int SWIG_arg = 0; GLint arg1 ; GLsizei arg2 ; GLfloat *arg3 = (GLfloat *) 0 ;
+  GLint *argp1 ; GLsizei *argp2 ; SWIG_check_num_args("glUniform2fv",3,3)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glUniform2fv",1,"GLint");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glUniform2fv",2,"GLsizei");
+  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("glUniform2fv",3,"GLfloat const *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glUniform2fv",1,SWIGTYPE_p_int32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glUniform2fv",2,SWIGTYPE_p_int32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_float,0))){ SWIG_fail_ptr("glUniform2fv",3,SWIGTYPE_p_float); } 
+  glUniform2fv(arg1,arg2,(float const *)arg3); return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glUniform2i(lua_State* L) { int SWIG_arg = 0; GLint arg1 ; GLint arg2 ; GLint arg3 ; GLint *argp1 ;
+  GLint *argp2 ; GLint *argp3 ; SWIG_check_num_args("glUniform2i",3,3)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glUniform2i",1,"GLint");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glUniform2i",2,"GLint");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("glUniform2i",3,"GLint");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_int32_t,0))){ SWIG_fail_ptr("glUniform2i",1,SWIGTYPE_p_int32_t); }
+   arg1 = *argp1; if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glUniform2i",2,SWIGTYPE_p_int32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&argp3,SWIGTYPE_p_int32_t,0))){ SWIG_fail_ptr("glUniform2i",3,SWIGTYPE_p_int32_t); }
+   arg3 = *argp3; glUniform2i(arg1,arg2,arg3); return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glUniform2iv(lua_State* L) { int SWIG_arg = 0; GLint arg1 ; GLsizei arg2 ; GLint *arg3 = (GLint *) 0 ;
+  GLint *argp1 ; GLsizei *argp2 ; SWIG_check_num_args("glUniform2iv",3,3)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glUniform2iv",1,"GLint");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glUniform2iv",2,"GLsizei");
+  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("glUniform2iv",3,"GLint const *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glUniform2iv",1,SWIGTYPE_p_int32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glUniform2iv",2,SWIGTYPE_p_int32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_int32_t,0))){ SWIG_fail_ptr("glUniform2iv",3,SWIGTYPE_p_int32_t); }
+   glUniform2iv(arg1,arg2,(int32_t const *)arg3); return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glUniform3f(lua_State* L) { int SWIG_arg = 0; GLint arg1 ; GLfloat arg2 ; GLfloat arg3 ; GLfloat arg4 ;
+  GLint *argp1 ; SWIG_check_num_args("glUniform3f",4,4) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glUniform3f",1,"GLint");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("glUniform3f",2,"GLfloat");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("glUniform3f",3,"GLfloat");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("glUniform3f",4,"GLfloat");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_int32_t,0))){ SWIG_fail_ptr("glUniform3f",1,SWIGTYPE_p_int32_t); }
+   arg1 = *argp1; arg2 = (GLfloat)lua_tonumber(L, 2); arg3 = (GLfloat)lua_tonumber(L, 3); arg4 = (GLfloat)lua_tonumber(L, 4);
+  glUniform3f(arg1,arg2,arg3,arg4); return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glUniform3fv(lua_State* L) { int SWIG_arg = 0; GLint arg1 ; GLsizei arg2 ; GLfloat *arg3 = (GLfloat *) 0 ;
+  GLint *argp1 ; GLsizei *argp2 ; SWIG_check_num_args("glUniform3fv",3,3)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glUniform3fv",1,"GLint");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glUniform3fv",2,"GLsizei");
+  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("glUniform3fv",3,"GLfloat const *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glUniform3fv",1,SWIGTYPE_p_int32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glUniform3fv",2,SWIGTYPE_p_int32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_float,0))){ SWIG_fail_ptr("glUniform3fv",3,SWIGTYPE_p_float); } 
+  glUniform3fv(arg1,arg2,(float const *)arg3); return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glUniform3i(lua_State* L) { int SWIG_arg = 0; GLint arg1 ; GLint arg2 ; GLint arg3 ; GLint arg4 ;
+  GLint *argp1 ; GLint *argp2 ; GLint *argp3 ; GLint *argp4 ; SWIG_check_num_args("glUniform3i",4,4)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glUniform3i",1,"GLint");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glUniform3i",2,"GLint");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("glUniform3i",3,"GLint");
+  if(!lua_isuserdata(L,4)) SWIG_fail_arg("glUniform3i",4,"GLint");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_int32_t,0))){ SWIG_fail_ptr("glUniform3i",1,SWIGTYPE_p_int32_t); }
+   arg1 = *argp1; if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glUniform3i",2,SWIGTYPE_p_int32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&argp3,SWIGTYPE_p_int32_t,0))){ SWIG_fail_ptr("glUniform3i",3,SWIGTYPE_p_int32_t); }
+   arg3 = *argp3; if (!SWIG_IsOK(SWIG_ConvertPtr(L,4,(void**)&argp4,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glUniform3i",4,SWIGTYPE_p_int32_t); }  arg4 = *argp4; glUniform3i(arg1,arg2,arg3,arg4); return SWIG_arg;
+  if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glUniform3iv(lua_State* L) { int SWIG_arg = 0; GLint arg1 ; GLsizei arg2 ; GLint *arg3 = (GLint *) 0 ;
+  GLint *argp1 ; GLsizei *argp2 ; SWIG_check_num_args("glUniform3iv",3,3)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glUniform3iv",1,"GLint");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glUniform3iv",2,"GLsizei");
+  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("glUniform3iv",3,"GLint const *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glUniform3iv",1,SWIGTYPE_p_int32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glUniform3iv",2,SWIGTYPE_p_int32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_int32_t,0))){ SWIG_fail_ptr("glUniform3iv",3,SWIGTYPE_p_int32_t); }
+   glUniform3iv(arg1,arg2,(int32_t const *)arg3); return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glUniform4f(lua_State* L) { int SWIG_arg = 0; GLint arg1 ; GLfloat arg2 ; GLfloat arg3 ; GLfloat arg4 ;
+  GLfloat arg5 ; GLint *argp1 ; SWIG_check_num_args("glUniform4f",5,5)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glUniform4f",1,"GLint");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("glUniform4f",2,"GLfloat");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("glUniform4f",3,"GLfloat");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("glUniform4f",4,"GLfloat");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("glUniform4f",5,"GLfloat");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_int32_t,0))){ SWIG_fail_ptr("glUniform4f",1,SWIGTYPE_p_int32_t); }
+   arg1 = *argp1; arg2 = (GLfloat)lua_tonumber(L, 2); arg3 = (GLfloat)lua_tonumber(L, 3); arg4 = (GLfloat)lua_tonumber(L, 4);
+  arg5 = (GLfloat)lua_tonumber(L, 5); glUniform4f(arg1,arg2,arg3,arg4,arg5); return SWIG_arg; if(0) SWIG_fail; fail:
+  lua_error(L); return SWIG_arg; }
+static int _wrap_glUniform4fv(lua_State* L) { int SWIG_arg = 0; GLint arg1 ; GLsizei arg2 ; GLfloat *arg3 = (GLfloat *) 0 ;
+  GLint *argp1 ; GLsizei *argp2 ; SWIG_check_num_args("glUniform4fv",3,3)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glUniform4fv",1,"GLint");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glUniform4fv",2,"GLsizei");
+  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("glUniform4fv",3,"GLfloat const *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glUniform4fv",1,SWIGTYPE_p_int32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glUniform4fv",2,SWIGTYPE_p_int32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_float,0))){ SWIG_fail_ptr("glUniform4fv",3,SWIGTYPE_p_float); } 
+  glUniform4fv(arg1,arg2,(float const *)arg3); return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glUniform4i(lua_State* L) { int SWIG_arg = 0; GLint arg1 ; GLint arg2 ; GLint arg3 ; GLint arg4 ; GLint arg5 ;
+  GLint *argp1 ; GLint *argp2 ; GLint *argp3 ; GLint *argp4 ; GLint *argp5 ; SWIG_check_num_args("glUniform4i",5,5)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glUniform4i",1,"GLint");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glUniform4i",2,"GLint");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("glUniform4i",3,"GLint");
+  if(!lua_isuserdata(L,4)) SWIG_fail_arg("glUniform4i",4,"GLint");
+  if(!lua_isuserdata(L,5)) SWIG_fail_arg("glUniform4i",5,"GLint");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_int32_t,0))){ SWIG_fail_ptr("glUniform4i",1,SWIGTYPE_p_int32_t); }
+   arg1 = *argp1; if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glUniform4i",2,SWIGTYPE_p_int32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&argp3,SWIGTYPE_p_int32_t,0))){ SWIG_fail_ptr("glUniform4i",3,SWIGTYPE_p_int32_t); }
+   arg3 = *argp3; if (!SWIG_IsOK(SWIG_ConvertPtr(L,4,(void**)&argp4,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glUniform4i",4,SWIGTYPE_p_int32_t); }  arg4 = *argp4;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,5,(void**)&argp5,SWIGTYPE_p_int32_t,0))){ SWIG_fail_ptr("glUniform4i",5,SWIGTYPE_p_int32_t); }
+   arg5 = *argp5; glUniform4i(arg1,arg2,arg3,arg4,arg5); return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glUniform4iv(lua_State* L) { int SWIG_arg = 0; GLint arg1 ; GLsizei arg2 ; GLint *arg3 = (GLint *) 0 ;
+  GLint *argp1 ; GLsizei *argp2 ; SWIG_check_num_args("glUniform4iv",3,3)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glUniform4iv",1,"GLint");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glUniform4iv",2,"GLsizei");
+  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("glUniform4iv",3,"GLint const *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glUniform4iv",1,SWIGTYPE_p_int32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glUniform4iv",2,SWIGTYPE_p_int32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_int32_t,0))){ SWIG_fail_ptr("glUniform4iv",3,SWIGTYPE_p_int32_t); }
+   glUniform4iv(arg1,arg2,(int32_t const *)arg3); return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glUniformMatrix2fv(lua_State* L) { int SWIG_arg = 0; GLint arg1 ; GLsizei arg2 ; GLboolean arg3 ;
+  GLfloat *arg4 = (GLfloat *) 0 ; GLint *argp1 ; GLsizei *argp2 ; GLboolean *argp3 ;
+  SWIG_check_num_args("glUniformMatrix2fv",4,4) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glUniformMatrix2fv",1,"GLint");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glUniformMatrix2fv",2,"GLsizei");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("glUniformMatrix2fv",3,"GLboolean");
+  if(!SWIG_isptrtype(L,4)) SWIG_fail_arg("glUniformMatrix2fv",4,"GLfloat const *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glUniformMatrix2fv",1,SWIGTYPE_p_int32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glUniformMatrix2fv",2,SWIGTYPE_p_int32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&argp3,SWIGTYPE_p_uint8_t,0))){
+    SWIG_fail_ptr("glUniformMatrix2fv",3,SWIGTYPE_p_uint8_t); }  arg3 = *argp3;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,4,(void**)&arg4,SWIGTYPE_p_float,0))){
+    SWIG_fail_ptr("glUniformMatrix2fv",4,SWIGTYPE_p_float); }  glUniformMatrix2fv(arg1,arg2,arg3,(float const *)arg4);
+  return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glUniformMatrix3fv(lua_State* L) { int SWIG_arg = 0; GLint arg1 ; GLsizei arg2 ; GLboolean arg3 ;
+  GLfloat *arg4 = (GLfloat *) 0 ; GLint *argp1 ; GLsizei *argp2 ; GLboolean *argp3 ;
+  SWIG_check_num_args("glUniformMatrix3fv",4,4) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glUniformMatrix3fv",1,"GLint");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glUniformMatrix3fv",2,"GLsizei");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("glUniformMatrix3fv",3,"GLboolean");
+  if(!SWIG_isptrtype(L,4)) SWIG_fail_arg("glUniformMatrix3fv",4,"GLfloat const *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glUniformMatrix3fv",1,SWIGTYPE_p_int32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glUniformMatrix3fv",2,SWIGTYPE_p_int32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&argp3,SWIGTYPE_p_uint8_t,0))){
+    SWIG_fail_ptr("glUniformMatrix3fv",3,SWIGTYPE_p_uint8_t); }  arg3 = *argp3;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,4,(void**)&arg4,SWIGTYPE_p_float,0))){
+    SWIG_fail_ptr("glUniformMatrix3fv",4,SWIGTYPE_p_float); }  glUniformMatrix3fv(arg1,arg2,arg3,(float const *)arg4);
+  return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glUniformMatrix4fv(lua_State* L) { int SWIG_arg = 0; GLint arg1 ; GLsizei arg2 ; GLboolean arg3 ;
+  GLfloat *arg4 = (GLfloat *) 0 ; GLint *argp1 ; GLsizei *argp2 ; GLboolean *argp3 ;
+  SWIG_check_num_args("glUniformMatrix4fv",4,4) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glUniformMatrix4fv",1,"GLint");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glUniformMatrix4fv",2,"GLsizei");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("glUniformMatrix4fv",3,"GLboolean");
+  if(!SWIG_isptrtype(L,4)) SWIG_fail_arg("glUniformMatrix4fv",4,"GLfloat const *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glUniformMatrix4fv",1,SWIGTYPE_p_int32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glUniformMatrix4fv",2,SWIGTYPE_p_int32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&argp3,SWIGTYPE_p_uint8_t,0))){
+    SWIG_fail_ptr("glUniformMatrix4fv",3,SWIGTYPE_p_uint8_t); }  arg3 = *argp3;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,4,(void**)&arg4,SWIGTYPE_p_float,0))){
+    SWIG_fail_ptr("glUniformMatrix4fv",4,SWIGTYPE_p_float); }  glUniformMatrix4fv(arg1,arg2,arg3,(float const *)arg4);
+  return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glUseProgram(lua_State* L) { int SWIG_arg = 0; GLuint arg1 ; GLuint *argp1 ;
+  SWIG_check_num_args("glUseProgram",1,1) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glUseProgram",1,"GLuint");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glUseProgram",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1; glUseProgram(arg1); return SWIG_arg; if(0) SWIG_fail;
+  fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glValidateProgram(lua_State* L) { int SWIG_arg = 0; GLuint arg1 ; GLuint *argp1 ;
+  SWIG_check_num_args("glValidateProgram",1,1) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glValidateProgram",1,"GLuint");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glValidateProgram",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1; glValidateProgram(arg1); return SWIG_arg;
+  if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glVertexAttrib1f(lua_State* L) { int SWIG_arg = 0; GLuint arg1 ; GLfloat arg2 ; GLuint *argp1 ;
+  SWIG_check_num_args("glVertexAttrib1f",2,2) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glVertexAttrib1f",1,"GLuint");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("glVertexAttrib1f",2,"GLfloat");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glVertexAttrib1f",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1; arg2 = (GLfloat)lua_tonumber(L, 2);
+  glVertexAttrib1f(arg1,arg2); return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glVertexAttrib1fv(lua_State* L) { int SWIG_arg = 0; GLuint arg1 ; GLfloat *arg2 = (GLfloat *) 0 ;
+  GLuint *argp1 ; SWIG_check_num_args("glVertexAttrib1fv",2,2)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glVertexAttrib1fv",1,"GLuint");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("glVertexAttrib1fv",2,"GLfloat const *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glVertexAttrib1fv",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_float,0))){
+    SWIG_fail_ptr("glVertexAttrib1fv",2,SWIGTYPE_p_float); }  glVertexAttrib1fv(arg1,(float const *)arg2); return SWIG_arg;
+  if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glVertexAttrib2f(lua_State* L) { int SWIG_arg = 0; GLuint arg1 ; GLfloat arg2 ; GLfloat arg3 ; GLuint *argp1 ;
+  SWIG_check_num_args("glVertexAttrib2f",3,3) if(!lua_isuserdata(L,1)) SWIG_fail_arg("glVertexAttrib2f",1,"GLuint");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("glVertexAttrib2f",2,"GLfloat");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("glVertexAttrib2f",3,"GLfloat");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glVertexAttrib2f",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1; arg2 = (GLfloat)lua_tonumber(L, 2);
+  arg3 = (GLfloat)lua_tonumber(L, 3); glVertexAttrib2f(arg1,arg2,arg3); return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L);
+  return SWIG_arg; }
+static int _wrap_glVertexAttrib2fv(lua_State* L) { int SWIG_arg = 0; GLuint arg1 ; GLfloat *arg2 = (GLfloat *) 0 ;
+  GLuint *argp1 ; SWIG_check_num_args("glVertexAttrib2fv",2,2)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glVertexAttrib2fv",1,"GLuint");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("glVertexAttrib2fv",2,"GLfloat const *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glVertexAttrib2fv",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_float,0))){
+    SWIG_fail_ptr("glVertexAttrib2fv",2,SWIGTYPE_p_float); }  glVertexAttrib2fv(arg1,(float const *)arg2); return SWIG_arg;
+  if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glVertexAttrib3f(lua_State* L) { int SWIG_arg = 0; GLuint arg1 ; GLfloat arg2 ; GLfloat arg3 ; GLfloat arg4 ;
+  GLuint *argp1 ; SWIG_check_num_args("glVertexAttrib3f",4,4)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glVertexAttrib3f",1,"GLuint");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("glVertexAttrib3f",2,"GLfloat");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("glVertexAttrib3f",3,"GLfloat");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("glVertexAttrib3f",4,"GLfloat");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glVertexAttrib3f",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1; arg2 = (GLfloat)lua_tonumber(L, 2);
+  arg3 = (GLfloat)lua_tonumber(L, 3); arg4 = (GLfloat)lua_tonumber(L, 4); glVertexAttrib3f(arg1,arg2,arg3,arg4);
+  return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glVertexAttrib3fv(lua_State* L) { int SWIG_arg = 0; GLuint arg1 ; GLfloat *arg2 = (GLfloat *) 0 ;
+  GLuint *argp1 ; SWIG_check_num_args("glVertexAttrib3fv",2,2)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glVertexAttrib3fv",1,"GLuint");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("glVertexAttrib3fv",2,"GLfloat const *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glVertexAttrib3fv",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_float,0))){
+    SWIG_fail_ptr("glVertexAttrib3fv",2,SWIGTYPE_p_float); }  glVertexAttrib3fv(arg1,(float const *)arg2); return SWIG_arg;
+  if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glVertexAttrib4f(lua_State* L) { int SWIG_arg = 0; GLuint arg1 ; GLfloat arg2 ; GLfloat arg3 ; GLfloat arg4 ;
+  GLfloat arg5 ; GLuint *argp1 ; SWIG_check_num_args("glVertexAttrib4f",5,5)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glVertexAttrib4f",1,"GLuint");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("glVertexAttrib4f",2,"GLfloat");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("glVertexAttrib4f",3,"GLfloat");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("glVertexAttrib4f",4,"GLfloat");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("glVertexAttrib4f",5,"GLfloat");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glVertexAttrib4f",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1; arg2 = (GLfloat)lua_tonumber(L, 2);
+  arg3 = (GLfloat)lua_tonumber(L, 3); arg4 = (GLfloat)lua_tonumber(L, 4); arg5 = (GLfloat)lua_tonumber(L, 5);
+  glVertexAttrib4f(arg1,arg2,arg3,arg4,arg5); return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glVertexAttrib4fv(lua_State* L) { int SWIG_arg = 0; GLuint arg1 ; GLfloat *arg2 = (GLfloat *) 0 ;
+  GLuint *argp1 ; SWIG_check_num_args("glVertexAttrib4fv",2,2)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glVertexAttrib4fv",1,"GLuint");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("glVertexAttrib4fv",2,"GLfloat const *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glVertexAttrib4fv",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_float,0))){
+    SWIG_fail_ptr("glVertexAttrib4fv",2,SWIGTYPE_p_float); }  glVertexAttrib4fv(arg1,(float const *)arg2); return SWIG_arg;
+  if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_glVertexAttribPointer(lua_State* L) { int SWIG_arg = 0; GLuint arg1 ; GLint arg2 ; GLenum arg3 ;
+  GLboolean arg4 ; GLsizei arg5 ; GLvoid *arg6 = (GLvoid *) 0 ; GLuint *argp1 ; GLint *argp2 ; GLenum *argp3 ;
+  GLboolean *argp4 ; GLsizei *argp5 ; SWIG_check_num_args("glVertexAttribPointer",6,6)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glVertexAttribPointer",1,"GLuint");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glVertexAttribPointer",2,"GLint");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("glVertexAttribPointer",3,"GLenum");
+  if(!lua_isuserdata(L,4)) SWIG_fail_arg("glVertexAttribPointer",4,"GLboolean");
+  if(!lua_isuserdata(L,5)) SWIG_fail_arg("glVertexAttribPointer",5,"GLsizei");
+  if(!SWIG_isptrtype(L,6)) SWIG_fail_arg("glVertexAttribPointer",6,"GLvoid const *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glVertexAttribPointer",1,SWIGTYPE_p_uint32_t); }  arg1 = *argp1;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glVertexAttribPointer",2,SWIGTYPE_p_int32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&argp3,SWIGTYPE_p_uint32_t,0))){
+    SWIG_fail_ptr("glVertexAttribPointer",3,SWIGTYPE_p_uint32_t); }  arg3 = *argp3;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,4,(void**)&argp4,SWIGTYPE_p_uint8_t,0))){
+    SWIG_fail_ptr("glVertexAttribPointer",4,SWIGTYPE_p_uint8_t); }  arg4 = *argp4;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,5,(void**)&argp5,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glVertexAttribPointer",5,SWIGTYPE_p_int32_t); }  arg5 = *argp5;
+  arg6=(GLvoid *)SWIG_MustGetPtr(L,6,0,0,6,"glVertexAttribPointer");
+  glVertexAttribPointer(arg1,arg2,arg3,arg4,arg5,(void const *)arg6); return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L);
+  return SWIG_arg; }
+static int _wrap_glViewport(lua_State* L) { int SWIG_arg = 0; GLint arg1 ; GLint arg2 ; GLsizei arg3 ; GLsizei arg4 ;
+  GLint *argp1 ; GLint *argp2 ; GLsizei *argp3 ; GLsizei *argp4 ; SWIG_check_num_args("glViewport",4,4)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("glViewport",1,"GLint");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("glViewport",2,"GLint");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("glViewport",3,"GLsizei");
+  if(!lua_isuserdata(L,4)) SWIG_fail_arg("glViewport",4,"GLsizei");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_int32_t,0))){ SWIG_fail_ptr("glViewport",1,SWIGTYPE_p_int32_t); }
+   arg1 = *argp1; if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glViewport",2,SWIGTYPE_p_int32_t); }  arg2 = *argp2;
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&argp3,SWIGTYPE_p_int32_t,0))){ SWIG_fail_ptr("glViewport",3,SWIGTYPE_p_int32_t); }
+   arg3 = *argp3; if (!SWIG_IsOK(SWIG_ConvertPtr(L,4,(void**)&argp4,SWIGTYPE_p_int32_t,0))){
+    SWIG_fail_ptr("glViewport",4,SWIGTYPE_p_int32_t); }  arg4 = *argp4; glViewport(arg1,arg2,arg3,arg4); return SWIG_arg;
+  if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
 static swig_lua_attribute swig_SwigModule_attributes[] = {
     {0,0,0}
 };
 static swig_lua_const_info swig_SwigModule_constants[]= {
+    {SWIG_LUA_CONSTTAB_INT("GL_ES_VERSION_2_0", 1)},
+    {SWIG_LUA_CONSTTAB_INT("GL_DEPTH_BUFFER_BIT", 0x00000100)},
+    {SWIG_LUA_CONSTTAB_INT("GL_STENCIL_BUFFER_BIT", 0x00000400)},
+    {SWIG_LUA_CONSTTAB_INT("GL_COLOR_BUFFER_BIT", 0x00004000)},
+    {SWIG_LUA_CONSTTAB_INT("GL_FALSE", 0)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TRUE", 1)},
+    {SWIG_LUA_CONSTTAB_INT("GL_POINTS", 0x0000)},
+    {SWIG_LUA_CONSTTAB_INT("GL_LINES", 0x0001)},
+    {SWIG_LUA_CONSTTAB_INT("GL_LINE_LOOP", 0x0002)},
+    {SWIG_LUA_CONSTTAB_INT("GL_LINE_STRIP", 0x0003)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TRIANGLES", 0x0004)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TRIANGLE_STRIP", 0x0005)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TRIANGLE_FAN", 0x0006)},
+    {SWIG_LUA_CONSTTAB_INT("GL_ZERO", 0)},
+    {SWIG_LUA_CONSTTAB_INT("GL_ONE", 1)},
+    {SWIG_LUA_CONSTTAB_INT("GL_SRC_COLOR", 0x0300)},
+    {SWIG_LUA_CONSTTAB_INT("GL_ONE_MINUS_SRC_COLOR", 0x0301)},
+    {SWIG_LUA_CONSTTAB_INT("GL_SRC_ALPHA", 0x0302)},
+    {SWIG_LUA_CONSTTAB_INT("GL_ONE_MINUS_SRC_ALPHA", 0x0303)},
+    {SWIG_LUA_CONSTTAB_INT("GL_DST_ALPHA", 0x0304)},
+    {SWIG_LUA_CONSTTAB_INT("GL_ONE_MINUS_DST_ALPHA", 0x0305)},
+    {SWIG_LUA_CONSTTAB_INT("GL_DST_COLOR", 0x0306)},
+    {SWIG_LUA_CONSTTAB_INT("GL_ONE_MINUS_DST_COLOR", 0x0307)},
+    {SWIG_LUA_CONSTTAB_INT("GL_SRC_ALPHA_SATURATE", 0x0308)},
+    {SWIG_LUA_CONSTTAB_INT("GL_FUNC_ADD", 0x8006)},
+    {SWIG_LUA_CONSTTAB_INT("GL_BLEND_EQUATION", 0x8009)},
+    {SWIG_LUA_CONSTTAB_INT("GL_BLEND_EQUATION_RGB", 0x8009)},
+    {SWIG_LUA_CONSTTAB_INT("GL_BLEND_EQUATION_ALPHA", 0x883D)},
+    {SWIG_LUA_CONSTTAB_INT("GL_FUNC_SUBTRACT", 0x800A)},
+    {SWIG_LUA_CONSTTAB_INT("GL_FUNC_REVERSE_SUBTRACT", 0x800B)},
+    {SWIG_LUA_CONSTTAB_INT("GL_BLEND_DST_RGB", 0x80C8)},
+    {SWIG_LUA_CONSTTAB_INT("GL_BLEND_SRC_RGB", 0x80C9)},
+    {SWIG_LUA_CONSTTAB_INT("GL_BLEND_DST_ALPHA", 0x80CA)},
+    {SWIG_LUA_CONSTTAB_INT("GL_BLEND_SRC_ALPHA", 0x80CB)},
+    {SWIG_LUA_CONSTTAB_INT("GL_CONSTANT_COLOR", 0x8001)},
+    {SWIG_LUA_CONSTTAB_INT("GL_ONE_MINUS_CONSTANT_COLOR", 0x8002)},
+    {SWIG_LUA_CONSTTAB_INT("GL_CONSTANT_ALPHA", 0x8003)},
+    {SWIG_LUA_CONSTTAB_INT("GL_ONE_MINUS_CONSTANT_ALPHA", 0x8004)},
+    {SWIG_LUA_CONSTTAB_INT("GL_BLEND_COLOR", 0x8005)},
+    {SWIG_LUA_CONSTTAB_INT("GL_ARRAY_BUFFER", 0x8892)},
+    {SWIG_LUA_CONSTTAB_INT("GL_ELEMENT_ARRAY_BUFFER", 0x8893)},
+    {SWIG_LUA_CONSTTAB_INT("GL_ARRAY_BUFFER_BINDING", 0x8894)},
+    {SWIG_LUA_CONSTTAB_INT("GL_ELEMENT_ARRAY_BUFFER_BINDING", 0x8895)},
+    {SWIG_LUA_CONSTTAB_INT("GL_STREAM_DRAW", 0x88E0)},
+    {SWIG_LUA_CONSTTAB_INT("GL_STATIC_DRAW", 0x88E4)},
+    {SWIG_LUA_CONSTTAB_INT("GL_DYNAMIC_DRAW", 0x88E8)},
+    {SWIG_LUA_CONSTTAB_INT("GL_BUFFER_SIZE", 0x8764)},
+    {SWIG_LUA_CONSTTAB_INT("GL_BUFFER_USAGE", 0x8765)},
+    {SWIG_LUA_CONSTTAB_INT("GL_CURRENT_VERTEX_ATTRIB", 0x8626)},
+    {SWIG_LUA_CONSTTAB_INT("GL_FRONT", 0x0404)},
+    {SWIG_LUA_CONSTTAB_INT("GL_BACK", 0x0405)},
+    {SWIG_LUA_CONSTTAB_INT("GL_FRONT_AND_BACK", 0x0408)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TEXTURE_2D", 0x0DE1)},
+    {SWIG_LUA_CONSTTAB_INT("GL_CULL_FACE", 0x0B44)},
+    {SWIG_LUA_CONSTTAB_INT("GL_BLEND", 0x0BE2)},
+    {SWIG_LUA_CONSTTAB_INT("GL_DITHER", 0x0BD0)},
+    {SWIG_LUA_CONSTTAB_INT("GL_STENCIL_TEST", 0x0B90)},
+    {SWIG_LUA_CONSTTAB_INT("GL_DEPTH_TEST", 0x0B71)},
+    {SWIG_LUA_CONSTTAB_INT("GL_SCISSOR_TEST", 0x0C11)},
+    {SWIG_LUA_CONSTTAB_INT("GL_POLYGON_OFFSET_FILL", 0x8037)},
+    {SWIG_LUA_CONSTTAB_INT("GL_SAMPLE_ALPHA_TO_COVERAGE", 0x809E)},
+    {SWIG_LUA_CONSTTAB_INT("GL_SAMPLE_COVERAGE", 0x80A0)},
+    {SWIG_LUA_CONSTTAB_INT("GL_NO_ERROR", 0)},
+    {SWIG_LUA_CONSTTAB_INT("GL_INVALID_ENUM", 0x0500)},
+    {SWIG_LUA_CONSTTAB_INT("GL_INVALID_VALUE", 0x0501)},
+    {SWIG_LUA_CONSTTAB_INT("GL_INVALID_OPERATION", 0x0502)},
+    {SWIG_LUA_CONSTTAB_INT("GL_OUT_OF_MEMORY", 0x0505)},
+    {SWIG_LUA_CONSTTAB_INT("GL_CW", 0x0900)},
+    {SWIG_LUA_CONSTTAB_INT("GL_CCW", 0x0901)},
+    {SWIG_LUA_CONSTTAB_INT("GL_LINE_WIDTH", 0x0B21)},
+    {SWIG_LUA_CONSTTAB_INT("GL_ALIASED_POINT_SIZE_RANGE", 0x846D)},
+    {SWIG_LUA_CONSTTAB_INT("GL_ALIASED_LINE_WIDTH_RANGE", 0x846E)},
+    {SWIG_LUA_CONSTTAB_INT("GL_CULL_FACE_MODE", 0x0B45)},
+    {SWIG_LUA_CONSTTAB_INT("GL_FRONT_FACE", 0x0B46)},
+    {SWIG_LUA_CONSTTAB_INT("GL_DEPTH_RANGE", 0x0B70)},
+    {SWIG_LUA_CONSTTAB_INT("GL_DEPTH_WRITEMASK", 0x0B72)},
+    {SWIG_LUA_CONSTTAB_INT("GL_DEPTH_CLEAR_VALUE", 0x0B73)},
+    {SWIG_LUA_CONSTTAB_INT("GL_DEPTH_FUNC", 0x0B74)},
+    {SWIG_LUA_CONSTTAB_INT("GL_STENCIL_CLEAR_VALUE", 0x0B91)},
+    {SWIG_LUA_CONSTTAB_INT("GL_STENCIL_FUNC", 0x0B92)},
+    {SWIG_LUA_CONSTTAB_INT("GL_STENCIL_FAIL", 0x0B94)},
+    {SWIG_LUA_CONSTTAB_INT("GL_STENCIL_PASS_DEPTH_FAIL", 0x0B95)},
+    {SWIG_LUA_CONSTTAB_INT("GL_STENCIL_PASS_DEPTH_PASS", 0x0B96)},
+    {SWIG_LUA_CONSTTAB_INT("GL_STENCIL_REF", 0x0B97)},
+    {SWIG_LUA_CONSTTAB_INT("GL_STENCIL_VALUE_MASK", 0x0B93)},
+    {SWIG_LUA_CONSTTAB_INT("GL_STENCIL_WRITEMASK", 0x0B98)},
+    {SWIG_LUA_CONSTTAB_INT("GL_STENCIL_BACK_FUNC", 0x8800)},
+    {SWIG_LUA_CONSTTAB_INT("GL_STENCIL_BACK_FAIL", 0x8801)},
+    {SWIG_LUA_CONSTTAB_INT("GL_STENCIL_BACK_PASS_DEPTH_FAIL", 0x8802)},
+    {SWIG_LUA_CONSTTAB_INT("GL_STENCIL_BACK_PASS_DEPTH_PASS", 0x8803)},
+    {SWIG_LUA_CONSTTAB_INT("GL_STENCIL_BACK_REF", 0x8CA3)},
+    {SWIG_LUA_CONSTTAB_INT("GL_STENCIL_BACK_VALUE_MASK", 0x8CA4)},
+    {SWIG_LUA_CONSTTAB_INT("GL_STENCIL_BACK_WRITEMASK", 0x8CA5)},
+    {SWIG_LUA_CONSTTAB_INT("GL_VIEWPORT", 0x0BA2)},
+    {SWIG_LUA_CONSTTAB_INT("GL_SCISSOR_BOX", 0x0C10)},
+    {SWIG_LUA_CONSTTAB_INT("GL_COLOR_CLEAR_VALUE", 0x0C22)},
+    {SWIG_LUA_CONSTTAB_INT("GL_COLOR_WRITEMASK", 0x0C23)},
+    {SWIG_LUA_CONSTTAB_INT("GL_UNPACK_ALIGNMENT", 0x0CF5)},
+    {SWIG_LUA_CONSTTAB_INT("GL_PACK_ALIGNMENT", 0x0D05)},
+    {SWIG_LUA_CONSTTAB_INT("GL_MAX_TEXTURE_SIZE", 0x0D33)},
+    {SWIG_LUA_CONSTTAB_INT("GL_MAX_VIEWPORT_DIMS", 0x0D3A)},
+    {SWIG_LUA_CONSTTAB_INT("GL_SUBPIXEL_BITS", 0x0D50)},
+    {SWIG_LUA_CONSTTAB_INT("GL_RED_BITS", 0x0D52)},
+    {SWIG_LUA_CONSTTAB_INT("GL_GREEN_BITS", 0x0D53)},
+    {SWIG_LUA_CONSTTAB_INT("GL_BLUE_BITS", 0x0D54)},
+    {SWIG_LUA_CONSTTAB_INT("GL_ALPHA_BITS", 0x0D55)},
+    {SWIG_LUA_CONSTTAB_INT("GL_DEPTH_BITS", 0x0D56)},
+    {SWIG_LUA_CONSTTAB_INT("GL_STENCIL_BITS", 0x0D57)},
+    {SWIG_LUA_CONSTTAB_INT("GL_POLYGON_OFFSET_UNITS", 0x2A00)},
+    {SWIG_LUA_CONSTTAB_INT("GL_POLYGON_OFFSET_FACTOR", 0x8038)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TEXTURE_BINDING_2D", 0x8069)},
+    {SWIG_LUA_CONSTTAB_INT("GL_SAMPLE_BUFFERS", 0x80A8)},
+    {SWIG_LUA_CONSTTAB_INT("GL_SAMPLES", 0x80A9)},
+    {SWIG_LUA_CONSTTAB_INT("GL_SAMPLE_COVERAGE_VALUE", 0x80AA)},
+    {SWIG_LUA_CONSTTAB_INT("GL_SAMPLE_COVERAGE_INVERT", 0x80AB)},
+    {SWIG_LUA_CONSTTAB_INT("GL_NUM_COMPRESSED_TEXTURE_FORMATS", 0x86A2)},
+    {SWIG_LUA_CONSTTAB_INT("GL_COMPRESSED_TEXTURE_FORMATS", 0x86A3)},
+    {SWIG_LUA_CONSTTAB_INT("GL_DONT_CARE", 0x1100)},
+    {SWIG_LUA_CONSTTAB_INT("GL_FASTEST", 0x1101)},
+    {SWIG_LUA_CONSTTAB_INT("GL_NICEST", 0x1102)},
+    {SWIG_LUA_CONSTTAB_INT("GL_GENERATE_MIPMAP_HINT", 0x8192)},
+    {SWIG_LUA_CONSTTAB_INT("GL_BYTE", 0x1400)},
+    {SWIG_LUA_CONSTTAB_INT("GL_UNSIGNED_BYTE", 0x1401)},
+    {SWIG_LUA_CONSTTAB_INT("GL_SHORT", 0x1402)},
+    {SWIG_LUA_CONSTTAB_INT("GL_UNSIGNED_SHORT", 0x1403)},
+    {SWIG_LUA_CONSTTAB_INT("GL_INT", 0x1404)},
+    {SWIG_LUA_CONSTTAB_INT("GL_UNSIGNED_INT", 0x1405)},
+    {SWIG_LUA_CONSTTAB_INT("GL_FLOAT", 0x1406)},
+    {SWIG_LUA_CONSTTAB_INT("GL_FIXED", 0x140C)},
+    {SWIG_LUA_CONSTTAB_INT("GL_DEPTH_COMPONENT", 0x1902)},
+    {SWIG_LUA_CONSTTAB_INT("GL_ALPHA", 0x1906)},
+    {SWIG_LUA_CONSTTAB_INT("GL_RGB", 0x1907)},
+    {SWIG_LUA_CONSTTAB_INT("GL_RGBA", 0x1908)},
+    {SWIG_LUA_CONSTTAB_INT("GL_LUMINANCE", 0x1909)},
+    {SWIG_LUA_CONSTTAB_INT("GL_LUMINANCE_ALPHA", 0x190A)},
+    {SWIG_LUA_CONSTTAB_INT("GL_UNSIGNED_SHORT_4_4_4_4", 0x8033)},
+    {SWIG_LUA_CONSTTAB_INT("GL_UNSIGNED_SHORT_5_5_5_1", 0x8034)},
+    {SWIG_LUA_CONSTTAB_INT("GL_UNSIGNED_SHORT_5_6_5", 0x8363)},
+    {SWIG_LUA_CONSTTAB_INT("GL_FRAGMENT_SHADER", 0x8B30)},
+    {SWIG_LUA_CONSTTAB_INT("GL_VERTEX_SHADER", 0x8B31)},
+    {SWIG_LUA_CONSTTAB_INT("GL_MAX_VERTEX_ATTRIBS", 0x8869)},
+    {SWIG_LUA_CONSTTAB_INT("GL_MAX_VERTEX_UNIFORM_VECTORS", 0x8DFB)},
+    {SWIG_LUA_CONSTTAB_INT("GL_MAX_VARYING_VECTORS", 0x8DFC)},
+    {SWIG_LUA_CONSTTAB_INT("GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS", 0x8B4D)},
+    {SWIG_LUA_CONSTTAB_INT("GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS", 0x8B4C)},
+    {SWIG_LUA_CONSTTAB_INT("GL_MAX_TEXTURE_IMAGE_UNITS", 0x8872)},
+    {SWIG_LUA_CONSTTAB_INT("GL_MAX_FRAGMENT_UNIFORM_VECTORS", 0x8DFD)},
+    {SWIG_LUA_CONSTTAB_INT("GL_SHADER_TYPE", 0x8B4F)},
+    {SWIG_LUA_CONSTTAB_INT("GL_DELETE_STATUS", 0x8B80)},
+    {SWIG_LUA_CONSTTAB_INT("GL_LINK_STATUS", 0x8B82)},
+    {SWIG_LUA_CONSTTAB_INT("GL_VALIDATE_STATUS", 0x8B83)},
+    {SWIG_LUA_CONSTTAB_INT("GL_ATTACHED_SHADERS", 0x8B85)},
+    {SWIG_LUA_CONSTTAB_INT("GL_ACTIVE_UNIFORMS", 0x8B86)},
+    {SWIG_LUA_CONSTTAB_INT("GL_ACTIVE_UNIFORM_MAX_LENGTH", 0x8B87)},
+    {SWIG_LUA_CONSTTAB_INT("GL_ACTIVE_ATTRIBUTES", 0x8B89)},
+    {SWIG_LUA_CONSTTAB_INT("GL_ACTIVE_ATTRIBUTE_MAX_LENGTH", 0x8B8A)},
+    {SWIG_LUA_CONSTTAB_INT("GL_SHADING_LANGUAGE_VERSION", 0x8B8C)},
+    {SWIG_LUA_CONSTTAB_INT("GL_CURRENT_PROGRAM", 0x8B8D)},
+    {SWIG_LUA_CONSTTAB_INT("GL_NEVER", 0x0200)},
+    {SWIG_LUA_CONSTTAB_INT("GL_LESS", 0x0201)},
+    {SWIG_LUA_CONSTTAB_INT("GL_EQUAL", 0x0202)},
+    {SWIG_LUA_CONSTTAB_INT("GL_LEQUAL", 0x0203)},
+    {SWIG_LUA_CONSTTAB_INT("GL_GREATER", 0x0204)},
+    {SWIG_LUA_CONSTTAB_INT("GL_NOTEQUAL", 0x0205)},
+    {SWIG_LUA_CONSTTAB_INT("GL_GEQUAL", 0x0206)},
+    {SWIG_LUA_CONSTTAB_INT("GL_ALWAYS", 0x0207)},
+    {SWIG_LUA_CONSTTAB_INT("GL_KEEP", 0x1E00)},
+    {SWIG_LUA_CONSTTAB_INT("GL_REPLACE", 0x1E01)},
+    {SWIG_LUA_CONSTTAB_INT("GL_INCR", 0x1E02)},
+    {SWIG_LUA_CONSTTAB_INT("GL_DECR", 0x1E03)},
+    {SWIG_LUA_CONSTTAB_INT("GL_INVERT", 0x150A)},
+    {SWIG_LUA_CONSTTAB_INT("GL_INCR_WRAP", 0x8507)},
+    {SWIG_LUA_CONSTTAB_INT("GL_DECR_WRAP", 0x8508)},
+    {SWIG_LUA_CONSTTAB_INT("GL_VENDOR", 0x1F00)},
+    {SWIG_LUA_CONSTTAB_INT("GL_RENDERER", 0x1F01)},
+    {SWIG_LUA_CONSTTAB_INT("GL_VERSION", 0x1F02)},
+    {SWIG_LUA_CONSTTAB_INT("GL_EXTENSIONS", 0x1F03)},
+    {SWIG_LUA_CONSTTAB_INT("GL_NEAREST", 0x2600)},
+    {SWIG_LUA_CONSTTAB_INT("GL_LINEAR", 0x2601)},
+    {SWIG_LUA_CONSTTAB_INT("GL_NEAREST_MIPMAP_NEAREST", 0x2700)},
+    {SWIG_LUA_CONSTTAB_INT("GL_LINEAR_MIPMAP_NEAREST", 0x2701)},
+    {SWIG_LUA_CONSTTAB_INT("GL_NEAREST_MIPMAP_LINEAR", 0x2702)},
+    {SWIG_LUA_CONSTTAB_INT("GL_LINEAR_MIPMAP_LINEAR", 0x2703)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TEXTURE_MAG_FILTER", 0x2800)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TEXTURE_MIN_FILTER", 0x2801)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TEXTURE_WRAP_S", 0x2802)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TEXTURE_WRAP_T", 0x2803)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TEXTURE", 0x1702)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TEXTURE_CUBE_MAP", 0x8513)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TEXTURE_BINDING_CUBE_MAP", 0x8514)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TEXTURE_CUBE_MAP_POSITIVE_X", 0x8515)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TEXTURE_CUBE_MAP_NEGATIVE_X", 0x8516)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TEXTURE_CUBE_MAP_POSITIVE_Y", 0x8517)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TEXTURE_CUBE_MAP_NEGATIVE_Y", 0x8518)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TEXTURE_CUBE_MAP_POSITIVE_Z", 0x8519)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TEXTURE_CUBE_MAP_NEGATIVE_Z", 0x851A)},
+    {SWIG_LUA_CONSTTAB_INT("GL_MAX_CUBE_MAP_TEXTURE_SIZE", 0x851C)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TEXTURE0", 0x84C0)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TEXTURE1", 0x84C1)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TEXTURE2", 0x84C2)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TEXTURE3", 0x84C3)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TEXTURE4", 0x84C4)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TEXTURE5", 0x84C5)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TEXTURE6", 0x84C6)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TEXTURE7", 0x84C7)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TEXTURE8", 0x84C8)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TEXTURE9", 0x84C9)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TEXTURE10", 0x84CA)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TEXTURE11", 0x84CB)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TEXTURE12", 0x84CC)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TEXTURE13", 0x84CD)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TEXTURE14", 0x84CE)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TEXTURE15", 0x84CF)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TEXTURE16", 0x84D0)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TEXTURE17", 0x84D1)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TEXTURE18", 0x84D2)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TEXTURE19", 0x84D3)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TEXTURE20", 0x84D4)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TEXTURE21", 0x84D5)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TEXTURE22", 0x84D6)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TEXTURE23", 0x84D7)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TEXTURE24", 0x84D8)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TEXTURE25", 0x84D9)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TEXTURE26", 0x84DA)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TEXTURE27", 0x84DB)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TEXTURE28", 0x84DC)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TEXTURE29", 0x84DD)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TEXTURE30", 0x84DE)},
+    {SWIG_LUA_CONSTTAB_INT("GL_TEXTURE31", 0x84DF)},
+    {SWIG_LUA_CONSTTAB_INT("GL_ACTIVE_TEXTURE", 0x84E0)},
+    {SWIG_LUA_CONSTTAB_INT("GL_REPEAT", 0x2901)},
+    {SWIG_LUA_CONSTTAB_INT("GL_CLAMP_TO_EDGE", 0x812F)},
+    {SWIG_LUA_CONSTTAB_INT("GL_MIRRORED_REPEAT", 0x8370)},
+    {SWIG_LUA_CONSTTAB_INT("GL_FLOAT_VEC2", 0x8B50)},
+    {SWIG_LUA_CONSTTAB_INT("GL_FLOAT_VEC3", 0x8B51)},
+    {SWIG_LUA_CONSTTAB_INT("GL_FLOAT_VEC4", 0x8B52)},
+    {SWIG_LUA_CONSTTAB_INT("GL_INT_VEC2", 0x8B53)},
+    {SWIG_LUA_CONSTTAB_INT("GL_INT_VEC3", 0x8B54)},
+    {SWIG_LUA_CONSTTAB_INT("GL_INT_VEC4", 0x8B55)},
+    {SWIG_LUA_CONSTTAB_INT("GL_BOOL", 0x8B56)},
+    {SWIG_LUA_CONSTTAB_INT("GL_BOOL_VEC2", 0x8B57)},
+    {SWIG_LUA_CONSTTAB_INT("GL_BOOL_VEC3", 0x8B58)},
+    {SWIG_LUA_CONSTTAB_INT("GL_BOOL_VEC4", 0x8B59)},
+    {SWIG_LUA_CONSTTAB_INT("GL_FLOAT_MAT2", 0x8B5A)},
+    {SWIG_LUA_CONSTTAB_INT("GL_FLOAT_MAT3", 0x8B5B)},
+    {SWIG_LUA_CONSTTAB_INT("GL_FLOAT_MAT4", 0x8B5C)},
+    {SWIG_LUA_CONSTTAB_INT("GL_SAMPLER_2D", 0x8B5E)},
+    {SWIG_LUA_CONSTTAB_INT("GL_SAMPLER_CUBE", 0x8B60)},
+    {SWIG_LUA_CONSTTAB_INT("GL_VERTEX_ATTRIB_ARRAY_ENABLED", 0x8622)},
+    {SWIG_LUA_CONSTTAB_INT("GL_VERTEX_ATTRIB_ARRAY_SIZE", 0x8623)},
+    {SWIG_LUA_CONSTTAB_INT("GL_VERTEX_ATTRIB_ARRAY_STRIDE", 0x8624)},
+    {SWIG_LUA_CONSTTAB_INT("GL_VERTEX_ATTRIB_ARRAY_TYPE", 0x8625)},
+    {SWIG_LUA_CONSTTAB_INT("GL_VERTEX_ATTRIB_ARRAY_NORMALIZED", 0x886A)},
+    {SWIG_LUA_CONSTTAB_INT("GL_VERTEX_ATTRIB_ARRAY_POINTER", 0x8645)},
+    {SWIG_LUA_CONSTTAB_INT("GL_VERTEX_ATTRIB_ARRAY_BUFFER_BINDING", 0x889F)},
+    {SWIG_LUA_CONSTTAB_INT("GL_IMPLEMENTATION_COLOR_READ_TYPE", 0x8B9A)},
+    {SWIG_LUA_CONSTTAB_INT("GL_IMPLEMENTATION_COLOR_READ_FORMAT", 0x8B9B)},
+    {SWIG_LUA_CONSTTAB_INT("GL_COMPILE_STATUS", 0x8B81)},
+    {SWIG_LUA_CONSTTAB_INT("GL_INFO_LOG_LENGTH", 0x8B84)},
+    {SWIG_LUA_CONSTTAB_INT("GL_SHADER_SOURCE_LENGTH", 0x8B88)},
+    {SWIG_LUA_CONSTTAB_INT("GL_SHADER_COMPILER", 0x8DFA)},
+    {SWIG_LUA_CONSTTAB_INT("GL_SHADER_BINARY_FORMATS", 0x8DF8)},
+    {SWIG_LUA_CONSTTAB_INT("GL_NUM_SHADER_BINARY_FORMATS", 0x8DF9)},
+    {SWIG_LUA_CONSTTAB_INT("GL_LOW_FLOAT", 0x8DF0)},
+    {SWIG_LUA_CONSTTAB_INT("GL_MEDIUM_FLOAT", 0x8DF1)},
+    {SWIG_LUA_CONSTTAB_INT("GL_HIGH_FLOAT", 0x8DF2)},
+    {SWIG_LUA_CONSTTAB_INT("GL_LOW_INT", 0x8DF3)},
+    {SWIG_LUA_CONSTTAB_INT("GL_MEDIUM_INT", 0x8DF4)},
+    {SWIG_LUA_CONSTTAB_INT("GL_HIGH_INT", 0x8DF5)},
+    {SWIG_LUA_CONSTTAB_INT("GL_FRAMEBUFFER", 0x8D40)},
+    {SWIG_LUA_CONSTTAB_INT("GL_RENDERBUFFER", 0x8D41)},
+    {SWIG_LUA_CONSTTAB_INT("GL_RGBA4", 0x8056)},
+    {SWIG_LUA_CONSTTAB_INT("GL_RGB5_A1", 0x8057)},
+    {SWIG_LUA_CONSTTAB_INT("GL_RGB565", 0x8D62)},
+    {SWIG_LUA_CONSTTAB_INT("GL_DEPTH_COMPONENT16", 0x81A5)},
+    {SWIG_LUA_CONSTTAB_INT("GL_STENCIL_INDEX8", 0x8D48)},
+    {SWIG_LUA_CONSTTAB_INT("GL_RENDERBUFFER_WIDTH", 0x8D42)},
+    {SWIG_LUA_CONSTTAB_INT("GL_RENDERBUFFER_HEIGHT", 0x8D43)},
+    {SWIG_LUA_CONSTTAB_INT("GL_RENDERBUFFER_INTERNAL_FORMAT", 0x8D44)},
+    {SWIG_LUA_CONSTTAB_INT("GL_RENDERBUFFER_RED_SIZE", 0x8D50)},
+    {SWIG_LUA_CONSTTAB_INT("GL_RENDERBUFFER_GREEN_SIZE", 0x8D51)},
+    {SWIG_LUA_CONSTTAB_INT("GL_RENDERBUFFER_BLUE_SIZE", 0x8D52)},
+    {SWIG_LUA_CONSTTAB_INT("GL_RENDERBUFFER_ALPHA_SIZE", 0x8D53)},
+    {SWIG_LUA_CONSTTAB_INT("GL_RENDERBUFFER_DEPTH_SIZE", 0x8D54)},
+    {SWIG_LUA_CONSTTAB_INT("GL_RENDERBUFFER_STENCIL_SIZE", 0x8D55)},
+    {SWIG_LUA_CONSTTAB_INT("GL_FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE", 0x8CD0)},
+    {SWIG_LUA_CONSTTAB_INT("GL_FRAMEBUFFER_ATTACHMENT_OBJECT_NAME", 0x8CD1)},
+    {SWIG_LUA_CONSTTAB_INT("GL_FRAMEBUFFER_ATTACHMENT_TEXTURE_LEVEL", 0x8CD2)},
+    {SWIG_LUA_CONSTTAB_INT("GL_FRAMEBUFFER_ATTACHMENT_TEXTURE_CUBE_MAP_FACE", 0x8CD3)},
+    {SWIG_LUA_CONSTTAB_INT("GL_COLOR_ATTACHMENT0", 0x8CE0)},
+    {SWIG_LUA_CONSTTAB_INT("GL_DEPTH_ATTACHMENT", 0x8D00)},
+    {SWIG_LUA_CONSTTAB_INT("GL_STENCIL_ATTACHMENT", 0x8D20)},
+    {SWIG_LUA_CONSTTAB_INT("GL_NONE", 0)},
+    {SWIG_LUA_CONSTTAB_INT("GL_FRAMEBUFFER_COMPLETE", 0x8CD5)},
+    {SWIG_LUA_CONSTTAB_INT("GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT", 0x8CD6)},
+    {SWIG_LUA_CONSTTAB_INT("GL_FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT", 0x8CD7)},
+    {SWIG_LUA_CONSTTAB_INT("GL_FRAMEBUFFER_INCOMPLETE_DIMENSIONS", 0x8CD9)},
+    {SWIG_LUA_CONSTTAB_INT("GL_FRAMEBUFFER_UNSUPPORTED", 0x8CDD)},
+    {SWIG_LUA_CONSTTAB_INT("GL_FRAMEBUFFER_BINDING", 0x8CA6)},
+    {SWIG_LUA_CONSTTAB_INT("GL_RENDERBUFFER_BINDING", 0x8CA7)},
+    {SWIG_LUA_CONSTTAB_INT("GL_MAX_RENDERBUFFER_SIZE", 0x84E8)},
+    {SWIG_LUA_CONSTTAB_INT("GL_INVALID_FRAMEBUFFER_OPERATION", 0x0506)},
     {0,0,0,0,0,0}
 };
 static swig_lua_method swig_SwigModule_methods[]= {
     { "newfv4", _wrap_newfv4},
     { "delfv", _wrap_delfv},
+    { "glActiveTexture", _wrap_glActiveTexture},
+    { "glAttachShader", _wrap_glAttachShader},
+    { "glBindAttribLocation", _wrap_glBindAttribLocation},
+    { "glBindBuffer", _wrap_glBindBuffer},
+    { "glBindFramebuffer", _wrap_glBindFramebuffer},
+    { "glBindRenderbuffer", _wrap_glBindRenderbuffer},
+    { "glBindTexture", _wrap_glBindTexture},
+    { "glBlendColor", _wrap_glBlendColor},
+    { "glBlendEquation", _wrap_glBlendEquation},
+    { "glBlendEquationSeparate", _wrap_glBlendEquationSeparate},
+    { "glBlendFunc", _wrap_glBlendFunc},
+    { "glBlendFuncSeparate", _wrap_glBlendFuncSeparate},
+    { "glBufferData", _wrap_glBufferData},
+    { "glBufferSubData", _wrap_glBufferSubData},
+    { "glCheckFramebufferStatus", _wrap_glCheckFramebufferStatus},
+    { "glClear", _wrap_glClear},
+    { "glClearColor", _wrap_glClearColor},
+    { "glClearDepthf", _wrap_glClearDepthf},
+    { "glClearStencil", _wrap_glClearStencil},
+    { "glColorMask", _wrap_glColorMask},
+    { "glCompileShader", _wrap_glCompileShader},
+    { "glCompressedTexImage2D", _wrap_glCompressedTexImage2D},
+    { "glCompressedTexSubImage2D", _wrap_glCompressedTexSubImage2D},
+    { "glCopyTexImage2D", _wrap_glCopyTexImage2D},
+    { "glCopyTexSubImage2D", _wrap_glCopyTexSubImage2D},
+    { "glCreateProgram", _wrap_glCreateProgram},
+    { "glCreateShader", _wrap_glCreateShader},
+    { "glCullFace", _wrap_glCullFace},
+    { "glDeleteBuffers", _wrap_glDeleteBuffers},
+    { "glDeleteFramebuffers", _wrap_glDeleteFramebuffers},
+    { "glDeleteProgram", _wrap_glDeleteProgram},
+    { "glDeleteRenderbuffers", _wrap_glDeleteRenderbuffers},
+    { "glDeleteShader", _wrap_glDeleteShader},
+    { "glDeleteTextures", _wrap_glDeleteTextures},
+    { "glDepthFunc", _wrap_glDepthFunc},
+    { "glDepthMask", _wrap_glDepthMask},
+    { "glDepthRangef", _wrap_glDepthRangef},
+    { "glDetachShader", _wrap_glDetachShader},
+    { "glDisable", _wrap_glDisable},
+    { "glDisableVertexAttribArray", _wrap_glDisableVertexAttribArray},
+    { "glDrawArrays", _wrap_glDrawArrays},
+    { "glDrawElements", _wrap_glDrawElements},
+    { "glEnable", _wrap_glEnable},
+    { "glEnableVertexAttribArray", _wrap_glEnableVertexAttribArray},
+    { "glFinish", _wrap_glFinish},
+    { "glFlush", _wrap_glFlush},
+    { "glFramebufferRenderbuffer", _wrap_glFramebufferRenderbuffer},
+    { "glFramebufferTexture2D", _wrap_glFramebufferTexture2D},
+    { "glFrontFace", _wrap_glFrontFace},
+    { "glGenBuffers", _wrap_glGenBuffers},
+    { "glGenerateMipmap", _wrap_glGenerateMipmap},
+    { "glGenFramebuffers", _wrap_glGenFramebuffers},
+    { "glGenRenderbuffers", _wrap_glGenRenderbuffers},
+    { "glGenTextures", _wrap_glGenTextures},
+    { "glGetActiveAttrib", _wrap_glGetActiveAttrib},
+    { "glGetActiveUniform", _wrap_glGetActiveUniform},
+    { "glGetAttachedShaders", _wrap_glGetAttachedShaders},
+    { "glGetAttribLocation", _wrap_glGetAttribLocation},
+    { "glGetBooleanv", _wrap_glGetBooleanv},
+    { "glGetBufferParameteriv", _wrap_glGetBufferParameteriv},
+    { "glGetError", _wrap_glGetError},
+    { "glGetFloatv", _wrap_glGetFloatv},
+    { "glGetFramebufferAttachmentParameteriv", _wrap_glGetFramebufferAttachmentParameteriv},
+    { "glGetIntegerv", _wrap_glGetIntegerv},
+    { "glGetProgramiv", _wrap_glGetProgramiv},
+    { "glGetProgramInfoLog", _wrap_glGetProgramInfoLog},
+    { "glGetRenderbufferParameteriv", _wrap_glGetRenderbufferParameteriv},
+    { "glGetShaderiv", _wrap_glGetShaderiv},
+    { "glGetShaderInfoLog", _wrap_glGetShaderInfoLog},
+    { "glGetShaderPrecisionFormat", _wrap_glGetShaderPrecisionFormat},
+    { "glGetShaderSource", _wrap_glGetShaderSource},
+    { "glGetString", _wrap_glGetString},
+    { "glGetTexParameterfv", _wrap_glGetTexParameterfv},
+    { "glGetTexParameteriv", _wrap_glGetTexParameteriv},
+    { "glGetUniformfv", _wrap_glGetUniformfv},
+    { "glGetUniformiv", _wrap_glGetUniformiv},
+    { "glGetUniformLocation", _wrap_glGetUniformLocation},
+    { "glGetVertexAttribfv", _wrap_glGetVertexAttribfv},
+    { "glGetVertexAttribiv", _wrap_glGetVertexAttribiv},
+    { "glGetVertexAttribPointerv", _wrap_glGetVertexAttribPointerv},
+    { "glHint", _wrap_glHint},
+    { "glIsBuffer", _wrap_glIsBuffer},
+    { "glIsEnabled", _wrap_glIsEnabled},
+    { "glIsFramebuffer", _wrap_glIsFramebuffer},
+    { "glIsProgram", _wrap_glIsProgram},
+    { "glIsRenderbuffer", _wrap_glIsRenderbuffer},
+    { "glIsShader", _wrap_glIsShader},
+    { "glIsTexture", _wrap_glIsTexture},
+    { "glLineWidth", _wrap_glLineWidth},
+    { "glLinkProgram", _wrap_glLinkProgram},
+    { "glPixelStorei", _wrap_glPixelStorei},
+    { "glPolygonOffset", _wrap_glPolygonOffset},
+    { "glReadPixels", _wrap_glReadPixels},
+    { "glReleaseShaderCompiler", _wrap_glReleaseShaderCompiler},
+    { "glRenderbufferStorage", _wrap_glRenderbufferStorage},
+    { "glSampleCoverage", _wrap_glSampleCoverage},
+    { "glScissor", _wrap_glScissor},
+    { "glShaderBinary", _wrap_glShaderBinary},
+    { "glShaderSource", _wrap_glShaderSource},
+    { "glStencilFunc", _wrap_glStencilFunc},
+    { "glStencilFuncSeparate", _wrap_glStencilFuncSeparate},
+    { "glStencilMask", _wrap_glStencilMask},
+    { "glStencilMaskSeparate", _wrap_glStencilMaskSeparate},
+    { "glStencilOp", _wrap_glStencilOp},
+    { "glStencilOpSeparate", _wrap_glStencilOpSeparate},
+    { "glTexImage2D", _wrap_glTexImage2D},
+    { "glTexParameterf", _wrap_glTexParameterf},
+    { "glTexParameterfv", _wrap_glTexParameterfv},
+    { "glTexParameteri", _wrap_glTexParameteri},
+    { "glTexParameteriv", _wrap_glTexParameteriv},
+    { "glTexSubImage2D", _wrap_glTexSubImage2D},
+    { "glUniform1f", _wrap_glUniform1f},
+    { "glUniform1fv", _wrap_glUniform1fv},
+    { "glUniform1i", _wrap_glUniform1i},
+    { "glUniform1iv", _wrap_glUniform1iv},
+    { "glUniform2f", _wrap_glUniform2f},
+    { "glUniform2fv", _wrap_glUniform2fv},
+    { "glUniform2i", _wrap_glUniform2i},
+    { "glUniform2iv", _wrap_glUniform2iv},
+    { "glUniform3f", _wrap_glUniform3f},
+    { "glUniform3fv", _wrap_glUniform3fv},
+    { "glUniform3i", _wrap_glUniform3i},
+    { "glUniform3iv", _wrap_glUniform3iv},
+    { "glUniform4f", _wrap_glUniform4f},
+    { "glUniform4fv", _wrap_glUniform4fv},
+    { "glUniform4i", _wrap_glUniform4i},
+    { "glUniform4iv", _wrap_glUniform4iv},
+    { "glUniformMatrix2fv", _wrap_glUniformMatrix2fv},
+    { "glUniformMatrix3fv", _wrap_glUniformMatrix3fv},
+    { "glUniformMatrix4fv", _wrap_glUniformMatrix4fv},
+    { "glUseProgram", _wrap_glUseProgram},
+    { "glValidateProgram", _wrap_glValidateProgram},
+    { "glVertexAttrib1f", _wrap_glVertexAttrib1f},
+    { "glVertexAttrib1fv", _wrap_glVertexAttrib1fv},
+    { "glVertexAttrib2f", _wrap_glVertexAttrib2f},
+    { "glVertexAttrib2fv", _wrap_glVertexAttrib2fv},
+    { "glVertexAttrib3f", _wrap_glVertexAttrib3f},
+    { "glVertexAttrib3fv", _wrap_glVertexAttrib3fv},
+    { "glVertexAttrib4f", _wrap_glVertexAttrib4f},
+    { "glVertexAttrib4fv", _wrap_glVertexAttrib4fv},
+    { "glVertexAttribPointer", _wrap_glVertexAttribPointer},
+    { "glViewport", _wrap_glViewport},
     {0,0}
 };
 static swig_lua_class* swig_SwigModule_classes[]= {
@@ -3097,7 +5035,7 @@ static swig_lua_namespace* swig_SwigModule_namespaces[] = {
 };
 
 static swig_lua_namespace swig_SwigModule = {
-    "gles2",
+    "gl",
     swig_SwigModule_methods,
     swig_SwigModule_attributes,
     swig_SwigModule_constants,
@@ -3112,65 +5050,69 @@ static swig_lua_namespace swig_SwigModule = {
 
 static swig_type_info _swigt__p_char = {"_p_char", "char *|GLchar *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_float = {"_p_float", "GLclampf *|float *|GLfloat *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_int = {"_p_int", "GLsizei *|int *|GLint *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_int32_t = {"_p_int32_t", "int32_t *|GLclampx *|GLfixed *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_int16_t = {"_p_int16_t", "GLshort *|int16_t *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_int32_t = {"_p_int32_t", "GLsizei *|int32_t *|GLclampx *|GLfixed *|GLint *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_int64_t = {"_p_int64_t", "int64_t *|GLint64 *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_long = {"_p_long", "GLsizeiptr *|GLintptr *|long *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_short = {"_p_short", "short *|GLshort *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_signed_char = {"_p_signed_char", "signed char *|GLbyte *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_int8_t = {"_p_int8_t", "GLbyte *|int8_t *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_intptr_t = {"_p_intptr_t", "intptr_t *|GLsizeiptr *|GLintptr *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_p_char = {"_p_p_char", "char **|GLchar **", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_p_void = {"_p_p_void", "void **|GLvoid **", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__string = {"_p_std__string", "std::string *", 0, 0, (void*)&_wrap_class_string, 0};
+static swig_type_info _swigt__p_uint16_t = {"_p_uint16_t", "GLushort *|GLhalf *|uint16_t *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_uint32_t = {"_p_uint32_t", "uint32_t *|GLuint *|GLenum *|GLbitfield *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_uint64_t = {"_p_uint64_t", "uint64_t *|GLuint64 *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_unsigned_char = {"_p_unsigned_char", "unsigned char *|GLubyte *|GLboolean *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_unsigned_int = {"_p_unsigned_int", "unsigned int *|GLuint *|GLenum *|GLbitfield *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_unsigned_short = {"_p_unsigned_short", "unsigned short *|GLushort *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_uint8_t = {"_p_uint8_t", "GLubyte *|GLboolean *|uint8_t *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_void = {"_p_void", "void *|GLvoid *", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
   &_swigt__p_char,
   &_swigt__p_float,
-  &_swigt__p_int,
+  &_swigt__p_int16_t,
   &_swigt__p_int32_t,
   &_swigt__p_int64_t,
-  &_swigt__p_long,
-  &_swigt__p_short,
-  &_swigt__p_signed_char,
+  &_swigt__p_int8_t,
+  &_swigt__p_intptr_t,
+  &_swigt__p_p_char,
+  &_swigt__p_p_void,
   &_swigt__p_std__string,
+  &_swigt__p_uint16_t,
+  &_swigt__p_uint32_t,
   &_swigt__p_uint64_t,
-  &_swigt__p_unsigned_char,
-  &_swigt__p_unsigned_int,
-  &_swigt__p_unsigned_short,
+  &_swigt__p_uint8_t,
   &_swigt__p_void,
 };
 
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_float[] = {  {&_swigt__p_float, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_int[] = {  {&_swigt__p_int, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_int16_t[] = {  {&_swigt__p_int16_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_int32_t[] = {  {&_swigt__p_int32_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_int64_t[] = {  {&_swigt__p_int64_t, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_long[] = {  {&_swigt__p_long, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_short[] = {  {&_swigt__p_short, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_signed_char[] = {  {&_swigt__p_signed_char, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_int8_t[] = {  {&_swigt__p_int8_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_intptr_t[] = {  {&_swigt__p_intptr_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_p_char[] = {  {&_swigt__p_p_char, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_p_void[] = {  {&_swigt__p_p_void, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__string[] = {  {&_swigt__p_std__string, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_uint16_t[] = {  {&_swigt__p_uint16_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_uint32_t[] = {  {&_swigt__p_uint32_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_uint64_t[] = {  {&_swigt__p_uint64_t, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_unsigned_char[] = {  {&_swigt__p_unsigned_char, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_unsigned_int[] = {  {&_swigt__p_unsigned_int, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_unsigned_short[] = {  {&_swigt__p_unsigned_short, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_uint8_t[] = {  {&_swigt__p_uint8_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_void[] = {  {&_swigt__p_void, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_char,
   _swigc__p_float,
-  _swigc__p_int,
+  _swigc__p_int16_t,
   _swigc__p_int32_t,
   _swigc__p_int64_t,
-  _swigc__p_long,
-  _swigc__p_short,
-  _swigc__p_signed_char,
+  _swigc__p_int8_t,
+  _swigc__p_intptr_t,
+  _swigc__p_p_char,
+  _swigc__p_p_void,
   _swigc__p_std__string,
+  _swigc__p_uint16_t,
+  _swigc__p_uint32_t,
   _swigc__p_uint64_t,
-  _swigc__p_unsigned_char,
-  _swigc__p_unsigned_int,
-  _swigc__p_unsigned_short,
+  _swigc__p_uint8_t,
   _swigc__p_void,
 };
 

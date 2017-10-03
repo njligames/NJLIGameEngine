@@ -5,11 +5,14 @@
 //MARK: Tested Ignore, successfully
 %include "_IgnoreNJLI.i"
 %include "_IgnorePlatform.i"
+#ifdef USE_BULLET_LIBRARY
 %import "/Users/jamesfolk/Documents/NJLI/External/thirdparty/swig.in/lua/bullet3/_IgnoreBullet.i"
+#endif
 %import "/Users/jamesfolk/Documents/NJLI/External/thirdparty/swig.in/lua/OPENGL/_Ignore.i"
 
-//MARK: Tested ModuleBullet, succesfully
+#ifdef USE_BULLET_LIBRARY
 %include "_Module_Bullet.i"
+#endif
 %import "/Users/jamesfolk/Documents/NJLI/External/thirdparty/swig.in/lua/OPENGL/_LuaEntry.i"
 
 %include "AbstractActionable.i"
@@ -62,7 +65,7 @@
     print "hello world from NJLIGameEngine."
     end
 
-    --greet()
+    greet()
 %}
 
 %insert("runtime")
