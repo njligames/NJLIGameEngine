@@ -2,10 +2,6 @@
 
 PWD=`pwd`
 
-MY_NJLI_INTERFACE_DIRECTORY=${PWD}/src/swig.in/lua
-
-MY_NJLI_SOURCE_DIRECTORY=${PWD}/src/njli
-MY_NJLI_BULLET_SOURCE_DIRECTORY=${PWD}/src/bullet
 MY_BULLET_SOURCE_DIRECTORY=${PWD}/../External/thirdparty/BUILD/include/bullet3
 MY_DEBUG_DRAW_DIRECTORY=${PWD}/../External/thirdparty/BUILD/include/debug-draw
 
@@ -41,12 +37,14 @@ if [[ ${MY_DEFINES} == *"USE_BULLET_LIBRARY"* ]]; then
     -o ${PWD}/src/njli/generated/swig/lua/lbullet.cpp \
     ${PWD}/../External/thirdparty/swig.in/lua/bullet3/_LuaEntry.i
 
-  /usr/local/bin/swig -fcompact -fvirtual -v -w201 -w312 -c++ -embind -includeall -ignoremissing -features directors,autodoc=1 -DBT_INFINITY \
-    -DSWIG_TYPE_TABLE=myprojectname \
-    -I${PWD}/../External/thirdparty/BUILD/include/bullet3 \
-    -I${PWD}/src/bullet \
-    -o ${PWD}/src/njli/generated/swig/embind/embind_bullet.cpp \
-    ${PWD}/../External/thirdparty/swig.in/lua/bullet3/_LuaEntry.i
+  if [[ ${MY_DEFINES} == *"WRAP_EMBIND"* ]]; then
+    /usr/local/bin/swig -fcompact -fvirtual -v -w201 -w312 -c++ -embind -includeall -ignoremissing -features directors,autodoc=1 -DBT_INFINITY \
+      -DSWIG_TYPE_TABLE=myprojectname \
+      -I${PWD}/../External/thirdparty/BUILD/include/bullet3 \
+      -I${PWD}/src/bullet \
+      -o ${PWD}/src/njli/generated/swig/embind/embind_bullet.cpp \
+      ${PWD}/../External/thirdparty/swig.in/embind/bullet3/_LuaEntry.i
+  fi
 
   export SWIG_THIRDPARTY_INCLUDES=" \
     ${SWIG_THIRDPARTY_INCLUDES} \
@@ -64,7 +62,7 @@ if [[ ${MY_DEFINES} == *"USE_BULLET_LIBRARY"* ]]; then
     -I${MY_BULLET_SOURCE_DIRECTORY}/BulletDynamics/Vehicle \
     -I${MY_BULLET_SOURCE_DIRECTORY}/BulletSoftBody \
     -I${MY_BULLET_SOURCE_DIRECTORY}/LinearMath \
-    -I${MY_NJLI_BULLET_SOURCE_DIRECTORY} \
+    -I${PWD}/src/bullet \
     "
 else
   echo "Bullet isn't being wrapped"
@@ -80,12 +78,14 @@ mkdir -p ${PWD}/src/njli/generated/swig/lua/opengl_es_2/
   -o ${PWD}/src/njli/generated/swig/lua/opengl_es_2/lgl_es_2.cpp \
   ${PWD}/../External/thirdparty/swig.in/lua/opengl_es_2/_LuaEntry.i
 
-mkdir -p ${PWD}/src/njli/generated/swig/embind/opengl_es_2/
-/usr/local/bin/swig -fcompact -fvirtual -v -w201 -w312 -c++ -embind -includeall -ignoremissing -features directors,autodoc=1 \
-  -DSWIG_TYPE_TABLE=myprojectname \
-  -DGL_GLEXT_PROTOTYPES=1 \
-  -o ${PWD}/src/njli/generated/swig/embind/opengl_es_2/embind_gl_es_2.cpp \
-  ${PWD}/../External/thirdparty/swig.in/lua/opengl_es_2/_LuaEntry.i
+if [[ ${MY_DEFINES} == *"WRAP_EMBIND"* ]]; then
+  mkdir -p ${PWD}/src/njli/generated/swig/embind/opengl_es_2/
+  /usr/local/bin/swig -fcompact -fvirtual -v -w201 -w312 -c++ -embind -includeall -ignoremissing -features directors,autodoc=1 \
+    -DSWIG_TYPE_TABLE=myprojectname \
+    -DGL_GLEXT_PROTOTYPES=1 \
+    -o ${PWD}/src/njli/generated/swig/embind/opengl_es_2/embind_gl_es_2.cpp \
+    ${PWD}/../External/thirdparty/swig.in/embind/opengl_es_2/_LuaEntry.i
+fi
 
 ###########################################################################################
 
@@ -96,11 +96,13 @@ mkdir -p ${PWD}/src/njli/generated/swig/lua/opengl_2/
   -o ${PWD}/src/njli/generated/swig/lua/opengl_2/lgl_2.cpp \
   ${PWD}/../External/thirdparty/swig.in/lua/opengl_2/_LuaEntry.i
 
-mkdir -p ${PWD}/src/njli/generated/swig/embind/opengl_2/
-/usr/local/bin/swig -fcompact -fvirtual -v -w201 -w312 -c++ -embind -includeall -ignoremissing -features directors,autodoc=1 \
-  -DSWIG_TYPE_TABLE=myprojectname \
-  -o ${PWD}/src/njli/generated/swig/embind/opengl_2/embind_gl_2.cpp \
-  ${PWD}/../External/thirdparty/swig.in/lua/opengl_2/_LuaEntry.i
+if [[ ${MY_DEFINES} == *"WRAP_EMBIND"* ]]; then
+  mkdir -p ${PWD}/src/njli/generated/swig/embind/opengl_2/
+  /usr/local/bin/swig -fcompact -fvirtual -v -w201 -w312 -c++ -embind -includeall -ignoremissing -features directors,autodoc=1 \
+    -DSWIG_TYPE_TABLE=myprojectname \
+    -o ${PWD}/src/njli/generated/swig/embind/opengl_2/embind_gl_2.cpp \
+    ${PWD}/../External/thirdparty/swig.in/embind/opengl_2/_LuaEntry.i
+fi
 
 ###########################################################################################
 
@@ -110,113 +112,117 @@ mkdir -p ${PWD}/src/njli/generated/swig/embind/opengl_2/
   -DSWIG_TYPE_TABLE=myprojectname \
   ${SWIG_THIRDPARTY_INCLUDES} \
   \
-  -I${MY_NJLI_SOURCE_DIRECTORY} \
-  -I${MY_NJLI_SOURCE_DIRECTORY}/builders \
-  -I${MY_NJLI_SOURCE_DIRECTORY}/builders/graphics \
-  -I${MY_NJLI_SOURCE_DIRECTORY}/builders/physics \
-  -I${MY_NJLI_SOURCE_DIRECTORY}/builders/physics/body \
-  -I${MY_NJLI_SOURCE_DIRECTORY}/builders/physics/constraint \
-  -I${MY_NJLI_SOURCE_DIRECTORY}/builders/physics/shape \
-  -I${MY_NJLI_SOURCE_DIRECTORY}/builders/platform \
-  -I${MY_NJLI_SOURCE_DIRECTORY}/builders/sound \
-  -I${MY_NJLI_SOURCE_DIRECTORY}/builders/steering \
-  -I${MY_NJLI_SOURCE_DIRECTORY}/builders/steering/behavior \
-  -I${MY_NJLI_SOURCE_DIRECTORY}/generated \
-  -I${MY_NJLI_SOURCE_DIRECTORY}/graphics \
-  -I${MY_NJLI_SOURCE_DIRECTORY}/physics \
-  -I${MY_NJLI_SOURCE_DIRECTORY}/physics/body \
-  -I${MY_NJLI_SOURCE_DIRECTORY}/physics/constraint \
-  -I${MY_NJLI_SOURCE_DIRECTORY}/physics/shape \
-  -I${MY_NJLI_SOURCE_DIRECTORY}/platform \
-  -I${MY_NJLI_SOURCE_DIRECTORY}/sound \
-  -I${MY_NJLI_SOURCE_DIRECTORY}/sound/fmod \
-  -I${MY_NJLI_SOURCE_DIRECTORY}/sound/openal \
-  -I${MY_NJLI_SOURCE_DIRECTORY}/steering \
-  -I${MY_NJLI_SOURCE_DIRECTORY}/steering/behavior \
+  -I${PWD}/src/njli \
+  -I${PWD}/src/njli/builders \
+  -I${PWD}/src/njli/builders/graphics \
+  -I${PWD}/src/njli/builders/physics \
+  -I${PWD}/src/njli/builders/physics/body \
+  -I${PWD}/src/njli/builders/physics/constraint \
+  -I${PWD}/src/njli/builders/physics/shape \
+  -I${PWD}/src/njli/builders/platform \
+  -I${PWD}/src/njli/builders/sound \
+  -I${PWD}/src/njli/builders/steering \
+  -I${PWD}/src/njli/builders/steering/behavior \
+  -I${PWD}/src/njli/generated \
+  -I${PWD}/src/njli/graphics \
+  -I${PWD}/src/njli/physics \
+  -I${PWD}/src/njli/physics/body \
+  -I${PWD}/src/njli/physics/constraint \
+  -I${PWD}/src/njli/physics/shape \
+  -I${PWD}/src/njli/platform \
+  -I${PWD}/src/njli/sound \
+  -I${PWD}/src/njli/sound/fmod \
+  -I${PWD}/src/njli/sound/openal \
+  -I${PWD}/src/njli/steering \
+  -I${PWD}/src/njli/steering/behavior \
   \
-  -I${MY_NJLI_INTERFACE_DIRECTORY} \
-  -I${MY_NJLI_INTERFACE_DIRECTORY}/njli \
-  -I${MY_NJLI_INTERFACE_DIRECTORY}/njli/builders \
-  -I${MY_NJLI_INTERFACE_DIRECTORY}/njli/builders/graphics \
-  -I${MY_NJLI_INTERFACE_DIRECTORY}/njli/builders/physics \
-  -I${MY_NJLI_INTERFACE_DIRECTORY}/njli/builders/physics/body \
-  -I${MY_NJLI_INTERFACE_DIRECTORY}/njli/builders/physics/constraint \
-  -I${MY_NJLI_INTERFACE_DIRECTORY}/njli/builders/physics/shape \
-  -I${MY_NJLI_INTERFACE_DIRECTORY}/njli/builders/platform \
-  -I${MY_NJLI_INTERFACE_DIRECTORY}/njli/builders/sound \
-  -I${MY_NJLI_INTERFACE_DIRECTORY}/njli/builders/steering \
-  -I${MY_NJLI_INTERFACE_DIRECTORY}/njli/builders/steering/behavior \
-  -I${MY_NJLI_INTERFACE_DIRECTORY}/njli/graphics \
-  -I${MY_NJLI_INTERFACE_DIRECTORY}/njli/physics \
-  -I${MY_NJLI_INTERFACE_DIRECTORY}/njli/physics/body \
-  -I${MY_NJLI_INTERFACE_DIRECTORY}/njli/physics/constraint \
-  -I${MY_NJLI_INTERFACE_DIRECTORY}/njli/physics/shape \
-  -I${MY_NJLI_INTERFACE_DIRECTORY}/njli/platform \
-  -I${MY_NJLI_INTERFACE_DIRECTORY}/njli/sound \
-  -I${MY_NJLI_INTERFACE_DIRECTORY}/njli/steering \
-  -I${MY_NJLI_INTERFACE_DIRECTORY}/njli/steering/behavior \
+  -I${PWD}/src/swig.in/lua \
+  -I${PWD}/src/swig.in/lua/njli \
+  -I${PWD}/src/swig.in/lua/njli/builders \
+  -I${PWD}/src/swig.in/lua/njli/builders/graphics \
+  -I${PWD}/src/swig.in/lua/njli/builders/physics \
+  -I${PWD}/src/swig.in/lua/njli/builders/physics/body \
+  -I${PWD}/src/swig.in/lua/njli/builders/physics/constraint \
+  -I${PWD}/src/swig.in/lua/njli/builders/physics/shape \
+  -I${PWD}/src/swig.in/lua/njli/builders/platform \
+  -I${PWD}/src/swig.in/lua/njli/builders/sound \
+  -I${PWD}/src/swig.in/lua/njli/builders/steering \
+  -I${PWD}/src/swig.in/lua/njli/builders/steering/behavior \
+  -I${PWD}/src/swig.in/lua/njli/graphics \
+  -I${PWD}/src/swig.in/lua/njli/physics \
+  -I${PWD}/src/swig.in/lua/njli/physics/body \
+  -I${PWD}/src/swig.in/lua/njli/physics/constraint \
+  -I${PWD}/src/swig.in/lua/njli/physics/shape \
+  -I${PWD}/src/swig.in/lua/njli/platform \
+  -I${PWD}/src/swig.in/lua/njli/sound \
+  -I${PWD}/src/swig.in/lua/njli/steering \
+  -I${PWD}/src/swig.in/lua/njli/steering/behavior \
   \
   -I${MY_DEBUG_DRAW_DIRECTORY} \
   \
   -xmlout ${MY_XML_OUTPUT_DIRECTORY}/lnjli.xml \
-  -o ${MY_NJLI_SOURCE_DIRECTORY}/generated/swig/lua/lnjli.cpp \
-  ${MY_NJLI_INTERFACE_DIRECTORY}/njli/_LuaEntry.i
+  -o ${PWD}/src/njli/generated/swig/lua/lnjli.cpp \
+  ${PWD}/src/swig.in/lua/njli/_LuaEntry.i
 
-/usr/local/bin/swig ${MY_DEFINES} -fcompact -fvirtual -v -w201 -w312 -c++ -embind -includeall -ignoremissing -features directors,autodoc=1 \
-  -DOPENGL=\"${MY_OPENGL}\" \
-  -DSWIG_TYPE_TABLE=myprojectname \
-  ${SWIG_THIRDPARTY_INCLUDES} \
-  \
-  -I${MY_NJLI_SOURCE_DIRECTORY} \
-  -I${MY_NJLI_SOURCE_DIRECTORY}/builders \
-  -I${MY_NJLI_SOURCE_DIRECTORY}/builders/graphics \
-  -I${MY_NJLI_SOURCE_DIRECTORY}/builders/physics \
-  -I${MY_NJLI_SOURCE_DIRECTORY}/builders/physics/body \
-  -I${MY_NJLI_SOURCE_DIRECTORY}/builders/physics/constraint \
-  -I${MY_NJLI_SOURCE_DIRECTORY}/builders/physics/shape \
-  -I${MY_NJLI_SOURCE_DIRECTORY}/builders/platform \
-  -I${MY_NJLI_SOURCE_DIRECTORY}/builders/sound \
-  -I${MY_NJLI_SOURCE_DIRECTORY}/builders/steering \
-  -I${MY_NJLI_SOURCE_DIRECTORY}/builders/steering/behavior \
-  -I${MY_NJLI_SOURCE_DIRECTORY}/generated \
-  -I${MY_NJLI_SOURCE_DIRECTORY}/graphics \
-  -I${MY_NJLI_SOURCE_DIRECTORY}/physics \
-  -I${MY_NJLI_SOURCE_DIRECTORY}/physics/body \
-  -I${MY_NJLI_SOURCE_DIRECTORY}/physics/constraint \
-  -I${MY_NJLI_SOURCE_DIRECTORY}/physics/shape \
-  -I${MY_NJLI_SOURCE_DIRECTORY}/platform \
-  -I${MY_NJLI_SOURCE_DIRECTORY}/sound \
-  -I${MY_NJLI_SOURCE_DIRECTORY}/sound/fmod \
-  -I${MY_NJLI_SOURCE_DIRECTORY}/sound/openal \
-  -I${MY_NJLI_SOURCE_DIRECTORY}/steering \
-  -I${MY_NJLI_SOURCE_DIRECTORY}/steering/behavior \
-  \
-  -I${MY_NJLI_INTERFACE_DIRECTORY} \
-  -I${MY_NJLI_INTERFACE_DIRECTORY}/njli \
-  -I${MY_NJLI_INTERFACE_DIRECTORY}/njli/builders \
-  -I${MY_NJLI_INTERFACE_DIRECTORY}/njli/builders/graphics \
-  -I${MY_NJLI_INTERFACE_DIRECTORY}/njli/builders/physics \
-  -I${MY_NJLI_INTERFACE_DIRECTORY}/njli/builders/physics/body \
-  -I${MY_NJLI_INTERFACE_DIRECTORY}/njli/builders/physics/constraint \
-  -I${MY_NJLI_INTERFACE_DIRECTORY}/njli/builders/physics/shape \
-  -I${MY_NJLI_INTERFACE_DIRECTORY}/njli/builders/platform \
-  -I${MY_NJLI_INTERFACE_DIRECTORY}/njli/builders/sound \
-  -I${MY_NJLI_INTERFACE_DIRECTORY}/njli/builders/steering \
-  -I${MY_NJLI_INTERFACE_DIRECTORY}/njli/builders/steering/behavior \
-  -I${MY_NJLI_INTERFACE_DIRECTORY}/njli/graphics \
-  -I${MY_NJLI_INTERFACE_DIRECTORY}/njli/physics \
-  -I${MY_NJLI_INTERFACE_DIRECTORY}/njli/physics/body \
-  -I${MY_NJLI_INTERFACE_DIRECTORY}/njli/physics/constraint \
-  -I${MY_NJLI_INTERFACE_DIRECTORY}/njli/physics/shape \
-  -I${MY_NJLI_INTERFACE_DIRECTORY}/njli/platform \
-  -I${MY_NJLI_INTERFACE_DIRECTORY}/njli/sound \
-  -I${MY_NJLI_INTERFACE_DIRECTORY}/njli/steering \
-  -I${MY_NJLI_INTERFACE_DIRECTORY}/njli/steering/behavior \
-  \
-  -I${MY_DEBUG_DRAW_DIRECTORY} \
-  \
-  -o ${MY_NJLI_SOURCE_DIRECTORY}/generated/swig/embind/embind_njli.cpp \
-  ${MY_NJLI_INTERFACE_DIRECTORY}/njli/_LuaEntry.i
+################################################################################################################
+
+if [[ ${MY_DEFINES} == *"WRAP_EMBIND"* ]]; then
+  /usr/local/bin/swig ${MY_DEFINES} -fcompact -fvirtual -v -w201 -w312 -c++ -embind -includeall -ignoremissing -features directors,autodoc=1 \
+    -DOPENGL=\"${MY_OPENGL}\" \
+    -DSWIG_TYPE_TABLE=myprojectname \
+    ${SWIG_THIRDPARTY_INCLUDES} \
+    \
+    -I${PWD}/src/njli \
+    -I${PWD}/src/njli/builders \
+    -I${PWD}/src/njli/builders/graphics \
+    -I${PWD}/src/njli/builders/physics \
+    -I${PWD}/src/njli/builders/physics/body \
+    -I${PWD}/src/njli/builders/physics/constraint \
+    -I${PWD}/src/njli/builders/physics/shape \
+    -I${PWD}/src/njli/builders/platform \
+    -I${PWD}/src/njli/builders/sound \
+    -I${PWD}/src/njli/builders/steering \
+    -I${PWD}/src/njli/builders/steering/behavior \
+    -I${PWD}/src/njli/generated \
+    -I${PWD}/src/njli/graphics \
+    -I${PWD}/src/njli/physics \
+    -I${PWD}/src/njli/physics/body \
+    -I${PWD}/src/njli/physics/constraint \
+    -I${PWD}/src/njli/physics/shape \
+    -I${PWD}/src/njli/platform \
+    -I${PWD}/src/njli/sound \
+    -I${PWD}/src/njli/sound/fmod \
+    -I${PWD}/src/njli/sound/openal \
+    -I${PWD}/src/njli/steering \
+    -I${PWD}/src/njli/steering/behavior \
+    \
+    -I${PWD}/src/swig.in/embind \
+    -I${PWD}/src/swig.in/embind/njli \
+    -I${PWD}/src/swig.in/embind/njli/builders \
+    -I${PWD}/src/swig.in/embind/njli/builders/graphics \
+    -I${PWD}/src/swig.in/embind/njli/builders/physics \
+    -I${PWD}/src/swig.in/embind/njli/builders/physics/body \
+    -I${PWD}/src/swig.in/embind/njli/builders/physics/constraint \
+    -I${PWD}/src/swig.in/embind/njli/builders/physics/shape \
+    -I${PWD}/src/swig.in/embind/njli/builders/platform \
+    -I${PWD}/src/swig.in/embind/njli/builders/sound \
+    -I${PWD}/src/swig.in/embind/njli/builders/steering \
+    -I${PWD}/src/swig.in/embind/njli/builders/steering/behavior \
+    -I${PWD}/src/swig.in/embind/njli/graphics \
+    -I${PWD}/src/swig.in/embind/njli/physics \
+    -I${PWD}/src/swig.in/embind/njli/physics/body \
+    -I${PWD}/src/swig.in/embind/njli/physics/constraint \
+    -I${PWD}/src/swig.in/embind/njli/physics/shape \
+    -I${PWD}/src/swig.in/embind/njli/platform \
+    -I${PWD}/src/swig.in/embind/njli/sound \
+    -I${PWD}/src/swig.in/embind/njli/steering \
+    -I${PWD}/src/swig.in/embind/njli/steering/behavior \
+    \
+    -I${MY_DEBUG_DRAW_DIRECTORY} \
+    \
+    -o ${PWD}/src/njli/generated/swig/embind/embind_njli.cpp \
+    ${PWD}/src/swig.in/embind/njli/_LuaEntry.i
+fi
 
 ###########################################################################################
 
