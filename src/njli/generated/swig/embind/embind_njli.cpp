@@ -426,30 +426,6 @@ template <typename T> T SwigValueInit() {
 #include "Geometry.h"
     
 
-#undef SWIG_fail_arg
-#define SWIG_fail_arg(func_name,argnum,type) \
-{lua_Debug ar;\
-lua_getstack(L, 1, &ar);\
-lua_getinfo(L, "nSl", &ar);\
-lua_pushfstring(L,"Error (%s:%d) in %s (arg %d), expected '%s' got '%s'",\
-ar.source,ar.currentline,func_name,argnum,type,SWIG_Lua_typename(L,argnum));\
-goto fail;}
-    
-
-#undef SWIG_check_num_args
-#define SWIG_check_num_args(func_name,a,b) \
-if(LUA_WRAPPER_LOGGING){\
-lua_Debug ar;\
-lua_getstack(L, 1, &ar);\
-lua_getinfo(L, "nSl", &ar);\
-printf("(%s:%d) in %s",\
-ar.short_src,ar.currentline,ar.name); \
-}\
-if (lua_gettop(L)<a || lua_gettop(L)>b) \
-{SWIG_Lua_pushferrstring(L,"Error in %s expected %d..%d args, got %d",func_name,a,b,lua_gettop(L));\
-goto fail;}
-    
-
     static njli::Sound **new_SoundArray(int nelements) { 
 
         return njli::Sound::createArray(nelements);
@@ -467,6 +443,3592 @@ goto fail;}
         return ary[index-1];
     }
     static void SoundArray_setitem(njli::Sound **ary, int index, njli::Sound *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::Action **new_ActionArray(int nelements) { 
+
+        return njli::Action::createArray(nelements);
+        
+}
+    
+    static void delete_ActionArray(njli::Action **ary) { 
+
+        njli::Action::destroyArray(ary);
+        
+}
+    
+    static njli::Action *ActionArray_getitem(njli::Action **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void ActionArray_setitem(njli::Action **ary, int index, njli::Action *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::ActionBuilder **new_ActionBuilderArray(int nelements) { 
+
+        return njli::ActionBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_ActionBuilderArray(njli::ActionBuilder **ary) { 
+
+        njli::ActionBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::ActionBuilder *ActionBuilderArray_getitem(njli::ActionBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void ActionBuilderArray_setitem(njli::ActionBuilder **ary, int index, njli::ActionBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::Camera **new_CameraArray(int nelements) { 
+
+        return njli::Camera::createArray(nelements);
+        
+}
+    
+    static void delete_CameraArray(njli::Camera **ary) { 
+
+        njli::Camera::destroyArray(ary);
+        
+}
+    
+    static njli::Camera *CameraArray_getitem(njli::Camera **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void CameraArray_setitem(njli::Camera **ary, int index, njli::Camera *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::CameraBuilder **new_CameraBuilderArray(int nelements) { 
+
+        return njli::CameraBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_CameraBuilderArray(njli::CameraBuilder **ary) { 
+
+        njli::CameraBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::CameraBuilder *CameraBuilderArray_getitem(njli::CameraBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void CameraBuilderArray_setitem(njli::CameraBuilder **ary, int index, njli::CameraBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::Clock **new_ClockArray(int nelements) { 
+
+        return njli::Clock::createArray(nelements);
+        
+}
+    
+    static void delete_ClockArray(njli::Clock **ary) { 
+
+        njli::Clock::destroyArray(ary);
+        
+}
+    
+    static njli::Clock *ClockArray_getitem(njli::Clock **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void ClockArray_setitem(njli::Clock **ary, int index, njli::Clock *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::ClockBuilder **new_ClockBuilderArray(int nelements) { 
+
+        return njli::ClockBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_ClockBuilderArray(njli::ClockBuilder **ary) { 
+
+        njli::ClockBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::ClockBuilder *ClockBuilderArray_getitem(njli::ClockBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void ClockBuilderArray_setitem(njli::ClockBuilder **ary, int index, njli::ClockBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::CollisionResponse **new_CollisionResponseArray(int nelements) { 
+
+        return njli::CollisionResponse::createArray(nelements);
+        
+}
+    
+    static void delete_CollisionResponseArray(njli::CollisionResponse **ary) { 
+
+        njli::CollisionResponse::destroyArray(ary);
+        
+}
+    
+    static njli::CollisionResponse *CollisionResponseArray_getitem(njli::CollisionResponse **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void CollisionResponseArray_setitem(njli::CollisionResponse **ary, int index, njli::CollisionResponse *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::CollisionResponseBuilder **new_CollisionResponseBuilderArray(int nelements) { 
+
+        return njli::CollisionResponseBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_CollisionResponseBuilderArray(njli::CollisionResponseBuilder **ary) { 
+
+        njli::CollisionResponseBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::CollisionResponseBuilder *CollisionResponseBuilderArray_getitem(njli::CollisionResponseBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void CollisionResponseBuilderArray_setitem(njli::CollisionResponseBuilder **ary, int index, njli::CollisionResponseBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::Cube **new_CubeArray(int nelements) { 
+
+        return njli::Cube::createArray(nelements);
+        
+}
+    
+    static void delete_CubeArray(njli::Cube **ary) { 
+
+        njli::Cube::destroyArray(ary);
+        
+}
+    
+    static njli::Cube *CubeArray_getitem(njli::Cube **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void CubeArray_setitem(njli::Cube **ary, int index, njli::Cube *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::CubeBuilder **new_CubeBuilderArray(int nelements) { 
+
+        return njli::CubeBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_CubeBuilderArray(njli::CubeBuilder **ary) { 
+
+        njli::CubeBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::CubeBuilder *CubeBuilderArray_getitem(njli::CubeBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void CubeBuilderArray_setitem(njli::CubeBuilder **ary, int index, njli::CubeBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::Font **new_FontArray(int nelements) { 
+
+        return njli::Font::createArray(nelements);
+        
+}
+    
+    static void delete_FontArray(njli::Font **ary) { 
+
+        njli::Font::destroyArray(ary);
+        
+}
+    
+    static njli::Font *FontArray_getitem(njli::Font **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void FontArray_setitem(njli::Font **ary, int index, njli::Font *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::FontBuilder **new_FontBuilderArray(int nelements) { 
+
+        return njli::FontBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_FontBuilderArray(njli::FontBuilder **ary) { 
+
+        njli::FontBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::FontBuilder *FontBuilderArray_getitem(njli::FontBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void FontBuilderArray_setitem(njli::FontBuilder **ary, int index, njli::FontBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::Image **new_ImageArray(int nelements) { 
+
+        return njli::Image::createArray(nelements);
+        
+}
+    
+    static void delete_ImageArray(njli::Image **ary) { 
+
+        njli::Image::destroyArray(ary);
+        
+}
+    
+    static njli::Image *ImageArray_getitem(njli::Image **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void ImageArray_setitem(njli::Image **ary, int index, njli::Image *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::ImageBuilder **new_ImageBuilderArray(int nelements) { 
+
+        return njli::ImageBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_ImageBuilderArray(njli::ImageBuilder **ary) { 
+
+        njli::ImageBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::ImageBuilder *ImageBuilderArray_getitem(njli::ImageBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void ImageBuilderArray_setitem(njli::ImageBuilder **ary, int index, njli::ImageBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::JsonJLI **new_JsonJLIArray(int nelements) { 
+
+        return njli::JsonJLI::createArray(nelements);
+        
+}
+    
+    static void delete_JsonJLIArray(njli::JsonJLI **ary) { 
+
+        njli::JsonJLI::destroyArray(ary);
+        
+}
+    
+    static njli::JsonJLI *JsonJLIArray_getitem(njli::JsonJLI **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void JsonJLIArray_setitem(njli::JsonJLI **ary, int index, njli::JsonJLI *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::JsonJLIBuilder **new_JsonJLIBuilderArray(int nelements) { 
+
+        return njli::JsonJLIBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_JsonJLIBuilderArray(njli::JsonJLIBuilder **ary) { 
+
+        njli::JsonJLIBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::JsonJLIBuilder *JsonJLIBuilderArray_getitem(njli::JsonJLIBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void JsonJLIBuilderArray_setitem(njli::JsonJLIBuilder **ary, int index, njli::JsonJLIBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::LevelOfDetail **new_LevelOfDetailArray(int nelements) { 
+
+        return njli::LevelOfDetail::createArray(nelements);
+        
+}
+    
+    static void delete_LevelOfDetailArray(njli::LevelOfDetail **ary) { 
+
+        njli::LevelOfDetail::destroyArray(ary);
+        
+}
+    
+    static njli::LevelOfDetail *LevelOfDetailArray_getitem(njli::LevelOfDetail **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void LevelOfDetailArray_setitem(njli::LevelOfDetail **ary, int index, njli::LevelOfDetail *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::LevelOfDetailBuilder **new_LevelOfDetailBuilderArray(int nelements) { 
+
+        return njli::LevelOfDetailBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_LevelOfDetailBuilderArray(njli::LevelOfDetailBuilder **ary) { 
+
+        njli::LevelOfDetailBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::LevelOfDetailBuilder *LevelOfDetailBuilderArray_getitem(njli::LevelOfDetailBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void LevelOfDetailBuilderArray_setitem(njli::LevelOfDetailBuilder **ary, int index, njli::LevelOfDetailBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::Light **new_LightArray(int nelements) { 
+
+        return njli::Light::createArray(nelements);
+        
+}
+    
+    static void delete_LightArray(njli::Light **ary) { 
+
+        njli::Light::destroyArray(ary);
+        
+}
+    
+    static njli::Light *LightArray_getitem(njli::Light **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void LightArray_setitem(njli::Light **ary, int index, njli::Light *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::LightBuilder **new_LightBuilderArray(int nelements) { 
+
+        return njli::LightBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_LightBuilderArray(njli::LightBuilder **ary) { 
+
+        njli::LightBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::LightBuilder *LightBuilderArray_getitem(njli::LightBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void LightBuilderArray_setitem(njli::LightBuilder **ary, int index, njli::LightBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::Material **new_MaterialArray(int nelements) { 
+
+        return njli::Material::createArray(nelements);
+        
+}
+    
+    static void delete_MaterialArray(njli::Material **ary) { 
+
+        njli::Material::destroyArray(ary);
+        
+}
+    
+    static njli::Material *MaterialArray_getitem(njli::Material **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void MaterialArray_setitem(njli::Material **ary, int index, njli::Material *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::MaterialBuilder **new_MaterialBuilderArray(int nelements) { 
+
+        return njli::MaterialBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_MaterialBuilderArray(njli::MaterialBuilder **ary) { 
+
+        njli::MaterialBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::MaterialBuilder *MaterialBuilderArray_getitem(njli::MaterialBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void MaterialBuilderArray_setitem(njli::MaterialBuilder **ary, int index, njli::MaterialBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::MaterialProperty **new_MaterialPropertyArray(int nelements) { 
+
+        return njli::MaterialProperty::createArray(nelements);
+        
+}
+    
+    static void delete_MaterialPropertyArray(njli::MaterialProperty **ary) { 
+
+        njli::MaterialProperty::destroyArray(ary);
+        
+}
+    
+    static njli::MaterialProperty *MaterialPropertyArray_getitem(njli::MaterialProperty **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void MaterialPropertyArray_setitem(njli::MaterialProperty **ary, int index, njli::MaterialProperty *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::MaterialPropertyBuilder **new_MaterialPropertyBuilderArray(int nelements) { 
+
+        return njli::MaterialPropertyBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_MaterialPropertyBuilderArray(njli::MaterialPropertyBuilder **ary) { 
+
+        njli::MaterialPropertyBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::MaterialPropertyBuilder *MaterialPropertyBuilderArray_getitem(njli::MaterialPropertyBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void MaterialPropertyBuilderArray_setitem(njli::MaterialPropertyBuilder **ary, int index, njli::MaterialPropertyBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::Node **new_NodeArray(int nelements) { 
+
+        return njli::Node::createArray(nelements);
+        
+}
+    
+    static void delete_NodeArray(njli::Node **ary) { 
+
+        njli::Node::destroyArray(ary);
+        
+}
+    
+    static njli::Node *NodeArray_getitem(njli::Node **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void NodeArray_setitem(njli::Node **ary, int index, njli::Node *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::NodeBuilder **new_NodeBuilderArray(int nelements) { 
+
+        return njli::NodeBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_NodeBuilderArray(njli::NodeBuilder **ary) { 
+
+        njli::NodeBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::NodeBuilder *NodeBuilderArray_getitem(njli::NodeBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void NodeBuilderArray_setitem(njli::NodeBuilder **ary, int index, njli::NodeBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::NodeState **new_NodeStateArray(int nelements) { 
+
+        return njli::NodeState::createArray(nelements);
+        
+}
+    
+    static void delete_NodeStateArray(njli::NodeState **ary) { 
+
+        njli::NodeState::destroyArray(ary);
+        
+}
+    
+    static njli::NodeState *NodeStateArray_getitem(njli::NodeState **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void NodeStateArray_setitem(njli::NodeState **ary, int index, njli::NodeState *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::NodeStateBuilder **new_NodeStateBuilderArray(int nelements) { 
+
+        return njli::NodeStateBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_NodeStateBuilderArray(njli::NodeStateBuilder **ary) { 
+
+        njli::NodeStateBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::NodeStateBuilder *NodeStateBuilderArray_getitem(njli::NodeStateBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void NodeStateBuilderArray_setitem(njli::NodeStateBuilder **ary, int index, njli::NodeStateBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::NodeStateMachine **new_NodeStateMachineArray(int nelements) { 
+
+        return njli::NodeStateMachine::createArray(nelements);
+        
+}
+    
+    static void delete_NodeStateMachineArray(njli::NodeStateMachine **ary) { 
+
+        njli::NodeStateMachine::destroyArray(ary);
+        
+}
+    
+    static njli::NodeStateMachine *NodeStateMachineArray_getitem(njli::NodeStateMachine **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void NodeStateMachineArray_setitem(njli::NodeStateMachine **ary, int index, njli::NodeStateMachine *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::NodeStateMachineBuilder **new_NodeStateMachineBuilderArray(int nelements) { 
+
+        return njli::NodeStateMachineBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_NodeStateMachineBuilderArray(njli::NodeStateMachineBuilder **ary) { 
+
+        njli::NodeStateMachineBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::NodeStateMachineBuilder *NodeStateMachineBuilderArray_getitem(njli::NodeStateMachineBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void NodeStateMachineBuilderArray_setitem(njli::NodeStateMachineBuilder **ary, int index, njli::NodeStateMachineBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::ParticleEmitter **new_ParticleEmitterArray(int nelements) { 
+
+        return njli::ParticleEmitter::createArray(nelements);
+        
+}
+    
+    static void delete_ParticleEmitterArray(njli::ParticleEmitter **ary) { 
+
+        njli::ParticleEmitter::destroyArray(ary);
+        
+}
+    
+    static njli::ParticleEmitter *ParticleEmitterArray_getitem(njli::ParticleEmitter **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void ParticleEmitterArray_setitem(njli::ParticleEmitter **ary, int index, njli::ParticleEmitter *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::ParticleEmitterBuilder **new_ParticleEmitterBuilderArray(int nelements) { 
+
+        return njli::ParticleEmitterBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_ParticleEmitterBuilderArray(njli::ParticleEmitterBuilder **ary) { 
+
+        njli::ParticleEmitterBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::ParticleEmitterBuilder *ParticleEmitterBuilderArray_getitem(njli::ParticleEmitterBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void ParticleEmitterBuilderArray_setitem(njli::ParticleEmitterBuilder **ary, int index, njli::ParticleEmitterBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsBodyGhost **new_PhysicsBodyGhostArray(int nelements) { 
+
+        return njli::PhysicsBodyGhost::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsBodyGhostArray(njli::PhysicsBodyGhost **ary) { 
+
+        njli::PhysicsBodyGhost::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsBodyGhost *PhysicsBodyGhostArray_getitem(njli::PhysicsBodyGhost **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsBodyGhostArray_setitem(njli::PhysicsBodyGhost **ary, int index, njli::PhysicsBodyGhost *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsBodyGhostBuilder **new_PhysicsBodyGhostBuilderArray(int nelements) { 
+
+        return njli::PhysicsBodyGhostBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsBodyGhostBuilderArray(njli::PhysicsBodyGhostBuilder **ary) { 
+
+        njli::PhysicsBodyGhostBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsBodyGhostBuilder *PhysicsBodyGhostBuilderArray_getitem(njli::PhysicsBodyGhostBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsBodyGhostBuilderArray_setitem(njli::PhysicsBodyGhostBuilder **ary, int index, njli::PhysicsBodyGhostBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsBodyRigid **new_PhysicsBodyRigidArray(int nelements) { 
+
+        return njli::PhysicsBodyRigid::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsBodyRigidArray(njli::PhysicsBodyRigid **ary) { 
+
+        njli::PhysicsBodyRigid::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsBodyRigid *PhysicsBodyRigidArray_getitem(njli::PhysicsBodyRigid **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsBodyRigidArray_setitem(njli::PhysicsBodyRigid **ary, int index, njli::PhysicsBodyRigid *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsBodyRigidBuilder **new_PhysicsBodyRigidBuilderArray(int nelements) { 
+
+        return njli::PhysicsBodyRigidBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsBodyRigidBuilderArray(njli::PhysicsBodyRigidBuilder **ary) { 
+
+        njli::PhysicsBodyRigidBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsBodyRigidBuilder *PhysicsBodyRigidBuilderArray_getitem(njli::PhysicsBodyRigidBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsBodyRigidBuilderArray_setitem(njli::PhysicsBodyRigidBuilder **ary, int index, njli::PhysicsBodyRigidBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsBodySoft **new_PhysicsBodySoftArray(int nelements) { 
+
+        return njli::PhysicsBodySoft::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsBodySoftArray(njli::PhysicsBodySoft **ary) { 
+
+        njli::PhysicsBodySoft::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsBodySoft *PhysicsBodySoftArray_getitem(njli::PhysicsBodySoft **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsBodySoftArray_setitem(njli::PhysicsBodySoft **ary, int index, njli::PhysicsBodySoft *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsBodySoftBuilder **new_PhysicsBodySoftBuilderArray(int nelements) { 
+
+        return njli::PhysicsBodySoftBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsBodySoftBuilderArray(njli::PhysicsBodySoftBuilder **ary) { 
+
+        njli::PhysicsBodySoftBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsBodySoftBuilder *PhysicsBodySoftBuilderArray_getitem(njli::PhysicsBodySoftBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsBodySoftBuilderArray_setitem(njli::PhysicsBodySoftBuilder **ary, int index, njli::PhysicsBodySoftBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsCloseContact **new_PhysicsCloseContactArray(int nelements) { 
+
+        return njli::PhysicsCloseContact::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsCloseContactArray(njli::PhysicsCloseContact **ary) { 
+
+        njli::PhysicsCloseContact::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsCloseContact *PhysicsCloseContactArray_getitem(njli::PhysicsCloseContact **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsCloseContactArray_setitem(njli::PhysicsCloseContact **ary, int index, njli::PhysicsCloseContact *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsCloseContactBuilder **new_PhysicsCloseContactBuilderArray(int nelements) { 
+
+        return njli::PhysicsCloseContactBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsCloseContactBuilderArray(njli::PhysicsCloseContactBuilder **ary) { 
+
+        njli::PhysicsCloseContactBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsCloseContactBuilder *PhysicsCloseContactBuilderArray_getitem(njli::PhysicsCloseContactBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsCloseContactBuilderArray_setitem(njli::PhysicsCloseContactBuilder **ary, int index, njli::PhysicsCloseContactBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsConstraint **new_PhysicsConstraintArray(int nelements) { 
+
+        return njli::PhysicsConstraint::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsConstraintArray(njli::PhysicsConstraint **ary) { 
+
+        njli::PhysicsConstraint::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsConstraint *PhysicsConstraintArray_getitem(njli::PhysicsConstraint **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsConstraintArray_setitem(njli::PhysicsConstraint **ary, int index, njli::PhysicsConstraint *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsConstraintBuilder **new_PhysicsConstraintBuilderArray(int nelements) { 
+
+        return njli::PhysicsConstraintBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsConstraintBuilderArray(njli::PhysicsConstraintBuilder **ary) { 
+
+        njli::PhysicsConstraintBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsConstraintBuilder *PhysicsConstraintBuilderArray_getitem(njli::PhysicsConstraintBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsConstraintBuilderArray_setitem(njli::PhysicsConstraintBuilder **ary, int index, njli::PhysicsConstraintBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsConstraintConeTwist **new_PhysicsConstraintConeTwistArray(int nelements) { 
+
+        return njli::PhysicsConstraintConeTwist::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsConstraintConeTwistArray(njli::PhysicsConstraintConeTwist **ary) { 
+
+        njli::PhysicsConstraintConeTwist::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsConstraintConeTwist *PhysicsConstraintConeTwistArray_getitem(njli::PhysicsConstraintConeTwist **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsConstraintConeTwistArray_setitem(njli::PhysicsConstraintConeTwist **ary, int index, njli::PhysicsConstraintConeTwist *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsConstraintConeTwistBuilder **new_PhysicsConstraintConeTwistBuilderArray(int nelements) { 
+
+        return njli::PhysicsConstraintConeTwistBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsConstraintConeTwistBuilderArray(njli::PhysicsConstraintConeTwistBuilder **ary) { 
+
+        njli::PhysicsConstraintConeTwistBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsConstraintConeTwistBuilder *PhysicsConstraintConeTwistBuilderArray_getitem(njli::PhysicsConstraintConeTwistBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsConstraintConeTwistBuilderArray_setitem(njli::PhysicsConstraintConeTwistBuilder **ary, int index, njli::PhysicsConstraintConeTwistBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsConstraintFixed **new_PhysicsConstraintFixedArray(int nelements) { 
+
+        return njli::PhysicsConstraintFixed::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsConstraintFixedArray(njli::PhysicsConstraintFixed **ary) { 
+
+        njli::PhysicsConstraintFixed::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsConstraintFixed *PhysicsConstraintFixedArray_getitem(njli::PhysicsConstraintFixed **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsConstraintFixedArray_setitem(njli::PhysicsConstraintFixed **ary, int index, njli::PhysicsConstraintFixed *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsConstraintFixedBuilder **new_PhysicsConstraintFixedBuilderArray(int nelements) { 
+
+        return njli::PhysicsConstraintFixedBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsConstraintFixedBuilderArray(njli::PhysicsConstraintFixedBuilder **ary) { 
+
+        njli::PhysicsConstraintFixedBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsConstraintFixedBuilder *PhysicsConstraintFixedBuilderArray_getitem(njli::PhysicsConstraintFixedBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsConstraintFixedBuilderArray_setitem(njli::PhysicsConstraintFixedBuilder **ary, int index, njli::PhysicsConstraintFixedBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsConstraintGeneric6Dof **new_PhysicsConstraintGeneric6DofArray(int nelements) { 
+
+        return njli::PhysicsConstraintGeneric6Dof::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsConstraintGeneric6DofArray(njli::PhysicsConstraintGeneric6Dof **ary) { 
+
+        njli::PhysicsConstraintGeneric6Dof::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsConstraintGeneric6Dof *PhysicsConstraintGeneric6DofArray_getitem(njli::PhysicsConstraintGeneric6Dof **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsConstraintGeneric6DofArray_setitem(njli::PhysicsConstraintGeneric6Dof **ary, int index, njli::PhysicsConstraintGeneric6Dof *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsConstraintGeneric6DofBuilder **new_PhysicsConstraintGeneric6DofBuilderArray(int nelements) { 
+
+        return njli::PhysicsConstraintGeneric6DofBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsConstraintGeneric6DofBuilderArray(njli::PhysicsConstraintGeneric6DofBuilder **ary) { 
+
+        njli::PhysicsConstraintGeneric6DofBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsConstraintGeneric6DofBuilder *PhysicsConstraintGeneric6DofBuilderArray_getitem(njli::PhysicsConstraintGeneric6DofBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsConstraintGeneric6DofBuilderArray_setitem(njli::PhysicsConstraintGeneric6DofBuilder **ary, int index, njli::PhysicsConstraintGeneric6DofBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsConstraintGeneric6DofSpring **new_PhysicsConstraintGeneric6DofSpringArray(int nelements) { 
+
+        return njli::PhysicsConstraintGeneric6DofSpring::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsConstraintGeneric6DofSpringArray(njli::PhysicsConstraintGeneric6DofSpring **ary) { 
+
+        njli::PhysicsConstraintGeneric6DofSpring::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsConstraintGeneric6DofSpring *PhysicsConstraintGeneric6DofSpringArray_getitem(njli::PhysicsConstraintGeneric6DofSpring **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsConstraintGeneric6DofSpringArray_setitem(njli::PhysicsConstraintGeneric6DofSpring **ary, int index, njli::PhysicsConstraintGeneric6DofSpring *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsConstraintGeneric6DofSpringBuilder **new_PhysicsConstraintGeneric6DofSpringBuilderArray(int nelements) { 
+
+        return njli::PhysicsConstraintGeneric6DofSpringBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsConstraintGeneric6DofSpringBuilderArray(njli::PhysicsConstraintGeneric6DofSpringBuilder **ary) { 
+
+        njli::PhysicsConstraintGeneric6DofSpringBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsConstraintGeneric6DofSpringBuilder *PhysicsConstraintGeneric6DofSpringBuilderArray_getitem(njli::PhysicsConstraintGeneric6DofSpringBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsConstraintGeneric6DofSpringBuilderArray_setitem(njli::PhysicsConstraintGeneric6DofSpringBuilder **ary, int index, njli::PhysicsConstraintGeneric6DofSpringBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsConstraintHinge **new_PhysicsConstraintHingeArray(int nelements) { 
+
+        return njli::PhysicsConstraintHinge::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsConstraintHingeArray(njli::PhysicsConstraintHinge **ary) { 
+
+        njli::PhysicsConstraintHinge::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsConstraintHinge *PhysicsConstraintHingeArray_getitem(njli::PhysicsConstraintHinge **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsConstraintHingeArray_setitem(njli::PhysicsConstraintHinge **ary, int index, njli::PhysicsConstraintHinge *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsConstraintHingeBuilder **new_PhysicsConstraintHingeBuilderArray(int nelements) { 
+
+        return njli::PhysicsConstraintHingeBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsConstraintHingeBuilderArray(njli::PhysicsConstraintHingeBuilder **ary) { 
+
+        njli::PhysicsConstraintHingeBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsConstraintHingeBuilder *PhysicsConstraintHingeBuilderArray_getitem(njli::PhysicsConstraintHingeBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsConstraintHingeBuilderArray_setitem(njli::PhysicsConstraintHingeBuilder **ary, int index, njli::PhysicsConstraintHingeBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsConstraintPointToPoint **new_PhysicsConstraintPointToPointArray(int nelements) { 
+
+        return njli::PhysicsConstraintPointToPoint::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsConstraintPointToPointArray(njli::PhysicsConstraintPointToPoint **ary) { 
+
+        njli::PhysicsConstraintPointToPoint::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsConstraintPointToPoint *PhysicsConstraintPointToPointArray_getitem(njli::PhysicsConstraintPointToPoint **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsConstraintPointToPointArray_setitem(njli::PhysicsConstraintPointToPoint **ary, int index, njli::PhysicsConstraintPointToPoint *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsConstraintPointToPointBuilder **new_PhysicsConstraintPointToPointBuilderArray(int nelements) { 
+
+        return njli::PhysicsConstraintPointToPointBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsConstraintPointToPointBuilderArray(njli::PhysicsConstraintPointToPointBuilder **ary) { 
+
+        njli::PhysicsConstraintPointToPointBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsConstraintPointToPointBuilder *PhysicsConstraintPointToPointBuilderArray_getitem(njli::PhysicsConstraintPointToPointBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsConstraintPointToPointBuilderArray_setitem(njli::PhysicsConstraintPointToPointBuilder **ary, int index, njli::PhysicsConstraintPointToPointBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsConstraintSlider **new_PhysicsConstraintSliderArray(int nelements) { 
+
+        return njli::PhysicsConstraintSlider::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsConstraintSliderArray(njli::PhysicsConstraintSlider **ary) { 
+
+        njli::PhysicsConstraintSlider::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsConstraintSlider *PhysicsConstraintSliderArray_getitem(njli::PhysicsConstraintSlider **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsConstraintSliderArray_setitem(njli::PhysicsConstraintSlider **ary, int index, njli::PhysicsConstraintSlider *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsConstraintSliderBuilder **new_PhysicsConstraintSliderBuilderArray(int nelements) { 
+
+        return njli::PhysicsConstraintSliderBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsConstraintSliderBuilderArray(njli::PhysicsConstraintSliderBuilder **ary) { 
+
+        njli::PhysicsConstraintSliderBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsConstraintSliderBuilder *PhysicsConstraintSliderBuilderArray_getitem(njli::PhysicsConstraintSliderBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsConstraintSliderBuilderArray_setitem(njli::PhysicsConstraintSliderBuilder **ary, int index, njli::PhysicsConstraintSliderBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsContact **new_PhysicsContactArray(int nelements) { 
+
+        return njli::PhysicsContact::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsContactArray(njli::PhysicsContact **ary) { 
+
+        njli::PhysicsContact::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsContact *PhysicsContactArray_getitem(njli::PhysicsContact **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsContactArray_setitem(njli::PhysicsContact **ary, int index, njli::PhysicsContact *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsContactBuilder **new_PhysicsContactBuilderArray(int nelements) { 
+
+        return njli::PhysicsContactBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsContactBuilderArray(njli::PhysicsContactBuilder **ary) { 
+
+        njli::PhysicsContactBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsContactBuilder *PhysicsContactBuilderArray_getitem(njli::PhysicsContactBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsContactBuilderArray_setitem(njli::PhysicsContactBuilder **ary, int index, njli::PhysicsContactBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsField **new_PhysicsFieldArray(int nelements) { 
+
+        return njli::PhysicsField::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsFieldArray(njli::PhysicsField **ary) { 
+
+        njli::PhysicsField::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsField *PhysicsFieldArray_getitem(njli::PhysicsField **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsFieldArray_setitem(njli::PhysicsField **ary, int index, njli::PhysicsField *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsFieldBuilder **new_PhysicsFieldBuilderArray(int nelements) { 
+
+        return njli::PhysicsFieldBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsFieldBuilderArray(njli::PhysicsFieldBuilder **ary) { 
+
+        njli::PhysicsFieldBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsFieldBuilder *PhysicsFieldBuilderArray_getitem(njli::PhysicsFieldBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsFieldBuilderArray_setitem(njli::PhysicsFieldBuilder **ary, int index, njli::PhysicsFieldBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsRayContact **new_PhysicsRayContactArray(int nelements) { 
+
+        return njli::PhysicsRayContact::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsRayContactArray(njli::PhysicsRayContact **ary) { 
+
+        njli::PhysicsRayContact::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsRayContact *PhysicsRayContactArray_getitem(njli::PhysicsRayContact **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsRayContactArray_setitem(njli::PhysicsRayContact **ary, int index, njli::PhysicsRayContact *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsRayContactBuilder **new_PhysicsRayContactBuilderArray(int nelements) { 
+
+        return njli::PhysicsRayContactBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsRayContactBuilderArray(njli::PhysicsRayContactBuilder **ary) { 
+
+        njli::PhysicsRayContactBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsRayContactBuilder *PhysicsRayContactBuilderArray_getitem(njli::PhysicsRayContactBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsRayContactBuilderArray_setitem(njli::PhysicsRayContactBuilder **ary, int index, njli::PhysicsRayContactBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsShapeBox **new_PhysicsShapeBoxArray(int nelements) { 
+
+        return njli::PhysicsShapeBox::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsShapeBoxArray(njli::PhysicsShapeBox **ary) { 
+
+        njli::PhysicsShapeBox::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsShapeBox *PhysicsShapeBoxArray_getitem(njli::PhysicsShapeBox **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsShapeBoxArray_setitem(njli::PhysicsShapeBox **ary, int index, njli::PhysicsShapeBox *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsShapeBox2D **new_PhysicsShapeBox2DArray(int nelements) { 
+
+        return njli::PhysicsShapeBox2D::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsShapeBox2DArray(njli::PhysicsShapeBox2D **ary) { 
+
+        njli::PhysicsShapeBox2D::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsShapeBox2D *PhysicsShapeBox2DArray_getitem(njli::PhysicsShapeBox2D **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsShapeBox2DArray_setitem(njli::PhysicsShapeBox2D **ary, int index, njli::PhysicsShapeBox2D *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsShapeBox2DBuilder **new_PhysicsShapeBox2DBuilderArray(int nelements) { 
+
+        return njli::PhysicsShapeBox2DBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsShapeBox2DBuilderArray(njli::PhysicsShapeBox2DBuilder **ary) { 
+
+        njli::PhysicsShapeBox2DBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsShapeBox2DBuilder *PhysicsShapeBox2DBuilderArray_getitem(njli::PhysicsShapeBox2DBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsShapeBox2DBuilderArray_setitem(njli::PhysicsShapeBox2DBuilder **ary, int index, njli::PhysicsShapeBox2DBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsShapeBoxBuilder **new_PhysicsShapeBoxBuilderArray(int nelements) { 
+
+        return njli::PhysicsShapeBoxBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsShapeBoxBuilderArray(njli::PhysicsShapeBoxBuilder **ary) { 
+
+        njli::PhysicsShapeBoxBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsShapeBoxBuilder *PhysicsShapeBoxBuilderArray_getitem(njli::PhysicsShapeBoxBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsShapeBoxBuilderArray_setitem(njli::PhysicsShapeBoxBuilder **ary, int index, njli::PhysicsShapeBoxBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsShapeBvhTriangleMesh **new_PhysicsShapeBvhTriangleMeshArray(int nelements) { 
+
+        return njli::PhysicsShapeBvhTriangleMesh::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsShapeBvhTriangleMeshArray(njli::PhysicsShapeBvhTriangleMesh **ary) { 
+
+        njli::PhysicsShapeBvhTriangleMesh::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsShapeBvhTriangleMesh *PhysicsShapeBvhTriangleMeshArray_getitem(njli::PhysicsShapeBvhTriangleMesh **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsShapeBvhTriangleMeshArray_setitem(njli::PhysicsShapeBvhTriangleMesh **ary, int index, njli::PhysicsShapeBvhTriangleMesh *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsShapeBvhTriangleMeshBuilder **new_PhysicsShapeBvhTriangleMeshBuilderArray(int nelements) { 
+
+        return njli::PhysicsShapeBvhTriangleMeshBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsShapeBvhTriangleMeshBuilderArray(njli::PhysicsShapeBvhTriangleMeshBuilder **ary) { 
+
+        njli::PhysicsShapeBvhTriangleMeshBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsShapeBvhTriangleMeshBuilder *PhysicsShapeBvhTriangleMeshBuilderArray_getitem(njli::PhysicsShapeBvhTriangleMeshBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsShapeBvhTriangleMeshBuilderArray_setitem(njli::PhysicsShapeBvhTriangleMeshBuilder **ary, int index, njli::PhysicsShapeBvhTriangleMeshBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsShapeCapsule **new_PhysicsShapeCapsuleArray(int nelements) { 
+
+        return njli::PhysicsShapeCapsule::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsShapeCapsuleArray(njli::PhysicsShapeCapsule **ary) { 
+
+        njli::PhysicsShapeCapsule::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsShapeCapsule *PhysicsShapeCapsuleArray_getitem(njli::PhysicsShapeCapsule **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsShapeCapsuleArray_setitem(njli::PhysicsShapeCapsule **ary, int index, njli::PhysicsShapeCapsule *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsShapeCapsuleBuilder **new_PhysicsShapeCapsuleBuilderArray(int nelements) { 
+
+        return njli::PhysicsShapeCapsuleBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsShapeCapsuleBuilderArray(njli::PhysicsShapeCapsuleBuilder **ary) { 
+
+        njli::PhysicsShapeCapsuleBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsShapeCapsuleBuilder *PhysicsShapeCapsuleBuilderArray_getitem(njli::PhysicsShapeCapsuleBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsShapeCapsuleBuilderArray_setitem(njli::PhysicsShapeCapsuleBuilder **ary, int index, njli::PhysicsShapeCapsuleBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsShapeCone **new_PhysicsShapeConeArray(int nelements) { 
+
+        return njli::PhysicsShapeCone::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsShapeConeArray(njli::PhysicsShapeCone **ary) { 
+
+        njli::PhysicsShapeCone::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsShapeCone *PhysicsShapeConeArray_getitem(njli::PhysicsShapeCone **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsShapeConeArray_setitem(njli::PhysicsShapeCone **ary, int index, njli::PhysicsShapeCone *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsShapeConeBuilder **new_PhysicsShapeConeBuilderArray(int nelements) { 
+
+        return njli::PhysicsShapeConeBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsShapeConeBuilderArray(njli::PhysicsShapeConeBuilder **ary) { 
+
+        njli::PhysicsShapeConeBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsShapeConeBuilder *PhysicsShapeConeBuilderArray_getitem(njli::PhysicsShapeConeBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsShapeConeBuilderArray_setitem(njli::PhysicsShapeConeBuilder **ary, int index, njli::PhysicsShapeConeBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsShapeConvexHull **new_PhysicsShapeConvexHullArray(int nelements) { 
+
+        return njli::PhysicsShapeConvexHull::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsShapeConvexHullArray(njli::PhysicsShapeConvexHull **ary) { 
+
+        njli::PhysicsShapeConvexHull::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsShapeConvexHull *PhysicsShapeConvexHullArray_getitem(njli::PhysicsShapeConvexHull **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsShapeConvexHullArray_setitem(njli::PhysicsShapeConvexHull **ary, int index, njli::PhysicsShapeConvexHull *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsShapeConvexHullBuilder **new_PhysicsShapeConvexHullBuilderArray(int nelements) { 
+
+        return njli::PhysicsShapeConvexHullBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsShapeConvexHullBuilderArray(njli::PhysicsShapeConvexHullBuilder **ary) { 
+
+        njli::PhysicsShapeConvexHullBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsShapeConvexHullBuilder *PhysicsShapeConvexHullBuilderArray_getitem(njli::PhysicsShapeConvexHullBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsShapeConvexHullBuilderArray_setitem(njli::PhysicsShapeConvexHullBuilder **ary, int index, njli::PhysicsShapeConvexHullBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsShapeConvexTriangleMesh **new_PhysicsShapeConvexTriangleMeshArray(int nelements) { 
+
+        return njli::PhysicsShapeConvexTriangleMesh::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsShapeConvexTriangleMeshArray(njli::PhysicsShapeConvexTriangleMesh **ary) { 
+
+        njli::PhysicsShapeConvexTriangleMesh::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsShapeConvexTriangleMesh *PhysicsShapeConvexTriangleMeshArray_getitem(njli::PhysicsShapeConvexTriangleMesh **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsShapeConvexTriangleMeshArray_setitem(njli::PhysicsShapeConvexTriangleMesh **ary, int index, njli::PhysicsShapeConvexTriangleMesh *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsShapeConvexTriangleMeshBuilder **new_PhysicsShapeConvexTriangleMeshBuilderArray(int nelements) { 
+
+        return njli::PhysicsShapeConvexTriangleMeshBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsShapeConvexTriangleMeshBuilderArray(njli::PhysicsShapeConvexTriangleMeshBuilder **ary) { 
+
+        njli::PhysicsShapeConvexTriangleMeshBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsShapeConvexTriangleMeshBuilder *PhysicsShapeConvexTriangleMeshBuilderArray_getitem(njli::PhysicsShapeConvexTriangleMeshBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsShapeConvexTriangleMeshBuilderArray_setitem(njli::PhysicsShapeConvexTriangleMeshBuilder **ary, int index, njli::PhysicsShapeConvexTriangleMeshBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsShapeCylinder **new_PhysicsShapeCylinderArray(int nelements) { 
+
+        return njli::PhysicsShapeCylinder::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsShapeCylinderArray(njli::PhysicsShapeCylinder **ary) { 
+
+        njli::PhysicsShapeCylinder::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsShapeCylinder *PhysicsShapeCylinderArray_getitem(njli::PhysicsShapeCylinder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsShapeCylinderArray_setitem(njli::PhysicsShapeCylinder **ary, int index, njli::PhysicsShapeCylinder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsShapeCylinderBuilder **new_PhysicsShapeCylinderBuilderArray(int nelements) { 
+
+        return njli::PhysicsShapeCylinderBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsShapeCylinderBuilderArray(njli::PhysicsShapeCylinderBuilder **ary) { 
+
+        njli::PhysicsShapeCylinderBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsShapeCylinderBuilder *PhysicsShapeCylinderBuilderArray_getitem(njli::PhysicsShapeCylinderBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsShapeCylinderBuilderArray_setitem(njli::PhysicsShapeCylinderBuilder **ary, int index, njli::PhysicsShapeCylinderBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsShapeHeightfieldTerrain **new_PhysicsShapeHeightfieldTerrainArray(int nelements) { 
+
+        return njli::PhysicsShapeHeightfieldTerrain::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsShapeHeightfieldTerrainArray(njli::PhysicsShapeHeightfieldTerrain **ary) { 
+
+        njli::PhysicsShapeHeightfieldTerrain::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsShapeHeightfieldTerrain *PhysicsShapeHeightfieldTerrainArray_getitem(njli::PhysicsShapeHeightfieldTerrain **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsShapeHeightfieldTerrainArray_setitem(njli::PhysicsShapeHeightfieldTerrain **ary, int index, njli::PhysicsShapeHeightfieldTerrain *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsShapeHeightfieldTerrainBuilder **new_PhysicsShapeHeightfieldTerrainBuilderArray(int nelements) { 
+
+        return njli::PhysicsShapeHeightfieldTerrainBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsShapeHeightfieldTerrainBuilderArray(njli::PhysicsShapeHeightfieldTerrainBuilder **ary) { 
+
+        njli::PhysicsShapeHeightfieldTerrainBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsShapeHeightfieldTerrainBuilder *PhysicsShapeHeightfieldTerrainBuilderArray_getitem(njli::PhysicsShapeHeightfieldTerrainBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsShapeHeightfieldTerrainBuilderArray_setitem(njli::PhysicsShapeHeightfieldTerrainBuilder **ary, int index, njli::PhysicsShapeHeightfieldTerrainBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsShapeMultiSphere **new_PhysicsShapeMultiSphereArray(int nelements) { 
+
+        return njli::PhysicsShapeMultiSphere::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsShapeMultiSphereArray(njli::PhysicsShapeMultiSphere **ary) { 
+
+        njli::PhysicsShapeMultiSphere::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsShapeMultiSphere *PhysicsShapeMultiSphereArray_getitem(njli::PhysicsShapeMultiSphere **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsShapeMultiSphereArray_setitem(njli::PhysicsShapeMultiSphere **ary, int index, njli::PhysicsShapeMultiSphere *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsShapeMultiSphereBuilder **new_PhysicsShapeMultiSphereBuilderArray(int nelements) { 
+
+        return njli::PhysicsShapeMultiSphereBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsShapeMultiSphereBuilderArray(njli::PhysicsShapeMultiSphereBuilder **ary) { 
+
+        njli::PhysicsShapeMultiSphereBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsShapeMultiSphereBuilder *PhysicsShapeMultiSphereBuilderArray_getitem(njli::PhysicsShapeMultiSphereBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsShapeMultiSphereBuilderArray_setitem(njli::PhysicsShapeMultiSphereBuilder **ary, int index, njli::PhysicsShapeMultiSphereBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsShapeSphere **new_PhysicsShapeSphereArray(int nelements) { 
+
+        return njli::PhysicsShapeSphere::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsShapeSphereArray(njli::PhysicsShapeSphere **ary) { 
+
+        njli::PhysicsShapeSphere::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsShapeSphere *PhysicsShapeSphereArray_getitem(njli::PhysicsShapeSphere **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsShapeSphereArray_setitem(njli::PhysicsShapeSphere **ary, int index, njli::PhysicsShapeSphere *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsShapeSphereBuilder **new_PhysicsShapeSphereBuilderArray(int nelements) { 
+
+        return njli::PhysicsShapeSphereBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsShapeSphereBuilderArray(njli::PhysicsShapeSphereBuilder **ary) { 
+
+        njli::PhysicsShapeSphereBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsShapeSphereBuilder *PhysicsShapeSphereBuilderArray_getitem(njli::PhysicsShapeSphereBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsShapeSphereBuilderArray_setitem(njli::PhysicsShapeSphereBuilder **ary, int index, njli::PhysicsShapeSphereBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsShapeStaticPlane **new_PhysicsShapeStaticPlaneArray(int nelements) { 
+
+        return njli::PhysicsShapeStaticPlane::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsShapeStaticPlaneArray(njli::PhysicsShapeStaticPlane **ary) { 
+
+        njli::PhysicsShapeStaticPlane::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsShapeStaticPlane *PhysicsShapeStaticPlaneArray_getitem(njli::PhysicsShapeStaticPlane **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsShapeStaticPlaneArray_setitem(njli::PhysicsShapeStaticPlane **ary, int index, njli::PhysicsShapeStaticPlane *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsShapeStaticPlaneBuilder **new_PhysicsShapeStaticPlaneBuilderArray(int nelements) { 
+
+        return njli::PhysicsShapeStaticPlaneBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsShapeStaticPlaneBuilderArray(njli::PhysicsShapeStaticPlaneBuilder **ary) { 
+
+        njli::PhysicsShapeStaticPlaneBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsShapeStaticPlaneBuilder *PhysicsShapeStaticPlaneBuilderArray_getitem(njli::PhysicsShapeStaticPlaneBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsShapeStaticPlaneBuilderArray_setitem(njli::PhysicsShapeStaticPlaneBuilder **ary, int index, njli::PhysicsShapeStaticPlaneBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsWorld **new_PhysicsWorldArray(int nelements) { 
+
+        return njli::PhysicsWorld::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsWorldArray(njli::PhysicsWorld **ary) { 
+
+        njli::PhysicsWorld::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsWorld *PhysicsWorldArray_getitem(njli::PhysicsWorld **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsWorldArray_setitem(njli::PhysicsWorld **ary, int index, njli::PhysicsWorld *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PhysicsWorldBuilder **new_PhysicsWorldBuilderArray(int nelements) { 
+
+        return njli::PhysicsWorldBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_PhysicsWorldBuilderArray(njli::PhysicsWorldBuilder **ary) { 
+
+        njli::PhysicsWorldBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::PhysicsWorldBuilder *PhysicsWorldBuilderArray_getitem(njli::PhysicsWorldBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PhysicsWorldBuilderArray_setitem(njli::PhysicsWorldBuilder **ary, int index, njli::PhysicsWorldBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::Plane **new_PlaneArray(int nelements) { 
+
+        return njli::Plane::createArray(nelements);
+        
+}
+    
+    static void delete_PlaneArray(njli::Plane **ary) { 
+
+        njli::Plane::destroyArray(ary);
+        
+}
+    
+    static njli::Plane *PlaneArray_getitem(njli::Plane **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PlaneArray_setitem(njli::Plane **ary, int index, njli::Plane *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::PlaneBuilder **new_PlaneBuilderArray(int nelements) { 
+
+        return njli::PlaneBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_PlaneBuilderArray(njli::PlaneBuilder **ary) { 
+
+        njli::PlaneBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::PlaneBuilder *PlaneBuilderArray_getitem(njli::PlaneBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void PlaneBuilderArray_setitem(njli::PlaneBuilder **ary, int index, njli::PlaneBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::Scene **new_SceneArray(int nelements) { 
+
+        return njli::Scene::createArray(nelements);
+        
+}
+    
+    static void delete_SceneArray(njli::Scene **ary) { 
+
+        njli::Scene::destroyArray(ary);
+        
+}
+    
+    static njli::Scene *SceneArray_getitem(njli::Scene **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SceneArray_setitem(njli::Scene **ary, int index, njli::Scene *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::SceneBuilder **new_SceneBuilderArray(int nelements) { 
+
+        return njli::SceneBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_SceneBuilderArray(njli::SceneBuilder **ary) { 
+
+        njli::SceneBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::SceneBuilder *SceneBuilderArray_getitem(njli::SceneBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SceneBuilderArray_setitem(njli::SceneBuilder **ary, int index, njli::SceneBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::SceneState **new_SceneStateArray(int nelements) { 
+
+        return njli::SceneState::createArray(nelements);
+        
+}
+    
+    static void delete_SceneStateArray(njli::SceneState **ary) { 
+
+        njli::SceneState::destroyArray(ary);
+        
+}
+    
+    static njli::SceneState *SceneStateArray_getitem(njli::SceneState **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SceneStateArray_setitem(njli::SceneState **ary, int index, njli::SceneState *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::SceneStateBuilder **new_SceneStateBuilderArray(int nelements) { 
+
+        return njli::SceneStateBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_SceneStateBuilderArray(njli::SceneStateBuilder **ary) { 
+
+        njli::SceneStateBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::SceneStateBuilder *SceneStateBuilderArray_getitem(njli::SceneStateBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SceneStateBuilderArray_setitem(njli::SceneStateBuilder **ary, int index, njli::SceneStateBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::SceneStateMachine **new_SceneStateMachineArray(int nelements) { 
+
+        return njli::SceneStateMachine::createArray(nelements);
+        
+}
+    
+    static void delete_SceneStateMachineArray(njli::SceneStateMachine **ary) { 
+
+        njli::SceneStateMachine::destroyArray(ary);
+        
+}
+    
+    static njli::SceneStateMachine *SceneStateMachineArray_getitem(njli::SceneStateMachine **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SceneStateMachineArray_setitem(njli::SceneStateMachine **ary, int index, njli::SceneStateMachine *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::SceneStateMachineBuilder **new_SceneStateMachineBuilderArray(int nelements) { 
+
+        return njli::SceneStateMachineBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_SceneStateMachineBuilderArray(njli::SceneStateMachineBuilder **ary) { 
+
+        njli::SceneStateMachineBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::SceneStateMachineBuilder *SceneStateMachineBuilderArray_getitem(njli::SceneStateMachineBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SceneStateMachineBuilderArray_setitem(njli::SceneStateMachineBuilder **ary, int index, njli::SceneStateMachineBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::ShaderProgram **new_ShaderProgramArray(int nelements) { 
+
+        return njli::ShaderProgram::createArray(nelements);
+        
+}
+    
+    static void delete_ShaderProgramArray(njli::ShaderProgram **ary) { 
+
+        njli::ShaderProgram::destroyArray(ary);
+        
+}
+    
+    static njli::ShaderProgram *ShaderProgramArray_getitem(njli::ShaderProgram **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void ShaderProgramArray_setitem(njli::ShaderProgram **ary, int index, njli::ShaderProgram *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::ShaderProgramBuilder **new_ShaderProgramBuilderArray(int nelements) { 
+
+        return njli::ShaderProgramBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_ShaderProgramBuilderArray(njli::ShaderProgramBuilder **ary) { 
+
+        njli::ShaderProgramBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::ShaderProgramBuilder *ShaderProgramBuilderArray_getitem(njli::ShaderProgramBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void ShaderProgramBuilderArray_setitem(njli::ShaderProgramBuilder **ary, int index, njli::ShaderProgramBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::Skinner **new_SkinnerArray(int nelements) { 
+
+        return njli::Skinner::createArray(nelements);
+        
+}
+    
+    static void delete_SkinnerArray(njli::Skinner **ary) { 
+
+        njli::Skinner::destroyArray(ary);
+        
+}
+    
+    static njli::Skinner *SkinnerArray_getitem(njli::Skinner **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SkinnerArray_setitem(njli::Skinner **ary, int index, njli::Skinner *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::SkinnerBuilder **new_SkinnerBuilderArray(int nelements) { 
+
+        return njli::SkinnerBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_SkinnerBuilderArray(njli::SkinnerBuilder **ary) { 
+
+        njli::SkinnerBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::SkinnerBuilder *SkinnerBuilderArray_getitem(njli::SkinnerBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SkinnerBuilderArray_setitem(njli::SkinnerBuilder **ary, int index, njli::SkinnerBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::SoundBuilder **new_SoundBuilderArray(int nelements) { 
+
+        return njli::SoundBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_SoundBuilderArray(njli::SoundBuilder **ary) { 
+
+        njli::SoundBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::SoundBuilder *SoundBuilderArray_getitem(njli::SoundBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SoundBuilderArray_setitem(njli::SoundBuilder **ary, int index, njli::SoundBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::Sprite2D **new_Sprite2DArray(int nelements) { 
+
+        return njli::Sprite2D::createArray(nelements);
+        
+}
+    
+    static void delete_Sprite2DArray(njli::Sprite2D **ary) { 
+
+        njli::Sprite2D::destroyArray(ary);
+        
+}
+    
+    static njli::Sprite2D *Sprite2DArray_getitem(njli::Sprite2D **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void Sprite2DArray_setitem(njli::Sprite2D **ary, int index, njli::Sprite2D *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::Sprite2DBuilder **new_Sprite2DBuilderArray(int nelements) { 
+
+        return njli::Sprite2DBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_Sprite2DBuilderArray(njli::Sprite2DBuilder **ary) { 
+
+        njli::Sprite2DBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::Sprite2DBuilder *Sprite2DBuilderArray_getitem(njli::Sprite2DBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void Sprite2DBuilderArray_setitem(njli::Sprite2DBuilder **ary, int index, njli::Sprite2DBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::SpriteFrameAtlas **new_SpriteFrameAtlasArray(int nelements) { 
+
+        return njli::SpriteFrameAtlas::createArray(nelements);
+        
+}
+    
+    static void delete_SpriteFrameAtlasArray(njli::SpriteFrameAtlas **ary) { 
+
+        njli::SpriteFrameAtlas::destroyArray(ary);
+        
+}
+    
+    static njli::SpriteFrameAtlas *SpriteFrameAtlasArray_getitem(njli::SpriteFrameAtlas **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SpriteFrameAtlasArray_setitem(njli::SpriteFrameAtlas **ary, int index, njli::SpriteFrameAtlas *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::SpriteFrameAtlasBuilder **new_SpriteFrameAtlasBuilderArray(int nelements) { 
+
+        return njli::SpriteFrameAtlasBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_SpriteFrameAtlasBuilderArray(njli::SpriteFrameAtlasBuilder **ary) { 
+
+        njli::SpriteFrameAtlasBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::SpriteFrameAtlasBuilder *SpriteFrameAtlasBuilderArray_getitem(njli::SpriteFrameAtlasBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SpriteFrameAtlasBuilderArray_setitem(njli::SpriteFrameAtlasBuilder **ary, int index, njli::SpriteFrameAtlasBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::SteeringBehaviorAlignment **new_SteeringBehaviorAlignment(int nelements) { 
+
+        return njli::SteeringBehaviorAlignment::createArray(nelements);
+        
+}
+    
+    static void delete_SteeringBehaviorAlignment(njli::SteeringBehaviorAlignment **ary) { 
+
+        njli::SteeringBehaviorAlignment::destroyArray(ary);
+        
+}
+    
+    static njli::SteeringBehaviorAlignment *SteeringBehaviorAlignment_getitem(njli::SteeringBehaviorAlignment **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SteeringBehaviorAlignment_setitem(njli::SteeringBehaviorAlignment **ary, int index, njli::SteeringBehaviorAlignment *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::SteeringBehaviorAlignmentBuilder **new_SteeringBehaviorAlignmentBuilder(int nelements) { 
+
+        return njli::SteeringBehaviorAlignmentBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_SteeringBehaviorAlignmentBuilder(njli::SteeringBehaviorAlignmentBuilder **ary) { 
+
+        njli::SteeringBehaviorAlignmentBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::SteeringBehaviorAlignmentBuilder *SteeringBehaviorAlignmentBuilder_getitem(njli::SteeringBehaviorAlignmentBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SteeringBehaviorAlignmentBuilder_setitem(njli::SteeringBehaviorAlignmentBuilder **ary, int index, njli::SteeringBehaviorAlignmentBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::SteeringBehaviorArrive **new_SteeringBehaviorArrive(int nelements) { 
+
+        return njli::SteeringBehaviorArrive::createArray(nelements);
+        
+}
+    
+    static void delete_SteeringBehaviorArrive(njli::SteeringBehaviorArrive **ary) { 
+
+        njli::SteeringBehaviorArrive::destroyArray(ary);
+        
+}
+    
+    static njli::SteeringBehaviorArrive *SteeringBehaviorArrive_getitem(njli::SteeringBehaviorArrive **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SteeringBehaviorArrive_setitem(njli::SteeringBehaviorArrive **ary, int index, njli::SteeringBehaviorArrive *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::SteeringBehaviorArriveBuilder **new_SteeringBehaviorArriveBuilder(int nelements) { 
+
+        return njli::SteeringBehaviorArriveBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_SteeringBehaviorArriveBuilder(njli::SteeringBehaviorArriveBuilder **ary) { 
+
+        njli::SteeringBehaviorArriveBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::SteeringBehaviorArriveBuilder *SteeringBehaviorArriveBuilder_getitem(njli::SteeringBehaviorArriveBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SteeringBehaviorArriveBuilder_setitem(njli::SteeringBehaviorArriveBuilder **ary, int index, njli::SteeringBehaviorArriveBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::SteeringBehaviorCohesion **new_SteeringBehaviorCohesion(int nelements) { 
+
+        return njli::SteeringBehaviorCohesion::createArray(nelements);
+        
+}
+    
+    static void delete_SteeringBehaviorCohesion(njli::SteeringBehaviorCohesion **ary) { 
+
+        njli::SteeringBehaviorCohesion::destroyArray(ary);
+        
+}
+    
+    static njli::SteeringBehaviorCohesion *SteeringBehaviorCohesion_getitem(njli::SteeringBehaviorCohesion **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SteeringBehaviorCohesion_setitem(njli::SteeringBehaviorCohesion **ary, int index, njli::SteeringBehaviorCohesion *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::SteeringBehaviorCohesionBuilder **new_SteeringBehaviorCohesionBuilder(int nelements) { 
+
+        return njli::SteeringBehaviorCohesionBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_SteeringBehaviorCohesionBuilder(njli::SteeringBehaviorCohesionBuilder **ary) { 
+
+        njli::SteeringBehaviorCohesionBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::SteeringBehaviorCohesionBuilder *SteeringBehaviorCohesionBuilder_getitem(njli::SteeringBehaviorCohesionBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SteeringBehaviorCohesionBuilder_setitem(njli::SteeringBehaviorCohesionBuilder **ary, int index, njli::SteeringBehaviorCohesionBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::SteeringBehaviorEvade **new_SteeringBehaviorEvade(int nelements) { 
+
+        return njli::SteeringBehaviorEvade::createArray(nelements);
+        
+}
+    
+    static void delete_SteeringBehaviorEvade(njli::SteeringBehaviorEvade **ary) { 
+
+        njli::SteeringBehaviorEvade::destroyArray(ary);
+        
+}
+    
+    static njli::SteeringBehaviorEvade *SteeringBehaviorEvade_getitem(njli::SteeringBehaviorEvade **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SteeringBehaviorEvade_setitem(njli::SteeringBehaviorEvade **ary, int index, njli::SteeringBehaviorEvade *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::SteeringBehaviorEvadeBuilder **new_SteeringBehaviorEvadeBuilder(int nelements) { 
+
+        return njli::SteeringBehaviorEvadeBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_SteeringBehaviorEvadeBuilder(njli::SteeringBehaviorEvadeBuilder **ary) { 
+
+        njli::SteeringBehaviorEvadeBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::SteeringBehaviorEvadeBuilder *SteeringBehaviorEvadeBuilder_getitem(njli::SteeringBehaviorEvadeBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SteeringBehaviorEvadeBuilder_setitem(njli::SteeringBehaviorEvadeBuilder **ary, int index, njli::SteeringBehaviorEvadeBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::SteeringBehaviorFlee **new_SteeringBehaviorFlee(int nelements) { 
+
+        return njli::SteeringBehaviorFlee::createArray(nelements);
+        
+}
+    
+    static void delete_SteeringBehaviorFlee(njli::SteeringBehaviorFlee **ary) { 
+
+        njli::SteeringBehaviorFlee::destroyArray(ary);
+        
+}
+    
+    static njli::SteeringBehaviorFlee *SteeringBehaviorFlee_getitem(njli::SteeringBehaviorFlee **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SteeringBehaviorFlee_setitem(njli::SteeringBehaviorFlee **ary, int index, njli::SteeringBehaviorFlee *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::SteeringBehaviorFleeBuilder **new_SteeringBehaviorFleeBuilder(int nelements) { 
+
+        return njli::SteeringBehaviorFleeBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_SteeringBehaviorFleeBuilder(njli::SteeringBehaviorFleeBuilder **ary) { 
+
+        njli::SteeringBehaviorFleeBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::SteeringBehaviorFleeBuilder *SteeringBehaviorFleeBuilder_getitem(njli::SteeringBehaviorFleeBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SteeringBehaviorFleeBuilder_setitem(njli::SteeringBehaviorFleeBuilder **ary, int index, njli::SteeringBehaviorFleeBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::SteeringBehaviorFollowPath **new_SteeringBehaviorFollowPath(int nelements) { 
+
+        return njli::SteeringBehaviorFollowPath::createArray(nelements);
+        
+}
+    
+    static void delete_SteeringBehaviorFollowPath(njli::SteeringBehaviorFollowPath **ary) { 
+
+        njli::SteeringBehaviorFollowPath::destroyArray(ary);
+        
+}
+    
+    static njli::SteeringBehaviorFollowPath *SteeringBehaviorFollowPath_getitem(njli::SteeringBehaviorFollowPath **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SteeringBehaviorFollowPath_setitem(njli::SteeringBehaviorFollowPath **ary, int index, njli::SteeringBehaviorFollowPath *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::SteeringBehaviorFollowPathBuilder **new_SteeringBehaviorFollowPathBuilder(int nelements) { 
+
+        return njli::SteeringBehaviorFollowPathBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_SteeringBehaviorFollowPathBuilder(njli::SteeringBehaviorFollowPathBuilder **ary) { 
+
+        njli::SteeringBehaviorFollowPathBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::SteeringBehaviorFollowPathBuilder *SteeringBehaviorFollowPathBuilder_getitem(njli::SteeringBehaviorFollowPathBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SteeringBehaviorFollowPathBuilder_setitem(njli::SteeringBehaviorFollowPathBuilder **ary, int index, njli::SteeringBehaviorFollowPathBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::SteeringBehaviorHide **new_SteeringBehaviorHide(int nelements) { 
+
+        return njli::SteeringBehaviorHide::createArray(nelements);
+        
+}
+    
+    static void delete_SteeringBehaviorHide(njli::SteeringBehaviorHide **ary) { 
+
+        njli::SteeringBehaviorHide::destroyArray(ary);
+        
+}
+    
+    static njli::SteeringBehaviorHide *SteeringBehaviorHide_getitem(njli::SteeringBehaviorHide **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SteeringBehaviorHide_setitem(njli::SteeringBehaviorHide **ary, int index, njli::SteeringBehaviorHide *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::SteeringBehaviorHideBuilder **new_SteeringBehaviorHideBuilder(int nelements) { 
+
+        return njli::SteeringBehaviorHideBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_SteeringBehaviorHideBuilder(njli::SteeringBehaviorHideBuilder **ary) { 
+
+        njli::SteeringBehaviorHideBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::SteeringBehaviorHideBuilder *SteeringBehaviorHideBuilder_getitem(njli::SteeringBehaviorHideBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SteeringBehaviorHideBuilder_setitem(njli::SteeringBehaviorHideBuilder **ary, int index, njli::SteeringBehaviorHideBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::SteeringBehaviorInterpose **new_SteeringBehaviorInterpose(int nelements) { 
+
+        return njli::SteeringBehaviorInterpose::createArray(nelements);
+        
+}
+    
+    static void delete_SteeringBehaviorInterpose(njli::SteeringBehaviorInterpose **ary) { 
+
+        njli::SteeringBehaviorInterpose::destroyArray(ary);
+        
+}
+    
+    static njli::SteeringBehaviorInterpose *SteeringBehaviorInterpose_getitem(njli::SteeringBehaviorInterpose **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SteeringBehaviorInterpose_setitem(njli::SteeringBehaviorInterpose **ary, int index, njli::SteeringBehaviorInterpose *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::SteeringBehaviorInterposeBuilder **new_SteeringBehaviorInterposeBuilder(int nelements) { 
+
+        return njli::SteeringBehaviorInterposeBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_SteeringBehaviorInterposeBuilder(njli::SteeringBehaviorInterposeBuilder **ary) { 
+
+        njli::SteeringBehaviorInterposeBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::SteeringBehaviorInterposeBuilder *SteeringBehaviorInterposeBuilder_getitem(njli::SteeringBehaviorInterposeBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SteeringBehaviorInterposeBuilder_setitem(njli::SteeringBehaviorInterposeBuilder **ary, int index, njli::SteeringBehaviorInterposeBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::SteeringBehaviorMachineDithered **new_SteeringBehaviorMachineDithered(int nelements) { 
+
+        return njli::SteeringBehaviorMachineDithered::createArray(nelements);
+        
+}
+    
+    static void delete_SteeringBehaviorMachineDithered(njli::SteeringBehaviorMachineDithered **ary) { 
+
+        njli::SteeringBehaviorMachineDithered::destroyArray(ary);
+        
+}
+    
+    static njli::SteeringBehaviorMachineDithered *SteeringBehaviorMachineDithered_getitem(njli::SteeringBehaviorMachineDithered **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SteeringBehaviorMachineDithered_setitem(njli::SteeringBehaviorMachineDithered **ary, int index, njli::SteeringBehaviorMachineDithered *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::SteeringBehaviorMachineDitheredBuilder **new_SteeringBehaviorMachineDitheredBuilder(int nelements) { 
+
+        return njli::SteeringBehaviorMachineDitheredBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_SteeringBehaviorMachineDitheredBuilder(njli::SteeringBehaviorMachineDitheredBuilder **ary) { 
+
+        njli::SteeringBehaviorMachineDitheredBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::SteeringBehaviorMachineDitheredBuilder *SteeringBehaviorMachineDitheredBuilder_getitem(njli::SteeringBehaviorMachineDitheredBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SteeringBehaviorMachineDitheredBuilder_setitem(njli::SteeringBehaviorMachineDitheredBuilder **ary, int index, njli::SteeringBehaviorMachineDitheredBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::SteeringBehaviorMachinePrioritized **new_SteeringBehaviorMachinePrioritized(int nelements) { 
+
+        return njli::SteeringBehaviorMachinePrioritized::createArray(nelements);
+        
+}
+    
+    static void delete_SteeringBehaviorMachinePrioritized(njli::SteeringBehaviorMachinePrioritized **ary) { 
+
+        njli::SteeringBehaviorMachinePrioritized::destroyArray(ary);
+        
+}
+    
+    static njli::SteeringBehaviorMachinePrioritized *SteeringBehaviorMachinePrioritized_getitem(njli::SteeringBehaviorMachinePrioritized **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SteeringBehaviorMachinePrioritized_setitem(njli::SteeringBehaviorMachinePrioritized **ary, int index, njli::SteeringBehaviorMachinePrioritized *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::SteeringBehaviorMachinePrioritizedBuilder **new_SteeringBehaviorMachinePrioritizedBuilder(int nelements) { 
+
+        return njli::SteeringBehaviorMachinePrioritizedBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_SteeringBehaviorMachinePrioritizedBuilder(njli::SteeringBehaviorMachinePrioritizedBuilder **ary) { 
+
+        njli::SteeringBehaviorMachinePrioritizedBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::SteeringBehaviorMachinePrioritizedBuilder *SteeringBehaviorMachinePrioritizedBuilder_getitem(njli::SteeringBehaviorMachinePrioritizedBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SteeringBehaviorMachinePrioritizedBuilder_setitem(njli::SteeringBehaviorMachinePrioritizedBuilder **ary, int index, njli::SteeringBehaviorMachinePrioritizedBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::SteeringBehaviorMachineWeighted **new_SteeringBehaviorMachineWeighted(int nelements) { 
+
+        return njli::SteeringBehaviorMachineWeighted::createArray(nelements);
+        
+}
+    
+    static void delete_SteeringBehaviorMachineWeighted(njli::SteeringBehaviorMachineWeighted **ary) { 
+
+        njli::SteeringBehaviorMachineWeighted::destroyArray(ary);
+        
+}
+    
+    static njli::SteeringBehaviorMachineWeighted *SteeringBehaviorMachineWeighted_getitem(njli::SteeringBehaviorMachineWeighted **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SteeringBehaviorMachineWeighted_setitem(njli::SteeringBehaviorMachineWeighted **ary, int index, njli::SteeringBehaviorMachineWeighted *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::SteeringBehaviorMachineWeightedBuilder **new_SteeringBehaviorMachineWeightedBuilder(int nelements) { 
+
+        return njli::SteeringBehaviorMachineWeightedBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_SteeringBehaviorMachineWeightedBuilder(njli::SteeringBehaviorMachineWeightedBuilder **ary) { 
+
+        njli::SteeringBehaviorMachineWeightedBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::SteeringBehaviorMachineWeightedBuilder *SteeringBehaviorMachineWeightedBuilder_getitem(njli::SteeringBehaviorMachineWeightedBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SteeringBehaviorMachineWeightedBuilder_setitem(njli::SteeringBehaviorMachineWeightedBuilder **ary, int index, njli::SteeringBehaviorMachineWeightedBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::SteeringBehaviorObstacleAvoidance **new_SteeringBehaviorObstacleAvoidance(int nelements) { 
+
+        return njli::SteeringBehaviorObstacleAvoidance::createArray(nelements);
+        
+}
+    
+    static void delete_SteeringBehaviorObstacleAvoidance(njli::SteeringBehaviorObstacleAvoidance **ary) { 
+
+        njli::SteeringBehaviorObstacleAvoidance::destroyArray(ary);
+        
+}
+    
+    static njli::SteeringBehaviorObstacleAvoidance *SteeringBehaviorObstacleAvoidance_getitem(njli::SteeringBehaviorObstacleAvoidance **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SteeringBehaviorObstacleAvoidance_setitem(njli::SteeringBehaviorObstacleAvoidance **ary, int index, njli::SteeringBehaviorObstacleAvoidance *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::SteeringBehaviorObstacleAvoidanceBuilder **new_SteeringBehaviorObstacleAvoidanceBuilder(int nelements) { 
+
+        return njli::SteeringBehaviorObstacleAvoidanceBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_SteeringBehaviorObstacleAvoidanceBuilder(njli::SteeringBehaviorObstacleAvoidanceBuilder **ary) { 
+
+        njli::SteeringBehaviorObstacleAvoidanceBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::SteeringBehaviorObstacleAvoidanceBuilder *SteeringBehaviorObstacleAvoidanceBuilder_getitem(njli::SteeringBehaviorObstacleAvoidanceBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SteeringBehaviorObstacleAvoidanceBuilder_setitem(njli::SteeringBehaviorObstacleAvoidanceBuilder **ary, int index, njli::SteeringBehaviorObstacleAvoidanceBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::SteeringBehaviorOffsetPursuit **new_SteeringBehaviorOffsetPursuit(int nelements) { 
+
+        return njli::SteeringBehaviorOffsetPursuit::createArray(nelements);
+        
+}
+    
+    static void delete_SteeringBehaviorOffsetPursuit(njli::SteeringBehaviorOffsetPursuit **ary) { 
+
+        njli::SteeringBehaviorOffsetPursuit::destroyArray(ary);
+        
+}
+    
+    static njli::SteeringBehaviorOffsetPursuit *SteeringBehaviorOffsetPursuit_getitem(njli::SteeringBehaviorOffsetPursuit **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SteeringBehaviorOffsetPursuit_setitem(njli::SteeringBehaviorOffsetPursuit **ary, int index, njli::SteeringBehaviorOffsetPursuit *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::SteeringBehaviorOffsetPursuitBuilder **new_SteeringBehaviorOffsetPursuitBuilder(int nelements) { 
+
+        return njli::SteeringBehaviorOffsetPursuitBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_SteeringBehaviorOffsetPursuitBuilder(njli::SteeringBehaviorOffsetPursuitBuilder **ary) { 
+
+        njli::SteeringBehaviorOffsetPursuitBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::SteeringBehaviorOffsetPursuitBuilder *SteeringBehaviorOffsetPursuitBuilder_getitem(njli::SteeringBehaviorOffsetPursuitBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SteeringBehaviorOffsetPursuitBuilder_setitem(njli::SteeringBehaviorOffsetPursuitBuilder **ary, int index, njli::SteeringBehaviorOffsetPursuitBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::SteeringBehaviorPursuit **new_SteeringBehaviorPursuit(int nelements) { 
+
+        return njli::SteeringBehaviorPursuit::createArray(nelements);
+        
+}
+    
+    static void delete_SteeringBehaviorPursuit(njli::SteeringBehaviorPursuit **ary) { 
+
+        njli::SteeringBehaviorPursuit::destroyArray(ary);
+        
+}
+    
+    static njli::SteeringBehaviorPursuit *SteeringBehaviorPursuit_getitem(njli::SteeringBehaviorPursuit **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SteeringBehaviorPursuit_setitem(njli::SteeringBehaviorPursuit **ary, int index, njli::SteeringBehaviorPursuit *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::SteeringBehaviorPursuitBuilder **new_SteeringBehaviorPursuitBuilder(int nelements) { 
+
+        return njli::SteeringBehaviorPursuitBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_SteeringBehaviorPursuitBuilder(njli::SteeringBehaviorPursuitBuilder **ary) { 
+
+        njli::SteeringBehaviorPursuitBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::SteeringBehaviorPursuitBuilder *SteeringBehaviorPursuitBuilder_getitem(njli::SteeringBehaviorPursuitBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SteeringBehaviorPursuitBuilder_setitem(njli::SteeringBehaviorPursuitBuilder **ary, int index, njli::SteeringBehaviorPursuitBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::SteeringBehaviorSeek **new_SteeringBehaviorSeek(int nelements) { 
+
+        return njli::SteeringBehaviorSeek::createArray(nelements);
+        
+}
+    
+    static void delete_SteeringBehaviorSeek(njli::SteeringBehaviorSeek **ary) { 
+
+        njli::SteeringBehaviorSeek::destroyArray(ary);
+        
+}
+    
+    static njli::SteeringBehaviorSeek *SteeringBehaviorSeek_getitem(njli::SteeringBehaviorSeek **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SteeringBehaviorSeek_setitem(njli::SteeringBehaviorSeek **ary, int index, njli::SteeringBehaviorSeek *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::SteeringBehaviorSeekBuilder **new_SteeringBehaviorSeekBuilder(int nelements) { 
+
+        return njli::SteeringBehaviorSeekBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_SteeringBehaviorSeekBuilder(njli::SteeringBehaviorSeekBuilder **ary) { 
+
+        njli::SteeringBehaviorSeekBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::SteeringBehaviorSeekBuilder *SteeringBehaviorSeekBuilder_getitem(njli::SteeringBehaviorSeekBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SteeringBehaviorSeekBuilder_setitem(njli::SteeringBehaviorSeekBuilder **ary, int index, njli::SteeringBehaviorSeekBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::SteeringBehaviorSeparation **new_SteeringBehaviorSeparation(int nelements) { 
+
+        return njli::SteeringBehaviorSeparation::createArray(nelements);
+        
+}
+    
+    static void delete_SteeringBehaviorSeparation(njli::SteeringBehaviorSeparation **ary) { 
+
+        njli::SteeringBehaviorSeparation::destroyArray(ary);
+        
+}
+    
+    static njli::SteeringBehaviorSeparation *SteeringBehaviorSeparation_getitem(njli::SteeringBehaviorSeparation **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SteeringBehaviorSeparation_setitem(njli::SteeringBehaviorSeparation **ary, int index, njli::SteeringBehaviorSeparation *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::SteeringBehaviorSeparationBuilder **new_SteeringBehaviorSeparationBuilder(int nelements) { 
+
+        return njli::SteeringBehaviorSeparationBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_SteeringBehaviorSeparationBuilder(njli::SteeringBehaviorSeparationBuilder **ary) { 
+
+        njli::SteeringBehaviorSeparationBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::SteeringBehaviorSeparationBuilder *SteeringBehaviorSeparationBuilder_getitem(njli::SteeringBehaviorSeparationBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SteeringBehaviorSeparationBuilder_setitem(njli::SteeringBehaviorSeparationBuilder **ary, int index, njli::SteeringBehaviorSeparationBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::SteeringBehaviorWallAvoidance **new_SteeringBehaviorWallAvoidance(int nelements) { 
+
+        return njli::SteeringBehaviorWallAvoidance::createArray(nelements);
+        
+}
+    
+    static void delete_SteeringBehaviorWallAvoidance(njli::SteeringBehaviorWallAvoidance **ary) { 
+
+        njli::SteeringBehaviorWallAvoidance::destroyArray(ary);
+        
+}
+    
+    static njli::SteeringBehaviorWallAvoidance *SteeringBehaviorWallAvoidance_getitem(njli::SteeringBehaviorWallAvoidance **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SteeringBehaviorWallAvoidance_setitem(njli::SteeringBehaviorWallAvoidance **ary, int index, njli::SteeringBehaviorWallAvoidance *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::SteeringBehaviorWallAvoidanceBuilder **new_SteeringBehaviorWallAvoidanceBuilder(int nelements) { 
+
+        return njli::SteeringBehaviorWallAvoidanceBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_SteeringBehaviorWallAvoidanceBuilder(njli::SteeringBehaviorWallAvoidanceBuilder **ary) { 
+
+        njli::SteeringBehaviorWallAvoidanceBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::SteeringBehaviorWallAvoidanceBuilder *SteeringBehaviorWallAvoidanceBuilder_getitem(njli::SteeringBehaviorWallAvoidanceBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SteeringBehaviorWallAvoidanceBuilder_setitem(njli::SteeringBehaviorWallAvoidanceBuilder **ary, int index, njli::SteeringBehaviorWallAvoidanceBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::SteeringBehaviorWander **new_SteeringBehaviorWander(int nelements) { 
+
+        return njli::SteeringBehaviorWander::createArray(nelements);
+        
+}
+    
+    static void delete_SteeringBehaviorWander(njli::SteeringBehaviorWander **ary) { 
+
+        njli::SteeringBehaviorWander::destroyArray(ary);
+        
+}
+    
+    static njli::SteeringBehaviorWander *SteeringBehaviorWander_getitem(njli::SteeringBehaviorWander **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SteeringBehaviorWander_setitem(njli::SteeringBehaviorWander **ary, int index, njli::SteeringBehaviorWander *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::SteeringBehaviorWanderBuilder **new_SteeringBehaviorWanderBuilder(int nelements) { 
+
+        return njli::SteeringBehaviorWanderBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_SteeringBehaviorWanderBuilder(njli::SteeringBehaviorWanderBuilder **ary) { 
+
+        njli::SteeringBehaviorWanderBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::SteeringBehaviorWanderBuilder *SteeringBehaviorWanderBuilder_getitem(njli::SteeringBehaviorWanderBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SteeringBehaviorWanderBuilder_setitem(njli::SteeringBehaviorWanderBuilder **ary, int index, njli::SteeringBehaviorWanderBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::StopWatch **new_StopWatchArray(int nelements) { 
+
+        return njli::StopWatch::createArray(nelements);
+        
+}
+    
+    static void delete_StopWatchArray(njli::StopWatch **ary) { 
+
+        njli::StopWatch::destroyArray(ary);
+        
+}
+    
+    static njli::StopWatch *StopWatchArray_getitem(njli::StopWatch **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void StopWatchArray_setitem(njli::StopWatch **ary, int index, njli::StopWatch *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::StopWatchBuilder **new_StopWatchBuilderArray(int nelements) { 
+
+        return njli::StopWatchBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_StopWatchBuilderArray(njli::StopWatchBuilder **ary) { 
+
+        njli::StopWatchBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::StopWatchBuilder *StopWatchBuilderArray_getitem(njli::StopWatchBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void StopWatchBuilderArray_setitem(njli::StopWatchBuilder **ary, int index, njli::StopWatchBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::Timer **new_TimerArray(int nelements) { 
+
+        return njli::Timer::createArray(nelements);
+        
+}
+    
+    static void delete_TimerArray(njli::Timer **ary) { 
+
+        njli::Timer::destroyArray(ary);
+        
+}
+    
+    static njli::Timer *TimerArray_getitem(njli::Timer **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void TimerArray_setitem(njli::Timer **ary, int index, njli::Timer *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::TimerBuilder **new_TimerBuilderArray(int nelements) { 
+
+        return njli::TimerBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_TimerBuilderArray(njli::TimerBuilder **ary) { 
+
+        njli::TimerBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::TimerBuilder *TimerBuilderArray_getitem(njli::TimerBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void TimerBuilderArray_setitem(njli::TimerBuilder **ary, int index, njli::TimerBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::ButtonHUD **new_ButtonHUDArray(int nelements) { 
+
+        return njli::ButtonHUD::createArray(nelements);
+        
+}
+    
+    static void delete_ButtonHUDArray(njli::ButtonHUD **ary) { 
+
+        njli::ButtonHUD::destroyArray(ary);
+        
+}
+    
+    static njli::ButtonHUD *ButtonHUDArray_getitem(njli::ButtonHUD **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void ButtonHUDArray_setitem(njli::ButtonHUD **ary, int index, njli::ButtonHUD *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::ButtonHUDBuilder **new_ButtonHUDBuilderArray(int nelements) { 
+
+        return njli::ButtonHUDBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_ButtonHUDBuilderArray(njli::ButtonHUDBuilder **ary) { 
+
+        njli::ButtonHUDBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::ButtonHUDBuilder *ButtonHUDBuilderArray_getitem(njli::ButtonHUDBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void ButtonHUDBuilderArray_setitem(njli::ButtonHUDBuilder **ary, int index, njli::ButtonHUDBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::CheckboxHUD **new_CheckboxHUDArray(int nelements) { 
+
+        return njli::CheckboxHUD::createArray(nelements);
+        
+}
+    
+    static void delete_CheckboxHUDArray(njli::CheckboxHUD **ary) { 
+
+        njli::CheckboxHUD::destroyArray(ary);
+        
+}
+    
+    static njli::CheckboxHUD *CheckboxHUDArray_getitem(njli::CheckboxHUD **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void CheckboxHUDArray_setitem(njli::CheckboxHUD **ary, int index, njli::CheckboxHUD *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::CheckboxHUDBuilder **new_CheckboxHUDBuilderArray(int nelements) { 
+
+        return njli::CheckboxHUDBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_CheckboxHUDBuilderArray(njli::CheckboxHUDBuilder **ary) { 
+
+        njli::CheckboxHUDBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::CheckboxHUDBuilder *CheckboxHUDBuilderArray_getitem(njli::CheckboxHUDBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void CheckboxHUDBuilderArray_setitem(njli::CheckboxHUDBuilder **ary, int index, njli::CheckboxHUDBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::DropdownHUD **new_DropdownHUDArray(int nelements) { 
+
+        return njli::DropdownHUD::createArray(nelements);
+        
+}
+    
+    static void delete_DropdownHUDArray(njli::DropdownHUD **ary) { 
+
+        njli::DropdownHUD::destroyArray(ary);
+        
+}
+    
+    static njli::DropdownHUD *DropdownHUDArray_getitem(njli::DropdownHUD **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void DropdownHUDArray_setitem(njli::DropdownHUD **ary, int index, njli::DropdownHUD *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::DropdownHUDBuilder **new_DropdownHUDBuilderArray(int nelements) { 
+
+        return njli::DropdownHUDBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_DropdownHUDBuilderArray(njli::DropdownHUDBuilder **ary) { 
+
+        njli::DropdownHUDBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::DropdownHUDBuilder *DropdownHUDBuilderArray_getitem(njli::DropdownHUDBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void DropdownHUDBuilderArray_setitem(njli::DropdownHUDBuilder **ary, int index, njli::DropdownHUDBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::LabelHUD **new_LabelHUDArray(int nelements) { 
+
+        return njli::LabelHUD::createArray(nelements);
+        
+}
+    
+    static void delete_LabelHUDArray(njli::LabelHUD **ary) { 
+
+        njli::LabelHUD::destroyArray(ary);
+        
+}
+    
+    static njli::LabelHUD *LabelHUDArray_getitem(njli::LabelHUD **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void LabelHUDArray_setitem(njli::LabelHUD **ary, int index, njli::LabelHUD *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::LabelHUDBuilder **new_LabelHUDBuilderArray(int nelements) { 
+
+        return njli::LabelHUDBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_LabelHUDBuilderArray(njli::LabelHUDBuilder **ary) { 
+
+        njli::LabelHUDBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::LabelHUDBuilder *LabelHUDBuilderArray_getitem(njli::LabelHUDBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void LabelHUDBuilderArray_setitem(njli::LabelHUDBuilder **ary, int index, njli::LabelHUDBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::SliderHUD **new_SliderHUDArray(int nelements) { 
+
+        return njli::SliderHUD::createArray(nelements);
+        
+}
+    
+    static void delete_SliderHUDArray(njli::SliderHUD **ary) { 
+
+        njli::SliderHUD::destroyArray(ary);
+        
+}
+    
+    static njli::SliderHUD *SliderHUDArray_getitem(njli::SliderHUD **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SliderHUDArray_setitem(njli::SliderHUD **ary, int index, njli::SliderHUD *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::SliderHUDBuilder **new_SliderHUDBuilderArray(int nelements) { 
+
+        return njli::SliderHUDBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_SliderHUDBuilderArray(njli::SliderHUDBuilder **ary) { 
+
+        njli::SliderHUDBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::SliderHUDBuilder *SliderHUDBuilderArray_getitem(njli::SliderHUDBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void SliderHUDBuilderArray_setitem(njli::SliderHUDBuilder **ary, int index, njli::SliderHUDBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::TextboxHUD **new_TextboxHUDArray(int nelements) { 
+
+        return njli::TextboxHUD::createArray(nelements);
+        
+}
+    
+    static void delete_TextboxHUDArray(njli::TextboxHUD **ary) { 
+
+        njli::TextboxHUD::destroyArray(ary);
+        
+}
+    
+    static njli::TextboxHUD *TextboxHUDArray_getitem(njli::TextboxHUD **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void TextboxHUDArray_setitem(njli::TextboxHUD **ary, int index, njli::TextboxHUD *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::TextboxHUDBuilder **new_TextboxHUDBuilderArray(int nelements) { 
+
+        return njli::TextboxHUDBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_TextboxHUDBuilderArray(njli::TextboxHUDBuilder **ary) { 
+
+        njli::TextboxHUDBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::TextboxHUDBuilder *TextboxHUDBuilderArray_getitem(njli::TextboxHUDBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void TextboxHUDBuilderArray_setitem(njli::TextboxHUDBuilder **ary, int index, njli::TextboxHUDBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::WorldState **new_WorldStateArray(int nelements) { 
+
+        return njli::WorldState::createArray(nelements);
+        
+}
+    
+    static void delete_WorldStateArray(njli::WorldState **ary) { 
+
+        njli::WorldState::destroyArray(ary);
+        
+}
+    
+    static njli::WorldState *WorldStateArray_getitem(njli::WorldState **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void WorldStateArray_setitem(njli::WorldState **ary, int index, njli::WorldState *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::WorldStateBuilder **new_WorldStateBuilderArray(int nelements) { 
+
+        return njli::WorldStateBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_WorldStateBuilderArray(njli::WorldStateBuilder **ary) { 
+
+        njli::WorldStateBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::WorldStateBuilder *WorldStateBuilderArray_getitem(njli::WorldStateBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void WorldStateBuilderArray_setitem(njli::WorldStateBuilder **ary, int index, njli::WorldStateBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::WorldStateMachine **new_WorldStateMachineArray(int nelements) { 
+
+        return njli::WorldStateMachine::createArray(nelements);
+        
+}
+    
+    static void delete_WorldStateMachineArray(njli::WorldStateMachine **ary) { 
+
+        njli::WorldStateMachine::destroyArray(ary);
+        
+}
+    
+    static njli::WorldStateMachine *WorldStateMachineArray_getitem(njli::WorldStateMachine **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void WorldStateMachineArray_setitem(njli::WorldStateMachine **ary, int index, njli::WorldStateMachine *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::WorldStateMachineBuilder **new_WorldStateMachineBuilderArray(int nelements) { 
+
+        return njli::WorldStateMachineBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_WorldStateMachineBuilderArray(njli::WorldStateMachineBuilder **ary) { 
+
+        njli::WorldStateMachineBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::WorldStateMachineBuilder *WorldStateMachineBuilderArray_getitem(njli::WorldStateMachineBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void WorldStateMachineBuilderArray_setitem(njli::WorldStateMachineBuilder **ary, int index, njli::WorldStateMachineBuilder *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::Xml **new_XmlArray(int nelements) { 
+
+        return njli::Xml::createArray(nelements);
+        
+}
+    
+    static void delete_XmlArray(njli::Xml **ary) { 
+
+        njli::Xml::destroyArray(ary);
+        
+}
+    
+    static njli::Xml *XmlArray_getitem(njli::Xml **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void XmlArray_setitem(njli::Xml **ary, int index, njli::Xml *value) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        ary[index-1] = value;
+    }
+    
+
+    static njli::XmlBuilder **new_XmlBuilderArray(int nelements) { 
+
+        return njli::XmlBuilder::createArray(nelements);
+        
+}
+    
+    static void delete_XmlBuilderArray(njli::XmlBuilder **ary) { 
+
+        njli::XmlBuilder::destroyArray(ary);
+        
+}
+    
+    static njli::XmlBuilder *XmlBuilderArray_getitem(njli::XmlBuilder **ary, int index) {
+             do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
+        return ary[index-1];
+    }
+    static void XmlBuilderArray_setitem(njli::XmlBuilder **ary, int index, njli::XmlBuilder *value) {
              do {                   do {                                char string[3584];             snprintf(string, (3584 - 1), "%s","index must be greater than zero.");             if (((index > 0)) == ASSERT_FAIL)             {                 SDL_LogError(SDL_LOG_CATEGORY_TEST, "Assert '%s': %s", string, "Failed");             }             else             {              }         } while (0);          SDL_assert((index > 0));      } while (0);
         ary[index-1] = value;
     }
@@ -3137,14 +6699,6 @@ EMSCRIPTEN_BINDINGS(njli) {
 	.function("beginBlock", &btStackAlloc::beginBlock)
 	.function("endBlock", &btStackAlloc::endBlock)
 	.function("ctor", &btStackAlloc::ctor)
-	function("IsOn", &IsOn);
-	function("On", &On);
-	function("Off", &Off);
-	function("clampf", &clampf);
-	function("clamp", &clamp);
-	function("clampColor", &clampColor);
-	function("isPowerOfTwo", &isPowerOfTwo);
-	function("fixPowerOfTwo", &fixPowerOfTwo);
 	class_<rgb>("rgb")
 	constant("r", r);
 	constant("g", g);
@@ -3232,6 +6786,658 @@ EMSCRIPTEN_BINDINGS(njli) {
 	function("delete_SoundArray", &delete_SoundArray);
 	function("SoundArray_getitem", &SoundArray_getitem, allow_raw_pointers());
 	function("SoundArray_setitem", &SoundArray_setitem);
+	function("new_ActionArray", &new_ActionArray, allow_raw_pointers());
+	function("delete_ActionArray", &delete_ActionArray);
+	function("ActionArray_getitem", &ActionArray_getitem, allow_raw_pointers());
+	function("ActionArray_setitem", &ActionArray_setitem);
+	function("new_ActionBuilderArray", &new_ActionBuilderArray, allow_raw_pointers());
+	function("delete_ActionBuilderArray", &delete_ActionBuilderArray);
+	function("ActionBuilderArray_getitem", &ActionBuilderArray_getitem, allow_raw_pointers());
+	function("ActionBuilderArray_setitem", &ActionBuilderArray_setitem);
+	function("new_CameraArray", &new_CameraArray, allow_raw_pointers());
+	function("delete_CameraArray", &delete_CameraArray);
+	function("CameraArray_getitem", &CameraArray_getitem, allow_raw_pointers());
+	function("CameraArray_setitem", &CameraArray_setitem);
+	function("new_CameraBuilderArray", &new_CameraBuilderArray, allow_raw_pointers());
+	function("delete_CameraBuilderArray", &delete_CameraBuilderArray);
+	function("CameraBuilderArray_getitem", &CameraBuilderArray_getitem, allow_raw_pointers());
+	function("CameraBuilderArray_setitem", &CameraBuilderArray_setitem);
+	function("new_ClockArray", &new_ClockArray, allow_raw_pointers());
+	function("delete_ClockArray", &delete_ClockArray);
+	function("ClockArray_getitem", &ClockArray_getitem, allow_raw_pointers());
+	function("ClockArray_setitem", &ClockArray_setitem);
+	function("new_ClockBuilderArray", &new_ClockBuilderArray, allow_raw_pointers());
+	function("delete_ClockBuilderArray", &delete_ClockBuilderArray);
+	function("ClockBuilderArray_getitem", &ClockBuilderArray_getitem, allow_raw_pointers());
+	function("ClockBuilderArray_setitem", &ClockBuilderArray_setitem);
+	function("new_CollisionResponseArray", &new_CollisionResponseArray, allow_raw_pointers());
+	function("delete_CollisionResponseArray", &delete_CollisionResponseArray);
+	function("CollisionResponseArray_getitem", &CollisionResponseArray_getitem, allow_raw_pointers());
+	function("CollisionResponseArray_setitem", &CollisionResponseArray_setitem);
+	function("new_CollisionResponseBuilderArray", &new_CollisionResponseBuilderArray, allow_raw_pointers());
+	function("delete_CollisionResponseBuilderArray", &delete_CollisionResponseBuilderArray);
+	function("CollisionResponseBuilderArray_getitem", &CollisionResponseBuilderArray_getitem, allow_raw_pointers());
+	function("CollisionResponseBuilderArray_setitem", &CollisionResponseBuilderArray_setitem);
+	function("new_CubeArray", &new_CubeArray, allow_raw_pointers());
+	function("delete_CubeArray", &delete_CubeArray);
+	function("CubeArray_getitem", &CubeArray_getitem, allow_raw_pointers());
+	function("CubeArray_setitem", &CubeArray_setitem);
+	function("new_CubeBuilderArray", &new_CubeBuilderArray, allow_raw_pointers());
+	function("delete_CubeBuilderArray", &delete_CubeBuilderArray);
+	function("CubeBuilderArray_getitem", &CubeBuilderArray_getitem, allow_raw_pointers());
+	function("CubeBuilderArray_setitem", &CubeBuilderArray_setitem);
+	function("new_FontArray", &new_FontArray, allow_raw_pointers());
+	function("delete_FontArray", &delete_FontArray);
+	function("FontArray_getitem", &FontArray_getitem, allow_raw_pointers());
+	function("FontArray_setitem", &FontArray_setitem);
+	function("new_FontBuilderArray", &new_FontBuilderArray, allow_raw_pointers());
+	function("delete_FontBuilderArray", &delete_FontBuilderArray);
+	function("FontBuilderArray_getitem", &FontBuilderArray_getitem, allow_raw_pointers());
+	function("FontBuilderArray_setitem", &FontBuilderArray_setitem);
+	function("new_ImageArray", &new_ImageArray, allow_raw_pointers());
+	function("delete_ImageArray", &delete_ImageArray);
+	function("ImageArray_getitem", &ImageArray_getitem, allow_raw_pointers());
+	function("ImageArray_setitem", &ImageArray_setitem);
+	function("new_ImageBuilderArray", &new_ImageBuilderArray, allow_raw_pointers());
+	function("delete_ImageBuilderArray", &delete_ImageBuilderArray);
+	function("ImageBuilderArray_getitem", &ImageBuilderArray_getitem, allow_raw_pointers());
+	function("ImageBuilderArray_setitem", &ImageBuilderArray_setitem);
+	function("new_JsonJLIArray", &new_JsonJLIArray, allow_raw_pointers());
+	function("delete_JsonJLIArray", &delete_JsonJLIArray);
+	function("JsonJLIArray_getitem", &JsonJLIArray_getitem, allow_raw_pointers());
+	function("JsonJLIArray_setitem", &JsonJLIArray_setitem);
+	function("new_JsonJLIBuilderArray", &new_JsonJLIBuilderArray, allow_raw_pointers());
+	function("delete_JsonJLIBuilderArray", &delete_JsonJLIBuilderArray);
+	function("JsonJLIBuilderArray_getitem", &JsonJLIBuilderArray_getitem, allow_raw_pointers());
+	function("JsonJLIBuilderArray_setitem", &JsonJLIBuilderArray_setitem);
+	function("new_LevelOfDetailArray", &new_LevelOfDetailArray, allow_raw_pointers());
+	function("delete_LevelOfDetailArray", &delete_LevelOfDetailArray);
+	function("LevelOfDetailArray_getitem", &LevelOfDetailArray_getitem, allow_raw_pointers());
+	function("LevelOfDetailArray_setitem", &LevelOfDetailArray_setitem);
+	function("new_LevelOfDetailBuilderArray", &new_LevelOfDetailBuilderArray, allow_raw_pointers());
+	function("delete_LevelOfDetailBuilderArray", &delete_LevelOfDetailBuilderArray);
+	function("LevelOfDetailBuilderArray_getitem", &LevelOfDetailBuilderArray_getitem, allow_raw_pointers());
+	function("LevelOfDetailBuilderArray_setitem", &LevelOfDetailBuilderArray_setitem);
+	function("new_LightArray", &new_LightArray, allow_raw_pointers());
+	function("delete_LightArray", &delete_LightArray);
+	function("LightArray_getitem", &LightArray_getitem, allow_raw_pointers());
+	function("LightArray_setitem", &LightArray_setitem);
+	function("new_LightBuilderArray", &new_LightBuilderArray, allow_raw_pointers());
+	function("delete_LightBuilderArray", &delete_LightBuilderArray);
+	function("LightBuilderArray_getitem", &LightBuilderArray_getitem, allow_raw_pointers());
+	function("LightBuilderArray_setitem", &LightBuilderArray_setitem);
+	function("new_MaterialArray", &new_MaterialArray, allow_raw_pointers());
+	function("delete_MaterialArray", &delete_MaterialArray);
+	function("MaterialArray_getitem", &MaterialArray_getitem, allow_raw_pointers());
+	function("MaterialArray_setitem", &MaterialArray_setitem);
+	function("new_MaterialBuilderArray", &new_MaterialBuilderArray, allow_raw_pointers());
+	function("delete_MaterialBuilderArray", &delete_MaterialBuilderArray);
+	function("MaterialBuilderArray_getitem", &MaterialBuilderArray_getitem, allow_raw_pointers());
+	function("MaterialBuilderArray_setitem", &MaterialBuilderArray_setitem);
+	function("new_MaterialPropertyArray", &new_MaterialPropertyArray, allow_raw_pointers());
+	function("delete_MaterialPropertyArray", &delete_MaterialPropertyArray);
+	function("MaterialPropertyArray_getitem", &MaterialPropertyArray_getitem, allow_raw_pointers());
+	function("MaterialPropertyArray_setitem", &MaterialPropertyArray_setitem);
+	function("new_MaterialPropertyBuilderArray", &new_MaterialPropertyBuilderArray, allow_raw_pointers());
+	function("delete_MaterialPropertyBuilderArray", &delete_MaterialPropertyBuilderArray);
+	function("MaterialPropertyBuilderArray_getitem", &MaterialPropertyBuilderArray_getitem, allow_raw_pointers());
+	function("MaterialPropertyBuilderArray_setitem", &MaterialPropertyBuilderArray_setitem);
+	function("new_NodeArray", &new_NodeArray, allow_raw_pointers());
+	function("delete_NodeArray", &delete_NodeArray);
+	function("NodeArray_getitem", &NodeArray_getitem, allow_raw_pointers());
+	function("NodeArray_setitem", &NodeArray_setitem);
+	function("new_NodeBuilderArray", &new_NodeBuilderArray, allow_raw_pointers());
+	function("delete_NodeBuilderArray", &delete_NodeBuilderArray);
+	function("NodeBuilderArray_getitem", &NodeBuilderArray_getitem, allow_raw_pointers());
+	function("NodeBuilderArray_setitem", &NodeBuilderArray_setitem);
+	function("new_NodeStateArray", &new_NodeStateArray, allow_raw_pointers());
+	function("delete_NodeStateArray", &delete_NodeStateArray);
+	function("NodeStateArray_getitem", &NodeStateArray_getitem, allow_raw_pointers());
+	function("NodeStateArray_setitem", &NodeStateArray_setitem);
+	function("new_NodeStateBuilderArray", &new_NodeStateBuilderArray, allow_raw_pointers());
+	function("delete_NodeStateBuilderArray", &delete_NodeStateBuilderArray);
+	function("NodeStateBuilderArray_getitem", &NodeStateBuilderArray_getitem, allow_raw_pointers());
+	function("NodeStateBuilderArray_setitem", &NodeStateBuilderArray_setitem);
+	function("new_NodeStateMachineArray", &new_NodeStateMachineArray, allow_raw_pointers());
+	function("delete_NodeStateMachineArray", &delete_NodeStateMachineArray);
+	function("NodeStateMachineArray_getitem", &NodeStateMachineArray_getitem, allow_raw_pointers());
+	function("NodeStateMachineArray_setitem", &NodeStateMachineArray_setitem);
+	function("new_NodeStateMachineBuilderArray", &new_NodeStateMachineBuilderArray, allow_raw_pointers());
+	function("delete_NodeStateMachineBuilderArray", &delete_NodeStateMachineBuilderArray);
+	function("NodeStateMachineBuilderArray_getitem", &NodeStateMachineBuilderArray_getitem, allow_raw_pointers());
+	function("NodeStateMachineBuilderArray_setitem", &NodeStateMachineBuilderArray_setitem);
+	function("new_ParticleEmitterArray", &new_ParticleEmitterArray, allow_raw_pointers());
+	function("delete_ParticleEmitterArray", &delete_ParticleEmitterArray);
+	function("ParticleEmitterArray_getitem", &ParticleEmitterArray_getitem, allow_raw_pointers());
+	function("ParticleEmitterArray_setitem", &ParticleEmitterArray_setitem);
+	function("new_ParticleEmitterBuilderArray", &new_ParticleEmitterBuilderArray, allow_raw_pointers());
+	function("delete_ParticleEmitterBuilderArray", &delete_ParticleEmitterBuilderArray);
+	function("ParticleEmitterBuilderArray_getitem", &ParticleEmitterBuilderArray_getitem, allow_raw_pointers());
+	function("ParticleEmitterBuilderArray_setitem", &ParticleEmitterBuilderArray_setitem);
+	function("new_PhysicsBodyGhostArray", &new_PhysicsBodyGhostArray, allow_raw_pointers());
+	function("delete_PhysicsBodyGhostArray", &delete_PhysicsBodyGhostArray);
+	function("PhysicsBodyGhostArray_getitem", &PhysicsBodyGhostArray_getitem, allow_raw_pointers());
+	function("PhysicsBodyGhostArray_setitem", &PhysicsBodyGhostArray_setitem);
+	function("new_PhysicsBodyGhostBuilderArray", &new_PhysicsBodyGhostBuilderArray, allow_raw_pointers());
+	function("delete_PhysicsBodyGhostBuilderArray", &delete_PhysicsBodyGhostBuilderArray);
+	function("PhysicsBodyGhostBuilderArray_getitem", &PhysicsBodyGhostBuilderArray_getitem, allow_raw_pointers());
+	function("PhysicsBodyGhostBuilderArray_setitem", &PhysicsBodyGhostBuilderArray_setitem);
+	function("new_PhysicsBodyRigidArray", &new_PhysicsBodyRigidArray, allow_raw_pointers());
+	function("delete_PhysicsBodyRigidArray", &delete_PhysicsBodyRigidArray);
+	function("PhysicsBodyRigidArray_getitem", &PhysicsBodyRigidArray_getitem, allow_raw_pointers());
+	function("PhysicsBodyRigidArray_setitem", &PhysicsBodyRigidArray_setitem);
+	function("new_PhysicsBodyRigidBuilderArray", &new_PhysicsBodyRigidBuilderArray, allow_raw_pointers());
+	function("delete_PhysicsBodyRigidBuilderArray", &delete_PhysicsBodyRigidBuilderArray);
+	function("PhysicsBodyRigidBuilderArray_getitem", &PhysicsBodyRigidBuilderArray_getitem, allow_raw_pointers());
+	function("PhysicsBodyRigidBuilderArray_setitem", &PhysicsBodyRigidBuilderArray_setitem);
+	function("new_PhysicsBodySoftArray", &new_PhysicsBodySoftArray, allow_raw_pointers());
+	function("delete_PhysicsBodySoftArray", &delete_PhysicsBodySoftArray);
+	function("PhysicsBodySoftArray_getitem", &PhysicsBodySoftArray_getitem, allow_raw_pointers());
+	function("PhysicsBodySoftArray_setitem", &PhysicsBodySoftArray_setitem);
+	function("new_PhysicsBodySoftBuilderArray", &new_PhysicsBodySoftBuilderArray, allow_raw_pointers());
+	function("delete_PhysicsBodySoftBuilderArray", &delete_PhysicsBodySoftBuilderArray);
+	function("PhysicsBodySoftBuilderArray_getitem", &PhysicsBodySoftBuilderArray_getitem, allow_raw_pointers());
+	function("PhysicsBodySoftBuilderArray_setitem", &PhysicsBodySoftBuilderArray_setitem);
+	function("new_PhysicsCloseContactArray", &new_PhysicsCloseContactArray, allow_raw_pointers());
+	function("delete_PhysicsCloseContactArray", &delete_PhysicsCloseContactArray);
+	function("PhysicsCloseContactArray_getitem", &PhysicsCloseContactArray_getitem, allow_raw_pointers());
+	function("PhysicsCloseContactArray_setitem", &PhysicsCloseContactArray_setitem);
+	function("new_PhysicsCloseContactBuilderArray", &new_PhysicsCloseContactBuilderArray, allow_raw_pointers());
+	function("delete_PhysicsCloseContactBuilderArray", &delete_PhysicsCloseContactBuilderArray);
+	function("PhysicsCloseContactBuilderArray_getitem", &PhysicsCloseContactBuilderArray_getitem, allow_raw_pointers());
+	function("PhysicsCloseContactBuilderArray_setitem", &PhysicsCloseContactBuilderArray_setitem);
+	function("new_PhysicsConstraintArray", &new_PhysicsConstraintArray, allow_raw_pointers());
+	function("delete_PhysicsConstraintArray", &delete_PhysicsConstraintArray);
+	function("PhysicsConstraintArray_getitem", &PhysicsConstraintArray_getitem, allow_raw_pointers());
+	function("PhysicsConstraintArray_setitem", &PhysicsConstraintArray_setitem);
+	function("new_PhysicsConstraintBuilderArray", &new_PhysicsConstraintBuilderArray, allow_raw_pointers());
+	function("delete_PhysicsConstraintBuilderArray", &delete_PhysicsConstraintBuilderArray);
+	function("PhysicsConstraintBuilderArray_getitem", &PhysicsConstraintBuilderArray_getitem, allow_raw_pointers());
+	function("PhysicsConstraintBuilderArray_setitem", &PhysicsConstraintBuilderArray_setitem);
+	function("new_PhysicsConstraintConeTwistArray", &new_PhysicsConstraintConeTwistArray, allow_raw_pointers());
+	function("delete_PhysicsConstraintConeTwistArray", &delete_PhysicsConstraintConeTwistArray);
+	function("PhysicsConstraintConeTwistArray_getitem", &PhysicsConstraintConeTwistArray_getitem, allow_raw_pointers());
+	function("PhysicsConstraintConeTwistArray_setitem", &PhysicsConstraintConeTwistArray_setitem);
+	function("new_PhysicsConstraintConeTwistBuilderArray", &new_PhysicsConstraintConeTwistBuilderArray, allow_raw_pointers());
+	function("delete_PhysicsConstraintConeTwistBuilderArray", &delete_PhysicsConstraintConeTwistBuilderArray);
+	function("PhysicsConstraintConeTwistBuilderArray_getitem", &PhysicsConstraintConeTwistBuilderArray_getitem, allow_raw_pointers());
+	function("PhysicsConstraintConeTwistBuilderArray_setitem", &PhysicsConstraintConeTwistBuilderArray_setitem);
+	function("new_PhysicsConstraintFixedArray", &new_PhysicsConstraintFixedArray, allow_raw_pointers());
+	function("delete_PhysicsConstraintFixedArray", &delete_PhysicsConstraintFixedArray);
+	function("PhysicsConstraintFixedArray_getitem", &PhysicsConstraintFixedArray_getitem, allow_raw_pointers());
+	function("PhysicsConstraintFixedArray_setitem", &PhysicsConstraintFixedArray_setitem);
+	function("new_PhysicsConstraintFixedBuilderArray", &new_PhysicsConstraintFixedBuilderArray, allow_raw_pointers());
+	function("delete_PhysicsConstraintFixedBuilderArray", &delete_PhysicsConstraintFixedBuilderArray);
+	function("PhysicsConstraintFixedBuilderArray_getitem", &PhysicsConstraintFixedBuilderArray_getitem, allow_raw_pointers());
+	function("PhysicsConstraintFixedBuilderArray_setitem", &PhysicsConstraintFixedBuilderArray_setitem);
+	function("new_PhysicsConstraintGeneric6DofArray", &new_PhysicsConstraintGeneric6DofArray, allow_raw_pointers());
+	function("delete_PhysicsConstraintGeneric6DofArray", &delete_PhysicsConstraintGeneric6DofArray);
+	function("PhysicsConstraintGeneric6DofArray_getitem", &PhysicsConstraintGeneric6DofArray_getitem, allow_raw_pointers());
+	function("PhysicsConstraintGeneric6DofArray_setitem", &PhysicsConstraintGeneric6DofArray_setitem);
+	function("new_PhysicsConstraintGeneric6DofBuilderArray", &new_PhysicsConstraintGeneric6DofBuilderArray, allow_raw_pointers());
+	function("delete_PhysicsConstraintGeneric6DofBuilderArray", &delete_PhysicsConstraintGeneric6DofBuilderArray);
+	function("PhysicsConstraintGeneric6DofBuilderArray_getitem", &PhysicsConstraintGeneric6DofBuilderArray_getitem, allow_raw_pointers());
+	function("PhysicsConstraintGeneric6DofBuilderArray_setitem", &PhysicsConstraintGeneric6DofBuilderArray_setitem);
+	function("new_PhysicsConstraintGeneric6DofSpringArray", &new_PhysicsConstraintGeneric6DofSpringArray, allow_raw_pointers());
+	function("delete_PhysicsConstraintGeneric6DofSpringArray", &delete_PhysicsConstraintGeneric6DofSpringArray);
+	function("PhysicsConstraintGeneric6DofSpringArray_getitem", &PhysicsConstraintGeneric6DofSpringArray_getitem, allow_raw_pointers());
+	function("PhysicsConstraintGeneric6DofSpringArray_setitem", &PhysicsConstraintGeneric6DofSpringArray_setitem);
+	function("new_PhysicsConstraintGeneric6DofSpringBuilderArray", &new_PhysicsConstraintGeneric6DofSpringBuilderArray, allow_raw_pointers());
+	function("delete_PhysicsConstraintGeneric6DofSpringBuilderArray", &delete_PhysicsConstraintGeneric6DofSpringBuilderArray);
+	function("PhysicsConstraintGeneric6DofSpringBuilderArray_getitem", &PhysicsConstraintGeneric6DofSpringBuilderArray_getitem, allow_raw_pointers());
+	function("PhysicsConstraintGeneric6DofSpringBuilderArray_setitem", &PhysicsConstraintGeneric6DofSpringBuilderArray_setitem);
+	function("new_PhysicsConstraintHingeArray", &new_PhysicsConstraintHingeArray, allow_raw_pointers());
+	function("delete_PhysicsConstraintHingeArray", &delete_PhysicsConstraintHingeArray);
+	function("PhysicsConstraintHingeArray_getitem", &PhysicsConstraintHingeArray_getitem, allow_raw_pointers());
+	function("PhysicsConstraintHingeArray_setitem", &PhysicsConstraintHingeArray_setitem);
+	function("new_PhysicsConstraintHingeBuilderArray", &new_PhysicsConstraintHingeBuilderArray, allow_raw_pointers());
+	function("delete_PhysicsConstraintHingeBuilderArray", &delete_PhysicsConstraintHingeBuilderArray);
+	function("PhysicsConstraintHingeBuilderArray_getitem", &PhysicsConstraintHingeBuilderArray_getitem, allow_raw_pointers());
+	function("PhysicsConstraintHingeBuilderArray_setitem", &PhysicsConstraintHingeBuilderArray_setitem);
+	function("new_PhysicsConstraintPointToPointArray", &new_PhysicsConstraintPointToPointArray, allow_raw_pointers());
+	function("delete_PhysicsConstraintPointToPointArray", &delete_PhysicsConstraintPointToPointArray);
+	function("PhysicsConstraintPointToPointArray_getitem", &PhysicsConstraintPointToPointArray_getitem, allow_raw_pointers());
+	function("PhysicsConstraintPointToPointArray_setitem", &PhysicsConstraintPointToPointArray_setitem);
+	function("new_PhysicsConstraintPointToPointBuilderArray", &new_PhysicsConstraintPointToPointBuilderArray, allow_raw_pointers());
+	function("delete_PhysicsConstraintPointToPointBuilderArray", &delete_PhysicsConstraintPointToPointBuilderArray);
+	function("PhysicsConstraintPointToPointBuilderArray_getitem", &PhysicsConstraintPointToPointBuilderArray_getitem, allow_raw_pointers());
+	function("PhysicsConstraintPointToPointBuilderArray_setitem", &PhysicsConstraintPointToPointBuilderArray_setitem);
+	function("new_PhysicsConstraintSliderArray", &new_PhysicsConstraintSliderArray, allow_raw_pointers());
+	function("delete_PhysicsConstraintSliderArray", &delete_PhysicsConstraintSliderArray);
+	function("PhysicsConstraintSliderArray_getitem", &PhysicsConstraintSliderArray_getitem, allow_raw_pointers());
+	function("PhysicsConstraintSliderArray_setitem", &PhysicsConstraintSliderArray_setitem);
+	function("new_PhysicsConstraintSliderBuilderArray", &new_PhysicsConstraintSliderBuilderArray, allow_raw_pointers());
+	function("delete_PhysicsConstraintSliderBuilderArray", &delete_PhysicsConstraintSliderBuilderArray);
+	function("PhysicsConstraintSliderBuilderArray_getitem", &PhysicsConstraintSliderBuilderArray_getitem, allow_raw_pointers());
+	function("PhysicsConstraintSliderBuilderArray_setitem", &PhysicsConstraintSliderBuilderArray_setitem);
+	function("new_PhysicsContactArray", &new_PhysicsContactArray, allow_raw_pointers());
+	function("delete_PhysicsContactArray", &delete_PhysicsContactArray);
+	function("PhysicsContactArray_getitem", &PhysicsContactArray_getitem, allow_raw_pointers());
+	function("PhysicsContactArray_setitem", &PhysicsContactArray_setitem);
+	function("new_PhysicsContactBuilderArray", &new_PhysicsContactBuilderArray, allow_raw_pointers());
+	function("delete_PhysicsContactBuilderArray", &delete_PhysicsContactBuilderArray);
+	function("PhysicsContactBuilderArray_getitem", &PhysicsContactBuilderArray_getitem, allow_raw_pointers());
+	function("PhysicsContactBuilderArray_setitem", &PhysicsContactBuilderArray_setitem);
+	function("new_PhysicsFieldArray", &new_PhysicsFieldArray, allow_raw_pointers());
+	function("delete_PhysicsFieldArray", &delete_PhysicsFieldArray);
+	function("PhysicsFieldArray_getitem", &PhysicsFieldArray_getitem, allow_raw_pointers());
+	function("PhysicsFieldArray_setitem", &PhysicsFieldArray_setitem);
+	function("new_PhysicsFieldBuilderArray", &new_PhysicsFieldBuilderArray, allow_raw_pointers());
+	function("delete_PhysicsFieldBuilderArray", &delete_PhysicsFieldBuilderArray);
+	function("PhysicsFieldBuilderArray_getitem", &PhysicsFieldBuilderArray_getitem, allow_raw_pointers());
+	function("PhysicsFieldBuilderArray_setitem", &PhysicsFieldBuilderArray_setitem);
+	function("new_PhysicsRayContactArray", &new_PhysicsRayContactArray, allow_raw_pointers());
+	function("delete_PhysicsRayContactArray", &delete_PhysicsRayContactArray);
+	function("PhysicsRayContactArray_getitem", &PhysicsRayContactArray_getitem, allow_raw_pointers());
+	function("PhysicsRayContactArray_setitem", &PhysicsRayContactArray_setitem);
+	function("new_PhysicsRayContactBuilderArray", &new_PhysicsRayContactBuilderArray, allow_raw_pointers());
+	function("delete_PhysicsRayContactBuilderArray", &delete_PhysicsRayContactBuilderArray);
+	function("PhysicsRayContactBuilderArray_getitem", &PhysicsRayContactBuilderArray_getitem, allow_raw_pointers());
+	function("PhysicsRayContactBuilderArray_setitem", &PhysicsRayContactBuilderArray_setitem);
+	function("new_PhysicsShapeBoxArray", &new_PhysicsShapeBoxArray, allow_raw_pointers());
+	function("delete_PhysicsShapeBoxArray", &delete_PhysicsShapeBoxArray);
+	function("PhysicsShapeBoxArray_getitem", &PhysicsShapeBoxArray_getitem, allow_raw_pointers());
+	function("PhysicsShapeBoxArray_setitem", &PhysicsShapeBoxArray_setitem);
+	function("new_PhysicsShapeBox2DArray", &new_PhysicsShapeBox2DArray, allow_raw_pointers());
+	function("delete_PhysicsShapeBox2DArray", &delete_PhysicsShapeBox2DArray);
+	function("PhysicsShapeBox2DArray_getitem", &PhysicsShapeBox2DArray_getitem, allow_raw_pointers());
+	function("PhysicsShapeBox2DArray_setitem", &PhysicsShapeBox2DArray_setitem);
+	function("new_PhysicsShapeBox2DBuilderArray", &new_PhysicsShapeBox2DBuilderArray, allow_raw_pointers());
+	function("delete_PhysicsShapeBox2DBuilderArray", &delete_PhysicsShapeBox2DBuilderArray);
+	function("PhysicsShapeBox2DBuilderArray_getitem", &PhysicsShapeBox2DBuilderArray_getitem, allow_raw_pointers());
+	function("PhysicsShapeBox2DBuilderArray_setitem", &PhysicsShapeBox2DBuilderArray_setitem);
+	function("new_PhysicsShapeBoxBuilderArray", &new_PhysicsShapeBoxBuilderArray, allow_raw_pointers());
+	function("delete_PhysicsShapeBoxBuilderArray", &delete_PhysicsShapeBoxBuilderArray);
+	function("PhysicsShapeBoxBuilderArray_getitem", &PhysicsShapeBoxBuilderArray_getitem, allow_raw_pointers());
+	function("PhysicsShapeBoxBuilderArray_setitem", &PhysicsShapeBoxBuilderArray_setitem);
+	function("new_PhysicsShapeBvhTriangleMeshArray", &new_PhysicsShapeBvhTriangleMeshArray, allow_raw_pointers());
+	function("delete_PhysicsShapeBvhTriangleMeshArray", &delete_PhysicsShapeBvhTriangleMeshArray);
+	function("PhysicsShapeBvhTriangleMeshArray_getitem", &PhysicsShapeBvhTriangleMeshArray_getitem, allow_raw_pointers());
+	function("PhysicsShapeBvhTriangleMeshArray_setitem", &PhysicsShapeBvhTriangleMeshArray_setitem);
+	function("new_PhysicsShapeBvhTriangleMeshBuilderArray", &new_PhysicsShapeBvhTriangleMeshBuilderArray, allow_raw_pointers());
+	function("delete_PhysicsShapeBvhTriangleMeshBuilderArray", &delete_PhysicsShapeBvhTriangleMeshBuilderArray);
+	function("PhysicsShapeBvhTriangleMeshBuilderArray_getitem", &PhysicsShapeBvhTriangleMeshBuilderArray_getitem, allow_raw_pointers());
+	function("PhysicsShapeBvhTriangleMeshBuilderArray_setitem", &PhysicsShapeBvhTriangleMeshBuilderArray_setitem);
+	function("new_PhysicsShapeCapsuleArray", &new_PhysicsShapeCapsuleArray, allow_raw_pointers());
+	function("delete_PhysicsShapeCapsuleArray", &delete_PhysicsShapeCapsuleArray);
+	function("PhysicsShapeCapsuleArray_getitem", &PhysicsShapeCapsuleArray_getitem, allow_raw_pointers());
+	function("PhysicsShapeCapsuleArray_setitem", &PhysicsShapeCapsuleArray_setitem);
+	function("new_PhysicsShapeCapsuleBuilderArray", &new_PhysicsShapeCapsuleBuilderArray, allow_raw_pointers());
+	function("delete_PhysicsShapeCapsuleBuilderArray", &delete_PhysicsShapeCapsuleBuilderArray);
+	function("PhysicsShapeCapsuleBuilderArray_getitem", &PhysicsShapeCapsuleBuilderArray_getitem, allow_raw_pointers());
+	function("PhysicsShapeCapsuleBuilderArray_setitem", &PhysicsShapeCapsuleBuilderArray_setitem);
+	function("new_PhysicsShapeConeArray", &new_PhysicsShapeConeArray, allow_raw_pointers());
+	function("delete_PhysicsShapeConeArray", &delete_PhysicsShapeConeArray);
+	function("PhysicsShapeConeArray_getitem", &PhysicsShapeConeArray_getitem, allow_raw_pointers());
+	function("PhysicsShapeConeArray_setitem", &PhysicsShapeConeArray_setitem);
+	function("new_PhysicsShapeConeBuilderArray", &new_PhysicsShapeConeBuilderArray, allow_raw_pointers());
+	function("delete_PhysicsShapeConeBuilderArray", &delete_PhysicsShapeConeBuilderArray);
+	function("PhysicsShapeConeBuilderArray_getitem", &PhysicsShapeConeBuilderArray_getitem, allow_raw_pointers());
+	function("PhysicsShapeConeBuilderArray_setitem", &PhysicsShapeConeBuilderArray_setitem);
+	function("new_PhysicsShapeConvexHullArray", &new_PhysicsShapeConvexHullArray, allow_raw_pointers());
+	function("delete_PhysicsShapeConvexHullArray", &delete_PhysicsShapeConvexHullArray);
+	function("PhysicsShapeConvexHullArray_getitem", &PhysicsShapeConvexHullArray_getitem, allow_raw_pointers());
+	function("PhysicsShapeConvexHullArray_setitem", &PhysicsShapeConvexHullArray_setitem);
+	function("new_PhysicsShapeConvexHullBuilderArray", &new_PhysicsShapeConvexHullBuilderArray, allow_raw_pointers());
+	function("delete_PhysicsShapeConvexHullBuilderArray", &delete_PhysicsShapeConvexHullBuilderArray);
+	function("PhysicsShapeConvexHullBuilderArray_getitem", &PhysicsShapeConvexHullBuilderArray_getitem, allow_raw_pointers());
+	function("PhysicsShapeConvexHullBuilderArray_setitem", &PhysicsShapeConvexHullBuilderArray_setitem);
+	function("new_PhysicsShapeConvexTriangleMeshArray", &new_PhysicsShapeConvexTriangleMeshArray, allow_raw_pointers());
+	function("delete_PhysicsShapeConvexTriangleMeshArray", &delete_PhysicsShapeConvexTriangleMeshArray);
+	function("PhysicsShapeConvexTriangleMeshArray_getitem", &PhysicsShapeConvexTriangleMeshArray_getitem, allow_raw_pointers());
+	function("PhysicsShapeConvexTriangleMeshArray_setitem", &PhysicsShapeConvexTriangleMeshArray_setitem);
+	function("new_PhysicsShapeConvexTriangleMeshBuilderArray", &new_PhysicsShapeConvexTriangleMeshBuilderArray, allow_raw_pointers());
+	function("delete_PhysicsShapeConvexTriangleMeshBuilderArray", &delete_PhysicsShapeConvexTriangleMeshBuilderArray);
+	function("PhysicsShapeConvexTriangleMeshBuilderArray_getitem", &PhysicsShapeConvexTriangleMeshBuilderArray_getitem, allow_raw_pointers());
+	function("PhysicsShapeConvexTriangleMeshBuilderArray_setitem", &PhysicsShapeConvexTriangleMeshBuilderArray_setitem);
+	function("new_PhysicsShapeCylinderArray", &new_PhysicsShapeCylinderArray, allow_raw_pointers());
+	function("delete_PhysicsShapeCylinderArray", &delete_PhysicsShapeCylinderArray);
+	function("PhysicsShapeCylinderArray_getitem", &PhysicsShapeCylinderArray_getitem, allow_raw_pointers());
+	function("PhysicsShapeCylinderArray_setitem", &PhysicsShapeCylinderArray_setitem);
+	function("new_PhysicsShapeCylinderBuilderArray", &new_PhysicsShapeCylinderBuilderArray, allow_raw_pointers());
+	function("delete_PhysicsShapeCylinderBuilderArray", &delete_PhysicsShapeCylinderBuilderArray);
+	function("PhysicsShapeCylinderBuilderArray_getitem", &PhysicsShapeCylinderBuilderArray_getitem, allow_raw_pointers());
+	function("PhysicsShapeCylinderBuilderArray_setitem", &PhysicsShapeCylinderBuilderArray_setitem);
+	function("new_PhysicsShapeHeightfieldTerrainArray", &new_PhysicsShapeHeightfieldTerrainArray, allow_raw_pointers());
+	function("delete_PhysicsShapeHeightfieldTerrainArray", &delete_PhysicsShapeHeightfieldTerrainArray);
+	function("PhysicsShapeHeightfieldTerrainArray_getitem", &PhysicsShapeHeightfieldTerrainArray_getitem, allow_raw_pointers());
+	function("PhysicsShapeHeightfieldTerrainArray_setitem", &PhysicsShapeHeightfieldTerrainArray_setitem);
+	function("new_PhysicsShapeHeightfieldTerrainBuilderArray", &new_PhysicsShapeHeightfieldTerrainBuilderArray, allow_raw_pointers());
+	function("delete_PhysicsShapeHeightfieldTerrainBuilderArray", &delete_PhysicsShapeHeightfieldTerrainBuilderArray);
+	function("PhysicsShapeHeightfieldTerrainBuilderArray_getitem", &PhysicsShapeHeightfieldTerrainBuilderArray_getitem, allow_raw_pointers());
+	function("PhysicsShapeHeightfieldTerrainBuilderArray_setitem", &PhysicsShapeHeightfieldTerrainBuilderArray_setitem);
+	function("new_PhysicsShapeMultiSphereArray", &new_PhysicsShapeMultiSphereArray, allow_raw_pointers());
+	function("delete_PhysicsShapeMultiSphereArray", &delete_PhysicsShapeMultiSphereArray);
+	function("PhysicsShapeMultiSphereArray_getitem", &PhysicsShapeMultiSphereArray_getitem, allow_raw_pointers());
+	function("PhysicsShapeMultiSphereArray_setitem", &PhysicsShapeMultiSphereArray_setitem);
+	function("new_PhysicsShapeMultiSphereBuilderArray", &new_PhysicsShapeMultiSphereBuilderArray, allow_raw_pointers());
+	function("delete_PhysicsShapeMultiSphereBuilderArray", &delete_PhysicsShapeMultiSphereBuilderArray);
+	function("PhysicsShapeMultiSphereBuilderArray_getitem", &PhysicsShapeMultiSphereBuilderArray_getitem, allow_raw_pointers());
+	function("PhysicsShapeMultiSphereBuilderArray_setitem", &PhysicsShapeMultiSphereBuilderArray_setitem);
+	function("new_PhysicsShapeSphereArray", &new_PhysicsShapeSphereArray, allow_raw_pointers());
+	function("delete_PhysicsShapeSphereArray", &delete_PhysicsShapeSphereArray);
+	function("PhysicsShapeSphereArray_getitem", &PhysicsShapeSphereArray_getitem, allow_raw_pointers());
+	function("PhysicsShapeSphereArray_setitem", &PhysicsShapeSphereArray_setitem);
+	function("new_PhysicsShapeSphereBuilderArray", &new_PhysicsShapeSphereBuilderArray, allow_raw_pointers());
+	function("delete_PhysicsShapeSphereBuilderArray", &delete_PhysicsShapeSphereBuilderArray);
+	function("PhysicsShapeSphereBuilderArray_getitem", &PhysicsShapeSphereBuilderArray_getitem, allow_raw_pointers());
+	function("PhysicsShapeSphereBuilderArray_setitem", &PhysicsShapeSphereBuilderArray_setitem);
+	function("new_PhysicsShapeStaticPlaneArray", &new_PhysicsShapeStaticPlaneArray, allow_raw_pointers());
+	function("delete_PhysicsShapeStaticPlaneArray", &delete_PhysicsShapeStaticPlaneArray);
+	function("PhysicsShapeStaticPlaneArray_getitem", &PhysicsShapeStaticPlaneArray_getitem, allow_raw_pointers());
+	function("PhysicsShapeStaticPlaneArray_setitem", &PhysicsShapeStaticPlaneArray_setitem);
+	function("new_PhysicsShapeStaticPlaneBuilderArray", &new_PhysicsShapeStaticPlaneBuilderArray, allow_raw_pointers());
+	function("delete_PhysicsShapeStaticPlaneBuilderArray", &delete_PhysicsShapeStaticPlaneBuilderArray);
+	function("PhysicsShapeStaticPlaneBuilderArray_getitem", &PhysicsShapeStaticPlaneBuilderArray_getitem, allow_raw_pointers());
+	function("PhysicsShapeStaticPlaneBuilderArray_setitem", &PhysicsShapeStaticPlaneBuilderArray_setitem);
+	function("new_PhysicsWorldArray", &new_PhysicsWorldArray, allow_raw_pointers());
+	function("delete_PhysicsWorldArray", &delete_PhysicsWorldArray);
+	function("PhysicsWorldArray_getitem", &PhysicsWorldArray_getitem, allow_raw_pointers());
+	function("PhysicsWorldArray_setitem", &PhysicsWorldArray_setitem);
+	function("new_PhysicsWorldBuilderArray", &new_PhysicsWorldBuilderArray, allow_raw_pointers());
+	function("delete_PhysicsWorldBuilderArray", &delete_PhysicsWorldBuilderArray);
+	function("PhysicsWorldBuilderArray_getitem", &PhysicsWorldBuilderArray_getitem, allow_raw_pointers());
+	function("PhysicsWorldBuilderArray_setitem", &PhysicsWorldBuilderArray_setitem);
+	function("new_PlaneArray", &new_PlaneArray, allow_raw_pointers());
+	function("delete_PlaneArray", &delete_PlaneArray);
+	function("PlaneArray_getitem", &PlaneArray_getitem, allow_raw_pointers());
+	function("PlaneArray_setitem", &PlaneArray_setitem);
+	function("new_PlaneBuilderArray", &new_PlaneBuilderArray, allow_raw_pointers());
+	function("delete_PlaneBuilderArray", &delete_PlaneBuilderArray);
+	function("PlaneBuilderArray_getitem", &PlaneBuilderArray_getitem, allow_raw_pointers());
+	function("PlaneBuilderArray_setitem", &PlaneBuilderArray_setitem);
+	function("new_SceneArray", &new_SceneArray, allow_raw_pointers());
+	function("delete_SceneArray", &delete_SceneArray);
+	function("SceneArray_getitem", &SceneArray_getitem, allow_raw_pointers());
+	function("SceneArray_setitem", &SceneArray_setitem);
+	function("new_SceneBuilderArray", &new_SceneBuilderArray, allow_raw_pointers());
+	function("delete_SceneBuilderArray", &delete_SceneBuilderArray);
+	function("SceneBuilderArray_getitem", &SceneBuilderArray_getitem, allow_raw_pointers());
+	function("SceneBuilderArray_setitem", &SceneBuilderArray_setitem);
+	function("new_SceneStateArray", &new_SceneStateArray, allow_raw_pointers());
+	function("delete_SceneStateArray", &delete_SceneStateArray);
+	function("SceneStateArray_getitem", &SceneStateArray_getitem, allow_raw_pointers());
+	function("SceneStateArray_setitem", &SceneStateArray_setitem);
+	function("new_SceneStateBuilderArray", &new_SceneStateBuilderArray, allow_raw_pointers());
+	function("delete_SceneStateBuilderArray", &delete_SceneStateBuilderArray);
+	function("SceneStateBuilderArray_getitem", &SceneStateBuilderArray_getitem, allow_raw_pointers());
+	function("SceneStateBuilderArray_setitem", &SceneStateBuilderArray_setitem);
+	function("new_SceneStateMachineArray", &new_SceneStateMachineArray, allow_raw_pointers());
+	function("delete_SceneStateMachineArray", &delete_SceneStateMachineArray);
+	function("SceneStateMachineArray_getitem", &SceneStateMachineArray_getitem, allow_raw_pointers());
+	function("SceneStateMachineArray_setitem", &SceneStateMachineArray_setitem);
+	function("new_SceneStateMachineBuilderArray", &new_SceneStateMachineBuilderArray, allow_raw_pointers());
+	function("delete_SceneStateMachineBuilderArray", &delete_SceneStateMachineBuilderArray);
+	function("SceneStateMachineBuilderArray_getitem", &SceneStateMachineBuilderArray_getitem, allow_raw_pointers());
+	function("SceneStateMachineBuilderArray_setitem", &SceneStateMachineBuilderArray_setitem);
+	function("new_ShaderProgramArray", &new_ShaderProgramArray, allow_raw_pointers());
+	function("delete_ShaderProgramArray", &delete_ShaderProgramArray);
+	function("ShaderProgramArray_getitem", &ShaderProgramArray_getitem, allow_raw_pointers());
+	function("ShaderProgramArray_setitem", &ShaderProgramArray_setitem);
+	function("new_ShaderProgramBuilderArray", &new_ShaderProgramBuilderArray, allow_raw_pointers());
+	function("delete_ShaderProgramBuilderArray", &delete_ShaderProgramBuilderArray);
+	function("ShaderProgramBuilderArray_getitem", &ShaderProgramBuilderArray_getitem, allow_raw_pointers());
+	function("ShaderProgramBuilderArray_setitem", &ShaderProgramBuilderArray_setitem);
+	function("new_SkinnerArray", &new_SkinnerArray, allow_raw_pointers());
+	function("delete_SkinnerArray", &delete_SkinnerArray);
+	function("SkinnerArray_getitem", &SkinnerArray_getitem, allow_raw_pointers());
+	function("SkinnerArray_setitem", &SkinnerArray_setitem);
+	function("new_SkinnerBuilderArray", &new_SkinnerBuilderArray, allow_raw_pointers());
+	function("delete_SkinnerBuilderArray", &delete_SkinnerBuilderArray);
+	function("SkinnerBuilderArray_getitem", &SkinnerBuilderArray_getitem, allow_raw_pointers());
+	function("SkinnerBuilderArray_setitem", &SkinnerBuilderArray_setitem);
+	function("new_SoundBuilderArray", &new_SoundBuilderArray, allow_raw_pointers());
+	function("delete_SoundBuilderArray", &delete_SoundBuilderArray);
+	function("SoundBuilderArray_getitem", &SoundBuilderArray_getitem, allow_raw_pointers());
+	function("SoundBuilderArray_setitem", &SoundBuilderArray_setitem);
+	function("new_Sprite2DArray", &new_Sprite2DArray, allow_raw_pointers());
+	function("delete_Sprite2DArray", &delete_Sprite2DArray);
+	function("Sprite2DArray_getitem", &Sprite2DArray_getitem, allow_raw_pointers());
+	function("Sprite2DArray_setitem", &Sprite2DArray_setitem);
+	function("new_Sprite2DBuilderArray", &new_Sprite2DBuilderArray, allow_raw_pointers());
+	function("delete_Sprite2DBuilderArray", &delete_Sprite2DBuilderArray);
+	function("Sprite2DBuilderArray_getitem", &Sprite2DBuilderArray_getitem, allow_raw_pointers());
+	function("Sprite2DBuilderArray_setitem", &Sprite2DBuilderArray_setitem);
+	function("new_SpriteFrameAtlasArray", &new_SpriteFrameAtlasArray, allow_raw_pointers());
+	function("delete_SpriteFrameAtlasArray", &delete_SpriteFrameAtlasArray);
+	function("SpriteFrameAtlasArray_getitem", &SpriteFrameAtlasArray_getitem, allow_raw_pointers());
+	function("SpriteFrameAtlasArray_setitem", &SpriteFrameAtlasArray_setitem);
+	function("new_SpriteFrameAtlasBuilderArray", &new_SpriteFrameAtlasBuilderArray, allow_raw_pointers());
+	function("delete_SpriteFrameAtlasBuilderArray", &delete_SpriteFrameAtlasBuilderArray);
+	function("SpriteFrameAtlasBuilderArray_getitem", &SpriteFrameAtlasBuilderArray_getitem, allow_raw_pointers());
+	function("SpriteFrameAtlasBuilderArray_setitem", &SpriteFrameAtlasBuilderArray_setitem);
+	function("new_SteeringBehaviorAlignment", &new_SteeringBehaviorAlignment, allow_raw_pointers());
+	function("delete_SteeringBehaviorAlignment", &delete_SteeringBehaviorAlignment);
+	function("SteeringBehaviorAlignment_getitem", &SteeringBehaviorAlignment_getitem, allow_raw_pointers());
+	function("SteeringBehaviorAlignment_setitem", &SteeringBehaviorAlignment_setitem);
+	function("new_SteeringBehaviorAlignmentBuilder", &new_SteeringBehaviorAlignmentBuilder, allow_raw_pointers());
+	function("delete_SteeringBehaviorAlignmentBuilder", &delete_SteeringBehaviorAlignmentBuilder);
+	function("SteeringBehaviorAlignmentBuilder_getitem", &SteeringBehaviorAlignmentBuilder_getitem, allow_raw_pointers());
+	function("SteeringBehaviorAlignmentBuilder_setitem", &SteeringBehaviorAlignmentBuilder_setitem);
+	function("new_SteeringBehaviorArrive", &new_SteeringBehaviorArrive, allow_raw_pointers());
+	function("delete_SteeringBehaviorArrive", &delete_SteeringBehaviorArrive);
+	function("SteeringBehaviorArrive_getitem", &SteeringBehaviorArrive_getitem, allow_raw_pointers());
+	function("SteeringBehaviorArrive_setitem", &SteeringBehaviorArrive_setitem);
+	function("new_SteeringBehaviorArriveBuilder", &new_SteeringBehaviorArriveBuilder, allow_raw_pointers());
+	function("delete_SteeringBehaviorArriveBuilder", &delete_SteeringBehaviorArriveBuilder);
+	function("SteeringBehaviorArriveBuilder_getitem", &SteeringBehaviorArriveBuilder_getitem, allow_raw_pointers());
+	function("SteeringBehaviorArriveBuilder_setitem", &SteeringBehaviorArriveBuilder_setitem);
+	function("new_SteeringBehaviorCohesion", &new_SteeringBehaviorCohesion, allow_raw_pointers());
+	function("delete_SteeringBehaviorCohesion", &delete_SteeringBehaviorCohesion);
+	function("SteeringBehaviorCohesion_getitem", &SteeringBehaviorCohesion_getitem, allow_raw_pointers());
+	function("SteeringBehaviorCohesion_setitem", &SteeringBehaviorCohesion_setitem);
+	function("new_SteeringBehaviorCohesionBuilder", &new_SteeringBehaviorCohesionBuilder, allow_raw_pointers());
+	function("delete_SteeringBehaviorCohesionBuilder", &delete_SteeringBehaviorCohesionBuilder);
+	function("SteeringBehaviorCohesionBuilder_getitem", &SteeringBehaviorCohesionBuilder_getitem, allow_raw_pointers());
+	function("SteeringBehaviorCohesionBuilder_setitem", &SteeringBehaviorCohesionBuilder_setitem);
+	function("new_SteeringBehaviorEvade", &new_SteeringBehaviorEvade, allow_raw_pointers());
+	function("delete_SteeringBehaviorEvade", &delete_SteeringBehaviorEvade);
+	function("SteeringBehaviorEvade_getitem", &SteeringBehaviorEvade_getitem, allow_raw_pointers());
+	function("SteeringBehaviorEvade_setitem", &SteeringBehaviorEvade_setitem);
+	function("new_SteeringBehaviorEvadeBuilder", &new_SteeringBehaviorEvadeBuilder, allow_raw_pointers());
+	function("delete_SteeringBehaviorEvadeBuilder", &delete_SteeringBehaviorEvadeBuilder);
+	function("SteeringBehaviorEvadeBuilder_getitem", &SteeringBehaviorEvadeBuilder_getitem, allow_raw_pointers());
+	function("SteeringBehaviorEvadeBuilder_setitem", &SteeringBehaviorEvadeBuilder_setitem);
+	function("new_SteeringBehaviorFlee", &new_SteeringBehaviorFlee, allow_raw_pointers());
+	function("delete_SteeringBehaviorFlee", &delete_SteeringBehaviorFlee);
+	function("SteeringBehaviorFlee_getitem", &SteeringBehaviorFlee_getitem, allow_raw_pointers());
+	function("SteeringBehaviorFlee_setitem", &SteeringBehaviorFlee_setitem);
+	function("new_SteeringBehaviorFleeBuilder", &new_SteeringBehaviorFleeBuilder, allow_raw_pointers());
+	function("delete_SteeringBehaviorFleeBuilder", &delete_SteeringBehaviorFleeBuilder);
+	function("SteeringBehaviorFleeBuilder_getitem", &SteeringBehaviorFleeBuilder_getitem, allow_raw_pointers());
+	function("SteeringBehaviorFleeBuilder_setitem", &SteeringBehaviorFleeBuilder_setitem);
+	function("new_SteeringBehaviorFollowPath", &new_SteeringBehaviorFollowPath, allow_raw_pointers());
+	function("delete_SteeringBehaviorFollowPath", &delete_SteeringBehaviorFollowPath);
+	function("SteeringBehaviorFollowPath_getitem", &SteeringBehaviorFollowPath_getitem, allow_raw_pointers());
+	function("SteeringBehaviorFollowPath_setitem", &SteeringBehaviorFollowPath_setitem);
+	function("new_SteeringBehaviorFollowPathBuilder", &new_SteeringBehaviorFollowPathBuilder, allow_raw_pointers());
+	function("delete_SteeringBehaviorFollowPathBuilder", &delete_SteeringBehaviorFollowPathBuilder);
+	function("SteeringBehaviorFollowPathBuilder_getitem", &SteeringBehaviorFollowPathBuilder_getitem, allow_raw_pointers());
+	function("SteeringBehaviorFollowPathBuilder_setitem", &SteeringBehaviorFollowPathBuilder_setitem);
+	function("new_SteeringBehaviorHide", &new_SteeringBehaviorHide, allow_raw_pointers());
+	function("delete_SteeringBehaviorHide", &delete_SteeringBehaviorHide);
+	function("SteeringBehaviorHide_getitem", &SteeringBehaviorHide_getitem, allow_raw_pointers());
+	function("SteeringBehaviorHide_setitem", &SteeringBehaviorHide_setitem);
+	function("new_SteeringBehaviorHideBuilder", &new_SteeringBehaviorHideBuilder, allow_raw_pointers());
+	function("delete_SteeringBehaviorHideBuilder", &delete_SteeringBehaviorHideBuilder);
+	function("SteeringBehaviorHideBuilder_getitem", &SteeringBehaviorHideBuilder_getitem, allow_raw_pointers());
+	function("SteeringBehaviorHideBuilder_setitem", &SteeringBehaviorHideBuilder_setitem);
+	function("new_SteeringBehaviorInterpose", &new_SteeringBehaviorInterpose, allow_raw_pointers());
+	function("delete_SteeringBehaviorInterpose", &delete_SteeringBehaviorInterpose);
+	function("SteeringBehaviorInterpose_getitem", &SteeringBehaviorInterpose_getitem, allow_raw_pointers());
+	function("SteeringBehaviorInterpose_setitem", &SteeringBehaviorInterpose_setitem);
+	function("new_SteeringBehaviorInterposeBuilder", &new_SteeringBehaviorInterposeBuilder, allow_raw_pointers());
+	function("delete_SteeringBehaviorInterposeBuilder", &delete_SteeringBehaviorInterposeBuilder);
+	function("SteeringBehaviorInterposeBuilder_getitem", &SteeringBehaviorInterposeBuilder_getitem, allow_raw_pointers());
+	function("SteeringBehaviorInterposeBuilder_setitem", &SteeringBehaviorInterposeBuilder_setitem);
+	function("new_SteeringBehaviorMachineDithered", &new_SteeringBehaviorMachineDithered, allow_raw_pointers());
+	function("delete_SteeringBehaviorMachineDithered", &delete_SteeringBehaviorMachineDithered);
+	function("SteeringBehaviorMachineDithered_getitem", &SteeringBehaviorMachineDithered_getitem, allow_raw_pointers());
+	function("SteeringBehaviorMachineDithered_setitem", &SteeringBehaviorMachineDithered_setitem);
+	function("new_SteeringBehaviorMachineDitheredBuilder", &new_SteeringBehaviorMachineDitheredBuilder, allow_raw_pointers());
+	function("delete_SteeringBehaviorMachineDitheredBuilder", &delete_SteeringBehaviorMachineDitheredBuilder);
+	function("SteeringBehaviorMachineDitheredBuilder_getitem", &SteeringBehaviorMachineDitheredBuilder_getitem, allow_raw_pointers());
+	function("SteeringBehaviorMachineDitheredBuilder_setitem", &SteeringBehaviorMachineDitheredBuilder_setitem);
+	function("new_SteeringBehaviorMachinePrioritized", &new_SteeringBehaviorMachinePrioritized, allow_raw_pointers());
+	function("delete_SteeringBehaviorMachinePrioritized", &delete_SteeringBehaviorMachinePrioritized);
+	function("SteeringBehaviorMachinePrioritized_getitem", &SteeringBehaviorMachinePrioritized_getitem, allow_raw_pointers());
+	function("SteeringBehaviorMachinePrioritized_setitem", &SteeringBehaviorMachinePrioritized_setitem);
+	function("new_SteeringBehaviorMachinePrioritizedBuilder", &new_SteeringBehaviorMachinePrioritizedBuilder, allow_raw_pointers());
+	function("delete_SteeringBehaviorMachinePrioritizedBuilder", &delete_SteeringBehaviorMachinePrioritizedBuilder);
+	function("SteeringBehaviorMachinePrioritizedBuilder_getitem", &SteeringBehaviorMachinePrioritizedBuilder_getitem, allow_raw_pointers());
+	function("SteeringBehaviorMachinePrioritizedBuilder_setitem", &SteeringBehaviorMachinePrioritizedBuilder_setitem);
+	function("new_SteeringBehaviorMachineWeighted", &new_SteeringBehaviorMachineWeighted, allow_raw_pointers());
+	function("delete_SteeringBehaviorMachineWeighted", &delete_SteeringBehaviorMachineWeighted);
+	function("SteeringBehaviorMachineWeighted_getitem", &SteeringBehaviorMachineWeighted_getitem, allow_raw_pointers());
+	function("SteeringBehaviorMachineWeighted_setitem", &SteeringBehaviorMachineWeighted_setitem);
+	function("new_SteeringBehaviorMachineWeightedBuilder", &new_SteeringBehaviorMachineWeightedBuilder, allow_raw_pointers());
+	function("delete_SteeringBehaviorMachineWeightedBuilder", &delete_SteeringBehaviorMachineWeightedBuilder);
+	function("SteeringBehaviorMachineWeightedBuilder_getitem", &SteeringBehaviorMachineWeightedBuilder_getitem, allow_raw_pointers());
+	function("SteeringBehaviorMachineWeightedBuilder_setitem", &SteeringBehaviorMachineWeightedBuilder_setitem);
+	function("new_SteeringBehaviorObstacleAvoidance", &new_SteeringBehaviorObstacleAvoidance, allow_raw_pointers());
+	function("delete_SteeringBehaviorObstacleAvoidance", &delete_SteeringBehaviorObstacleAvoidance);
+	function("SteeringBehaviorObstacleAvoidance_getitem", &SteeringBehaviorObstacleAvoidance_getitem, allow_raw_pointers());
+	function("SteeringBehaviorObstacleAvoidance_setitem", &SteeringBehaviorObstacleAvoidance_setitem);
+	function("new_SteeringBehaviorObstacleAvoidanceBuilder", &new_SteeringBehaviorObstacleAvoidanceBuilder, allow_raw_pointers());
+	function("delete_SteeringBehaviorObstacleAvoidanceBuilder", &delete_SteeringBehaviorObstacleAvoidanceBuilder);
+	function("SteeringBehaviorObstacleAvoidanceBuilder_getitem", &SteeringBehaviorObstacleAvoidanceBuilder_getitem, allow_raw_pointers());
+	function("SteeringBehaviorObstacleAvoidanceBuilder_setitem", &SteeringBehaviorObstacleAvoidanceBuilder_setitem);
+	function("new_SteeringBehaviorOffsetPursuit", &new_SteeringBehaviorOffsetPursuit, allow_raw_pointers());
+	function("delete_SteeringBehaviorOffsetPursuit", &delete_SteeringBehaviorOffsetPursuit);
+	function("SteeringBehaviorOffsetPursuit_getitem", &SteeringBehaviorOffsetPursuit_getitem, allow_raw_pointers());
+	function("SteeringBehaviorOffsetPursuit_setitem", &SteeringBehaviorOffsetPursuit_setitem);
+	function("new_SteeringBehaviorOffsetPursuitBuilder", &new_SteeringBehaviorOffsetPursuitBuilder, allow_raw_pointers());
+	function("delete_SteeringBehaviorOffsetPursuitBuilder", &delete_SteeringBehaviorOffsetPursuitBuilder);
+	function("SteeringBehaviorOffsetPursuitBuilder_getitem", &SteeringBehaviorOffsetPursuitBuilder_getitem, allow_raw_pointers());
+	function("SteeringBehaviorOffsetPursuitBuilder_setitem", &SteeringBehaviorOffsetPursuitBuilder_setitem);
+	function("new_SteeringBehaviorPursuit", &new_SteeringBehaviorPursuit, allow_raw_pointers());
+	function("delete_SteeringBehaviorPursuit", &delete_SteeringBehaviorPursuit);
+	function("SteeringBehaviorPursuit_getitem", &SteeringBehaviorPursuit_getitem, allow_raw_pointers());
+	function("SteeringBehaviorPursuit_setitem", &SteeringBehaviorPursuit_setitem);
+	function("new_SteeringBehaviorPursuitBuilder", &new_SteeringBehaviorPursuitBuilder, allow_raw_pointers());
+	function("delete_SteeringBehaviorPursuitBuilder", &delete_SteeringBehaviorPursuitBuilder);
+	function("SteeringBehaviorPursuitBuilder_getitem", &SteeringBehaviorPursuitBuilder_getitem, allow_raw_pointers());
+	function("SteeringBehaviorPursuitBuilder_setitem", &SteeringBehaviorPursuitBuilder_setitem);
+	function("new_SteeringBehaviorSeek", &new_SteeringBehaviorSeek, allow_raw_pointers());
+	function("delete_SteeringBehaviorSeek", &delete_SteeringBehaviorSeek);
+	function("SteeringBehaviorSeek_getitem", &SteeringBehaviorSeek_getitem, allow_raw_pointers());
+	function("SteeringBehaviorSeek_setitem", &SteeringBehaviorSeek_setitem);
+	function("new_SteeringBehaviorSeekBuilder", &new_SteeringBehaviorSeekBuilder, allow_raw_pointers());
+	function("delete_SteeringBehaviorSeekBuilder", &delete_SteeringBehaviorSeekBuilder);
+	function("SteeringBehaviorSeekBuilder_getitem", &SteeringBehaviorSeekBuilder_getitem, allow_raw_pointers());
+	function("SteeringBehaviorSeekBuilder_setitem", &SteeringBehaviorSeekBuilder_setitem);
+	function("new_SteeringBehaviorSeparation", &new_SteeringBehaviorSeparation, allow_raw_pointers());
+	function("delete_SteeringBehaviorSeparation", &delete_SteeringBehaviorSeparation);
+	function("SteeringBehaviorSeparation_getitem", &SteeringBehaviorSeparation_getitem, allow_raw_pointers());
+	function("SteeringBehaviorSeparation_setitem", &SteeringBehaviorSeparation_setitem);
+	function("new_SteeringBehaviorSeparationBuilder", &new_SteeringBehaviorSeparationBuilder, allow_raw_pointers());
+	function("delete_SteeringBehaviorSeparationBuilder", &delete_SteeringBehaviorSeparationBuilder);
+	function("SteeringBehaviorSeparationBuilder_getitem", &SteeringBehaviorSeparationBuilder_getitem, allow_raw_pointers());
+	function("SteeringBehaviorSeparationBuilder_setitem", &SteeringBehaviorSeparationBuilder_setitem);
+	function("new_SteeringBehaviorWallAvoidance", &new_SteeringBehaviorWallAvoidance, allow_raw_pointers());
+	function("delete_SteeringBehaviorWallAvoidance", &delete_SteeringBehaviorWallAvoidance);
+	function("SteeringBehaviorWallAvoidance_getitem", &SteeringBehaviorWallAvoidance_getitem, allow_raw_pointers());
+	function("SteeringBehaviorWallAvoidance_setitem", &SteeringBehaviorWallAvoidance_setitem);
+	function("new_SteeringBehaviorWallAvoidanceBuilder", &new_SteeringBehaviorWallAvoidanceBuilder, allow_raw_pointers());
+	function("delete_SteeringBehaviorWallAvoidanceBuilder", &delete_SteeringBehaviorWallAvoidanceBuilder);
+	function("SteeringBehaviorWallAvoidanceBuilder_getitem", &SteeringBehaviorWallAvoidanceBuilder_getitem, allow_raw_pointers());
+	function("SteeringBehaviorWallAvoidanceBuilder_setitem", &SteeringBehaviorWallAvoidanceBuilder_setitem);
+	function("new_SteeringBehaviorWander", &new_SteeringBehaviorWander, allow_raw_pointers());
+	function("delete_SteeringBehaviorWander", &delete_SteeringBehaviorWander);
+	function("SteeringBehaviorWander_getitem", &SteeringBehaviorWander_getitem, allow_raw_pointers());
+	function("SteeringBehaviorWander_setitem", &SteeringBehaviorWander_setitem);
+	function("new_SteeringBehaviorWanderBuilder", &new_SteeringBehaviorWanderBuilder, allow_raw_pointers());
+	function("delete_SteeringBehaviorWanderBuilder", &delete_SteeringBehaviorWanderBuilder);
+	function("SteeringBehaviorWanderBuilder_getitem", &SteeringBehaviorWanderBuilder_getitem, allow_raw_pointers());
+	function("SteeringBehaviorWanderBuilder_setitem", &SteeringBehaviorWanderBuilder_setitem);
+	function("new_StopWatchArray", &new_StopWatchArray, allow_raw_pointers());
+	function("delete_StopWatchArray", &delete_StopWatchArray);
+	function("StopWatchArray_getitem", &StopWatchArray_getitem, allow_raw_pointers());
+	function("StopWatchArray_setitem", &StopWatchArray_setitem);
+	function("new_StopWatchBuilderArray", &new_StopWatchBuilderArray, allow_raw_pointers());
+	function("delete_StopWatchBuilderArray", &delete_StopWatchBuilderArray);
+	function("StopWatchBuilderArray_getitem", &StopWatchBuilderArray_getitem, allow_raw_pointers());
+	function("StopWatchBuilderArray_setitem", &StopWatchBuilderArray_setitem);
+	function("new_TimerArray", &new_TimerArray, allow_raw_pointers());
+	function("delete_TimerArray", &delete_TimerArray);
+	function("TimerArray_getitem", &TimerArray_getitem, allow_raw_pointers());
+	function("TimerArray_setitem", &TimerArray_setitem);
+	function("new_TimerBuilderArray", &new_TimerBuilderArray, allow_raw_pointers());
+	function("delete_TimerBuilderArray", &delete_TimerBuilderArray);
+	function("TimerBuilderArray_getitem", &TimerBuilderArray_getitem, allow_raw_pointers());
+	function("TimerBuilderArray_setitem", &TimerBuilderArray_setitem);
+	function("new_ButtonHUDArray", &new_ButtonHUDArray, allow_raw_pointers());
+	function("delete_ButtonHUDArray", &delete_ButtonHUDArray);
+	function("ButtonHUDArray_getitem", &ButtonHUDArray_getitem, allow_raw_pointers());
+	function("ButtonHUDArray_setitem", &ButtonHUDArray_setitem);
+	function("new_ButtonHUDBuilderArray", &new_ButtonHUDBuilderArray, allow_raw_pointers());
+	function("delete_ButtonHUDBuilderArray", &delete_ButtonHUDBuilderArray);
+	function("ButtonHUDBuilderArray_getitem", &ButtonHUDBuilderArray_getitem, allow_raw_pointers());
+	function("ButtonHUDBuilderArray_setitem", &ButtonHUDBuilderArray_setitem);
+	function("new_CheckboxHUDArray", &new_CheckboxHUDArray, allow_raw_pointers());
+	function("delete_CheckboxHUDArray", &delete_CheckboxHUDArray);
+	function("CheckboxHUDArray_getitem", &CheckboxHUDArray_getitem, allow_raw_pointers());
+	function("CheckboxHUDArray_setitem", &CheckboxHUDArray_setitem);
+	function("new_CheckboxHUDBuilderArray", &new_CheckboxHUDBuilderArray, allow_raw_pointers());
+	function("delete_CheckboxHUDBuilderArray", &delete_CheckboxHUDBuilderArray);
+	function("CheckboxHUDBuilderArray_getitem", &CheckboxHUDBuilderArray_getitem, allow_raw_pointers());
+	function("CheckboxHUDBuilderArray_setitem", &CheckboxHUDBuilderArray_setitem);
+	function("new_DropdownHUDArray", &new_DropdownHUDArray, allow_raw_pointers());
+	function("delete_DropdownHUDArray", &delete_DropdownHUDArray);
+	function("DropdownHUDArray_getitem", &DropdownHUDArray_getitem, allow_raw_pointers());
+	function("DropdownHUDArray_setitem", &DropdownHUDArray_setitem);
+	function("new_DropdownHUDBuilderArray", &new_DropdownHUDBuilderArray, allow_raw_pointers());
+	function("delete_DropdownHUDBuilderArray", &delete_DropdownHUDBuilderArray);
+	function("DropdownHUDBuilderArray_getitem", &DropdownHUDBuilderArray_getitem, allow_raw_pointers());
+	function("DropdownHUDBuilderArray_setitem", &DropdownHUDBuilderArray_setitem);
+	function("new_LabelHUDArray", &new_LabelHUDArray, allow_raw_pointers());
+	function("delete_LabelHUDArray", &delete_LabelHUDArray);
+	function("LabelHUDArray_getitem", &LabelHUDArray_getitem, allow_raw_pointers());
+	function("LabelHUDArray_setitem", &LabelHUDArray_setitem);
+	function("new_LabelHUDBuilderArray", &new_LabelHUDBuilderArray, allow_raw_pointers());
+	function("delete_LabelHUDBuilderArray", &delete_LabelHUDBuilderArray);
+	function("LabelHUDBuilderArray_getitem", &LabelHUDBuilderArray_getitem, allow_raw_pointers());
+	function("LabelHUDBuilderArray_setitem", &LabelHUDBuilderArray_setitem);
+	function("new_SliderHUDArray", &new_SliderHUDArray, allow_raw_pointers());
+	function("delete_SliderHUDArray", &delete_SliderHUDArray);
+	function("SliderHUDArray_getitem", &SliderHUDArray_getitem, allow_raw_pointers());
+	function("SliderHUDArray_setitem", &SliderHUDArray_setitem);
+	function("new_SliderHUDBuilderArray", &new_SliderHUDBuilderArray, allow_raw_pointers());
+	function("delete_SliderHUDBuilderArray", &delete_SliderHUDBuilderArray);
+	function("SliderHUDBuilderArray_getitem", &SliderHUDBuilderArray_getitem, allow_raw_pointers());
+	function("SliderHUDBuilderArray_setitem", &SliderHUDBuilderArray_setitem);
+	function("new_TextboxHUDArray", &new_TextboxHUDArray, allow_raw_pointers());
+	function("delete_TextboxHUDArray", &delete_TextboxHUDArray);
+	function("TextboxHUDArray_getitem", &TextboxHUDArray_getitem, allow_raw_pointers());
+	function("TextboxHUDArray_setitem", &TextboxHUDArray_setitem);
+	function("new_TextboxHUDBuilderArray", &new_TextboxHUDBuilderArray, allow_raw_pointers());
+	function("delete_TextboxHUDBuilderArray", &delete_TextboxHUDBuilderArray);
+	function("TextboxHUDBuilderArray_getitem", &TextboxHUDBuilderArray_getitem, allow_raw_pointers());
+	function("TextboxHUDBuilderArray_setitem", &TextboxHUDBuilderArray_setitem);
+	function("new_WorldStateArray", &new_WorldStateArray, allow_raw_pointers());
+	function("delete_WorldStateArray", &delete_WorldStateArray);
+	function("WorldStateArray_getitem", &WorldStateArray_getitem, allow_raw_pointers());
+	function("WorldStateArray_setitem", &WorldStateArray_setitem);
+	function("new_WorldStateBuilderArray", &new_WorldStateBuilderArray, allow_raw_pointers());
+	function("delete_WorldStateBuilderArray", &delete_WorldStateBuilderArray);
+	function("WorldStateBuilderArray_getitem", &WorldStateBuilderArray_getitem, allow_raw_pointers());
+	function("WorldStateBuilderArray_setitem", &WorldStateBuilderArray_setitem);
+	function("new_WorldStateMachineArray", &new_WorldStateMachineArray, allow_raw_pointers());
+	function("delete_WorldStateMachineArray", &delete_WorldStateMachineArray);
+	function("WorldStateMachineArray_getitem", &WorldStateMachineArray_getitem, allow_raw_pointers());
+	function("WorldStateMachineArray_setitem", &WorldStateMachineArray_setitem);
+	function("new_WorldStateMachineBuilderArray", &new_WorldStateMachineBuilderArray, allow_raw_pointers());
+	function("delete_WorldStateMachineBuilderArray", &delete_WorldStateMachineBuilderArray);
+	function("WorldStateMachineBuilderArray_getitem", &WorldStateMachineBuilderArray_getitem, allow_raw_pointers());
+	function("WorldStateMachineBuilderArray_setitem", &WorldStateMachineBuilderArray_setitem);
+	function("new_XmlArray", &new_XmlArray, allow_raw_pointers());
+	function("delete_XmlArray", &delete_XmlArray);
+	function("XmlArray_getitem", &XmlArray_getitem, allow_raw_pointers());
+	function("XmlArray_setitem", &XmlArray_setitem);
+	function("new_XmlBuilderArray", &new_XmlBuilderArray, allow_raw_pointers());
+	function("delete_XmlBuilderArray", &delete_XmlBuilderArray);
+	function("XmlBuilderArray_getitem", &XmlBuilderArray_getitem, allow_raw_pointers());
+	function("XmlBuilderArray_setitem", &XmlBuilderArray_setitem);
 	function("LOCALIZED_TEXT", &LOCALIZED_TEXT);
 	function("LOCALIZED_TEXT", &LOCALIZED_TEXT);
 	function("LOCALIZED_LANGUAGE", &LOCALIZED_LANGUAGE);

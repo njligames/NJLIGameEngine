@@ -8,7 +8,7 @@ build_emscripten_sublime()
   if [ "${BUILD_TYPE}" == "Debug" ]
   then
     export EMCC_DEBUG=1
-    export EMCC_AUTODEBUG=1
+    #export EMCC_AUTODEBUG=1
   else
     BUILD_TYPE=Release
     #export EMCC_DEBUG=0
@@ -52,8 +52,8 @@ rm -rf emscripten_Sublime
 mkdir -p emscripten_Sublime
 cd emscripten_Sublime
 
-#build_emscripten_sublime Debug
-build_emscripten_sublime
+build_emscripten_sublime Debug
+#build_emscripten_sublime
 
 cd ..
 
@@ -61,3 +61,8 @@ cd ..
 #then
 #  ./seperate_asm.sh
 #fi
+
+#https://www.npmjs.com/package/minifier
+#minify --output emscripten_Sublime/NJLIGameEngine.min.js emscripten_Sublime/NJLIGameEngine.js
+#minify --output emscripten_Sublime/NJLIGameEngine.min.js.mem emscripten_Sublime/NJLIGameEngine.js.mem
+

@@ -37,14 +37,14 @@ if [[ ${MY_DEFINES} == *"USE_BULLET_LIBRARY"* ]]; then
     -o ${PWD}/src/njli/generated/swig/lua/lbullet.cpp \
     ${PWD}/../External/thirdparty/swig.in/lua/bullet3/_LuaEntry.i
 
-  if [[ ${MY_DEFINES} == *"WRAP_EMBIND"* ]]; then
-    /usr/local/bin/swig -fcompact -fvirtual -v -w201 -w312 -c++ -embind -includeall -ignoremissing -features directors,autodoc=1 -DBT_INFINITY \
-      -DSWIG_TYPE_TABLE=myprojectname \
-      -I${PWD}/../External/thirdparty/BUILD/include/bullet3 \
-      -I${PWD}/src/bullet \
-      -o ${PWD}/src/njli/generated/swig/embind/embind_bullet.cpp \
-      ${PWD}/../External/thirdparty/swig.in/embind/bullet3/_LuaEntry.i
-  fi
+#  if [[ ${MY_DEFINES} == *"WRAP_EMBIND"* ]]; then
+#    /usr/local/bin/swig -fcompact -fvirtual -v -w201 -w312 -c++ -embind -includeall -ignoremissing -features directors,autodoc=1 -DBT_INFINITY \
+#      -DSWIG_TYPE_TABLE=myprojectname \
+#      -I${PWD}/../External/thirdparty/BUILD/include/bullet3 \
+#      -I${PWD}/src/bullet \
+#      -o ${PWD}/src/njli/generated/swig/embind/embind_bullet.cpp \
+#      ${PWD}/../External/thirdparty/swig.in/embind/bullet3/_LuaEntry.i
+#  fi
 
   export SWIG_THIRDPARTY_INCLUDES=" \
     ${SWIG_THIRDPARTY_INCLUDES} \
@@ -78,14 +78,14 @@ mkdir -p ${PWD}/src/njli/generated/swig/lua/opengl_es_2/
   -o ${PWD}/src/njli/generated/swig/lua/opengl_es_2/lgl_es_2.cpp \
   ${PWD}/../External/thirdparty/swig.in/lua/opengl_es_2/_LuaEntry.i
 
-if [[ ${MY_DEFINES} == *"WRAP_EMBIND"* ]]; then
-  mkdir -p ${PWD}/src/njli/generated/swig/embind/opengl_es_2/
-  /usr/local/bin/swig -fcompact -fvirtual -v -w201 -w312 -c++ -embind -includeall -ignoremissing -features directors,autodoc=1 \
-    -DSWIG_TYPE_TABLE=myprojectname \
-    -DGL_GLEXT_PROTOTYPES=1 \
-    -o ${PWD}/src/njli/generated/swig/embind/opengl_es_2/embind_gl_es_2.cpp \
-    ${PWD}/../External/thirdparty/swig.in/embind/opengl_es_2/_LuaEntry.i
-fi
+#if [[ ${MY_DEFINES} == *"WRAP_EMBIND"* ]]; then
+#  mkdir -p ${PWD}/src/njli/generated/swig/embind/opengl_es_2/
+#  /usr/local/bin/swig -fcompact -fvirtual -v -w201 -w312 -c++ -embind -includeall -ignoremissing -features directors,autodoc=1 \
+#    -DSWIG_TYPE_TABLE=myprojectname \
+#    -DGL_GLEXT_PROTOTYPES=1 \
+#    -o ${PWD}/src/njli/generated/swig/embind/opengl_es_2/embind_gl_es_2.cpp \
+#    ${PWD}/../External/thirdparty/swig.in/embind/opengl_es_2/_LuaEntry.i
+#fi
 
 ###########################################################################################
 
@@ -96,13 +96,13 @@ mkdir -p ${PWD}/src/njli/generated/swig/lua/opengl_2/
   -o ${PWD}/src/njli/generated/swig/lua/opengl_2/lgl_2.cpp \
   ${PWD}/../External/thirdparty/swig.in/lua/opengl_2/_LuaEntry.i
 
-if [[ ${MY_DEFINES} == *"WRAP_EMBIND"* ]]; then
-  mkdir -p ${PWD}/src/njli/generated/swig/embind/opengl_2/
-  /usr/local/bin/swig -fcompact -fvirtual -v -w201 -w312 -c++ -embind -includeall -ignoremissing -features directors,autodoc=1 \
-    -DSWIG_TYPE_TABLE=myprojectname \
-    -o ${PWD}/src/njli/generated/swig/embind/opengl_2/embind_gl_2.cpp \
-    ${PWD}/../External/thirdparty/swig.in/embind/opengl_2/_LuaEntry.i
-fi
+#if [[ ${MY_DEFINES} == *"WRAP_EMBIND"* ]]; then
+#  mkdir -p ${PWD}/src/njli/generated/swig/embind/opengl_2/
+#  /usr/local/bin/swig -fcompact -fvirtual -v -w201 -w312 -c++ -embind -includeall -ignoremissing -features directors,autodoc=1 \
+#    -DSWIG_TYPE_TABLE=myprojectname \
+#    -o ${PWD}/src/njli/generated/swig/embind/opengl_2/embind_gl_2.cpp \
+#    ${PWD}/../External/thirdparty/swig.in/embind/opengl_2/_LuaEntry.i
+#fi
 
 ###########################################################################################
 

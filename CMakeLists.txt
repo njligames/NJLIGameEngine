@@ -459,6 +459,63 @@ FOREACH(filename ${src})
 ENDFOREACH()
 
 
+
+
+
+
+
+
+
+FILE( GLOB src
+    ${NJLI_SOURCE_DIRECTORY}/njli/generated/swig/embind/*
+    )
+SET(REG "${NJLI_SOURCE_DIRECTORY}/njli/generated/swig/embind/.*([.]cpp|[.]c|[.]h|[.]hpp)")
+FOREACH(filename ${src})
+    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+    IF(match_group_sources)
+        LIST(APPEND njli_generated_swig_embind ${filename})
+    ELSE()
+        LIST(APPEND group_other ${filename})
+    ENDIF()
+ENDFOREACH()
+
+
+FILE( GLOB src
+    ${NJLI_SOURCE_DIRECTORY}/njli/generated/swig/embind/${NJLI_GRAPHICS_PLATFORM}/*
+    )
+SET(REG "${NJLI_SOURCE_DIRECTORY}/njli/generated/swig/embind/${NJLI_GRAPHICS_PLATFORM}/.*([.]cpp|[.]c|[.]h|[.]hpp)")
+FOREACH(filename ${src})
+    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+    IF(match_group_sources)
+        LIST(APPEND njli_generated_swig_embind_platform ${filename})
+    ELSE()
+        LIST(APPEND group_other ${filename})
+    ENDIF()
+ENDFOREACH()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 FILE( GLOB src
     ${NJLI_SOURCE_DIRECTORY}/njli/graphics/*.h
     ${NJLI_SOURCE_DIRECTORY}/njli/graphics/*.cpp
@@ -803,6 +860,10 @@ ELSEIF( ${NJLI_SOUND_PLATFORM} STREQUAL "openal" )
         ${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/include/vorbis
         )
 ENDIF( ${NJLI_SOUND_PLATFORM} STREQUAL "fmod" )
+
+
+
+
 
 IF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
     LIST(APPEND NJLIGameEngine_HDRS
@@ -4137,6 +4198,7 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
       LIST(APPEND EXTRA_PLATFORM_LIBS "--js-opts 0")
       LIST(APPEND EXTRA_PLATFORM_LIBS "-g4")
       
+
     ELSE()
       # OPTIMIZING: https://kripken.github.io/emscripten-site/docs/optimizing/Optimizing-Code.html
       # SEPERATE ASM: https://kripken.github.io/emscripten-site/docs/optimizing/Optimizing-Code.html#avoid-memory-spikes-by-separating-out-asm-js
@@ -4854,6 +4916,8 @@ SOURCE_GROUP("GameEngine\\njli\\generated"                                      
 SOURCE_GROUP("GameEngine\\njli\\generated\\swig"                                  FILES ${njli_generated_swig})
 SOURCE_GROUP("GameEngine\\njli\\generated\\swig\\lua"                             FILES ${njli_generated_swig_lua})
 SOURCE_GROUP("GameEngine\\njli\\generated\\swig\\lua\\${NJLI_GRAPHICS_PLATFORM}"  FILES ${njli_generated_swig_lua_platform})
+SOURCE_GROUP("GameEngine\\njli\\generated\\swig\\embind"                            FILES ${njli_generated_swig_embind})
+SOURCE_GROUP("GameEngine\\njli\\generated\\swig\\embind\\${NJLI_GRAPHICS_PLATFORM}" FILES ${njli_generated_swig_embind_platform})
 SOURCE_GROUP("GameEngine\\njli\\graphics"                                         FILES ${njli_graphics})
 SOURCE_GROUP("GameEngine\\njli\\graphics\\${NJLI_GRAPHICS_PLATFORM}"              FILES ${njli_graphics_specific})
 SOURCE_GROUP("GameEngine\\njli\\modules"                                          FILES ${njli_modules})
@@ -5050,6 +5114,26 @@ IF( ${NJLI_BUILD_PLATFORM} STREQUAL "android" )
       )
 
 ELSE()
+  IF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" AND IS_DEBUG )
+
+    LIST(REMOVE_ITEM EXTRA_PLATFORM_LIBS "--bind")
+
+    MESSAGE("
+        ${njli_generated_swig_embind} 
+        ${njli_generated_swig_embind_platform}
+    ")
+    ADD_LIBRARY( libnjli_bytecode_shared SHARED 
+        ${njli_generated_swig_embind} 
+        ${njli_generated_swig_embind_platform}
+        )
+    SET_TARGET_PROPERTIES( libnjli_bytecode_shared PROPERTIES OUTPUT_NAME libnjli )
+    SET_TARGET_PROPERTIES( libnjli_bytecode_shared PROPERTIES PREFIX "")
+    TARGET_LINK_LIBRARIES( libnjli_bytecode_shared ${EXTRA_PLATFORM_LIBS} ${NJLIGameEngine_LBY} )
+    SET_TARGET_PROPERTIES( libnjli_bytecode_shared PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
+    ADD_DEPENDENCIES(libnjli_bytecode_shared SWIGLua)
+
+  ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" AND IS_DEBUG )
+
   IF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" OR ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" OR ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
 
     ADD_LIBRARY( NJLIGameEngine
@@ -5147,6 +5231,7 @@ ELSE()
         #MESSAGE("CMAKE_SOURCE_DIR ${CMAKE_SOURCE_DIR}/../External/thirdparty/android_file.h")
 
     ADD_EXECUTABLE( EngineSource
+      ${libnjli_bytecode_shared}
       ${CMAKE_SOURCE_DIR}/../External/thirdparty/android_file.cpp
       ${CMAKE_SOURCE_DIR}/../External/thirdparty/android_file.h
       ${NJLIGameEngine_SRCS} 
