@@ -136,8 +136,8 @@ local Update = function(timeStep)
     end
 
     if not debugging then
-        require("mobdebug").start()
-        require("mobdebug").coro()
+        --require("mobdebug").start()
+        --require("mobdebug").coro()
         debugging = true
     end
     

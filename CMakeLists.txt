@@ -867,8 +867,8 @@ ENDIF( ${NJLI_SOUND_PLATFORM} STREQUAL "fmod" )
 
 IF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
     LIST(APPEND NJLIGameEngine_HDRS
-      /Applications/Developer/emsdk_portable/emscripten/1.37.9/system/include 
-      /Applications/Developer/emsdk_portable/emscripten/1.37.9/system/include/emscripten
+      $ENV{EMSCRIPTEN_LOCATION}/system/include 
+      $ENV{EMSCRIPTEN_LOCATION}/system/include/emscripten
       )
 ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
 
@@ -2107,14 +2107,14 @@ SET(emscripten_include "")
 SET(emscripten_include_emscripten "")
 IF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
     FILE( GLOB emscripten_include
-        /Applications/Developer/emsdk_portable/emscripten/1.37.9/system/include/*.h
-        /Applications/Developer/emsdk_portable/emscripten/1.37.9/system/include/*.inl
-        /Applications/Developer/emsdk_portable/emscripten/1.37.9/system/include/*.hpp
+        $ENV{EMSCRIPTEN_LOCATION}/system/include/*.h
+        $ENV{EMSCRIPTEN_LOCATION}/system/include/*.inl
+        $ENV{EMSCRIPTEN_LOCATION}/system/include/*.hpp
         )
     FILE( GLOB emscripten_include_emscripten
-        /Applications/Developer/emsdk_portable/emscripten/1.37.9/system/include/emscripten/*.h
-        /Applications/Developer/emsdk_portable/emscripten/1.37.9/system/include/emscripten/*.inl
-        /Applications/Developer/emsdk_portable/emscripten/1.37.9/system/include/emscripten/*.hpp
+        $ENV{EMSCRIPTEN_LOCATION}/system/include/emscripten/*.h
+        $ENV{EMSCRIPTEN_LOCATION}/system/include/emscripten/*.inl
+        $ENV{EMSCRIPTEN_LOCATION}/system/include/emscripten/*.hpp
         )
 
     LIST(APPEND NJLIGameEngine_THIRDPARTY_INC
@@ -4125,8 +4125,8 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
     SET( NJLI_RESOURCES_FILES ${ASSET_CATALOGUE_FILES} ${GAME_ASSETS_FILES} )
 
 ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
-    LIST(APPEND NJLIGameEngine_HDRS /Applications/Developer/emsdk_portable/emscripten/1.37.9/system/include )
-    LIST(APPEND NJLIGameEngine_HDRS /Applications/Developer/emsdk_portable/emscripten/1.37.9/system/include/emscripten )
+    LIST(APPEND NJLIGameEngine_HDRS $ENV{EMSCRIPTEN_LOCATION}/system/include )
+    LIST(APPEND NJLIGameEngine_HDRS $ENV{EMSCRIPTEN_LOCATION}/system/include/emscripten )
 
     SET(imported_assimp_location                      "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/assimp/${NJLI_BUILD_PLATFORM}/Release/lib/libassimp${NJLI_ASSIMP_POSTFIX}.so" )
     SET(imported_Bullet2FileLoader_location          "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/Release/lib/libBullet2FileLoader.a")
@@ -4185,8 +4185,6 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
     SET(imported_vorbisenc_location                   "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/Release/libvorbisenc.so")
     SET(imported_vorbisfile_location                  "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/Release/libvorbisfile.so")
 
-
-
     IF( IS_DEBUG)
       # DEBUGGING: https://kripken.github.io/emscripten-site/docs/porting/Debugging.html#debugging-emcc-debug
 
@@ -4195,9 +4193,9 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
       LIST(APPEND EXTRA_PLATFORM_LIBS "--profiling-funcs")
       LIST(APPEND EXTRA_PLATFORM_LIBS "--tracing")
       LIST(APPEND EXTRA_PLATFORM_LIBS "--emit-symbol-map")
-      LIST(APPEND EXTRA_PLATFORM_LIBS "--js-opts 0")
       LIST(APPEND EXTRA_PLATFORM_LIBS "-g4")
-      
+
+      LIST(APPEND EXTRA_PLATFORM_LIBS "--shell-file ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/emscripten/debug_shell.html")
 
     ELSE()
       # OPTIMIZING: https://kripken.github.io/emscripten-site/docs/optimizing/Optimizing-Code.html
@@ -4205,14 +4203,22 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
 
       LIST(APPEND EXTRA_PLATFORM_LIBS "-s -O2 --llvm-opts 2")
 
+      LIST(APPEND EXTRA_PLATFORM_LIBS "--shell-file ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/emscripten/release_shell.html")
+
     ENDIF( IS_DEBUG)
 
+    LIST(APPEND EXTRA_PLATFORM_LIBS "--js-opts 0")
     LIST(APPEND EXTRA_PLATFORM_LIBS "-s TOTAL_MEMORY=256*1024*1024")
-    #LIST(APPEND EXTRA_PLATFORM_LIBS "-s ALLOW_MEMORY_GROWTH=1")
     LIST(APPEND EXTRA_PLATFORM_LIBS "-s FULL_ES2=1")
+    #LIST(APPEND EXTRA_PLATFORM_LIBS "-s USE_PTHREADS=2")
+    #LIST(APPEND EXTRA_PLATFORM_LIBS "-s PTHREAD_POOL_SIZE=8")
+    LIST(APPEND EXTRA_PLATFORM_LIBS "--separate-asm")
+    #LIST(APPEND EXTRA_PLATFORM_LIBS "-s WASM=1")
+    #LIST(APPEND EXTRA_PLATFORM_LIBS "--closure 1")
 
     #https://kripken.github.io/emscripten-site/docs/porting/files/packaging_files.html
-    SET (CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -DSWIG_TYPE_TABLE=myprojectname --memory-init-file 1 --embed-file  ${NJLIGameEngine_COMMON_DIRECTORY}/assets@/" )
+    SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -DSWIG_TYPE_TABLE=myprojectname --memory-init-file 1 --embed-file  ${NJLIGameEngine_COMMON_DIRECTORY}/assets@/" )
+    SET(CMAKE_EXECUTABLE_SUFFIX ".html")
 
 ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "android" )
 

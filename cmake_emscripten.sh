@@ -1,5 +1,8 @@
 #!/bin/sh
 
+export EMSCRIPTEN_LOCATION=/Applications/Developer/emsdk_portable/emscripten/1.37.9
+export EMSCRIPTEN_INCLUDE_LOCATION=${EMSCRIPTEN_LOCATION}/system/include 
+
 BUILD=$1
 
 build_emscripten_sublime()
@@ -24,9 +27,9 @@ build_emscripten_sublime()
         -DNJLI_BUILD_DIR="emscripten" \
         -DNJLI_BUILD_TYPE=${BUILD_TYPE} \
         -DNJLI_SOUND_PLATFORM=openal \
-        -DCMAKE_AR=/Applications/Developer/emsdk_portable/emscripten/1.37.9/emar \
-        -DCMAKE_CXX_COMPILER=/Applications/Developer/emsdk_portable/emscripten/1.37.9/em++ \
-        -DCMAKE_C_COMPILER=/Applications/Developer/emsdk_portable/emscripten/1.37.9/emcc
+        -DCMAKE_AR=${EMSCRIPTEN_LOCATION}/emar \
+        -DCMAKE_CXX_COMPILER=${EMSCRIPTEN_LOCATION}/em++ \
+        -DCMAKE_C_COMPILER=${EMSCRIPTEN_LOCATION}/emcc
 
     if [ ! -z ${BUILD} ]
     then
@@ -52,8 +55,8 @@ rm -rf emscripten_Sublime
 mkdir -p emscripten_Sublime
 cd emscripten_Sublime
 
-build_emscripten_sublime Debug
-#build_emscripten_sublime
+#build_emscripten_sublime Debug
+build_emscripten_sublime
 
 cd ..
 
