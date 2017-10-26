@@ -5122,7 +5122,7 @@ IF( ${NJLI_BUILD_PLATFORM} STREQUAL "android" )
 ELSE()
   IF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" AND IS_DEBUG )
 
-    LIST(REMOVE_ITEM EXTRA_PLATFORM_LIBS "--bind")
+    #LIST(REMOVE_ITEM EXTRA_PLATFORM_LIBS "--bind")
 
     MESSAGE("
         ${njli_generated_swig_embind} 
@@ -5237,7 +5237,6 @@ ELSE()
         #MESSAGE("CMAKE_SOURCE_DIR ${CMAKE_SOURCE_DIR}/../External/thirdparty/android_file.h")
 
     ADD_EXECUTABLE( EngineSource
-      ${libnjli_bytecode_shared}
       ${CMAKE_SOURCE_DIR}/../External/thirdparty/android_file.cpp
       ${CMAKE_SOURCE_DIR}/../External/thirdparty/android_file.h
       ${NJLIGameEngine_SRCS} 
@@ -5249,6 +5248,9 @@ ELSE()
       ${NJLI_RESOURCES}
       ${NJLIGameEngine_THIRDPARTY_INC}
       )
+    IF( IS_DEBUG)
+      TARGET_LINK_LIBRARIES( EngineSource libnjli_bytecode_shared)
+    ENDIF( IS_DEBUG)
     ADD_DEPENDENCIES(EngineSource SWIGLua)
 
     SET_TARGET_PROPERTIES( EngineSource PROPERTIES OUTPUT_NAME ${NJLI_PRODUCT_NAME} )

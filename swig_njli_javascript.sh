@@ -1,4 +1,5 @@
 #!/bin/sh
+#http://www.swig.org/Doc3.0/Javascript.html
 
 PWD=`pwd`
 
@@ -22,29 +23,20 @@ fi
 
 export SWIG_THIRDPARTY_INCLUDES=""
 
-/usr/local/bin/swig -lua -external-runtime \
+/usr/local/bin/swig -javascript -v8 -DV8_VERSION=0x032530 -external-runtime \
   -DSWIG_TYPE_TABLE=myprojectname \
-  ${PWD}/src/njli/generated/swig/lua/swig_runtime.h
+  ${PWD}/src/njli/generated/swig/javascript_v8/swig_runtime.h
 
 if [[ ${MY_DEFINES} == *"USE_BULLET_LIBRARY"* ]]; then
   USE_BULLET_LIBRARY=1
   #bullet.
-  /usr/local/bin/swig -fcompact -fvirtual -v -w201 -w312 -c++ -lua -includeall -ignoremissing -features directors,autodoc=1 -DBT_INFINITY \
+  /usr/local/bin/swig -fcompact -fvirtual -v -w201 -w312 -c++ -javascript -v8 -DV8_VERSION=0x032530 -includeall -ignoremissing -features directors,autodoc=1 -DBT_INFINITY \
     -DSWIG_TYPE_TABLE=myprojectname \
     -I${PWD}/../External/thirdparty/BUILD/include/bullet3 \
     -I${PWD}/src/bullet \
     -xmlout ${MY_XML_OUTPUT_DIRECTORY}/lbullet.xml \
-    -o ${PWD}/src/njli/generated/swig/lua/lbullet.cpp \
+    -o ${PWD}/src/njli/generated/swig/javascript_v8/lbullet.cpp \
     ${PWD}/../External/thirdparty/swig.in/script/bullet3/_LuaEntry.i
-
-  if [[ ${MY_DEFINES} == *"WRAP_EMBIND"* ]]; then
-    /usr/local/bin/swig -fcompact -fvirtual -v -w201 -w312 -c++ -embind -includeall -ignoremissing -features directors,autodoc=1 -DBT_INFINITY \
-      -DSWIG_TYPE_TABLE=myprojectname \
-      -I${PWD}/../External/thirdparty/BUILD/include/bullet3 \
-      -I${PWD}/src/bullet \
-      -o ${PWD}/src/njli/generated/swig/embind/embind_bullet.cpp \
-      ${PWD}/../External/thirdparty/swig.in/embind/bullet3/_LuaEntry.i
-  fi
 
   export SWIG_THIRDPARTY_INCLUDES=" \
     ${SWIG_THIRDPARTY_INCLUDES} \
@@ -70,44 +62,27 @@ fi
 
 ###########################################################################################
 
-mkdir -p ${PWD}/src/njli/generated/swig/lua/opengl_es_2/
-/usr/local/bin/swig -fcompact -fvirtual -v -w201 -w312 -c++ -lua -includeall -ignoremissing -features directors,autodoc=1 \
+mkdir -p ${PWD}/src/njli/generated/swig/javascript_v8/opengl_es_2/
+/usr/local/bin/swig -fcompact -fvirtual -v -w201 -w312 -c++ -javascript -v8 -DV8_VERSION=0x032530 -includeall -ignoremissing -features directors,autodoc=1 \
   -DSWIG_TYPE_TABLE=myprojectname \
   -DGL_GLEXT_PROTOTYPES=1 \
   -xmlout ${MY_XML_OUTPUT_DIRECTORY}/opengl_es_2.xml \
-  -o ${PWD}/src/njli/generated/swig/lua/opengl_es_2/lgl_es_2.cpp \
+  -o ${PWD}/src/njli/generated/swig/javascript_v8/opengl_es_2/lgl_es_2.cpp \
   ${PWD}/../External/thirdparty/swig.in/script/opengl_es_2/_LuaEntry.i
-
-if [[ ${MY_DEFINES} == *"WRAP_EMBIND"* ]]; then
-  mkdir -p ${PWD}/src/njli/generated/swig/embind/opengl_es_2/
-  /usr/local/bin/swig -fcompact -fvirtual -v -w201 -w312 -c++ -embind -includeall -ignoremissing -features directors,autodoc=1 \
-    -DSWIG_TYPE_TABLE=myprojectname \
-    -DGL_GLEXT_PROTOTYPES=1 \
-    -o ${PWD}/src/njli/generated/swig/embind/opengl_es_2/embind_gl_es_2.cpp \
-    ${PWD}/../External/thirdparty/swig.in/embind/opengl_es_2/_LuaEntry.i
-fi
 
 ###########################################################################################
 
-mkdir -p ${PWD}/src/njli/generated/swig/lua/opengl_2/
-/usr/local/bin/swig -fcompact -fvirtual -v -w201 -w312 -c++ -lua -includeall -ignoremissing -features directors,autodoc=1 \
+mkdir -p ${PWD}/src/njli/generated/swig/javascript_v8/opengl_2/
+/usr/local/bin/swig -fcompact -fvirtual -v -w201 -w312 -c++ -javascript -v8 -DV8_VERSION=0x032530 -includeall -ignoremissing -features directors,autodoc=1 \
   -DSWIG_TYPE_TABLE=myprojectname \
   -xmlout ${MY_XML_OUTPUT_DIRECTORY}/opengl_2.xml \
-  -o ${PWD}/src/njli/generated/swig/lua/opengl_2/lgl_2.cpp \
+  -o ${PWD}/src/njli/generated/swig/javascript_v8/opengl_2/lgl_2.cpp \
   ${PWD}/../External/thirdparty/swig.in/script/opengl_2/_LuaEntry.i
-
-if [[ ${MY_DEFINES} == *"WRAP_EMBIND"* ]]; then
-  mkdir -p ${PWD}/src/njli/generated/swig/embind/opengl_2/
-  /usr/local/bin/swig -fcompact -fvirtual -v -w201 -w312 -c++ -embind -includeall -ignoremissing -features directors,autodoc=1 \
-    -DSWIG_TYPE_TABLE=myprojectname \
-    -o ${PWD}/src/njli/generated/swig/embind/opengl_2/embind_gl_2.cpp \
-    ${PWD}/../External/thirdparty/swig.in/embind/opengl_2/_LuaEntry.i
-fi
 
 ###########################################################################################
 
 #njli
-/usr/local/bin/swig ${MY_DEFINES} -fcompact -fvirtual -v -w201 -w312 -c++ -lua -includeall -ignoremissing -features directors,autodoc=1 \
+/usr/local/bin/swig ${MY_DEFINES} -fcompact -fvirtual -v -w201 -w312 -c++ -javascript -v8 -DV8_VERSION=0x032530 -includeall -ignoremissing -features directors,autodoc=1 \
   -DOPENGL=\"${MY_OPENGL}\" \
   -DSWIG_TYPE_TABLE=myprojectname \
   ${SWIG_THIRDPARTY_INCLUDES} \
@@ -161,7 +136,7 @@ fi
   -I${MY_DEBUG_DRAW_DIRECTORY} \
   \
   -xmlout ${MY_XML_OUTPUT_DIRECTORY}/lnjli.xml \
-  -o ${PWD}/src/njli/generated/swig/lua/lnjli.cpp \
+  -o ${PWD}/src/njli/generated/swig/javascript_v8/lnjli.cpp \
   ${PWD}/src/swig.in/script/njli/_LuaEntry.i
 
 ################################################################################################################
