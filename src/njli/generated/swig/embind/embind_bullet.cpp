@@ -350,7 +350,15 @@ template <typename T> T SwigValueInit() {
     #include "LinearMath/btVector3.h"
 
 EMSCRIPTEN_BINDINGS(bullet) {
-	constant("btVector3Zero", btVector3Zero);
+//variableHandler - btManifoldPoint
+//variableHandler - btMatrix3x3
+//variableHandler - btQuaternion
+//variableHandler - btScalar
+//variableHandler - btTransform
+//variableHandler - btVector2
+//variableHandler - btVector3
+//variableHandler - btVector4
+//variableHandler - btVector3Zero
 	function("btGetVersion", &btGetVersion);
 	function("btSqrt", &btSqrt);
 	function("btFabs", &btFabs);
@@ -374,8 +382,6 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	function("btDegrees", &btDegrees);
 	function("btFsel", &btFsel);
 	function("btMachineIsLittleEndian", &btMachineIsLittleEndian);
-	function("btSelect", &btSelect);
-	function("btSwapEndian", &btSwapEndian);
 	function("btSwapEndianFloat", &btSwapEndianFloat);
 	function("btUnswapEndianFloat", &btUnswapEndianFloat);
 	function("btSwapEndianDouble", &btSwapEndianDouble);
@@ -384,173 +390,35 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	function("btNormalizeAngle", &btNormalizeAngle);
 	class_<btTypedObject>("btTypedObject")
 	.constructor<int>()
-	constant("m_objectType", m_objectType);
+//variableHandler - m_objectType
 	.function("getObjectType", &btTypedObject::getObjectType)
 	;
 	function("btAlignedAllocInternal", &btAlignedAllocInternal, allow_raw_pointers());
 	function("btAlignedFreeInternal", &btAlignedFreeInternal);
 	function("btAlignedAllocSetCustom", &btAlignedAllocSetCustom);
 	function("btAlignedAllocSetCustomAligned", &btAlignedAllocSetCustomAligned);
-	class_<btVector3>("btVector3")
-	.constructor<r.q(const).btScalar,r.q(const).btScalar,r.q(const).btScalar>()
-	.function("operator +=", &btVector3::operator +=)
-	.function("operator -=", &btVector3::operator -=)
-	.function("operator *=_r.q(const).btScalar", select_overload<btVector3(r.q(const).btScalar)>(&btVector3::operator *=))
-	.function("operator /=", &btVector3::operator /=)
-	.function("dot", &btVector3::dot)
-	.function("length2", &btVector3::length2)
-	.function("length", &btVector3::length)
-	.function("norm", &btVector3::norm)
-	.function("safeNorm", &btVector3::safeNorm)
-	.function("distance2", &btVector3::distance2)
-	.function("distance", &btVector3::distance)
-	.function("safeNormalize", &btVector3::safeNormalize)
-	.function("normalize", &btVector3::normalize)
-	.function("normalized", &btVector3::normalized)
-	.function("rotate", &btVector3::rotate)
-	.function("angle", &btVector3::angle)
-	.function("absolute", &btVector3::absolute)
-	.function("cross", &btVector3::cross)
-	.function("triple", &btVector3::triple)
-	.function("minAxis", &btVector3::minAxis)
-	.function("maxAxis", &btVector3::maxAxis)
-	.function("furthestAxis", &btVector3::furthestAxis)
-	.function("closestAxis", &btVector3::closestAxis)
-	.function("setInterpolate3", &btVector3::setInterpolate3)
-	.function("lerp", &btVector3::lerp)
-	.function("operator *=_r.q(const).btVector3", select_overload<btVector3(r.q(const).btVector3)>(&btVector3::operator *=))
-	.function("getX", &btVector3::getX)
-	.function("getY", &btVector3::getY)
-	.function("getZ", &btVector3::getZ)
-	.function("setX", &btVector3::setX)
-	.function("setY", &btVector3::setY)
-	.function("setZ", &btVector3::setZ)
-	.function("setW", &btVector3::setW)
-	.function("x", &btVector3::x)
-	.function("y", &btVector3::y)
-	.function("z", &btVector3::z)
-	.function("w", &btVector3::w)
-	.function("operator btScalar*", &btVector3::operator btScalar*)
-	.function("operator const btScalar*", &btVector3::operator const btScalar*)
-	.function("operator ==", &btVector3::operator ==)
-	.function("operator !=", &btVector3::operator !=)
-	.function("setMax", &btVector3::setMax)
-	.function("setMin", &btVector3::setMin)
-	.function("setValue", &btVector3::setValue)
-	.function("getSkewSymmetricMatrix", &btVector3::getSkewSymmetricMatrix)
-	.function("setZero", &btVector3::setZero)
-	.function("isZero", &btVector3::isZero)
-	.function("fuzzyZero", &btVector3::fuzzyZero)
-	.function("serialize", &btVector3::serialize)
-	.function("deSerialize", &btVector3::deSerialize)
-	.function("serializeFloat", &btVector3::serializeFloat)
-	.function("deSerializeFloat", &btVector3::deSerializeFloat)
-	.function("serializeDouble", &btVector3::serializeDouble)
-	.function("deSerializeDouble", &btVector3::deSerializeDouble)
-	.function("maxDot", &btVector3::maxDot)
-	.function("minDot", &btVector3::minDot)
-	.function("dot3", &btVector3::dot3)
-	.function("__str__", &btVector3::__str__)
-	.constructor<r.q(const).btVector3>()
-	.function("__add__", &btVector3::__add__)
-	.function("__sub__", &btVector3::__sub__)
-	.function("__mul___r.q(const).btVector3", select_overload<btVector3(r.q(const).btVector3)>(&btVector3::__mul__))
-	.function("__mul___r.q(const).btMatrix3x3", select_overload<btVector3(r.q(const).btMatrix3x3)>(&btVector3::__mul__))
-	.function("__mul___r.q(const).btScalar", select_overload<btVector3(r.q(const).btScalar)>(&btVector3::__mul__))
-	.function("__mul___r.q(const).btQuaternion", select_overload<btQuaternion(r.q(const).btQuaternion)>(&btVector3::__mul__))
-	.function("__div___r.q(const).btVector3", select_overload<btVector3(r.q(const).btVector3)>(&btVector3::__div__))
-	.function("__div___r.q(const).btScalar", select_overload<btVector3(r.q(const).btScalar)>(&btVector3::__div__))
-	.function("__neg__", &btVector3::__neg__)
-	.function("__concat__", &btVector3::__concat__)
-	.function("__eq__", &btVector3::__eq__)
-	.function("__lt__", &btVector3::__lt__)
-	.function("__le__", &btVector3::__le__)
-	;
 	function("btDot", &btDot);
 	function("btDistance2", &btDistance2);
 	function("btDistance", &btDistance);
-	function("btAngle", &btAngle);
 	function("btCross", &btCross);
 	function("btTriple", &btTriple);
 	function("lerp", &lerp);
-	class_<btVector4, base<btVector3>>("btVector4")
-	.constructor<r.q(const).btScalar,r.q(const).btScalar,r.q(const).btScalar,r.q(const).btScalar>()
-	.function("absolute4", &btVector4::absolute4)
-	.function("getW", &btVector4::getW)
-	.function("maxAxis4", &btVector4::maxAxis4)
-	.function("minAxis4", &btVector4::minAxis4)
-	.function("closestAxis4", &btVector4::closestAxis4)
-	.function("setValue", &btVector4::setValue)
-	.function("__str__", &btVector4::__str__)
-	.constructor<r.q(const).btVector4>()
-	.function("__concat__", &btVector4::__concat__)
-	.function("__eq__", &btVector4::__eq__)
-	.function("__lt__", &btVector4::__lt__)
-	.function("__le__", &btVector4::__le__)
-	;
 	function("btSwapScalarEndian", &btSwapScalarEndian);
 	function("btSwapVector3Endian", &btSwapVector3Endian);
 	function("btUnSwapVector3Endian", &btUnSwapVector3Endian);
 	class_<btVector3FloatData>("btVector3FloatData")
-	constant("m_floats", m_floats);
+//variableHandler - m_floats
 	;
 	class_<btVector3DoubleData>("btVector3DoubleData")
-	constant("m_floats", m_floats);
+//variableHandler - m_floats
 	;
-	class_<btVector2>("btVector2")
-	.constructor<r.q(const).btScalar,r.q(const).btScalar>()
-	.constructor<r.q(const).btVector2>()
-	.constructor<r.q(const).btVector3>()
-	.function("operator btVector3", &btVector2::operator btVector3)
-	.function("operator const btScalar*", &btVector2::operator const btScalar*)
-	.function("x", &btVector2::x)
-	.function("y", &btVector2::y)
-	.function("setX", &btVector2::setX)
-	.function("setY", &btVector2::setY)
-	.function("operator =", &btVector2::operator =)
-	.function("operator +=", &btVector2::operator +=)
-	.function("operator -=", &btVector2::operator -=)
-	.function("operator *=_r.q(const).btVector2", select_overload<btVector2(r.q(const).btVector2)>(&btVector2::operator *=))
-	.function("operator *=_r.q(const).btScalar", select_overload<btVector2(r.q(const).btScalar)>(&btVector2::operator *=))
-	.function("operator /=", &btVector2::operator /=)
-	.function("dot", &btVector2::dot)
-	.function("length2", &btVector2::length2)
-	.function("length", &btVector2::length)
-	.function("distance2", &btVector2::distance2)
-	.function("distance", &btVector2::distance)
-	.function("normalize", &btVector2::normalize)
-	.function("normalized", &btVector2::normalized)
-	.function("rotate", &btVector2::rotate)
-	.function("rotated", &btVector2::rotated)
-	.function("absolute", &btVector2::absolute)
-	.function("angle", &btVector2::angle)
-	.function("serializeFloat", &btVector2::serializeFloat)
-	.function("deSerializeFloat", &btVector2::deSerializeFloat)
-	.function("serializeDouble", &btVector2::serializeDouble)
-	.function("deSerializeDouble", &btVector2::deSerializeDouble)
-	.function("serialize", &btVector2::serialize)
-	.function("deSerialize", &btVector2::deSerialize)
-	.function("__str__", &btVector2::__str__)
-	.function("__add__", &btVector2::__add__)
-	.function("__sub__", &btVector2::__sub__)
-	.function("__mul___r.q(const).btVector2", select_overload<btVector2(r.q(const).btVector2)>(&btVector2::__mul__))
-	.function("__mul___r.q(const).btScalar", select_overload<btVector2(r.q(const).btScalar)>(&btVector2::__mul__))
-	.function("__div___r.q(const).btVector2", select_overload<btVector2(r.q(const).btVector2)>(&btVector2::__div__))
-	.function("__div___r.q(const).btScalar", select_overload<btVector2(r.q(const).btScalar)>(&btVector2::__div__))
-	.function("__neg__", &btVector2::__neg__)
-	.function("__concat__", &btVector2::__concat__)
-	.function("__eq__", &btVector2::__eq__)
-	.function("__lt__", &btVector2::__lt__)
-	.function("__le__", &btVector2::__le__)
-	;
-	function("dot", &dot);
 	function("distance2", &distance2);
 	function("distance", &distance);
 	class_<btVector2FloatData>("btVector2FloatData")
-	constant("xy_", xy_);
+//variableHandler - xy_
 	;
 	class_<btVector2DoubleData>("btVector2DoubleData")
-	constant("xy_", xy_);
+//variableHandler - xy_
 	;
 	enum_<BroadphaseNativeTypes>("BroadphaseNativeTypes")
 		.value("BOX_SHAPE_PROXYTYPE", BOX_SHAPE_PROXYTYPE)
@@ -601,12 +469,12 @@ EMSCRIPTEN_BINDINGS(bullet) {
 		.value("CharacterFilter", btBroadphaseProxy::CharacterFilter)
 		.value("AllFilter", btBroadphaseProxy::AllFilter)
 		;
-	constant("m_clientObject", m_clientObject);
-	constant("m_collisionFilterGroup", m_collisionFilterGroup);
-	constant("m_collisionFilterMask", m_collisionFilterMask);
-	constant("m_uniqueId", m_uniqueId);
-	constant("m_aabbMin", m_aabbMin);
-	constant("m_aabbMax", m_aabbMax);
+//variableHandler - m_clientObject
+//variableHandler - m_collisionFilterGroup
+//variableHandler - m_collisionFilterMask
+//variableHandler - m_uniqueId
+//variableHandler - m_aabbMin
+//variableHandler - m_aabbMax
 	.function("getUid", &btBroadphaseProxy::getUid)
 	.constructor<r.q(const).btVector3,r.q(const).btVector3,p.void,int,int>()
 	.class_function("isPolyhedral", &btBroadphaseProxy::isPolyhedral)
@@ -621,9 +489,9 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	class_<btBroadphasePair>("btBroadphasePair")
 	.constructor<r.q(const).btBroadphasePair>()
 	.constructor<r.btBroadphaseProxy,r.btBroadphaseProxy>()
-	constant("m_pProxy0", m_pProxy0);
-	constant("m_pProxy1", m_pProxy1);
-	constant("m_algorithm", m_algorithm);
+//variableHandler - m_pProxy0
+//variableHandler - m_pProxy1
+//variableHandler - m_algorithm
 	;
 	class_<btBroadphasePairSortPredicate>("btBroadphasePairSortPredicate")
 	.function("operator ()", &btBroadphasePairSortPredicate::operator ())
@@ -632,9 +500,9 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("process", &btBroadphaseAabbCallback::process)
 	;
 	class_<btBroadphaseRayCallback, base<btBroadphaseAabbCallback>>("btBroadphaseRayCallback")
-	constant("m_rayDirectionInverse", m_rayDirectionInverse);
-	constant("m_signs", m_signs);
-	constant("m_lambda_max", m_lambda_max);
+//variableHandler - m_rayDirectionInverse
+//variableHandler - m_signs
+//variableHandler - m_lambda_max
 	;
 	class_<btBroadphaseInterface>("btBroadphaseInterface")
 	.function("createProxy", &btBroadphaseInterface::createProxy)
@@ -654,8 +522,8 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	;
 	class_<btCollisionAlgorithmConstructionInfo>("btCollisionAlgorithmConstructionInfo")
 	.constructor<p.btDispatcher,int>()
-	constant("m_dispatcher1", m_dispatcher1);
-	constant("m_manifold", m_manifold);
+//variableHandler - m_dispatcher1
+//variableHandler - m_manifold
 	;
 	class_<btCollisionAlgorithm>("btCollisionAlgorithm")
 	.constructor<r.q(const).btCollisionAlgorithmConstructionInfo>()
@@ -686,172 +554,31 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("setMax", &btQuadWord::setMax)
 	.function("setMin", &btQuadWord::setMin)
 	;
-	class_<btQuaternion, base<btQuadWord>>("btQuaternion")
-	.constructor<r.q(const).btScalar,r.q(const).btScalar,r.q(const).btScalar,r.q(const).btScalar>()
-	.constructor<r.q(const).btVector3,r.q(const).btScalar>()
-	.constructor<r.q(const).btScalar,r.q(const).btScalar,r.q(const).btScalar>()
-	.function("setRotation", &btQuaternion::setRotation)
-	.function("setEuler", &btQuaternion::setEuler)
-	.function("setEulerZYX", &btQuaternion::setEulerZYX)
-	.function("operator +=", &btQuaternion::operator +=)
-	.function("operator -=", &btQuaternion::operator -=)
-	.function("operator *=_r.q(const).btScalar", select_overload<btQuaternion(r.q(const).btScalar)>(&btQuaternion::operator *=))
-	.function("operator *=_r.q(const).btQuaternion", select_overload<btQuaternion(r.q(const).btQuaternion)>(&btQuaternion::operator *=))
-	.function("dot", &btQuaternion::dot)
-	.function("length2", &btQuaternion::length2)
-	.function("length", &btQuaternion::length)
-	.function("normalize", &btQuaternion::normalize)
-	.function("operator *", &btQuaternion::operator *)
-	.function("operator /", &btQuaternion::operator /)
-	.function("operator /=", &btQuaternion::operator /=)
-	.function("normalized", &btQuaternion::normalized)
-	.function("angle", &btQuaternion::angle)
-	.function("angleShortestPath", &btQuaternion::angleShortestPath)
-	.function("getAngle", &btQuaternion::getAngle)
-	.function("getAngleShortestPath", &btQuaternion::getAngleShortestPath)
-	.function("getAxis", &btQuaternion::getAxis)
-	.function("inverse", &btQuaternion::inverse)
-	.function("operator +", &btQuaternion::operator +)
-	.function("operator -_r.q(const).btQuaternion", select_overload<btQuaternion(r.q(const).btQuaternion)const>(&btQuaternion::operator -))
-	.function("operator -", select_overload<btQuaternion()const>(&btQuaternion::operator -))
-	.function("farthest", &btQuaternion::farthest)
-	.function("nearest", &btQuaternion::nearest)
-	.function("slerp", &btQuaternion::slerp)
-	.class_function("getIdentity", &btQuaternion::getIdentity)
-	.function("getW", &btQuaternion::getW)
-	.function("serialize", &btQuaternion::serialize)
-	.function("deSerialize", &btQuaternion::deSerialize)
-	.function("serializeFloat", &btQuaternion::serializeFloat)
-	.function("deSerializeFloat", &btQuaternion::deSerializeFloat)
-	.function("serializeDouble", &btQuaternion::serializeDouble)
-	.function("deSerializeDouble", &btQuaternion::deSerializeDouble)
-	.function("__str__", &btQuaternion::__str__)
-	.constructor<r.q(const).btQuaternion>()
-	.function("__add__", &btQuaternion::__add__)
-	.function("__sub__", &btQuaternion::__sub__)
-	.function("__mul___r.q(const).btQuaternion", select_overload<btQuaternion(r.q(const).btQuaternion)>(&btQuaternion::__mul__))
-	.function("__mul___r.q(const).btVector3", select_overload<btQuaternion(r.q(const).btVector3)>(&btQuaternion::__mul__))
-	.function("__mul___r.q(const).btScalar", select_overload<btQuaternion(r.q(const).btScalar)>(&btQuaternion::__mul__))
-	.function("__div__", &btQuaternion::__div__)
-	.function("__concat__", &btQuaternion::__concat__)
-	;
-	function("dot", &dot);
 	function("length", &length);
-	function("btAngle", &btAngle);
 	function("inverse", &inverse);
 	function("slerp", &slerp);
 	function("quatRotate", &quatRotate);
 	function("shortestArcQuat", &shortestArcQuat);
 	function("shortestArcQuatNormalize2", &shortestArcQuatNormalize2);
 	class_<btQuaternionFloatData>("btQuaternionFloatData")
-	constant("m_floats", m_floats);
+//variableHandler - m_floats
 	;
 	class_<btQuaternionDoubleData>("btQuaternionDoubleData")
-	constant("m_floats", m_floats);
-	;
-	class_<btMatrix3x3>("btMatrix3x3")
-	.constructor<r.q(const).btQuaternion>()
-	.constructor<r.q(const).btScalar,r.q(const).btScalar,r.q(const).btScalar,r.q(const).btScalar,r.q(const).btScalar,r.q(const).btScalar,r.q(const).btScalar,r.q(const).btScalar,r.q(const).btScalar>()
-	.constructor<r.q(const).btMatrix3x3>()
-	.function("operator =", &btMatrix3x3::operator =)
-	.function("getColumn", &btMatrix3x3::getColumn)
-	.function("getRow", &btMatrix3x3::getRow)
-	.function("operator []_int", select_overload<btVector3(int)>(&btMatrix3x3::operator []))
-	.function("operator []_int", select_overload<q(const).btVector3(int)const>(&btMatrix3x3::operator []))
-	.function("operator *=", &btMatrix3x3::operator *=)
-	.function("operator +=", &btMatrix3x3::operator +=)
-	.function("operator -=", &btMatrix3x3::operator -=)
-	.function("setValue", &btMatrix3x3::setValue)
-	.function("setRotation", &btMatrix3x3::setRotation)
-	.function("setEulerYPR", &btMatrix3x3::setEulerYPR)
-	.function("setEulerZYX", &btMatrix3x3::setEulerZYX)
-	.function("setIdentity", &btMatrix3x3::setIdentity)
-	.class_function("getIdentity", &btMatrix3x3::getIdentity)
-	.function("getOpenGLSubMatrix", &btMatrix3x3::getOpenGLSubMatrix)
-	.function("getRotation", &btMatrix3x3::getRotation)
-	.function("getEulerYPR", &btMatrix3x3::getEulerYPR)
-	.function("getEulerZYX_r.btScalar_r.btScalar_r.btScalar_unsigned int", select_overload<void(r.btScalar, r.btScalar, r.btScalar, unsigned int)const>(&btMatrix3x3::getEulerZYX))
-	.function("getEulerZYX_r.btScalar_r.btScalar_r.btScalar", select_overload<void(r.btScalar, r.btScalar, r.btScalar)const>(&btMatrix3x3::getEulerZYX))
-	.function("scaled", &btMatrix3x3::scaled)
-	.function("determinant", &btMatrix3x3::determinant)
-	.function("adjoint", &btMatrix3x3::adjoint)
-	.function("absolute", &btMatrix3x3::absolute)
-	.function("transpose", &btMatrix3x3::transpose)
-	.function("inverse", &btMatrix3x3::inverse)
-	.function("solve33", &btMatrix3x3::solve33)
-	.function("transposeTimes", &btMatrix3x3::transposeTimes)
-	.function("timesTranspose", &btMatrix3x3::timesTranspose)
-	.function("tdotx", &btMatrix3x3::tdotx)
-	.function("tdoty", &btMatrix3x3::tdoty)
-	.function("tdotz", &btMatrix3x3::tdotz)
-	.function("diagonalize", &btMatrix3x3::diagonalize)
-	.function("cofac", &btMatrix3x3::cofac)
-	.function("serialize", &btMatrix3x3::serialize)
-	.function("serializeFloat", &btMatrix3x3::serializeFloat)
-	.function("deSerialize", &btMatrix3x3::deSerialize)
-	.function("deSerializeFloat", &btMatrix3x3::deSerializeFloat)
-	.function("deSerializeDouble", &btMatrix3x3::deSerializeDouble)
-	.function("__str__", &btMatrix3x3::__str__)
-	.function("__add__", &btMatrix3x3::__add__)
-	.function("__sub__", &btMatrix3x3::__sub__)
-	.function("__mul___r.q(const).btMatrix3x3", select_overload<btMatrix3x3(r.q(const).btMatrix3x3)>(&btMatrix3x3::__mul__))
-	.function("__mul___r.q(const).btVector3", select_overload<btVector3(r.q(const).btVector3)>(&btMatrix3x3::__mul__))
-	.function("__mul___r.q(const).btScalar", select_overload<btMatrix3x3(r.q(const).btScalar)>(&btMatrix3x3::__mul__))
-	.function("__concat__", &btMatrix3x3::__concat__)
-	.function("__eq__", &btMatrix3x3::__eq__)
+//variableHandler - m_floats
 	;
 	class_<btMatrix3x3FloatData>("btMatrix3x3FloatData")
-	constant("m_el", m_el);
+//variableHandler - m_el
 	;
 	class_<btMatrix3x3DoubleData>("btMatrix3x3DoubleData")
-	constant("m_el", m_el);
-	;
-	class_<btTransform>("btTransform")
-	.constructor<r.q(const).btQuaternion,r.q(const).btVector3>()
-	.constructor<r.q(const).btQuaternion>()
-	.constructor<r.q(const).btMatrix3x3,r.q(const).btVector3>()
-	.constructor<r.q(const).btMatrix3x3>()
-	.constructor<r.q(const).btTransform>()
-	.function("operator =", &btTransform::operator =)
-	.function("mult", &btTransform::mult)
-	.function("operator ()", &btTransform::operator ())
-	.function("operator *_r.q(const).btVector3", select_overload<btVector3(r.q(const).btVector3)const>(&btTransform::operator *))
-	.function("operator *_r.q(const).btQuaternion", select_overload<btQuaternion(r.q(const).btQuaternion)const>(&btTransform::operator *))
-	.function("getBasis", select_overload<btMatrix3x3()>(&btTransform::getBasis))
-	.function("getBasis", select_overload<q(const).btMatrix3x3()const>(&btTransform::getBasis))
-	.function("getOrigin", select_overload<btVector3()>(&btTransform::getOrigin))
-	.function("getOrigin", select_overload<q(const).btVector3()const>(&btTransform::getOrigin))
-	.function("getRotation", &btTransform::getRotation)
-	.function("getOpenGLMatrix", &btTransform::getOpenGLMatrix)
-	.function("setOrigin", &btTransform::setOrigin)
-	.function("invXform", &btTransform::invXform)
-	.function("setBasis", &btTransform::setBasis)
-	.function("setRotation", &btTransform::setRotation)
-	.function("setIdentity", &btTransform::setIdentity)
-	.function("operator *=", &btTransform::operator *=)
-	.function("inverse", &btTransform::inverse)
-	.function("inverseTimes", &btTransform::inverseTimes)
-	.function("operator *_r.q(const).btTransform", select_overload<btTransform(r.q(const).btTransform)const>(&btTransform::operator *))
-	.class_function("getIdentity", &btTransform::getIdentity)
-	.function("serialize", &btTransform::serialize)
-	.function("serializeFloat", &btTransform::serializeFloat)
-	.function("deSerialize", &btTransform::deSerialize)
-	.function("deSerializeDouble", &btTransform::deSerializeDouble)
-	.function("deSerializeFloat", &btTransform::deSerializeFloat)
-	.function("__str__", &btTransform::__str__)
-	.function("__mul___r.q(const).btVector3", select_overload<btVector3(r.q(const).btVector3)>(&btTransform::__mul__))
-	.function("__mul___r.q(const).btQuaternion", select_overload<btQuaternion(r.q(const).btQuaternion)>(&btTransform::__mul__))
-	.function("__mul___r.q(const).btTransform", select_overload<btTransform(r.q(const).btTransform)>(&btTransform::__mul__))
-	.function("__eq__", &btTransform::__eq__)
-	.function("__concat__", &btTransform::__concat__)
+//variableHandler - m_el
 	;
 	class_<btTransformFloatData>("btTransformFloatData")
-	constant("m_basis", m_basis);
-	constant("m_origin", m_origin);
+//variableHandler - m_basis
+//variableHandler - m_origin
 	;
 	class_<btTransformDoubleData>("btTransformDoubleData")
-	constant("m_basis", m_basis);
-	constant("m_origin", m_origin);
+//variableHandler - m_basis
+//variableHandler - m_origin
 	;
 	function("AabbExpand", &AabbExpand);
 	function("TestPointAgainstAabb2", &TestPointAgainstAabb2);
@@ -884,8 +611,8 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("AddSpan", &btDbvtAabbMm::AddSpan)
 	;
 	class_<btDbvtNode>("btDbvtNode")
-	constant("volume", volume);
-	constant("parent", parent);
+//variableHandler - volume
+//variableHandler - parent
 	.function("isleaf", &btDbvtNode::isleaf)
 	.function("isinternal", &btDbvtNode::isinternal)
 	;
@@ -894,12 +621,12 @@ EMSCRIPTEN_BINDINGS(bullet) {
 		.value("SIMPLE_STACKSIZE", btDbvt::SIMPLE_STACKSIZE)
 		.value("DOUBLE_STACKSIZE", btDbvt::DOUBLE_STACKSIZE)
 		;
-	constant("m_root", m_root);
-	constant("m_free", m_free);
-	constant("m_lkhd", m_lkhd);
-	constant("m_leaves", m_leaves);
-	constant("m_opath", m_opath);
-	constant("m_stkStack", m_stkStack);
+//variableHandler - m_root
+//variableHandler - m_free
+//variableHandler - m_lkhd
+//variableHandler - m_leaves
+//variableHandler - m_opath
+//variableHandler - m_stkStack
 	.function("clear", &btDbvt::clear)
 	.function("empty", &btDbvt::empty)
 	.function("optimizeBottomUp", &btDbvt::optimizeBottomUp)
@@ -948,10 +675,10 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	class_<btOverlapFilterCallback>("btOverlapFilterCallback")
 	.function("needBroadphaseCollision", &btOverlapFilterCallback::needBroadphaseCollision)
 	;
-	constant("gRemovePairs", gRemovePairs);
-	constant("gAddedPairs", gAddedPairs);
-	constant("gFindPairs", gFindPairs);
-	constant("BT_NULL_PAIR", BT_NULL_PAIR);
+//variableHandler - gRemovePairs
+//variableHandler - gAddedPairs
+//variableHandler - gFindPairs
+//variableHandler - BT_NULL_PAIR
 	class_<btOverlappingPairCache, base<btOverlappingPairCallback>>("btOverlappingPairCache")
 	.function("getOverlappingPairArrayPtr", select_overload<btBroadphasePair()>(&btOverlappingPairCache::getOverlappingPairArrayPtr))
 	.function("getOverlappingPairArrayPtr", select_overload<q(const).btBroadphasePair()const>(&btOverlappingPairCache::getOverlappingPairArrayPtr))
@@ -996,9 +723,9 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("getOverlappingPairArrayPtr", select_overload<q(const).btBroadphasePair()const>(&btNullPairCache::getOverlappingPairArrayPtr))
 	;
 	class_<btDbvtProxy, base<btBroadphaseProxy>>("btDbvtProxy")
-	constant("leaf", leaf);
-	constant("links", links);
-	constant("stage", stage);
+//variableHandler - leaf
+//variableHandler - links
+//variableHandler - stage
 	.constructor<r.q(const).btVector3,r.q(const).btVector3,p.void,int,int>()
 	;
 	class_<btDbvtBroadphase, base<btBroadphaseInterface>>("btDbvtBroadphase")
@@ -1007,26 +734,26 @@ EMSCRIPTEN_BINDINGS(bullet) {
 		.value("FIXED_SET", btDbvtBroadphase::FIXED_SET)
 		.value("STAGECOUNT", btDbvtBroadphase::STAGECOUNT)
 		;
-	constant("m_sets", m_sets);
-	constant("m_stageRoots", m_stageRoots);
-	constant("m_paircache", m_paircache);
-	constant("m_prediction", m_prediction);
-	constant("m_stageCurrent", m_stageCurrent);
-	constant("m_fupdates", m_fupdates);
-	constant("m_dupdates", m_dupdates);
-	constant("m_cupdates", m_cupdates);
-	constant("m_newpairs", m_newpairs);
-	constant("m_fixedleft", m_fixedleft);
-	constant("m_updates_call", m_updates_call);
-	constant("m_updates_done", m_updates_done);
-	constant("m_updates_ratio", m_updates_ratio);
-	constant("m_pid", m_pid);
-	constant("m_cid", m_cid);
-	constant("m_gid", m_gid);
-	constant("m_releasepaircache", m_releasepaircache);
-	constant("m_deferedcollide", m_deferedcollide);
-	constant("m_needcleanup", m_needcleanup);
-	constant("m_rayTestStacks", m_rayTestStacks);
+//variableHandler - m_sets
+//variableHandler - m_stageRoots
+//variableHandler - m_paircache
+//variableHandler - m_prediction
+//variableHandler - m_stageCurrent
+//variableHandler - m_fupdates
+//variableHandler - m_dupdates
+//variableHandler - m_cupdates
+//variableHandler - m_newpairs
+//variableHandler - m_fixedleft
+//variableHandler - m_updates_call
+//variableHandler - m_updates_done
+//variableHandler - m_updates_ratio
+//variableHandler - m_pid
+//variableHandler - m_cid
+//variableHandler - m_gid
+//variableHandler - m_releasepaircache
+//variableHandler - m_deferedcollide
+//variableHandler - m_needcleanup
+//variableHandler - m_rayTestStacks
 	.constructor<p.btOverlappingPairCache>()
 	.function("collide", &btDbvtBroadphase::collide)
 	.function("optimize", &btDbvtBroadphase::optimize)
@@ -1043,18 +770,18 @@ EMSCRIPTEN_BINDINGS(bullet) {
 		.value("DISPATCH_DISCRETE", btDispatcherInfo::DISPATCH_DISCRETE)
 		.value("DISPATCH_CONTINUOUS", btDispatcherInfo::DISPATCH_CONTINUOUS)
 		;
-	constant("m_timeStep", m_timeStep);
-	constant("m_stepCount", m_stepCount);
-	constant("m_dispatchFunc", m_dispatchFunc);
-	constant("m_timeOfImpact", m_timeOfImpact);
-	constant("m_useContinuous", m_useContinuous);
-	constant("m_debugDraw", m_debugDraw);
-	constant("m_enableSatConvex", m_enableSatConvex);
-	constant("m_enableSPU", m_enableSPU);
-	constant("m_useEpa", m_useEpa);
-	constant("m_allowedCcdPenetration", m_allowedCcdPenetration);
-	constant("m_useConvexConservativeDistanceUtil", m_useConvexConservativeDistanceUtil);
-	constant("m_convexConservativeDistanceThreshold", m_convexConservativeDistanceThreshold);
+//variableHandler - m_timeStep
+//variableHandler - m_stepCount
+//variableHandler - m_dispatchFunc
+//variableHandler - m_timeOfImpact
+//variableHandler - m_useContinuous
+//variableHandler - m_debugDraw
+//variableHandler - m_enableSatConvex
+//variableHandler - m_enableSPU
+//variableHandler - m_useEpa
+//variableHandler - m_allowedCcdPenetration
+//variableHandler - m_useConvexConservativeDistanceUtil
+//variableHandler - m_convexConservativeDistanceThreshold
 	;
 	enum_<ebtDispatcherQueryType>("ebtDispatcherQueryType")
 		.value("BT_CONTACT_POINT_ALGORITHMS", BT_CONTACT_POINT_ALGORITHMS)
@@ -1077,21 +804,21 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("freeCollisionAlgorithm", &btDispatcher::freeCollisionAlgorithm)
 	;
 	class_<btQuantizedBvhNode>("btQuantizedBvhNode")
-	constant("m_quantizedAabbMin", m_quantizedAabbMin);
-	constant("m_quantizedAabbMax", m_quantizedAabbMax);
-	constant("m_escapeIndexOrTriangleIndex", m_escapeIndexOrTriangleIndex);
+//variableHandler - m_quantizedAabbMin
+//variableHandler - m_quantizedAabbMax
+//variableHandler - m_escapeIndexOrTriangleIndex
 	.function("isLeafNode", &btQuantizedBvhNode::isLeafNode)
 	.function("getEscapeIndex", &btQuantizedBvhNode::getEscapeIndex)
 	.function("getTriangleIndex", &btQuantizedBvhNode::getTriangleIndex)
 	.function("getPartId", &btQuantizedBvhNode::getPartId)
 	;
 	class_<btOptimizedBvhNode>("btOptimizedBvhNode")
-	constant("m_aabbMinOrg", m_aabbMinOrg);
-	constant("m_aabbMaxOrg", m_aabbMaxOrg);
-	constant("m_escapeIndex", m_escapeIndex);
-	constant("m_subPart", m_subPart);
-	constant("m_triangleIndex", m_triangleIndex);
-	constant("m_padding", m_padding);
+//variableHandler - m_aabbMinOrg
+//variableHandler - m_aabbMaxOrg
+//variableHandler - m_escapeIndex
+//variableHandler - m_subPart
+//variableHandler - m_triangleIndex
+//variableHandler - m_padding
 	;
 	class_<btBvhSubtreeInfo>("btBvhSubtreeInfo")
 	.function("setAabbFromQuantizeNode", &btBvhSubtreeInfo::setAabbFromQuantizeNode)
@@ -1146,62 +873,62 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.constructor<r.btQuantizedBvh,bool>()
 	;
 	class_<btBvhSubtreeInfoData>("btBvhSubtreeInfoData")
-	constant("m_rootNodeIndex", m_rootNodeIndex);
-	constant("m_subtreeSize", m_subtreeSize);
-	constant("m_quantizedAabbMin", m_quantizedAabbMin);
-	constant("m_quantizedAabbMax", m_quantizedAabbMax);
+//variableHandler - m_rootNodeIndex
+//variableHandler - m_subtreeSize
+//variableHandler - m_quantizedAabbMin
+//variableHandler - m_quantizedAabbMax
 	;
 	class_<btOptimizedBvhNodeFloatData>("btOptimizedBvhNodeFloatData")
-	constant("m_aabbMinOrg", m_aabbMinOrg);
-	constant("m_aabbMaxOrg", m_aabbMaxOrg);
-	constant("m_escapeIndex", m_escapeIndex);
-	constant("m_subPart", m_subPart);
-	constant("m_triangleIndex", m_triangleIndex);
-	constant("m_pad", m_pad);
+//variableHandler - m_aabbMinOrg
+//variableHandler - m_aabbMaxOrg
+//variableHandler - m_escapeIndex
+//variableHandler - m_subPart
+//variableHandler - m_triangleIndex
+//variableHandler - m_pad
 	;
 	class_<btOptimizedBvhNodeDoubleData>("btOptimizedBvhNodeDoubleData")
-	constant("m_aabbMinOrg", m_aabbMinOrg);
-	constant("m_aabbMaxOrg", m_aabbMaxOrg);
-	constant("m_escapeIndex", m_escapeIndex);
-	constant("m_subPart", m_subPart);
-	constant("m_triangleIndex", m_triangleIndex);
-	constant("m_pad", m_pad);
+//variableHandler - m_aabbMinOrg
+//variableHandler - m_aabbMaxOrg
+//variableHandler - m_escapeIndex
+//variableHandler - m_subPart
+//variableHandler - m_triangleIndex
+//variableHandler - m_pad
 	;
 	class_<btQuantizedBvhNodeData>("btQuantizedBvhNodeData")
-	constant("m_quantizedAabbMin", m_quantizedAabbMin);
-	constant("m_quantizedAabbMax", m_quantizedAabbMax);
-	constant("m_escapeIndexOrTriangleIndex", m_escapeIndexOrTriangleIndex);
+//variableHandler - m_quantizedAabbMin
+//variableHandler - m_quantizedAabbMax
+//variableHandler - m_escapeIndexOrTriangleIndex
 	;
 	class_<btQuantizedBvhFloatData>("btQuantizedBvhFloatData")
-	constant("m_bvhAabbMin", m_bvhAabbMin);
-	constant("m_bvhAabbMax", m_bvhAabbMax);
-	constant("m_bvhQuantization", m_bvhQuantization);
-	constant("m_curNodeIndex", m_curNodeIndex);
-	constant("m_useQuantization", m_useQuantization);
-	constant("m_numContiguousLeafNodes", m_numContiguousLeafNodes);
-	constant("m_numQuantizedContiguousNodes", m_numQuantizedContiguousNodes);
-	constant("m_contiguousNodesPtr", m_contiguousNodesPtr);
-	constant("m_quantizedContiguousNodesPtr", m_quantizedContiguousNodesPtr);
-	constant("m_subTreeInfoPtr", m_subTreeInfoPtr);
-	constant("m_traversalMode", m_traversalMode);
-	constant("m_numSubtreeHeaders", m_numSubtreeHeaders);
+//variableHandler - m_bvhAabbMin
+//variableHandler - m_bvhAabbMax
+//variableHandler - m_bvhQuantization
+//variableHandler - m_curNodeIndex
+//variableHandler - m_useQuantization
+//variableHandler - m_numContiguousLeafNodes
+//variableHandler - m_numQuantizedContiguousNodes
+//variableHandler - m_contiguousNodesPtr
+//variableHandler - m_quantizedContiguousNodesPtr
+//variableHandler - m_subTreeInfoPtr
+//variableHandler - m_traversalMode
+//variableHandler - m_numSubtreeHeaders
 	;
 	class_<btQuantizedBvhDoubleData>("btQuantizedBvhDoubleData")
-	constant("m_bvhAabbMin", m_bvhAabbMin);
-	constant("m_bvhAabbMax", m_bvhAabbMax);
-	constant("m_bvhQuantization", m_bvhQuantization);
-	constant("m_curNodeIndex", m_curNodeIndex);
-	constant("m_useQuantization", m_useQuantization);
-	constant("m_numContiguousLeafNodes", m_numContiguousLeafNodes);
-	constant("m_numQuantizedContiguousNodes", m_numQuantizedContiguousNodes);
-	constant("m_contiguousNodesPtr", m_contiguousNodesPtr);
-	constant("m_quantizedContiguousNodesPtr", m_quantizedContiguousNodesPtr);
-	constant("m_traversalMode", m_traversalMode);
-	constant("m_numSubtreeHeaders", m_numSubtreeHeaders);
-	constant("m_subTreeInfoPtr", m_subTreeInfoPtr);
+//variableHandler - m_bvhAabbMin
+//variableHandler - m_bvhAabbMax
+//variableHandler - m_bvhQuantization
+//variableHandler - m_curNodeIndex
+//variableHandler - m_useQuantization
+//variableHandler - m_numContiguousLeafNodes
+//variableHandler - m_numQuantizedContiguousNodes
+//variableHandler - m_contiguousNodesPtr
+//variableHandler - m_quantizedContiguousNodesPtr
+//variableHandler - m_traversalMode
+//variableHandler - m_numSubtreeHeaders
+//variableHandler - m_subTreeInfoPtr
 	;
 	class_<btSimpleBroadphaseProxy, base<btBroadphaseProxy>>("btSimpleBroadphaseProxy")
-	constant("m_nextFree", m_nextFree);
+//variableHandler - m_nextFree
 	.constructor<r.q(const).btVector3,r.q(const).btVector3,int,p.void,int,int>()
 	.function("SetNextFree", &btSimpleBroadphaseProxy::SetNextFree)
 	.function("GetNextFree", &btSimpleBroadphaseProxy::GetNextFree)
@@ -1225,7 +952,7 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.constructor<r.q(const).btCollisionAlgorithmConstructionInfo,p.q(const).btCollisionObjectWrapper,p.q(const).btCollisionObjectWrapper>()
 	;
 	class_<btCollisionAlgorithmCreateFunc>("btCollisionAlgorithmCreateFunc")
-	constant("m_swapped", m_swapped);
+//variableHandler - m_swapped
 	.function("CreateCollisionAlgorithm", &btCollisionAlgorithmCreateFunc::CreateCollisionAlgorithm)
 	;
 	class_<btBox2dBox2dCollisionAlgorithm, base<btActivatingCollisionAlgorithm>>("btBox2dBox2dCollisionAlgorithm")
@@ -1241,8 +968,8 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("getClosestPoints_r.q(const).btDiscreteCollisionDetectorInterface::ClosestPointInput_r.btDiscreteCollisionDetectorInterface::Result_p.btIDebugDraw", select_overload<void(r.q(const).btDiscreteCollisionDetectorInterface::ClosestPointInput, r.btDiscreteCollisionDetectorInterface::Result, p.btIDebugDraw)>(&btDiscreteCollisionDetectorInterface::getClosestPoints))
 	;
 	class_<btBoxBoxDetector, base<btDiscreteCollisionDetectorInterface>>("btBoxBoxDetector")
-	constant("m_box1", m_box1);
-	constant("m_box2", m_box2);
+//variableHandler - m_box1
+//variableHandler - m_box2
 	.constructor<p.q(const).btBoxShape,p.q(const).btBoxShape>()
 	.function("getClosestPoints_r.q(const).btDiscreteCollisionDetectorInterface::ClosestPointInput_r.btDiscreteCollisionDetectorInterface::Result_p.btIDebugDraw_bool", select_overload<void(r.q(const).btDiscreteCollisionDetectorInterface::ClosestPointInput, r.btDiscreteCollisionDetectorInterface::Result, p.btIDebugDraw, bool)>(&btBoxBoxDetector::getClosestPoints))
 	.function("getClosestPoints_r.q(const).btDiscreteCollisionDetectorInterface::ClosestPointInput_r.btDiscreteCollisionDetectorInterface::Result_p.btIDebugDraw", select_overload<void(r.q(const).btDiscreteCollisionDetectorInterface::ClosestPointInput, r.btDiscreteCollisionDetectorInterface::Result, p.btIDebugDraw)>(&btBoxBoxDetector::getClosestPoints))
@@ -1268,12 +995,12 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("initSeparatingDistance", &btConvexSeparatingDistanceUtil::initSeparatingDistance)
 	;
 	class_<btConstraintRow>("btConstraintRow")
-	constant("m_normal", m_normal);
-	constant("m_rhs", m_rhs);
-	constant("m_jacDiagInv", m_jacDiagInv);
-	constant("m_lowerLimit", m_lowerLimit);
-	constant("m_upperLimit", m_upperLimit);
-	constant("m_accumImpulse", m_accumImpulse);
+//variableHandler - m_normal
+//variableHandler - m_rhs
+//variableHandler - m_jacDiagInv
+//variableHandler - m_lowerLimit
+//variableHandler - m_upperLimit
+//variableHandler - m_accumImpulse
 	;
 	enum_<btContactPointFlags>("btContactPointFlags")
 		.value("BT_CONTACT_FLAG_LATERAL_FRICTION_INITIALIZED", BT_CONTACT_FLAG_LATERAL_FRICTION_INITIALIZED)
@@ -1281,20 +1008,9 @@ EMSCRIPTEN_BINDINGS(bullet) {
 		.value("BT_CONTACT_FLAG_HAS_CONTACT_ERP", BT_CONTACT_FLAG_HAS_CONTACT_ERP)
 		.value("BT_CONTACT_FLAG_CONTACT_STIFFNESS_DAMPING", BT_CONTACT_FLAG_CONTACT_STIFFNESS_DAMPING)
 		;
-	class_<btManifoldPoint>("btManifoldPoint")
-	.constructor<r.q(const).btVector3,r.q(const).btVector3,r.q(const).btVector3,btScalar>()
-	.function("getDistance", &btManifoldPoint::getDistance)
-	.function("getLifeTime", &btManifoldPoint::getLifeTime)
-	.function("getPositionWorldOnA", &btManifoldPoint::getPositionWorldOnA)
-	.function("getPositionWorldOnB", &btManifoldPoint::getPositionWorldOnB)
-	.function("setDistance", &btManifoldPoint::setDistance)
-	.function("getAppliedImpulse", &btManifoldPoint::getAppliedImpulse)
-	.function("__str__", &btManifoldPoint::__str__)
-	.function("__concat__", &btManifoldPoint::__concat__)
-	;
-	constant("gContactBreakingThreshold", gContactBreakingThreshold);
-	constant("gContactDestroyedCallback", gContactDestroyedCallback);
-	constant("gContactProcessedCallback", gContactProcessedCallback);
+//variableHandler - gContactBreakingThreshold
+//variableHandler - gContactDestroyedCallback
+//variableHandler - gContactProcessedCallback
 	enum_<btContactManifoldTypes>("btContactManifoldTypes")
 		.value("MIN_CONTACT_MANIFOLD_TYPE", MIN_CONTACT_MANIFOLD_TYPE)
 		.value("BT_PERSISTENT_MANIFOLD_TYPE", BT_PERSISTENT_MANIFOLD_TYPE)
@@ -1418,64 +1134,64 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("serializeSingleObject", &btCollisionObject::serializeSingleObject)
 	;
 	class_<btCollisionObjectDoubleData>("btCollisionObjectDoubleData")
-	constant("m_broadphaseHandle", m_broadphaseHandle);
-	constant("m_collisionShape", m_collisionShape);
-	constant("m_rootCollisionShape", m_rootCollisionShape);
-	constant("m_name", m_name);
-	constant("m_worldTransform", m_worldTransform);
-	constant("m_interpolationWorldTransform", m_interpolationWorldTransform);
-	constant("m_interpolationLinearVelocity", m_interpolationLinearVelocity);
-	constant("m_interpolationAngularVelocity", m_interpolationAngularVelocity);
-	constant("m_anisotropicFriction", m_anisotropicFriction);
-	constant("m_contactProcessingThreshold", m_contactProcessingThreshold);
-	constant("m_deactivationTime", m_deactivationTime);
-	constant("m_friction", m_friction);
-	constant("m_rollingFriction", m_rollingFriction);
-	constant("m_contactDamping", m_contactDamping);
-	constant("m_contactStiffness", m_contactStiffness);
-	constant("m_restitution", m_restitution);
-	constant("m_hitFraction", m_hitFraction);
-	constant("m_ccdSweptSphereRadius", m_ccdSweptSphereRadius);
-	constant("m_ccdMotionThreshold", m_ccdMotionThreshold);
-	constant("m_hasAnisotropicFriction", m_hasAnisotropicFriction);
-	constant("m_collisionFlags", m_collisionFlags);
-	constant("m_islandTag1", m_islandTag1);
-	constant("m_companionId", m_companionId);
-	constant("m_activationState1", m_activationState1);
-	constant("m_internalType", m_internalType);
-	constant("m_checkCollideWith", m_checkCollideWith);
-	constant("m_padding", m_padding);
+//variableHandler - m_broadphaseHandle
+//variableHandler - m_collisionShape
+//variableHandler - m_rootCollisionShape
+//variableHandler - m_name
+//variableHandler - m_worldTransform
+//variableHandler - m_interpolationWorldTransform
+//variableHandler - m_interpolationLinearVelocity
+//variableHandler - m_interpolationAngularVelocity
+//variableHandler - m_anisotropicFriction
+//variableHandler - m_contactProcessingThreshold
+//variableHandler - m_deactivationTime
+//variableHandler - m_friction
+//variableHandler - m_rollingFriction
+//variableHandler - m_contactDamping
+//variableHandler - m_contactStiffness
+//variableHandler - m_restitution
+//variableHandler - m_hitFraction
+//variableHandler - m_ccdSweptSphereRadius
+//variableHandler - m_ccdMotionThreshold
+//variableHandler - m_hasAnisotropicFriction
+//variableHandler - m_collisionFlags
+//variableHandler - m_islandTag1
+//variableHandler - m_companionId
+//variableHandler - m_activationState1
+//variableHandler - m_internalType
+//variableHandler - m_checkCollideWith
+//variableHandler - m_padding
 	;
 	class_<btCollisionObjectFloatData>("btCollisionObjectFloatData")
-	constant("m_broadphaseHandle", m_broadphaseHandle);
-	constant("m_collisionShape", m_collisionShape);
-	constant("m_rootCollisionShape", m_rootCollisionShape);
-	constant("m_name", m_name);
-	constant("m_worldTransform", m_worldTransform);
-	constant("m_interpolationWorldTransform", m_interpolationWorldTransform);
-	constant("m_interpolationLinearVelocity", m_interpolationLinearVelocity);
-	constant("m_interpolationAngularVelocity", m_interpolationAngularVelocity);
-	constant("m_anisotropicFriction", m_anisotropicFriction);
-	constant("m_contactProcessingThreshold", m_contactProcessingThreshold);
-	constant("m_deactivationTime", m_deactivationTime);
-	constant("m_friction", m_friction);
-	constant("m_rollingFriction", m_rollingFriction);
-	constant("m_contactDamping", m_contactDamping);
-	constant("m_contactStiffness", m_contactStiffness);
-	constant("m_restitution", m_restitution);
-	constant("m_hitFraction", m_hitFraction);
-	constant("m_ccdSweptSphereRadius", m_ccdSweptSphereRadius);
-	constant("m_ccdMotionThreshold", m_ccdMotionThreshold);
-	constant("m_hasAnisotropicFriction", m_hasAnisotropicFriction);
-	constant("m_collisionFlags", m_collisionFlags);
-	constant("m_islandTag1", m_islandTag1);
-	constant("m_companionId", m_companionId);
-	constant("m_activationState1", m_activationState1);
-	constant("m_internalType", m_internalType);
-	constant("m_checkCollideWith", m_checkCollideWith);
-	constant("m_padding", m_padding);
+//variableHandler - m_broadphaseHandle
+//variableHandler - m_collisionShape
+//variableHandler - m_rootCollisionShape
+//variableHandler - m_name
+//variableHandler - m_worldTransform
+//variableHandler - m_interpolationWorldTransform
+//variableHandler - m_interpolationLinearVelocity
+//variableHandler - m_interpolationAngularVelocity
+//variableHandler - m_anisotropicFriction
+//variableHandler - m_contactProcessingThreshold
+//variableHandler - m_deactivationTime
+//variableHandler - m_friction
+//variableHandler - m_rollingFriction
+//variableHandler - m_contactDamping
+//variableHandler - m_contactStiffness
+//variableHandler - m_restitution
+//variableHandler - m_hitFraction
+//variableHandler - m_ccdSweptSphereRadius
+//variableHandler - m_ccdMotionThreshold
+//variableHandler - m_hasAnisotropicFriction
+//variableHandler - m_collisionFlags
+//variableHandler - m_islandTag1
+//variableHandler - m_companionId
+//variableHandler - m_activationState1
+//variableHandler - m_internalType
+//variableHandler - m_checkCollideWith
+//variableHandler - m_padding
 	;
-	constant("gContactAddedCallback", gContactAddedCallback);
+//variableHandler - gContactAddedCallback
 	class_<btManifoldResult, base<btDiscreteCollisionDetectorInterface::Result>>("btManifoldResult")
 	.constructor<p.q(const).btCollisionObjectWrapper,p.q(const).btCollisionObjectWrapper>()
 	.function("setPersistentManifold", &btManifoldResult::setPersistentManifold)
@@ -1556,23 +1272,23 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("setForceUpdateAllAabbs", &btCollisionWorld::setForceUpdateAllAabbs)
 	.function("serialize", &btCollisionWorld::serialize)
 	;
-	constant("gCompoundChildShapePairCallback", gCompoundChildShapePairCallback);
+//variableHandler - gCompoundChildShapePairCallback
 	class_<btCompoundCollisionAlgorithm, base<btActivatingCollisionAlgorithm>>("btCompoundCollisionAlgorithm")
 	.function("removeChildAlgorithms", &btCompoundCollisionAlgorithm::removeChildAlgorithms)
 	.function("preallocateChildAlgorithms", &btCompoundCollisionAlgorithm::preallocateChildAlgorithms)
 	.constructor<r.q(const).btCollisionAlgorithmConstructionInfo,p.q(const).btCollisionObjectWrapper,p.q(const).btCollisionObjectWrapper,bool>()
 	.function("getChildAlgorithm", &btCompoundCollisionAlgorithm::getChildAlgorithm)
 	;
-	constant("BT_SIMPLE_NULL_PAIR", BT_SIMPLE_NULL_PAIR);
+//variableHandler - BT_SIMPLE_NULL_PAIR
 	class_<btSimplePair>("btSimplePair")
 	.constructor<int,int>()
-	constant("m_indexA", m_indexA);
-	constant("m_indexB", m_indexB);
+//variableHandler - m_indexA
+//variableHandler - m_indexB
 	;
-	constant("gOverlappingSimplePairs", gOverlappingSimplePairs);
-	constant("gRemoveSimplePairs", gRemoveSimplePairs);
-	constant("gAddedSimplePairs", gAddedSimplePairs);
-	constant("gFindSimplePairs", gFindSimplePairs);
+//variableHandler - gOverlappingSimplePairs
+//variableHandler - gRemoveSimplePairs
+//variableHandler - gAddedSimplePairs
+//variableHandler - gFindSimplePairs
 	class_<btHashedSimplePairCache>("btHashedSimplePairCache")
 	.function("removeAllPairs", &btHashedSimplePairCache::removeAllPairs)
 	.function("removeOverlappingPair", &btHashedSimplePairCache::removeOverlappingPair)
@@ -1590,27 +1306,27 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("getHash", &btHashedSimplePairCache::getHash)
 	.function("internalFindPair", &btHashedSimplePairCache::internalFindPair)
 	;
-	constant("gCompoundCompoundChildShapePairCallback", gCompoundCompoundChildShapePairCallback);
+//variableHandler - gCompoundCompoundChildShapePairCallback
 	class_<btCompoundCompoundCollisionAlgorithm, base<btCompoundCollisionAlgorithm>>("btCompoundCompoundCollisionAlgorithm")
 	.function("removeChildAlgorithms", &btCompoundCompoundCollisionAlgorithm::removeChildAlgorithms)
 	.constructor<r.q(const).btCollisionAlgorithmConstructionInfo,p.q(const).btCollisionObjectWrapper,p.q(const).btCollisionObjectWrapper,bool>()
 	;
 	class_<btUsageBitfield>("btUsageBitfield")
 	.function("reset", &btUsageBitfield::reset)
-	constant("usedVertexA", usedVertexA);
-	constant("usedVertexB", usedVertexB);
-	constant("usedVertexC", usedVertexC);
-	constant("usedVertexD", usedVertexD);
-	constant("unused1", unused1);
-	constant("unused2", unused2);
-	constant("unused3", unused3);
-	constant("unused4", unused4);
+//variableHandler - usedVertexA
+//variableHandler - usedVertexB
+//variableHandler - usedVertexC
+//variableHandler - usedVertexD
+//variableHandler - unused1
+//variableHandler - unused2
+//variableHandler - unused3
+//variableHandler - unused4
 	;
 	class_<btSubSimplexClosestResult>("btSubSimplexClosestResult")
-	constant("m_closestPointOnSimplex", m_closestPointOnSimplex);
-	constant("m_usedVertices", m_usedVertices);
-	constant("m_barycentricCoords", m_barycentricCoords);
-	constant("m_degenerate", m_degenerate);
+//variableHandler - m_closestPointOnSimplex
+//variableHandler - m_usedVertices
+//variableHandler - m_barycentricCoords
+//variableHandler - m_degenerate
 	.function("reset", &btSubSimplexClosestResult::reset)
 	.function("isValid", &btSubSimplexClosestResult::isValid)
 	.function("setBarycentricCoordinates_btScalar_btScalar_btScalar_btScalar", select_overload<void(btScalar, btScalar, btScalar, btScalar)>(&btSubSimplexClosestResult::setBarycentricCoordinates))
@@ -1693,12 +1409,12 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("collideSingleContact", &btConvexPlaneCollisionAlgorithm::collideSingleContact)
 	;
 	class_<btDefaultCollisionConstructionInfo>("btDefaultCollisionConstructionInfo")
-	constant("m_persistentManifoldPool", m_persistentManifoldPool);
-	constant("m_collisionAlgorithmPool", m_collisionAlgorithmPool);
-	constant("m_defaultMaxPersistentManifoldPoolSize", m_defaultMaxPersistentManifoldPoolSize);
-	constant("m_defaultMaxCollisionAlgorithmPoolSize", m_defaultMaxCollisionAlgorithmPoolSize);
-	constant("m_customCollisionAlgorithmMaxElementSize", m_customCollisionAlgorithmMaxElementSize);
-	constant("m_useEpaPenetrationAlgorithm", m_useEpaPenetrationAlgorithm);
+//variableHandler - m_persistentManifoldPool
+//variableHandler - m_collisionAlgorithmPool
+//variableHandler - m_defaultMaxPersistentManifoldPoolSize
+//variableHandler - m_defaultMaxCollisionAlgorithmPoolSize
+//variableHandler - m_customCollisionAlgorithmMaxElementSize
+//variableHandler - m_useEpaPenetrationAlgorithm
 	;
 	class_<btDefaultCollisionConfiguration, base<btCollisionConfiguration>>("btDefaultCollisionConfiguration")
 	.constructor<r.q(const).btDefaultCollisionConstructionInfo>()
@@ -1737,7 +1453,7 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	;
 	class_<btGhostPairCallback, base<btOverlappingPairCallback>>("btGhostPairCallback")
 	;
-	constant("BT_HASH_NULL", BT_HASH_NULL);
+//variableHandler - BT_HASH_NULL
 	class_<btHashInt>("btHashInt")
 	.constructor<int>()
 	.function("getUid1", &btHashInt::getUid1)
@@ -1751,10 +1467,10 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("equals", &btHashPtr::equals)
 	.function("getHash", &btHashPtr::getHash)
 	;
-	constant("sBulletDNAstr", sBulletDNAstr);
-	constant("sBulletDNAlen", sBulletDNAlen);
-	constant("sBulletDNAstr64", sBulletDNAstr64);
-	constant("sBulletDNAlen64", sBulletDNAlen64);
+//variableHandler - sBulletDNAstr
+//variableHandler - sBulletDNAlen
+//variableHandler - sBulletDNAstr64
+//variableHandler - sBulletDNAlen64
 	function("btStrLen", &btStrLen);
 	class_<btChunk>("btChunk")
 	;
@@ -1783,20 +1499,20 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	class_<btPointerUid>("btPointerUid")
 	;
 	class_<btBulletSerializedArrays>("btBulletSerializedArrays")
-	constant("m_bvhsDouble", m_bvhsDouble);
-	constant("m_bvhsFloat", m_bvhsFloat);
-	constant("m_colShapeData", m_colShapeData);
-	constant("m_dynamicWorldInfoDataDouble", m_dynamicWorldInfoDataDouble);
-	constant("m_dynamicWorldInfoDataFloat", m_dynamicWorldInfoDataFloat);
-	constant("m_rigidBodyDataDouble", m_rigidBodyDataDouble);
-	constant("m_rigidBodyDataFloat", m_rigidBodyDataFloat);
-	constant("m_collisionObjectDataDouble", m_collisionObjectDataDouble);
-	constant("m_collisionObjectDataFloat", m_collisionObjectDataFloat);
-	constant("m_constraintDataFloat", m_constraintDataFloat);
-	constant("m_constraintDataDouble", m_constraintDataDouble);
-	constant("m_constraintData", m_constraintData);
-	constant("m_softBodyFloatData", m_softBodyFloatData);
-	constant("m_softBodyDoubleData", m_softBodyDoubleData);
+//variableHandler - m_bvhsDouble
+//variableHandler - m_bvhsFloat
+//variableHandler - m_colShapeData
+//variableHandler - m_dynamicWorldInfoDataDouble
+//variableHandler - m_dynamicWorldInfoDataFloat
+//variableHandler - m_rigidBodyDataDouble
+//variableHandler - m_rigidBodyDataFloat
+//variableHandler - m_collisionObjectDataDouble
+//variableHandler - m_collisionObjectDataFloat
+//variableHandler - m_constraintDataFloat
+//variableHandler - m_constraintDataDouble
+//variableHandler - m_constraintData
+//variableHandler - m_softBodyFloatData
+//variableHandler - m_softBodyDoubleData
 	;
 	class_<btDefaultSerializer, base<btSerializer>>("btDefaultSerializer")
 	.function("findPointer", &btDefaultSerializer::findPointer)
@@ -1812,43 +1528,43 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("internalAlloc", &btDefaultSerializer::internalAlloc)
 	;
 	class_<btTriangleInfo>("btTriangleInfo")
-	constant("m_flags", m_flags);
-	constant("m_edgeV0V1Angle", m_edgeV0V1Angle);
-	constant("m_edgeV1V2Angle", m_edgeV1V2Angle);
-	constant("m_edgeV2V0Angle", m_edgeV2V0Angle);
+//variableHandler - m_flags
+//variableHandler - m_edgeV0V1Angle
+//variableHandler - m_edgeV1V2Angle
+//variableHandler - m_edgeV2V0Angle
 	;
 	class_<btTriangleInfoMap, base<btInternalTriangleInfoMap>>("btTriangleInfoMap")
-	constant("m_convexEpsilon", m_convexEpsilon);
-	constant("m_planarEpsilon", m_planarEpsilon);
-	constant("m_equalVertexThreshold", m_equalVertexThreshold);
-	constant("m_edgeDistanceThreshold", m_edgeDistanceThreshold);
-	constant("m_maxEdgeAngleThreshold", m_maxEdgeAngleThreshold);
-	constant("m_zeroAreaThreshold", m_zeroAreaThreshold);
+//variableHandler - m_convexEpsilon
+//variableHandler - m_planarEpsilon
+//variableHandler - m_equalVertexThreshold
+//variableHandler - m_edgeDistanceThreshold
+//variableHandler - m_maxEdgeAngleThreshold
+//variableHandler - m_zeroAreaThreshold
 	.function("calculateSerializeBufferSize", &btTriangleInfoMap::calculateSerializeBufferSize)
 	.function("serialize", &btTriangleInfoMap::serialize)
 	.function("deSerialize", &btTriangleInfoMap::deSerialize)
 	;
 	class_<btTriangleInfoData>("btTriangleInfoData")
-	constant("m_flags", m_flags);
-	constant("m_edgeV0V1Angle", m_edgeV0V1Angle);
-	constant("m_edgeV1V2Angle", m_edgeV1V2Angle);
-	constant("m_edgeV2V0Angle", m_edgeV2V0Angle);
+//variableHandler - m_flags
+//variableHandler - m_edgeV0V1Angle
+//variableHandler - m_edgeV1V2Angle
+//variableHandler - m_edgeV2V0Angle
 	;
 	class_<btTriangleInfoMapData>("btTriangleInfoMapData")
-	constant("m_hashTablePtr", m_hashTablePtr);
-	constant("m_nextPtr", m_nextPtr);
-	constant("m_valueArrayPtr", m_valueArrayPtr);
-	constant("m_keyArrayPtr", m_keyArrayPtr);
-	constant("m_convexEpsilon", m_convexEpsilon);
-	constant("m_planarEpsilon", m_planarEpsilon);
-	constant("m_equalVertexThreshold", m_equalVertexThreshold);
-	constant("m_edgeDistanceThreshold", m_edgeDistanceThreshold);
-	constant("m_zeroAreaThreshold", m_zeroAreaThreshold);
-	constant("m_nextSize", m_nextSize);
-	constant("m_hashTableSize", m_hashTableSize);
-	constant("m_numValues", m_numValues);
-	constant("m_numKeys", m_numKeys);
-	constant("m_padding", m_padding);
+//variableHandler - m_hashTablePtr
+//variableHandler - m_nextPtr
+//variableHandler - m_valueArrayPtr
+//variableHandler - m_keyArrayPtr
+//variableHandler - m_convexEpsilon
+//variableHandler - m_planarEpsilon
+//variableHandler - m_equalVertexThreshold
+//variableHandler - m_edgeDistanceThreshold
+//variableHandler - m_zeroAreaThreshold
+//variableHandler - m_nextSize
+//variableHandler - m_hashTableSize
+//variableHandler - m_numValues
+//variableHandler - m_numKeys
+//variableHandler - m_padding
 	;
 	enum_<btInternalEdgeAdjustFlags>("btInternalEdgeAdjustFlags")
 		.value("BT_TRIANGLE_CONVEX_BACKFACE_MODE", BT_TRIANGLE_CONVEX_BACKFACE_MODE)
@@ -1859,8 +1575,8 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	function("btAdjustInternalEdgeContacts", &btAdjustInternalEdgeContacts);
 	function("btAdjustInternalEdgeContacts", &btAdjustInternalEdgeContacts);
 	class_<btElement>("btElement")
-	constant("m_id", m_id);
-	constant("m_sz", m_sz);
+//variableHandler - m_id
+//variableHandler - m_sz
 	;
 	class_<btUnionFind>("btUnionFind")
 	.function("sortIslands", &btUnionFind::sortIslands)
@@ -1938,9 +1654,9 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("serializeSingleShape", &btCollisionShape::serializeSingleShape)
 	;
 	class_<btCollisionShapeData>("btCollisionShapeData")
-	constant("m_name", m_name);
-	constant("m_shapeType", m_shapeType);
-	constant("m_padding", m_padding);
+//variableHandler - m_name
+//variableHandler - m_shapeType
+//variableHandler - m_padding
 	;
 	class_<btConvexShape, base<btCollisionShape>>("btConvexShape")
 	.function("localGetSupportingVertex", &btConvexShape::localGetSupportingVertex)
@@ -1966,11 +1682,11 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("getMarginNV", &btConvexInternalShape::getMarginNV)
 	;
 	class_<btConvexInternalShapeData>("btConvexInternalShapeData")
-	constant("m_collisionShapeData", m_collisionShapeData);
-	constant("m_localScaling", m_localScaling);
-	constant("m_implicitShapeDimensions", m_implicitShapeDimensions);
-	constant("m_collisionMargin", m_collisionMargin);
-	constant("m_padding", m_padding);
+//variableHandler - m_collisionShapeData
+//variableHandler - m_localScaling
+//variableHandler - m_implicitShapeDimensions
+//variableHandler - m_collisionMargin
+//variableHandler - m_padding
 	;
 	class_<btConvexInternalAabbCachingShape, base<btConvexInternalShape>>("btConvexInternalAabbCachingShape")
 	.function("setCachedLocalAabb", &btConvexInternalAabbCachingShape::setCachedLocalAabb)
@@ -2043,35 +1759,35 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("serialize", &btStridingMeshInterface::serialize)
 	;
 	class_<btIntIndexData>("btIntIndexData")
-	constant("m_value", m_value);
+//variableHandler - m_value
 	;
 	class_<btShortIntIndexData>("btShortIntIndexData")
-	constant("m_value", m_value);
-	constant("m_pad", m_pad);
+//variableHandler - m_value
+//variableHandler - m_pad
 	;
 	class_<btShortIntIndexTripletData>("btShortIntIndexTripletData")
-	constant("m_values", m_values);
-	constant("m_pad", m_pad);
+//variableHandler - m_values
+//variableHandler - m_pad
 	;
 	class_<btCharIndexTripletData>("btCharIndexTripletData")
-	constant("m_values", m_values);
-	constant("m_pad", m_pad);
+//variableHandler - m_values
+//variableHandler - m_pad
 	;
 	class_<btMeshPartData>("btMeshPartData")
-	constant("m_vertices3f", m_vertices3f);
-	constant("m_vertices3d", m_vertices3d);
-	constant("m_indices32", m_indices32);
-	constant("m_3indices16", m_3indices16);
-	constant("m_3indices8", m_3indices8);
-	constant("m_indices16", m_indices16);
-	constant("m_numTriangles", m_numTriangles);
-	constant("m_numVertices", m_numVertices);
+//variableHandler - m_vertices3f
+//variableHandler - m_vertices3d
+//variableHandler - m_indices32
+//variableHandler - m_3indices16
+//variableHandler - m_3indices8
+//variableHandler - m_indices16
+//variableHandler - m_numTriangles
+//variableHandler - m_numVertices
 	;
 	class_<btStridingMeshInterfaceData>("btStridingMeshInterfaceData")
-	constant("m_meshPartsPtr", m_meshPartsPtr);
-	constant("m_scaling", m_scaling);
-	constant("m_numMeshParts", m_numMeshParts);
-	constant("m_padding", m_padding);
+//variableHandler - m_meshPartsPtr
+//variableHandler - m_scaling
+//variableHandler - m_numMeshParts
+//variableHandler - m_padding
 	;
 	class_<btTriangleMeshShape, base<btConcaveShape>>("btTriangleMeshShape")
 	.constructor<p.btStridingMeshInterface>()
@@ -2113,13 +1829,13 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("serializeSingleTriangleInfoMap", &btBvhTriangleMeshShape::serializeSingleTriangleInfoMap)
 	;
 	class_<btTriangleMeshShapeData>("btTriangleMeshShapeData")
-	constant("m_collisionShapeData", m_collisionShapeData);
-	constant("m_meshInterface", m_meshInterface);
-	constant("m_quantizedFloatBvh", m_quantizedFloatBvh);
-	constant("m_quantizedDoubleBvh", m_quantizedDoubleBvh);
-	constant("m_triangleInfoMap", m_triangleInfoMap);
-	constant("m_collisionMargin", m_collisionMargin);
-	constant("m_pad3", m_pad3);
+//variableHandler - m_collisionShapeData
+//variableHandler - m_meshInterface
+//variableHandler - m_quantizedFloatBvh
+//variableHandler - m_quantizedDoubleBvh
+//variableHandler - m_triangleInfoMap
+//variableHandler - m_collisionMargin
+//variableHandler - m_pad3
 	;
 	class_<btCapsuleShape, base<btConvexInternalShape>>("btCapsuleShape")
 	.constructor<btScalar,btScalar>()
@@ -2135,16 +1851,16 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.constructor<btScalar,btScalar>()
 	;
 	class_<btCapsuleShapeData>("btCapsuleShapeData")
-	constant("m_convexInternalShapeData", m_convexInternalShapeData);
-	constant("m_upAxis", m_upAxis);
-	constant("m_padding", m_padding);
+//variableHandler - m_convexInternalShapeData
+//variableHandler - m_upAxis
+//variableHandler - m_padding
 	;
 	class_<btCompoundShapeChild>("btCompoundShapeChild")
-	constant("m_transform", m_transform);
-	constant("m_childShape", m_childShape);
-	constant("m_childShapeType", m_childShapeType);
-	constant("m_childMargin", m_childMargin);
-	constant("m_node", m_node);
+//variableHandler - m_transform
+//variableHandler - m_childShape
+//variableHandler - m_childShapeType
+//variableHandler - m_childMargin
+//variableHandler - m_node
 	;
 	class_<btCompoundShape, base<btCollisionShape>>("btCompoundShape")
 	.constructor<bool,q(const).int>()
@@ -2168,16 +1884,16 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("getUpdateRevision", &btCompoundShape::getUpdateRevision)
 	;
 	class_<btCompoundShapeChildData>("btCompoundShapeChildData")
-	constant("m_transform", m_transform);
-	constant("m_childShape", m_childShape);
-	constant("m_childShapeType", m_childShapeType);
-	constant("m_childMargin", m_childMargin);
+//variableHandler - m_transform
+//variableHandler - m_childShape
+//variableHandler - m_childShapeType
+//variableHandler - m_childMargin
 	;
 	class_<btCompoundShapeData>("btCompoundShapeData")
-	constant("m_collisionShapeData", m_collisionShapeData);
-	constant("m_childShapePtr", m_childShapePtr);
-	constant("m_numChildShapes", m_numChildShapes);
-	constant("m_collisionMargin", m_collisionMargin);
+//variableHandler - m_collisionShapeData
+//variableHandler - m_childShapePtr
+//variableHandler - m_numChildShapes
+//variableHandler - m_collisionMargin
 	;
 	class_<btConeShape, base<btConvexInternalShape>>("btConeShape")
 	.function("coneLocalSupport", &btConeShape::coneLocalSupport)
@@ -2196,9 +1912,9 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.constructor<btScalar,btScalar>()
 	;
 	class_<btConeShapeData>("btConeShapeData")
-	constant("m_convexInternalShapeData", m_convexInternalShapeData);
-	constant("m_upIndex", m_upIndex);
-	constant("m_padding", m_padding);
+//variableHandler - m_convexInternalShapeData
+//variableHandler - m_upIndex
+//variableHandler - m_padding
 	;
 	class_<btConvex2dShape, base<btConvexShape>>("btConvex2dShape")
 	.constructor<p.btConvexShape>()
@@ -2219,11 +1935,11 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("getNumPoints", &btConvexHullShape::getNumPoints)
 	;
 	class_<btConvexHullShapeData>("btConvexHullShapeData")
-	constant("m_convexInternalShapeData", m_convexInternalShapeData);
-	constant("m_unscaledPointsFloatPtr", m_unscaledPointsFloatPtr);
-	constant("m_unscaledPointsDoublePtr", m_unscaledPointsDoublePtr);
-	constant("m_numUnscaledPoints", m_numUnscaledPoints);
-	constant("m_padding3", m_padding3);
+//variableHandler - m_convexInternalShapeData
+//variableHandler - m_unscaledPointsFloatPtr
+//variableHandler - m_unscaledPointsDoublePtr
+//variableHandler - m_numUnscaledPoints
+//variableHandler - m_padding3
 	;
 	class_<btConvexPointCloudShape, base<btPolyhedralConvexAabbCachingShape>>("btConvexPointCloudShape")
 	.constructor<p.btVector3,int,r.q(const).btVector3,bool>()
@@ -2237,8 +1953,8 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("getScaledPoint", &btConvexPointCloudShape::getScaledPoint)
 	;
 	class_<btFace>("btFace")
-	constant("m_indices", m_indices);
-	constant("m_plane", m_plane);
+//variableHandler - m_indices
+//variableHandler - m_plane
 	;
 	class_<btConvexPolyhedron>("btConvexPolyhedron")
 	.function("initialize", &btConvexPolyhedron::initialize)
@@ -2266,9 +1982,9 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.constructor<r.q(const).btVector3>()
 	;
 	class_<btCylinderShapeData>("btCylinderShapeData")
-	constant("m_convexInternalShapeData", m_convexInternalShapeData);
-	constant("m_upAxis", m_upAxis);
-	constant("m_padding", m_padding);
+//variableHandler - m_convexInternalShapeData
+//variableHandler - m_upAxis
+//variableHandler - m_padding
 	;
 	class_<btEmptyShape, base<btConcaveShape>>("btEmptyShape")
 	;
@@ -2310,14 +2026,14 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("getSphereRadius", &btMultiSphereShape::getSphereRadius)
 	;
 	class_<btPositionAndRadius>("btPositionAndRadius")
-	constant("m_pos", m_pos);
-	constant("m_radius", m_radius);
+//variableHandler - m_pos
+//variableHandler - m_radius
 	;
 	class_<btMultiSphereShapeData>("btMultiSphereShapeData")
-	constant("m_convexInternalShapeData", m_convexInternalShapeData);
-	constant("m_localPositionArrayPtr", m_localPositionArrayPtr);
-	constant("m_localPositionArraySize", m_localPositionArraySize);
-	constant("m_padding", m_padding);
+//variableHandler - m_convexInternalShapeData
+//variableHandler - m_localPositionArrayPtr
+//variableHandler - m_localPositionArraySize
+//variableHandler - m_padding
 	;
 	class_<btScaledBvhTriangleMeshShape, base<btConcaveShape>>("btScaledBvhTriangleMeshShape")
 	.constructor<p.btBvhTriangleMeshShape,r.q(const).btVector3>()
@@ -2325,8 +2041,8 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("getChildShape", select_overload<q(const).btBvhTriangleMeshShape()const>(&btScaledBvhTriangleMeshShape::getChildShape))
 	;
 	class_<btScaledTriangleMeshShapeData>("btScaledTriangleMeshShapeData")
-	constant("m_trimeshShapeData", m_trimeshShapeData);
-	constant("m_localScaling", m_localScaling);
+//variableHandler - m_trimeshShapeData
+//variableHandler - m_localScaling
 	;
 	class_<btShapeHull>("btShapeHull")
 	.class_function("getUnitSpherePoints", &btShapeHull::getUnitSpherePoints)
@@ -2349,11 +2065,11 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("getPlaneConstant", &btStaticPlaneShape::getPlaneConstant)
 	;
 	class_<btStaticPlaneShapeData>("btStaticPlaneShapeData")
-	constant("m_collisionShapeData", m_collisionShapeData);
-	constant("m_localScaling", m_localScaling);
-	constant("m_planeNormal", m_planeNormal);
-	constant("m_planeConstant", m_planeConstant);
-	constant("m_pad", m_pad);
+//variableHandler - m_collisionShapeData
+//variableHandler - m_localScaling
+//variableHandler - m_planeNormal
+//variableHandler - m_planeConstant
+//variableHandler - m_pad
 	;
 	class_<btBU_Simplex1to4, base<btPolyhedralConvexAabbCachingShape>>("btBU_Simplex1to4")
 	.constructor<r.q(const).btVector3>()
@@ -2365,11 +2081,11 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("getIndex", &btBU_Simplex1to4::getIndex)
 	;
 	class_<btTriangle>("btTriangle")
-	constant("m_vertex0", m_vertex0);
-	constant("m_vertex1", m_vertex1);
-	constant("m_vertex2", m_vertex2);
-	constant("m_partId", m_partId);
-	constant("m_triangleIndex", m_triangleIndex);
+//variableHandler - m_vertex0
+//variableHandler - m_vertex1
+//variableHandler - m_vertex2
+//variableHandler - m_partId
+//variableHandler - m_triangleIndex
 	;
 	class_<btTriangleBuffer, base<btTriangleCallback>>("btTriangleBuffer")
 	.function("getNumTriangles", &btTriangleBuffer::getNumTriangles)
@@ -2377,14 +2093,14 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("clearBuffer", &btTriangleBuffer::clearBuffer)
 	;
 	class_<btIndexedMesh>("btIndexedMesh")
-	constant("m_numTriangles", m_numTriangles);
-	constant("m_triangleIndexBase", m_triangleIndexBase);
-	constant("m_triangleIndexStride", m_triangleIndexStride);
-	constant("m_numVertices", m_numVertices);
-	constant("m_vertexBase", m_vertexBase);
-	constant("m_vertexStride", m_vertexStride);
-	constant("m_indexType", m_indexType);
-	constant("m_vertexType", m_vertexType);
+//variableHandler - m_numTriangles
+//variableHandler - m_triangleIndexBase
+//variableHandler - m_triangleIndexStride
+//variableHandler - m_numVertices
+//variableHandler - m_vertexBase
+//variableHandler - m_vertexStride
+//variableHandler - m_indexType
+//variableHandler - m_vertexType
 	;
 	class_<btTriangleIndexVertexArray, base<btStridingMeshInterface>>("btTriangleIndexVertexArray")
 	.constructor<int,p.int,int,int,p.btScalar,int>()
@@ -2398,14 +2114,14 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("getIndexedMeshArray", select_overload<q(const).IndexedMeshArray()const>(&btTriangleIndexVertexArray::getIndexedMeshArray))
 	;
 	class_<btMaterialProperties>("btMaterialProperties")
-	constant("m_numMaterials", m_numMaterials);
-	constant("m_materialBase", m_materialBase);
-	constant("m_materialStride", m_materialStride);
-	constant("m_materialType", m_materialType);
-	constant("m_numTriangles", m_numTriangles);
-	constant("m_triangleMaterialsBase", m_triangleMaterialsBase);
-	constant("m_triangleMaterialStride", m_triangleMaterialStride);
-	constant("m_triangleType", m_triangleType);
+//variableHandler - m_numMaterials
+//variableHandler - m_materialBase
+//variableHandler - m_materialStride
+//variableHandler - m_materialType
+//variableHandler - m_numTriangles
+//variableHandler - m_triangleMaterialsBase
+//variableHandler - m_triangleMaterialStride
+//variableHandler - m_triangleType
 	;
 	class_<btTriangleIndexVertexMaterialArray, base<btTriangleIndexVertexArray>>("btTriangleIndexVertexMaterialArray")
 	.constructor<int,p.int,int,int,p.btScalar,int,int,p.unsigned char,int,p.int,int>()
@@ -2500,10 +2216,10 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.class_function("getPenetrationDirections", &btMinkowskiPenetrationDepthSolver::getPenetrationDirections)
 	;
 	class_<btPointCollector, base<btDiscreteCollisionDetectorInterface::Result>>("btPointCollector")
-	constant("m_normalOnBInWorld", m_normalOnBInWorld);
-	constant("m_pointInWorld", m_pointInWorld);
-	constant("m_distance", m_distance);
-	constant("m_hasResult", m_hasResult);
+//variableHandler - m_normalOnBInWorld
+//variableHandler - m_pointInWorld
+//variableHandler - m_distance
+//variableHandler - m_hasResult
 	.function("setShapeIdentifiersA", &btPointCollector::setShapeIdentifiersA)
 	.function("setShapeIdentifiersB", &btPointCollector::setShapeIdentifiersB)
 	.function("addContactPoint", &btPointCollector::addContactPoint)
@@ -2522,8 +2238,8 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	class_<btSubsimplexConvexCast, base<btConvexCast>>("btSubsimplexConvexCast")
 	.constructor<p.q(const).btConvexShape,p.q(const).btConvexShape,p.btVoronoiSimplexSolver>()
 	;
-	constant("gDeactivationTime", gDeactivationTime);
-	constant("gDisableDeactivation", gDisableDeactivation);
+//variableHandler - gDeactivationTime
+//variableHandler - gDisableDeactivation
 	enum_<btRigidBodyFlags>("btRigidBodyFlags")
 		.value("BT_DISABLE_WORLD_GRAVITY", BT_DISABLE_WORLD_GRAVITY)
 		.value("BT_ENABLE_GYROSCOPIC_FORCE_EXPLICIT", BT_ENABLE_GYROSCOPIC_FORCE_EXPLICIT)
@@ -2608,51 +2324,51 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("getLocalInertia", &btRigidBody::getLocalInertia)
 	;
 	class_<btRigidBodyFloatData>("btRigidBodyFloatData")
-	constant("m_collisionObjectData", m_collisionObjectData);
-	constant("m_invInertiaTensorWorld", m_invInertiaTensorWorld);
-	constant("m_linearVelocity", m_linearVelocity);
-	constant("m_angularVelocity", m_angularVelocity);
-	constant("m_angularFactor", m_angularFactor);
-	constant("m_linearFactor", m_linearFactor);
-	constant("m_gravity", m_gravity);
-	constant("m_gravity_acceleration", m_gravity_acceleration);
-	constant("m_invInertiaLocal", m_invInertiaLocal);
-	constant("m_totalForce", m_totalForce);
-	constant("m_totalTorque", m_totalTorque);
-	constant("m_inverseMass", m_inverseMass);
-	constant("m_linearDamping", m_linearDamping);
-	constant("m_angularDamping", m_angularDamping);
-	constant("m_additionalDampingFactor", m_additionalDampingFactor);
-	constant("m_additionalLinearDampingThresholdSqr", m_additionalLinearDampingThresholdSqr);
-	constant("m_additionalAngularDampingThresholdSqr", m_additionalAngularDampingThresholdSqr);
-	constant("m_additionalAngularDampingFactor", m_additionalAngularDampingFactor);
-	constant("m_linearSleepingThreshold", m_linearSleepingThreshold);
-	constant("m_angularSleepingThreshold", m_angularSleepingThreshold);
-	constant("m_additionalDamping", m_additionalDamping);
+//variableHandler - m_collisionObjectData
+//variableHandler - m_invInertiaTensorWorld
+//variableHandler - m_linearVelocity
+//variableHandler - m_angularVelocity
+//variableHandler - m_angularFactor
+//variableHandler - m_linearFactor
+//variableHandler - m_gravity
+//variableHandler - m_gravity_acceleration
+//variableHandler - m_invInertiaLocal
+//variableHandler - m_totalForce
+//variableHandler - m_totalTorque
+//variableHandler - m_inverseMass
+//variableHandler - m_linearDamping
+//variableHandler - m_angularDamping
+//variableHandler - m_additionalDampingFactor
+//variableHandler - m_additionalLinearDampingThresholdSqr
+//variableHandler - m_additionalAngularDampingThresholdSqr
+//variableHandler - m_additionalAngularDampingFactor
+//variableHandler - m_linearSleepingThreshold
+//variableHandler - m_angularSleepingThreshold
+//variableHandler - m_additionalDamping
 	;
 	class_<btRigidBodyDoubleData>("btRigidBodyDoubleData")
-	constant("m_collisionObjectData", m_collisionObjectData);
-	constant("m_invInertiaTensorWorld", m_invInertiaTensorWorld);
-	constant("m_linearVelocity", m_linearVelocity);
-	constant("m_angularVelocity", m_angularVelocity);
-	constant("m_angularFactor", m_angularFactor);
-	constant("m_linearFactor", m_linearFactor);
-	constant("m_gravity", m_gravity);
-	constant("m_gravity_acceleration", m_gravity_acceleration);
-	constant("m_invInertiaLocal", m_invInertiaLocal);
-	constant("m_totalForce", m_totalForce);
-	constant("m_totalTorque", m_totalTorque);
-	constant("m_inverseMass", m_inverseMass);
-	constant("m_linearDamping", m_linearDamping);
-	constant("m_angularDamping", m_angularDamping);
-	constant("m_additionalDampingFactor", m_additionalDampingFactor);
-	constant("m_additionalLinearDampingThresholdSqr", m_additionalLinearDampingThresholdSqr);
-	constant("m_additionalAngularDampingThresholdSqr", m_additionalAngularDampingThresholdSqr);
-	constant("m_additionalAngularDampingFactor", m_additionalAngularDampingFactor);
-	constant("m_linearSleepingThreshold", m_linearSleepingThreshold);
-	constant("m_angularSleepingThreshold", m_angularSleepingThreshold);
-	constant("m_additionalDamping", m_additionalDamping);
-	constant("m_padding", m_padding);
+//variableHandler - m_collisionObjectData
+//variableHandler - m_invInertiaTensorWorld
+//variableHandler - m_linearVelocity
+//variableHandler - m_angularVelocity
+//variableHandler - m_angularFactor
+//variableHandler - m_linearFactor
+//variableHandler - m_gravity
+//variableHandler - m_gravity_acceleration
+//variableHandler - m_invInertiaLocal
+//variableHandler - m_totalForce
+//variableHandler - m_totalTorque
+//variableHandler - m_inverseMass
+//variableHandler - m_linearDamping
+//variableHandler - m_angularDamping
+//variableHandler - m_additionalDampingFactor
+//variableHandler - m_additionalLinearDampingThresholdSqr
+//variableHandler - m_additionalAngularDampingThresholdSqr
+//variableHandler - m_additionalAngularDampingFactor
+//variableHandler - m_linearSleepingThreshold
+//variableHandler - m_angularSleepingThreshold
+//variableHandler - m_additionalDamping
+//variableHandler - m_padding
 	;
 	class_<btActionInterface>("btActionInterface")
 	.class_function("getFixedBody", &btActionInterface::getFixedBody)
@@ -2729,19 +2445,19 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("getRelativeVelocity", &btJacobianEntry::getRelativeVelocity)
 	;
 	class_<btSolverBody>("btSolverBody")
-	constant("m_worldTransform", m_worldTransform);
-	constant("m_deltaLinearVelocity", m_deltaLinearVelocity);
-	constant("m_deltaAngularVelocity", m_deltaAngularVelocity);
-	constant("m_angularFactor", m_angularFactor);
-	constant("m_linearFactor", m_linearFactor);
-	constant("m_invMass", m_invMass);
-	constant("m_pushVelocity", m_pushVelocity);
-	constant("m_turnVelocity", m_turnVelocity);
-	constant("m_linearVelocity", m_linearVelocity);
-	constant("m_angularVelocity", m_angularVelocity);
-	constant("m_externalForceImpulse", m_externalForceImpulse);
-	constant("m_externalTorqueImpulse", m_externalTorqueImpulse);
-	constant("m_originalBody", m_originalBody);
+//variableHandler - m_worldTransform
+//variableHandler - m_deltaLinearVelocity
+//variableHandler - m_deltaAngularVelocity
+//variableHandler - m_angularFactor
+//variableHandler - m_linearFactor
+//variableHandler - m_invMass
+//variableHandler - m_pushVelocity
+//variableHandler - m_turnVelocity
+//variableHandler - m_linearVelocity
+//variableHandler - m_angularVelocity
+//variableHandler - m_externalForceImpulse
+//variableHandler - m_externalTorqueImpulse
+//variableHandler - m_originalBody
 	.function("setWorldTransform", &btSolverBody::setWorldTransform)
 	.function("getWorldTransform", &btSolverBody::getWorldTransform)
 	.function("getVelocityInLocalPointNoDelta", &btSolverBody::getVelocityInLocalPointNoDelta)
@@ -2767,25 +2483,25 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("writebackVelocityAndTransform", &btSolverBody::writebackVelocityAndTransform)
 	;
 	class_<btSolverConstraint>("btSolverConstraint")
-	constant("m_relpos1CrossNormal", m_relpos1CrossNormal);
-	constant("m_contactNormal1", m_contactNormal1);
-	constant("m_relpos2CrossNormal", m_relpos2CrossNormal);
-	constant("m_contactNormal2", m_contactNormal2);
-	constant("m_angularComponentA", m_angularComponentA);
-	constant("m_angularComponentB", m_angularComponentB);
-	constant("m_appliedPushImpulse", m_appliedPushImpulse);
-	constant("m_appliedImpulse", m_appliedImpulse);
-	constant("m_friction", m_friction);
-	constant("m_jacDiagABInv", m_jacDiagABInv);
-	constant("m_rhs", m_rhs);
-	constant("m_cfm", m_cfm);
-	constant("m_lowerLimit", m_lowerLimit);
-	constant("m_upperLimit", m_upperLimit);
-	constant("m_rhsPenetration", m_rhsPenetration);
-	constant("m_overrideNumSolverIterations", m_overrideNumSolverIterations);
-	constant("m_frictionIndex", m_frictionIndex);
-	constant("m_solverBodyIdA", m_solverBodyIdA);
-	constant("m_solverBodyIdB", m_solverBodyIdB);
+//variableHandler - m_relpos1CrossNormal
+//variableHandler - m_contactNormal1
+//variableHandler - m_relpos2CrossNormal
+//variableHandler - m_contactNormal2
+//variableHandler - m_angularComponentA
+//variableHandler - m_angularComponentB
+//variableHandler - m_appliedPushImpulse
+//variableHandler - m_appliedImpulse
+//variableHandler - m_friction
+//variableHandler - m_jacDiagABInv
+//variableHandler - m_rhs
+//variableHandler - m_cfm
+//variableHandler - m_lowerLimit
+//variableHandler - m_upperLimit
+//variableHandler - m_rhsPenetration
+//variableHandler - m_overrideNumSolverIterations
+//variableHandler - m_frictionIndex
+//variableHandler - m_solverBodyIdA
+//variableHandler - m_solverBodyIdB
 	enum_<btSolverConstraint::btSolverConstraintType>("btSolverConstraint::btSolverConstraintType")
 		.value("BT_SOLVER_CONTACT_1D", btSolverConstraint::BT_SOLVER_CONTACT_1D)
 		.value("BT_SOLVER_FRICTION_1D", btSolverConstraint::BT_SOLVER_FRICTION_1D)
@@ -2811,10 +2527,10 @@ EMSCRIPTEN_BINDINGS(bullet) {
 		.value("BT_CONSTRAINT_STOP_CFM", BT_CONSTRAINT_STOP_CFM)
 		;
 	class_<btJointFeedback>("btJointFeedback")
-	constant("m_appliedForceBodyA", m_appliedForceBodyA);
-	constant("m_appliedTorqueBodyA", m_appliedTorqueBodyA);
-	constant("m_appliedForceBodyB", m_appliedForceBodyB);
-	constant("m_appliedTorqueBodyB", m_appliedTorqueBodyB);
+//variableHandler - m_appliedForceBodyA
+//variableHandler - m_appliedTorqueBodyA
+//variableHandler - m_appliedForceBodyB
+//variableHandler - m_appliedTorqueBodyB
 	;
 	class_<btTypedConstraint, base<btTypedObject>>("btTypedConstraint")
 	.function("operator =", &btTypedConstraint::operator =)
@@ -2864,50 +2580,50 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	;
 	function("btAdjustAngleToLimits", &btAdjustAngleToLimits);
 	class_<btTypedConstraintFloatData>("btTypedConstraintFloatData")
-	constant("m_rbA", m_rbA);
-	constant("m_rbB", m_rbB);
-	constant("m_name", m_name);
-	constant("m_objectType", m_objectType);
-	constant("m_userConstraintType", m_userConstraintType);
-	constant("m_userConstraintId", m_userConstraintId);
-	constant("m_needsFeedback", m_needsFeedback);
-	constant("m_appliedImpulse", m_appliedImpulse);
-	constant("m_dbgDrawSize", m_dbgDrawSize);
-	constant("m_disableCollisionsBetweenLinkedBodies", m_disableCollisionsBetweenLinkedBodies);
-	constant("m_overrideNumSolverIterations", m_overrideNumSolverIterations);
-	constant("m_breakingImpulseThreshold", m_breakingImpulseThreshold);
-	constant("m_isEnabled", m_isEnabled);
+//variableHandler - m_rbA
+//variableHandler - m_rbB
+//variableHandler - m_name
+//variableHandler - m_objectType
+//variableHandler - m_userConstraintType
+//variableHandler - m_userConstraintId
+//variableHandler - m_needsFeedback
+//variableHandler - m_appliedImpulse
+//variableHandler - m_dbgDrawSize
+//variableHandler - m_disableCollisionsBetweenLinkedBodies
+//variableHandler - m_overrideNumSolverIterations
+//variableHandler - m_breakingImpulseThreshold
+//variableHandler - m_isEnabled
 	;
 	class_<btTypedConstraintData>("btTypedConstraintData")
-	constant("m_rbA", m_rbA);
-	constant("m_rbB", m_rbB);
-	constant("m_name", m_name);
-	constant("m_objectType", m_objectType);
-	constant("m_userConstraintType", m_userConstraintType);
-	constant("m_userConstraintId", m_userConstraintId);
-	constant("m_needsFeedback", m_needsFeedback);
-	constant("m_appliedImpulse", m_appliedImpulse);
-	constant("m_dbgDrawSize", m_dbgDrawSize);
-	constant("m_disableCollisionsBetweenLinkedBodies", m_disableCollisionsBetweenLinkedBodies);
-	constant("m_overrideNumSolverIterations", m_overrideNumSolverIterations);
-	constant("m_breakingImpulseThreshold", m_breakingImpulseThreshold);
-	constant("m_isEnabled", m_isEnabled);
+//variableHandler - m_rbA
+//variableHandler - m_rbB
+//variableHandler - m_name
+//variableHandler - m_objectType
+//variableHandler - m_userConstraintType
+//variableHandler - m_userConstraintId
+//variableHandler - m_needsFeedback
+//variableHandler - m_appliedImpulse
+//variableHandler - m_dbgDrawSize
+//variableHandler - m_disableCollisionsBetweenLinkedBodies
+//variableHandler - m_overrideNumSolverIterations
+//variableHandler - m_breakingImpulseThreshold
+//variableHandler - m_isEnabled
 	;
 	class_<btTypedConstraintDoubleData>("btTypedConstraintDoubleData")
-	constant("m_rbA", m_rbA);
-	constant("m_rbB", m_rbB);
-	constant("m_name", m_name);
-	constant("m_objectType", m_objectType);
-	constant("m_userConstraintType", m_userConstraintType);
-	constant("m_userConstraintId", m_userConstraintId);
-	constant("m_needsFeedback", m_needsFeedback);
-	constant("m_appliedImpulse", m_appliedImpulse);
-	constant("m_dbgDrawSize", m_dbgDrawSize);
-	constant("m_disableCollisionsBetweenLinkedBodies", m_disableCollisionsBetweenLinkedBodies);
-	constant("m_overrideNumSolverIterations", m_overrideNumSolverIterations);
-	constant("m_breakingImpulseThreshold", m_breakingImpulseThreshold);
-	constant("m_isEnabled", m_isEnabled);
-	constant("padding", padding);
+//variableHandler - m_rbA
+//variableHandler - m_rbB
+//variableHandler - m_name
+//variableHandler - m_objectType
+//variableHandler - m_userConstraintType
+//variableHandler - m_userConstraintId
+//variableHandler - m_needsFeedback
+//variableHandler - m_appliedImpulse
+//variableHandler - m_dbgDrawSize
+//variableHandler - m_disableCollisionsBetweenLinkedBodies
+//variableHandler - m_overrideNumSolverIterations
+//variableHandler - m_breakingImpulseThreshold
+//variableHandler - m_isEnabled
+//variableHandler - padding
 	;
 	class_<btAngularLimit>("btAngularLimit")
 	.function("set_btScalar_btScalar_btScalar_btScalar_btScalar", select_overload<void(btScalar, btScalar, btScalar, btScalar, btScalar)>(&btAngularLimit::set))
@@ -2991,29 +2707,29 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("getFlags", &btConeTwistConstraint::getFlags)
 	;
 	class_<btConeTwistConstraintDoubleData>("btConeTwistConstraintDoubleData")
-	constant("m_typeConstraintData", m_typeConstraintData);
-	constant("m_rbAFrame", m_rbAFrame);
-	constant("m_rbBFrame", m_rbBFrame);
-	constant("m_swingSpan1", m_swingSpan1);
-	constant("m_swingSpan2", m_swingSpan2);
-	constant("m_twistSpan", m_twistSpan);
-	constant("m_limitSoftness", m_limitSoftness);
-	constant("m_biasFactor", m_biasFactor);
-	constant("m_relaxationFactor", m_relaxationFactor);
-	constant("m_damping", m_damping);
+//variableHandler - m_typeConstraintData
+//variableHandler - m_rbAFrame
+//variableHandler - m_rbBFrame
+//variableHandler - m_swingSpan1
+//variableHandler - m_swingSpan2
+//variableHandler - m_twistSpan
+//variableHandler - m_limitSoftness
+//variableHandler - m_biasFactor
+//variableHandler - m_relaxationFactor
+//variableHandler - m_damping
 	;
 	class_<btConeTwistConstraintData>("btConeTwistConstraintData")
-	constant("m_typeConstraintData", m_typeConstraintData);
-	constant("m_rbAFrame", m_rbAFrame);
-	constant("m_rbBFrame", m_rbBFrame);
-	constant("m_swingSpan1", m_swingSpan1);
-	constant("m_swingSpan2", m_swingSpan2);
-	constant("m_twistSpan", m_twistSpan);
-	constant("m_limitSoftness", m_limitSoftness);
-	constant("m_biasFactor", m_biasFactor);
-	constant("m_relaxationFactor", m_relaxationFactor);
-	constant("m_damping", m_damping);
-	constant("m_pad", m_pad);
+//variableHandler - m_typeConstraintData
+//variableHandler - m_rbAFrame
+//variableHandler - m_rbBFrame
+//variableHandler - m_swingSpan1
+//variableHandler - m_swingSpan2
+//variableHandler - m_twistSpan
+//variableHandler - m_limitSoftness
+//variableHandler - m_biasFactor
+//variableHandler - m_relaxationFactor
+//variableHandler - m_damping
+//variableHandler - m_pad
 	;
 	enum_<btConstraintSolverType>("btConstraintSolverType")
 		.value("BT_SEQUENTIAL_IMPULSE_SOLVER", BT_SEQUENTIAL_IMPULSE_SOLVER)
@@ -3048,78 +2764,78 @@ EMSCRIPTEN_BINDINGS(bullet) {
 		.value("SOLVER_ALLOW_ZERO_LENGTH_FRICTION_DIRECTIONS", SOLVER_ALLOW_ZERO_LENGTH_FRICTION_DIRECTIONS)
 		;
 	class_<btContactSolverInfoData>("btContactSolverInfoData")
-	constant("m_tau", m_tau);
-	constant("m_damping", m_damping);
-	constant("m_friction", m_friction);
-	constant("m_timeStep", m_timeStep);
-	constant("m_restitution", m_restitution);
-	constant("m_numIterations", m_numIterations);
-	constant("m_maxErrorReduction", m_maxErrorReduction);
-	constant("m_sor", m_sor);
-	constant("m_erp", m_erp);
-	constant("m_erp2", m_erp2);
-	constant("m_globalCfm", m_globalCfm);
-	constant("m_splitImpulse", m_splitImpulse);
-	constant("m_splitImpulsePenetrationThreshold", m_splitImpulsePenetrationThreshold);
-	constant("m_splitImpulseTurnErp", m_splitImpulseTurnErp);
-	constant("m_linearSlop", m_linearSlop);
-	constant("m_warmstartingFactor", m_warmstartingFactor);
-	constant("m_solverMode", m_solverMode);
-	constant("m_restingContactRestitutionThreshold", m_restingContactRestitutionThreshold);
-	constant("m_minimumSolverBatchSize", m_minimumSolverBatchSize);
-	constant("m_maxGyroscopicForce", m_maxGyroscopicForce);
-	constant("m_singleAxisRollingFrictionThreshold", m_singleAxisRollingFrictionThreshold);
-	constant("m_leastSquaresResidualThreshold", m_leastSquaresResidualThreshold);
+//variableHandler - m_tau
+//variableHandler - m_damping
+//variableHandler - m_friction
+//variableHandler - m_timeStep
+//variableHandler - m_restitution
+//variableHandler - m_numIterations
+//variableHandler - m_maxErrorReduction
+//variableHandler - m_sor
+//variableHandler - m_erp
+//variableHandler - m_erp2
+//variableHandler - m_globalCfm
+//variableHandler - m_splitImpulse
+//variableHandler - m_splitImpulsePenetrationThreshold
+//variableHandler - m_splitImpulseTurnErp
+//variableHandler - m_linearSlop
+//variableHandler - m_warmstartingFactor
+//variableHandler - m_solverMode
+//variableHandler - m_restingContactRestitutionThreshold
+//variableHandler - m_minimumSolverBatchSize
+//variableHandler - m_maxGyroscopicForce
+//variableHandler - m_singleAxisRollingFrictionThreshold
+//variableHandler - m_leastSquaresResidualThreshold
 	;
 	class_<btContactSolverInfo, base<btContactSolverInfoData>>("btContactSolverInfo")
 	;
 	class_<btContactSolverInfoDoubleData>("btContactSolverInfoDoubleData")
-	constant("m_tau", m_tau);
-	constant("m_damping", m_damping);
-	constant("m_friction", m_friction);
-	constant("m_timeStep", m_timeStep);
-	constant("m_restitution", m_restitution);
-	constant("m_maxErrorReduction", m_maxErrorReduction);
-	constant("m_sor", m_sor);
-	constant("m_erp", m_erp);
-	constant("m_erp2", m_erp2);
-	constant("m_globalCfm", m_globalCfm);
-	constant("m_splitImpulsePenetrationThreshold", m_splitImpulsePenetrationThreshold);
-	constant("m_splitImpulseTurnErp", m_splitImpulseTurnErp);
-	constant("m_linearSlop", m_linearSlop);
-	constant("m_warmstartingFactor", m_warmstartingFactor);
-	constant("m_maxGyroscopicForce", m_maxGyroscopicForce);
-	constant("m_singleAxisRollingFrictionThreshold", m_singleAxisRollingFrictionThreshold);
-	constant("m_numIterations", m_numIterations);
-	constant("m_solverMode", m_solverMode);
-	constant("m_restingContactRestitutionThreshold", m_restingContactRestitutionThreshold);
-	constant("m_minimumSolverBatchSize", m_minimumSolverBatchSize);
-	constant("m_splitImpulse", m_splitImpulse);
-	constant("m_padding", m_padding);
+//variableHandler - m_tau
+//variableHandler - m_damping
+//variableHandler - m_friction
+//variableHandler - m_timeStep
+//variableHandler - m_restitution
+//variableHandler - m_maxErrorReduction
+//variableHandler - m_sor
+//variableHandler - m_erp
+//variableHandler - m_erp2
+//variableHandler - m_globalCfm
+//variableHandler - m_splitImpulsePenetrationThreshold
+//variableHandler - m_splitImpulseTurnErp
+//variableHandler - m_linearSlop
+//variableHandler - m_warmstartingFactor
+//variableHandler - m_maxGyroscopicForce
+//variableHandler - m_singleAxisRollingFrictionThreshold
+//variableHandler - m_numIterations
+//variableHandler - m_solverMode
+//variableHandler - m_restingContactRestitutionThreshold
+//variableHandler - m_minimumSolverBatchSize
+//variableHandler - m_splitImpulse
+//variableHandler - m_padding
 	;
 	class_<btContactSolverInfoFloatData>("btContactSolverInfoFloatData")
-	constant("m_tau", m_tau);
-	constant("m_damping", m_damping);
-	constant("m_friction", m_friction);
-	constant("m_timeStep", m_timeStep);
-	constant("m_restitution", m_restitution);
-	constant("m_maxErrorReduction", m_maxErrorReduction);
-	constant("m_sor", m_sor);
-	constant("m_erp", m_erp);
-	constant("m_erp2", m_erp2);
-	constant("m_globalCfm", m_globalCfm);
-	constant("m_splitImpulsePenetrationThreshold", m_splitImpulsePenetrationThreshold);
-	constant("m_splitImpulseTurnErp", m_splitImpulseTurnErp);
-	constant("m_linearSlop", m_linearSlop);
-	constant("m_warmstartingFactor", m_warmstartingFactor);
-	constant("m_maxGyroscopicForce", m_maxGyroscopicForce);
-	constant("m_singleAxisRollingFrictionThreshold", m_singleAxisRollingFrictionThreshold);
-	constant("m_numIterations", m_numIterations);
-	constant("m_solverMode", m_solverMode);
-	constant("m_restingContactRestitutionThreshold", m_restingContactRestitutionThreshold);
-	constant("m_minimumSolverBatchSize", m_minimumSolverBatchSize);
-	constant("m_splitImpulse", m_splitImpulse);
-	constant("m_padding", m_padding);
+//variableHandler - m_tau
+//variableHandler - m_damping
+//variableHandler - m_friction
+//variableHandler - m_timeStep
+//variableHandler - m_restitution
+//variableHandler - m_maxErrorReduction
+//variableHandler - m_sor
+//variableHandler - m_erp
+//variableHandler - m_erp2
+//variableHandler - m_globalCfm
+//variableHandler - m_splitImpulsePenetrationThreshold
+//variableHandler - m_splitImpulseTurnErp
+//variableHandler - m_linearSlop
+//variableHandler - m_warmstartingFactor
+//variableHandler - m_maxGyroscopicForce
+//variableHandler - m_singleAxisRollingFrictionThreshold
+//variableHandler - m_numIterations
+//variableHandler - m_solverMode
+//variableHandler - m_restingContactRestitutionThreshold
+//variableHandler - m_minimumSolverBatchSize
+//variableHandler - m_splitImpulse
+//variableHandler - m_padding
 	;
 	enum_<RotateOrder>("RotateOrder")
 		.value("RO_XYZ", RO_XYZ)
@@ -3218,90 +2934,90 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.class_function("matrixToEulerZYX", &btGeneric6DofSpring2Constraint::matrixToEulerZYX)
 	;
 	class_<btGeneric6DofSpring2ConstraintData>("btGeneric6DofSpring2ConstraintData")
-	constant("m_typeConstraintData", m_typeConstraintData);
-	constant("m_rbAFrame", m_rbAFrame);
-	constant("m_rbBFrame", m_rbBFrame);
-	constant("m_linearUpperLimit", m_linearUpperLimit);
-	constant("m_linearLowerLimit", m_linearLowerLimit);
-	constant("m_linearBounce", m_linearBounce);
-	constant("m_linearStopERP", m_linearStopERP);
-	constant("m_linearStopCFM", m_linearStopCFM);
-	constant("m_linearMotorERP", m_linearMotorERP);
-	constant("m_linearMotorCFM", m_linearMotorCFM);
-	constant("m_linearTargetVelocity", m_linearTargetVelocity);
-	constant("m_linearMaxMotorForce", m_linearMaxMotorForce);
-	constant("m_linearServoTarget", m_linearServoTarget);
-	constant("m_linearSpringStiffness", m_linearSpringStiffness);
-	constant("m_linearSpringDamping", m_linearSpringDamping);
-	constant("m_linearEquilibriumPoint", m_linearEquilibriumPoint);
-	constant("m_linearEnableMotor", m_linearEnableMotor);
-	constant("m_linearServoMotor", m_linearServoMotor);
-	constant("m_linearEnableSpring", m_linearEnableSpring);
-	constant("m_linearSpringStiffnessLimited", m_linearSpringStiffnessLimited);
-	constant("m_linearSpringDampingLimited", m_linearSpringDampingLimited);
-	constant("m_padding1", m_padding1);
-	constant("m_angularUpperLimit", m_angularUpperLimit);
-	constant("m_angularLowerLimit", m_angularLowerLimit);
-	constant("m_angularBounce", m_angularBounce);
-	constant("m_angularStopERP", m_angularStopERP);
-	constant("m_angularStopCFM", m_angularStopCFM);
-	constant("m_angularMotorERP", m_angularMotorERP);
-	constant("m_angularMotorCFM", m_angularMotorCFM);
-	constant("m_angularTargetVelocity", m_angularTargetVelocity);
-	constant("m_angularMaxMotorForce", m_angularMaxMotorForce);
-	constant("m_angularServoTarget", m_angularServoTarget);
-	constant("m_angularSpringStiffness", m_angularSpringStiffness);
-	constant("m_angularSpringDamping", m_angularSpringDamping);
-	constant("m_angularEquilibriumPoint", m_angularEquilibriumPoint);
-	constant("m_angularEnableMotor", m_angularEnableMotor);
-	constant("m_angularServoMotor", m_angularServoMotor);
-	constant("m_angularEnableSpring", m_angularEnableSpring);
-	constant("m_angularSpringStiffnessLimited", m_angularSpringStiffnessLimited);
-	constant("m_angularSpringDampingLimited", m_angularSpringDampingLimited);
-	constant("m_rotateOrder", m_rotateOrder);
+//variableHandler - m_typeConstraintData
+//variableHandler - m_rbAFrame
+//variableHandler - m_rbBFrame
+//variableHandler - m_linearUpperLimit
+//variableHandler - m_linearLowerLimit
+//variableHandler - m_linearBounce
+//variableHandler - m_linearStopERP
+//variableHandler - m_linearStopCFM
+//variableHandler - m_linearMotorERP
+//variableHandler - m_linearMotorCFM
+//variableHandler - m_linearTargetVelocity
+//variableHandler - m_linearMaxMotorForce
+//variableHandler - m_linearServoTarget
+//variableHandler - m_linearSpringStiffness
+//variableHandler - m_linearSpringDamping
+//variableHandler - m_linearEquilibriumPoint
+//variableHandler - m_linearEnableMotor
+//variableHandler - m_linearServoMotor
+//variableHandler - m_linearEnableSpring
+//variableHandler - m_linearSpringStiffnessLimited
+//variableHandler - m_linearSpringDampingLimited
+//variableHandler - m_padding1
+//variableHandler - m_angularUpperLimit
+//variableHandler - m_angularLowerLimit
+//variableHandler - m_angularBounce
+//variableHandler - m_angularStopERP
+//variableHandler - m_angularStopCFM
+//variableHandler - m_angularMotorERP
+//variableHandler - m_angularMotorCFM
+//variableHandler - m_angularTargetVelocity
+//variableHandler - m_angularMaxMotorForce
+//variableHandler - m_angularServoTarget
+//variableHandler - m_angularSpringStiffness
+//variableHandler - m_angularSpringDamping
+//variableHandler - m_angularEquilibriumPoint
+//variableHandler - m_angularEnableMotor
+//variableHandler - m_angularServoMotor
+//variableHandler - m_angularEnableSpring
+//variableHandler - m_angularSpringStiffnessLimited
+//variableHandler - m_angularSpringDampingLimited
+//variableHandler - m_rotateOrder
 	;
 	class_<btGeneric6DofSpring2ConstraintDoubleData2>("btGeneric6DofSpring2ConstraintDoubleData2")
-	constant("m_typeConstraintData", m_typeConstraintData);
-	constant("m_rbAFrame", m_rbAFrame);
-	constant("m_rbBFrame", m_rbBFrame);
-	constant("m_linearUpperLimit", m_linearUpperLimit);
-	constant("m_linearLowerLimit", m_linearLowerLimit);
-	constant("m_linearBounce", m_linearBounce);
-	constant("m_linearStopERP", m_linearStopERP);
-	constant("m_linearStopCFM", m_linearStopCFM);
-	constant("m_linearMotorERP", m_linearMotorERP);
-	constant("m_linearMotorCFM", m_linearMotorCFM);
-	constant("m_linearTargetVelocity", m_linearTargetVelocity);
-	constant("m_linearMaxMotorForce", m_linearMaxMotorForce);
-	constant("m_linearServoTarget", m_linearServoTarget);
-	constant("m_linearSpringStiffness", m_linearSpringStiffness);
-	constant("m_linearSpringDamping", m_linearSpringDamping);
-	constant("m_linearEquilibriumPoint", m_linearEquilibriumPoint);
-	constant("m_linearEnableMotor", m_linearEnableMotor);
-	constant("m_linearServoMotor", m_linearServoMotor);
-	constant("m_linearEnableSpring", m_linearEnableSpring);
-	constant("m_linearSpringStiffnessLimited", m_linearSpringStiffnessLimited);
-	constant("m_linearSpringDampingLimited", m_linearSpringDampingLimited);
-	constant("m_padding1", m_padding1);
-	constant("m_angularUpperLimit", m_angularUpperLimit);
-	constant("m_angularLowerLimit", m_angularLowerLimit);
-	constant("m_angularBounce", m_angularBounce);
-	constant("m_angularStopERP", m_angularStopERP);
-	constant("m_angularStopCFM", m_angularStopCFM);
-	constant("m_angularMotorERP", m_angularMotorERP);
-	constant("m_angularMotorCFM", m_angularMotorCFM);
-	constant("m_angularTargetVelocity", m_angularTargetVelocity);
-	constant("m_angularMaxMotorForce", m_angularMaxMotorForce);
-	constant("m_angularServoTarget", m_angularServoTarget);
-	constant("m_angularSpringStiffness", m_angularSpringStiffness);
-	constant("m_angularSpringDamping", m_angularSpringDamping);
-	constant("m_angularEquilibriumPoint", m_angularEquilibriumPoint);
-	constant("m_angularEnableMotor", m_angularEnableMotor);
-	constant("m_angularServoMotor", m_angularServoMotor);
-	constant("m_angularEnableSpring", m_angularEnableSpring);
-	constant("m_angularSpringStiffnessLimited", m_angularSpringStiffnessLimited);
-	constant("m_angularSpringDampingLimited", m_angularSpringDampingLimited);
-	constant("m_rotateOrder", m_rotateOrder);
+//variableHandler - m_typeConstraintData
+//variableHandler - m_rbAFrame
+//variableHandler - m_rbBFrame
+//variableHandler - m_linearUpperLimit
+//variableHandler - m_linearLowerLimit
+//variableHandler - m_linearBounce
+//variableHandler - m_linearStopERP
+//variableHandler - m_linearStopCFM
+//variableHandler - m_linearMotorERP
+//variableHandler - m_linearMotorCFM
+//variableHandler - m_linearTargetVelocity
+//variableHandler - m_linearMaxMotorForce
+//variableHandler - m_linearServoTarget
+//variableHandler - m_linearSpringStiffness
+//variableHandler - m_linearSpringDamping
+//variableHandler - m_linearEquilibriumPoint
+//variableHandler - m_linearEnableMotor
+//variableHandler - m_linearServoMotor
+//variableHandler - m_linearEnableSpring
+//variableHandler - m_linearSpringStiffnessLimited
+//variableHandler - m_linearSpringDampingLimited
+//variableHandler - m_padding1
+//variableHandler - m_angularUpperLimit
+//variableHandler - m_angularLowerLimit
+//variableHandler - m_angularBounce
+//variableHandler - m_angularStopERP
+//variableHandler - m_angularStopCFM
+//variableHandler - m_angularMotorERP
+//variableHandler - m_angularMotorCFM
+//variableHandler - m_angularTargetVelocity
+//variableHandler - m_angularMaxMotorForce
+//variableHandler - m_angularServoTarget
+//variableHandler - m_angularSpringStiffness
+//variableHandler - m_angularSpringDamping
+//variableHandler - m_angularEquilibriumPoint
+//variableHandler - m_angularEnableMotor
+//variableHandler - m_angularServoMotor
+//variableHandler - m_angularEnableSpring
+//variableHandler - m_angularSpringStiffnessLimited
+//variableHandler - m_angularSpringDampingLimited
+//variableHandler - m_rotateOrder
 	;
 	class_<btFixedConstraint, base<btGeneric6DofSpring2Constraint>>("btFixedConstraint")
 	.constructor<r.btRigidBody,r.btRigidBody,r.q(const).btTransform,r.q(const).btTransform>()
@@ -3321,17 +3037,17 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("getParam_int", select_overload<btScalar(int)const>(&btGearConstraint::getParam))
 	;
 	class_<btGearConstraintFloatData>("btGearConstraintFloatData")
-	constant("m_typeConstraintData", m_typeConstraintData);
-	constant("m_axisInA", m_axisInA);
-	constant("m_axisInB", m_axisInB);
-	constant("m_ratio", m_ratio);
-	constant("m_padding", m_padding);
+//variableHandler - m_typeConstraintData
+//variableHandler - m_axisInA
+//variableHandler - m_axisInB
+//variableHandler - m_ratio
+//variableHandler - m_padding
 	;
 	class_<btGearConstraintDoubleData>("btGearConstraintDoubleData")
-	constant("m_typeConstraintData", m_typeConstraintData);
-	constant("m_axisInA", m_axisInA);
-	constant("m_axisInB", m_axisInB);
-	constant("m_ratio", m_ratio);
+//variableHandler - m_typeConstraintData
+//variableHandler - m_axisInA
+//variableHandler - m_axisInB
+//variableHandler - m_ratio
 	;
 	class_<btRotationalLimitMotor>("btRotationalLimitMotor")
 	.constructor<r.q(const).btRotationalLimitMotor>()
@@ -3405,26 +3121,26 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("getFlags", &btGeneric6DofConstraint::getFlags)
 	;
 	class_<btGeneric6DofConstraintData>("btGeneric6DofConstraintData")
-	constant("m_typeConstraintData", m_typeConstraintData);
-	constant("m_rbAFrame", m_rbAFrame);
-	constant("m_rbBFrame", m_rbBFrame);
-	constant("m_linearUpperLimit", m_linearUpperLimit);
-	constant("m_linearLowerLimit", m_linearLowerLimit);
-	constant("m_angularUpperLimit", m_angularUpperLimit);
-	constant("m_angularLowerLimit", m_angularLowerLimit);
-	constant("m_useLinearReferenceFrameA", m_useLinearReferenceFrameA);
-	constant("m_useOffsetForConstraintFrame", m_useOffsetForConstraintFrame);
+//variableHandler - m_typeConstraintData
+//variableHandler - m_rbAFrame
+//variableHandler - m_rbBFrame
+//variableHandler - m_linearUpperLimit
+//variableHandler - m_linearLowerLimit
+//variableHandler - m_angularUpperLimit
+//variableHandler - m_angularLowerLimit
+//variableHandler - m_useLinearReferenceFrameA
+//variableHandler - m_useOffsetForConstraintFrame
 	;
 	class_<btGeneric6DofConstraintDoubleData2>("btGeneric6DofConstraintDoubleData2")
-	constant("m_typeConstraintData", m_typeConstraintData);
-	constant("m_rbAFrame", m_rbAFrame);
-	constant("m_rbBFrame", m_rbBFrame);
-	constant("m_linearUpperLimit", m_linearUpperLimit);
-	constant("m_linearLowerLimit", m_linearLowerLimit);
-	constant("m_angularUpperLimit", m_angularUpperLimit);
-	constant("m_angularLowerLimit", m_angularLowerLimit);
-	constant("m_useLinearReferenceFrameA", m_useLinearReferenceFrameA);
-	constant("m_useOffsetForConstraintFrame", m_useOffsetForConstraintFrame);
+//variableHandler - m_typeConstraintData
+//variableHandler - m_rbAFrame
+//variableHandler - m_rbBFrame
+//variableHandler - m_linearUpperLimit
+//variableHandler - m_linearLowerLimit
+//variableHandler - m_angularUpperLimit
+//variableHandler - m_angularLowerLimit
+//variableHandler - m_useLinearReferenceFrameA
+//variableHandler - m_useOffsetForConstraintFrame
 	;
 	class_<btGeneric6DofSpringConstraint, base<btGeneric6DofConstraint>>("btGeneric6DofSpringConstraint")
 	.function("init", &btGeneric6DofSpringConstraint::init)
@@ -3444,18 +3160,18 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("setAxis", &btGeneric6DofSpringConstraint::setAxis)
 	;
 	class_<btGeneric6DofSpringConstraintData>("btGeneric6DofSpringConstraintData")
-	constant("m_6dofData", m_6dofData);
-	constant("m_springEnabled", m_springEnabled);
-	constant("m_equilibriumPoint", m_equilibriumPoint);
-	constant("m_springStiffness", m_springStiffness);
-	constant("m_springDamping", m_springDamping);
+//variableHandler - m_6dofData
+//variableHandler - m_springEnabled
+//variableHandler - m_equilibriumPoint
+//variableHandler - m_springStiffness
+//variableHandler - m_springDamping
 	;
 	class_<btGeneric6DofSpringConstraintDoubleData2>("btGeneric6DofSpringConstraintDoubleData2")
-	constant("m_6dofData", m_6dofData);
-	constant("m_springEnabled", m_springEnabled);
-	constant("m_equilibriumPoint", m_equilibriumPoint);
-	constant("m_springStiffness", m_springStiffness);
-	constant("m_springDamping", m_springDamping);
+//variableHandler - m_6dofData
+//variableHandler - m_springEnabled
+//variableHandler - m_equilibriumPoint
+//variableHandler - m_springStiffness
+//variableHandler - m_springDamping
 	;
 	class_<btHinge2Constraint, base<btGeneric6DofSpring2Constraint>>("btHinge2Constraint")
 	.constructor<r.btRigidBody,r.btRigidBody,r.btVector3,r.btVector3,r.btVector3>()
@@ -3537,19 +3253,19 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("getFlags", &btHingeConstraint::getFlags)
 	;
 	class_<btHingeConstraintDoubleData>("btHingeConstraintDoubleData")
-	constant("m_typeConstraintData", m_typeConstraintData);
-	constant("m_rbAFrame", m_rbAFrame);
-	constant("m_rbBFrame", m_rbBFrame);
-	constant("m_useReferenceFrameA", m_useReferenceFrameA);
-	constant("m_angularOnly", m_angularOnly);
-	constant("m_enableAngularMotor", m_enableAngularMotor);
-	constant("m_motorTargetVelocity", m_motorTargetVelocity);
-	constant("m_maxMotorImpulse", m_maxMotorImpulse);
-	constant("m_lowerLimit", m_lowerLimit);
-	constant("m_upperLimit", m_upperLimit);
-	constant("m_limitSoftness", m_limitSoftness);
-	constant("m_biasFactor", m_biasFactor);
-	constant("m_relaxationFactor", m_relaxationFactor);
+//variableHandler - m_typeConstraintData
+//variableHandler - m_rbAFrame
+//variableHandler - m_rbBFrame
+//variableHandler - m_useReferenceFrameA
+//variableHandler - m_angularOnly
+//variableHandler - m_enableAngularMotor
+//variableHandler - m_motorTargetVelocity
+//variableHandler - m_maxMotorImpulse
+//variableHandler - m_lowerLimit
+//variableHandler - m_upperLimit
+//variableHandler - m_limitSoftness
+//variableHandler - m_biasFactor
+//variableHandler - m_relaxationFactor
 	;
 	class_<btHingeAccumulatedAngleConstraint, base<btHingeConstraint>>("btHingeAccumulatedAngleConstraint")
 	.constructor<r.btRigidBody,r.btRigidBody,r.q(const).btVector3,r.q(const).btVector3,r.q(const).btVector3,r.q(const).btVector3,bool>()
@@ -3564,40 +3280,40 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("setAccumulatedHingeAngle", &btHingeAccumulatedAngleConstraint::setAccumulatedHingeAngle)
 	;
 	class_<btHingeConstraintFloatData>("btHingeConstraintFloatData")
-	constant("m_typeConstraintData", m_typeConstraintData);
-	constant("m_rbAFrame", m_rbAFrame);
-	constant("m_rbBFrame", m_rbBFrame);
-	constant("m_useReferenceFrameA", m_useReferenceFrameA);
-	constant("m_angularOnly", m_angularOnly);
-	constant("m_enableAngularMotor", m_enableAngularMotor);
-	constant("m_motorTargetVelocity", m_motorTargetVelocity);
-	constant("m_maxMotorImpulse", m_maxMotorImpulse);
-	constant("m_lowerLimit", m_lowerLimit);
-	constant("m_upperLimit", m_upperLimit);
-	constant("m_limitSoftness", m_limitSoftness);
-	constant("m_biasFactor", m_biasFactor);
-	constant("m_relaxationFactor", m_relaxationFactor);
+//variableHandler - m_typeConstraintData
+//variableHandler - m_rbAFrame
+//variableHandler - m_rbBFrame
+//variableHandler - m_useReferenceFrameA
+//variableHandler - m_angularOnly
+//variableHandler - m_enableAngularMotor
+//variableHandler - m_motorTargetVelocity
+//variableHandler - m_maxMotorImpulse
+//variableHandler - m_lowerLimit
+//variableHandler - m_upperLimit
+//variableHandler - m_limitSoftness
+//variableHandler - m_biasFactor
+//variableHandler - m_relaxationFactor
 	;
 	class_<btHingeConstraintDoubleData2>("btHingeConstraintDoubleData2")
-	constant("m_typeConstraintData", m_typeConstraintData);
-	constant("m_rbAFrame", m_rbAFrame);
-	constant("m_rbBFrame", m_rbBFrame);
-	constant("m_useReferenceFrameA", m_useReferenceFrameA);
-	constant("m_angularOnly", m_angularOnly);
-	constant("m_enableAngularMotor", m_enableAngularMotor);
-	constant("m_motorTargetVelocity", m_motorTargetVelocity);
-	constant("m_maxMotorImpulse", m_maxMotorImpulse);
-	constant("m_lowerLimit", m_lowerLimit);
-	constant("m_upperLimit", m_upperLimit);
-	constant("m_limitSoftness", m_limitSoftness);
-	constant("m_biasFactor", m_biasFactor);
-	constant("m_relaxationFactor", m_relaxationFactor);
-	constant("m_padding1", m_padding1);
+//variableHandler - m_typeConstraintData
+//variableHandler - m_rbAFrame
+//variableHandler - m_rbBFrame
+//variableHandler - m_useReferenceFrameA
+//variableHandler - m_angularOnly
+//variableHandler - m_enableAngularMotor
+//variableHandler - m_motorTargetVelocity
+//variableHandler - m_maxMotorImpulse
+//variableHandler - m_lowerLimit
+//variableHandler - m_upperLimit
+//variableHandler - m_limitSoftness
+//variableHandler - m_biasFactor
+//variableHandler - m_relaxationFactor
+//variableHandler - m_padding1
 	;
 	class_<btConstraintSetting>("btConstraintSetting")
-	constant("m_tau", m_tau);
-	constant("m_damping", m_damping);
-	constant("m_impulseClamp", m_impulseClamp);
+//variableHandler - m_tau
+//variableHandler - m_damping
+//variableHandler - m_impulseClamp
 	;
 	enum_<btPoint2PointFlags>("btPoint2PointFlags")
 		.value("BT_P2P_FLAGS_ERP", BT_P2P_FLAGS_ERP)
@@ -3620,19 +3336,19 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("getFlags", &btPoint2PointConstraint::getFlags)
 	;
 	class_<btPoint2PointConstraintFloatData>("btPoint2PointConstraintFloatData")
-	constant("m_typeConstraintData", m_typeConstraintData);
-	constant("m_pivotInA", m_pivotInA);
-	constant("m_pivotInB", m_pivotInB);
+//variableHandler - m_typeConstraintData
+//variableHandler - m_pivotInA
+//variableHandler - m_pivotInB
 	;
 	class_<btPoint2PointConstraintDoubleData2>("btPoint2PointConstraintDoubleData2")
-	constant("m_typeConstraintData", m_typeConstraintData);
-	constant("m_pivotInA", m_pivotInA);
-	constant("m_pivotInB", m_pivotInB);
+//variableHandler - m_typeConstraintData
+//variableHandler - m_pivotInA
+//variableHandler - m_pivotInB
 	;
 	class_<btPoint2PointConstraintDoubleData>("btPoint2PointConstraintDoubleData")
-	constant("m_typeConstraintData", m_typeConstraintData);
-	constant("m_pivotInA", m_pivotInA);
-	constant("m_pivotInB", m_pivotInB);
+//variableHandler - m_typeConstraintData
+//variableHandler - m_pivotInA
+//variableHandler - m_pivotInB
 	;
 	enum_<btSliderFlags>("btSliderFlags")
 		.value("BT_SLIDER_FLAGS_CFM_DIRLIN", BT_SLIDER_FLAGS_CFM_DIRLIN)
@@ -3740,26 +3456,26 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("getFlags", &btSliderConstraint::getFlags)
 	;
 	class_<btSliderConstraintData>("btSliderConstraintData")
-	constant("m_typeConstraintData", m_typeConstraintData);
-	constant("m_rbAFrame", m_rbAFrame);
-	constant("m_rbBFrame", m_rbBFrame);
-	constant("m_linearUpperLimit", m_linearUpperLimit);
-	constant("m_linearLowerLimit", m_linearLowerLimit);
-	constant("m_angularUpperLimit", m_angularUpperLimit);
-	constant("m_angularLowerLimit", m_angularLowerLimit);
-	constant("m_useLinearReferenceFrameA", m_useLinearReferenceFrameA);
-	constant("m_useOffsetForConstraintFrame", m_useOffsetForConstraintFrame);
+//variableHandler - m_typeConstraintData
+//variableHandler - m_rbAFrame
+//variableHandler - m_rbBFrame
+//variableHandler - m_linearUpperLimit
+//variableHandler - m_linearLowerLimit
+//variableHandler - m_angularUpperLimit
+//variableHandler - m_angularLowerLimit
+//variableHandler - m_useLinearReferenceFrameA
+//variableHandler - m_useOffsetForConstraintFrame
 	;
 	class_<btSliderConstraintDoubleData>("btSliderConstraintDoubleData")
-	constant("m_typeConstraintData", m_typeConstraintData);
-	constant("m_rbAFrame", m_rbAFrame);
-	constant("m_rbBFrame", m_rbBFrame);
-	constant("m_linearUpperLimit", m_linearUpperLimit);
-	constant("m_linearLowerLimit", m_linearLowerLimit);
-	constant("m_angularUpperLimit", m_angularUpperLimit);
-	constant("m_angularLowerLimit", m_angularLowerLimit);
-	constant("m_useLinearReferenceFrameA", m_useLinearReferenceFrameA);
-	constant("m_useOffsetForConstraintFrame", m_useOffsetForConstraintFrame);
+//variableHandler - m_typeConstraintData
+//variableHandler - m_rbAFrame
+//variableHandler - m_rbBFrame
+//variableHandler - m_linearUpperLimit
+//variableHandler - m_linearLowerLimit
+//variableHandler - m_angularUpperLimit
+//variableHandler - m_angularLowerLimit
+//variableHandler - m_useLinearReferenceFrameA
+//variableHandler - m_useOffsetForConstraintFrame
 	;
 	class_<btSolve2LinearConstraint>("btSolve2LinearConstraint")
 	.constructor<btScalar,btScalar>()
@@ -3821,12 +3537,12 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("removeCharacter", &btDynamicsWorld::removeCharacter)
 	;
 	class_<btDynamicsWorldDoubleData>("btDynamicsWorldDoubleData")
-	constant("m_solverInfo", m_solverInfo);
-	constant("m_gravity", m_gravity);
+//variableHandler - m_solverInfo
+//variableHandler - m_gravity
 	;
 	class_<btDynamicsWorldFloatData>("btDynamicsWorldFloatData")
-	constant("m_solverInfo", m_solverInfo);
-	constant("m_gravity", m_gravity);
+//variableHandler - m_solverInfo
+//variableHandler - m_gravity
 	;
 	class_<btSpinMutex>("btSpinMutex")
 	.function("lock", &btSpinMutex::lock)
@@ -3894,8 +3610,8 @@ EMSCRIPTEN_BINDINGS(bullet) {
 		.value("BT_MULTIBODYLINKFLAGS_DISABLE_PARENT_COLLISION", BT_MULTIBODYLINKFLAGS_DISABLE_PARENT_COLLISION)
 		;
 	class_<btSpatialForceVector>("btSpatialForceVector")
-	constant("m_topVec", m_topVec);
-	constant("m_bottomVec", m_bottomVec);
+//variableHandler - m_topVec
+//variableHandler - m_bottomVec
 	.constructor<r.q(const).btVector3,r.q(const).btVector3>()
 	.constructor<r.q(const).btScalar,r.q(const).btScalar,r.q(const).btScalar,r.q(const).btScalar,r.q(const).btScalar,r.q(const).btScalar>()
 	.function("setVector", &btSpatialForceVector::setVector)
@@ -3917,8 +3633,8 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("operator *", &btSpatialForceVector::operator *)
 	;
 	class_<btSpatialMotionVector>("btSpatialMotionVector")
-	constant("m_topVec", m_topVec);
-	constant("m_bottomVec", m_bottomVec);
+//variableHandler - m_topVec
+//variableHandler - m_bottomVec
 	.constructor<r.q(const).btVector3,r.q(const).btVector3>()
 	.function("setVector", &btSpatialMotionVector::setVector)
 	.function("setValue", &btSpatialMotionVector::setValue)
@@ -3931,7 +3647,6 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("addAngular", &btSpatialMotionVector::addAngular)
 	.function("addLinear", &btSpatialMotionVector::addLinear)
 	.function("setZero", &btSpatialMotionVector::setZero)
-	.function("dot", &btSpatialMotionVector::dot)
 	.function("operator +=", &btSpatialMotionVector::operator +=)
 	.function("operator -=", &btSpatialMotionVector::operator -=)
 	.function("operator *=", &btSpatialMotionVector::operator *=)
@@ -3941,9 +3656,9 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("operator *", &btSpatialMotionVector::operator *)
 	;
 	class_<btSymmetricSpatialDyad>("btSymmetricSpatialDyad")
-	constant("m_topLeftMat", m_topLeftMat);
-	constant("m_topRightMat", m_topRightMat);
-	constant("m_bottomLeftMat", m_bottomLeftMat);
+//variableHandler - m_topLeftMat
+//variableHandler - m_topRightMat
+//variableHandler - m_bottomLeftMat
 	.constructor<r.q(const).btMatrix3x3,r.q(const).btMatrix3x3,r.q(const).btMatrix3x3>()
 	.function("setMatrix", &btSymmetricSpatialDyad::setMatrix)
 	.function("addMatrix", &btSymmetricSpatialDyad::addMatrix)
@@ -3952,8 +3667,8 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("operator *", &btSymmetricSpatialDyad::operator *)
 	;
 	class_<btSpatialTransformationMatrix>("btSpatialTransformationMatrix")
-	constant("m_rotMat", m_rotMat);
-	constant("m_trnVec", m_trnVec);
+//variableHandler - m_rotMat
+//variableHandler - m_trnVec
 	enum_<btSpatialTransformationMatrix::eOutputOperation>("btSpatialTransformationMatrix::eOutputOperation")
 		.value("None", btSpatialTransformationMatrix::None)
 		.value("Add", btSpatialTransformationMatrix::Add)
@@ -3963,14 +3678,14 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("transformInverse_r.q(const).btSymmetricSpatialDyad_r.btSymmetricSpatialDyad", select_overload<void(r.q(const).btSymmetricSpatialDyad, r.btSymmetricSpatialDyad)>(&btSpatialTransformationMatrix::transformInverse))
 	;
 	class_<btMultibodyLink>("btMultibodyLink")
-	constant("m_mass", m_mass);
-	constant("m_inertiaLocal", m_inertiaLocal);
-	constant("m_parent", m_parent);
-	constant("m_zeroRotParentToThis", m_zeroRotParentToThis);
-	constant("m_dVector", m_dVector);
-	constant("m_eVector", m_eVector);
-	constant("m_absFrameTotVelocity", m_absFrameTotVelocity);
-	constant("m_absFrameLocVelocity", m_absFrameLocVelocity);
+//variableHandler - m_mass
+//variableHandler - m_inertiaLocal
+//variableHandler - m_parent
+//variableHandler - m_zeroRotParentToThis
+//variableHandler - m_dVector
+//variableHandler - m_eVector
+//variableHandler - m_absFrameTotVelocity
+//variableHandler - m_absFrameLocVelocity
 	enum_<btMultibodyLink::eFeatherstoneJointType>("btMultibodyLink::eFeatherstoneJointType")
 		.value("eRevolute", btMultibodyLink::eRevolute)
 		.value("ePrismatic", btMultibodyLink::ePrismatic)
@@ -3979,33 +3694,33 @@ EMSCRIPTEN_BINDINGS(bullet) {
 		.value("eFixed", btMultibodyLink::eFixed)
 		.value("eInvalid", btMultibodyLink::eInvalid)
 		;
-	constant("m_axes", m_axes);
+//variableHandler - m_axes
 	.function("setAxisTop_int_r.q(const).btVector3", select_overload<void(int, r.q(const).btVector3)>(&btMultibodyLink::setAxisTop))
 	.function("setAxisBottom_int_r.q(const).btVector3", select_overload<void(int, r.q(const).btVector3)>(&btMultibodyLink::setAxisBottom))
 	.function("setAxisTop_int_r.q(const).btScalar_r.q(const).btScalar_r.q(const).btScalar", select_overload<void(int, r.q(const).btScalar, r.q(const).btScalar, r.q(const).btScalar)>(&btMultibodyLink::setAxisTop))
 	.function("setAxisBottom_int_r.q(const).btScalar_r.q(const).btScalar_r.q(const).btScalar", select_overload<void(int, r.q(const).btScalar, r.q(const).btScalar, r.q(const).btScalar)>(&btMultibodyLink::setAxisBottom))
 	.function("getAxisTop", &btMultibodyLink::getAxisTop)
 	.function("getAxisBottom", &btMultibodyLink::getAxisBottom)
-	constant("m_dofOffset", m_dofOffset);
-	constant("m_cfgOffset", m_cfgOffset);
-	constant("m_cachedRotParentToThis", m_cachedRotParentToThis);
-	constant("m_cachedRVector", m_cachedRVector);
-	constant("m_appliedForce", m_appliedForce);
-	constant("m_appliedTorque", m_appliedTorque);
-	constant("m_appliedConstraintForce", m_appliedConstraintForce);
-	constant("m_appliedConstraintTorque", m_appliedConstraintTorque);
-	constant("m_jointPos", m_jointPos);
-	constant("m_jointTorque", m_jointTorque);
-	constant("m_collider", m_collider);
-	constant("m_flags", m_flags);
-	constant("m_dofCount", m_dofCount);
-	constant("m_posVarCount", m_posVarCount);
-	constant("m_jointType", m_jointType);
-	constant("m_jointFeedback", m_jointFeedback);
-	constant("m_cachedWorldTransform", m_cachedWorldTransform);
-	constant("m_userPtr", m_userPtr);
-	constant("m_jointDamping", m_jointDamping);
-	constant("m_jointFriction", m_jointFriction);
+//variableHandler - m_dofOffset
+//variableHandler - m_cfgOffset
+//variableHandler - m_cachedRotParentToThis
+//variableHandler - m_cachedRVector
+//variableHandler - m_appliedForce
+//variableHandler - m_appliedTorque
+//variableHandler - m_appliedConstraintForce
+//variableHandler - m_appliedConstraintTorque
+//variableHandler - m_jointPos
+//variableHandler - m_jointTorque
+//variableHandler - m_collider
+//variableHandler - m_flags
+//variableHandler - m_dofCount
+//variableHandler - m_posVarCount
+//variableHandler - m_jointType
+//variableHandler - m_jointFeedback
+//variableHandler - m_cachedWorldTransform
+//variableHandler - m_userPtr
+//variableHandler - m_jointDamping
+//variableHandler - m_jointFriction
 	.function("updateCacheMultiDof_p.btScalar", select_overload<void(p.btScalar)>(&btMultibodyLink::updateCacheMultiDof))
 	.function("updateCacheMultiDof", select_overload<void()>(&btMultibodyLink::updateCacheMultiDof))
 	;
@@ -4150,113 +3865,113 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("mulMatrix", &btMultiBody::mulMatrix)
 	;
 	class_<btMultiBodyLinkDoubleData>("btMultiBodyLinkDoubleData")
-	constant("m_zeroRotParentToThis", m_zeroRotParentToThis);
-	constant("m_parentComToThisComOffset", m_parentComToThisComOffset);
-	constant("m_thisPivotToThisComOffset", m_thisPivotToThisComOffset);
-	constant("m_jointAxisTop", m_jointAxisTop);
-	constant("m_jointAxisBottom", m_jointAxisBottom);
-	constant("m_linkInertia", m_linkInertia);
-	constant("m_linkMass", m_linkMass);
-	constant("m_parentIndex", m_parentIndex);
-	constant("m_jointType", m_jointType);
-	constant("m_dofCount", m_dofCount);
-	constant("m_posVarCount", m_posVarCount);
-	constant("m_jointPos", m_jointPos);
-	constant("m_jointVel", m_jointVel);
-	constant("m_jointTorque", m_jointTorque);
-	constant("m_jointDamping", m_jointDamping);
-	constant("m_jointFriction", m_jointFriction);
-	constant("m_linkName", m_linkName);
-	constant("m_jointName", m_jointName);
-	constant("m_linkCollider", m_linkCollider);
-	constant("m_paddingPtr", m_paddingPtr);
+//variableHandler - m_zeroRotParentToThis
+//variableHandler - m_parentComToThisComOffset
+//variableHandler - m_thisPivotToThisComOffset
+//variableHandler - m_jointAxisTop
+//variableHandler - m_jointAxisBottom
+//variableHandler - m_linkInertia
+//variableHandler - m_linkMass
+//variableHandler - m_parentIndex
+//variableHandler - m_jointType
+//variableHandler - m_dofCount
+//variableHandler - m_posVarCount
+//variableHandler - m_jointPos
+//variableHandler - m_jointVel
+//variableHandler - m_jointTorque
+//variableHandler - m_jointDamping
+//variableHandler - m_jointFriction
+//variableHandler - m_linkName
+//variableHandler - m_jointName
+//variableHandler - m_linkCollider
+//variableHandler - m_paddingPtr
 	;
 	class_<btMultiBodyLinkFloatData>("btMultiBodyLinkFloatData")
-	constant("m_zeroRotParentToThis", m_zeroRotParentToThis);
-	constant("m_parentComToThisComOffset", m_parentComToThisComOffset);
-	constant("m_thisPivotToThisComOffset", m_thisPivotToThisComOffset);
-	constant("m_jointAxisTop", m_jointAxisTop);
-	constant("m_jointAxisBottom", m_jointAxisBottom);
-	constant("m_linkInertia", m_linkInertia);
-	constant("m_dofCount", m_dofCount);
-	constant("m_linkMass", m_linkMass);
-	constant("m_parentIndex", m_parentIndex);
-	constant("m_jointType", m_jointType);
-	constant("m_jointPos", m_jointPos);
-	constant("m_jointVel", m_jointVel);
-	constant("m_jointTorque", m_jointTorque);
-	constant("m_posVarCount", m_posVarCount);
-	constant("m_jointDamping", m_jointDamping);
-	constant("m_jointFriction", m_jointFriction);
-	constant("m_linkName", m_linkName);
-	constant("m_jointName", m_jointName);
-	constant("m_linkCollider", m_linkCollider);
-	constant("m_paddingPtr", m_paddingPtr);
+//variableHandler - m_zeroRotParentToThis
+//variableHandler - m_parentComToThisComOffset
+//variableHandler - m_thisPivotToThisComOffset
+//variableHandler - m_jointAxisTop
+//variableHandler - m_jointAxisBottom
+//variableHandler - m_linkInertia
+//variableHandler - m_dofCount
+//variableHandler - m_linkMass
+//variableHandler - m_parentIndex
+//variableHandler - m_jointType
+//variableHandler - m_jointPos
+//variableHandler - m_jointVel
+//variableHandler - m_jointTorque
+//variableHandler - m_posVarCount
+//variableHandler - m_jointDamping
+//variableHandler - m_jointFriction
+//variableHandler - m_linkName
+//variableHandler - m_jointName
+//variableHandler - m_linkCollider
+//variableHandler - m_paddingPtr
 	;
 	class_<btMultiBodyDoubleData>("btMultiBodyDoubleData")
-	constant("m_baseWorldTransform", m_baseWorldTransform);
-	constant("m_baseInertia", m_baseInertia);
-	constant("m_baseMass", m_baseMass);
-	constant("m_baseName", m_baseName);
-	constant("m_links", m_links);
-	constant("m_baseCollider", m_baseCollider);
-	constant("m_paddingPtr", m_paddingPtr);
-	constant("m_numLinks", m_numLinks);
-	constant("m_padding", m_padding);
+//variableHandler - m_baseWorldTransform
+//variableHandler - m_baseInertia
+//variableHandler - m_baseMass
+//variableHandler - m_baseName
+//variableHandler - m_links
+//variableHandler - m_baseCollider
+//variableHandler - m_paddingPtr
+//variableHandler - m_numLinks
+//variableHandler - m_padding
 	;
 	class_<btMultiBodyFloatData>("btMultiBodyFloatData")
-	constant("m_baseName", m_baseName);
-	constant("m_links", m_links);
-	constant("m_baseCollider", m_baseCollider);
-	constant("m_baseWorldTransform", m_baseWorldTransform);
-	constant("m_baseInertia", m_baseInertia);
-	constant("m_baseMass", m_baseMass);
-	constant("m_numLinks", m_numLinks);
+//variableHandler - m_baseName
+//variableHandler - m_links
+//variableHandler - m_baseCollider
+//variableHandler - m_baseWorldTransform
+//variableHandler - m_baseInertia
+//variableHandler - m_baseMass
+//variableHandler - m_numLinks
 	;
 	class_<btMultiBodySolverConstraint>("btMultiBodySolverConstraint")
-	constant("m_deltaVelAindex", m_deltaVelAindex);
-	constant("m_jacAindex", m_jacAindex);
-	constant("m_deltaVelBindex", m_deltaVelBindex);
-	constant("m_jacBindex", m_jacBindex);
-	constant("m_relpos1CrossNormal", m_relpos1CrossNormal);
-	constant("m_contactNormal1", m_contactNormal1);
-	constant("m_relpos2CrossNormal", m_relpos2CrossNormal);
-	constant("m_contactNormal2", m_contactNormal2);
-	constant("m_angularComponentA", m_angularComponentA);
-	constant("m_angularComponentB", m_angularComponentB);
-	constant("m_appliedPushImpulse", m_appliedPushImpulse);
-	constant("m_appliedImpulse", m_appliedImpulse);
-	constant("m_friction", m_friction);
-	constant("m_jacDiagABInv", m_jacDiagABInv);
-	constant("m_rhs", m_rhs);
-	constant("m_cfm", m_cfm);
-	constant("m_lowerLimit", m_lowerLimit);
-	constant("m_upperLimit", m_upperLimit);
-	constant("m_rhsPenetration", m_rhsPenetration);
-	constant("m_overrideNumSolverIterations", m_overrideNumSolverIterations);
-	constant("m_frictionIndex", m_frictionIndex);
-	constant("m_solverBodyIdA", m_solverBodyIdA);
-	constant("m_multiBodyA", m_multiBodyA);
-	constant("m_linkA", m_linkA);
-	constant("m_solverBodyIdB", m_solverBodyIdB);
-	constant("m_multiBodyB", m_multiBodyB);
-	constant("m_linkB", m_linkB);
-	constant("m_orgConstraint", m_orgConstraint);
-	constant("m_orgDofIndex", m_orgDofIndex);
+//variableHandler - m_deltaVelAindex
+//variableHandler - m_jacAindex
+//variableHandler - m_deltaVelBindex
+//variableHandler - m_jacBindex
+//variableHandler - m_relpos1CrossNormal
+//variableHandler - m_contactNormal1
+//variableHandler - m_relpos2CrossNormal
+//variableHandler - m_contactNormal2
+//variableHandler - m_angularComponentA
+//variableHandler - m_angularComponentB
+//variableHandler - m_appliedPushImpulse
+//variableHandler - m_appliedImpulse
+//variableHandler - m_friction
+//variableHandler - m_jacDiagABInv
+//variableHandler - m_rhs
+//variableHandler - m_cfm
+//variableHandler - m_lowerLimit
+//variableHandler - m_upperLimit
+//variableHandler - m_rhsPenetration
+//variableHandler - m_overrideNumSolverIterations
+//variableHandler - m_frictionIndex
+//variableHandler - m_solverBodyIdA
+//variableHandler - m_multiBodyA
+//variableHandler - m_linkA
+//variableHandler - m_solverBodyIdB
+//variableHandler - m_multiBodyB
+//variableHandler - m_linkB
+//variableHandler - m_orgConstraint
+//variableHandler - m_orgDofIndex
 	enum_<btMultiBodySolverConstraint::btSolverConstraintType>("btMultiBodySolverConstraint::btSolverConstraintType")
 		.value("BT_SOLVER_CONTACT_1D", btMultiBodySolverConstraint::BT_SOLVER_CONTACT_1D)
 		.value("BT_SOLVER_FRICTION_1D", btMultiBodySolverConstraint::BT_SOLVER_FRICTION_1D)
 		;
 	;
 	class_<btMultiBodyJacobianData>("btMultiBodyJacobianData")
-	constant("m_jacobians", m_jacobians);
-	constant("m_deltaVelocitiesUnitImpulse", m_deltaVelocitiesUnitImpulse);
-	constant("m_deltaVelocities", m_deltaVelocities);
-	constant("scratch_r", scratch_r);
-	constant("scratch_v", scratch_v);
-	constant("scratch_m", scratch_m);
-	constant("m_solverBodyPool", m_solverBodyPool);
-	constant("m_fixedBodyId", m_fixedBodyId);
+//variableHandler - m_jacobians
+//variableHandler - m_deltaVelocitiesUnitImpulse
+//variableHandler - m_deltaVelocities
+//variableHandler - scratch_r
+//variableHandler - scratch_v
+//variableHandler - scratch_m
+//variableHandler - m_solverBodyPool
+//variableHandler - m_fixedBodyId
 	;
 	class_<btMultiBodyConstraint>("btMultiBodyConstraint")
 	.function("applyDeltaVee", &btMultiBodyConstraint::applyDeltaVee)
@@ -4363,17 +4078,17 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("getPivotInB", &btMultiBodyPoint2Point::getPivotInB)
 	;
 	class_<btDantzigScratchMemory>("btDantzigScratchMemory")
-	constant("m_scratch", m_scratch);
-	constant("L", L);
-	constant("d", d);
-	constant("delta_w", delta_w);
-	constant("delta_x", delta_x);
-	constant("Dell", Dell);
-	constant("ell", ell);
-	constant("Arows", Arows);
-	constant("p", p);
-	constant("C", C);
-	constant("state", state);
+//variableHandler - m_scratch
+//variableHandler - L
+//variableHandler - d
+//variableHandler - delta_w
+//variableHandler - delta_x
+//variableHandler - Dell
+//variableHandler - ell
+//variableHandler - Arows
+//variableHandler - p
+//variableHandler - C
+//variableHandler - state
 	;
 	function("btSolveDantzigLCP", &btSolveDantzigLCP);
 	class_<btClock>("btClock")
@@ -4390,7 +4105,7 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	function("btSetCustomEnterProfileZoneFunc", &btSetCustomEnterProfileZoneFunc);
 	function("btSetCustomLeaveProfileZoneFunc", &btSetCustomLeaveProfileZoneFunc);
 	function("btQuickprofGetCurrentThreadIndex2", &btQuickprofGetCurrentThreadIndex2);
-	constant("BT_QUICKPROF_MAX_THREAD_COUNT", BT_QUICKPROF_MAX_THREAD_COUNT);
+//variableHandler - BT_QUICKPROF_MAX_THREAD_COUNT
 	class_<CProfileNode>("CProfileNode")
 	.constructor<p.q(const).char,p.CProfileNode>()
 	.function("Get_Sub_Node", &CProfileNode::Get_Sub_Node)
@@ -4455,48 +4170,48 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("castRay", &btVehicleRaycaster::castRay)
 	;
 	class_<btWheelInfoConstructionInfo>("btWheelInfoConstructionInfo")
-	constant("m_chassisConnectionCS", m_chassisConnectionCS);
-	constant("m_wheelDirectionCS", m_wheelDirectionCS);
-	constant("m_wheelAxleCS", m_wheelAxleCS);
-	constant("m_suspensionRestLength", m_suspensionRestLength);
-	constant("m_maxSuspensionTravelCm", m_maxSuspensionTravelCm);
-	constant("m_wheelRadius", m_wheelRadius);
-	constant("m_suspensionStiffness", m_suspensionStiffness);
-	constant("m_wheelsDampingCompression", m_wheelsDampingCompression);
-	constant("m_wheelsDampingRelaxation", m_wheelsDampingRelaxation);
-	constant("m_frictionSlip", m_frictionSlip);
-	constant("m_maxSuspensionForce", m_maxSuspensionForce);
-	constant("m_bIsFrontWheel", m_bIsFrontWheel);
+//variableHandler - m_chassisConnectionCS
+//variableHandler - m_wheelDirectionCS
+//variableHandler - m_wheelAxleCS
+//variableHandler - m_suspensionRestLength
+//variableHandler - m_maxSuspensionTravelCm
+//variableHandler - m_wheelRadius
+//variableHandler - m_suspensionStiffness
+//variableHandler - m_wheelsDampingCompression
+//variableHandler - m_wheelsDampingRelaxation
+//variableHandler - m_frictionSlip
+//variableHandler - m_maxSuspensionForce
+//variableHandler - m_bIsFrontWheel
 	;
 	class_<btWheelInfo>("btWheelInfo")
-	constant("m_raycastInfo", m_raycastInfo);
-	constant("m_worldTransform", m_worldTransform);
-	constant("m_chassisConnectionPointCS", m_chassisConnectionPointCS);
-	constant("m_wheelDirectionCS", m_wheelDirectionCS);
-	constant("m_wheelAxleCS", m_wheelAxleCS);
-	constant("m_suspensionRestLength1", m_suspensionRestLength1);
-	constant("m_maxSuspensionTravelCm", m_maxSuspensionTravelCm);
+//variableHandler - m_raycastInfo
+//variableHandler - m_worldTransform
+//variableHandler - m_chassisConnectionPointCS
+//variableHandler - m_wheelDirectionCS
+//variableHandler - m_wheelAxleCS
+//variableHandler - m_suspensionRestLength1
+//variableHandler - m_maxSuspensionTravelCm
 	.function("getSuspensionRestLength", &btWheelInfo::getSuspensionRestLength)
-	constant("m_wheelsRadius", m_wheelsRadius);
-	constant("m_suspensionStiffness", m_suspensionStiffness);
-	constant("m_wheelsDampingCompression", m_wheelsDampingCompression);
-	constant("m_wheelsDampingRelaxation", m_wheelsDampingRelaxation);
-	constant("m_frictionSlip", m_frictionSlip);
-	constant("m_steering", m_steering);
-	constant("m_rotation", m_rotation);
-	constant("m_deltaRotation", m_deltaRotation);
-	constant("m_rollInfluence", m_rollInfluence);
-	constant("m_maxSuspensionForce", m_maxSuspensionForce);
-	constant("m_engineForce", m_engineForce);
-	constant("m_brake", m_brake);
-	constant("m_bIsFrontWheel", m_bIsFrontWheel);
-	constant("m_clientInfo", m_clientInfo);
+//variableHandler - m_wheelsRadius
+//variableHandler - m_suspensionStiffness
+//variableHandler - m_wheelsDampingCompression
+//variableHandler - m_wheelsDampingRelaxation
+//variableHandler - m_frictionSlip
+//variableHandler - m_steering
+//variableHandler - m_rotation
+//variableHandler - m_deltaRotation
+//variableHandler - m_rollInfluence
+//variableHandler - m_maxSuspensionForce
+//variableHandler - m_engineForce
+//variableHandler - m_brake
+//variableHandler - m_bIsFrontWheel
+//variableHandler - m_clientInfo
 	.constructor<r.btWheelInfoConstructionInfo>()
 	.function("updateWheel", &btWheelInfo::updateWheel)
-	constant("m_clippedInvContactDotSuspension", m_clippedInvContactDotSuspension);
-	constant("m_suspensionRelativeVelocity", m_suspensionRelativeVelocity);
-	constant("m_wheelsSuspensionForce", m_wheelsSuspensionForce);
-	constant("m_skidInfo", m_skidInfo);
+//variableHandler - m_clippedInvContactDotSuspension
+//variableHandler - m_suspensionRelativeVelocity
+//variableHandler - m_wheelsSuspensionForce
+//variableHandler - m_skidInfo
 	;
 	class_<btRaycastVehicle, base<btActionInterface>>("btRaycastVehicle")
 	.function("defaultInit", &btRaycastVehicle::defaultInit)
@@ -4586,15 +4301,15 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("processCollision_p.btSoftBody_p.btSoftBody", select_overload<void(p.btSoftBody, p.btSoftBody)>(&btDefaultSoftBodySolver::processCollision))
 	;
 	class_<btSoftBodyWorldInfo>("btSoftBodyWorldInfo")
-	constant("air_density", air_density);
-	constant("water_density", water_density);
-	constant("water_offset", water_offset);
-	constant("m_maxDisplacement", m_maxDisplacement);
-	constant("water_normal", water_normal);
-	constant("m_broadphase", m_broadphase);
-	constant("m_dispatcher", m_dispatcher);
-	constant("m_gravity", m_gravity);
-	constant("m_sparsesdf", m_sparsesdf);
+//variableHandler - air_density
+//variableHandler - water_density
+//variableHandler - water_offset
+//variableHandler - m_maxDisplacement
+//variableHandler - water_normal
+//variableHandler - m_broadphase
+//variableHandler - m_dispatcher
+//variableHandler - m_gravity
+//variableHandler - m_sparsesdf
 	;
 	class_<btSoftBody, base<btCollisionObject>>("btSoftBody")
 	.constructor<p.btSoftBodyWorldInfo,int,p.q(const).btVector3,p.q(const).btScalar>()
@@ -4740,8 +4455,8 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.class_function("getSolver", &btSoftBody::getSolver)
 	;
 	class_<btTriIndex>("btTriIndex")
-	constant("m_PartIdTriangleIndex", m_PartIdTriangleIndex);
-	constant("m_childShape", m_childShape);
+//variableHandler - m_PartIdTriangleIndex
+//variableHandler - m_childShape
 	.constructor<int,int,p.btCollisionShape>()
 	.function("getTriangleIndex", &btTriIndex::getTriangleIndex)
 	.function("getPartId", &btTriIndex::getPartId)
@@ -4759,122 +4474,122 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("clearCache", &btSoftBodyConcaveCollisionAlgorithm::clearCache)
 	;
 	class_<SoftBodyMaterialData>("SoftBodyMaterialData")
-	constant("m_linearStiffness", m_linearStiffness);
-	constant("m_angularStiffness", m_angularStiffness);
-	constant("m_volumeStiffness", m_volumeStiffness);
-	constant("m_flags", m_flags);
+//variableHandler - m_linearStiffness
+//variableHandler - m_angularStiffness
+//variableHandler - m_volumeStiffness
+//variableHandler - m_flags
 	;
 	class_<SoftBodyNodeData>("SoftBodyNodeData")
-	constant("m_material", m_material);
-	constant("m_position", m_position);
-	constant("m_previousPosition", m_previousPosition);
-	constant("m_velocity", m_velocity);
-	constant("m_accumulatedForce", m_accumulatedForce);
-	constant("m_normal", m_normal);
-	constant("m_inverseMass", m_inverseMass);
-	constant("m_area", m_area);
-	constant("m_attach", m_attach);
-	constant("m_pad", m_pad);
+//variableHandler - m_material
+//variableHandler - m_position
+//variableHandler - m_previousPosition
+//variableHandler - m_velocity
+//variableHandler - m_accumulatedForce
+//variableHandler - m_normal
+//variableHandler - m_inverseMass
+//variableHandler - m_area
+//variableHandler - m_attach
+//variableHandler - m_pad
 	;
 	class_<SoftBodyLinkData>("SoftBodyLinkData")
-	constant("m_material", m_material);
-	constant("m_nodeIndices", m_nodeIndices);
-	constant("m_restLength", m_restLength);
-	constant("m_bbending", m_bbending);
+//variableHandler - m_material
+//variableHandler - m_nodeIndices
+//variableHandler - m_restLength
+//variableHandler - m_bbending
 	;
 	class_<SoftBodyFaceData>("SoftBodyFaceData")
-	constant("m_normal", m_normal);
-	constant("m_material", m_material);
-	constant("m_nodeIndices", m_nodeIndices);
-	constant("m_restArea", m_restArea);
+//variableHandler - m_normal
+//variableHandler - m_material
+//variableHandler - m_nodeIndices
+//variableHandler - m_restArea
 	;
 	class_<SoftBodyTetraData>("SoftBodyTetraData")
-	constant("m_c0", m_c0);
-	constant("m_material", m_material);
-	constant("m_nodeIndices", m_nodeIndices);
-	constant("m_restVolume", m_restVolume);
-	constant("m_c1", m_c1);
-	constant("m_c2", m_c2);
-	constant("m_pad", m_pad);
+//variableHandler - m_c0
+//variableHandler - m_material
+//variableHandler - m_nodeIndices
+//variableHandler - m_restVolume
+//variableHandler - m_c1
+//variableHandler - m_c2
+//variableHandler - m_pad
 	;
 	class_<SoftRigidAnchorData>("SoftRigidAnchorData")
-	constant("m_c0", m_c0);
-	constant("m_c1", m_c1);
-	constant("m_localFrame", m_localFrame);
-	constant("m_rigidBody", m_rigidBody);
-	constant("m_nodeIndex", m_nodeIndex);
-	constant("m_c2", m_c2);
+//variableHandler - m_c0
+//variableHandler - m_c1
+//variableHandler - m_localFrame
+//variableHandler - m_rigidBody
+//variableHandler - m_nodeIndex
+//variableHandler - m_c2
 	;
 	class_<SoftBodyConfigData>("SoftBodyConfigData")
-	constant("m_aeroModel", m_aeroModel);
-	constant("m_baumgarte", m_baumgarte);
-	constant("m_damping", m_damping);
-	constant("m_drag", m_drag);
-	constant("m_lift", m_lift);
-	constant("m_pressure", m_pressure);
-	constant("m_volume", m_volume);
-	constant("m_dynamicFriction", m_dynamicFriction);
-	constant("m_poseMatch", m_poseMatch);
-	constant("m_rigidContactHardness", m_rigidContactHardness);
-	constant("m_kineticContactHardness", m_kineticContactHardness);
-	constant("m_softContactHardness", m_softContactHardness);
-	constant("m_anchorHardness", m_anchorHardness);
-	constant("m_softRigidClusterHardness", m_softRigidClusterHardness);
-	constant("m_softKineticClusterHardness", m_softKineticClusterHardness);
-	constant("m_softSoftClusterHardness", m_softSoftClusterHardness);
-	constant("m_softRigidClusterImpulseSplit", m_softRigidClusterImpulseSplit);
-	constant("m_softKineticClusterImpulseSplit", m_softKineticClusterImpulseSplit);
-	constant("m_softSoftClusterImpulseSplit", m_softSoftClusterImpulseSplit);
-	constant("m_maxVolume", m_maxVolume);
-	constant("m_timeScale", m_timeScale);
-	constant("m_velocityIterations", m_velocityIterations);
-	constant("m_positionIterations", m_positionIterations);
-	constant("m_driftIterations", m_driftIterations);
-	constant("m_clusterIterations", m_clusterIterations);
-	constant("m_collisionFlags", m_collisionFlags);
+//variableHandler - m_aeroModel
+//variableHandler - m_baumgarte
+//variableHandler - m_damping
+//variableHandler - m_drag
+//variableHandler - m_lift
+//variableHandler - m_pressure
+//variableHandler - m_volume
+//variableHandler - m_dynamicFriction
+//variableHandler - m_poseMatch
+//variableHandler - m_rigidContactHardness
+//variableHandler - m_kineticContactHardness
+//variableHandler - m_softContactHardness
+//variableHandler - m_anchorHardness
+//variableHandler - m_softRigidClusterHardness
+//variableHandler - m_softKineticClusterHardness
+//variableHandler - m_softSoftClusterHardness
+//variableHandler - m_softRigidClusterImpulseSplit
+//variableHandler - m_softKineticClusterImpulseSplit
+//variableHandler - m_softSoftClusterImpulseSplit
+//variableHandler - m_maxVolume
+//variableHandler - m_timeScale
+//variableHandler - m_velocityIterations
+//variableHandler - m_positionIterations
+//variableHandler - m_driftIterations
+//variableHandler - m_clusterIterations
+//variableHandler - m_collisionFlags
 	;
 	class_<SoftBodyPoseData>("SoftBodyPoseData")
-	constant("m_rot", m_rot);
-	constant("m_scale", m_scale);
-	constant("m_aqq", m_aqq);
-	constant("m_com", m_com);
-	constant("m_positions", m_positions);
-	constant("m_weights", m_weights);
-	constant("m_numPositions", m_numPositions);
-	constant("m_numWeigts", m_numWeigts);
-	constant("m_bvolume", m_bvolume);
-	constant("m_bframe", m_bframe);
-	constant("m_restVolume", m_restVolume);
-	constant("m_pad", m_pad);
+//variableHandler - m_rot
+//variableHandler - m_scale
+//variableHandler - m_aqq
+//variableHandler - m_com
+//variableHandler - m_positions
+//variableHandler - m_weights
+//variableHandler - m_numPositions
+//variableHandler - m_numWeigts
+//variableHandler - m_bvolume
+//variableHandler - m_bframe
+//variableHandler - m_restVolume
+//variableHandler - m_pad
 	;
 	class_<SoftBodyClusterData>("SoftBodyClusterData")
-	constant("m_framexform", m_framexform);
-	constant("m_locii", m_locii);
-	constant("m_invwi", m_invwi);
-	constant("m_com", m_com);
-	constant("m_vimpulses", m_vimpulses);
-	constant("m_dimpulses", m_dimpulses);
-	constant("m_lv", m_lv);
-	constant("m_av", m_av);
-	constant("m_framerefs", m_framerefs);
-	constant("m_nodeIndices", m_nodeIndices);
-	constant("m_masses", m_masses);
-	constant("m_numFrameRefs", m_numFrameRefs);
-	constant("m_numNodes", m_numNodes);
-	constant("m_numMasses", m_numMasses);
-	constant("m_idmass", m_idmass);
-	constant("m_imass", m_imass);
-	constant("m_nvimpulses", m_nvimpulses);
-	constant("m_ndimpulses", m_ndimpulses);
-	constant("m_ndamping", m_ndamping);
-	constant("m_ldamping", m_ldamping);
-	constant("m_adamping", m_adamping);
-	constant("m_matching", m_matching);
-	constant("m_maxSelfCollisionImpulse", m_maxSelfCollisionImpulse);
-	constant("m_selfCollisionImpulseFactor", m_selfCollisionImpulseFactor);
-	constant("m_containsAnchor", m_containsAnchor);
-	constant("m_collide", m_collide);
-	constant("m_clusterIndex", m_clusterIndex);
+//variableHandler - m_framexform
+//variableHandler - m_locii
+//variableHandler - m_invwi
+//variableHandler - m_com
+//variableHandler - m_vimpulses
+//variableHandler - m_dimpulses
+//variableHandler - m_lv
+//variableHandler - m_av
+//variableHandler - m_framerefs
+//variableHandler - m_nodeIndices
+//variableHandler - m_masses
+//variableHandler - m_numFrameRefs
+//variableHandler - m_numNodes
+//variableHandler - m_numMasses
+//variableHandler - m_idmass
+//variableHandler - m_imass
+//variableHandler - m_nvimpulses
+//variableHandler - m_ndimpulses
+//variableHandler - m_ndamping
+//variableHandler - m_ldamping
+//variableHandler - m_adamping
+//variableHandler - m_matching
+//variableHandler - m_maxSelfCollisionImpulse
+//variableHandler - m_selfCollisionImpulseFactor
+//variableHandler - m_containsAnchor
+//variableHandler - m_collide
+//variableHandler - m_clusterIndex
 	;
 	enum_<btSoftJointBodyType>("btSoftJointBodyType")
 		.value("BT_JOINT_SOFT_BODY_CLUSTER", BT_JOINT_SOFT_BODY_CLUSTER)
@@ -4882,39 +4597,39 @@ EMSCRIPTEN_BINDINGS(bullet) {
 		.value("BT_JOINT_COLLISION_OBJECT", BT_JOINT_COLLISION_OBJECT)
 		;
 	class_<btSoftBodyJointData>("btSoftBodyJointData")
-	constant("m_bodyA", m_bodyA);
-	constant("m_bodyB", m_bodyB);
-	constant("m_refs", m_refs);
-	constant("m_cfm", m_cfm);
-	constant("m_erp", m_erp);
-	constant("m_split", m_split);
-	constant("m_delete", m_delete);
-	constant("m_relPosition", m_relPosition);
-	constant("m_bodyAtype", m_bodyAtype);
-	constant("m_bodyBtype", m_bodyBtype);
-	constant("m_jointType", m_jointType);
-	constant("m_pad", m_pad);
+//variableHandler - m_bodyA
+//variableHandler - m_bodyB
+//variableHandler - m_refs
+//variableHandler - m_cfm
+//variableHandler - m_erp
+//variableHandler - m_split
+//variableHandler - m_delete
+//variableHandler - m_relPosition
+//variableHandler - m_bodyAtype
+//variableHandler - m_bodyBtype
+//variableHandler - m_jointType
+//variableHandler - m_pad
 	;
 	class_<btSoftBodyFloatData>("btSoftBodyFloatData")
-	constant("m_collisionObjectData", m_collisionObjectData);
-	constant("m_pose", m_pose);
-	constant("m_materials", m_materials);
-	constant("m_nodes", m_nodes);
-	constant("m_links", m_links);
-	constant("m_faces", m_faces);
-	constant("m_tetrahedra", m_tetrahedra);
-	constant("m_anchors", m_anchors);
-	constant("m_clusters", m_clusters);
-	constant("m_joints", m_joints);
-	constant("m_numMaterials", m_numMaterials);
-	constant("m_numNodes", m_numNodes);
-	constant("m_numLinks", m_numLinks);
-	constant("m_numFaces", m_numFaces);
-	constant("m_numTetrahedra", m_numTetrahedra);
-	constant("m_numAnchors", m_numAnchors);
-	constant("m_numClusters", m_numClusters);
-	constant("m_numJoints", m_numJoints);
-	constant("m_config", m_config);
+//variableHandler - m_collisionObjectData
+//variableHandler - m_pose
+//variableHandler - m_materials
+//variableHandler - m_nodes
+//variableHandler - m_links
+//variableHandler - m_faces
+//variableHandler - m_tetrahedra
+//variableHandler - m_anchors
+//variableHandler - m_clusters
+//variableHandler - m_joints
+//variableHandler - m_numMaterials
+//variableHandler - m_numNodes
+//variableHandler - m_numLinks
+//variableHandler - m_numFaces
+//variableHandler - m_numTetrahedra
+//variableHandler - m_numAnchors
+//variableHandler - m_numClusters
+//variableHandler - m_numJoints
+//variableHandler - m_config
 	;
 	class_<fDrawFlags>("fDrawFlags")
 	enum_<fDrawFlags::_>("fDrawFlags::_")
@@ -5129,10 +4844,10 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("compute_p.q(const).double_int_int_btScalar_btScalar", select_overload<btScalar(p.q(const).double, int, int, btScalar, btScalar)>(&btConvexHullComputer::compute))
 	;
 	class_<btDefaultMotionState, base<btMotionState>>("btDefaultMotionState")
-	constant("m_graphicsWorldTrans", m_graphicsWorldTrans);
-	constant("m_centerOfMassOffset", m_centerOfMassOffset);
-	constant("m_startWorldTrans", m_startWorldTrans);
-	constant("m_userPointer", m_userPointer);
+//variableHandler - m_graphicsWorldTrans
+//variableHandler - m_centerOfMassOffset
+//variableHandler - m_startWorldTrans
+//variableHandler - m_userPointer
 	.constructor<r.q(const).btTransform,r.q(const).btTransform>()
 	.constructor<r.q(const).btTransform>()
 	;
@@ -5144,11 +4859,11 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	;
 	class_<GrahamVector3, base<btVector3>>("GrahamVector3")
 	.constructor<r.q(const).btVector3,int>()
-	constant("m_angle", m_angle);
-	constant("m_orgIndex", m_orgIndex);
+//variableHandler - m_angle
+//variableHandler - m_orgIndex
 	;
 	class_<btAngleCompareFunc>("btAngleCompareFunc")
-	constant("m_anchor", m_anchor);
+//variableHandler - m_anchor
 	.constructor<r.q(const).btVector3>()
 	.function("operator ()", &btAngleCompareFunc::operator ())
 	;
@@ -5184,8 +4899,8 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	function("GEN_srand", &GEN_srand);
 	function("GEN_rand", &GEN_rand);
 	class_<btBlock>("btBlock")
-	constant("previous", previous);
-	constant("address", address);
+//variableHandler - previous
+//variableHandler - address
 	;
 	class_<btStackAlloc>("btStackAlloc")
 	.constructor<unsigned int>()

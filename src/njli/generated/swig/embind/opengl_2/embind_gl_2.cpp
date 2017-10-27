@@ -166,25 +166,6 @@ template <typename T> T SwigValueInit() {
 
     #include "GraphicsPlatform.h"
 
-
-GLfloat *newfv4(GLfloat a, GLfloat b, GLfloat c, GLfloat d)
-{
-  GLfloat *f = (GLfloat*) malloc(4 * sizeof(GLfloat));
-  f[0] = a;
-  f[1] = b;
-  f[2] = c;
-  f[3] = d;
-  return f;
-}
-
-
-void delfv(void *m)
-{
-    free(m);
-}
-
 EMSCRIPTEN_BINDINGS(gl) {
-	function("newfv4", &newfv4, allow_raw_pointers());
-	function("delfv", &delfv);
 }
 

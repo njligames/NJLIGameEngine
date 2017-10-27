@@ -55,8 +55,8 @@ rm -rf emscripten_Sublime
 mkdir -p emscripten_Sublime
 cd emscripten_Sublime
 
-build_emscripten_sublime Debug
-#build_emscripten_sublime
+#build_emscripten_sublime Debug
+build_emscripten_sublime
 
 cd ..
 

@@ -4042,7 +4042,6 @@ EMSCRIPTEN_BINDINGS(njli) {
 	.function("operator -=", &btVector3::operator -=)
 	.function("operator *=_r.q(const).btScalar", select_overload<btVector3(r.q(const).btScalar)>(&btVector3::operator *=))
 	.function("operator /=", &btVector3::operator /=)
-	.function("dot", &btVector3::dot)
 	.function("length2", &btVector3::length2)
 	.function("length", &btVector3::length)
 	.function("norm", &btVector3::norm)
@@ -4117,7 +4116,6 @@ EMSCRIPTEN_BINDINGS(njli) {
 	.function("operator *=_r.q(const).btVector2", select_overload<btVector2(r.q(const).btVector2)>(&btVector2::operator *=))
 	.function("operator *=_r.q(const).btScalar", select_overload<btVector2(r.q(const).btScalar)>(&btVector2::operator *=))
 	.function("operator /=", &btVector2::operator /=)
-	.function("dot", &btVector2::dot)
 	.function("length2", &btVector2::length2)
 	.function("length", &btVector2::length)
 	.function("distance2", &btVector2::distance2)
@@ -4202,7 +4200,6 @@ EMSCRIPTEN_BINDINGS(njli) {
 	.function("operator -=", &btQuaternion::operator -=)
 	.function("operator *=_r.q(const).btScalar", select_overload<btQuaternion(r.q(const).btScalar)>(&btQuaternion::operator *=))
 	.function("operator *=_r.q(const).btQuaternion", select_overload<btQuaternion(r.q(const).btQuaternion)>(&btQuaternion::operator *=))
-	.function("dot", &btQuaternion::dot)
 	.function("length2", &btQuaternion::length2)
 	.function("length", &btQuaternion::length)
 	.function("normalize", &btQuaternion::normalize)
@@ -6040,7 +6037,6 @@ EMSCRIPTEN_BINDINGS(njli) {
 	.function("addAngular", &btSpatialMotionVector::addAngular)
 	.function("addLinear", &btSpatialMotionVector::addLinear)
 	.function("setZero", &btSpatialMotionVector::setZero)
-	.function("dot", &btSpatialMotionVector::dot)
 	.function("operator +=", &btSpatialMotionVector::operator +=)
 	.function("operator -=", &btSpatialMotionVector::operator -=)
 	.function("operator *=", &btSpatialMotionVector::operator *=)
@@ -6700,14 +6696,14 @@ EMSCRIPTEN_BINDINGS(njli) {
 	.function("endBlock", &btStackAlloc::endBlock)
 	.function("ctor", &btStackAlloc::ctor)
 	class_<rgb>("rgb")
-	constant("r", r);
-	constant("g", g);
-	constant("b", b);
+//variableHandler - r
+//variableHandler - g
+//variableHandler - b
 	;
 	class_<hsv>("hsv")
-	constant("h", h);
-	constant("s", s);
-	constant("v", v);
+//variableHandler - h
+//variableHandler - s
+//variableHandler - v
 	;
 	function("rgb2hsv", &rgb2hsv);
 	function("hsv2rgb", &hsv2rgb);
@@ -6716,6 +6712,195 @@ EMSCRIPTEN_BINDINGS(njli) {
 	function("printGLInfo", &printGLInfo);
 	function("setGLBackgroundColor", &setGLBackgroundColor);
 	function("setGLViewSize", &setGLViewSize);
+//variableHandler - Action
+//variableHandler - ActionBuilder
+//variableHandler - Camera
+//variableHandler - CameraBuilder
+//variableHandler - Clock
+//variableHandler - ClockBuilder
+//variableHandler - CollisionResponse
+//variableHandler - CollisionResponseBuilder
+//variableHandler - CubeBuilder
+//variableHandler - Font
+//variableHandler - FontBuilder
+//variableHandler - GameClock
+//variableHandler - Geometry
+//variableHandler - Image
+//variableHandler - ImageBuilder
+//variableHandler - JLIFactoryTypes
+//variableHandler - JsonJLI
+//variableHandler - JsonJLIBuilder
+//variableHandler - LevelOfDetail
+//variableHandler - LevelOfDetailBuilder
+//variableHandler - Light
+//variableHandler - LightBuilder
+//variableHandler - Material
+//variableHandler - MaterialBuilder
+//variableHandler - MaterialProperty
+//variableHandler - MaterialPropertyBuilder
+//variableHandler - Node
+//variableHandler - NodeBuilder
+//variableHandler - NodeState
+//variableHandler - NodeStateBuilder
+//variableHandler - NodeStateMachine
+//variableHandler - NodeStateMachineBuilder
+//variableHandler - ParticleEmitter
+//variableHandler - ParticleEmitterBuilder
+//variableHandler - PhysicsBody
+//variableHandler - PhysicsBodyGhost
+//variableHandler - PhysicsBodyGhostBuilder
+//variableHandler - PhysicsBodyRigid
+//variableHandler - PhysicsBodyRigidBuilder
+//variableHandler - PhysicsBodySoft
+//variableHandler - PhysicsBodySoftBuilder
+//variableHandler - PhysicsCloseContact
+//variableHandler - PhysicsCloseContactBuilder
+//variableHandler - PhysicsConstraint
+//variableHandler - PhysicsConstraintBuilder
+//variableHandler - PhysicsConstraintConeTwist
+//variableHandler - PhysicsConstraintConeTwistBuilder
+//variableHandler - PhysicsConstraintFixed
+//variableHandler - PhysicsConstraintFixedBuilder
+//variableHandler - PhysicsConstraintGeneric6Dof
+//variableHandler - PhysicsConstraintGeneric6DofBuilder
+//variableHandler - PhysicsConstraintGeneric6DofSpring
+//variableHandler - PhysicsConstraintGeneric6DofSpringBuilder
+//variableHandler - PhysicsConstraintHinge
+//variableHandler - PhysicsConstraintHingeBuilder
+//variableHandler - PhysicsConstraintPointToPoint
+//variableHandler - PhysicsConstraintPointToPointBuilder
+//variableHandler - PhysicsConstraintSlider
+//variableHandler - PhysicsConstraintSliderBuilder
+//variableHandler - PhysicsContact
+//variableHandler - PhysicsContactBuilder
+//variableHandler - PhysicsField
+//variableHandler - PhysicsFieldBuilder
+//variableHandler - PhysicsRayContact
+//variableHandler - PhysicsRayContactBuilder
+//variableHandler - PhysicsShape
+//variableHandler - PhysicsShapeBox
+//variableHandler - PhysicsShapeBox2D
+//variableHandler - PhysicsShapeBox2DBuilder
+//variableHandler - PhysicsShapeBoxBuilder
+//variableHandler - PhysicsShapeBvhTriangleMesh
+//variableHandler - PhysicsShapeBvhTriangleMeshBuilder
+//variableHandler - PhysicsShapeCapsule
+//variableHandler - PhysicsShapeCapsuleBuilder
+//variableHandler - PhysicsShapeCone
+//variableHandler - PhysicsShapeConeBuilder
+//variableHandler - PhysicsShapeConvexHull
+//variableHandler - PhysicsShapeConvexHullBuilder
+//variableHandler - PhysicsShapeConvexTriangleMesh
+//variableHandler - PhysicsShapeConvexTriangleMeshBuilder
+//variableHandler - PhysicsShapeCylinder
+//variableHandler - PhysicsShapeCylinderBuilder
+//variableHandler - PhysicsShapeHeightfieldTerrain
+//variableHandler - PhysicsShapeHeightfieldTerrainBuilder
+//variableHandler - PhysicsShapeMultiSphere
+//variableHandler - PhysicsShapeMultiSphereBuilder
+//variableHandler - PhysicsShapeSphere
+//variableHandler - PhysicsShapeSphereBuilder
+//variableHandler - PhysicsShapeStaticPlane
+//variableHandler - PhysicsShapeStaticPlaneBuilder
+//variableHandler - PhysicsWorld
+//variableHandler - PhysicsWorldBuilder
+//variableHandler - Plane
+//variableHandler - PlaneBuilder
+//variableHandler - Scene
+//variableHandler - SceneBuilder
+//variableHandler - SceneState
+//variableHandler - SceneStateBuilder
+//variableHandler - SceneStateMachine
+//variableHandler - SceneStateMachineBuilder
+//variableHandler - ShaderProgram
+//variableHandler - ShaderProgramBuilder
+//variableHandler - Skinner
+//variableHandler - SkinnerBuilder
+//variableHandler - SoundBuilder
+//variableHandler - Sprite2D
+//variableHandler - Sprite2DBuilder
+//variableHandler - SpriteFrameAtlas
+//variableHandler - SpriteFrameAtlasBuilder
+//variableHandler - SteeringBehavior
+//variableHandler - SteeringBehaviorBuilder
+//variableHandler - SteeringBehaviorAlignment
+//variableHandler - SteeringBehaviorAlignmentBuilder
+//variableHandler - SteeringBehaviorArrive
+//variableHandler - SteeringBehaviorArriveBuilder
+//variableHandler - SteeringBehaviorCohesion
+//variableHandler - SteeringBehaviorCohesionBuilder
+//variableHandler - SteeringBehaviorEvade
+//variableHandler - SteeringBehaviorEvadeBuilder
+//variableHandler - SteeringBehaviorFlee
+//variableHandler - SteeringBehaviorFleeBuilder
+//variableHandler - SteeringBehaviorFollowPath
+//variableHandler - SteeringBehaviorFollowPathBuilder
+//variableHandler - SteeringBehaviorHide
+//variableHandler - SteeringBehaviorHideBuilder
+//variableHandler - SteeringBehaviorInterpose
+//variableHandler - SteeringBehaviorInterposeBuilder
+//variableHandler - SteeringBehaviorMachine
+//variableHandler - SteeringBehaviorMachineBuilder
+//variableHandler - SteeringBehaviorMachineDithered
+//variableHandler - SteeringBehaviorMachineDitheredBuilder
+//variableHandler - SteeringBehaviorMachinePrioritized
+//variableHandler - SteeringBehaviorMachinePrioritizedBuilder
+//variableHandler - SteeringBehaviorMachineWeighted
+//variableHandler - SteeringBehaviorMachineWeightedBuilder
+//variableHandler - SteeringBehaviorObstacleAvoidance
+//variableHandler - SteeringBehaviorObstacleAvoidanceBuilder
+//variableHandler - SteeringBehaviorOffsetPursuit
+//variableHandler - SteeringBehaviorOffsetPursuitBuilder
+//variableHandler - SteeringBehaviorPursuit
+//variableHandler - SteeringBehaviorPursuitBuilder
+//variableHandler - SteeringBehaviorSeek
+//variableHandler - SteeringBehaviorSeekBuilder
+//variableHandler - SteeringBehaviorSeparation
+//variableHandler - SteeringBehaviorSeparationBuilder
+//variableHandler - SteeringBehaviorWallAvoidance
+//variableHandler - SteeringBehaviorWallAvoidanceBuilder
+//variableHandler - SteeringBehaviorWander
+//variableHandler - SteeringBehaviorWanderBuilder
+//variableHandler - StopWatch
+//variableHandler - StopWatchBuilder
+//variableHandler - Thread
+//variableHandler - ThreadBuilder
+//variableHandler - Timer
+//variableHandler - TimerBuilder
+//variableHandler - World
+//variableHandler - WorldClock
+//variableHandler - WorldDebugDrawer
+//variableHandler - WorldFactory
+//variableHandler - ButtonHUD
+//variableHandler - ButtonHUDBuilder
+//variableHandler - CheckboxHUD
+//variableHandler - CheckboxHUDBuilder
+//variableHandler - DropdownHUD
+//variableHandler - DropdownHUDBuilder
+//variableHandler - LabelHUD
+//variableHandler - LabelHUDBuilder
+//variableHandler - SliderHUD
+//variableHandler - SliderHUDBuilder
+//variableHandler - TextboxHUD
+//variableHandler - TextboxHUDBuilder
+//variableHandler - WorldHUD
+//variableHandler - WorldLuaVirtualMachine
+//variableHandler - WorldResourceLoader
+//variableHandler - WorldSQLite
+//variableHandler - WorldSocket
+//variableHandler - WorldState
+//variableHandler - WorldStateBuilder
+//variableHandler - WorldStateMachine
+//variableHandler - WorldStateMachineBuilder
+//variableHandler - Xml
+//variableHandler - XmlBuilder
+//variableHandler - DeviceInputTime
+//variableHandler - DeviceTouch
+//variableHandler - Sound
+//variableHandler - WorldFacebook
+//variableHandler - WorldInput
+//variableHandler - WorldPythonVirtualMachine
+//variableHandler - WorldSound
 	class_<btAlignedObjectArray<(njli::JLIGlyphPosition)>>("btAlignedObjectArray<(njli::JLIGlyphPosition)>")
 	.function("operator =", &btAlignedObjectArray<(njli::JLIGlyphPosition)>::operator =)
 	.function("allocSize", &btAlignedObjectArray<(njli::JLIGlyphPosition)>::allocSize)

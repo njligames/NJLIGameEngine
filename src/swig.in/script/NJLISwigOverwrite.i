@@ -1,4 +1,4 @@
-#ifdef SWIGLUA
+#if defined(SWIGLUA)
 %{
 #undef SWIG_fail_arg
 #define SWIG_fail_arg(func_name,argnum,type) \

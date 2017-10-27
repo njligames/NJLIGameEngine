@@ -30,7 +30,7 @@
 %include "AbstractPhysicsShape.i"
 %include "AbstractGeometry.i"
 
-#ifdef SWIGLUA
+#if defined(SWIGLUA)
 %import <lua/carrays.i>
 %import <lua/factory.i>
 %import <lua/lua_fnptr.i>
@@ -60,7 +60,7 @@
 %include "_RenameNJLI.i"
 %include "_RenamePlatform.i"
 
-#ifdef SWIGLUA
+#if defined(SWIGLUA)
 //MARK: %luacode wrapper doesn't work in an external file.
 %luacode
 %{
@@ -744,7 +744,7 @@
 //%include "WorldPythonVirtualMachine.h"
 %include "WorldSound.h"
 
-#ifdef SWIGLUA
+#if defined(SWIGLUA)
 //MARK: %native wrapper doesn't work in an external file.
 //%native(my_func) int native_function(lua_State*L);  // registers native_function() with SWIG
 %native(build) int build(lua_State*L);  // registers native_function() with SWIG

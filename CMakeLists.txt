@@ -66,6 +66,7 @@ SET ( NJLI_SOUND_PLATFORM fmod CACHE STRING "The sound to use" )
 SET ( NJLI_SOURCE_DIRECTORY "${CMAKE_SOURCE_DIR}/src" CACHE STRING "The njli source directory" )
 SET ( NJLI_SWIGIN_DIRECTORY "${CMAKE_SOURCE_DIR}/src/swig.in" CACHE STRING "The njli source directory" )
 SET ( NJLI_THIRDPARTY_SWIGIN_DIRECTORY "${CMAKE_SOURCE_DIR}/../External/thirdparty/swig.in" CACHE STRING "The njli source directory" )
+SET ( NJLI_SCRIPT_LANGUAGE lua CACHE STRING  "The scripting language to use" )
 
 OPTION(NJLI_USE_ASSIMP_LIBRARY "Use assimp library"                    OFF)
 OPTION(NJLI_USE_BULLET_LIBRARY "Use bullet library"                    ON)
@@ -4750,14 +4751,14 @@ ADD_CUSTOM_COMMAND(
     ${CMAKE_CURRENT_BINARY_DIR}/lnjli.xml 
     ${CMAKE_CURRENT_BINARY_DIR}/lbullet.xml 
   COMMAND 
-    ./swig_njli_lua.sh ${CMAKE_CURRENT_BINARY_DIR} ${NJLI_GRAPHICS_PLATFORM} ${SWIG_DEFINE}
+    ./swig_njli.sh ${CMAKE_CURRENT_BINARY_DIR} ${NJLI_GRAPHICS_PLATFORM} ${NJLI_SCRIPT_LANGUAGE} ${SWIG_DEFINE}
   WORKING_DIRECTORY 
     ${CMAKE_SOURCE_DIR}
   COMMENT 
-    "Generating SWIG module with swig"
+    "Generating SWIG module with swig with ${NJLI_SCRIPT_LANGUAGE}"
   VERBATIM
   )
-ADD_CUSTOM_TARGET(SWIGLua ALL
+ADD_CUSTOM_TARGET(WrapSWIG ALL
   DEPENDS 
     ${CMAKE_CURRENT_BINARY_DIR}/lnjli.xml 
     ${CMAKE_CURRENT_BINARY_DIR}/lbullet.xml 
@@ -5107,7 +5108,7 @@ IF( ${NJLI_BUILD_PLATFORM} STREQUAL "android" )
         ${NJLIGameEngine_LBY} 
         )
       SET_TARGET_PROPERTIES( njli PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
-      ADD_DEPENDENCIES(njli SWIGLua)
+      ADD_DEPENDENCIES(njli WrapSWIG)
 
     ADD_CUSTOM_COMMAND(TARGET njli
         PRE_BUILD
@@ -5130,7 +5131,7 @@ ELSE()
     SET_TARGET_PROPERTIES( libnjli_bytecode_shared PROPERTIES PREFIX "")
     TARGET_LINK_LIBRARIES( libnjli_bytecode_shared ${EXTRA_PLATFORM_LIBS} ${NJLIGameEngine_LBY} )
     SET_TARGET_PROPERTIES( libnjli_bytecode_shared PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
-    ADD_DEPENDENCIES(libnjli_bytecode_shared SWIGLua)
+    ADD_DEPENDENCIES(libnjli_bytecode_shared WrapSWIG)
 
   ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" AND IS_DEBUG )
 
@@ -5151,7 +5152,7 @@ ELSE()
     SET_TARGET_PROPERTIES( NJLIGameEngine PROPERTIES PUBLIC_HEADER ${NJLI_SOURCE_DIRECTORY}/njli/platform/Engine.h)
 
     TARGET_LINK_LIBRARIES( NJLIGameEngine ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} )
-    ADD_DEPENDENCIES(NJLIGameEngine SWIGLua)
+    ADD_DEPENDENCIES(NJLIGameEngine WrapSWIG)
 
   ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" OR ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" OR ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
 
@@ -5167,7 +5168,7 @@ ELSE()
     TARGET_LINK_LIBRARIES( libnjli_static ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} )
     SET_TARGET_PROPERTIES( libnjli_static PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
     SET_TARGET_PROPERTIES( libnjli_static PROPERTIES PUBLIC_HEADER ${NJLI_SOURCE_DIRECTORY}/njli/platform/Engine.h)
-    ADD_DEPENDENCIES(libnjli_static SWIGLua)
+    ADD_DEPENDENCIES(libnjli_static WrapSWIG)
 
 
     IF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" OR ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
@@ -5181,7 +5182,7 @@ ELSE()
         "${NJLI_SOURCE_DIRECTORY}/lua/src/lua.rc" 
         )
       TARGET_LINK_LIBRARIES( lua ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} )
-      ADD_DEPENDENCIES(lua SWIGLua)
+      ADD_DEPENDENCIES(lua WrapSWIG)
 
       ADD_EXECUTABLE ( luac 
         ${NJLIGameEngine_SRCS} 
@@ -5193,7 +5194,7 @@ ELSE()
         "${NJLI_SOURCE_DIRECTORY}/lua/src/lua.rc" 
         )
       TARGET_LINK_LIBRARIES( luac ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} )
-      ADD_DEPENDENCIES(luac SWIGLua)
+      ADD_DEPENDENCIES(luac WrapSWIG)
 
       ADD_LIBRARY( libnjli_lua_module MODULE 
         ${NJLIGameEngine_SRCS} 
@@ -5207,7 +5208,7 @@ ELSE()
       TARGET_LINK_LIBRARIES( libnjli_lua_module ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} )
       SET_TARGET_PROPERTIES( libnjli_lua_module PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
       SET_TARGET_PROPERTIES( libnjli_lua_module PROPERTIES PUBLIC_HEADER ${NJLI_SOURCE_DIRECTORY}/njli/platform/Engine.h)
-      ADD_DEPENDENCIES(libnjli_lua_module SWIGLua)
+      ADD_DEPENDENCIES(libnjli_lua_module WrapSWIG)
     ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" OR ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten")
 
     #IF( NOT ${NJLI_BUILD_PLATFORM} STREQUAL "linux")
@@ -5223,7 +5224,7 @@ ELSE()
         TARGET_LINK_LIBRARIES( libnjli_shared ${EXTRA_PLATFORM_LIBS} ${NJLIGameEngine_LBY} )
         SET_TARGET_PROPERTIES( libnjli_shared PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
         SET_TARGET_PROPERTIES( libnjli_shared PROPERTIES PUBLIC_HEADER ${NJLI_SOURCE_DIRECTORY}/njli/platform/Engine.h)
-        ADD_DEPENDENCIES(libnjli_shared SWIGLua)
+        ADD_DEPENDENCIES(libnjli_shared WrapSWIG)
 
 
         #ENDIF()
@@ -5245,7 +5246,7 @@ ELSE()
     IF( IS_DEBUG)
       TARGET_LINK_LIBRARIES( EngineSource libnjli_bytecode_shared)
     ENDIF( IS_DEBUG)
-    ADD_DEPENDENCIES(EngineSource SWIGLua)
+    ADD_DEPENDENCIES(EngineSource WrapSWIG)
 
     SET_TARGET_PROPERTIES( EngineSource PROPERTIES OUTPUT_NAME ${NJLI_PRODUCT_NAME} )
     #SET_TARGET_PROPERTIES( EngineSource PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
