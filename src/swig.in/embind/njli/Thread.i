@@ -1,9 +1,0 @@
-
-//Factory
-
-//Array
-
-//Extend
-
-//Typemap
-

@@ -2334,10 +2334,10 @@ ENDFOREACH()
 ############################################################################################################
 
 FILE( GLOB src
-    "${NJLI_SWIGIN_DIRECTORY}/lua/*.i"
-    "${NJLI_SWIGIN_DIRECTORY}/lua/*.swg"
+    "${NJLI_SWIGIN_DIRECTORY}/script/*.i"
+    "${NJLI_SWIGIN_DIRECTORY}/script/*.swg"
     )
-SET(REG "${NJLI_SWIGIN_DIRECTORY}/lua/.*([.]i|[.]swg)")
+SET(REG "${NJLI_SWIGIN_DIRECTORY}/script/.*([.]i|[.]swg)")
 FOREACH(filename ${src})
     STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
     IF(match_group_sources)
@@ -2348,10 +2348,10 @@ FOREACH(filename ${src})
 ENDFOREACH()
 
 FILE( GLOB src
-    "${NJLI_SWIGIN_DIRECTORY}/lua/njli/*.i"
-    "${NJLI_SWIGIN_DIRECTORY}/lua/njli/*.swg"
+    "${NJLI_SWIGIN_DIRECTORY}/script/njli/*.i"
+    "${NJLI_SWIGIN_DIRECTORY}/script/njli/*.swg"
     )
-SET(REG "${NJLI_SWIGIN_DIRECTORY}/lua/njli/.*([.]i|[.]swg)")
+SET(REG "${NJLI_SWIGIN_DIRECTORY}/script/njli/.*([.]i|[.]swg)")
 FOREACH(filename ${src})
     STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
     IF(match_group_sources)
@@ -2362,10 +2362,10 @@ FOREACH(filename ${src})
 ENDFOREACH()
 
 FILE( GLOB src
-    "${NJLI_SWIGIN_DIRECTORY}/lua/njli/builders/*.i"
-    "${NJLI_SWIGIN_DIRECTORY}/lua/njli/builders/*.swg"
+    "${NJLI_SWIGIN_DIRECTORY}/script/njli/builders/*.i"
+    "${NJLI_SWIGIN_DIRECTORY}/script/njli/builders/*.swg"
     )
-SET(REG "${NJLI_SWIGIN_DIRECTORY}/lua/njli/builders/.*([.]i|[.]swg)")
+SET(REG "${NJLI_SWIGIN_DIRECTORY}/script/njli/builders/.*([.]i|[.]swg)")
 FOREACH(filename ${src})
     STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
     IF(match_group_sources)
@@ -2376,10 +2376,10 @@ FOREACH(filename ${src})
 ENDFOREACH()
 
 FILE( GLOB src
-    "${NJLI_SWIGIN_DIRECTORY}/lua/njli/builders/graphics/*.i"
-    "${NJLI_SWIGIN_DIRECTORY}/lua/njli/builders/graphics/*.swg"
+    "${NJLI_SWIGIN_DIRECTORY}/script/njli/builders/graphics/*.i"
+    "${NJLI_SWIGIN_DIRECTORY}/script/njli/builders/graphics/*.swg"
     )
-SET(REG "${NJLI_SWIGIN_DIRECTORY}/lua/njli/builders/graphics/.*([.]i|[.]swg)")
+SET(REG "${NJLI_SWIGIN_DIRECTORY}/script/njli/builders/graphics/.*([.]i|[.]swg)")
 FOREACH(filename ${src})
     STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
     IF(match_group_sources)
@@ -2390,10 +2390,10 @@ FOREACH(filename ${src})
 ENDFOREACH()
 
 FILE( GLOB src
-    "${NJLI_SWIGIN_DIRECTORY}/lua/njli/builders/*.i"
-    "${NJLI_SWIGIN_DIRECTORY}/lua/njli/builders/*.swg"
+    "${NJLI_SWIGIN_DIRECTORY}/script/njli/builders/*.i"
+    "${NJLI_SWIGIN_DIRECTORY}/script/njli/builders/*.swg"
     )
-SET(REG "${NJLI_SWIGIN_DIRECTORY}/lua/njli/builders/.*([.]i|[.]swg)")
+SET(REG "${NJLI_SWIGIN_DIRECTORY}/script/njli/builders/.*([.]i|[.]swg)")
 FOREACH(filename ${src})
     STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
     IF(match_group_sources)
@@ -2404,10 +2404,10 @@ FOREACH(filename ${src})
 ENDFOREACH()
 
 FILE( GLOB src
-    "${NJLI_SWIGIN_DIRECTORY}/lua/njli/builders/physics/body/*.i"
-    "${NJLI_SWIGIN_DIRECTORY}/lua/njli/builders/physics/body/*.swg"
+    "${NJLI_SWIGIN_DIRECTORY}/script/njli/builders/physics/body/*.i"
+    "${NJLI_SWIGIN_DIRECTORY}/script/njli/builders/physics/body/*.swg"
     )
-SET(REG "${NJLI_SWIGIN_DIRECTORY}/lua/njli/builders/physics/body/.*([.]i|[.]swg)")
+SET(REG "${NJLI_SWIGIN_DIRECTORY}/script/njli/builders/physics/body/.*([.]i|[.]swg)")
 FOREACH(filename ${src})
     STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
     IF(match_group_sources)
@@ -2418,10 +2418,10 @@ FOREACH(filename ${src})
 ENDFOREACH()
 
 FILE( GLOB src
-    "${NJLI_SWIGIN_DIRECTORY}/lua/njli/builders/physics/constraint/*.i"
-    "${NJLI_SWIGIN_DIRECTORY}/lua/njli/builders/physics/constraint/*.swg"
+    "${NJLI_SWIGIN_DIRECTORY}/script/njli/builders/physics/constraint/*.i"
+    "${NJLI_SWIGIN_DIRECTORY}/script/njli/builders/physics/constraint/*.swg"
     )
-SET(REG "${NJLI_SWIGIN_DIRECTORY}/lua/njli/builders/physics/constraint/.*([.]i|[.]swg)")
+SET(REG "${NJLI_SWIGIN_DIRECTORY}/script/njli/builders/physics/constraint/.*([.]i|[.]swg)")
 FOREACH(filename ${src})
     STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
     IF(match_group_sources)
@@ -2432,10 +2432,10 @@ FOREACH(filename ${src})
 ENDFOREACH()
 
 file( GLOB src
-    "${NJLI_SWIGIN_DIRECTORY}/lua/njli/builders/physics/shape/*.i"
-    "${NJLI_SWIGIN_DIRECTORY}/lua/njli/builders/physics/shape/*.swg"
+    "${NJLI_SWIGIN_DIRECTORY}/script/njli/builders/physics/shape/*.i"
+    "${NJLI_SWIGIN_DIRECTORY}/script/njli/builders/physics/shape/*.swg"
     )
-SET(REG "${NJLI_SWIGIN_DIRECTORY}/lua/njli/builders/physics/shape/.*([.]i|[.]swg)")
+SET(REG "${NJLI_SWIGIN_DIRECTORY}/script/njli/builders/physics/shape/.*([.]i|[.]swg)")
 FOREACH(filename ${src})
     STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
     IF(match_group_sources)
@@ -2446,10 +2446,10 @@ FOREACH(filename ${src})
 ENDFOREACH()
 
 FILE( GLOB src
-    "${NJLI_SWIGIN_DIRECTORY}/lua/njli/builders/platform/*.i"
-    "${NJLI_SWIGIN_DIRECTORY}/lua/njli/builders/platform/*.swg"
+    "${NJLI_SWIGIN_DIRECTORY}/script/njli/builders/platform/*.i"
+    "${NJLI_SWIGIN_DIRECTORY}/script/njli/builders/platform/*.swg"
     )
-SET(REG "${NJLI_SWIGIN_DIRECTORY}/lua/njli/builders/platform/.*([.]i|[.]swg)")
+SET(REG "${NJLI_SWIGIN_DIRECTORY}/script/njli/builders/platform/.*([.]i|[.]swg)")
 FOREACH(filename ${src})
     STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
     IF(match_group_sources)
@@ -2460,10 +2460,10 @@ FOREACH(filename ${src})
 ENDFOREACH()
 
 file( GLOB src
-    "${NJLI_SWIGIN_DIRECTORY}/lua/njli/builders/sound*.i"
-    "${NJLI_SWIGIN_DIRECTORY}/lua/njli/builders/sound*.swg"
+    "${NJLI_SWIGIN_DIRECTORY}/script/njli/builders/sound*.i"
+    "${NJLI_SWIGIN_DIRECTORY}/script/njli/builders/sound*.swg"
     )
-SET(REG "${NJLI_SWIGIN_DIRECTORY}/lua/njli/builders/sound.*([.]i|[.]swg)")
+SET(REG "${NJLI_SWIGIN_DIRECTORY}/script/njli/builders/sound.*([.]i|[.]swg)")
 FOREACH(filename ${src})
     STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
     IF(match_group_sources)
@@ -2474,10 +2474,10 @@ FOREACH(filename ${src})
 ENDFOREACH()
 
 FILE( GLOB src
-    "${NJLI_SWIGIN_DIRECTORY}/lua/njli/builders/steering/*.i"
-    "${NJLI_SWIGIN_DIRECTORY}/lua/njli/builders/steering/*.swg"
+    "${NJLI_SWIGIN_DIRECTORY}/script/njli/builders/steering/*.i"
+    "${NJLI_SWIGIN_DIRECTORY}/script/njli/builders/steering/*.swg"
     )
-SET(REG "${NJLI_SWIGIN_DIRECTORY}/lua/njli/builders/steering/.*([.]i|[.]swg)")
+SET(REG "${NJLI_SWIGIN_DIRECTORY}/script/njli/builders/steering/.*([.]i|[.]swg)")
 FOREACH(filename ${src})
     STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
     IF(match_group_sources)
@@ -2488,10 +2488,10 @@ FOREACH(filename ${src})
 ENDFOREACH()
 
 FILE( GLOB src
-    "${NJLI_SWIGIN_DIRECTORY}/lua/njli/builders/steering/behavior/*.i"
-    "${NJLI_SWIGIN_DIRECTORY}/lua/njli/builders/steering/behavior/*.swg"
+    "${NJLI_SWIGIN_DIRECTORY}/script/njli/builders/steering/behavior/*.i"
+    "${NJLI_SWIGIN_DIRECTORY}/script/njli/builders/steering/behavior/*.swg"
     )
-SET(REG "${NJLI_SWIGIN_DIRECTORY}/lua/njli/builders/steering/behavior/.*([.]i|[.]swg)")
+SET(REG "${NJLI_SWIGIN_DIRECTORY}/script/njli/builders/steering/behavior/.*([.]i|[.]swg)")
 FOREACH(filename ${src})
     STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
     IF(match_group_sources)
@@ -2502,10 +2502,10 @@ FOREACH(filename ${src})
 ENDFOREACH()
 
 FILE( GLOB src
-    "${NJLI_SWIGIN_DIRECTORY}/lua/njli/graphics/*.i"
-    "${NJLI_SWIGIN_DIRECTORY}/lua/njli/graphics/*.swg"
+    "${NJLI_SWIGIN_DIRECTORY}/script/njli/graphics/*.i"
+    "${NJLI_SWIGIN_DIRECTORY}/script/njli/graphics/*.swg"
     )
-SET(REG "${NJLI_SWIGIN_DIRECTORY}/lua/njli/graphics/.*([.]i|[.]swg)")
+SET(REG "${NJLI_SWIGIN_DIRECTORY}/script/njli/graphics/.*([.]i|[.]swg)")
 FOREACH(filename ${src})
     STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
     IF(match_group_sources)
@@ -2516,10 +2516,10 @@ FOREACH(filename ${src})
 ENDFOREACH()
 
 FILE( GLOB src
-    "${NJLI_SWIGIN_DIRECTORY}/lua/njli/physics/*.i"
-    "${NJLI_SWIGIN_DIRECTORY}/lua/njli/physics/*.swg"
+    "${NJLI_SWIGIN_DIRECTORY}/script/njli/physics/*.i"
+    "${NJLI_SWIGIN_DIRECTORY}/script/njli/physics/*.swg"
     )
-SET(REG "${NJLI_SWIGIN_DIRECTORY}/lua/njli/physics/.*([.]i|[.]swg)")
+SET(REG "${NJLI_SWIGIN_DIRECTORY}/script/njli/physics/.*([.]i|[.]swg)")
 FOREACH(filename ${src})
     STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
     IF(match_group_sources)
@@ -2530,10 +2530,10 @@ FOREACH(filename ${src})
 ENDFOREACH()
 
 FILE( GLOB src
-    "${NJLI_SWIGIN_DIRECTORY}/lua/njli/physics/body/*.i"
-    "${NJLI_SWIGIN_DIRECTORY}/lua/njli/physics/body/*.swg"
+    "${NJLI_SWIGIN_DIRECTORY}/script/njli/physics/body/*.i"
+    "${NJLI_SWIGIN_DIRECTORY}/script/njli/physics/body/*.swg"
     )
-SET(REG "${NJLI_SWIGIN_DIRECTORY}/lua/njli/physics/body/.*([.]i|[.]swg)")
+SET(REG "${NJLI_SWIGIN_DIRECTORY}/script/njli/physics/body/.*([.]i|[.]swg)")
 FOREACH(filename ${src})
     STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
     IF(match_group_sources)
@@ -2544,10 +2544,10 @@ FOREACH(filename ${src})
 ENDFOREACH()
 
 FILE( GLOB src
-    "${NJLI_SWIGIN_DIRECTORY}/lua/njli/physics/constraint/*.i"
-    "${NJLI_SWIGIN_DIRECTORY}/lua/njli/physics/constraint/*.swg"
+    "${NJLI_SWIGIN_DIRECTORY}/script/njli/physics/constraint/*.i"
+    "${NJLI_SWIGIN_DIRECTORY}/script/njli/physics/constraint/*.swg"
     )
-SET(REG "${NJLI_SWIGIN_DIRECTORY}/lua/njli/physics/constraint/.*([.]i|[.]swg)")
+SET(REG "${NJLI_SWIGIN_DIRECTORY}/script/njli/physics/constraint/.*([.]i|[.]swg)")
 FOREACH(filename ${src})
     STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
     IF(match_group_sources)
@@ -2558,10 +2558,10 @@ FOREACH(filename ${src})
 ENDFOREACH()
 
 FILE( GLOB src
-    "${NJLI_SWIGIN_DIRECTORY}/lua/njli/physics/shape/*.i"
-    "${NJLI_SWIGIN_DIRECTORY}/lua/njli/physics/shape/*.swg"
+    "${NJLI_SWIGIN_DIRECTORY}/script/njli/physics/shape/*.i"
+    "${NJLI_SWIGIN_DIRECTORY}/script/njli/physics/shape/*.swg"
     )
-SET(REG "${NJLI_SWIGIN_DIRECTORY}/lua/njli/physics/shape/.*([.]i|[.]swg)")
+SET(REG "${NJLI_SWIGIN_DIRECTORY}/script/njli/physics/shape/.*([.]i|[.]swg)")
 FOREACH(filename ${src})
     STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
     IF(match_group_sources)
@@ -2572,10 +2572,10 @@ FOREACH(filename ${src})
 ENDFOREACH()
 
 FILE( GLOB src
-    "${NJLI_SWIGIN_DIRECTORY}/lua/njli/platform/*.i"
-    "${NJLI_SWIGIN_DIRECTORY}/lua/njli/platform/*.swg"
+    "${NJLI_SWIGIN_DIRECTORY}/script/njli/platform/*.i"
+    "${NJLI_SWIGIN_DIRECTORY}/script/njli/platform/*.swg"
     )
-SET(REG "${NJLI_SWIGIN_DIRECTORY}/lua/njli/platform/.*([.]i|[.]swg)")
+SET(REG "${NJLI_SWIGIN_DIRECTORY}/script/njli/platform/.*([.]i|[.]swg)")
 FOREACH(filename ${src})
     STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
     IF(match_group_sources)
@@ -2586,10 +2586,10 @@ FOREACH(filename ${src})
 ENDFOREACH()
 
 FILE( GLOB src
-    "${NJLI_SWIGIN_DIRECTORY}/lua/njli/sound/*.i"
-    "${NJLI_SWIGIN_DIRECTORY}/lua/njli/sound/*.swg"
+    "${NJLI_SWIGIN_DIRECTORY}/script/njli/sound/*.i"
+    "${NJLI_SWIGIN_DIRECTORY}/script/njli/sound/*.swg"
     )
-SET(REG "${NJLI_SWIGIN_DIRECTORY}/lua/njli/sound/.*([.]i|[.]swg)")
+SET(REG "${NJLI_SWIGIN_DIRECTORY}/script/njli/sound/.*([.]i|[.]swg)")
 FOREACH(filename ${src})
     STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
     IF(match_group_sources)
@@ -2600,10 +2600,10 @@ FOREACH(filename ${src})
 ENDFOREACH()
 
 FILE( GLOB src
-    "${NJLI_SWIGIN_DIRECTORY}/lua/njli/steering/*.i"
-    "${NJLI_SWIGIN_DIRECTORY}/lua/njli/steering/*.swg"
+    "${NJLI_SWIGIN_DIRECTORY}/script/njli/steering/*.i"
+    "${NJLI_SWIGIN_DIRECTORY}/script/njli/steering/*.swg"
     )
-SET(REG "${NJLI_SWIGIN_DIRECTORY}/lua/njli/steering/.*([.]i|[.]swg)")
+SET(REG "${NJLI_SWIGIN_DIRECTORY}/script/njli/steering/.*([.]i|[.]swg)")
 FOREACH(filename ${src})
     STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
     IF(match_group_sources)
@@ -2614,10 +2614,10 @@ FOREACH(filename ${src})
 ENDFOREACH()
 
 FILE( GLOB src
-    "${NJLI_SWIGIN_DIRECTORY}/lua/njli/steering/behavior/*.i"
-    "${NJLI_SWIGIN_DIRECTORY}/lua/njli/steering/behavior/*.swg"
+    "${NJLI_SWIGIN_DIRECTORY}/script/njli/steering/behavior/*.i"
+    "${NJLI_SWIGIN_DIRECTORY}/script/njli/steering/behavior/*.swg"
     )
-SET(REG "${NJLI_SWIGIN_DIRECTORY}/lua/njli/steering/behavior/.*([.]i|[.]swg)")
+SET(REG "${NJLI_SWIGIN_DIRECTORY}/script/njli/steering/behavior/.*([.]i|[.]swg)")
 FOREACH(filename ${src})
     STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
     IF(match_group_sources)
@@ -2676,299 +2676,299 @@ ENDFOREACH()
 
 
 
-FILE( GLOB src
-    "${NJLI_SWIGIN_DIRECTORY}/embind/*.i"
-    "${NJLI_SWIGIN_DIRECTORY}/embind/*.swg"
-    )
-SET(REG "${NJLI_SWIGIN_DIRECTORY}/embind/.*([.]i|[.]swg)")
-FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND swigin_embind ${filename})
-    ELSE()
-        LIST(APPEND interface_group_other ${filename})
-    ENDIF()
-ENDFOREACH()
-
-FILE( GLOB src
-    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/*.i"
-    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/*.swg"
-    )
-SET(REG "${NJLI_SWIGIN_DIRECTORY}/embind/njli/.*([.]i|[.]swg)")
-FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND swigin_embind_njli ${filename})
-    ELSE()
-        LIST(APPEND interface_group_other ${filename})
-    ENDIF()
-ENDFOREACH()
-
-FILE( GLOB src
-    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/*.i"
-    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/*.swg"
-    )
-SET(REG "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/.*([.]i|[.]swg)")
-FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND swigin_embind_njli_builders ${filename})
-    ELSE()
-        LIST(APPEND interface_group_other ${filename})
-    ENDIF()
-ENDFOREACH()
-
-FILE( GLOB src
-    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/graphics/*.i"
-    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/graphics/*.swg"
-    )
-SET(REG "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/graphics/.*([.]i|[.]swg)")
-FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND swigin_embind_njli_builders_graphics ${filename})
-    ELSE()
-        LIST(APPEND interface_group_other ${filename})
-    ENDIF()
-ENDFOREACH()
-
-FILE( GLOB src
-    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/*.i"
-    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/*.swg"
-    )
-SET(REG "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/.*([.]i|[.]swg)")
-FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND swigin_embind_njli_builders ${filename})
-    ELSE()
-        LIST(APPEND interface_group_other ${filename})
-    ENDIF()
-ENDFOREACH()
-
-FILE( GLOB src
-    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/physics/body/*.i"
-    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/physics/body/*.swg"
-    )
-SET(REG "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/physics/body/.*([.]i|[.]swg)")
-FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND swigin_embind_njli_builders_physics_body ${filename})
-    ELSE()
-        LIST(APPEND interface_group_other ${filename})
-    ENDIF()
-ENDFOREACH()
-
-FILE( GLOB src
-    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/physics/constraint/*.i"
-    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/physics/constraint/*.swg"
-    )
-SET(REG "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/physics/constraint/.*([.]i|[.]swg)")
-FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND swigin_embind_njli_builders_physics_constraint ${filename})
-    ELSE()
-        LIST(APPEND interface_group_other ${filename})
-    ENDIF()
-ENDFOREACH()
-
-file( GLOB src
-    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/physics/shape/*.i"
-    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/physics/shape/*.swg"
-    )
-SET(REG "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/physics/shape/.*([.]i|[.]swg)")
-FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND swigin_embind_njli_builders_physics_shape ${filename})
-    ELSE()
-        LIST(APPEND interface_group_other ${filename})
-    ENDIF()
-ENDFOREACH()
-
-FILE( GLOB src
-    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/platform/*.i"
-    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/platform/*.swg"
-    )
-SET(REG "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/platform/.*([.]i|[.]swg)")
-FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND swigin_embind_njli_builders_platform ${filename})
-    ELSE()
-        LIST(APPEND interface_group_other ${filename})
-    ENDIF()
-ENDFOREACH()
-
-file( GLOB src
-    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/sound*.i"
-    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/sound*.swg"
-    )
-SET(REG "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/sound.*([.]i|[.]swg)")
-FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND swigin_embind_njli_builders_sound ${filename})
-    ELSE()
-        LIST(APPEND interface_group_other ${filename})
-    ENDIF()
-ENDFOREACH()
-
-FILE( GLOB src
-    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/steering/*.i"
-    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/steering/*.swg"
-    )
-SET(REG "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/steering/.*([.]i|[.]swg)")
-FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND swigin_embind_njli_builders_steering ${filename})
-    ELSE()
-        LIST(APPEND interface_group_other ${filename})
-    ENDIF()
-ENDFOREACH()
-
-FILE( GLOB src
-    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/steering/behavior/*.i"
-    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/steering/behavior/*.swg"
-    )
-SET(REG "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/steering/behavior/.*([.]i|[.]swg)")
-FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND swigin_embind_njli_builders_steering_behavior ${filename})
-    ELSE()
-        LIST(APPEND interface_group_other ${filename})
-    ENDIF()
-ENDFOREACH()
-
-FILE( GLOB src
-    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/graphics/*.i"
-    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/graphics/*.swg"
-    )
-SET(REG "${NJLI_SWIGIN_DIRECTORY}/embind/njli/graphics/.*([.]i|[.]swg)")
-FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND swigin_embind_njli_graphics ${filename})
-    ELSE()
-        LIST(APPEND interface_group_other ${filename})
-    ENDIF()
-ENDFOREACH()
-
-FILE( GLOB src
-    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/physics/*.i"
-    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/physics/*.swg"
-    )
-SET(REG "${NJLI_SWIGIN_DIRECTORY}/embind/njli/physics/.*([.]i|[.]swg)")
-FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND swigin_embind_njli_physics ${filename})
-    ELSE()
-        LIST(APPEND interface_group_other ${filename})
-    ENDIF()
-ENDFOREACH()
-
-FILE( GLOB src
-    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/physics/body/*.i"
-    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/physics/body/*.swg"
-    )
-SET(REG "${NJLI_SWIGIN_DIRECTORY}/embind/njli/physics/body/.*([.]i|[.]swg)")
-FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND swigin_embind_njli_physics_body ${filename})
-    ELSE()
-        LIST(APPEND interface_group_other ${filename})
-    ENDIF()
-ENDFOREACH()
-
-FILE( GLOB src
-    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/physics/constraint/*.i"
-    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/physics/constraint/*.swg"
-    )
-SET(REG "${NJLI_SWIGIN_DIRECTORY}/embind/njli/physics/constraint/.*([.]i|[.]swg)")
-FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND swigin_embind_njli_physics_constraint ${filename})
-    ELSE()
-        LIST(APPEND interface_group_other ${filename})
-    ENDIF()
-ENDFOREACH()
-
-FILE( GLOB src
-    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/physics/shape/*.i"
-    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/physics/shape/*.swg"
-    )
-SET(REG "${NJLI_SWIGIN_DIRECTORY}/embind/njli/physics/shape/.*([.]i|[.]swg)")
-FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND swigin_embind_njli_physics_shape ${filename})
-    ELSE()
-        LIST(APPEND interface_group_other ${filename})
-    ENDIF()
-ENDFOREACH()
-
-FILE( GLOB src
-    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/platform/*.i"
-    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/platform/*.swg"
-    )
-SET(REG "${NJLI_SWIGIN_DIRECTORY}/embind/njli/platform/.*([.]i|[.]swg)")
-FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND swigin_embind_njli_platform ${filename})
-    ELSE()
-        LIST(APPEND interface_group_other ${filename})
-    ENDIF()
-ENDFOREACH()
-
-FILE( GLOB src
-    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/sound/*.i"
-    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/sound/*.swg"
-    )
-SET(REG "${NJLI_SWIGIN_DIRECTORY}/embind/njli/sound/.*([.]i|[.]swg)")
-FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND swigin_embind_njli_sound ${filename})
-    ELSE()
-        LIST(APPEND interface_group_other ${filename})
-    ENDIF()
-ENDFOREACH()
-
-FILE( GLOB src
-    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/steering/*.i"
-    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/steering/*.swg"
-    )
-SET(REG "${NJLI_SWIGIN_DIRECTORY}/embind/njli/steering/.*([.]i|[.]swg)")
-FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND swigin_embind_njli_steering ${filename})
-    ELSE()
-        LIST(APPEND interface_group_other ${filename})
-    ENDIF()
-ENDFOREACH()
-
-FILE( GLOB src
-    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/steering/behavior/*.i"
-    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/steering/behavior/*.swg"
-    )
-SET(REG "${NJLI_SWIGIN_DIRECTORY}/embind/njli/steering/behavior/.*([.]i|[.]swg)")
-FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND swigin_embind_njli_steering_behavior ${filename})
-    ELSE()
-        LIST(APPEND interface_group_other ${filename})
-    ENDIF()
-ENDFOREACH()
+#FILE( GLOB src
+#    "${NJLI_SWIGIN_DIRECTORY}/embind/*.i"
+#    "${NJLI_SWIGIN_DIRECTORY}/embind/*.swg"
+#    )
+#SET(REG "${NJLI_SWIGIN_DIRECTORY}/embind/.*([.]i|[.]swg)")
+#FOREACH(filename ${src})
+#    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+#    IF(match_group_sources)
+#        LIST(APPEND swigin_embind ${filename})
+#    ELSE()
+#        LIST(APPEND interface_group_other ${filename})
+#    ENDIF()
+#ENDFOREACH()
+#
+#FILE( GLOB src
+#    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/*.i"
+#    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/*.swg"
+#    )
+#SET(REG "${NJLI_SWIGIN_DIRECTORY}/embind/njli/.*([.]i|[.]swg)")
+#FOREACH(filename ${src})
+#    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+#    IF(match_group_sources)
+#        LIST(APPEND swigin_embind_njli ${filename})
+#    ELSE()
+#        LIST(APPEND interface_group_other ${filename})
+#    ENDIF()
+#ENDFOREACH()
+#
+#FILE( GLOB src
+#    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/*.i"
+#    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/*.swg"
+#    )
+#SET(REG "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/.*([.]i|[.]swg)")
+#FOREACH(filename ${src})
+#    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+#    IF(match_group_sources)
+#        LIST(APPEND swigin_embind_njli_builders ${filename})
+#    ELSE()
+#        LIST(APPEND interface_group_other ${filename})
+#    ENDIF()
+#ENDFOREACH()
+#
+#FILE( GLOB src
+#    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/graphics/*.i"
+#    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/graphics/*.swg"
+#    )
+#SET(REG "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/graphics/.*([.]i|[.]swg)")
+#FOREACH(filename ${src})
+#    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+#    IF(match_group_sources)
+#        LIST(APPEND swigin_embind_njli_builders_graphics ${filename})
+#    ELSE()
+#        LIST(APPEND interface_group_other ${filename})
+#    ENDIF()
+#ENDFOREACH()
+#
+#FILE( GLOB src
+#    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/*.i"
+#    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/*.swg"
+#    )
+#SET(REG "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/.*([.]i|[.]swg)")
+#FOREACH(filename ${src})
+#    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+#    IF(match_group_sources)
+#        LIST(APPEND swigin_embind_njli_builders ${filename})
+#    ELSE()
+#        LIST(APPEND interface_group_other ${filename})
+#    ENDIF()
+#ENDFOREACH()
+#
+#FILE( GLOB src
+#    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/physics/body/*.i"
+#    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/physics/body/*.swg"
+#    )
+#SET(REG "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/physics/body/.*([.]i|[.]swg)")
+#FOREACH(filename ${src})
+#    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+#    IF(match_group_sources)
+#        LIST(APPEND swigin_embind_njli_builders_physics_body ${filename})
+#    ELSE()
+#        LIST(APPEND interface_group_other ${filename})
+#    ENDIF()
+#ENDFOREACH()
+#
+#FILE( GLOB src
+#    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/physics/constraint/*.i"
+#    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/physics/constraint/*.swg"
+#    )
+#SET(REG "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/physics/constraint/.*([.]i|[.]swg)")
+#FOREACH(filename ${src})
+#    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+#    IF(match_group_sources)
+#        LIST(APPEND swigin_embind_njli_builders_physics_constraint ${filename})
+#    ELSE()
+#        LIST(APPEND interface_group_other ${filename})
+#    ENDIF()
+#ENDFOREACH()
+#
+#file( GLOB src
+#    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/physics/shape/*.i"
+#    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/physics/shape/*.swg"
+#    )
+#SET(REG "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/physics/shape/.*([.]i|[.]swg)")
+#FOREACH(filename ${src})
+#    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+#    IF(match_group_sources)
+#        LIST(APPEND swigin_embind_njli_builders_physics_shape ${filename})
+#    ELSE()
+#        LIST(APPEND interface_group_other ${filename})
+#    ENDIF()
+#ENDFOREACH()
+#
+#FILE( GLOB src
+#    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/platform/*.i"
+#    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/platform/*.swg"
+#    )
+#SET(REG "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/platform/.*([.]i|[.]swg)")
+#FOREACH(filename ${src})
+#    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+#    IF(match_group_sources)
+#        LIST(APPEND swigin_embind_njli_builders_platform ${filename})
+#    ELSE()
+#        LIST(APPEND interface_group_other ${filename})
+#    ENDIF()
+#ENDFOREACH()
+#
+#file( GLOB src
+#    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/sound*.i"
+#    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/sound*.swg"
+#    )
+#SET(REG "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/sound.*([.]i|[.]swg)")
+#FOREACH(filename ${src})
+#    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+#    IF(match_group_sources)
+#        LIST(APPEND swigin_embind_njli_builders_sound ${filename})
+#    ELSE()
+#        LIST(APPEND interface_group_other ${filename})
+#    ENDIF()
+#ENDFOREACH()
+#
+#FILE( GLOB src
+#    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/steering/*.i"
+#    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/steering/*.swg"
+#    )
+#SET(REG "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/steering/.*([.]i|[.]swg)")
+#FOREACH(filename ${src})
+#    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+#    IF(match_group_sources)
+#        LIST(APPEND swigin_embind_njli_builders_steering ${filename})
+#    ELSE()
+#        LIST(APPEND interface_group_other ${filename})
+#    ENDIF()
+#ENDFOREACH()
+#
+#FILE( GLOB src
+#    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/steering/behavior/*.i"
+#    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/steering/behavior/*.swg"
+#    )
+#SET(REG "${NJLI_SWIGIN_DIRECTORY}/embind/njli/builders/steering/behavior/.*([.]i|[.]swg)")
+#FOREACH(filename ${src})
+#    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+#    IF(match_group_sources)
+#        LIST(APPEND swigin_embind_njli_builders_steering_behavior ${filename})
+#    ELSE()
+#        LIST(APPEND interface_group_other ${filename})
+#    ENDIF()
+#ENDFOREACH()
+#
+#FILE( GLOB src
+#    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/graphics/*.i"
+#    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/graphics/*.swg"
+#    )
+#SET(REG "${NJLI_SWIGIN_DIRECTORY}/embind/njli/graphics/.*([.]i|[.]swg)")
+#FOREACH(filename ${src})
+#    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+#    IF(match_group_sources)
+#        LIST(APPEND swigin_embind_njli_graphics ${filename})
+#    ELSE()
+#        LIST(APPEND interface_group_other ${filename})
+#    ENDIF()
+#ENDFOREACH()
+#
+#FILE( GLOB src
+#    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/physics/*.i"
+#    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/physics/*.swg"
+#    )
+#SET(REG "${NJLI_SWIGIN_DIRECTORY}/embind/njli/physics/.*([.]i|[.]swg)")
+#FOREACH(filename ${src})
+#    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+#    IF(match_group_sources)
+#        LIST(APPEND swigin_embind_njli_physics ${filename})
+#    ELSE()
+#        LIST(APPEND interface_group_other ${filename})
+#    ENDIF()
+#ENDFOREACH()
+#
+#FILE( GLOB src
+#    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/physics/body/*.i"
+#    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/physics/body/*.swg"
+#    )
+#SET(REG "${NJLI_SWIGIN_DIRECTORY}/embind/njli/physics/body/.*([.]i|[.]swg)")
+#FOREACH(filename ${src})
+#    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+#    IF(match_group_sources)
+#        LIST(APPEND swigin_embind_njli_physics_body ${filename})
+#    ELSE()
+#        LIST(APPEND interface_group_other ${filename})
+#    ENDIF()
+#ENDFOREACH()
+#
+#FILE( GLOB src
+#    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/physics/constraint/*.i"
+#    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/physics/constraint/*.swg"
+#    )
+#SET(REG "${NJLI_SWIGIN_DIRECTORY}/embind/njli/physics/constraint/.*([.]i|[.]swg)")
+#FOREACH(filename ${src})
+#    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+#    IF(match_group_sources)
+#        LIST(APPEND swigin_embind_njli_physics_constraint ${filename})
+#    ELSE()
+#        LIST(APPEND interface_group_other ${filename})
+#    ENDIF()
+#ENDFOREACH()
+#
+#FILE( GLOB src
+#    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/physics/shape/*.i"
+#    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/physics/shape/*.swg"
+#    )
+#SET(REG "${NJLI_SWIGIN_DIRECTORY}/embind/njli/physics/shape/.*([.]i|[.]swg)")
+#FOREACH(filename ${src})
+#    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+#    IF(match_group_sources)
+#        LIST(APPEND swigin_embind_njli_physics_shape ${filename})
+#    ELSE()
+#        LIST(APPEND interface_group_other ${filename})
+#    ENDIF()
+#ENDFOREACH()
+#
+#FILE( GLOB src
+#    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/platform/*.i"
+#    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/platform/*.swg"
+#    )
+#SET(REG "${NJLI_SWIGIN_DIRECTORY}/embind/njli/platform/.*([.]i|[.]swg)")
+#FOREACH(filename ${src})
+#    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+#    IF(match_group_sources)
+#        LIST(APPEND swigin_embind_njli_platform ${filename})
+#    ELSE()
+#        LIST(APPEND interface_group_other ${filename})
+#    ENDIF()
+#ENDFOREACH()
+#
+#FILE( GLOB src
+#    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/sound/*.i"
+#    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/sound/*.swg"
+#    )
+#SET(REG "${NJLI_SWIGIN_DIRECTORY}/embind/njli/sound/.*([.]i|[.]swg)")
+#FOREACH(filename ${src})
+#    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+#    IF(match_group_sources)
+#        LIST(APPEND swigin_embind_njli_sound ${filename})
+#    ELSE()
+#        LIST(APPEND interface_group_other ${filename})
+#    ENDIF()
+#ENDFOREACH()
+#
+#FILE( GLOB src
+#    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/steering/*.i"
+#    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/steering/*.swg"
+#    )
+#SET(REG "${NJLI_SWIGIN_DIRECTORY}/embind/njli/steering/.*([.]i|[.]swg)")
+#FOREACH(filename ${src})
+#    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+#    IF(match_group_sources)
+#        LIST(APPEND swigin_embind_njli_steering ${filename})
+#    ELSE()
+#        LIST(APPEND interface_group_other ${filename})
+#    ENDIF()
+#ENDFOREACH()
+#
+#FILE( GLOB src
+#    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/steering/behavior/*.i"
+#    "${NJLI_SWIGIN_DIRECTORY}/embind/njli/steering/behavior/*.swg"
+#    )
+#SET(REG "${NJLI_SWIGIN_DIRECTORY}/embind/njli/steering/behavior/.*([.]i|[.]swg)")
+#FOREACH(filename ${src})
+#    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+#    IF(match_group_sources)
+#        LIST(APPEND swigin_embind_njli_steering_behavior ${filename})
+#    ELSE()
+#        LIST(APPEND interface_group_other ${filename})
+#    ENDIF()
+#ENDFOREACH()
 
 
 
@@ -3020,27 +3020,27 @@ FILE(GLOB NJLIGameEngine_ITFS
     ${swigin_lua_njli_steering} 
     ${swigin_lua_njli_steering_behavior} 
 
-    ${swigin_embind} 
-    ${swigin_embind_njli} 
-    ${swigin_embind_njli_builders} 
-    ${swigin_embind_njli_builders_graphics} 
-    ${swigin_embind_njli_builders} 
-    ${swigin_embind_njli_builders_physics_body} 
-    ${swigin_embind_njli_builders_physics_constraint} 
-    ${swigin_embind_njli_builders_physics_shape} 
-    ${swigin_embind_njli_builders_platform} 
-    ${swigin_embind_njli_builders_sound} 
-    ${swigin_embind_njli_builders_steering} 
-    ${swigin_embind_njli_builders_steering_behavior} 
-    ${swigin_embind_njli_graphics} 
-    ${swigin_embind_njli_physics} 
-    ${swigin_embind_njli_physics_body} 
-    ${swigin_embind_njli_physics_constraint} 
-    ${swigin_embind_njli_physics_shape} 
-    ${swigin_embind_njli_platform} 
-    ${swigin_embind_njli_sound} 
-    ${swigin_embind_njli_steering} 
-    ${swigin_embind_njli_steering_behavior} 
+    #    ${swigin_embind} 
+    #    ${swigin_embind_njli} 
+    #    ${swigin_embind_njli_builders} 
+    #    ${swigin_embind_njli_builders_graphics} 
+    #    ${swigin_embind_njli_builders} 
+    #    ${swigin_embind_njli_builders_physics_body} 
+    #    ${swigin_embind_njli_builders_physics_constraint} 
+    #    ${swigin_embind_njli_builders_physics_shape} 
+    #    ${swigin_embind_njli_builders_platform} 
+    #    ${swigin_embind_njli_builders_sound} 
+    #    ${swigin_embind_njli_builders_steering} 
+    #    ${swigin_embind_njli_builders_steering_behavior} 
+    #    ${swigin_embind_njli_graphics} 
+    #    ${swigin_embind_njli_physics} 
+    #    ${swigin_embind_njli_physics_body} 
+    #    ${swigin_embind_njli_physics_constraint} 
+    #    ${swigin_embind_njli_physics_shape} 
+    #    ${swigin_embind_njli_platform} 
+    #    ${swigin_embind_njli_sound} 
+    #    ${swigin_embind_njli_steering} 
+    #    ${swigin_embind_njli_steering_behavior} 
 )
 
 
@@ -3052,10 +3052,10 @@ FILE(GLOB NJLIGameEngine_ITFS
 
 
 FILE( GLOB src
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/*.i"
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/*.swg"
+    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/*.i"
+    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/*.swg"
     )
-SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/.*([.]i|[.]swg)")
+SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/.*([.]i|[.]swg)")
 FOREACH(filename ${src})
     STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
     IF(match_group_sources)
@@ -3066,10 +3066,10 @@ FOREACH(filename ${src})
 ENDFOREACH()
 
 FILE( GLOB src
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/BulletCollision/*.i"
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/BulletCollision/*.swg"
+    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/BulletCollision/*.i"
+    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/BulletCollision/*.swg"
     )
-SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/BulletCollision/.*([.]i|[.]swg)")
+SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/BulletCollision/.*([.]i|[.]swg)")
 FOREACH(filename ${src})
     STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
     IF(match_group_sources)
@@ -3080,10 +3080,10 @@ FOREACH(filename ${src})
 ENDFOREACH()
 
 FILE( GLOB src
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/BulletCollision/BroadphaseCollision/*.i"
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/BulletCollision/BroadphaseCollision/*.swg"
+    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/BulletCollision/BroadphaseCollision/*.i"
+    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/BulletCollision/BroadphaseCollision/*.swg"
     )
-SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/BulletCollision/BroadphaseCollision/.*([.]i|[.]swg)")
+SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/BulletCollision/BroadphaseCollision/.*([.]i|[.]swg)")
 FOREACH(filename ${src})
     STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
     IF(match_group_sources)
@@ -3094,10 +3094,10 @@ FOREACH(filename ${src})
 ENDFOREACH()
 
 FILE( GLOB src
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/BulletCollision/CollisionDispatch/*.i"
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/BulletCollision/CollisionDispatch/*.swg"
+    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/BulletCollision/CollisionDispatch/*.i"
+    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/BulletCollision/CollisionDispatch/*.swg"
     )
-SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/BulletCollision/CollisionDispatch/.*([.]i|[.]swg)")
+SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/BulletCollision/CollisionDispatch/.*([.]i|[.]swg)")
 FOREACH(filename ${src})
     STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
     IF(match_group_sources)
@@ -3108,10 +3108,10 @@ FOREACH(filename ${src})
 ENDFOREACH()
 
 FILE( GLOB src
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/BulletCollision/CollisionShapes/*.i"
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/BulletCollision/CollisionShapes/*.swg"
+    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/BulletCollision/CollisionShapes/*.i"
+    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/BulletCollision/CollisionShapes/*.swg"
     )
-SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/BulletCollision/CollisionShapes/.*([.]i|[.]swg)")
+SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/BulletCollision/CollisionShapes/.*([.]i|[.]swg)")
 FOREACH(filename ${src})
     STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
     IF(match_group_sources)
@@ -3122,10 +3122,10 @@ FOREACH(filename ${src})
 ENDFOREACH()
 
 FILE( GLOB src
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/BulletCollision/Gimpact/*.i"
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/BulletCollision/Gimpact/*.swg"
+    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/BulletCollision/Gimpact/*.i"
+    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/BulletCollision/Gimpact/*.swg"
     )
-SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/BulletCollision/Gimpact/.*([.]i|[.]swg)")
+SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/BulletCollision/Gimpact/.*([.]i|[.]swg)")
 FOREACH(filename ${src})
     STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
     IF(match_group_sources)
@@ -3136,10 +3136,10 @@ FOREACH(filename ${src})
 ENDFOREACH()
 
 FILE( GLOB src
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/BulletCollision/NarrowPhaseCollision/*.i"
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/BulletCollision/NarrowPhaseCollision/*.swg"
+    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/BulletCollision/NarrowPhaseCollision/*.i"
+    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/BulletCollision/NarrowPhaseCollision/*.swg"
     )
-SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/BulletCollision/NarrowPhaseCollision/.*([.]i|[.]swg)")
+SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/BulletCollision/NarrowPhaseCollision/.*([.]i|[.]swg)")
 FOREACH(filename ${src})
     STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
     IF(match_group_sources)
@@ -3150,10 +3150,10 @@ FOREACH(filename ${src})
 ENDFOREACH()
 
 FILE( GLOB src
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/BulletDynamics/*.i"
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/BulletDynamics/*.swg"
+    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/BulletDynamics/*.i"
+    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/BulletDynamics/*.swg"
     )
-SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/BulletDynamics/.*([.]i|[.]swg)")
+SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/BulletDynamics/.*([.]i|[.]swg)")
 FOREACH(filename ${src})
     STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
     IF(match_group_sources)
@@ -3164,10 +3164,10 @@ FOREACH(filename ${src})
 ENDFOREACH()
 
 FILE( GLOB src
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/BulletDynamics/Character/*.i"
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/BulletDynamics/Character/*.swg"
+    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/BulletDynamics/Character/*.i"
+    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/BulletDynamics/Character/*.swg"
     )
-SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/BulletDynamics/Character/.*([.]i|[.]swg)")
+SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/BulletDynamics/Character/.*([.]i|[.]swg)")
 FOREACH(filename ${src})
     STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
     IF(match_group_sources)
@@ -3178,10 +3178,10 @@ FOREACH(filename ${src})
 ENDFOREACH()
 
 FILE( GLOB src
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/BulletDynamics/ConstraintSolver/*.i"
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/BulletDynamics/ConstraintSolver/*.swg"
+    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/BulletDynamics/ConstraintSolver/*.i"
+    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/BulletDynamics/ConstraintSolver/*.swg"
     )
-SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/BulletDynamics/ConstraintSolver/.*([.]i|[.]swg)")
+SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/BulletDynamics/ConstraintSolver/.*([.]i|[.]swg)")
 FOREACH(filename ${src})
     STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
     IF(match_group_sources)
@@ -3192,10 +3192,10 @@ FOREACH(filename ${src})
 ENDFOREACH()
 
 FILE( GLOB src
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/BulletDynamics/Dynamics/*.i"
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/BulletDynamics/Dynamics/*.swg"
+    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/BulletDynamics/Dynamics/*.i"
+    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/BulletDynamics/Dynamics/*.swg"
     )
-SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/BulletDynamics/Dynamics/.*([.]i|[.]swg)")
+SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/BulletDynamics/Dynamics/.*([.]i|[.]swg)")
 FOREACH(filename ${src})
     STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
     IF(match_group_sources)
@@ -3206,10 +3206,10 @@ FOREACH(filename ${src})
 ENDFOREACH()
 
 FILE( GLOB src
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/BulletDynamics/Featherstone/*.i"
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/BulletDynamics/Featherstone/*.swg"
+    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/BulletDynamics/Featherstone/*.i"
+    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/BulletDynamics/Featherstone/*.swg"
     )
-SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/BulletDynamics/Featherstone/.*([.]i|[.]swg)")
+SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/BulletDynamics/Featherstone/.*([.]i|[.]swg)")
 FOREACH(filename ${src})
     STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
     IF(match_group_sources)
@@ -3220,10 +3220,10 @@ FOREACH(filename ${src})
 ENDFOREACH()
 
 FILE( GLOB src
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/BulletDynamics/MLCPSolvers/*.i"
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/BulletDynamics/MLCPSolvers/*.swg"
+    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/BulletDynamics/MLCPSolvers/*.i"
+    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/BulletDynamics/MLCPSolvers/*.swg"
     )
-SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/BulletDynamics/MLCPSolvers/.*([.]i|[.]swg)")
+SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/BulletDynamics/MLCPSolvers/.*([.]i|[.]swg)")
 FOREACH(filename ${src})
     STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
     IF(match_group_sources)
@@ -3234,10 +3234,10 @@ FOREACH(filename ${src})
 ENDFOREACH()
 
 FILE( GLOB src
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/BulletDynamics/Vehicle/*.i"
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/BulletDynamics/Vehicle/*.swg"
+    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/BulletDynamics/Vehicle/*.i"
+    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/BulletDynamics/Vehicle/*.swg"
     )
-SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/BulletDynamics/Vehicle/.*([.]i|[.]swg)")
+SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/BulletDynamics/Vehicle/.*([.]i|[.]swg)")
 FOREACH(filename ${src})
     STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
     IF(match_group_sources)
@@ -3248,10 +3248,10 @@ FOREACH(filename ${src})
 ENDFOREACH()
 
 FILE( GLOB src
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/BulletSoftBody/*.i"
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/BulletSoftBody/*.swg"
+    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/BulletSoftBody/*.i"
+    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/BulletSoftBody/*.swg"
     )
-SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/BulletSoftBody/.*([.]i|[.]swg)")
+SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/BulletSoftBody/.*([.]i|[.]swg)")
 FOREACH(filename ${src})
     STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
     IF(match_group_sources)
@@ -3262,10 +3262,10 @@ FOREACH(filename ${src})
 ENDFOREACH()
 
 FILE( GLOB src
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/LinearMath/*.i"
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/LinearMath/*.swg"
+    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/LinearMath/*.i"
+    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/LinearMath/*.swg"
     )
-SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/LinearMath/.*([.]i|[.]swg)")
+SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/LinearMath/.*([.]i|[.]swg)")
 FOREACH(filename ${src})
     STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
     IF(match_group_sources)
@@ -3276,10 +3276,10 @@ FOREACH(filename ${src})
 ENDFOREACH()
 
 FILE( GLOB src
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/MiniCL/*.i"
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/MiniCL/*.swg"
+    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/MiniCL/*.i"
+    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/MiniCL/*.swg"
     )
-SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/MiniCL/.*([.]i|[.]swg)")
+SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/MiniCL/.*([.]i|[.]swg)")
 FOREACH(filename ${src})
     STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
     IF(match_group_sources)
@@ -3290,10 +3290,10 @@ FOREACH(filename ${src})
 ENDFOREACH()
 
 FILE( GLOB src
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/MiniCL/MiniCLTask/*.i"
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/MiniCL/MiniCLTask/*.swg"
+    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/MiniCL/MiniCLTask/*.i"
+    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/MiniCL/MiniCLTask/*.swg"
     )
-SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/MiniCL/MiniCLTask/.*([.]i|[.]swg)")
+SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/MiniCL/MiniCLTask/.*([.]i|[.]swg)")
 FOREACH(filename ${src})
     STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
     IF(match_group_sources)
@@ -3304,10 +3304,10 @@ FOREACH(filename ${src})
 ENDFOREACH()
 
 FILE( GLOB src
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/vectormath/*.i"
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/vectormath/*.swg"
+    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/vectormath/*.i"
+    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/vectormath/*.swg"
     )
-SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/vectormath/.*([.]i|[.]swg)")
+SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/vectormath/.*([.]i|[.]swg)")
 FOREACH(filename ${src})
     STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
     IF(match_group_sources)
@@ -3318,10 +3318,10 @@ FOREACH(filename ${src})
 ENDFOREACH()
 
 FILE( GLOB src
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/vectormath/neon/*.i"
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/vectormath/neon/*.swg"
+    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/vectormath/neon/*.i"
+    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/vectormath/neon/*.swg"
     )
-SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/vectormath/neon/.*([.]i|[.]swg)")
+SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/vectormath/neon/.*([.]i|[.]swg)")
 FOREACH(filename ${src})
     STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
     IF(match_group_sources)
@@ -3332,10 +3332,10 @@ FOREACH(filename ${src})
 ENDFOREACH()
 
 FILE( GLOB src
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/vectormath/scalar/*.i"
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/vectormath/scalar/*.swg"
+    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/vectormath/scalar/*.i"
+    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/vectormath/scalar/*.swg"
     )
-SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/vectormath/scalar/.*([.]i|[.]swg)")
+SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/vectormath/scalar/.*([.]i|[.]swg)")
 FOREACH(filename ${src})
     STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
     IF(match_group_sources)
@@ -3346,10 +3346,10 @@ FOREACH(filename ${src})
 ENDFOREACH()
 
 FILE( GLOB src
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/vectormath/sse/*.i"
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/vectormath/sse/*.swg"
+    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/vectormath/sse/*.i"
+    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/vectormath/sse/*.swg"
     )
-SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/vectormath/sse/.*([.]i|[.]swg)")
+SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/vectormath/sse/.*([.]i|[.]swg)")
 FOREACH(filename ${src})
     STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
     IF(match_group_sources)
@@ -3360,10 +3360,10 @@ FOREACH(filename ${src})
 ENDFOREACH()
 
 FILE( GLOB src
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/${NJLI_GRAPHICS_PLATFORM}/*.i"
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/${NJLI_GRAPHICS_PLATFORM}/*.swg"
+    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/${NJLI_GRAPHICS_PLATFORM}/*.i"
+    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/${NJLI_GRAPHICS_PLATFORM}/*.swg"
     )
-SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/${NJLI_GRAPHICS_PLATFORM}/.*([.]i|[.]swg)")
+SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/${NJLI_GRAPHICS_PLATFORM}/.*([.]i|[.]swg)")
 FOREACH(filename ${src})
     STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
     IF(match_group_sources)
@@ -3374,8 +3374,8 @@ FOREACH(filename ${src})
 ENDFOREACH()
 
 #FILE( GLOB src
-#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/vectormath/sse/*.i"
-#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/lua/bullet3/vectormath/sse/*.swg"
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/vectormath/sse/*.i"
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/script/bullet3/vectormath/sse/*.swg"
 #    )
 #SET(REG "${NJLI_SOURCE_DIRECTORY}/njli/generated/swig/lua/${NJLI_GRAPHICS_PLATFORM}/.*([.]cpp|[.]c|[.]h|[.]hpp)")
 #FOREACH(filename ${src})
@@ -3402,327 +3402,327 @@ ENDFOREACH()
 
 
 
-FILE( GLOB src
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/*.i"
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/*.swg"
-    )
-SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/.*([.]i|[.]swg)")
-FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND swigin_embind_bullet3 ${filename})
-    ELSE()
-        LIST(APPEND interface_group_other ${filename})
-    ENDIF()
-ENDFOREACH()
-
-FILE( GLOB src
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletCollision/*.i"
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletCollision/*.swg"
-    )
-SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletCollision/.*([.]i|[.]swg)")
-FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND swigin_embind_bullet3_BulletCollision ${filename})
-    ELSE()
-        LIST(APPEND interface_group_other ${filename})
-    ENDIF()
-ENDFOREACH()
-
-FILE( GLOB src
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletCollision/BroadphaseCollision/*.i"
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletCollision/BroadphaseCollision/*.swg"
-    )
-SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletCollision/BroadphaseCollision/.*([.]i|[.]swg)")
-FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND swigin_embind_bullet3_BulletCollision_BroadphaseCollision ${filename})
-    ELSE()
-        LIST(APPEND interface_group_other ${filename})
-    ENDIF()
-ENDFOREACH()
-
-FILE( GLOB src
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletCollision/CollisionDispatch/*.i"
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletCollision/CollisionDispatch/*.swg"
-    )
-SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletCollision/CollisionDispatch/.*([.]i|[.]swg)")
-FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND swigin_embind_bullet3_BulletCollision_CollisionDispatch ${filename})
-    ELSE()
-        LIST(APPEND interface_group_other ${filename})
-    ENDIF()
-ENDFOREACH()
-
-FILE( GLOB src
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletCollision/CollisionShapes/*.i"
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletCollision/CollisionShapes/*.swg"
-    )
-SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletCollision/CollisionShapes/.*([.]i|[.]swg)")
-FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND swigin_embind_bullet3_BulletCollision_CollisionShapes ${filename})
-    ELSE()
-        LIST(APPEND interface_group_other ${filename})
-    ENDIF()
-ENDFOREACH()
-
-FILE( GLOB src
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletCollision/Gimpact/*.i"
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletCollision/Gimpact/*.swg"
-    )
-SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletCollision/Gimpact/.*([.]i|[.]swg)")
-FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND swigin_embind_bullet3_BulletCollision_Gimpact ${filename})
-    ELSE()
-        LIST(APPEND interface_group_other ${filename})
-    ENDIF()
-ENDFOREACH()
-
-FILE( GLOB src
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletCollision/NarrowPhaseCollision/*.i"
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletCollision/NarrowPhaseCollision/*.swg"
-    )
-SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletCollision/NarrowPhaseCollision/.*([.]i|[.]swg)")
-FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND swigin_embind_bullet3_BulletCollision_NarrowPhaseCollision ${filename})
-    ELSE()
-        LIST(APPEND interface_group_other ${filename})
-    ENDIF()
-ENDFOREACH()
-
-FILE( GLOB src
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletDynamics/*.i"
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletDynamics/*.swg"
-    )
-SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletDynamics/.*([.]i|[.]swg)")
-FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND swigin_embind_bullet3_BulletDynamics ${filename})
-    ELSE()
-        LIST(APPEND interface_group_other ${filename})
-    ENDIF()
-ENDFOREACH()
-
-FILE( GLOB src
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletDynamics/Character/*.i"
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletDynamics/Character/*.swg"
-    )
-SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletDynamics/Character/.*([.]i|[.]swg)")
-FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND swigin_embind_bullet3_BulletDynamics_Character ${filename})
-    ELSE()
-        LIST(APPEND interface_group_other ${filename})
-    ENDIF()
-ENDFOREACH()
-
-FILE( GLOB src
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletDynamics/ConstraintSolver/*.i"
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletDynamics/ConstraintSolver/*.swg"
-    )
-SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletDynamics/ConstraintSolver/.*([.]i|[.]swg)")
-FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND swigin_embind_bullet3_BulletDynamics_ConstraintSolver ${filename})
-    ELSE()
-        LIST(APPEND interface_group_other ${filename})
-    ENDIF()
-ENDFOREACH()
-
-FILE( GLOB src
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletDynamics/Dynamics/*.i"
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletDynamics/Dynamics/*.swg"
-    )
-SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletDynamics/Dynamics/.*([.]i|[.]swg)")
-FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND swigin_embind_bullet3_BulletDynamics_Dynamics ${filename})
-    ELSE()
-        LIST(APPEND interface_group_other ${filename})
-    ENDIF()
-ENDFOREACH()
-
-FILE( GLOB src
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletDynamics/Featherstone/*.i"
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletDynamics/Featherstone/*.swg"
-    )
-SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletDynamics/Featherstone/.*([.]i|[.]swg)")
-FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND swigin_embind_bullet3_BulletDynamics_Featherstone ${filename})
-    ELSE()
-        LIST(APPEND interface_group_other ${filename})
-    ENDIF()
-ENDFOREACH()
-
-FILE( GLOB src
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletDynamics/MLCPSolvers/*.i"
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletDynamics/MLCPSolvers/*.swg"
-    )
-SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletDynamics/MLCPSolvers/.*([.]i|[.]swg)")
-FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND swigin_embind_bullet3_BulletDynamics_MLCPSolvers ${filename})
-    ELSE()
-        LIST(APPEND interface_group_other ${filename})
-    ENDIF()
-ENDFOREACH()
-
-FILE( GLOB src
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletDynamics/Vehicle/*.i"
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletDynamics/Vehicle/*.swg"
-    )
-SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletDynamics/Vehicle/.*([.]i|[.]swg)")
-FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND swigin_embind_bullet3_BulletDynamics_Vehicle ${filename})
-    ELSE()
-        LIST(APPEND interface_group_other ${filename})
-    ENDIF()
-ENDFOREACH()
-
-FILE( GLOB src
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletSoftBody/*.i"
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletSoftBody/*.swg"
-    )
-SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletSoftBody/.*([.]i|[.]swg)")
-FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND swigin_embind_bullet3_BulletSoftBody ${filename})
-    ELSE()
-        LIST(APPEND interface_group_other ${filename})
-    ENDIF()
-ENDFOREACH()
-
-FILE( GLOB src
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/LinearMath/*.i"
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/LinearMath/*.swg"
-    )
-SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/LinearMath/.*([.]i|[.]swg)")
-FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND swigin_embind_bullet3_LinearMath ${filename})
-    ELSE()
-        LIST(APPEND interface_group_other ${filename})
-    ENDIF()
-ENDFOREACH()
-
-FILE( GLOB src
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/MiniCL/*.i"
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/MiniCL/*.swg"
-    )
-SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/MiniCL/.*([.]i|[.]swg)")
-FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND swigin_embind_bullet3_MiniCL ${filename})
-    ELSE()
-        LIST(APPEND interface_group_other ${filename})
-    ENDIF()
-ENDFOREACH()
-
-FILE( GLOB src
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/MiniCL/MiniCLTask/*.i"
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/MiniCL/MiniCLTask/*.swg"
-    )
-SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/MiniCL/MiniCLTask/.*([.]i|[.]swg)")
-FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND swigin_embind_bullet3_MiniCL_MiniCLTask ${filename})
-    ELSE()
-        LIST(APPEND interface_group_other ${filename})
-    ENDIF()
-ENDFOREACH()
-
-FILE( GLOB src
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/vectormath/*.i"
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/vectormath/*.swg"
-    )
-SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/vectormath/.*([.]i|[.]swg)")
-FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND swigin_embind_bullet3_vectormath ${filename})
-    ELSE()
-        LIST(APPEND interface_group_other ${filename})
-    ENDIF()
-ENDFOREACH()
-
-FILE( GLOB src
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/vectormath/neon/*.i"
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/vectormath/neon/*.swg"
-    )
-SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/vectormath/neon/.*([.]i|[.]swg)")
-FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND swigin_embind_bullet3_vectormath/neon ${filename})
-    ELSE()
-        LIST(APPEND interface_group_other ${filename})
-    ENDIF()
-ENDFOREACH()
-
-FILE( GLOB src
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/vectormath/scalar/*.i"
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/vectormath/scalar/*.swg"
-    )
-SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/vectormath/scalar/.*([.]i|[.]swg)")
-FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND swigin_embind_bullet3_vectormath_scalar ${filename})
-    ELSE()
-        LIST(APPEND interface_group_other ${filename})
-    ENDIF()
-ENDFOREACH()
-
-FILE( GLOB src
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/vectormath/sse/*.i"
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/vectormath/sse/*.swg"
-    )
-SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/vectormath/sse/.*([.]i|[.]swg)")
-FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND swigin_embind_bullet3_vectormath_sse ${filename})
-    ELSE()
-        LIST(APPEND interface_group_other ${filename})
-    ENDIF()
-ENDFOREACH()
-
-FILE( GLOB src
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/${NJLI_GRAPHICS_PLATFORM}/*.i"
-    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/${NJLI_GRAPHICS_PLATFORM}/*.swg"
-    )
-SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/${NJLI_GRAPHICS_PLATFORM}/.*([.]i|[.]swg)")
-FOREACH(filename ${src})
-    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
-    IF(match_group_sources)
-        LIST(APPEND swigin_embind_graphics_platform ${filename})
-    ELSE()
-        LIST(APPEND interface_group_other ${filename})
-    ENDIF()
-ENDFOREACH()
+#FILE( GLOB src
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/*.i"
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/*.swg"
+#    )
+#SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/.*([.]i|[.]swg)")
+#FOREACH(filename ${src})
+#    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+#    IF(match_group_sources)
+#        LIST(APPEND swigin_embind_bullet3 ${filename})
+#    ELSE()
+#        LIST(APPEND interface_group_other ${filename})
+#    ENDIF()
+#ENDFOREACH()
+#
+#FILE( GLOB src
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletCollision/*.i"
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletCollision/*.swg"
+#    )
+#SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletCollision/.*([.]i|[.]swg)")
+#FOREACH(filename ${src})
+#    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+#    IF(match_group_sources)
+#        LIST(APPEND swigin_embind_bullet3_BulletCollision ${filename})
+#    ELSE()
+#        LIST(APPEND interface_group_other ${filename})
+#    ENDIF()
+#ENDFOREACH()
+#
+#FILE( GLOB src
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletCollision/BroadphaseCollision/*.i"
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletCollision/BroadphaseCollision/*.swg"
+#    )
+#SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletCollision/BroadphaseCollision/.*([.]i|[.]swg)")
+#FOREACH(filename ${src})
+#    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+#    IF(match_group_sources)
+#        LIST(APPEND swigin_embind_bullet3_BulletCollision_BroadphaseCollision ${filename})
+#    ELSE()
+#        LIST(APPEND interface_group_other ${filename})
+#    ENDIF()
+#ENDFOREACH()
+#
+#FILE( GLOB src
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletCollision/CollisionDispatch/*.i"
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletCollision/CollisionDispatch/*.swg"
+#    )
+#SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletCollision/CollisionDispatch/.*([.]i|[.]swg)")
+#FOREACH(filename ${src})
+#    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+#    IF(match_group_sources)
+#        LIST(APPEND swigin_embind_bullet3_BulletCollision_CollisionDispatch ${filename})
+#    ELSE()
+#        LIST(APPEND interface_group_other ${filename})
+#    ENDIF()
+#ENDFOREACH()
+#
+#FILE( GLOB src
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletCollision/CollisionShapes/*.i"
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletCollision/CollisionShapes/*.swg"
+#    )
+#SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletCollision/CollisionShapes/.*([.]i|[.]swg)")
+#FOREACH(filename ${src})
+#    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+#    IF(match_group_sources)
+#        LIST(APPEND swigin_embind_bullet3_BulletCollision_CollisionShapes ${filename})
+#    ELSE()
+#        LIST(APPEND interface_group_other ${filename})
+#    ENDIF()
+#ENDFOREACH()
+#
+#FILE( GLOB src
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletCollision/Gimpact/*.i"
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletCollision/Gimpact/*.swg"
+#    )
+#SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletCollision/Gimpact/.*([.]i|[.]swg)")
+#FOREACH(filename ${src})
+#    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+#    IF(match_group_sources)
+#        LIST(APPEND swigin_embind_bullet3_BulletCollision_Gimpact ${filename})
+#    ELSE()
+#        LIST(APPEND interface_group_other ${filename})
+#    ENDIF()
+#ENDFOREACH()
+#
+#FILE( GLOB src
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletCollision/NarrowPhaseCollision/*.i"
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletCollision/NarrowPhaseCollision/*.swg"
+#    )
+#SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletCollision/NarrowPhaseCollision/.*([.]i|[.]swg)")
+#FOREACH(filename ${src})
+#    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+#    IF(match_group_sources)
+#        LIST(APPEND swigin_embind_bullet3_BulletCollision_NarrowPhaseCollision ${filename})
+#    ELSE()
+#        LIST(APPEND interface_group_other ${filename})
+#    ENDIF()
+#ENDFOREACH()
+#
+#FILE( GLOB src
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletDynamics/*.i"
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletDynamics/*.swg"
+#    )
+#SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletDynamics/.*([.]i|[.]swg)")
+#FOREACH(filename ${src})
+#    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+#    IF(match_group_sources)
+#        LIST(APPEND swigin_embind_bullet3_BulletDynamics ${filename})
+#    ELSE()
+#        LIST(APPEND interface_group_other ${filename})
+#    ENDIF()
+#ENDFOREACH()
+#
+#FILE( GLOB src
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletDynamics/Character/*.i"
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletDynamics/Character/*.swg"
+#    )
+#SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletDynamics/Character/.*([.]i|[.]swg)")
+#FOREACH(filename ${src})
+#    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+#    IF(match_group_sources)
+#        LIST(APPEND swigin_embind_bullet3_BulletDynamics_Character ${filename})
+#    ELSE()
+#        LIST(APPEND interface_group_other ${filename})
+#    ENDIF()
+#ENDFOREACH()
+#
+#FILE( GLOB src
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletDynamics/ConstraintSolver/*.i"
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletDynamics/ConstraintSolver/*.swg"
+#    )
+#SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletDynamics/ConstraintSolver/.*([.]i|[.]swg)")
+#FOREACH(filename ${src})
+#    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+#    IF(match_group_sources)
+#        LIST(APPEND swigin_embind_bullet3_BulletDynamics_ConstraintSolver ${filename})
+#    ELSE()
+#        LIST(APPEND interface_group_other ${filename})
+#    ENDIF()
+#ENDFOREACH()
+#
+#FILE( GLOB src
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletDynamics/Dynamics/*.i"
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletDynamics/Dynamics/*.swg"
+#    )
+#SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletDynamics/Dynamics/.*([.]i|[.]swg)")
+#FOREACH(filename ${src})
+#    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+#    IF(match_group_sources)
+#        LIST(APPEND swigin_embind_bullet3_BulletDynamics_Dynamics ${filename})
+#    ELSE()
+#        LIST(APPEND interface_group_other ${filename})
+#    ENDIF()
+#ENDFOREACH()
+#
+#FILE( GLOB src
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletDynamics/Featherstone/*.i"
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletDynamics/Featherstone/*.swg"
+#    )
+#SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletDynamics/Featherstone/.*([.]i|[.]swg)")
+#FOREACH(filename ${src})
+#    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+#    IF(match_group_sources)
+#        LIST(APPEND swigin_embind_bullet3_BulletDynamics_Featherstone ${filename})
+#    ELSE()
+#        LIST(APPEND interface_group_other ${filename})
+#    ENDIF()
+#ENDFOREACH()
+#
+#FILE( GLOB src
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletDynamics/MLCPSolvers/*.i"
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletDynamics/MLCPSolvers/*.swg"
+#    )
+#SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletDynamics/MLCPSolvers/.*([.]i|[.]swg)")
+#FOREACH(filename ${src})
+#    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+#    IF(match_group_sources)
+#        LIST(APPEND swigin_embind_bullet3_BulletDynamics_MLCPSolvers ${filename})
+#    ELSE()
+#        LIST(APPEND interface_group_other ${filename})
+#    ENDIF()
+#ENDFOREACH()
+#
+#FILE( GLOB src
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletDynamics/Vehicle/*.i"
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletDynamics/Vehicle/*.swg"
+#    )
+#SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletDynamics/Vehicle/.*([.]i|[.]swg)")
+#FOREACH(filename ${src})
+#    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+#    IF(match_group_sources)
+#        LIST(APPEND swigin_embind_bullet3_BulletDynamics_Vehicle ${filename})
+#    ELSE()
+#        LIST(APPEND interface_group_other ${filename})
+#    ENDIF()
+#ENDFOREACH()
+#
+#FILE( GLOB src
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletSoftBody/*.i"
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletSoftBody/*.swg"
+#    )
+#SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/BulletSoftBody/.*([.]i|[.]swg)")
+#FOREACH(filename ${src})
+#    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+#    IF(match_group_sources)
+#        LIST(APPEND swigin_embind_bullet3_BulletSoftBody ${filename})
+#    ELSE()
+#        LIST(APPEND interface_group_other ${filename})
+#    ENDIF()
+#ENDFOREACH()
+#
+#FILE( GLOB src
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/LinearMath/*.i"
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/LinearMath/*.swg"
+#    )
+#SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/LinearMath/.*([.]i|[.]swg)")
+#FOREACH(filename ${src})
+#    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+#    IF(match_group_sources)
+#        LIST(APPEND swigin_embind_bullet3_LinearMath ${filename})
+#    ELSE()
+#        LIST(APPEND interface_group_other ${filename})
+#    ENDIF()
+#ENDFOREACH()
+#
+#FILE( GLOB src
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/MiniCL/*.i"
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/MiniCL/*.swg"
+#    )
+#SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/MiniCL/.*([.]i|[.]swg)")
+#FOREACH(filename ${src})
+#    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+#    IF(match_group_sources)
+#        LIST(APPEND swigin_embind_bullet3_MiniCL ${filename})
+#    ELSE()
+#        LIST(APPEND interface_group_other ${filename})
+#    ENDIF()
+#ENDFOREACH()
+#
+#FILE( GLOB src
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/MiniCL/MiniCLTask/*.i"
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/MiniCL/MiniCLTask/*.swg"
+#    )
+#SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/MiniCL/MiniCLTask/.*([.]i|[.]swg)")
+#FOREACH(filename ${src})
+#    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+#    IF(match_group_sources)
+#        LIST(APPEND swigin_embind_bullet3_MiniCL_MiniCLTask ${filename})
+#    ELSE()
+#        LIST(APPEND interface_group_other ${filename})
+#    ENDIF()
+#ENDFOREACH()
+#
+#FILE( GLOB src
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/vectormath/*.i"
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/vectormath/*.swg"
+#    )
+#SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/vectormath/.*([.]i|[.]swg)")
+#FOREACH(filename ${src})
+#    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+#    IF(match_group_sources)
+#        LIST(APPEND swigin_embind_bullet3_vectormath ${filename})
+#    ELSE()
+#        LIST(APPEND interface_group_other ${filename})
+#    ENDIF()
+#ENDFOREACH()
+#
+#FILE( GLOB src
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/vectormath/neon/*.i"
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/vectormath/neon/*.swg"
+#    )
+#SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/vectormath/neon/.*([.]i|[.]swg)")
+#FOREACH(filename ${src})
+#    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+#    IF(match_group_sources)
+#        LIST(APPEND swigin_embind_bullet3_vectormath/neon ${filename})
+#    ELSE()
+#        LIST(APPEND interface_group_other ${filename})
+#    ENDIF()
+#ENDFOREACH()
+#
+#FILE( GLOB src
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/vectormath/scalar/*.i"
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/vectormath/scalar/*.swg"
+#    )
+#SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/vectormath/scalar/.*([.]i|[.]swg)")
+#FOREACH(filename ${src})
+#    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+#    IF(match_group_sources)
+#        LIST(APPEND swigin_embind_bullet3_vectormath_scalar ${filename})
+#    ELSE()
+#        LIST(APPEND interface_group_other ${filename})
+#    ENDIF()
+#ENDFOREACH()
+#
+#FILE( GLOB src
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/vectormath/sse/*.i"
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/vectormath/sse/*.swg"
+#    )
+#SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/vectormath/sse/.*([.]i|[.]swg)")
+#FOREACH(filename ${src})
+#    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+#    IF(match_group_sources)
+#        LIST(APPEND swigin_embind_bullet3_vectormath_sse ${filename})
+#    ELSE()
+#        LIST(APPEND interface_group_other ${filename})
+#    ENDIF()
+#ENDFOREACH()
+#
+#FILE( GLOB src
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/${NJLI_GRAPHICS_PLATFORM}/*.i"
+#    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/${NJLI_GRAPHICS_PLATFORM}/*.swg"
+#    )
+#SET(REG "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/${NJLI_GRAPHICS_PLATFORM}/.*([.]i|[.]swg)")
+#FOREACH(filename ${src})
+#    STRING(REGEX MATCH "${REG}" match_group_sources ${filename})
+#    IF(match_group_sources)
+#        LIST(APPEND swigin_embind_graphics_platform ${filename})
+#    ELSE()
+#        LIST(APPEND interface_group_other ${filename})
+#    ENDIF()
+#ENDFOREACH()
 
 #FILE( GLOB src
 #    "${NJLI_THIRDPARTY_SWIGIN_DIRECTORY}/embind/bullet3/vectormath/sse/*.i"
@@ -3793,30 +3793,30 @@ FILE(GLOB NJLIGameEngine_THIRDPARTY_ITFS
 
     ${swigin_lua_graphics_platform}
 
-    ${swigin_embind_bullet3} 
-    ${swigin_embind_bullet3_BulletCollision} 
-    ${swigin_embind_bullet3_BulletCollision_BroadphaseCollision} 
-    ${swigin_embind_bullet3_BulletCollision_CollisionDispatch} 
-    ${swigin_embind_bullet3_BulletCollision_CollisionShapes} 
-    ${swigin_embind_bullet3_BulletCollision_Gimpact} 
-    ${swigin_embind_bullet3_BulletCollision_NarrowPhaseCollision} 
-    ${swigin_embind_bullet3_BulletDynamics} 
-    ${swigin_embind_bullet3_BulletDynamics_Character} 
-    ${swigin_embind_bullet3_BulletDynamics_ConstraintSolver} 
-    ${swigin_embind_bullet3_BulletDynamics_Dynamics} 
-    ${swigin_embind_bullet3_BulletDynamics_Featherstone} 
-    ${swigin_embind_bullet3_BulletDynamics_MLCPSolvers} 
-    ${swigin_embind_bullet3_BulletDynamics_Vehicle} 
-    ${swigin_embind_bullet3_BulletSoftBody} 
-    ${swigin_embind_bullet3_LinearMath} 
-    ${swigin_embind_bullet3_MiniCL} 
-    ${swigin_embind_bullet3_MiniCL_MiniCLTask} 
-    ${swigin_embind_bullet3_vectormath} 
-    ${swigin_embind_bullet3_vectormath_neon} 
-    ${swigin_embind_bullet3_vectormath_scalar} 
-    ${swigin_embind_bullet3_vectormath_sse} 
-
-    ${swigin_embind_graphics_platform}
+    #    ${swigin_embind_bullet3} 
+    #    ${swigin_embind_bullet3_BulletCollision} 
+    #    ${swigin_embind_bullet3_BulletCollision_BroadphaseCollision} 
+    #    ${swigin_embind_bullet3_BulletCollision_CollisionDispatch} 
+    #    ${swigin_embind_bullet3_BulletCollision_CollisionShapes} 
+    #    ${swigin_embind_bullet3_BulletCollision_Gimpact} 
+    #    ${swigin_embind_bullet3_BulletCollision_NarrowPhaseCollision} 
+    #    ${swigin_embind_bullet3_BulletDynamics} 
+    #    ${swigin_embind_bullet3_BulletDynamics_Character} 
+    #    ${swigin_embind_bullet3_BulletDynamics_ConstraintSolver} 
+    #    ${swigin_embind_bullet3_BulletDynamics_Dynamics} 
+    #    ${swigin_embind_bullet3_BulletDynamics_Featherstone} 
+    #    ${swigin_embind_bullet3_BulletDynamics_MLCPSolvers} 
+    #    ${swigin_embind_bullet3_BulletDynamics_Vehicle} 
+    #    ${swigin_embind_bullet3_BulletSoftBody} 
+    #    ${swigin_embind_bullet3_LinearMath} 
+    #    ${swigin_embind_bullet3_MiniCL} 
+    #    ${swigin_embind_bullet3_MiniCL_MiniCLTask} 
+    #    ${swigin_embind_bullet3_vectormath} 
+    #    ${swigin_embind_bullet3_vectormath_neon} 
+    #    ${swigin_embind_bullet3_vectormath_scalar} 
+    #    ${swigin_embind_bullet3_vectormath_sse} 
+    #
+    #    ${swigin_embind_graphics_platform}
 )
 
 SET( GAME_ASSETS "${NJLIGameEngine_COMMON_DIRECTORY}/assets" )
@@ -4739,9 +4739,9 @@ IF(NJLI_USE_STB_LIBRARY)
     LIST(APPEND SWIG_DEFINE "USE_STB_LIBRARY")
 ENDIF(NJLI_USE_STB_LIBRARY)
 
-#IF(IS_DEBUG AND ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
+IF(IS_DEBUG AND ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
     LIST(APPEND SWIG_DEFINE "WRAP_EMBIND")
-#ENDIF(IS_DEBUG AND ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
+ENDIF(IS_DEBUG AND ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
 
 #IF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
 
@@ -4941,100 +4941,100 @@ SOURCE_GROUP("GameEngine\\njli\\steering\\behavior"                             
 
 SOURCE_GROUP("Interfaces\\swig.in" )
 
-SOURCE_GROUP("Interfaces\\swig.in\\lua" )
-SOURCE_GROUP("Interfaces\\swig.in\\lua\\engine" FILES ${swigin_lua} )
-SOURCE_GROUP("Interfaces\\swig.in\\lua\\engine\\njli" FILES ${swigin_lua_njli} )
-SOURCE_GROUP("Interfaces\\swig.in\\lua\\engine\\njli\\builders" FILES ${swigin_lua_njli_builders} )
-SOURCE_GROUP("Interfaces\\swig.in\\lua\\engine\\njli\\builders" FILES ${swigin_lua_njli_builders_graphics} )
-SOURCE_GROUP("Interfaces\\swig.in\\lua\\engine\\njli\\builders" FILES ${swigin_lua_njli_builders} )
-SOURCE_GROUP("Interfaces\\swig.in\\lua\\engine\\njli\\builders\\physics\\body" FILES ${swigin_lua_njli_builders_physics_body} )
-SOURCE_GROUP("Interfaces\\swig.in\\lua\\engine\\njli\\builders\\physics\\constraint" FILES ${swigin_lua_njli_builders_physics_constraint} )
-SOURCE_GROUP("Interfaces\\swig.in\\lua\\engine\\njli\\builders\\physics\\shape" FILES ${swigin_lua_njli_builders_physics_shape} )
-SOURCE_GROUP("Interfaces\\swig.in\\lua\\engine\\njli\\builders\\platform" FILES ${swigin_lua_njli_builders_platform} )
-SOURCE_GROUP("Interfaces\\swig.in\\lua\\engine\\njli\\builders\\sound" FILES ${swigin_lua_njli_builders_sound} )
-SOURCE_GROUP("Interfaces\\swig.in\\lua\\engine\\njli\\builders\\steering" FILES ${swigin_lua_njli_builders_steering} )
-SOURCE_GROUP("Interfaces\\swig.in\\lua\\engine\\njli\\builders\\steering\\behavior" FILES ${swigin_lua_njli_builders_steering_behavior} )
-SOURCE_GROUP("Interfaces\\swig.in\\lua\\engine\\njli\\graphics" FILES ${swigin_lua_njli_graphics} )
-SOURCE_GROUP("Interfaces\\swig.in\\lua\\engine\\njli\\physics" FILES ${swigin_lua_njli_physics} )
-SOURCE_GROUP("Interfaces\\swig.in\\lua\\engine\\njli\\physics\\body" FILES ${swigin_lua_njli_physics_body} )
-SOURCE_GROUP("Interfaces\\swig.in\\lua\\engine\\njli\\physics\\constraint" FILES ${swigin_lua_njli_physics_constraint} )
-SOURCE_GROUP("Interfaces\\swig.in\\lua\\engine\\njli\\physics\\shape" FILES ${swigin_lua_njli_physics_shape} )
-SOURCE_GROUP("Interfaces\\swig.in\\lua\\engine\\njli\\platform" FILES ${swigin_lua_njli_platform} )
-SOURCE_GROUP("Interfaces\\swig.in\\lua\\engine\\njli\\sound" FILES ${swigin_lua_njli_sound} )
-SOURCE_GROUP("Interfaces\\swig.in\\lua\\engine\\njli\\steering" FILES ${swigin_lua_njli_steering} )
-SOURCE_GROUP("Interfaces\\swig.in\\lua\\engine\\njli\\steering\\behavior" FILES ${swigin_lua_njli_steering_behavior} )
-SOURCE_GROUP("Interfaces\\swig.in\\lua\\thirdparty" )
-SOURCE_GROUP("Interfaces\\swig.in\\lua\\thirdparty\\bullet3" FILES ${swigin_lua_bullet3} )
-SOURCE_GROUP("Interfaces\\swig.in\\lua\\thirdparty\\bullet3\\BulletCollision" FILES ${swigin_lua_bullet3_BulletCollision} )
-SOURCE_GROUP("Interfaces\\swig.in\\lua\\thirdparty\\bullet3\\BulletCollision\\BroadphaseCollision" FILES ${swigin_lua_bullet3_BulletCollision_BroadphaseCollision} )
-SOURCE_GROUP("Interfaces\\swig.in\\lua\\thirdparty\\bullet3\\BulletCollision\\CollisionDispatch" FILES ${swigin_lua_bullet3_BulletCollision_CollisionDispatch} )
-SOURCE_GROUP("Interfaces\\swig.in\\lua\\thirdparty\\bullet3\\BulletCollision\\CollisionShapes" FILES ${swigin_lua_bullet3_BulletCollision_CollisionShapes} )
-SOURCE_GROUP("Interfaces\\swig.in\\lua\\thirdparty\\bullet3\\BulletCollision\\Gimpact" FILES ${swigin_lua_bullet3_BulletCollision_Gimpact} )
-SOURCE_GROUP("Interfaces\\swig.in\\lua\\thirdparty\\bullet3\\BulletCollision\\NarrowPhaseCollision" FILES ${swigin_lua_bullet3_BulletCollision_NarrowPhaseCollision} )
-SOURCE_GROUP("Interfaces\\swig.in\\lua\\thirdparty\\bullet3\\BulletDynamics" FILES ${swigin_lua_bullet3_BulletDynamics} )
-SOURCE_GROUP("Interfaces\\swig.in\\lua\\thirdparty\\bullet3\\BulletDynamics\\Character" FILES ${swigin_lua_bullet3_BulletDynamics_Character} )
-SOURCE_GROUP("Interfaces\\swig.in\\lua\\thirdparty\\bullet3\\BulletDynamics\\ConstraintSolver" FILES ${swigin_lua_bullet3_BulletDynamics_ConstraintSolver} )
-SOURCE_GROUP("Interfaces\\swig.in\\lua\\thirdparty\\bullet3\\BulletDynamics\\Dynamics" FILES ${swigin_lua_bullet3_BulletDynamics_Dynamics} )
-SOURCE_GROUP("Interfaces\\swig.in\\lua\\thirdparty\\bullet3\\BulletDynamics\\Featherstone" FILES ${swigin_lua_bullet3_BulletDynamics_Featherstone} )
-SOURCE_GROUP("Interfaces\\swig.in\\lua\\thirdparty\\bullet3\\BulletDynamics\\MLCPSolvers" FILES ${swigin_lua_bullet3_BulletDynamics_MLCPSolvers} )
-SOURCE_GROUP("Interfaces\\swig.in\\lua\\thirdparty\\bullet3\\BulletDynamics\\Vehicle" FILES ${swigin_lua_bullet3_BulletDynamics_Vehicle} )
-SOURCE_GROUP("Interfaces\\swig.in\\lua\\thirdparty\\bullet3\\BulletSoftBody" FILES ${swigin_lua_bullet3_BulletSoftBody} )
-SOURCE_GROUP("Interfaces\\swig.in\\lua\\thirdparty\\bullet3\\LinearMath" FILES ${swigin_lua_bullet3_LinearMath} )
-SOURCE_GROUP("Interfaces\\swig.in\\lua\\thirdparty\\bullet3\\MiniCL" FILES ${swigin_lua_bullet3_MiniCL} )
-SOURCE_GROUP("Interfaces\\swig.in\\lua\\thirdparty\\bullet3\\MiniCL\\MiniCLTask" FILES ${swigin_lua_bullet3_MiniCL_MiniCLTask} )
-SOURCE_GROUP("Interfaces\\swig.in\\lua\\thirdparty\\bullet3\\vectormath" FILES ${swigin_lua_bullet3_vectormath} )
-SOURCE_GROUP("Interfaces\\swig.in\\lua\\thirdparty\\bullet3\\vectormath\\neon" FILES ${swigin_lua_bullet3_vectormath_neon} )
-SOURCE_GROUP("Interfaces\\swig.in\\lua\\thirdparty\\bullet3\\vectormath\\scalar" FILES ${swigin_lua_bullet3_vectormath_scalar} )
-SOURCE_GROUP("Interfaces\\swig.in\\lua\\thirdparty\\bullet3\\vectormath\\sse" FILES ${swigin_lua_bullet3_vectormath_sse} )
-SOURCE_GROUP("Interfaces\\swig.in\\lua\\thirdparty\\${NJLI_GRAPHICS_PLATFORM}" FILES ${swigin_lua_graphics_platform} )
+SOURCE_GROUP("Interfaces\\swig.in\\script" )
+SOURCE_GROUP("Interfaces\\swig.in\\script\\engine" FILES ${swigin_lua} )
+SOURCE_GROUP("Interfaces\\swig.in\\script\\engine\\njli" FILES ${swigin_lua_njli} )
+SOURCE_GROUP("Interfaces\\swig.in\\script\\engine\\njli\\builders" FILES ${swigin_lua_njli_builders} )
+SOURCE_GROUP("Interfaces\\swig.in\\script\\engine\\njli\\builders" FILES ${swigin_lua_njli_builders_graphics} )
+SOURCE_GROUP("Interfaces\\swig.in\\script\\engine\\njli\\builders" FILES ${swigin_lua_njli_builders} )
+SOURCE_GROUP("Interfaces\\swig.in\\script\\engine\\njli\\builders\\physics\\body" FILES ${swigin_lua_njli_builders_physics_body} )
+SOURCE_GROUP("Interfaces\\swig.in\\script\\engine\\njli\\builders\\physics\\constraint" FILES ${swigin_lua_njli_builders_physics_constraint} )
+SOURCE_GROUP("Interfaces\\swig.in\\script\\engine\\njli\\builders\\physics\\shape" FILES ${swigin_lua_njli_builders_physics_shape} )
+SOURCE_GROUP("Interfaces\\swig.in\\script\\engine\\njli\\builders\\platform" FILES ${swigin_lua_njli_builders_platform} )
+SOURCE_GROUP("Interfaces\\swig.in\\script\\engine\\njli\\builders\\sound" FILES ${swigin_lua_njli_builders_sound} )
+SOURCE_GROUP("Interfaces\\swig.in\\script\\engine\\njli\\builders\\steering" FILES ${swigin_lua_njli_builders_steering} )
+SOURCE_GROUP("Interfaces\\swig.in\\script\\engine\\njli\\builders\\steering\\behavior" FILES ${swigin_lua_njli_builders_steering_behavior} )
+SOURCE_GROUP("Interfaces\\swig.in\\script\\engine\\njli\\graphics" FILES ${swigin_lua_njli_graphics} )
+SOURCE_GROUP("Interfaces\\swig.in\\script\\engine\\njli\\physics" FILES ${swigin_lua_njli_physics} )
+SOURCE_GROUP("Interfaces\\swig.in\\script\\engine\\njli\\physics\\body" FILES ${swigin_lua_njli_physics_body} )
+SOURCE_GROUP("Interfaces\\swig.in\\script\\engine\\njli\\physics\\constraint" FILES ${swigin_lua_njli_physics_constraint} )
+SOURCE_GROUP("Interfaces\\swig.in\\script\\engine\\njli\\physics\\shape" FILES ${swigin_lua_njli_physics_shape} )
+SOURCE_GROUP("Interfaces\\swig.in\\script\\engine\\njli\\platform" FILES ${swigin_lua_njli_platform} )
+SOURCE_GROUP("Interfaces\\swig.in\\script\\engine\\njli\\sound" FILES ${swigin_lua_njli_sound} )
+SOURCE_GROUP("Interfaces\\swig.in\\script\\engine\\njli\\steering" FILES ${swigin_lua_njli_steering} )
+SOURCE_GROUP("Interfaces\\swig.in\\script\\engine\\njli\\steering\\behavior" FILES ${swigin_lua_njli_steering_behavior} )
+SOURCE_GROUP("Interfaces\\swig.in\\script\\thirdparty" )
+SOURCE_GROUP("Interfaces\\swig.in\\script\\thirdparty\\bullet3" FILES ${swigin_lua_bullet3} )
+SOURCE_GROUP("Interfaces\\swig.in\\script\\thirdparty\\bullet3\\BulletCollision" FILES ${swigin_lua_bullet3_BulletCollision} )
+SOURCE_GROUP("Interfaces\\swig.in\\script\\thirdparty\\bullet3\\BulletCollision\\BroadphaseCollision" FILES ${swigin_lua_bullet3_BulletCollision_BroadphaseCollision} )
+SOURCE_GROUP("Interfaces\\swig.in\\script\\thirdparty\\bullet3\\BulletCollision\\CollisionDispatch" FILES ${swigin_lua_bullet3_BulletCollision_CollisionDispatch} )
+SOURCE_GROUP("Interfaces\\swig.in\\script\\thirdparty\\bullet3\\BulletCollision\\CollisionShapes" FILES ${swigin_lua_bullet3_BulletCollision_CollisionShapes} )
+SOURCE_GROUP("Interfaces\\swig.in\\script\\thirdparty\\bullet3\\BulletCollision\\Gimpact" FILES ${swigin_lua_bullet3_BulletCollision_Gimpact} )
+SOURCE_GROUP("Interfaces\\swig.in\\script\\thirdparty\\bullet3\\BulletCollision\\NarrowPhaseCollision" FILES ${swigin_lua_bullet3_BulletCollision_NarrowPhaseCollision} )
+SOURCE_GROUP("Interfaces\\swig.in\\script\\thirdparty\\bullet3\\BulletDynamics" FILES ${swigin_lua_bullet3_BulletDynamics} )
+SOURCE_GROUP("Interfaces\\swig.in\\script\\thirdparty\\bullet3\\BulletDynamics\\Character" FILES ${swigin_lua_bullet3_BulletDynamics_Character} )
+SOURCE_GROUP("Interfaces\\swig.in\\script\\thirdparty\\bullet3\\BulletDynamics\\ConstraintSolver" FILES ${swigin_lua_bullet3_BulletDynamics_ConstraintSolver} )
+SOURCE_GROUP("Interfaces\\swig.in\\script\\thirdparty\\bullet3\\BulletDynamics\\Dynamics" FILES ${swigin_lua_bullet3_BulletDynamics_Dynamics} )
+SOURCE_GROUP("Interfaces\\swig.in\\script\\thirdparty\\bullet3\\BulletDynamics\\Featherstone" FILES ${swigin_lua_bullet3_BulletDynamics_Featherstone} )
+SOURCE_GROUP("Interfaces\\swig.in\\script\\thirdparty\\bullet3\\BulletDynamics\\MLCPSolvers" FILES ${swigin_lua_bullet3_BulletDynamics_MLCPSolvers} )
+SOURCE_GROUP("Interfaces\\swig.in\\script\\thirdparty\\bullet3\\BulletDynamics\\Vehicle" FILES ${swigin_lua_bullet3_BulletDynamics_Vehicle} )
+SOURCE_GROUP("Interfaces\\swig.in\\script\\thirdparty\\bullet3\\BulletSoftBody" FILES ${swigin_lua_bullet3_BulletSoftBody} )
+SOURCE_GROUP("Interfaces\\swig.in\\script\\thirdparty\\bullet3\\LinearMath" FILES ${swigin_lua_bullet3_LinearMath} )
+SOURCE_GROUP("Interfaces\\swig.in\\script\\thirdparty\\bullet3\\MiniCL" FILES ${swigin_lua_bullet3_MiniCL} )
+SOURCE_GROUP("Interfaces\\swig.in\\script\\thirdparty\\bullet3\\MiniCL\\MiniCLTask" FILES ${swigin_lua_bullet3_MiniCL_MiniCLTask} )
+SOURCE_GROUP("Interfaces\\swig.in\\script\\thirdparty\\bullet3\\vectormath" FILES ${swigin_lua_bullet3_vectormath} )
+SOURCE_GROUP("Interfaces\\swig.in\\script\\thirdparty\\bullet3\\vectormath\\neon" FILES ${swigin_lua_bullet3_vectormath_neon} )
+SOURCE_GROUP("Interfaces\\swig.in\\script\\thirdparty\\bullet3\\vectormath\\scalar" FILES ${swigin_lua_bullet3_vectormath_scalar} )
+SOURCE_GROUP("Interfaces\\swig.in\\script\\thirdparty\\bullet3\\vectormath\\sse" FILES ${swigin_lua_bullet3_vectormath_sse} )
+SOURCE_GROUP("Interfaces\\swig.in\\script\\thirdparty\\${NJLI_GRAPHICS_PLATFORM}" FILES ${swigin_lua_graphics_platform} )
 
 
-SOURCE_GROUP("Interfaces\\swig.in\\embind" )
-SOURCE_GROUP("Interfaces\\swig.in\\embind\\engine" FILES ${swigin_embind} )
-SOURCE_GROUP("Interfaces\\swig.in\\embind\\engine\\njli" FILES ${swigin_embind_njli} )
-SOURCE_GROUP("Interfaces\\swig.in\\embind\\engine\\njli\\builders" FILES ${swigin_embind_njli_builders} )
-SOURCE_GROUP("Interfaces\\swig.in\\embind\\engine\\njli\\builders" FILES ${swigin_embind_njli_builders_graphics} )
-SOURCE_GROUP("Interfaces\\swig.in\\embind\\engine\\njli\\builders" FILES ${swigin_embind_njli_builders} )
-SOURCE_GROUP("Interfaces\\swig.in\\embind\\engine\\njli\\builders\\physics\\body" FILES ${swigin_embind_njli_builders_physics_body} )
-SOURCE_GROUP("Interfaces\\swig.in\\embind\\engine\\njli\\builders\\physics\\constraint" FILES ${swigin_embind_njli_builders_physics_constraint} )
-SOURCE_GROUP("Interfaces\\swig.in\\embind\\engine\\njli\\builders\\physics\\shape" FILES ${swigin_embind_njli_builders_physics_shape} )
-SOURCE_GROUP("Interfaces\\swig.in\\embind\\engine\\njli\\builders\\platform" FILES ${swigin_embind_njli_builders_platform} )
-SOURCE_GROUP("Interfaces\\swig.in\\embind\\engine\\njli\\builders\\sound" FILES ${swigin_embind_njli_builders_sound} )
-SOURCE_GROUP("Interfaces\\swig.in\\embind\\engine\\njli\\builders\\steering" FILES ${swigin_embind_njli_builders_steering} )
-SOURCE_GROUP("Interfaces\\swig.in\\embind\\engine\\njli\\builders\\steering\\behavior" FILES ${swigin_embind_njli_builders_steering_behavior} )
-SOURCE_GROUP("Interfaces\\swig.in\\embind\\engine\\njli\\graphics" FILES ${swigin_embind_njli_graphics} )
-SOURCE_GROUP("Interfaces\\swig.in\\embind\\engine\\njli\\physics" FILES ${swigin_embind_njli_physics} )
-SOURCE_GROUP("Interfaces\\swig.in\\embind\\engine\\njli\\physics\\body" FILES ${swigin_embind_njli_physics_body} )
-SOURCE_GROUP("Interfaces\\swig.in\\embind\\engine\\njli\\physics\\constraint" FILES ${swigin_embind_njli_physics_constraint} )
-SOURCE_GROUP("Interfaces\\swig.in\\embind\\engine\\njli\\physics\\shape" FILES ${swigin_embind_njli_physics_shape} )
-SOURCE_GROUP("Interfaces\\swig.in\\embind\\engine\\njli\\platform" FILES ${swigin_embind_njli_platform} )
-SOURCE_GROUP("Interfaces\\swig.in\\embind\\engine\\njli\\sound" FILES ${swigin_embind_njli_sound} )
-SOURCE_GROUP("Interfaces\\swig.in\\embind\\engine\\njli\\steering" FILES ${swigin_embind_njli_steering} )
-SOURCE_GROUP("Interfaces\\swig.in\\embind\\engine\\njli\\steering\\behavior" FILES ${swigin_embind_njli_steering_behavior} )
-SOURCE_GROUP("Interfaces\\swig.in\\embind\\thirdparty" )
-SOURCE_GROUP("Interfaces\\swig.in\\embind\\thirdparty\\bullet3" FILES ${swigin_embind_bullet3} )
-SOURCE_GROUP("Interfaces\\swig.in\\embind\\thirdparty\\bullet3\\BulletCollision" FILES ${swigin_embind_bullet3_BulletCollision} )
-SOURCE_GROUP("Interfaces\\swig.in\\embind\\thirdparty\\bullet3\\BulletCollision\\BroadphaseCollision" FILES ${swigin_embind_bullet3_BulletCollision_BroadphaseCollision} )
-SOURCE_GROUP("Interfaces\\swig.in\\embind\\thirdparty\\bullet3\\BulletCollision\\CollisionDispatch" FILES ${swigin_embind_bullet3_BulletCollision_CollisionDispatch} )
-SOURCE_GROUP("Interfaces\\swig.in\\embind\\thirdparty\\bullet3\\BulletCollision\\CollisionShapes" FILES ${swigin_embind_bullet3_BulletCollision_CollisionShapes} )
-SOURCE_GROUP("Interfaces\\swig.in\\embind\\thirdparty\\bullet3\\BulletCollision\\Gimpact" FILES ${swigin_embind_bullet3_BulletCollision_Gimpact} )
-SOURCE_GROUP("Interfaces\\swig.in\\embind\\thirdparty\\bullet3\\BulletCollision\\NarrowPhaseCollision" FILES ${swigin_embind_bullet3_BulletCollision_NarrowPhaseCollision} )
-SOURCE_GROUP("Interfaces\\swig.in\\embind\\thirdparty\\bullet3\\BulletDynamics" FILES ${swigin_embind_bullet3_BulletDynamics} )
-SOURCE_GROUP("Interfaces\\swig.in\\embind\\thirdparty\\bullet3\\BulletDynamics\\Character" FILES ${swigin_embind_bullet3_BulletDynamics_Character} )
-SOURCE_GROUP("Interfaces\\swig.in\\embind\\thirdparty\\bullet3\\BulletDynamics\\ConstraintSolver" FILES ${swigin_embind_bullet3_BulletDynamics_ConstraintSolver} )
-SOURCE_GROUP("Interfaces\\swig.in\\embind\\thirdparty\\bullet3\\BulletDynamics\\Dynamics" FILES ${swigin_embind_bullet3_BulletDynamics_Dynamics} )
-SOURCE_GROUP("Interfaces\\swig.in\\embind\\thirdparty\\bullet3\\BulletDynamics\\Featherstone" FILES ${swigin_embind_bullet3_BulletDynamics_Featherstone} )
-SOURCE_GROUP("Interfaces\\swig.in\\embind\\thirdparty\\bullet3\\BulletDynamics\\MLCPSolvers" FILES ${swigin_embind_bullet3_BulletDynamics_MLCPSolvers} )
-SOURCE_GROUP("Interfaces\\swig.in\\embind\\thirdparty\\bullet3\\BulletDynamics\\Vehicle" FILES ${swigin_embind_bullet3_BulletDynamics_Vehicle} )
-SOURCE_GROUP("Interfaces\\swig.in\\embind\\thirdparty\\bullet3\\BulletSoftBody" FILES ${swigin_embind_bullet3_BulletSoftBody} )
-SOURCE_GROUP("Interfaces\\swig.in\\embind\\thirdparty\\bullet3\\LinearMath" FILES ${swigin_embind_bullet3_LinearMath} )
-SOURCE_GROUP("Interfaces\\swig.in\\embind\\thirdparty\\bullet3\\MiniCL" FILES ${swigin_embind_bullet3_MiniCL} )
-SOURCE_GROUP("Interfaces\\swig.in\\embind\\thirdparty\\bullet3\\MiniCL\\MiniCLTask" FILES ${swigin_embind_bullet3_MiniCL_MiniCLTask} )
-SOURCE_GROUP("Interfaces\\swig.in\\embind\\thirdparty\\bullet3\\vectormath" FILES ${swigin_embind_bullet3_vectormath} )
-SOURCE_GROUP("Interfaces\\swig.in\\embind\\thirdparty\\bullet3\\vectormath\\neon" FILES ${swigin_embind_bullet3_vectormath_neon} )
-SOURCE_GROUP("Interfaces\\swig.in\\embind\\thirdparty\\bullet3\\vectormath\\scalar" FILES ${swigin_embind_bullet3_vectormath_scalar} )
-SOURCE_GROUP("Interfaces\\swig.in\\embind\\thirdparty\\bullet3\\vectormath\\sse" FILES ${swigin_embind_bullet3_vectormath_sse} )
-SOURCE_GROUP("Interfaces\\swig.in\\embind\\thirdparty\\${NJLI_GRAPHICS_PLATFORM}" FILES ${swigin_embind_graphics_platform} )
+#SOURCE_GROUP("Interfaces\\swig.in\\embind" )
+#SOURCE_GROUP("Interfaces\\swig.in\\embind\\engine" FILES ${swigin_embind} )
+#SOURCE_GROUP("Interfaces\\swig.in\\embind\\engine\\njli" FILES ${swigin_embind_njli} )
+#SOURCE_GROUP("Interfaces\\swig.in\\embind\\engine\\njli\\builders" FILES ${swigin_embind_njli_builders} )
+#SOURCE_GROUP("Interfaces\\swig.in\\embind\\engine\\njli\\builders" FILES ${swigin_embind_njli_builders_graphics} )
+#SOURCE_GROUP("Interfaces\\swig.in\\embind\\engine\\njli\\builders" FILES ${swigin_embind_njli_builders} )
+#SOURCE_GROUP("Interfaces\\swig.in\\embind\\engine\\njli\\builders\\physics\\body" FILES ${swigin_embind_njli_builders_physics_body} )
+#SOURCE_GROUP("Interfaces\\swig.in\\embind\\engine\\njli\\builders\\physics\\constraint" FILES ${swigin_embind_njli_builders_physics_constraint} )
+#SOURCE_GROUP("Interfaces\\swig.in\\embind\\engine\\njli\\builders\\physics\\shape" FILES ${swigin_embind_njli_builders_physics_shape} )
+#SOURCE_GROUP("Interfaces\\swig.in\\embind\\engine\\njli\\builders\\platform" FILES ${swigin_embind_njli_builders_platform} )
+#SOURCE_GROUP("Interfaces\\swig.in\\embind\\engine\\njli\\builders\\sound" FILES ${swigin_embind_njli_builders_sound} )
+#SOURCE_GROUP("Interfaces\\swig.in\\embind\\engine\\njli\\builders\\steering" FILES ${swigin_embind_njli_builders_steering} )
+#SOURCE_GROUP("Interfaces\\swig.in\\embind\\engine\\njli\\builders\\steering\\behavior" FILES ${swigin_embind_njli_builders_steering_behavior} )
+#SOURCE_GROUP("Interfaces\\swig.in\\embind\\engine\\njli\\graphics" FILES ${swigin_embind_njli_graphics} )
+#SOURCE_GROUP("Interfaces\\swig.in\\embind\\engine\\njli\\physics" FILES ${swigin_embind_njli_physics} )
+#SOURCE_GROUP("Interfaces\\swig.in\\embind\\engine\\njli\\physics\\body" FILES ${swigin_embind_njli_physics_body} )
+#SOURCE_GROUP("Interfaces\\swig.in\\embind\\engine\\njli\\physics\\constraint" FILES ${swigin_embind_njli_physics_constraint} )
+#SOURCE_GROUP("Interfaces\\swig.in\\embind\\engine\\njli\\physics\\shape" FILES ${swigin_embind_njli_physics_shape} )
+#SOURCE_GROUP("Interfaces\\swig.in\\embind\\engine\\njli\\platform" FILES ${swigin_embind_njli_platform} )
+#SOURCE_GROUP("Interfaces\\swig.in\\embind\\engine\\njli\\sound" FILES ${swigin_embind_njli_sound} )
+#SOURCE_GROUP("Interfaces\\swig.in\\embind\\engine\\njli\\steering" FILES ${swigin_embind_njli_steering} )
+#SOURCE_GROUP("Interfaces\\swig.in\\embind\\engine\\njli\\steering\\behavior" FILES ${swigin_embind_njli_steering_behavior} )
+#SOURCE_GROUP("Interfaces\\swig.in\\embind\\thirdparty" )
+#SOURCE_GROUP("Interfaces\\swig.in\\embind\\thirdparty\\bullet3" FILES ${swigin_embind_bullet3} )
+#SOURCE_GROUP("Interfaces\\swig.in\\embind\\thirdparty\\bullet3\\BulletCollision" FILES ${swigin_embind_bullet3_BulletCollision} )
+#SOURCE_GROUP("Interfaces\\swig.in\\embind\\thirdparty\\bullet3\\BulletCollision\\BroadphaseCollision" FILES ${swigin_embind_bullet3_BulletCollision_BroadphaseCollision} )
+#SOURCE_GROUP("Interfaces\\swig.in\\embind\\thirdparty\\bullet3\\BulletCollision\\CollisionDispatch" FILES ${swigin_embind_bullet3_BulletCollision_CollisionDispatch} )
+#SOURCE_GROUP("Interfaces\\swig.in\\embind\\thirdparty\\bullet3\\BulletCollision\\CollisionShapes" FILES ${swigin_embind_bullet3_BulletCollision_CollisionShapes} )
+#SOURCE_GROUP("Interfaces\\swig.in\\embind\\thirdparty\\bullet3\\BulletCollision\\Gimpact" FILES ${swigin_embind_bullet3_BulletCollision_Gimpact} )
+#SOURCE_GROUP("Interfaces\\swig.in\\embind\\thirdparty\\bullet3\\BulletCollision\\NarrowPhaseCollision" FILES ${swigin_embind_bullet3_BulletCollision_NarrowPhaseCollision} )
+#SOURCE_GROUP("Interfaces\\swig.in\\embind\\thirdparty\\bullet3\\BulletDynamics" FILES ${swigin_embind_bullet3_BulletDynamics} )
+#SOURCE_GROUP("Interfaces\\swig.in\\embind\\thirdparty\\bullet3\\BulletDynamics\\Character" FILES ${swigin_embind_bullet3_BulletDynamics_Character} )
+#SOURCE_GROUP("Interfaces\\swig.in\\embind\\thirdparty\\bullet3\\BulletDynamics\\ConstraintSolver" FILES ${swigin_embind_bullet3_BulletDynamics_ConstraintSolver} )
+#SOURCE_GROUP("Interfaces\\swig.in\\embind\\thirdparty\\bullet3\\BulletDynamics\\Dynamics" FILES ${swigin_embind_bullet3_BulletDynamics_Dynamics} )
+#SOURCE_GROUP("Interfaces\\swig.in\\embind\\thirdparty\\bullet3\\BulletDynamics\\Featherstone" FILES ${swigin_embind_bullet3_BulletDynamics_Featherstone} )
+#SOURCE_GROUP("Interfaces\\swig.in\\embind\\thirdparty\\bullet3\\BulletDynamics\\MLCPSolvers" FILES ${swigin_embind_bullet3_BulletDynamics_MLCPSolvers} )
+#SOURCE_GROUP("Interfaces\\swig.in\\embind\\thirdparty\\bullet3\\BulletDynamics\\Vehicle" FILES ${swigin_embind_bullet3_BulletDynamics_Vehicle} )
+#SOURCE_GROUP("Interfaces\\swig.in\\embind\\thirdparty\\bullet3\\BulletSoftBody" FILES ${swigin_embind_bullet3_BulletSoftBody} )
+#SOURCE_GROUP("Interfaces\\swig.in\\embind\\thirdparty\\bullet3\\LinearMath" FILES ${swigin_embind_bullet3_LinearMath} )
+#SOURCE_GROUP("Interfaces\\swig.in\\embind\\thirdparty\\bullet3\\MiniCL" FILES ${swigin_embind_bullet3_MiniCL} )
+#SOURCE_GROUP("Interfaces\\swig.in\\embind\\thirdparty\\bullet3\\MiniCL\\MiniCLTask" FILES ${swigin_embind_bullet3_MiniCL_MiniCLTask} )
+#SOURCE_GROUP("Interfaces\\swig.in\\embind\\thirdparty\\bullet3\\vectormath" FILES ${swigin_embind_bullet3_vectormath} )
+#SOURCE_GROUP("Interfaces\\swig.in\\embind\\thirdparty\\bullet3\\vectormath\\neon" FILES ${swigin_embind_bullet3_vectormath_neon} )
+#SOURCE_GROUP("Interfaces\\swig.in\\embind\\thirdparty\\bullet3\\vectormath\\scalar" FILES ${swigin_embind_bullet3_vectormath_scalar} )
+#SOURCE_GROUP("Interfaces\\swig.in\\embind\\thirdparty\\bullet3\\vectormath\\sse" FILES ${swigin_embind_bullet3_vectormath_sse} )
+#SOURCE_GROUP("Interfaces\\swig.in\\embind\\thirdparty\\${NJLI_GRAPHICS_PLATFORM}" FILES ${swigin_embind_graphics_platform} )
 #IF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
 
 ADD_CUSTOM_COMMAND( 
@@ -5122,12 +5122,6 @@ IF( ${NJLI_BUILD_PLATFORM} STREQUAL "android" )
 ELSE()
   IF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" AND IS_DEBUG )
 
-    #LIST(REMOVE_ITEM EXTRA_PLATFORM_LIBS "--bind")
-
-    MESSAGE("
-        ${njli_generated_swig_embind} 
-        ${njli_generated_swig_embind_platform}
-    ")
     ADD_LIBRARY( libnjli_bytecode_shared SHARED 
         ${njli_generated_swig_embind} 
         ${njli_generated_swig_embind_platform}

@@ -10,3 +10,5 @@
 %rename(getPlane_btVector3_btVector3_int) getPlane(btVector3 &,btVector3 &,int) const;
 
 %rename(str) operator std::string;
+
+

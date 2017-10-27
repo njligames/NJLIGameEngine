@@ -450,6 +450,21 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("maxDot", &btVector3::maxDot)
 	.function("minDot", &btVector3::minDot)
 	.function("dot3", &btVector3::dot3)
+	.function("__str__", &btVector3::__str__)
+	.constructor<r.q(const).btVector3>()
+	.function("__add__", &btVector3::__add__)
+	.function("__sub__", &btVector3::__sub__)
+	.function("__mul___r.q(const).btVector3", select_overload<btVector3(r.q(const).btVector3)>(&btVector3::__mul__))
+	.function("__mul___r.q(const).btMatrix3x3", select_overload<btVector3(r.q(const).btMatrix3x3)>(&btVector3::__mul__))
+	.function("__mul___r.q(const).btScalar", select_overload<btVector3(r.q(const).btScalar)>(&btVector3::__mul__))
+	.function("__mul___r.q(const).btQuaternion", select_overload<btQuaternion(r.q(const).btQuaternion)>(&btVector3::__mul__))
+	.function("__div___r.q(const).btVector3", select_overload<btVector3(r.q(const).btVector3)>(&btVector3::__div__))
+	.function("__div___r.q(const).btScalar", select_overload<btVector3(r.q(const).btScalar)>(&btVector3::__div__))
+	.function("__neg__", &btVector3::__neg__)
+	.function("__concat__", &btVector3::__concat__)
+	.function("__eq__", &btVector3::__eq__)
+	.function("__lt__", &btVector3::__lt__)
+	.function("__le__", &btVector3::__le__)
 	;
 	function("btDot", &btDot);
 	function("btDistance2", &btDistance2);
@@ -466,6 +481,12 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("minAxis4", &btVector4::minAxis4)
 	.function("closestAxis4", &btVector4::closestAxis4)
 	.function("setValue", &btVector4::setValue)
+	.function("__str__", &btVector4::__str__)
+	.constructor<r.q(const).btVector4>()
+	.function("__concat__", &btVector4::__concat__)
+	.function("__eq__", &btVector4::__eq__)
+	.function("__lt__", &btVector4::__lt__)
+	.function("__le__", &btVector4::__le__)
 	;
 	function("btSwapScalarEndian", &btSwapScalarEndian);
 	function("btSwapVector3Endian", &btSwapVector3Endian);
@@ -704,6 +725,15 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("deSerializeFloat", &btQuaternion::deSerializeFloat)
 	.function("serializeDouble", &btQuaternion::serializeDouble)
 	.function("deSerializeDouble", &btQuaternion::deSerializeDouble)
+	.function("__str__", &btQuaternion::__str__)
+	.constructor<r.q(const).btQuaternion>()
+	.function("__add__", &btQuaternion::__add__)
+	.function("__sub__", &btQuaternion::__sub__)
+	.function("__mul___r.q(const).btQuaternion", select_overload<btQuaternion(r.q(const).btQuaternion)>(&btQuaternion::__mul__))
+	.function("__mul___r.q(const).btVector3", select_overload<btQuaternion(r.q(const).btVector3)>(&btQuaternion::__mul__))
+	.function("__mul___r.q(const).btScalar", select_overload<btQuaternion(r.q(const).btScalar)>(&btQuaternion::__mul__))
+	.function("__div__", &btQuaternion::__div__)
+	.function("__concat__", &btQuaternion::__concat__)
 	;
 	function("dot", &dot);
 	function("length", &length);
@@ -761,6 +791,14 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("deSerialize", &btMatrix3x3::deSerialize)
 	.function("deSerializeFloat", &btMatrix3x3::deSerializeFloat)
 	.function("deSerializeDouble", &btMatrix3x3::deSerializeDouble)
+	.function("__str__", &btMatrix3x3::__str__)
+	.function("__add__", &btMatrix3x3::__add__)
+	.function("__sub__", &btMatrix3x3::__sub__)
+	.function("__mul___r.q(const).btMatrix3x3", select_overload<btMatrix3x3(r.q(const).btMatrix3x3)>(&btMatrix3x3::__mul__))
+	.function("__mul___r.q(const).btVector3", select_overload<btVector3(r.q(const).btVector3)>(&btMatrix3x3::__mul__))
+	.function("__mul___r.q(const).btScalar", select_overload<btMatrix3x3(r.q(const).btScalar)>(&btMatrix3x3::__mul__))
+	.function("__concat__", &btMatrix3x3::__concat__)
+	.function("__eq__", &btMatrix3x3::__eq__)
 	;
 	class_<btMatrix3x3FloatData>("btMatrix3x3FloatData")
 	constant("m_el", m_el);
@@ -800,6 +838,12 @@ EMSCRIPTEN_BINDINGS(bullet) {
 	.function("deSerialize", &btTransform::deSerialize)
 	.function("deSerializeDouble", &btTransform::deSerializeDouble)
 	.function("deSerializeFloat", &btTransform::deSerializeFloat)
+	.function("__str__", &btTransform::__str__)
+	.function("__mul___r.q(const).btVector3", select_overload<btVector3(r.q(const).btVector3)>(&btTransform::__mul__))
+	.function("__mul___r.q(const).btQuaternion", select_overload<btQuaternion(r.q(const).btQuaternion)>(&btTransform::__mul__))
+	.function("__mul___r.q(const).btTransform", select_overload<btTransform(r.q(const).btTransform)>(&btTransform::__mul__))
+	.function("__eq__", &btTransform::__eq__)
+	.function("__concat__", &btTransform::__concat__)
 	;
 	class_<btTransformFloatData>("btTransformFloatData")
 	constant("m_basis", m_basis);

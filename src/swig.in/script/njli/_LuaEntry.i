@@ -6,14 +6,14 @@
 %include "_IgnoreNJLI.i"
 %include "_IgnorePlatform.i"
 #ifdef USE_BULLET_LIBRARY
-%import "/Users/jamesfolk/Documents/NJLI/External/thirdparty/swig.in/lua/bullet3/_IgnoreBullet.i"
+%import "/Users/jamesfolk/Documents/NJLI/External/thirdparty/swig.in/script/bullet3/_IgnoreBullet.i"
 #endif
-%import "/Users/jamesfolk/Documents/NJLI/External/thirdparty/swig.in/lua/OPENGL/_Ignore.i"
+%import "/Users/jamesfolk/Documents/NJLI/External/thirdparty/swig.in/script/OPENGL/_Ignore.i"
 
 #ifdef USE_BULLET_LIBRARY
 %include "_Module_Bullet.i"
 #endif
-%import "/Users/jamesfolk/Documents/NJLI/External/thirdparty/swig.in/lua/OPENGL/_LuaEntry.i"
+%import "/Users/jamesfolk/Documents/NJLI/External/thirdparty/swig.in/script/OPENGL/_LuaEntry.i"
 
 %include "AbstractActionable.i"
 %include "AbstractBuilder.i"
@@ -30,6 +30,7 @@
 %include "AbstractPhysicsShape.i"
 %include "AbstractGeometry.i"
 
+#ifdef SWIGLUA
 %import <lua/carrays.i>
 %import <lua/factory.i>
 %import <lua/lua_fnptr.i>
@@ -44,6 +45,7 @@
 %import <lua/typemaps.i>
 %import <lua/wchar.i>
 %import <lua/lua.swg>
+#endif
 
 %include "NJLIArray.i"
 %include "NJLICast.i"
@@ -58,6 +60,7 @@
 %include "_RenameNJLI.i"
 %include "_RenamePlatform.i"
 
+#ifdef SWIGLUA
 //MARK: %luacode wrapper doesn't work in an external file.
 %luacode
 %{
@@ -67,6 +70,7 @@
 
     greet()
 %}
+#endif
 
 %insert("runtime")
 
@@ -740,6 +744,7 @@
 //%include "WorldPythonVirtualMachine.h"
 %include "WorldSound.h"
 
+#ifdef SWIGLUA
 //MARK: %native wrapper doesn't work in an external file.
 //%native(my_func) int native_function(lua_State*L);  // registers native_function() with SWIG
 %native(build) int build(lua_State*L);  // registers native_function() with SWIG
@@ -2123,7 +2128,7 @@ break;
     }
 
     %}
-
+#endif //SWIGLUA
 
 //#########################################################################################################
 //Interface files to Public interface

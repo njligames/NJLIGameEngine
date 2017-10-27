@@ -1,3 +1,4 @@
+//#ifdef SWIGLUA
 %define SWIG_USERDATA_TYPEMAP(TYPE)
 %typemap(in,checkfn="lua_isuserdata")     TYPE *INPUT($*1_ltype temp), TYPE &INPUT($*1_ltype temp)
 %{ temp = *(($*1_ltype*)((swig_lua_userdata*)lua_touserdata(L,$input))->ptr);
@@ -17,11 +18,7 @@
 %{ temp = *(($*1_ltype*)((swig_lua_userdata*)lua_touserdata(L,$input))->ptr);
     $1 = &temp; %}
 %enddef
-
-
-
-
-
+//#endif
 
 
 

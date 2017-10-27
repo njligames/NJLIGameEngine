@@ -43,7 +43,7 @@ if [[ ${MY_DEFINES} == *"USE_BULLET_LIBRARY"* ]]; then
       -I${PWD}/../External/thirdparty/BUILD/include/bullet3 \
       -I${PWD}/src/bullet \
       -o ${PWD}/src/njli/generated/swig/embind/embind_bullet.cpp \
-      ${PWD}/../External/thirdparty/swig.in/embind/bullet3/_LuaEntry.i
+      ${PWD}/../External/thirdparty/swig.in/script/bullet3/_LuaEntry.i
   fi
 
   export SWIG_THIRDPARTY_INCLUDES=" \
@@ -84,7 +84,7 @@ if [[ ${MY_DEFINES} == *"WRAP_EMBIND"* ]]; then
     -DSWIG_TYPE_TABLE=myprojectname \
     -DGL_GLEXT_PROTOTYPES=1 \
     -o ${PWD}/src/njli/generated/swig/embind/opengl_es_2/embind_gl_es_2.cpp \
-    ${PWD}/../External/thirdparty/swig.in/embind/opengl_es_2/_LuaEntry.i
+    ${PWD}/../External/thirdparty/swig.in/script/opengl_es_2/_LuaEntry.i
 fi
 
 ###########################################################################################
@@ -101,7 +101,7 @@ if [[ ${MY_DEFINES} == *"WRAP_EMBIND"* ]]; then
   /usr/local/bin/swig -fcompact -fvirtual -v -w201 -w312 -c++ -embind -includeall -ignoremissing -features directors,autodoc=1 \
     -DSWIG_TYPE_TABLE=myprojectname \
     -o ${PWD}/src/njli/generated/swig/embind/opengl_2/embind_gl_2.cpp \
-    ${PWD}/../External/thirdparty/swig.in/embind/opengl_2/_LuaEntry.i
+    ${PWD}/../External/thirdparty/swig.in/script/opengl_2/_LuaEntry.i
 fi
 
 ###########################################################################################
@@ -196,32 +196,32 @@ if [[ ${MY_DEFINES} == *"WRAP_EMBIND"* ]]; then
     -I${PWD}/src/njli/steering \
     -I${PWD}/src/njli/steering/behavior \
     \
-    -I${PWD}/src/swig.in/embind \
-    -I${PWD}/src/swig.in/embind/njli \
-    -I${PWD}/src/swig.in/embind/njli/builders \
-    -I${PWD}/src/swig.in/embind/njli/builders/graphics \
-    -I${PWD}/src/swig.in/embind/njli/builders/physics \
-    -I${PWD}/src/swig.in/embind/njli/builders/physics/body \
-    -I${PWD}/src/swig.in/embind/njli/builders/physics/constraint \
-    -I${PWD}/src/swig.in/embind/njli/builders/physics/shape \
-    -I${PWD}/src/swig.in/embind/njli/builders/platform \
-    -I${PWD}/src/swig.in/embind/njli/builders/sound \
-    -I${PWD}/src/swig.in/embind/njli/builders/steering \
-    -I${PWD}/src/swig.in/embind/njli/builders/steering/behavior \
-    -I${PWD}/src/swig.in/embind/njli/graphics \
-    -I${PWD}/src/swig.in/embind/njli/physics \
-    -I${PWD}/src/swig.in/embind/njli/physics/body \
-    -I${PWD}/src/swig.in/embind/njli/physics/constraint \
-    -I${PWD}/src/swig.in/embind/njli/physics/shape \
-    -I${PWD}/src/swig.in/embind/njli/platform \
-    -I${PWD}/src/swig.in/embind/njli/sound \
-    -I${PWD}/src/swig.in/embind/njli/steering \
-    -I${PWD}/src/swig.in/embind/njli/steering/behavior \
+    -I${PWD}/src/swig.in/script \
+    -I${PWD}/src/swig.in/script/njli \
+    -I${PWD}/src/swig.in/script/njli/builders \
+    -I${PWD}/src/swig.in/script/njli/builders/graphics \
+    -I${PWD}/src/swig.in/script/njli/builders/physics \
+    -I${PWD}/src/swig.in/script/njli/builders/physics/body \
+    -I${PWD}/src/swig.in/script/njli/builders/physics/constraint \
+    -I${PWD}/src/swig.in/script/njli/builders/physics/shape \
+    -I${PWD}/src/swig.in/script/njli/builders/platform \
+    -I${PWD}/src/swig.in/script/njli/builders/sound \
+    -I${PWD}/src/swig.in/script/njli/builders/steering \
+    -I${PWD}/src/swig.in/script/njli/builders/steering/behavior \
+    -I${PWD}/src/swig.in/script/njli/graphics \
+    -I${PWD}/src/swig.in/script/njli/physics \
+    -I${PWD}/src/swig.in/script/njli/physics/body \
+    -I${PWD}/src/swig.in/script/njli/physics/constraint \
+    -I${PWD}/src/swig.in/script/njli/physics/shape \
+    -I${PWD}/src/swig.in/script/njli/platform \
+    -I${PWD}/src/swig.in/script/njli/sound \
+    -I${PWD}/src/swig.in/script/njli/steering \
+    -I${PWD}/src/swig.in/script/njli/steering/behavior \
     \
     -I${MY_DEBUG_DRAW_DIRECTORY} \
     \
     -o ${PWD}/src/njli/generated/swig/embind/embind_njli.cpp \
-    ${PWD}/src/swig.in/embind/njli/_LuaEntry.i
+    ${PWD}/src/swig.in/script/njli/_LuaEntry.i
 fi
 
 ###########################################################################################
