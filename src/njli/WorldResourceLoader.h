@@ -237,7 +237,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    bool load(const char* file, Lua* lua); //Lua
+    // bool load(const char* file, Lua* lua); //Lua
 
     /**
          *  @author James Folk, 16-02-11 18:02:15

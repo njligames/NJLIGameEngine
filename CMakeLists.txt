@@ -85,6 +85,9 @@ OPTION(NJLI_USE_USYNERGY_LIBRARY "Use usynergy library"                ON)
 
 #OPTION(NJLI_USE_TINYXML2_LIBRARY "Use tinyxml2 library"                OFF)
 
+INCLUDE("${CMAKE_SOURCE_DIR}/cmake/unity-build.cmake")
+INCLUDE("${CMAKE_SOURCE_DIR}/cmake/download-extract.cmake")
+
 IF( ${NJLI_GRAPHICS_PLATFORM} STREQUAL "opengl_es_2" )
   ADD_DEFINITIONS(-DNJLI_GL_ES2)
 ELSEIF( ${NJLI_GRAPHICS_PLATFORM} STREQUAL "opengl_es_3" )
@@ -5231,8 +5234,9 @@ ELSE()
 
         #MESSAGE("CMAKE_SOURCE_DIR ${CMAKE_SOURCE_DIR}/../External/thirdparty/android_file.h")
 
-    ADD_EXECUTABLE( EngineSource
-      ${CMAKE_SOURCE_DIR}/../External/thirdparty/android_file.cpp
+
+    set(unity_build_srcs 
+      ${CMAKE_SOURCE_DIR}/../External/thirdparty/android_file.cpp 
       ${CMAKE_SOURCE_DIR}/../External/thirdparty/android_file.h
       ${NJLIGameEngine_SRCS} 
       ${njli_generated} 
@@ -5242,6 +5246,12 @@ ELSE()
       ${NJLI_SOURCE_DIRECTORY}/njli/platform/main.cpp
       ${NJLI_RESOURCES}
       ${NJLIGameEngine_THIRDPARTY_INC}
+      )
+
+    enable_unity_build(UnityBuildDemo "${unity_build_srcs}")
+
+    ADD_EXECUTABLE( EngineSource
+      ${unity_build_srcs}
       )
     IF( IS_DEBUG)
       TARGET_LINK_LIBRARIES( EngineSource libnjli_bytecode_shared)

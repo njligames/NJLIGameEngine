@@ -816,20 +816,21 @@ namespace njli
         
         return retVal;
     }
-    
+
+    /*
     bool WorldResourceLoader::load(const char *filePath, Lua *object)
     {
         SDL_assert(object);
         bool retVal = false;
-        
+
         if (filePath)
         {
             FileData *fileData = loadFileData(filePath);
-            
+
             char *fileContent = (char*)fileData->getBufferPtr();
             long fileSize = fileData->getSize();
             fileContent[fileSize] = '\0';
-            
+
             if(fileContent)
             {
                 //!!!TODO: load the Lua object...
@@ -839,13 +840,15 @@ namespace njli
             else
             {
                 if(!fileContent)
-                    SDL_LogWarn(SDL_LOG_CATEGORY_TEST, "filename is empty for the sound.");
+                    SDL_LogWarn(SDL_LOG_CATEGORY_TEST, "filename is empty for
+    the sound.");
             }
         }
-        
+
         return retVal;
     }
-    
+    */
+
     bool WorldResourceLoader::load(const char *filePath, Xml *object)
     {
         SDL_assert(object);
