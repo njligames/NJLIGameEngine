@@ -43,6 +43,8 @@ build_emscripten_sublime()
         #cpack ../.. --config CPackConfig.cmake      
 
         emmake make -j8 EngineSource
+        emmake make -j8 lua
+        emmake make -j8 luac
 
     fi
 }

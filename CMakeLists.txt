@@ -3824,6 +3824,9 @@ FILE(GLOB NJLIGameEngine_THIRDPARTY_ITFS
 )
 
 SET( GAME_ASSETS "${NJLIGameEngine_COMMON_DIRECTORY}/assets" )
+SET( LUA_ASSETS "${NJLI_SOURCE_DIRECTORY}/lua/etc/lua.ico" "${NJLI_SOURCE_DIRECTORY}/lua/src/lua.rc")
+ 
+         
 FILE( GLOB_RECURSE GAME_ASSETS_FILES "${NJLIGameEngine_COMMON_DIRECTORY}/assets/*" )
 
 SET(EXTRA_PLATFORM_LIBS "")
@@ -5140,6 +5143,24 @@ ELSE()
 
   IF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" OR ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" OR ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
 
+      LIST(APPEND unity_build_srcs_NJLIGameEngine {NJLIGameEngine_SRCS} )
+      LIST(APPEND unity_build_srcs_NJLIGameEngine {njli_generated} )
+      LIST(APPEND unity_build_srcs_NJLIGameEngine {njli_generated_swig} )
+      LIST(APPEND unity_build_srcs_NJLIGameEngine {njli_generated_swig_lua} )
+      LIST(APPEND unity_build_srcs_NJLIGameEngine {njli_generated_swig_lua_platform})
+      LIST(APPEND unity_build_srcs_NJLIGameEngine {NJLI_SOURCE_DIRECTORY}/njli/platform/Engine.h)
+
+      FOREACH(item ${unity_build_srcs_NJLIGameEngine})
+        IF(${item} MATCHES "[A-Za-z0-9/]*DS_Store")
+          LIST(REMOVE_ITEM unity_build_srcs_NJLIGameEngine ${item})
+        ENDIF(${item} MATCHES "[A-Za-z0-9/]*DS_Store")
+
+        IF(${item} MATCHES "[A-Za-z0-9/]*swp")
+          LIST(REMOVE_ITEM unity_build_srcs_NJLIGameEngine ${item})
+        ENDIF(${item} MATCHES "[A-Za-z0-9/]*swp")
+      ENDFOREACH(item)
+
+      enable_unity_build(UnityBuild_NJLIGameEngine "${unity_build_srcs_NJLIGameEngine}")
     ADD_LIBRARY( NJLIGameEngine
       SHARED
       ${NJLIGameEngine_SRCS} 
@@ -5159,12 +5180,25 @@ ELSE()
 
   ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" OR ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" OR ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
 
+       LIST(APPEND unity_build_srcs_libnjli_static ${NJLIGameEngine_SRCS} )
+       LIST(APPEND unity_build_srcs_libnjli_static ${njli_generated} )
+       LIST(APPEND unity_build_srcs_libnjli_static ${njli_generated_swig} )
+       LIST(APPEND unity_build_srcs_libnjli_static ${njli_generated_swig_lua} )
+       LIST(APPEND unity_build_srcs_libnjli_static ${njli_generated_swig_lua_platform})
+
+      FOREACH(item ${unity_build_srcs_libnjli_static})
+        IF(${item} MATCHES "[A-Za-z0-9/]*DS_Store")
+          LIST(REMOVE_ITEM unity_build_srcs_libnjli_static ${item})
+        ENDIF(${item} MATCHES "[A-Za-z0-9/]*DS_Store")
+
+        IF(${item} MATCHES "[A-Za-z0-9/]*swp")
+          LIST(REMOVE_ITEM unity_build_srcs_libnjli_static ${item})
+        ENDIF(${item} MATCHES "[A-Za-z0-9/]*swp")
+      ENDFOREACH(item)
+
+      enable_unity_build(UnityBuild_libnjli_static "${unity_build_srcs_libnjli_static}")
     ADD_LIBRARY( libnjli_static STATIC 
-        ${NJLIGameEngine_SRCS} 
-        ${njli_generated} 
-        ${njli_generated_swig} 
-        ${njli_generated_swig_lua} 
-        ${njli_generated_swig_lua_platform}
+        ${unity_build_srcs_libnjli_static} 
         )
     SET_TARGET_PROPERTIES( libnjli_static PROPERTIES OUTPUT_NAME libnjli )
     SET_TARGET_PROPERTIES( libnjli_static PROPERTIES PREFIX "")
@@ -5175,36 +5209,85 @@ ELSE()
 
 
     IF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" OR ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
+      LIST(APPEND unity_build_srcs_lua ${NJLIGameEngine_SRCS})
+      LIST(APPEND unity_build_srcs_lua ${njli_generated})
+      LIST(APPEND unity_build_srcs_lua ${njli_generated_swig})
+      LIST(APPEND unity_build_srcs_lua ${njli_generated_swig_lua})
+      LIST(APPEND unity_build_srcs_lua ${njli_generated_swig_lua_platform})
+      LIST(APPEND unity_build_srcs_lua "${NJLI_SOURCE_DIRECTORY}/lua/src/lua.c")
+
+      FOREACH(item ${unity_build_srcs_lua})
+        IF(${item} MATCHES "[A-Za-z0-9/]*DS_Store")
+          LIST(REMOVE_ITEM unity_build_srcs_lua ${item})
+        ENDIF(${item} MATCHES "[A-Za-z0-9/]*DS_Store")
+
+        IF(${item} MATCHES "[A-Za-z0-9/]*swp")
+          LIST(REMOVE_ITEM unity_build_srcs_lua ${item})
+        ENDIF(${item} MATCHES "[A-Za-z0-9/]*swp")
+      ENDFOREACH(item)
+
+      enable_unity_build(UnityBuild_lua "${unity_build_srcs_lua}")
       ADD_EXECUTABLE ( lua 
-        ${NJLIGameEngine_SRCS} 
-        ${njli_generated} 
-        ${njli_generated_swig} 
-        ${njli_generated_swig_lua} 
-        ${njli_generated_swig_lua_platform} 
-        "${NJLI_SOURCE_DIRECTORY}/lua/src/lua.c" 
-        "${NJLI_SOURCE_DIRECTORY}/lua/src/lua.rc" 
+        ${unity_build_srcs_lua} 
+        ${LUA_ASSETS}
+        )
+      SET_TARGET_PROPERTIES(
+        lua PROPERTIES
+        RESOURCE "${LUA_ASSETS}" 
         )
       TARGET_LINK_LIBRARIES( lua ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} )
       ADD_DEPENDENCIES(lua WrapSWIG)
 
+      LIST(APPEND unity_build_srcs_luac ${NJLIGameEngine_SRCS})
+      LIST(APPEND unity_build_srcs_luac ${njli_generated})
+      LIST(APPEND unity_build_srcs_luac ${njli_generated_swig})
+      LIST(APPEND unity_build_srcs_luac ${njli_generated_swig_lua})
+      LIST(APPEND unity_build_srcs_luac ${njli_generated_swig_lua_platform})
+      LIST(APPEND unity_build_srcs_luac "${NJLI_SOURCE_DIRECTORY}/lua/src/luac.c")
+
+      FOREACH(item ${unity_build_srcs_luac})
+        IF(${item} MATCHES "[A-Za-z0-9/]*DS_Store")
+          LIST(REMOVE_ITEM unity_build_srcs_luac ${item})
+        ENDIF(${item} MATCHES "[A-Za-z0-9/]*DS_Store")
+
+        IF(${item} MATCHES "[A-Za-z0-9/]*swp")
+          LIST(REMOVE_ITEM unity_build_srcs_luac ${item})
+        ENDIF(${item} MATCHES "[A-Za-z0-9/]*swp")
+      ENDFOREACH(item)
+
+      enable_unity_build(UnityBuild_luac "${unity_build_srcs_luac}")
       ADD_EXECUTABLE ( luac 
-        ${NJLIGameEngine_SRCS} 
-        ${njli_generated} 
-        ${njli_generated_swig} 
-        ${njli_generated_swig_lua} 
-        ${njli_generated_swig_lua_platform} 
-        "${NJLI_SOURCE_DIRECTORY}/lua/src/luac.c" 
-        "${NJLI_SOURCE_DIRECTORY}/lua/src/lua.rc" 
+        ${unity_build_srcs_luac}
+        ${LUA_ASSETS}
         )
+      SET_TARGET_PROPERTIES( luac PROPERTIES RESOURCE "${LUA_ASSETS}" )
       TARGET_LINK_LIBRARIES( luac ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} )
+      #SET_SOURCE_FILES_PROPERTIES(
+      #  ${LUA_ASSETS}
+      #  PROPERTIES
+      #  MACOSX_PACKAGE_LOCATION ${NJLI_PRODUCT_NAME}/Contents/Resources/
+      #  )
       ADD_DEPENDENCIES(luac WrapSWIG)
 
+       LIST(APPEND unity_build_srcs_libnjli_lua_module ${NJLIGameEngine_SRCS} )
+       LIST(APPEND unity_build_srcs_libnjli_lua_module ${njli_generated} )
+       LIST(APPEND unity_build_srcs_libnjli_lua_module ${njli_generated_swig} )
+       LIST(APPEND unity_build_srcs_libnjli_lua_module ${njli_generated_swig_lua})
+       LIST(APPEND unity_build_srcs_libnjli_lua_module ${njli_generated_swig_lua_platform})
+
+      FOREACH(item ${unity_build_srcs_libnjli_lua_module})
+        IF(${item} MATCHES "[A-Za-z0-9/]*DS_Store")
+          LIST(REMOVE_ITEM unity_build_srcs_libnjli_lua_module ${item})
+        ENDIF(${item} MATCHES "[A-Za-z0-9/]*DS_Store")
+
+        IF(${item} MATCHES "[A-Za-z0-9/]*swp")
+          LIST(REMOVE_ITEM unity_build_srcs_libnjli_lua_module ${item})
+        ENDIF(${item} MATCHES "[A-Za-z0-9/]*swp")
+      ENDFOREACH(item)
+
+      enable_unity_build(UnityBuild_libnjli_lua_module "${unity_build_srcs_libnjli_lua_module}")
       ADD_LIBRARY( libnjli_lua_module MODULE 
-        ${NJLIGameEngine_SRCS} 
-        ${njli_generated} 
-        ${njli_generated_swig} 
-        ${njli_generated_swig_lua}
-        ${njli_generated_swig_lua_platform}
+        ${unity_build_srcs_libnjli_lua_module} 
         )
       SET_TARGET_PROPERTIES( libnjli_lua_module PROPERTIES OUTPUT_NAME njli )
       SET_TARGET_PROPERTIES( libnjli_lua_module PROPERTIES PREFIX "")
@@ -5215,43 +5298,62 @@ ELSE()
     ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" OR ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten")
 
     #IF( NOT ${NJLI_BUILD_PLATFORM} STREQUAL "linux")
+
+
+       LIST(APPEND unity_build_srcs_libnjli_shared ${NJLIGameEngine_SRCS} )
+       LIST(APPEND unity_build_srcs_libnjli_shared ${njli_generated} )
+       LIST(APPEND unity_build_srcs_libnjli_shared ${njli_generated_swig})
+       LIST(APPEND unity_build_srcs_libnjli_shared ${njli_generated_swig_lua})
+       LIST(APPEND unity_build_srcs_libnjli_shared ${njli_generated_swig_lua_platform} )
+
+      FOREACH(item ${unity_build_srcs_libnjli_shared})
+        IF(${item} MATCHES "[A-Za-z0-9/]*DS_Store")
+          LIST(REMOVE_ITEM unity_build_srcs_libnjli_shared ${item})
+        ENDIF(${item} MATCHES "[A-Za-z0-9/]*DS_Store")
+
+        IF(${item} MATCHES "[A-Za-z0-9/]*swp")
+          LIST(REMOVE_ITEM unity_build_srcs_libnjli_shared ${item})
+        ENDIF(${item} MATCHES "[A-Za-z0-9/]*swp")
+      ENDFOREACH(item)
+
+      enable_unity_build(UnityBuild_libnjli_shared "${unity_build_srcs_libnjli_shared}")
+
         ADD_LIBRARY( libnjli_shared SHARED 
-            ${NJLIGameEngine_SRCS} 
-            ${njli_generated} 
-            ${njli_generated_swig}
-            ${njli_generated_swig_lua}
-            ${njli_generated_swig_lua_platform} 
+            ${unity_build_srcs_libnjli_shared} 
             )
         SET_TARGET_PROPERTIES( libnjli_shared PROPERTIES OUTPUT_NAME libnjli )
         SET_TARGET_PROPERTIES( libnjli_shared PROPERTIES PREFIX "")
         TARGET_LINK_LIBRARIES( libnjli_shared ${EXTRA_PLATFORM_LIBS} ${NJLIGameEngine_LBY} )
-        SET_TARGET_PROPERTIES( libnjli_shared PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
+        #SET_TARGET_PROPERTIES( libnjli_shared PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
         SET_TARGET_PROPERTIES( libnjli_shared PROPERTIES PUBLIC_HEADER ${NJLI_SOURCE_DIRECTORY}/njli/platform/Engine.h)
         ADD_DEPENDENCIES(libnjli_shared WrapSWIG)
 
 
-        #ENDIF()
+      LIST(APPEND unity_build_srcs_EngineSource ${CMAKE_SOURCE_DIR}/../External/thirdparty/android_file.cpp )
+      LIST(APPEND unity_build_srcs_EngineSource ${CMAKE_SOURCE_DIR}/../External/thirdparty/android_file.h )
+      LIST(APPEND unity_build_srcs_EngineSource ${NJLIGameEngine_SRCS} )
+      LIST(APPEND unity_build_srcs_EngineSource ${njli_generated} )
+      LIST(APPEND unity_build_srcs_EngineSource ${njli_generated_swig} )
+      LIST(APPEND unity_build_srcs_EngineSource ${njli_generated_swig_lua} )
+      LIST(APPEND unity_build_srcs_EngineSource ${njli_generated_swig_lua_platform} )
+      LIST(APPEND unity_build_srcs_EngineSource ${NJLI_SOURCE_DIRECTORY}/njli/platform/main.cpp )
+      LIST(APPEND unity_build_srcs_EngineSource ${NJLIGameEngine_THIRDPARTY_INC} )
 
-        #MESSAGE("CMAKE_SOURCE_DIR ${CMAKE_SOURCE_DIR}/../External/thirdparty/android_file.h")
+      FOREACH(item ${unity_build_srcs_EngineSource})
+        IF(${item} MATCHES "[A-Za-z0-9/]*DS_Store")
+          LIST(REMOVE_ITEM unity_build_srcs_EngineSource ${item})
+        ENDIF(${item} MATCHES "[A-Za-z0-9/]*DS_Store")
 
+        IF(${item} MATCHES "[A-Za-z0-9/]*swp")
+          LIST(REMOVE_ITEM unity_build_srcs_EngineSource ${item})
+        ENDIF(${item} MATCHES "[A-Za-z0-9/]*swp")
+      ENDFOREACH(item)
 
-    set(unity_build_srcs 
-      ${CMAKE_SOURCE_DIR}/../External/thirdparty/android_file.cpp 
-      ${CMAKE_SOURCE_DIR}/../External/thirdparty/android_file.h
-      ${NJLIGameEngine_SRCS} 
-      ${njli_generated} 
-      ${njli_generated_swig} 
-      ${njli_generated_swig_lua} 
-      ${njli_generated_swig_lua_platform}
-      ${NJLI_SOURCE_DIRECTORY}/njli/platform/main.cpp
-      ${NJLI_RESOURCES}
-      ${NJLIGameEngine_THIRDPARTY_INC}
-      )
-
-    enable_unity_build(UnityBuildDemo "${unity_build_srcs}")
+      enable_unity_build(UnityBuild_EngineSource "${unity_build_srcs_EngineSource}")
 
     ADD_EXECUTABLE( EngineSource
-      ${unity_build_srcs}
+      ${unity_build_srcs_EngineSource}
+      ${NJLI_RESOURCES}
       )
     IF( IS_DEBUG)
       TARGET_LINK_LIBRARIES( EngineSource libnjli_bytecode_shared)
@@ -5429,6 +5531,7 @@ ELSE()
           RUNTIME DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin
           LIBRARY DESTINATION ${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/lib
           PUBLIC_HEADER DESTINATION include
+          #RESOURCE DESTINATION ${NJLI_PRODUCT_NAME}/Contents/Resources
         )
         INSTALL(PROGRAMS ${Binary_FILES} DESTINATION ${NJLI_BUILD_DIR}/bin/thirdparty )
         INSTALL(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/ldoc DESTINATION ${CMAKE_INSTALL_DOCDIR})

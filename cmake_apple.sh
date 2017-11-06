@@ -104,15 +104,49 @@ build_apple_unix()
     fi
 
 
+        #-DCMAKE_BUILD_TYPE=Release \
+        #-DCMAKE_IOS_INSTALL_UNIVERSAL_LIBS=YES \
+        #-DCMAKE_XCODE_ATTRIBUTE_ONLY_ACTIVE_ARCH=NO \
     cmake ../.. -G "Unix Makefiles" \
         -DCMAKE_CXX_FLAGS='-std=gnu++11' \
         -DCMAKE_INSTALL_PREFIX=../../generated/ \
         -DNJLI_THIRDPARTY_DIRECTORY:STRING=${MY_THIRDPARTY_DIR} \
         -DNJLI_BUILD_PLATFORM=${MY_PLATFORM} \
-        -DCMAKE_BUILD_TYPE=Release \
         -DNJLI_GRAPHICS_PLATFORM=${MY_GRAPHICS_PLATFORM} \
         -DNJLI_SOUND_PLATFORM=openal \
+        -DCMAKE_BUILD_TYPE=Release \
         -DNJLI_BUILD_DIR=${MY_BUILD_DIR}
+
+    mkdir -p ../../SETTINGS
+
+    if [ ! -z "${BUILD}" ]; then
+        mkdir -p ../../generated/ERRORS
+        echo "" > ../../generated/ERRORS/${MY_PLATFORM}.log
+
+        xcodebuild -project ${MY_PLATFORM}.xcodeproj -target install build -showBuildSettings > ../../generated/SETTINGS/${MY_PLATFORM}.txt
+        xcodebuild -configuration Release DEVELOPMENT_TEAM=SRBQ5SCF5X -target install build #> ../../generated/ERRORS/${MY_PLATFORM}.log
+
+        #cpack ../.. --config CPackConfig.cmake
+        cpack ../.. --config CPackSourceConfig.cmake
+
+
+
+
+
+
+
+        #cmake --build . --config Release
+        #xcodebuild -project ${MY_PLATFORM}.xcodeproj -target EngineSource -configuration Release DEVELOPMENT_TEAM=SRBQ5SCF5X 2> ../../ERRORS/${MY_PLATFORM}.log || { echo "${MY_PLATFORM} failed"; exit 1; }
+        #<cmake> --build . [--config <config>] [--target <target>] [-- -i]
+        #cmake install
+
+
+        #cmake install
+        #xcodebuild -target install
+        #/usr/bin/xcrun -sdk iphoneos PackageApplication -v "${RELEASE_BUILDDIR}/${APPLICATION_NAME}.app" -o "${BUILD_HISTORY_DIR}/${APPLICATION_NAME}.ipa" --sign "${DEVELOPER_NAME}" --embed "${PROVISONING_PROFILE}"
+
+        
+    fi
 }
 
 #build_apple_ninja()
@@ -302,3 +336,10 @@ cd macOS_Xcode
 build_apple_xcode macOS ${CMAKE_MACOS_SYSTEM_VERSION}
 cd ..
 
+##########################################3
+
+rm -rf macOS_UnixMakefiles
+mkdir -p macOS_UnixMakefiles
+cd macOS_UnixMakefiles
+build_apple_unix macOS ${CMAKE_MACOS_SYSTEM_VERSION}
+cd ..

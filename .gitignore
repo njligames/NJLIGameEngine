@@ -29,3 +29,4 @@ lnjli.xml
 projects/android_AndroidStudio/app/src/main/jniLibs/
 projects/linux_Makefiles/
 projects/macOS_Xcode/
+projects/macOS_UnixMakefiles/

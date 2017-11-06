@@ -1,17 +1,17 @@
-
 {
-    "images" : 
-    [
-        {
-            "idiom" : "tv",
-            "filename" : "IconBack-App.png",
-            "scale" : "1x"
-        }
-    ],
-    "info" : 
+  "images" : [
     {
-        "version" : 1,
-        "author" : "NJLIGames"
+      "idiom" : "tv",
+      "filename" : "IconBack-App.png",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "tv",
+      "scale" : "2x"
     }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
 }
-
