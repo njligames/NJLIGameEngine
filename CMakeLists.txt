@@ -1,30 +1,6 @@
 cmake_minimum_required(VERSION 3.4.1)
 
-#find_program(CCACHE_PROGRAM ccache)
-#if(CCACHE_PROGRAM)
-#  #Support Unit Makefiles and Ninja
-#  set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE "${CCACHE_PROGRAM}")
-#else()
-#  message("Supports ccache, but it isn't installed")
-#endif()
-
 PROJECT (${NJLI_BUILD_PLATFORM})
-
-#get_property(RULE_LAUNCH_COMPILE GLOBAL PROPERTY RULE_LAUNCH_COMPILE)
-#if(RULE_LAUNCH_COMPILE AND CMAKE_GENERATOR STREQUAL "Xcode")
-#  message("supporting ccache")
-#
-#  #Set up wrapper scripts
-#  configure_file(launch-c.in launch-c)
-#  configure_file(launch-cxx.in launch-cxx)
-#  execute_process(COMMAND chmod a+rx "${CMAKE_BINARY_DIR}/launch-c" "${CMAKE_BINARY_DIR}/launch-cxx")
-#
-#  #Set Xcode project attributes to route compilation through our scripts
-#  set(CMAKE_XCODE_ATTRIBUTE_CC "${CMAKE_BINARY_DIR}/launch-c")
-#  set(CMAKE_XCODE_ATTRIBUTE_CXX "${CMAKE_BINARY_DIR}/launch-cxx")
-#endif()
-
-# The version number.
 
 SET ( NJLIGameEngine_PACKAGE "NJLIGameEngine" )
 SET ( NJLIGameEngine_PACKAGE_TARNAME "NJLIGameEngine" )
@@ -756,7 +732,7 @@ ENDIF()
 
 FILE(GLOB NJLIGameEngine_SRCS
   ${bullet}
-  ${group_other}
+  #${group_other}
   ${lua_exts}
   ${lua_exts_luasocket}
   ${lua_src}
@@ -789,6 +765,75 @@ FILE(GLOB NJLIGameEngine_SRCS
   ${njli_steering}
   ${njli_steering_behavior}
 )
+
+
+
+LIST(APPEND NJLI_handle_source
+  ${bullet}
+  ${njli}
+  ${njli_builders}
+  ${njli_builders_graphics}
+  ${njli_builders_physics}
+  ${njli_builders_physics_body}
+  ${njli_builders_physics_constraint}
+  ${njli_builders_physics_shape}
+  ${njli_builders_platform}
+  ${njli_builders_sound}
+  ${njli_builders_steering}
+  ${njli_builders_steering_behavior}
+  ${njli_generated}
+  ${njli_generated_swig}
+  ${njli_generated_swig_lua}
+  ${njli_graphics}
+  ${njli_graphics_specific}
+  ${njli_modules}
+  ${njli_modules_lua}
+  ${njli_physics}
+  ${njli_physics_body}
+  ${njli_physics_constraint}
+  ${njli_physics_shape}
+  ${njli_platform}
+  ${njli_platform_specific}
+  ${njli_sound}
+  ${njli_sound_specific}
+  ${njli_steering}
+  ${njli_steering_behavior}
+)
+FOREACH(item ${NJLI_handle_source})
+  IF(${item} MATCHES "[A-Za-z0-9/]*DS_Store")
+    LIST(REMOVE_ITEM NJLI_handle_source ${item})
+  ENDIF(${item} MATCHES "[A-Za-z0-9/]*DS_Store")
+
+  IF(${item} MATCHES "[A-Za-z0-9/]*swp")
+    LIST(REMOVE_ITEM NJLI_handle_source ${item})
+  ENDIF(${item} MATCHES "[A-Za-z0-9/]*swp")
+ENDFOREACH(item)
+
+ADD_CUSTOM_TARGET(
+  cppcheck
+  COMMAND /usr/local/bin/cppcheck
+  --enable=warning,performance,portability,information,missingInclude
+  --std=c++11
+  --library=qt.cfg
+  --template="{file},{line},{message},{callstack},{severity},{id}"
+  --verbose
+  --quiet
+  ${NJLI_handle_source}
+)
+ADD_DEPENDENCIES(cppcheck WrapSWIG)
+
+ADD_CUSTOM_TARGET(
+  clangformat
+  COMMAND /Applications/Developer/emsdk_portable/clang/e1.37.9_64bit/clang-format
+  -style=file
+  -i
+  ${NJLI_handle_source}
+  SOURCES
+  "${NJLI_SOURCE_DIRECTORY}/../.clang-format"
+)
+ADD_DEPENDENCIES(clangformat WrapSWIG)
+SOURCE_GROUP("Clang-Format" FILES ${NJLI_SOURCE_DIRECTORY}/../.clang-format)
+
 IF(NOT NJLI_USE_NANOVG_LIBRARY)
   LIST(REMOVE_ITEM NJLIGameEngine_SRCS
     "${NJLI_SOURCE_DIRECTORY}/njli/builders/graphics/ButtonHUDBuilder.h"
@@ -5111,7 +5156,7 @@ ADD_LIBRARY( njli SHARED
 TARGET_LINK_LIBRARIES( njli ${EXTRA_PLATFORM_LIBS}
   ${NJLIGameEngine_LBY}
 )
-SET_TARGET_PROPERTIES( njli PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
+#SET_TARGET_PROPERTIES( njli PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
 ADD_DEPENDENCIES(njli WrapSWIG)
 
 ADD_CUSTOM_COMMAND(TARGET njli
@@ -5134,7 +5179,7 @@ ELSE()
     SET_TARGET_PROPERTIES( libnjli_bytecode_shared PROPERTIES OUTPUT_NAME libnjli )
     SET_TARGET_PROPERTIES( libnjli_bytecode_shared PROPERTIES PREFIX "")
     TARGET_LINK_LIBRARIES( libnjli_bytecode_shared ${EXTRA_PLATFORM_LIBS} ${NJLIGameEngine_LBY} )
-    SET_TARGET_PROPERTIES( libnjli_bytecode_shared PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
+    #SET_TARGET_PROPERTIES( libnjli_bytecode_shared PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
     ADD_DEPENDENCIES(libnjli_bytecode_shared WrapSWIG)
 
   ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" AND IS_DEBUG )
@@ -5168,7 +5213,7 @@ ELSE()
       ${njli_generated_swig_lua_platform}
       ${NJLI_SOURCE_DIRECTORY}/njli/platform/Engine.h
     )
-    SET_TARGET_PROPERTIES( NJLIGameEngine PROPERTIES VERSION ${NJLIGameEngine_VERSION})
+  #SET_TARGET_PROPERTIES( NJLIGameEngine PROPERTIES VERSION ${NJLIGameEngine_VERSION})
     SET_TARGET_PROPERTIES( NJLIGameEngine PROPERTIES SOVERSION ${NJLIGameEngine_VERSION})
     SET_TARGET_PROPERTIES( NJLIGameEngine PROPERTIES FRAMEWORK true)
     SET_TARGET_PROPERTIES( NJLIGameEngine PROPERTIES PUBLIC_HEADER ${NJLI_SOURCE_DIRECTORY}/njli/platform/Engine.h)
@@ -5201,10 +5246,9 @@ ELSE()
   SET_TARGET_PROPERTIES( libnjli_static PROPERTIES OUTPUT_NAME libnjli )
   SET_TARGET_PROPERTIES( libnjli_static PROPERTIES PREFIX "")
   TARGET_LINK_LIBRARIES( libnjli_static ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} )
-  SET_TARGET_PROPERTIES( libnjli_static PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
+  #SET_TARGET_PROPERTIES( libnjli_static PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
   SET_TARGET_PROPERTIES( libnjli_static PROPERTIES PUBLIC_HEADER ${NJLI_SOURCE_DIRECTORY}/njli/platform/Engine.h)
   ADD_DEPENDENCIES(libnjli_static WrapSWIG)
-
 
   IF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" OR ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
     LIST(APPEND unity_build_srcs_lua ${NJLIGameEngine_SRCS})
@@ -5265,7 +5309,7 @@ ELSE()
     #  PROPERTIES
     #  MACOSX_PACKAGE_LOCATION ${NJLI_PRODUCT_NAME}/Contents/Resources/
   #  )
-  ADD_DEPENDENCIES(luac WrapSWIG)
+    ADD_DEPENDENCIES(luac WrapSWIG)
 
   LIST(APPEND unity_build_srcs_libnjli_lua_module ${NJLIGameEngine_SRCS} )
   LIST(APPEND unity_build_srcs_libnjli_lua_module ${njli_generated} )
@@ -5290,7 +5334,7 @@ ELSE()
   SET_TARGET_PROPERTIES( libnjli_lua_module PROPERTIES OUTPUT_NAME njli )
   SET_TARGET_PROPERTIES( libnjli_lua_module PROPERTIES PREFIX "")
   TARGET_LINK_LIBRARIES( libnjli_lua_module ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} )
-  SET_TARGET_PROPERTIES( libnjli_lua_module PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
+  #SET_TARGET_PROPERTIES( libnjli_lua_module PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
   SET_TARGET_PROPERTIES( libnjli_lua_module PROPERTIES PUBLIC_HEADER ${NJLI_SOURCE_DIRECTORY}/njli/platform/Engine.h)
   ADD_DEPENDENCIES(libnjli_lua_module WrapSWIG)
 ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" OR ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten")
@@ -5358,7 +5402,7 @@ IF( IS_DEBUG)
 ENDIF( IS_DEBUG)
 ADD_DEPENDENCIES(EngineSource WrapSWIG)
 
-SET_TARGET_PROPERTIES( EngineSource PROPERTIES OUTPUT_NAME ${NJLI_PRODUCT_NAME} )
+#SET_TARGET_PROPERTIES( EngineSource PROPERTIES OUTPUT_NAME ${NJLI_PRODUCT_NAME} )
 #SET_TARGET_PROPERTIES( EngineSource PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
 
 IF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" OR ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
