@@ -27,6 +27,7 @@ build_emscripten_sublime()
         -DNJLI_BUILD_DIR="emscripten" \
         -DNJLI_BUILD_TYPE=${BUILD_TYPE} \
         -DNJLI_SOUND_PLATFORM=openal \
+        -DNJLI_UNITY_BUILD:BOOL=OFF \
         -DCMAKE_AR=${EMSCRIPTEN_LOCATION}/emar \
         -DCMAKE_CXX_COMPILER=${EMSCRIPTEN_LOCATION}/em++ \
         -DCMAKE_C_COMPILER=${EMSCRIPTEN_LOCATION}/emcc
