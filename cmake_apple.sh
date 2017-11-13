@@ -81,25 +81,9 @@ build_apple_xcode()
         xcodebuild -project ${MY_PLATFORM}.xcodeproj -target install build -showBuildSettings > ../../generated/SETTINGS/${MY_PLATFORM}.txt
         xcodebuild -configuration Release DEVELOPMENT_TEAM=SRBQ5SCF5X -target install build #> ../../generated/ERRORS/${MY_PLATFORM}.log
 
-        #cpack ../.. --config CPackConfig.cmake
         cpack ../.. --config CPackSourceConfig.cmake
 
-
-
-
-
-
-
-        #cmake --build . --config Release
-        #xcodebuild -project ${MY_PLATFORM}.xcodeproj -target EngineSource -configuration Release DEVELOPMENT_TEAM=SRBQ5SCF5X 2> ../../ERRORS/${MY_PLATFORM}.log || { echo "${MY_PLATFORM} failed"; exit 1; }
-        #<cmake> --build . [--config <config>] [--target <target>] [-- -i]
-        #cmake install
-
-
-        #cmake install
-        #xcodebuild -target install
-        #/usr/bin/xcrun -sdk iphoneos PackageApplication -v "${RELEASE_BUILDDIR}/${APPLICATION_NAME}.app" -o "${BUILD_HISTORY_DIR}/${APPLICATION_NAME}.ipa" --sign "${DEVELOPER_NAME}" --embed "${PROVISONING_PROFILE}"
-
+        cmake install ../..
         
     fi
 }
@@ -352,9 +336,9 @@ build_apple_xcode macOS ${CMAKE_MACOS_SYSTEM_VERSION}
 cd ..
 
 ##########################################3
-
-rm -rf macOS_UnixMakefiles
-mkdir -p macOS_UnixMakefiles
-cd macOS_UnixMakefiles
-build_apple_unix macOS ${CMAKE_MACOS_SYSTEM_VERSION}
-cd ..
+#
+#rm -rf macOS_UnixMakefiles
+#mkdir -p macOS_UnixMakefiles
+#cd macOS_UnixMakefiles
+#build_apple_unix macOS ${CMAKE_MACOS_SYSTEM_VERSION}
+#cd ..

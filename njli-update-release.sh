@@ -11,5 +11,5 @@ RELEASE=$((NJLIGameEngine_VERSION_RELEASE + 1))
 
 echo ${RELEASE} > ${FILE}
 
-git add .
+echo "cmake will need to be run to update the platform's version number"
 

@@ -1,3 +1,16 @@
+# Version Scripts
+
+Scripts to update the release are as follows
+
+*njli-update-major.sh
+  Run this to update the major version number.
+  This should be run everytime the public interface has changed.
+*njli-update-minor.sh
+  Run this to update the minor version number.
+  This should be run whenever there is a new feature added.
+*njli-update-release.sh
+  Run this to update the release version number.
+  This should be run on every push to the repository.
 
 ./Engine
     /bin.......................................tools used for development of games
