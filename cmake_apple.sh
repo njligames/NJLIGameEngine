@@ -1,5 +1,20 @@
 #!/bin/sh
 
+if IFS= read -r var
+then
+  export NJLIGameEngine_VERSION_MAJOR=$var
+fi < ".NJLI_VERSION_MAJOR.txt"
+
+if IFS= read -r var
+then
+  export NJLIGameEngine_VERSION_MINOR=$var
+fi < ".NJLI_VERSION_MINOR.txt"
+
+if IFS= read -r var
+then
+  export NJLIGameEngine_VERSION_RELEASE=$var
+fi < ".NJLI_VERSION_RELEASE.txt"
+
 BUILD=$1
 
 MY_IOS_PATH=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/OpenGLES.framework 

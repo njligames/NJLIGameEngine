@@ -14,7 +14,7 @@
 
 #define NJLIGameEngine_VERSION_MAJOR 1
 #define NJLIGameEngine_VERSION_MINOR 0
-#define NJLIGameEngine_VERSION_RELEASE 0
+#define NJLIGameEngine_VERSION_RELEASE 1
 
 #include "SDL.h"
 
