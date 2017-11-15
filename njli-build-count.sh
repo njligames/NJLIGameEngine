@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FILE=.build/$1
+FILE=$1
 
 if [ -e $FILE ]
 then
