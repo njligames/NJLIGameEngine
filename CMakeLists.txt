@@ -4296,7 +4296,7 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
     LIST(APPEND EXTRA_PLATFORM_LIBS "--emit-symbol-map")
     LIST(APPEND EXTRA_PLATFORM_LIBS "-g4")
 
-    LIST(APPEND EXTRA_PLATFORM_LIBS "--shell-file ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/emscripten/debug_shell.html")
+    #LIST(APPEND EXTRA_PLATFORM_LIBS "--shell-file ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/emscripten/debug_shell.html")
 
   ELSE()
     # OPTIMIZING: https://kripken.github.io/emscripten-site/docs/optimizing/Optimizing-Code.html
@@ -4304,7 +4304,7 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
 
     LIST(APPEND EXTRA_PLATFORM_LIBS "-s -O2 --llvm-opts 2")
 
-    LIST(APPEND EXTRA_PLATFORM_LIBS "--shell-file ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/emscripten/release_shell.html")
+    #LIST(APPEND EXTRA_PLATFORM_LIBS "--shell-file ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/emscripten/release_shell.html")
 
   ENDIF( IS_DEBUG)
 
@@ -5116,7 +5116,16 @@ ELSE()
       ${LUA_ASSETS}
     )
     SET_TARGET_PROPERTIES( lua PROPERTIES RESOURCE "${LUA_ASSETS}" )
-    TARGET_LINK_LIBRARIES( lua ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} libnjli_static )
+    IF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
+      IF(IS_DEBUG)
+        TARGET_LINK_LIBRARIES( lua ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} "--shell-file ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/emscripten/lua/debug_shell.html" libnjli_static)
+      ELSE()
+        TARGET_LINK_LIBRARIES( lua ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} "--shell-file ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/emscripten/lua/release_shell.html" libnjli_static)
+      ENDIF(IS_DEBUG)
+    ELSE()
+      TARGET_LINK_LIBRARIES( lua ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} libnjli_static)
+    ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
+
     SET_SOURCE_FILES_PROPERTIES(
       ${LUA_ASSETS}
       PROPERTIES
@@ -5150,8 +5159,18 @@ ELSE()
       ${unity_build_srcs_luac}
       ${LUAC_ASSETS}
     )
+
     SET_TARGET_PROPERTIES( luac PROPERTIES RESOURCE "${LUAC_ASSETS}" )
-    TARGET_LINK_LIBRARIES( luac ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} libnjli_static)
+    IF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
+      IF(IS_DEBUG)
+        TARGET_LINK_LIBRARIES( luac ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} "--shell-file ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/emscripten/luac/debug_shell.html" libnjli_static)
+      ELSE()
+        TARGET_LINK_LIBRARIES( luac ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} "--shell-file ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/emscripten/luac/release_shell.html" libnjli_static)
+      ENDIF(IS_DEBUG)
+    ELSE()
+      TARGET_LINK_LIBRARIES( luac ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} libnjli_static)
+    ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
+
     SET_SOURCE_FILES_PROPERTIES(
       ${LUAC_ASSETS}
       PROPERTIES
@@ -5330,10 +5349,15 @@ ELSE()
 
   ENDIF()
 
-  TARGET_LINK_LIBRARIES( EngineSource
-    ${NJLIGameEngine_LBY}
-    ${EXTRA_PLATFORM_LIBS}
-  )
+    IF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
+      IF(IS_DEBUG)
+        TARGET_LINK_LIBRARIES( EngineSource ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} "--shell-file ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/emscripten/EngineSource/debug_shell.html" libnjli_static)
+      ELSE()
+        TARGET_LINK_LIBRARIES( EngineSource ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} "--shell-file ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/emscripten/EngineSource/release_shell.html" libnjli_static)
+      ENDIF(IS_DEBUG)
+    ELSE()
+      TARGET_LINK_LIBRARIES( EngineSource ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} libnjli_static)
+    ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
 
   ADD_CUSTOM_COMMAND(TARGET EngineSource
     PRE_BUILD
@@ -5380,55 +5404,41 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
   SET(BUNDLE_PATH ${CMAKE_BINARY_DIR}/${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE}/${NJLI_PRODUCT_NAME}.app)
 
   IF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" )
+    IF(IS_RELEASE)
+      file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/postprocess_bundle.cmake "
+      include(BundleUtilities)
+      message(\"Fixing up application bundle: ${BUNDLE_PATH}\")
+      ios_fixup_bundle(\"${BUNDLE_PATH}\" \"\" \"${GAME_ASSETS}\")
+      # https://www.slicer.org/wiki/Documentation/Nightly/Developers/Mac_OS_X_Code_Signing
+      execute_process(
+        COMMAND codesign --deep --force --sign \"$ENV{NJLI_DEVELOPMENT_TEAM}\" -i \"com.njligames.engine.${NJLI_BUILD_PLATFORM}.source\" \"${BUNDLE_PATH}\"
+        )
+      execute_process(
+        COMMAND codesign -dv \"${BUNDLE_PATH}\"
+        )
+      ")
+      add_custom_command(TARGET EngineSource POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -P postprocess_bundle.cmake
+        )
+    ENDIF(IS_RELEASE)
   ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
-    #    #file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/postprocess_bundle.cmake "
-    #    #include(BundleUtilities)
-    #    #message(\"Fixing up application bundle: ${BUNDLE_PATH}\")
-    #    #fixup_bundle(\"${BUNDLE_PATH}\" \"\" \"\")
-    #    #")
-    #    #add_custom_command(TARGET EngineSource POST_BUILD
-    #    #  COMMAND ${CMAKE_COMMAND} -P postprocess_bundle.cmake
-    #    #  )
-    #
-    #    # Copy data files into application bundle.
-    #    file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/copy_data_into_bundle.cmake "
-    #    file(INSTALL ${GAME_ASSETS} DESTINATION ${BUNDLE_PATH})
-    #
-    #
-    #
-    #    #file(INSTALL ${BUNDLE_PATH}/${NJLI_PRODUCT_NAME} DESTINATION ${BUNDLE_PATH})
-    #    #file(RENAME ${BUNDLE_PATH}/${NJLI_PRODUCT_NAME} ${BUNDLE_PATH}/_temp_)
-    #    #file(MAKE_DIRECTORY ${BUNDLE_PATH}/${NJLI_PRODUCT_NAME})
-    #    #file(INSTALL ${BUNDLE_PATH}/_temp_ DESTINATION ${BUNDLE_PATH}/${NJLI_PRODUCT_NAME})
-    #    #file(RENAME ${BUNDLE_PATH}/${NJLI_PRODUCT_NAME}/_temp_ ${BUNDLE_PATH}/${NJLI_PRODUCT_NAME}/${NJLI_PRODUCT_NAME})
-    #
-    #    #file(INSTALL ${BUNDLE_PATH}/${NJLI_PRODUCT_NAME}
-    #    #  DESTINATION ${BUNDLE_PATH}/temp/
-    #    #  )
-    #    #file(INSTALL ${BUNDLE_PATH}/temp/${NJLI_PRODUCT_NAME}
-    #    #  DESTINATION ${BUNDLE_PATH}/${NJLI_PRODUCT_NAME}/
-    #    #  )
-    #    #file(REMOVE ${BUNDLE_PATH}/temp/${NJLI_PRODUCT_NAME})
-    #
-    #
-    #
-    #
-    #
-    #
-    #    file(INSTALL ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/${NJLI_BUILD_PLATFORM}/Info.plist
-    #      DESTINATION ${BUNDLE_PATH}
-    #      )
-    #    file(INSTALL ${ASSET_CATALOGUE_FILES}
-    #      DESTINATION ${BUNDLE_PATH}
-    #      )
-    #    execute_process(
-    #      COMMAND codesign --deep --force --sign \"$ENV{NJLI_DEVELOPMENT_TEAM}\" -i \"com.njligames.engine.${NJLI_BUILD_PLATFORM}.source\" \"${BUNDLE_PATH}\"
-    #      )
-    #    ")
-    #    add_custom_target(CopyDataIntoBundle ALL
-    #      COMMAND ${CMAKE_COMMAND} -P copy_data_into_bundle.cmake
-    #      VERBATIM
-    #      )
+    IF(IS_RELEASE)
+      file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/postprocess_bundle.cmake "
+      include(BundleUtilities)
+      message(\"Fixing up application bundle: ${BUNDLE_PATH}\")
+      ios_fixup_bundle(\"${BUNDLE_PATH}\" \"\" \"${GAME_ASSETS}\")
+      # https://www.slicer.org/wiki/Documentation/Nightly/Developers/Mac_OS_X_Code_Signing
+      execute_process(
+        COMMAND codesign --deep --force --sign \"$ENV{NJLI_DEVELOPMENT_TEAM}\" -i \"com.njligames.engine.${NJLI_BUILD_PLATFORM}.source\" \"${BUNDLE_PATH}\"
+        )
+      execute_process(
+        COMMAND codesign -dv \"${BUNDLE_PATH}\"
+        )
+      ")
+      add_custom_command(TARGET EngineSource POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -P postprocess_bundle.cmake
+        )
+    ENDIF(IS_RELEASE)
   ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
     IF(IS_RELEASE)
       file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/postprocess_bundle.cmake "
@@ -5446,23 +5456,27 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
   INSTALL( DIRECTORY ${BUNDLE_PATH} DESTINATION platform/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin USE_SOURCE_PERMISSIONS )
 else()
   IF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
-    set(ENGINESOURCE_HTML_BUNDLE_PATH platform/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin/${NJLI_PRODUCT_NAME})
+
+    SET(ENGINESOURCE_HTML_BUNDLE_PATH platform/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin/${NJLI_PRODUCT_NAME})
     INSTALL(TARGETS EngineSource RUNTIME DESTINATION ${ENGINESOURCE_HTML_BUNDLE_PATH} )
     INSTALL(FILES ${CMAKE_BINARY_DIR}/${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${NJLI_PRODUCT_NAME}.html.mem DESTINATION ${ENGINESOURCE_HTML_BUNDLE_PATH})
     INSTALL(FILES ${CMAKE_BINARY_DIR}/${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${NJLI_PRODUCT_NAME}.asm.js DESTINATION ${ENGINESOURCE_HTML_BUNDLE_PATH})
     INSTALL(FILES ${CMAKE_BINARY_DIR}/${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${NJLI_PRODUCT_NAME}.js DESTINATION ${ENGINESOURCE_HTML_BUNDLE_PATH})
+    INSTALL(FILES ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/emscripten/EngineSource/favicon.png DESTINATION ${ENGINESOURCE_HTML_BUNDLE_PATH})
 
-    set(LUA_HTML_BUNDLE_PATH platform/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin/lua)
+    SET(LUA_HTML_BUNDLE_PATH platform/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin/lua)
     INSTALL(TARGETS lua RUNTIME DESTINATION ${LUA_HTML_BUNDLE_PATH} )
     INSTALL(FILES ${CMAKE_BINARY_DIR}/${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/lua.html.mem DESTINATION ${LUA_HTML_BUNDLE_PATH})
     INSTALL(FILES ${CMAKE_BINARY_DIR}/${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/lua.asm.js DESTINATION ${LUA_HTML_BUNDLE_PATH})
     INSTALL(FILES ${CMAKE_BINARY_DIR}/${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/lua.js DESTINATION ${LUA_HTML_BUNDLE_PATH})
+    INSTALL(FILES ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/emscripten/lua/favicon.ico DESTINATION ${LUA_HTML_BUNDLE_PATH})
 
-    set(LUAC_HTML_BUNDLE_PATH platform/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin/luac)
+    SET(LUAC_HTML_BUNDLE_PATH platform/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin/luac)
     INSTALL(TARGETS luac RUNTIME DESTINATION ${LUAC_HTML_BUNDLE_PATH} )
     INSTALL(FILES ${CMAKE_BINARY_DIR}/${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/luac.html.mem DESTINATION ${LUAC_HTML_BUNDLE_PATH})
     INSTALL(FILES ${CMAKE_BINARY_DIR}/${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/luac.asm.js DESTINATION ${LUAC_HTML_BUNDLE_PATH})
     INSTALL(FILES ${CMAKE_BINARY_DIR}/${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/luac.js DESTINATION ${LUAC_HTML_BUNDLE_PATH})
+    INSTALL(FILES ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/emscripten/luac/favicon.ico DESTINATION ${LUAC_HTML_BUNDLE_PATH})
 
   else()
     INSTALL(TARGETS lua luac EngineSource RUNTIME DESTINATION platform/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin )
