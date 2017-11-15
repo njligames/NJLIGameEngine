@@ -3,6 +3,21 @@
 export EMSCRIPTEN_LOCATION=/Applications/Developer/emsdk_portable/emscripten/1.37.9
 export EMSCRIPTEN_INCLUDE_LOCATION=${EMSCRIPTEN_LOCATION}/system/include 
 
+if IFS= read -r var
+then
+  export NJLIGameEngine_VERSION_MAJOR=$var
+fi < ".NJLI_VERSION_MAJOR.txt"
+
+if IFS= read -r var
+then
+  export NJLIGameEngine_VERSION_MINOR=$var
+fi < ".NJLI_VERSION_MINOR.txt"
+
+if IFS= read -r var
+then
+  export NJLIGameEngine_VERSION_RELEASE=$var
+fi < ".NJLI_VERSION_RELEASE.txt"
+
 BUILD=$1
 
 build_emscripten_sublime()
@@ -26,6 +41,7 @@ build_emscripten_sublime()
         -DNJLI_BUILD_PLATFORM="emscripten" \
         -DNJLI_BUILD_DIR="emscripten" \
         -DNJLI_BUILD_TYPE=${BUILD_TYPE} \
+        -DCMAKE_BUILD_TYPE=${BUILD_TYPE} \
         -DNJLI_SOUND_PLATFORM=openal \
         -DNJLI_UNITY_BUILD:BOOL=OFF \
         -DCMAKE_AR=${EMSCRIPTEN_LOCATION}/emar \
@@ -34,8 +50,8 @@ build_emscripten_sublime()
 
     if [ ! -z ${BUILD} ]
     then
-        mkdir -p ../../generated/ERRORS
-        echo "" > ../../generated/ERRORS/${MY_PLATFORM}.log
+      mkdir -p ../../generated/ERRORS
+      echo "" > ../../generated/ERRORS/${MY_PLATFORM}.log
 
         #mkdir -p ../../ERRORS
         #echo "" > ../../ERRORS/emscripen.log
@@ -43,18 +59,23 @@ build_emscripten_sublime()
         #emmake make -j8 install 
         #cpack ../.. --config CPackConfig.cmake      
 
-        emmake make -j8 EngineSource
-        emmake make -j8 lua
-        emmake make -j8 luac
+        #emmake make -j8 EngineSource
+        #emmake make -j8 lua
+        #emmake make -j8 luac
+
+      emmake make -j8
+      emmake make -j8 install
+
+      cpack ../.. --config CPackSourceConfig.cmake
 
     fi
 }
 
 cd projects
-rm emscripten_Sublime/NJLIGameEngine.js.mem
+#rm emscripten_Sublime/NJLIGameEngine.js.mem
 
 rm -rf emscripten_Sublime
-#rm emscripten_Sublime/CMakeCache.txt
+rm emscripten_Sublime/CMakeCache.txt
 mkdir -p emscripten_Sublime
 cd emscripten_Sublime
 

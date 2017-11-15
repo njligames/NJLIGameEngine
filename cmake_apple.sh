@@ -1,5 +1,8 @@
 #!/bin/sh
 
+export NJLI_DEVELOPMENT_TEAM=SRBQ5SCF5X
+#export NJLI_DEVELOPMENT_TEAM=FWZPKCY3PH
+
 if IFS= read -r var
 then
   export NJLIGameEngine_VERSION_MAJOR=$var
@@ -32,17 +35,17 @@ export CMAKE_MACOS_SYSTEM_VERSION=`xcodebuild -sdk /Applications/Xcode.app/Conte
 
 #codesign -s "James Folk" /Users/jamesfolk/Dropbox/Developer/NJLI/NJLIGameEngine-0.1.1-Darwin/module/ios/10.2/SIMULATOR/Release/njli.so
 
-build_apple_test()
-{
-    MY_PLATFORM=$1
-
-    PWD=`pwd`
-    PLIST="${PWD}/../../cmake.in/Platform.in/${MY_PLATFORM}/Info.plist"
-    
-    xcodebuild -project NJLIGameEngine.xcodeproj -target EngineSource -configuration Release DEVELOPMENT_TEAM=SRBQ5SCF5X
-
-    ${PWD}/../../updateXcodeBuild.py ${PLIST}
-}
+#build_apple_test()
+#{
+#    MY_PLATFORM=$1
+#
+#    PWD=`pwd`
+#    PLIST="${PWD}/../../cmake.in/Platform.in/${MY_PLATFORM}/Info.plist"
+#    
+#    xcodebuild -allowProvisioningUpdates -project NJLIGameEngine.xcodeproj -target EngineSource -configuration Release DEVELOPMENT_TEAM=SRBQ5SCF5X
+#
+#    ${PWD}/../../updateXcodeBuild.py ${PLIST}
+#}
 
 build_apple_xcode()
 {
@@ -75,16 +78,16 @@ build_apple_xcode()
     mkdir -p ../../SETTINGS
 
     if [ ! -z "${BUILD}" ]; then
-        mkdir -p ../../generated/ERRORS
-        echo "" > ../../generated/ERRORS/${MY_PLATFORM}.log
 
-        xcodebuild -project ${MY_PLATFORM}.xcodeproj -target install build -showBuildSettings > ../../generated/SETTINGS/${MY_PLATFORM}.txt
-        xcodebuild -configuration Release DEVELOPMENT_TEAM=SRBQ5SCF5X -target install build #> ../../generated/ERRORS/${MY_PLATFORM}.log
+      mkdir -p ../../generated/ERRORS
+      echo "" > ../../generated/ERRORS/${MY_PLATFORM}.log
 
-        cpack ../.. --config CPackSourceConfig.cmake
+      #-allowProvisioningUpdates 
+      #xcodebuild -project ${MY_PLATFORM}.xcodeproj -target install build -showBuildSettings #> ../../generated/SETTINGS/${MY_PLATFORM}.txt
 
-        cmake install ../..
-        
+      xcodebuild -allowProvisioningUpdates -configuration Release DEVELOPMENT_TEAM=${NJLI_DEVELOPMENT_TEAM} -target install build #> ../../generated/ERRORS/${MY_PLATFORM}.log
+      cpack ../.. --config CPackSourceConfig.cmake
+
     fi
 }
 
@@ -321,22 +324,22 @@ cd ..
 
 ##########################################3
 
-rm -rf tvos_Xcode
-mkdir -p tvos_Xcode
-cd tvos_Xcode
-build_apple_xcode appletv ${CMAKE_TVOS_SYSTEM_VERSION} appletvos 
-cd ..
+#rm -rf tvos_Xcode
+#mkdir -p tvos_Xcode
+#cd tvos_Xcode
+#build_apple_xcode appletv ${CMAKE_TVOS_SYSTEM_VERSION} appletvos 
+#cd ..
 
 ##########################################3
 
-rm -rf macOS_Xcode
-mkdir -p macOS_Xcode
-cd macOS_Xcode
-build_apple_xcode macOS ${CMAKE_MACOS_SYSTEM_VERSION}
-cd ..
+#rm -rf macOS_Xcode
+#mkdir -p macOS_Xcode
+#cd macOS_Xcode
+#build_apple_xcode macOS ${CMAKE_MACOS_SYSTEM_VERSION}
+#cd ..
 
 ##########################################3
-#
+
 #rm -rf macOS_UnixMakefiles
 #mkdir -p macOS_UnixMakefiles
 #cd macOS_UnixMakefiles
