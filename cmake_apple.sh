@@ -324,19 +324,19 @@ cd ..
 
 ##########################################3
 
-#rm -rf tvos_Xcode
-#mkdir -p tvos_Xcode
-#cd tvos_Xcode
-#build_apple_xcode appletv ${CMAKE_TVOS_SYSTEM_VERSION} appletvos 
-#cd ..
+rm -rf tvos_Xcode
+mkdir -p tvos_Xcode
+cd tvos_Xcode
+build_apple_xcode appletv ${CMAKE_TVOS_SYSTEM_VERSION} appletvos 
+cd ..
 
 ##########################################3
 
-#rm -rf macOS_Xcode
-#mkdir -p macOS_Xcode
-#cd macOS_Xcode
-#build_apple_xcode macOS ${CMAKE_MACOS_SYSTEM_VERSION}
-#cd ..
+rm -rf macOS_Xcode
+mkdir -p macOS_Xcode
+cd macOS_Xcode
+build_apple_xcode macOS ${CMAKE_MACOS_SYSTEM_VERSION}
+cd ..
 
 ##########################################3
 

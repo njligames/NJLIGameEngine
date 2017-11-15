@@ -38,6 +38,7 @@ SET( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11")
 
 STRING( COMPARE EQUAL "${OPERATING_SYSTEM}" "Linux" IS_LINUX )
 STRING( COMPARE EQUAL "${NJLI_BUILD_TYPE}" "Debug" IS_DEBUG )
+STRING( COMPARE EQUAL "${NJLI_BUILD_TYPE}" "Release" IS_RELEASE )
 
 
 SET ( NJLIGameEngine_VERSION_MAJOR $ENV{NJLIGameEngine_VERSION_MAJOR} )
@@ -5380,77 +5381,66 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
   IF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" )
   ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
-    #file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/postprocess_bundle.cmake "
-    #include(BundleUtilities)
-    #message(\"Fixing up application bundle: ${BUNDLE_PATH}\")
-    #fixup_bundle(\"${BUNDLE_PATH}\" \"\" \"\")
-    #")
-    #add_custom_command(TARGET EngineSource POST_BUILD
-    #  COMMAND ${CMAKE_COMMAND} -P postprocess_bundle.cmake
-    #  )
-
-    # Copy data files into application bundle.
-    file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/copy_data_into_bundle.cmake "
-    file(INSTALL ${GAME_ASSETS} DESTINATION ${BUNDLE_PATH})
-
-
-
-    #file(INSTALL ${BUNDLE_PATH}/${NJLI_PRODUCT_NAME} DESTINATION ${BUNDLE_PATH})
-    #file(RENAME ${BUNDLE_PATH}/${NJLI_PRODUCT_NAME} ${BUNDLE_PATH}/_temp_)
-    #file(MAKE_DIRECTORY ${BUNDLE_PATH}/${NJLI_PRODUCT_NAME})
-    #file(INSTALL ${BUNDLE_PATH}/_temp_ DESTINATION ${BUNDLE_PATH}/${NJLI_PRODUCT_NAME})
-    #file(RENAME ${BUNDLE_PATH}/${NJLI_PRODUCT_NAME}/_temp_ ${BUNDLE_PATH}/${NJLI_PRODUCT_NAME}/${NJLI_PRODUCT_NAME})
-
-    #file(INSTALL ${BUNDLE_PATH}/${NJLI_PRODUCT_NAME}
-    #  DESTINATION ${BUNDLE_PATH}/temp/
-    #  )
-    #file(INSTALL ${BUNDLE_PATH}/temp/${NJLI_PRODUCT_NAME}
-    #  DESTINATION ${BUNDLE_PATH}/${NJLI_PRODUCT_NAME}/
-    #  )
-    #file(REMOVE ${BUNDLE_PATH}/temp/${NJLI_PRODUCT_NAME})
-
-
-
-
-
-
-    file(INSTALL ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/${NJLI_BUILD_PLATFORM}/Info.plist
-      DESTINATION ${BUNDLE_PATH}
-      )
-    file(INSTALL ${ASSET_CATALOGUE_FILES}
-      DESTINATION ${BUNDLE_PATH}
-      )
-    execute_process(
-      COMMAND codesign --deep --force --sign \"$ENV{NJLI_DEVELOPMENT_TEAM}\" -i \"com.njligames.engine.${NJLI_BUILD_PLATFORM}.source\" \"${BUNDLE_PATH}\"
-      )
-    ")
-    add_custom_target(CopyDataIntoBundle ALL
-      COMMAND ${CMAKE_COMMAND} -P copy_data_into_bundle.cmake
-      VERBATIM
-      )
+    #    #file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/postprocess_bundle.cmake "
+    #    #include(BundleUtilities)
+    #    #message(\"Fixing up application bundle: ${BUNDLE_PATH}\")
+    #    #fixup_bundle(\"${BUNDLE_PATH}\" \"\" \"\")
+    #    #")
+    #    #add_custom_command(TARGET EngineSource POST_BUILD
+    #    #  COMMAND ${CMAKE_COMMAND} -P postprocess_bundle.cmake
+    #    #  )
+    #
+    #    # Copy data files into application bundle.
+    #    file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/copy_data_into_bundle.cmake "
+    #    file(INSTALL ${GAME_ASSETS} DESTINATION ${BUNDLE_PATH})
+    #
+    #
+    #
+    #    #file(INSTALL ${BUNDLE_PATH}/${NJLI_PRODUCT_NAME} DESTINATION ${BUNDLE_PATH})
+    #    #file(RENAME ${BUNDLE_PATH}/${NJLI_PRODUCT_NAME} ${BUNDLE_PATH}/_temp_)
+    #    #file(MAKE_DIRECTORY ${BUNDLE_PATH}/${NJLI_PRODUCT_NAME})
+    #    #file(INSTALL ${BUNDLE_PATH}/_temp_ DESTINATION ${BUNDLE_PATH}/${NJLI_PRODUCT_NAME})
+    #    #file(RENAME ${BUNDLE_PATH}/${NJLI_PRODUCT_NAME}/_temp_ ${BUNDLE_PATH}/${NJLI_PRODUCT_NAME}/${NJLI_PRODUCT_NAME})
+    #
+    #    #file(INSTALL ${BUNDLE_PATH}/${NJLI_PRODUCT_NAME}
+    #    #  DESTINATION ${BUNDLE_PATH}/temp/
+    #    #  )
+    #    #file(INSTALL ${BUNDLE_PATH}/temp/${NJLI_PRODUCT_NAME}
+    #    #  DESTINATION ${BUNDLE_PATH}/${NJLI_PRODUCT_NAME}/
+    #    #  )
+    #    #file(REMOVE ${BUNDLE_PATH}/temp/${NJLI_PRODUCT_NAME})
+    #
+    #
+    #
+    #
+    #
+    #
+    #    file(INSTALL ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/${NJLI_BUILD_PLATFORM}/Info.plist
+    #      DESTINATION ${BUNDLE_PATH}
+    #      )
+    #    file(INSTALL ${ASSET_CATALOGUE_FILES}
+    #      DESTINATION ${BUNDLE_PATH}
+    #      )
+    #    execute_process(
+    #      COMMAND codesign --deep --force --sign \"$ENV{NJLI_DEVELOPMENT_TEAM}\" -i \"com.njligames.engine.${NJLI_BUILD_PLATFORM}.source\" \"${BUNDLE_PATH}\"
+    #      )
+    #    ")
+    #    add_custom_target(CopyDataIntoBundle ALL
+    #      COMMAND ${CMAKE_COMMAND} -P copy_data_into_bundle.cmake
+    #      VERBATIM
+    #      )
   ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
-    file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/postprocess_bundle.cmake "
-    include(BundleUtilities)
-    message(\"Fixing up application bundle: ${BUNDLE_PATH}\")
-    fixup_bundle(\"${BUNDLE_PATH}\" \"\" \"\")
-    ")
-    add_custom_command(TARGET EngineSource POST_BUILD
-      COMMAND ${CMAKE_COMMAND} -P postprocess_bundle.cmake
-      )
-
-    # Copy data files into application bundle.
-    file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/copy_data_into_bundle.cmake "
-    file(INSTALL ${GAME_ASSETS}
-      DESTINATION ${BUNDLE_PATH}/Contents/Resources
-      )
-    execute_process(
-      COMMAND codesign --deep --force --sign \"$ENV{NJLI_DEVELOPMENT_TEAM}\" -i \"com.njligames.engine.${NJLI_BUILD_PLATFORM}.source\" \"${BUNDLE_PATH}\"
-      )
-    ")
-    add_custom_target(CopyDataIntoBundle ALL
-      COMMAND ${CMAKE_COMMAND} -P copy_data_into_bundle.cmake
-      VERBATIM
-      )
+    IF(IS_RELEASE)
+      file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/postprocess_bundle.cmake "
+      include(BundleUtilities)
+      message(\"Fixing up application bundle: ${BUNDLE_PATH}\")
+      fixup_bundle(\"${BUNDLE_PATH}\" \"\" \"${GAME_ASSETS}\")
+      ")
+      add_custom_command(TARGET EngineSource POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -P postprocess_bundle.cmake
+        )
+    ENDIF(IS_RELEASE)
+    INSTALL(TARGETS lua luac RUNTIME DESTINATION platform/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin )
   ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" )
   
   INSTALL( DIRECTORY ${BUNDLE_PATH} DESTINATION platform/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin USE_SOURCE_PERMISSIONS )
