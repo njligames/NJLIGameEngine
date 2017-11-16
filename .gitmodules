@@ -16,3 +16,7 @@
 [submodule "projects/COMMON/gameplay_scripts/yappybirds_game/scripts/thirdparty/30log"]
 	path = projects/COMMON/gameplay_scripts/yappybirds_game/scripts/thirdparty/30log
 	url = https://github.com/njligames/30log.git
+[submodule "GenerateIcons"]
+	path = GenerateIcons
+	url = https://git@github.com:njligames/GenerateIcons.git
+

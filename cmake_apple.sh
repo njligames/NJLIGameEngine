@@ -224,89 +224,89 @@ build_apple()
     cd ..
 }
 
-build_ios()
-{
-    build_apple Debug ios ON iphonesimulator ${MY_IOS_PATH} ${CMAKE_IOS_SYSTEM_VERSION}
-    build_apple Debug ios OFF iphoneos ${MY_IOS_PATH} ${CMAKE_IOS_SYSTEM_VERSION}
-
-    build_apple Release ios ON iphonesimulator ${MY_IOS_PATH} ${CMAKE_IOS_SYSTEM_VERSION}
-    build_apple Release ios OFF iphoneos ${MY_IOS_PATH} ${CMAKE_IOS_SYSTEM_VERSION}
-
-#    build_apple MinsizeRel ios ON iphonesimulator ${MY_IOS_PATH} ${CMAKE_IOS_SYSTEM_VERSION}
-#    build_apple MinsizeRel ios OFF iphoneos ${MY_IOS_PATH} ${CMAKE_IOS_SYSTEM_VERSION}
+#build_ios()
+#{
+#    build_apple Debug ios ON iphonesimulator ${MY_IOS_PATH} ${CMAKE_IOS_SYSTEM_VERSION}
+#    build_apple Debug ios OFF iphoneos ${MY_IOS_PATH} ${CMAKE_IOS_SYSTEM_VERSION}
 #
-#    build_apple RelWithDebugInfo ios ON iphonesimulator ${MY_IOS_PATH} ${CMAKE_IOS_SYSTEM_VERSION}
-#    build_apple RelWithDebugInfo ios OFF iphoneos ${MY_IOS_PATH} ${CMAKE_IOS_SYSTEM_VERSION}
-}
-
-build_appletvos()
-{
-    build_apple Debug appletvos ON appletvsimulator ${MY_IOS_PATH} ${CMAKE_TVOS_SYSTEM_VERSION}
-    build_apple Debug appletvos OFF appletvos ${MY_IOS_PATH} ${CMAKE_TVOS_SYSTEM_VERSION}
-
-    build_apple Release appletvos ON appletvsimulator ${MY_IOS_PATH} ${CMAKE_TVOS_SYSTEM_VERSION}
-    build_apple Release appletvos OFF appletvos ${MY_IOS_PATH} ${CMAKE_TVOS_SYSTEM_VERSION}
-
-#    build_apple MinsizeRel appletvos ON appletvsimulator ${MY_IOS_PATH} ${CMAKE_TVOS_SYSTEM_VERSION}
-#    build_apple MinsizeRel appletvos OFF appletvos ${MY_IOS_PATH} ${CMAKE_TVOS_SYSTEM_VERSION}
+#    build_apple Release ios ON iphonesimulator ${MY_IOS_PATH} ${CMAKE_IOS_SYSTEM_VERSION}
+#    build_apple Release ios OFF iphoneos ${MY_IOS_PATH} ${CMAKE_IOS_SYSTEM_VERSION}
 #
-#    build_apple RelWithDebugInfo appletvos ON appletvsimulator ${MY_IOS_PATH} ${CMAKE_TVOS_SYSTEM_VERSION}
-#    build_apple RelWithDebugInfo appletvos OFF appletvos ${MY_IOS_PATH} ${CMAKE_TVOS_SYSTEM_VERSION}
-}
+##    build_apple MinsizeRel ios ON iphonesimulator ${MY_IOS_PATH} ${CMAKE_IOS_SYSTEM_VERSION}
+##    build_apple MinsizeRel ios OFF iphoneos ${MY_IOS_PATH} ${CMAKE_IOS_SYSTEM_VERSION}
+##
+##    build_apple RelWithDebugInfo ios ON iphonesimulator ${MY_IOS_PATH} ${CMAKE_IOS_SYSTEM_VERSION}
+##    build_apple RelWithDebugInfo ios OFF iphoneos ${MY_IOS_PATH} ${CMAKE_IOS_SYSTEM_VERSION}
+#}
 
-build_applewatchos()
-{
-    build_apple Debug applewatchos ON SIMULATOR ${MY_IOS_PATH} ${CMAKE_WATCHOS_SYSTEM_VERSION}
-    build_apple Debug applewatchos OFF OS ${MY_IOS_PATH} ${CMAKE_WATCHOS_SYSTEM_VERSION}
+#build_appletvos()
+#{
+#    build_apple Debug appletvos ON appletvsimulator ${MY_IOS_PATH} ${CMAKE_TVOS_SYSTEM_VERSION}
+#    build_apple Debug appletvos OFF appletvos ${MY_IOS_PATH} ${CMAKE_TVOS_SYSTEM_VERSION}
+#
+#    build_apple Release appletvos ON appletvsimulator ${MY_IOS_PATH} ${CMAKE_TVOS_SYSTEM_VERSION}
+#    build_apple Release appletvos OFF appletvos ${MY_IOS_PATH} ${CMAKE_TVOS_SYSTEM_VERSION}
+#
+##    build_apple MinsizeRel appletvos ON appletvsimulator ${MY_IOS_PATH} ${CMAKE_TVOS_SYSTEM_VERSION}
+##    build_apple MinsizeRel appletvos OFF appletvos ${MY_IOS_PATH} ${CMAKE_TVOS_SYSTEM_VERSION}
+##
+##    build_apple RelWithDebugInfo appletvos ON appletvsimulator ${MY_IOS_PATH} ${CMAKE_TVOS_SYSTEM_VERSION}
+##    build_apple RelWithDebugInfo appletvos OFF appletvos ${MY_IOS_PATH} ${CMAKE_TVOS_SYSTEM_VERSION}
+#}
 
-    build_apple Release applewatchos ON SIMULATOR ${MY_IOS_PATH} ${CMAKE_WATCHOS_SYSTEM_VERSION}
-    build_apple Release applewatchos OFF OS ${MY_IOS_PATH} ${CMAKE_WATCHOS_SYSTEM_VERSION}
+#build_applewatchos()
+#{
+#    build_apple Debug applewatchos ON SIMULATOR ${MY_IOS_PATH} ${CMAKE_WATCHOS_SYSTEM_VERSION}
+#    build_apple Debug applewatchos OFF OS ${MY_IOS_PATH} ${CMAKE_WATCHOS_SYSTEM_VERSION}
+#
+#    build_apple Release applewatchos ON SIMULATOR ${MY_IOS_PATH} ${CMAKE_WATCHOS_SYSTEM_VERSION}
+#    build_apple Release applewatchos OFF OS ${MY_IOS_PATH} ${CMAKE_WATCHOS_SYSTEM_VERSION}
+#
+#    build_apple MinsizeRel applewatchos ON SIMULATOR ${MY_IOS_PATH} ${CMAKE_WATCHOS_SYSTEM_VERSION}
+#    build_apple MinsizeRel applewatchos OFF OS ${MY_IOS_PATH} ${CMAKE_WATCHOS_SYSTEM_VERSION}
+#
+#    build_apple RelWithDebugInfo applewatchos ON SIMULATOR ${MY_IOS_PATH} ${CMAKE_WATCHOS_SYSTEM_VERSION}
+#    build_apple RelWithDebugInfo applewatchos OFF OS ${MY_IOS_PATH} ${CMAKE_WATCHOS_SYSTEM_VERSION}
+#}
 
-    build_apple MinsizeRel applewatchos ON SIMULATOR ${MY_IOS_PATH} ${CMAKE_WATCHOS_SYSTEM_VERSION}
-    build_apple MinsizeRel applewatchos OFF OS ${MY_IOS_PATH} ${CMAKE_WATCHOS_SYSTEM_VERSION}
+#_build_macos()
+#{
+#    MY_BUILD_DIRECTORY=.build
+#    #rm -rf ${MY_BUILD_DIRECTORY}
+#    mkdir -p ${MY_BUILD_DIRECTORY}
+#    cd ${MY_BUILD_DIRECTORY}
+#
+#    #Debug Release MinsizeRel RelWithDebugInfo
+#    MY_BUILD_TYPE=$1
+#    MY_VERSION=$2
+#    MY_BUILD_DIR="macOS/${MY_VERSION}"
+#
+#    cmake ../.. -G "Unix Makefiles" \
+#        -DCMAKE_CXX_FLAGS='-std=gnu++11' \
+#        -DCMAKE_INSTALL_PREFIX=../../generated/ \
+#        -DNJLI_THIRDPARTY_DIRECTORY:STRING=${MY_THIRDPARTY_DIR} \
+#        -DNJLI_GRAPHICS_PLATFORM=opengl_2 \
+#        -DNJLI_BUILD_PLATFORM="macOS" \
+#        -DCMAKE_BUILD_TYPE=${MY_BUILD_TYPE} \
+#        -DNJLI_SOUND_PLATFORM=openal \
+#        -DNJLI_BUILD_DIR=${MY_BUILD_DIR}
+#
+#    #make SWIGLua
+#    #make -j8 install
+#    make install
+#
+#    cd ..
+#}
 
-    build_apple RelWithDebugInfo applewatchos ON SIMULATOR ${MY_IOS_PATH} ${CMAKE_WATCHOS_SYSTEM_VERSION}
-    build_apple RelWithDebugInfo applewatchos OFF OS ${MY_IOS_PATH} ${CMAKE_WATCHOS_SYSTEM_VERSION}
-}
-
-_build_macos()
-{
-    MY_BUILD_DIRECTORY=.build
-    #rm -rf ${MY_BUILD_DIRECTORY}
-    mkdir -p ${MY_BUILD_DIRECTORY}
-    cd ${MY_BUILD_DIRECTORY}
-
-    #Debug Release MinsizeRel RelWithDebugInfo
-    MY_BUILD_TYPE=$1
-    MY_VERSION=$2
-    MY_BUILD_DIR="macOS/${MY_VERSION}"
-
-    cmake ../.. -G "Unix Makefiles" \
-        -DCMAKE_CXX_FLAGS='-std=gnu++11' \
-        -DCMAKE_INSTALL_PREFIX=../../generated/ \
-        -DNJLI_THIRDPARTY_DIRECTORY:STRING=${MY_THIRDPARTY_DIR} \
-        -DNJLI_GRAPHICS_PLATFORM=opengl_2 \
-        -DNJLI_BUILD_PLATFORM="macOS" \
-        -DCMAKE_BUILD_TYPE=${MY_BUILD_TYPE} \
-        -DNJLI_SOUND_PLATFORM=openal \
-        -DNJLI_BUILD_DIR=${MY_BUILD_DIR}
-
-    #make SWIGLua
-    #make -j8 install
-    make install
-
-    cd ..
-}
-
-build_macos()
-{
-    #BUILD_TYPES=(Debug Release MinsizeRel RelWithDebugInfo)
-    BUILD_TYPES=(Debug Release)
-
-    for BUILD_TYPE in ${BUILD_TYPES[@]};do
-        _build_macos ${BUILD_TYPE} ${CMAKE_MACOS_SYSTEM_VERSION}
-    done
-}
+#build_macos()
+#{
+#    #BUILD_TYPES=(Debug Release MinsizeRel RelWithDebugInfo)
+#    BUILD_TYPES=(Debug Release)
+#
+#    for BUILD_TYPE in ${BUILD_TYPES[@]};do
+#        _build_macos ${BUILD_TYPE} ${CMAKE_MACOS_SYSTEM_VERSION}
+#    done
+#}
 
 #build_ios
 #build_appletvos
@@ -316,11 +316,11 @@ cd projects
 
 ##########################################3
 
-#rm -rf ios_Xcode
-#mkdir -p ios_Xcode
-#cd ios_Xcode
-#build_apple_xcode ios ${CMAKE_IOS_SYSTEM_VERSION} iphoneos 
-#cd ..
+rm -rf ios_Xcode
+mkdir -p ios_Xcode
+cd ios_Xcode
+build_apple_xcode ios ${CMAKE_IOS_SYSTEM_VERSION} iphoneos 
+cd ..
 
 ##########################################3
 
@@ -332,11 +332,11 @@ cd ..
 
 ##########################################3
 
-#rm -rf macOS_Xcode
-#mkdir -p macOS_Xcode
-#cd macOS_Xcode
-#build_apple_xcode macOS ${CMAKE_MACOS_SYSTEM_VERSION}
-#cd ..
+rm -rf macOS_Xcode
+mkdir -p macOS_Xcode
+cd macOS_Xcode
+build_apple_xcode macOS ${CMAKE_MACOS_SYSTEM_VERSION}
+cd ..
 
 ##########################################3
 
