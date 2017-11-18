@@ -40,7 +40,6 @@ build_emscripten_sublime()
         -DCMAKE_CXX_FLAGS="-std=gnu++11" \
         -DNJLI_BUILD_PLATFORM="emscripten" \
         -DNJLI_BUILD_DIR="emscripten" \
-        -DNJLI_BUILD_TYPE=${BUILD_TYPE} \
         -DCMAKE_BUILD_TYPE=${BUILD_TYPE} \
         -DNJLI_SOUND_PLATFORM=openal \
         -DNJLI_UNITY_BUILD:BOOL=OFF \

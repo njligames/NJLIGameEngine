@@ -37,9 +37,8 @@ SET ( OPERATING_SYSTEM "${CMAKE_SYSTEM_NAME}")
 SET( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11")
 
 STRING( COMPARE EQUAL "${OPERATING_SYSTEM}" "Linux" IS_LINUX )
-STRING( COMPARE EQUAL "${NJLI_BUILD_TYPE}" "Debug" IS_DEBUG )
-STRING( COMPARE EQUAL "${NJLI_BUILD_TYPE}" "Release" IS_RELEASE )
-
+STRING( COMPARE EQUAL "${CMAKE_BUILD_TYPE}" "Debug" IS_DEBUG )
+STRING( COMPARE EQUAL "${CMAKE_BUILD_TYPE}" "Release" IS_RELEASE )
 
 SET ( NJLIGameEngine_VERSION_MAJOR $ENV{NJLIGameEngine_VERSION_MAJOR} )
 SET ( NJLIGameEngine_VERSION_MINOR $ENV{NJLIGameEngine_VERSION_MINOR} )
@@ -5387,6 +5386,7 @@ ELSE()
       XCODE_ATTRIBUTE_PRODUCT_NAME ${NJLI_PRODUCT_NAME}
       XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER "com.njligames.engine.${NJLI_BUILD_PLATFORM}.source"
       XCODE_ATTRIBUTE_DEVELOPMENT_TEAM $ENV{NJLI_DEVELOPMENT_TEAM}
+      XCODE_ATTRIBUTE_ENABLE_BITCODE TRUE
     )
 
   ENDIF()
@@ -5442,15 +5442,15 @@ ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" OR ${NJLI_BUILD_PLATFORM} STREQUA
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
   #http://git.quintin.ninja/mjones/Dolphin/blob/1bd42b7acc0611e7120e4a16c442fd09f575a297/Source/Core/DolphinWX/CMakeLists.txt
-  INCLUDE(BundleUtilities)
+  #INCLUDE(BundleUtilities)
   SET(BUNDLE_PATH ${CMAKE_BINARY_DIR}/${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE}/${NJLI_PRODUCT_NAME}.app)
 
   IF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" )
-    IF(IS_RELEASE)
+    #IF(IS_RELEASE)
       file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/postprocess_bundle.cmake "
-      include(BundleUtilities)
+      #INCLUDE(\"${CMAKE_SOURCE_DIR}/cmake/ios_BundleUtilities.cmake\")
       message(\"Fixing up application bundle: ${BUNDLE_PATH}\")
-      ios_fixup_bundle(\"${BUNDLE_PATH}\" \"\" \"${GAME_ASSETS}\")
+      #ios_fixup_bundle(\"${BUNDLE_PATH}\" \"\" \"${GAME_ASSETS}\")
       # https://www.slicer.org/wiki/Documentation/Nightly/Developers/Mac_OS_X_Code_Signing
       execute_process(
         COMMAND codesign --deep --force --sign \"$ENV{NJLI_DEVELOPMENT_TEAM}\" -i \"com.njligames.engine.${NJLI_BUILD_PLATFORM}.source\" \"${BUNDLE_PATH}\"
@@ -5462,13 +5462,13 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
       add_custom_command(TARGET EngineSource POST_BUILD
         COMMAND ${CMAKE_COMMAND} -P postprocess_bundle.cmake
         )
-    ENDIF(IS_RELEASE)
+      #ENDIF(IS_RELEASE)
   ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
-    IF(IS_RELEASE)
+    #IF(IS_RELEASE)
       file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/postprocess_bundle.cmake "
-      include(BundleUtilities)
+      #INCLUDE(\"${CMAKE_SOURCE_DIR}/cmake/ios_BundleUtilities.cmake\")
       message(\"Fixing up application bundle: ${BUNDLE_PATH}\")
-      ios_fixup_bundle(\"${BUNDLE_PATH}\" \"\" \"${GAME_ASSETS}\")
+      #ios_fixup_bundle(\"${BUNDLE_PATH}\" \"\" \"${GAME_ASSETS}\")
       # https://www.slicer.org/wiki/Documentation/Nightly/Developers/Mac_OS_X_Code_Signing
       execute_process(
         COMMAND codesign --deep --force --sign \"$ENV{NJLI_DEVELOPMENT_TEAM}\" -i \"com.njligames.engine.${NJLI_BUILD_PLATFORM}.source\" \"${BUNDLE_PATH}\"
@@ -5478,11 +5478,11 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
         )
       ")
       add_custom_command(TARGET EngineSource POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -P postprocess_bundle.cmake
+        COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/postprocess_bundle.cmake
         )
-    ENDIF(IS_RELEASE)
+      #ENDIF(IS_RELEASE)
   ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
-    IF(IS_RELEASE)
+    #IF(IS_RELEASE)
       file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/postprocess_bundle.cmake "
       include(BundleUtilities)
       message(\"Fixing up application bundle: ${BUNDLE_PATH}\")
@@ -5491,7 +5491,7 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
       add_custom_command(TARGET EngineSource POST_BUILD
         COMMAND ${CMAKE_COMMAND} -P postprocess_bundle.cmake
         )
-    ENDIF(IS_RELEASE)
+      #ENDIF(IS_RELEASE)
     INSTALL(TARGETS lua luac RUNTIME DESTINATION platform/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin )
   ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" )
   
@@ -5535,7 +5535,12 @@ INSTALL(FILES ${NJLIGameEngine_DATAFILES} DESTINATION ${CMAKE_INSTALL_DATADIR})
 INSTALL(FILES ${NJLIGameEngine_TESTFILES} DESTINATION ${CMAKE_INSTALL_TESTDIR})
 
 #SET ( NJLIGameEngine_PACKAGE_TARNAME "NJLIGameEngine" )
+
+# https://cmake.org/Wiki/CMake:CPackConfiguration
+
 INCLUDE (InstallRequiredSystemLibraries)
+
+SET (CPACK_OUTPUT_FILE_PREFIX ${NJLI_PACKAGE_DIR})
 SET (CPACK_PACKAGE_NAME ${NJLIGameEngine_PACKAGE})
 SET (CPACK_PACKAGE_VENDOR "NJLI Games LLC.")
 SET (CPACK_PACKAGE_DESCRIPTION_SUMMARY ${NJLIGameEngine_PACKAGE_STRING})
