@@ -1,7 +1,5 @@
 #!/bin/sh
 
-export NJLI_DEVELOPMENT_TEAM=SRBQ5SCF5X
-
 if IFS= read -r var
 then
   export NJLIGameEngine_VERSION_MAJOR=$var
@@ -17,7 +15,9 @@ then
   export NJLIGameEngine_VERSION_RELEASE=$var
 fi < ".NJLI_VERSION_RELEASE.txt"
 
+
 BUILD=$1
+EXPORT=$2
 
 export CMAKE_IOS_SYSROOT=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk
 export CMAKE_TVOS_SYSROOT=/Applications/Xcode.app/Contents/Developer/Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS.sdk/
@@ -34,6 +34,7 @@ export PATH=${PATH}:${APP_LOADER_DIR}
 
 build_apple_xcode()
 {
+
   NJLI_PRODUCT_NAME=NJLIGameEngine
     MY_PLATFORM=$1
     MY_VERSION=$2
@@ -45,8 +46,26 @@ build_apple_xcode()
     NJLI_INSTALL_PREFIX=../../generated
     INSTALL_DIR_FULL=`pwd`/${NJLI_INSTALL_PREFIX}/platform/${MY_BUILD_DIR}/${NJLI_BUILD_TYPE}/package
 
-    echo 'hold on'
-    echo ${INSTALL_DIR_FULL}
+
+
+
+
+
+  FILE=.${NJLI_PRODUCT_NAME}.${MY_PLATFORM}
+
+  if [ -e $FILE ]
+  then
+    if IFS= read -r var
+    then
+      export NJLIGameEngine_BUILD_NUMBER=$var
+    fi < ${FILE}
+  else
+    export NJLIGameEngine_BUILD_NUMBER=0
+  fi
+
+
+
+
 
     MY_GRAPHICS_PLATFORM=opengl_es_2
     if [ $MY_PLATFORM == macOS ]
@@ -64,7 +83,7 @@ build_apple_xcode()
         -DCMAKE_BUILD_TYPE=${NJLI_BUILD_TYPE} \
         -DNJLI_BUILD_DIR=${MY_BUILD_DIR} \
         -DNJLI_PRODUCT_NAME=${NJLI_PRODUCT_NAME} \
-        -DNJLI_PACKAGE_DIR=${INSTALL_DIR_FULL}
+        -DNJLI_PACKAGE_DIR=${NJLI_INSTALL_PREFIX}
 
     mkdir -p ../../SETTINGS
 
@@ -79,8 +98,12 @@ build_apple_xcode()
         #> ../../generated/ERRORS/${MY_PLATFORM}.log
       cpack ../.. --config CPackSourceConfig.cmake
 
-      SCHEME_NAME=EngineSource
-      TARGET_SDK=iphoneos
+    fi
+
+    if [ ! -z "${EXPORT}" ]; then
+
+      SCHEME_NAME=${NJLI_PRODUCT_NAME}
+      TARGET_SDK=${MY_BUILD_PLAT}
       EXPORT_PLIST=`pwd`/../../appstore.plist
       ARCHIVEPATH=`pwd`/MyStage/Release/
 
@@ -100,10 +123,11 @@ build_apple_xcode()
         -exportArchive \
         -archivePath "${ARCHIVEPATH}/${NJLI_PRODUCT_NAME}.xcarchive" \
         -exportOptionsPlist "${EXPORT_PLIST}" \
-        -exportPath "${INSTALL_DIR_FULL}"
+        -exportPath "${INSTALL_DIR_FULL}/xcarchive"
 
+      
       # https://help.apple.com/itc/apploader/#/apdATD1E53-D1E1A1303-D1E53A1126
-      #altool --validate-app -f file -u username [-p password] [--output-format xml]
+      altool --validate-app -f "${INSTALL_DIR_FULL}/xcarchive/${NJLI_PRODUCT_NAME}.ipa" -u $username -p $password
       #altool --upload-app -f file -u username [-p password] [--output-format xml]
 
     fi
@@ -114,7 +138,7 @@ cd projects
 ##########################################3
 
 #rm -rf ios_Xcode
-#mkdir -p ios_Xcode
+mkdir -p ios_Xcode
 cd ios_Xcode
 build_apple_xcode ios ${CMAKE_IOS_SYSTEM_VERSION} iphoneos 
 cd ..
@@ -126,14 +150,14 @@ cd ..
 #cd tvos_Xcode
 #build_apple_xcode appletv ${CMAKE_TVOS_SYSTEM_VERSION} appletvos 
 #cd ..
-
+#
 ##########################################3
 
-#rm -rf macOS_Xcode
+##rm -rf macOS_Xcode
 #mkdir -p macOS_Xcode
 #cd macOS_Xcode
 #build_apple_xcode macOS ${CMAKE_MACOS_SYSTEM_VERSION}
 #cd ..
-
+#
 ##########################################3
 
