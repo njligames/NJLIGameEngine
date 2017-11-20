@@ -34,110 +34,117 @@ export PATH=${PATH}:${APP_LOADER_DIR}
 
 build_apple_xcode()
 {
-
   NJLI_PRODUCT_NAME=NJLIGameEngine
-    MY_PLATFORM=$1
-    MY_VERSION=$2
-    MY_BUILD_PLAT=$3
-    NJLI_BUILD_TYPE=Release
+  MY_PLATFORM=$1
+  MY_VERSION=$2
+  MY_BUILD_PLAT=$3
+  NJLI_BUILD_TYPE=Release
+  
+  MY_BUILD_DIR="${MY_PLATFORM}/${MY_VERSION}/${MY_BUILD_PLAT}"
+  NJLI_INSTALL_PREFIX=../../generated
+  INSTALL_DIR_FULL=`pwd`/${NJLI_INSTALL_PREFIX}/platform/${MY_BUILD_DIR}/${NJLI_BUILD_TYPE}/package
 
-    MY_BUILD_DIR="${MY_PLATFORM}/${MY_VERSION}/${MY_BUILD_PLAT}"
+  if [ ! -z "${EXPORT}" ]; then
 
-    NJLI_INSTALL_PREFIX=../../generated
-    INSTALL_DIR_FULL=`pwd`/${NJLI_INSTALL_PREFIX}/platform/${MY_BUILD_DIR}/${NJLI_BUILD_TYPE}/package
-
-
-
-
-
-
-  FILE=.${NJLI_PRODUCT_NAME}.${MY_PLATFORM}
-
-  if [ -e $FILE ]
-  then
-    if IFS= read -r var
+    FILE=.${NJLI_PRODUCT_NAME}.${MY_PLATFORM}
+    if [ -e $FILE ]
     then
-      export NJLIGameEngine_BUILD_NUMBER=$var
-    fi < ${FILE}
-  else
-    export NJLIGameEngine_BUILD_NUMBER=0
+      if IFS= read -r var
+      then
+        export NJLIGameEngine_BUILD_NUMBER=$var
+      fi < ${FILE}
+    else
+      export NJLIGameEngine_BUILD_NUMBER=0
+    fi
+
+    RELEASE=$((NJLIGameEngine_BUILD_NUMBER + 1))
+    echo ${RELEASE} > ${FILE}
   fi
-
-
-
-
-
-    MY_GRAPHICS_PLATFORM=opengl_es_2
-    if [ $MY_PLATFORM == macOS ]
+  
+  MY_GRAPHICS_PLATFORM=opengl_es_2
+  if [ $MY_PLATFORM == macOS ]
+  then
+    MY_GRAPHICS_PLATFORM=opengl_2
+  fi
+  
+  cmake ../.. -G "Xcode" \
+    -DCMAKE_CXX_FLAGS='-std=gnu++11' \
+    -DCMAKE_INSTALL_PREFIX=${NJLI_INSTALL_PREFIX} \
+    -DNJLI_THIRDPARTY_DIRECTORY:STRING=${MY_THIRDPARTY_DIR} \
+    -DNJLI_BUILD_PLATFORM=${MY_PLATFORM} \
+    -DNJLI_GRAPHICS_PLATFORM=${MY_GRAPHICS_PLATFORM} \
+    -DNJLI_SOUND_PLATFORM=openal \
+    -DCMAKE_BUILD_TYPE=${NJLI_BUILD_TYPE} \
+    -DNJLI_BUILD_DIR=${MY_BUILD_DIR} \
+    -DNJLI_PRODUCT_NAME=${NJLI_PRODUCT_NAME} \
+    -DNJLI_PACKAGE_DIR=${NJLI_INSTALL_PREFIX}
+  
+  mkdir -p ../../SETTINGS
+  
+  if [ ! -z "${BUILD}" ]; then
+    
+    mkdir -p ../../generated/ERRORS
+    echo "" > ../../generated/ERRORS/${MY_PLATFORM}.log
+    
+    xcodebuild \
+      -configuration Release \
+      -target install build \
+      #> ../../generated/ERRORS/${MY_PLATFORM}.log
+    
+    cpack ../.. --config CPackSourceConfig.cmake
+  fi
+  
+  if [ ! -z "${EXPORT}" ]; then
+    
+    FILE=.${NJLI_PRODUCT_NAME}.${my_version}
+    if [ -e $FILE ]
     then
-        MY_GRAPHICS_PLATFORM=opengl_2
+      if IFS= read -r var
+      then
+        export NJLIGameEngine_BUILD_NUMBER=$var
+      fi < ${FILE}
+    else
+      export NJLIGameEngine_BUILD_NUMBER=0
     fi
+    
+    RELEASE=$((NJLIGameEngine_BUILD_NUMBER + 1))
+    echo ${RELEASE} > ${FILE}
+    
+    SCHEME_NAME=${NJLI_PRODUCT_NAME}
+    TARGET_SDK=${MY_BUILD_PLAT}
+    EXPORT_PLIST=`pwd`/../../appstore.plist
+    ARCHIVEPATH=`pwd`/MyStage/Release/
 
-    cmake ../.. -G "Xcode" \
-        -DCMAKE_CXX_FLAGS='-std=gnu++11' \
-        -DCMAKE_INSTALL_PREFIX=${NJLI_INSTALL_PREFIX} \
-        -DNJLI_THIRDPARTY_DIRECTORY:STRING=${MY_THIRDPARTY_DIR} \
-        -DNJLI_BUILD_PLATFORM=${MY_PLATFORM} \
-        -DNJLI_GRAPHICS_PLATFORM=${MY_GRAPHICS_PLATFORM} \
-        -DNJLI_SOUND_PLATFORM=openal \
-        -DCMAKE_BUILD_TYPE=${NJLI_BUILD_TYPE} \
-        -DNJLI_BUILD_DIR=${MY_BUILD_DIR} \
-        -DNJLI_PRODUCT_NAME=${NJLI_PRODUCT_NAME} \
-        -DNJLI_PACKAGE_DIR=${NJLI_INSTALL_PREFIX}
-
-    mkdir -p ../../SETTINGS
-
-    if [ ! -z "${BUILD}" ]; then
-
-      mkdir -p ../../generated/ERRORS
-      echo "" > ../../generated/ERRORS/${MY_PLATFORM}.log
-
-      xcodebuild \
-        -configuration Release \
-        -target install build \
-        #> ../../generated/ERRORS/${MY_PLATFORM}.log
-      cpack ../.. --config CPackSourceConfig.cmake
-
-    fi
-
-    if [ ! -z "${EXPORT}" ]; then
-
-      SCHEME_NAME=${NJLI_PRODUCT_NAME}
-      TARGET_SDK=${MY_BUILD_PLAT}
-      EXPORT_PLIST=`pwd`/../../appstore.plist
-      ARCHIVEPATH=`pwd`/MyStage/Release/
-
-      # Archive the application
-      xcodebuild \
-        -scheme "${SCHEME_NAME}" \
-        -sdk "${TARGET_SDK}" \
-        -archivePath "${ARCHIVEPATH}/${NJLI_PRODUCT_NAME}.xcarchive" \
-        -configuration Release \
-        -target install build \
-        archive
-
-
-      # Export the archive to an ipa
-      xcodebuild \
-        -allowProvisioningUpdates \
-        -exportArchive \
-        -archivePath "${ARCHIVEPATH}/${NJLI_PRODUCT_NAME}.xcarchive" \
-        -exportOptionsPlist "${EXPORT_PLIST}" \
-        -exportPath "${INSTALL_DIR_FULL}/xcarchive"
-
+    # Archive the application
+    xcodebuild \
+      -scheme "${SCHEME_NAME}" \
+      -sdk "${TARGET_SDK}" \
+      -archivePath "${ARCHIVEPATH}/${NJLI_PRODUCT_NAME}.xcarchive" \
+      -configuration Release \
+      -target install build \
+      archive
+    
+    # Export the archive to an ipa
+    xcodebuild \
+      -allowProvisioningUpdates \
+      -exportArchive \
+      -archivePath "${ARCHIVEPATH}/${NJLI_PRODUCT_NAME}.xcarchive" \
+      -exportOptionsPlist "${EXPORT_PLIST}" \
+      -exportPath "${INSTALL_DIR_FULL}/xcarchive"
       
-      # https://help.apple.com/itc/apploader/#/apdATD1E53-D1E1A1303-D1E53A1126
-      altool --validate-app -f "${INSTALL_DIR_FULL}/xcarchive/${NJLI_PRODUCT_NAME}.ipa" -u $username -p $password
-      #altool --upload-app -f file -u username [-p password] [--output-format xml]
-
-    fi
+    
+    # https://help.apple.com/itc/apploader/#/apdATD1E53-D1E1A1303-D1E53A1126
+    altool --validate-app -f "${INSTALL_DIR_FULL}/xcarchive/${NJLI_PRODUCT_NAME}.ipa" -u $username -p $password
+    altool --upload-app -f "${INSTALL_DIR_FULL}/xcarchive/${NJLI_PRODUCT_NAME}.ipa" -u $username -p $password 
+  
+  fi
 }
 
 cd projects
 
 ##########################################3
 
-#rm -rf ios_Xcode
+rm -rf ios_Xcode
 mkdir -p ios_Xcode
 cd ios_Xcode
 build_apple_xcode ios ${CMAKE_IOS_SYSTEM_VERSION} iphoneos 
@@ -145,19 +152,19 @@ cd ..
 
 ##########################################3
 
-#rm -rf tvos_Xcode
-#mkdir -p tvos_Xcode
-#cd tvos_Xcode
-#build_apple_xcode appletv ${CMAKE_TVOS_SYSTEM_VERSION} appletvos 
-#cd ..
-#
+rm -rf tvos_Xcode
+mkdir -p tvos_Xcode
+cd tvos_Xcode
+build_apple_xcode appletv ${CMAKE_TVOS_SYSTEM_VERSION} appletvos 
+cd ..
+
 ##########################################3
 
-##rm -rf macOS_Xcode
-#mkdir -p macOS_Xcode
-#cd macOS_Xcode
-#build_apple_xcode macOS ${CMAKE_MACOS_SYSTEM_VERSION}
-#cd ..
-#
+rm -rf macOS_Xcode
+mkdir -p macOS_Xcode
+cd macOS_Xcode
+build_apple_xcode macOS ${CMAKE_MACOS_SYSTEM_VERSION}
+cd ..
+
 ##########################################3
 

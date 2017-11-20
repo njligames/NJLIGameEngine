@@ -5450,7 +5450,7 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
   SET(BUNDLE_PATH ${CMAKE_BINARY_DIR}/${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE}/${NJLI_PRODUCT_NAME}.app)
 
   IF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" )
-    #IF(IS_RELEASE)
+    IF(IS_RELEASE)
       file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/postprocess_bundle.cmake "
       message(\"Signing application bundle: ${BUNDLE_PATH}\")
       # https://www.slicer.org/wiki/Documentation/Nightly/Developers/Mac_OS_X_Code_Signing
@@ -5464,9 +5464,9 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
       add_custom_command(TARGET ${NJLI_PRODUCT_NAME} POST_BUILD
         COMMAND ${CMAKE_COMMAND} -P postprocess_bundle.cmake
         )
-      #ENDIF(IS_RELEASE)
+    ENDIF(IS_RELEASE)
   ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
-    #IF(IS_RELEASE)
+    IF(IS_RELEASE)
       file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/postprocess_bundle.cmake "
       message(\"Signing application bundle: ${BUNDLE_PATH}\")
       # https://www.slicer.org/wiki/Documentation/Nightly/Developers/Mac_OS_X_Code_Signing
@@ -5480,9 +5480,9 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
       add_custom_command(TARGET ${NJLI_PRODUCT_NAME} POST_BUILD
         COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/postprocess_bundle.cmake
         )
-      #ENDIF(IS_RELEASE)
+    ENDIF(IS_RELEASE)
   ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
-    #IF(IS_RELEASE)
+    IF(IS_RELEASE)
       file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/postprocess_bundle.cmake "
       include(BundleUtilities)
       message(\"Fixing up application bundle: ${BUNDLE_PATH}\")
@@ -5491,7 +5491,8 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
       add_custom_command(TARGET ${NJLI_PRODUCT_NAME} POST_BUILD
         COMMAND ${CMAKE_COMMAND} -P postprocess_bundle.cmake
         )
-      #ENDIF(IS_RELEASE)
+    ENDIF(IS_RELEASE)
+
     INSTALL(TARGETS lua luac RUNTIME DESTINATION platform/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin )
   ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" )
 
