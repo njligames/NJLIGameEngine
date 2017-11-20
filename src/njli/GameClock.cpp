@@ -10,32 +10,19 @@
 
 namespace njli
 {
-    GameClock::GameClock()
-    {
-        
-    }
-    
-    GameClock::~GameClock()
-    {
-        
-    }
-    
-    GameClock::operator std::string() const
-    {
-        return "TODO";
-    }
-    
-    GameClock &GameClock::operator=(const GameClock &rhs)
-    {
-        if(this != &rhs)
-        {
-            
-        }
-        return *this;
-    }
-    
-    void GameClock::update(f64 milliseconds)
-    {
-        
-    }
+  GameClock::GameClock() {}
+
+  GameClock::~GameClock() {}
+
+  GameClock::operator std::string() const { return "TODO"; }
+
+  GameClock &GameClock::operator=(const GameClock &rhs)
+  {
+    if (this != &rhs)
+      {
+      }
+    return *this;
+  }
+
+  void GameClock::update(f64 milliseconds) {}
 }

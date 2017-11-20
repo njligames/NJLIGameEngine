@@ -13,30 +13,31 @@
 #include "AbstractFactoryObject.h"
 #include "lua.hpp"
 
-namespace njli {
-class PhysicsFieldBuilder;
-
-/**
-     *  <#Description#>
-     */
-ATTRIBUTE_ALIGNED16(class)
-PhysicsField : public AbstractFactoryObject
+namespace njli
 {
+  class PhysicsFieldBuilder;
+
+  /**
+       *  <#Description#>
+       */
+  ATTRIBUTE_ALIGNED16(class)
+  PhysicsField : public AbstractFactoryObject
+  {
     friend class WorldFactory;
 
-protected:
+  protected:
     PhysicsField();
-    PhysicsField(const AbstractBuilder&);
-    PhysicsField(const PhysicsField&);
+    PhysicsField(const AbstractBuilder &);
+    PhysicsField(const PhysicsField &);
     BT_DECLARE_ALIGNED_ALLOCATOR();
     virtual ~PhysicsField();
-    PhysicsField& operator=(const PhysicsField&);
+    PhysicsField &operator=(const PhysicsField &);
 
-public:
+  public:
     using AbstractDecorator::setName;
     using AbstractDecorator::getName;
     using AbstractFactoryObject::create;
-//    using AbstractFactoryObject::clone;
+    //    using AbstractFactoryObject::clone;
     using AbstractFactoryObject::getPointer;
     using AbstractFactoryObject::getPointerValue;
     using AbstractFactoryObject::serializeObject;
@@ -56,14 +57,14 @@ public:
          *  @param dataBuffer   <#dataBuffer description#>
          *  @param btSerializer <#btSerializer description#>
          */
-    virtual void serialize(void* dataBuffer, btSerializer*) const;
+    virtual void serialize(void *dataBuffer, btSerializer *) const;
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    virtual const char* getClassName() const;
+    virtual const char *getClassName() const;
     /**
          *  <#Description#>
          *
@@ -84,7 +85,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static PhysicsField** createArray(const u32 size);
+    static PhysicsField **createArray(const u32 size);
     /**
          *  <#Description#>
          *
@@ -96,7 +97,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static PhysicsField* create();
+    static PhysicsField *create();
     /**
          *  <#Description#>
          *
@@ -104,7 +105,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static PhysicsField* create(const PhysicsFieldBuilder& builder);
+    static PhysicsField *create(const PhysicsFieldBuilder &builder);
     /**
          *  <#Description#>
          *
@@ -112,7 +113,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static PhysicsField* clone(const PhysicsField& object);
+    static PhysicsField *clone(const PhysicsField &object);
     /**
          *  <#Description#>
          *
@@ -120,7 +121,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static PhysicsField* copy(const PhysicsField& object);
+    static PhysicsField *copy(const PhysicsField &object);
     /**
          *  <#Description#>
          *
@@ -142,10 +143,10 @@ public:
          */
     static u32 type();
 
-    //TODO: fill in specific methods for PhysicsField
-protected:
-private:
-};
+    // TODO: fill in specific methods for PhysicsField
+  protected:
+  private:
+  };
 }
 
 #endif /* defined(__JLIGameEngineTest__PhysicsField__) */

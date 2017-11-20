@@ -1,8 +1,5 @@
 #include "Engine.h"
-int main(int argc, char** argv)
-{
-    return njli::run_main(argc, argv);
-}
+int main(int argc, char **argv) { return njli::run_main(argc, argv); }
 ///*
 // *  rectangles.c
 // *  written by Holmes Futrell
@@ -21,20 +18,20 @@ int main(int argc, char** argv)
 //#include <iostream>
 //#include <string>
 //#include <memory>
-//using namespace std;
+// using namespace std;
 //
 //#include "NJLIInterface.h"
 //#include "Game.h"
 //#include "DeviceUtil.h"
 //#include "File.h"
 //
-//class Graphics
+// class Graphics
 //{
-//private:
+// private:
 //
 //    SDL_Window* _window;
 //
-//public:
+// public:
 //    Graphics(SDL_Window* window)
 //    {
 //        _window = window;
@@ -48,10 +45,10 @@ int main(int argc, char** argv)
 //    }
 //};
 //
-//static unique_ptr<Graphics> gGraphics;
+// static unique_ptr<Graphics> gGraphics;
 //
-//static const char *
-//ControllerAxisName(const SDL_GameControllerAxis axis)
+// static const char *
+// ControllerAxisName(const SDL_GameControllerAxis axis)
 //{
 //    switch (axis)
 //    {
@@ -68,8 +65,8 @@ int main(int argc, char** argv)
 //    }
 //}
 //
-//static const char *
-//ControllerButtonName(const SDL_GameControllerButton button)
+// static const char *
+// ControllerButtonName(const SDL_GameControllerButton button)
 //{
 //    switch (button)
 //    {
@@ -96,19 +93,21 @@ int main(int argc, char** argv)
 //}
 //
 //
-//static void
-//SDLTest_PrintEvent(SDL_Event * event)
+// static void
+// SDLTest_PrintEvent(SDL_Event * event)
 //{
 //    if (event->type == SDL_FINGERMOTION)
 //    {
 //        /* Mouse and finger motion are really spammy */
 //
-////        SDL_Log("SDL EVENT: Finger: %s touch=%ld, finger=%ld, x=%f, y=%f, dx=%f, dy=%f, pressure=%f",
+////        SDL_Log("SDL EVENT: Finger: %s touch=%ld, finger=%ld, x=%f, y=%f,
+///dx=%f, dy=%f, pressure=%f",
 ////                (event->type == SDL_FINGERDOWN) ? "down" : "up",
 ////                (long) event->tfinger.touchId,
 ////                (long) event->tfinger.fingerId,
 ////                event->tfinger.x, event->tfinger.y,
-////                event->tfinger.dx, event->tfinger.dy, event->tfinger.pressure);
+////                event->tfinger.dx, event->tfinger.dy,
+///event->tfinger.pressure);
 //
 //        return;
 //    }
@@ -117,13 +116,16 @@ int main(int argc, char** argv)
 //        case SDL_WINDOWEVENT:
 //            switch (event->window.event) {
 //                case SDL_WINDOWEVENT_SHOWN:
-//                    SDL_Log("SDL EVENT: Window %d shown", event->window.windowID);
+//                    SDL_Log("SDL EVENT: Window %d shown",
+//                    event->window.windowID);
 //                    break;
 //                case SDL_WINDOWEVENT_HIDDEN:
-//                    SDL_Log("SDL EVENT: Window %d hidden", event->window.windowID);
+//                    SDL_Log("SDL EVENT: Window %d hidden",
+//                    event->window.windowID);
 //                    break;
 //                case SDL_WINDOWEVENT_EXPOSED:
-//                    SDL_Log("SDL EVENT: Window %d exposed", event->window.windowID);
+//                    SDL_Log("SDL EVENT: Window %d exposed",
+//                    event->window.windowID);
 //                    break;
 //                case SDL_WINDOWEVENT_MOVED:
 //                    SDL_Log("SDL EVENT: Window %d moved to %d,%d",
@@ -141,20 +143,24 @@ int main(int argc, char** argv)
 //                            event->window.data2);
 //                    break;
 //                case SDL_WINDOWEVENT_MINIMIZED:
-//                    SDL_Log("SDL EVENT: Window %d minimized", event->window.windowID);
+//                    SDL_Log("SDL EVENT: Window %d minimized",
+//                    event->window.windowID);
 //                    break;
 //                case SDL_WINDOWEVENT_MAXIMIZED:
-//                    SDL_Log("SDL EVENT: Window %d maximized", event->window.windowID);
+//                    SDL_Log("SDL EVENT: Window %d maximized",
+//                    event->window.windowID);
 //                    break;
 //                case SDL_WINDOWEVENT_RESTORED:
-//                    SDL_Log("SDL EVENT: Window %d restored", event->window.windowID);
+//                    SDL_Log("SDL EVENT: Window %d restored",
+//                    event->window.windowID);
 //                    break;
 //                case SDL_WINDOWEVENT_ENTER:
 //                    SDL_Log("SDL EVENT: Mouse entered window %d",
 //                            event->window.windowID);
 //                    break;
 //                case SDL_WINDOWEVENT_LEAVE:
-//                    SDL_Log("SDL EVENT: Mouse left window %d", event->window.windowID);
+//                    SDL_Log("SDL EVENT: Mouse left window %d",
+//                    event->window.windowID);
 //                    break;
 //                case SDL_WINDOWEVENT_FOCUS_GAINED:
 //                    SDL_Log("SDL EVENT: Window %d gained keyboard focus",
@@ -165,13 +171,16 @@ int main(int argc, char** argv)
 //                            event->window.windowID);
 //                    break;
 //                case SDL_WINDOWEVENT_CLOSE:
-//                    SDL_Log("SDL EVENT: Window %d closed", event->window.windowID);
+//                    SDL_Log("SDL EVENT: Window %d closed",
+//                    event->window.windowID);
 //                    break;
 //                case SDL_WINDOWEVENT_TAKE_FOCUS:
-//                    SDL_Log("SDL EVENT: Window %d take focus", event->window.windowID);
+//                    SDL_Log("SDL EVENT: Window %d take focus",
+//                    event->window.windowID);
 //                    break;
 //                case SDL_WINDOWEVENT_HIT_TEST:
-//                    SDL_Log("SDL EVENT: Window %d hit test", event->window.windowID);
+//                    SDL_Log("SDL EVENT: Window %d hit test",
+//                    event->window.windowID);
 //                    break;
 //                default:
 //                    SDL_Log("SDL EVENT: Window %d got unknown event %d",
@@ -180,18 +189,22 @@ int main(int argc, char** argv)
 //            }
 //            break;
 //        case SDL_KEYDOWN:
-//            SDL_Log("SDL EVENT: Keyboard: key pressed  in window %d: scancode 0x%08X = %s, keycode 0x%08X = %s",
+//            SDL_Log("SDL EVENT: Keyboard: key pressed  in window %d: scancode
+//            0x%08X = %s, keycode 0x%08X = %s",
 //                    event->key.windowID,
 //                    event->key.keysym.scancode,
 //                    SDL_GetScancodeName(event->key.keysym.scancode),
-//                    event->key.keysym.sym, SDL_GetKeyName(event->key.keysym.sym));
+//                    event->key.keysym.sym,
+//                    SDL_GetKeyName(event->key.keysym.sym));
 //            break;
 //        case SDL_KEYUP:
-//            SDL_Log("SDL EVENT: Keyboard: key released in window %d: scancode 0x%08X = %s, keycode 0x%08X = %s",
+//            SDL_Log("SDL EVENT: Keyboard: key released in window %d: scancode
+//            0x%08X = %s, keycode 0x%08X = %s",
 //                    event->key.windowID,
 //                    event->key.keysym.scancode,
 //                    SDL_GetScancodeName(event->key.keysym.scancode),
-//                    event->key.keysym.sym, SDL_GetKeyName(event->key.keysym.sym));
+//                    event->key.keysym.sym,
+//                    SDL_GetKeyName(event->key.keysym.sym));
 //            break;
 //        case SDL_TEXTINPUT:
 //            SDL_Log("SDL EVENT: Keyboard: text input \"%s\" in window %d",
@@ -204,18 +217,24 @@ int main(int argc, char** argv)
 //                    event->motion.windowID);
 //            break;
 //        case SDL_MOUSEBUTTONDOWN:
-//            SDL_Log("SDL EVENT: Mouse: button %d pressed at %d,%d with click count %d in window %d",
-//                    event->button.button, event->button.x, event->button.y, event->button.clicks,
+//            SDL_Log("SDL EVENT: Mouse: button %d pressed at %d,%d with click
+//            count %d in window %d",
+//                    event->button.button, event->button.x, event->button.y,
+//                    event->button.clicks,
 //                    event->button.windowID);
 //            break;
 //        case SDL_MOUSEBUTTONUP:
-//            SDL_Log("SDL EVENT: Mouse: button %d released at %d,%d with click count %d in window %d",
-//                    event->button.button, event->button.x, event->button.y, event->button.clicks,
+//            SDL_Log("SDL EVENT: Mouse: button %d released at %d,%d with click
+//            count %d in window %d",
+//                    event->button.button, event->button.x, event->button.y,
+//                    event->button.clicks,
 //                    event->button.windowID);
 //            break;
 //        case SDL_MOUSEWHEEL:
-//            SDL_Log("SDL EVENT: Mouse: wheel scrolled %d in x and %d in y (reversed: %d) in window %d",
-//                    event->wheel.x, event->wheel.y, event->wheel.direction, event->wheel.windowID);
+//            SDL_Log("SDL EVENT: Mouse: wheel scrolled %d in x and %d in y
+//            (reversed: %d) in window %d",
+//                    event->wheel.x, event->wheel.y, event->wheel.direction,
+//                    event->wheel.windowID);
 //            break;
 //        case SDL_JOYDEVICEADDED:
 //        {
@@ -227,11 +246,13 @@ int main(int argc, char** argv)
 //
 //            if( joystick == NULL )
 //            {
-//                printf( "Warning: Unable to open game controller! SDL Error: %s\n", SDL_GetError() );
+//                printf( "Warning: Unable to open game controller! SDL Error:
+//                %s\n", SDL_GetError() );
 //            }
 //            else
 //            {
-//                gGameJoystickMap.insert(JoystickPair(SDL_JoystickInstanceID(joystick), joystick));
+//                gGameJoystickMap.insert(JoystickPair(SDL_JoystickInstanceID(joystick),
+//                joystick));
 //            }
 //        }
 //            break;
@@ -241,7 +262,8 @@ int main(int argc, char** argv)
 //            SDL_Log("SDL EVENT: Joystick %d removed",
 //                    event->jdevice.which);
 //
-//            JoystickMap::iterator iter = gGameJoystickMap.find(event->jdevice.which);
+//            JoystickMap::iterator iter =
+//            gGameJoystickMap.find(event->jdevice.which);
 //            if(iter != gGameJoystickMap.end())
 //            {
 //                SDL_Joystick *joystick = iter->second;
@@ -257,7 +279,8 @@ int main(int argc, char** argv)
 //        case SDL_JOYAXISMOTION:
 //        {
 //            SDL_Log("SDL EVENT: Joystick %d: axis %d, value %d",
-//                    event->jaxis.which, event->jaxis.axis, event->jaxis.value);
+//                    event->jaxis.which, event->jaxis.axis,
+//                    event->jaxis.value);
 //        }
 //            break;
 //        case SDL_JOYHATMOTION:
@@ -292,7 +315,8 @@ int main(int argc, char** argv)
 //                    position = "LEFTUP";
 //                    break;
 //            }
-//            SDL_Log("SDL EVENT: Joystick %d: hat %d moved to %s", event->jhat.which,
+//            SDL_Log("SDL EVENT: Joystick %d: hat %d moved to %s",
+//            event->jhat.which,
 //                    event->jhat.hat, position);
 //        }
 //            break;
@@ -335,21 +359,26 @@ int main(int argc, char** argv)
 //
 //        case SDL_FINGERDOWN:
 //        case SDL_FINGERUP:
-//            SDL_Log("SDL EVENT: Finger: %s touch=%ld, finger=%ld, x=%f, y=%f, dx=%f, dy=%f, pressure=%f",
+//            SDL_Log("SDL EVENT: Finger: %s touch=%ld, finger=%ld, x=%f, y=%f,
+//            dx=%f, dy=%f, pressure=%f",
 //                    (event->type == SDL_FINGERDOWN) ? "down" : "up",
 //                    (long) event->tfinger.touchId,
 //                    (long) event->tfinger.fingerId,
 //                    event->tfinger.x, event->tfinger.y,
-//                    event->tfinger.dx, event->tfinger.dy, event->tfinger.pressure);
+//                    event->tfinger.dx, event->tfinger.dy,
+//                    event->tfinger.pressure);
 //            break;
 //        case SDL_DOLLARGESTURE:
-//            SDL_Log("SDL_EVENT: Dollar gesture detect: %" SDL_PRIs64, (Sint64) event->dgesture.gestureId);
+//            SDL_Log("SDL_EVENT: Dollar gesture detect: %" SDL_PRIs64, (Sint64)
+//            event->dgesture.gestureId);
 //            break;
 //        case SDL_DOLLARRECORD:
-//            SDL_Log("SDL_EVENT: Dollar gesture record: %" SDL_PRIs64, (Sint64) event->dgesture.gestureId);
+//            SDL_Log("SDL_EVENT: Dollar gesture record: %" SDL_PRIs64, (Sint64)
+//            event->dgesture.gestureId);
 //            break;
 //        case SDL_MULTIGESTURE:
-//            SDL_Log("SDL_EVENT: Multi gesture fingers: %d", event->mgesture.numFingers);
+//            SDL_Log("SDL_EVENT: Multi gesture fingers: %d",
+//            event->mgesture.numFingers);
 //            break;
 //
 //        case SDL_RENDER_DEVICE_RESET:
@@ -371,7 +400,7 @@ int main(int argc, char** argv)
 //    }
 //}
 //
-//static void UpdateFrame(void* param)
+// static void UpdateFrame(void* param)
 //{
 //    njli::NJLIGameEngine::update(1.0f/((float)gDisplayMode.refresh_rate));
 //
@@ -381,9 +410,10 @@ int main(int argc, char** argv)
 //
 //#if (defined(__IPHONEOS__) && __IPHONEOS__)
 //
-//static int EventFilter(void* userdata, SDL_Event* event)
+// static int EventFilter(void* userdata, SDL_Event* event)
 //{
-////#if ((defined(__IPHONEOS__) && __IPHONEOS__) || (defined(__ANDROID__) && __ANDROID__))
+////#if ((defined(__IPHONEOS__) && __IPHONEOS__) || (defined(__ANDROID__) &&
+///__ANDROID__))
 ////    NJLI_HandleStartTouches();
 ////#endif
 //
@@ -394,7 +424,8 @@ int main(int argc, char** argv)
 //
 //    switch (eventType)
 //    {
-////#if ((defined(__MACOSX__) && __MACOSX__) || (defined(__EMSCRIPTEN__) && __EMSCRIPTEN__))
+////#if ((defined(__MACOSX__) && __MACOSX__) || (defined(__EMSCRIPTEN__) &&
+///__EMSCRIPTEN__))
 //        case SDL_MOUSEMOTION:
 //        case SDL_MOUSEBUTTONDOWN:
 //        case SDL_MOUSEBUTTONUP:
@@ -407,7 +438,8 @@ int main(int argc, char** argv)
 //            break;
 ////#endif
 //
-////#if ((defined(__IPHONEOS__) && __IPHONEOS__) || (defined(__ANDROID__) && __ANDROID__))
+////#if ((defined(__IPHONEOS__) && __IPHONEOS__) || (defined(__ANDROID__) &&
+///__ANDROID__))
 //        case SDL_FINGERMOTION:
 //        case SDL_FINGERDOWN:
 //        case SDL_FINGERUP:
@@ -425,7 +457,8 @@ int main(int argc, char** argv)
 //            break;
 //    }
 //
-//#if ((defined(__IPHONEOS__) && __IPHONEOS__) || (defined(__ANDROID__) && __ANDROID__))
+//#if ((defined(__IPHONEOS__) && __IPHONEOS__) || (defined(__ANDROID__) &&
+//__ANDROID__))
 //    NJLI_HandleFinishTouches();
 //#endif
 //
@@ -435,8 +468,8 @@ int main(int argc, char** argv)
 //
 //
 //
-//static void
-//SDLTest_ScreenShot(SDL_Renderer *renderer)
+// static void
+// SDLTest_ScreenShot(SDL_Renderer *renderer)
 //{
 //    SDL_Rect viewport;
 //    SDL_Surface *surface;
@@ -473,7 +506,7 @@ int main(int argc, char** argv)
 //}
 //
 //
-//static void FullscreenTo(int index, int windowId)
+// static void FullscreenTo(int index, int windowId)
 //{
 //    Uint32 flags;
 //    struct SDL_Rect rect = { 0, 0, 0, 0 };
@@ -494,7 +527,7 @@ int main(int argc, char** argv)
 //    SDL_SetWindowFullscreen( window, SDL_TRUE );
 //}
 //
-//static void handleInput()
+// static void handleInput()
 //{
 //    SDL_Event event;
 //    SDL_PumpEvents();
@@ -536,7 +569,8 @@ int main(int argc, char** argv)
 //                SDL_Log("SDL_APP_DIDENTERFOREGROUND");
 //
 //#if (defined(__IPHONEOS__) && __IPHONEOS__)
-//                SDL_iPhoneSetAnimationCallback(gWindow, 1, UpdateFrame, gGraphics.get());
+//                SDL_iPhoneSetAnimationCallback(gWindow, 1, UpdateFrame,
+//                gGraphics.get());
 //#endif
 //                NJLI_HandleResume();
 //                break;
@@ -561,7 +595,8 @@ int main(int argc, char** argv)
 //            case SDL_APP_WILLENTERBACKGROUND:
 //                SDL_Log("SDL_APP_WILLENTERBACKGROUND");
 //#if (defined(__IPHONEOS__) && __IPHONEOS__)
-//                SDL_iPhoneSetAnimationCallback(gWindow, 1, NULL, gGraphics.get());
+//                SDL_iPhoneSetAnimationCallback(gWindow, 1, NULL,
+//                gGraphics.get());
 //#endif
 //                NJLI_HandlePause();
 //                break;
@@ -591,12 +626,14 @@ int main(int argc, char** argv)
 //#else
 //                        SDL_GL_GetDrawableSize(gWindow, &w, &h);
 //#endif
-//                        NJLI_HandleResize(w, h, gDisplayMode.format, gDisplayMode.refresh_rate);
+//                        NJLI_HandleResize(w, h, gDisplayMode.format,
+//                        gDisplayMode.refresh_rate);
 //                    }
 //                        break;
 //                    case SDL_WINDOWEVENT_CLOSE:
 //                    {
-//                        SDL_Window *window = SDL_GetWindowFromID(event.window.windowID);
+//                        SDL_Window *window =
+//                        SDL_GetWindowFromID(event.window.windowID);
 //                        if (window)
 //                        {
 //                            if (window == gWindow)
@@ -623,7 +660,8 @@ int main(int argc, char** argv)
 //                switch (event.key.keysym.sym) {
 //                        /* Add hotkeys here */
 //                    case SDLK_PRINTSCREEN: {
-//                        SDL_Window *window = SDL_GetWindowFromID(event.key.windowID);
+//                        SDL_Window *window =
+//                        SDL_GetWindowFromID(event.key.windowID);
 //                        if (window) {
 //                            if (window == gWindow)
 //                            {
@@ -635,7 +673,8 @@ int main(int argc, char** argv)
 //                    case SDLK_EQUALS:
 //                        if (withControl) {
 //                            /* Ctrl-+ double the size of the window */
-//                            SDL_Window *window = SDL_GetWindowFromID(event.key.windowID);
+//                            SDL_Window *window =
+//                            SDL_GetWindowFromID(event.key.windowID);
 //                            if (window) {
 //                                int w, h;
 //                                SDL_GetWindowSize(window, &w, &h);
@@ -646,7 +685,8 @@ int main(int argc, char** argv)
 //                    case SDLK_MINUS:
 //                        if (withControl) {
 //                            /* Ctrl-- half the size of the window */
-//                            SDL_Window *window = SDL_GetWindowFromID(event.key.windowID);
+//                            SDL_Window *window =
+//                            SDL_GetWindowFromID(event.key.windowID);
 //                            if (window) {
 //                                int w, h;
 //                                SDL_GetWindowSize(window, &w, &h);
@@ -656,11 +696,14 @@ int main(int argc, char** argv)
 //                        break;
 //                    case SDLK_o:
 //                        if (withControl) {
-//                            /* Ctrl-O (or Ctrl-Shift-O) changes window opacity. */
-//                            SDL_Window *window = SDL_GetWindowFromID(event.key.windowID);
+//                            /* Ctrl-O (or Ctrl-Shift-O) changes window
+//                            opacity. */
+//                            SDL_Window *window =
+//                            SDL_GetWindowFromID(event.key.windowID);
 //                            if (window) {
 //                                float opacity;
-//                                if (SDL_GetWindowOpacity(window, &opacity) == 0) {
+//                                if (SDL_GetWindowOpacity(window, &opacity) ==
+//                                0) {
 //                                    if (withShift) {
 //                                        opacity += 0.20f;
 //                                    } else {
@@ -703,9 +746,14 @@ int main(int argc, char** argv)
 //                        if (withShift) {
 //                            SDL_Window *current_win = SDL_GetKeyboardFocus();
 //                            if (current_win) {
-//                                const bool shouldCapture = (SDL_GetWindowFlags(current_win) & SDL_WINDOW_MOUSE_CAPTURE) == 0;
-//                                const int rc = SDL_CaptureMouse((SDL_bool)shouldCapture);
-//                                SDL_Log("%sapturing mouse %s!\n", shouldCapture ? "C" : "Unc", (rc == 0) ? "succeeded" : "failed");
+//                                const bool shouldCapture =
+//                                (SDL_GetWindowFlags(current_win) &
+//                                SDL_WINDOW_MOUSE_CAPTURE) == 0;
+//                                const int rc =
+//                                SDL_CaptureMouse((SDL_bool)shouldCapture);
+//                                SDL_Log("%sapturing mouse %s!\n",
+//                                shouldCapture ? "C" : "Unc", (rc == 0) ?
+//                                "succeeded" : "failed");
 //                            }
 //                        }
 //                        break;
@@ -724,16 +772,20 @@ int main(int argc, char** argv)
 //                    case SDLK_g:
 //                        if (withControl) {
 //                            /* Ctrl-G toggle grab */
-//                            SDL_Window *window = SDL_GetWindowFromID(event.key.windowID);
+//                            SDL_Window *window =
+//                            SDL_GetWindowFromID(event.key.windowID);
 //                            if (window) {
-//                                SDL_SetWindowGrab(window, !SDL_GetWindowGrab(window) ? SDL_TRUE : SDL_FALSE);
+//                                SDL_SetWindowGrab(window,
+//                                !SDL_GetWindowGrab(window) ? SDL_TRUE :
+//                                SDL_FALSE);
 //                            }
 //                        }
 //                        break;
 //                    case SDLK_m:
 //                        if (withControl) {
 //                            /* Ctrl-M maximize */
-//                            SDL_Window *window = SDL_GetWindowFromID(event.key.windowID);
+//                            SDL_Window *window =
+//                            SDL_GetWindowFromID(event.key.windowID);
 //                            if (window) {
 //                                Uint32 flags = SDL_GetWindowFlags(window);
 //                                if (flags & SDL_WINDOW_MAXIMIZED) {
@@ -747,13 +799,15 @@ int main(int argc, char** argv)
 //                    case SDLK_r:
 //                        if (withControl) {
 //                            /* Ctrl-R toggle mouse relative mode */
-//                            SDL_SetRelativeMouseMode(!SDL_GetRelativeMouseMode() ? SDL_TRUE : SDL_FALSE);
+//                            SDL_SetRelativeMouseMode(!SDL_GetRelativeMouseMode()
+//                            ? SDL_TRUE : SDL_FALSE);
 //                        }
 //                        break;
 //                    case SDLK_z:
 //                        if (withControl) {
 //                            /* Ctrl-Z minimize */
-//                            SDL_Window *window = SDL_GetWindowFromID(event.key.windowID);
+//                            SDL_Window *window =
+//                            SDL_GetWindowFromID(event.key.windowID);
 //                            if (window) {
 //                                SDL_MinimizeWindow(window);
 //                            }
@@ -762,35 +816,46 @@ int main(int argc, char** argv)
 //                    case SDLK_RETURN:
 //                        if (withControl) {
 //                            /* Ctrl-Enter toggle fullscreen */
-//                            SDL_Window *window = SDL_GetWindowFromID(event.key.windowID);
+//                            SDL_Window *window =
+//                            SDL_GetWindowFromID(event.key.windowID);
 //                            if (window) {
 //                                Uint32 flags = SDL_GetWindowFlags(window);
 //                                if (flags & SDL_WINDOW_FULLSCREEN) {
-//                                    SDL_SetWindowFullscreen(window, SDL_FALSE);
+//                                    SDL_SetWindowFullscreen(window,
+//                                    SDL_FALSE);
 //                                } else {
-//                                    SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
+//                                    SDL_SetWindowFullscreen(window,
+//                                    SDL_WINDOW_FULLSCREEN);
 //                                }
 //                            }
 //                        } else if (withAlt) {
 //                            /* Alt-Enter toggle fullscreen desktop */
-//                            SDL_Window *window = SDL_GetWindowFromID(event.key.windowID);
+//                            SDL_Window *window =
+//                            SDL_GetWindowFromID(event.key.windowID);
 //                            if (window) {
 //                                Uint32 flags = SDL_GetWindowFlags(window);
 //                                if (flags & SDL_WINDOW_FULLSCREEN) {
-//                                    SDL_SetWindowFullscreen(window, SDL_FALSE);
+//                                    SDL_SetWindowFullscreen(window,
+//                                    SDL_FALSE);
 //                                } else {
-//                                    SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
+//                                    SDL_SetWindowFullscreen(window,
+//                                    SDL_WINDOW_FULLSCREEN_DESKTOP);
 //                                }
 //                            }
 //                        } else if (withShift) {
-//                            /* Shift-Enter toggle fullscreen desktop / fullscreen */
-//                            SDL_Window *window = SDL_GetWindowFromID(event.key.windowID);
+//                            /* Shift-Enter toggle fullscreen desktop /
+//                            fullscreen */
+//                            SDL_Window *window =
+//                            SDL_GetWindowFromID(event.key.windowID);
 //                            if (window) {
 //                                Uint32 flags = SDL_GetWindowFlags(window);
-//                                if ((flags & SDL_WINDOW_FULLSCREEN_DESKTOP) == SDL_WINDOW_FULLSCREEN_DESKTOP) {
-//                                    SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
+//                                if ((flags & SDL_WINDOW_FULLSCREEN_DESKTOP) ==
+//                                SDL_WINDOW_FULLSCREEN_DESKTOP) {
+//                                    SDL_SetWindowFullscreen(window,
+//                                    SDL_WINDOW_FULLSCREEN);
 //                                } else {
-//                                    SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
+//                                    SDL_SetWindowFullscreen(window,
+//                                    SDL_WINDOW_FULLSCREEN_DESKTOP);
 //                                }
 //                            }
 //                        }
@@ -799,10 +864,14 @@ int main(int argc, char** argv)
 //                    case SDLK_b:
 //                        if (withControl) {
 //                            /* Ctrl-B toggle window border */
-//                            SDL_Window *window = SDL_GetWindowFromID(event.key.windowID);
+//                            SDL_Window *window =
+//                            SDL_GetWindowFromID(event.key.windowID);
 //                            if (window) {
-//                                const Uint32 flags = SDL_GetWindowFlags(window);
-//                                const SDL_bool b = ((flags & SDL_WINDOW_BORDERLESS) != 0) ? SDL_TRUE : SDL_FALSE;
+//                                const Uint32 flags =
+//                                SDL_GetWindowFlags(window);
+//                                const SDL_bool b = ((flags &
+//                                SDL_WINDOW_BORDERLESS) != 0) ? SDL_TRUE :
+//                                SDL_FALSE;
 //                                SDL_SetWindowBordered(window, b);
 //                            }
 //                        }
@@ -811,19 +880,28 @@ int main(int argc, char** argv)
 //                        if (withControl) {
 //                            /* Ctrl-A reports absolute mouse position. */
 //                            int x, y;
-//                            const Uint32 mask = SDL_GetGlobalMouseState(&x, &y);
-//                            SDL_Log("ABSOLUTE MOUSE: (%d, %d)%s%s%s%s%s\n", x, y,
-//                                    (mask & SDL_BUTTON_LMASK) ? " [LBUTTON]" : "",
-//                                    (mask & SDL_BUTTON_MMASK) ? " [MBUTTON]" : "",
-//                                    (mask & SDL_BUTTON_RMASK) ? " [RBUTTON]" : "",
-//                                    (mask & SDL_BUTTON_X1MASK) ? " [X2BUTTON]" : "",
-//                                    (mask & SDL_BUTTON_X2MASK) ? " [X2BUTTON]" : "");
+//                            const Uint32 mask = SDL_GetGlobalMouseState(&x,
+//                            &y);
+//                            SDL_Log("ABSOLUTE MOUSE: (%d, %d)%s%s%s%s%s\n", x,
+//                            y,
+//                                    (mask & SDL_BUTTON_LMASK) ? " [LBUTTON]" :
+//                                    "",
+//                                    (mask & SDL_BUTTON_MMASK) ? " [MBUTTON]" :
+//                                    "",
+//                                    (mask & SDL_BUTTON_RMASK) ? " [RBUTTON]" :
+//                                    "",
+//                                    (mask & SDL_BUTTON_X1MASK) ? " [X2BUTTON]"
+//                                    : "",
+//                                    (mask & SDL_BUTTON_X2MASK) ? " [X2BUTTON]"
+//                                    : "");
 //                        }
 //                        break;
 //                    case SDLK_0:
 //                        if (withControl) {
-//                            SDL_Window *window = SDL_GetWindowFromID(event.key.windowID);
-//                            SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "Test Message", "You're awesome!", window);
+//                            SDL_Window *window =
+//                            SDL_GetWindowFromID(event.key.windowID);
+//                            SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION,
+//                            "Test Message", "You're awesome!", window);
 //                        }
 //                        break;
 //                    case SDLK_1:
@@ -842,10 +920,14 @@ int main(int argc, char** argv)
 //                    case SDLK_SPACE:
 //                    {
 //                        char message[256];
-//                        SDL_Window *window = SDL_GetWindowFromID(event.key.windowID);
+//                        SDL_Window *window =
+//                        SDL_GetWindowFromID(event.key.windowID);
 //
-//                        SDL_snprintf(message, sizeof(message), "(%i, %i), rel (%i, %i)\n", gLastEvent.x, gLastEvent.y, gLastEvent.xrel, gLastEvent.yrel);
-//                        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "Last mouse position", message, window);
+//                        SDL_snprintf(message, sizeof(message), "(%i, %i), rel
+//                        (%i, %i)\n", gLastEvent.x, gLastEvent.y,
+//                        gLastEvent.xrel, gLastEvent.yrel);
+//                        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION,
+//                        "Last mouse position", message, window);
 //                        break;
 //                    }
 //                    default:
@@ -860,11 +942,14 @@ int main(int argc, char** argv)
 //                break;
 //
 //            case SDL_MOUSEWHEEL:
-//                SDL_Log("SDL EVENT: Mouse: wheel scrolled %d in x and %d in y (reversed: %d) in window %d",
-//                        event.wheel.x, event.wheel.y, event.wheel.direction, event.wheel.windowID);
+//                SDL_Log("SDL EVENT: Mouse: wheel scrolled %d in x and %d in y
+//                (reversed: %d) in window %d",
+//                        event.wheel.x, event.wheel.y, event.wheel.direction,
+//                        event.wheel.windowID);
 //                gXOffset -= (event.wheel.x * 1);
 //                gYOffset -= (event.wheel.y * 1);
-//                NJLI_HandleResize(gDisplayMode.w, gDisplayMode.h, gDisplayMode.format, gDisplayMode.refresh_rate);
+//                NJLI_HandleResize(gDisplayMode.w, gDisplayMode.h,
+//                gDisplayMode.format, gDisplayMode.refresh_rate);
 //                //SDL_MouseWheelEvent wheel = event.wheel;
 //
 //                break;
@@ -903,7 +988,7 @@ int main(int argc, char** argv)
 //}
 //
 //#if !(defined(__IPHONEOS__) && __IPHONEOS__)
-//static void mainloop()
+// static void mainloop()
 //{
 //    handleInput();
 //
@@ -918,7 +1003,8 @@ int main(int argc, char** argv)
 //
 //#if defined(__EMSCRIPTEN__) || defined(__ANDROID__)
 //
-//    NJLI_HandleResize(gDisplayMode.w, gDisplayMode.h, gDisplayMode.format, gDisplayMode.refresh_rate);
+//    NJLI_HandleResize(gDisplayMode.w, gDisplayMode.h, gDisplayMode.format,
+//    gDisplayMode.refresh_rate);
 //
 //#endif
 //
@@ -950,8 +1036,8 @@ int main(int argc, char** argv)
 //
 //#if defined(__MACOSX__)
 //
-//static void
-//SDLTest_PrintRendererFlag(Uint32 flag)
+// static void
+// SDLTest_PrintRendererFlag(Uint32 flag)
 //{
 //    switch (flag) {
 //        case SDL_RENDERER_PRESENTVSYNC:
@@ -966,8 +1052,8 @@ int main(int argc, char** argv)
 //    }
 //}
 //
-//static void
-//SDLTest_PrintPixelFormat(Uint32 format)
+// static void
+// SDLTest_PrintPixelFormat(Uint32 format)
 //{
 //    switch (format) {
 //        case SDL_PIXELFORMAT_UNKNOWN:
@@ -1073,8 +1159,8 @@ int main(int argc, char** argv)
 //}
 //
 //
-//static void
-//SDLTest_PrintRenderer(SDL_RendererInfo * info)
+// static void
+// SDLTest_PrintRenderer(SDL_RendererInfo * info)
 //{
 //    int i, count;
 //
@@ -1110,7 +1196,7 @@ int main(int argc, char** argv)
 //    }
 //}
 //
-//static void createRenderer()
+// static void createRenderer()
 //{
 //    int n = SDL_GetNumRenderDrivers();
 //    SDL_RendererInfo info;
@@ -1129,7 +1215,7 @@ int main(int argc, char** argv)
 //}
 //#endif
 //
-//int main(int argc, char** argv)
+// int main(int argc, char** argv)
 //{
 //#if (defined(__MACOSX__) && __MACOSX__)
 //    if(argc > 1)
@@ -1157,7 +1243,8 @@ int main(int argc, char** argv)
 //#endif
 //
 //#if defined(__EMSCRIPTEN__) || defined(__ANDROID__) || defined(__IPHONEOS__)
-//    SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_ES);
+//    SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK,
+//    SDL_GL_CONTEXT_PROFILE_ES);
 //#endif
 //
 //    SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
@@ -1195,10 +1282,12 @@ int main(int argc, char** argv)
 //
 //    int w, h;
 //    SDL_GetWindowSize(gWindow, &w, &h);
-//    SDL_Log("SDL_GetWindowSize #%d: current display mode is %dx%dpx", 0, w, h);
+//    SDL_Log("SDL_GetWindowSize #%d: current display mode is %dx%dpx", 0, w,
+//    h);
 //
 //    SDL_GL_GetDrawableSize(gWindow, &w, &h);
-//    SDL_Log("SDL_GL_GetDrawableSize #%d: current display mode is %dx%dpx", 0, w, h);
+//    SDL_Log("SDL_GL_GetDrawableSize #%d: current display mode is %dx%dpx", 0,
+//    w, h);
 //
 //    if (!gWindow)
 //    {
@@ -1211,7 +1300,8 @@ int main(int argc, char** argv)
 //#endif
 //
 //    gGlContext = SDL_GL_CreateContext(gWindow);
-//    if (!njli::NJLIGameEngine::create(DeviceUtil::hardwareDescription().c_str()))
+//    if
+//    (!njli::NJLIGameEngine::create(DeviceUtil::hardwareDescription().c_str()))
 //    {
 //        cerr << "Error initializing OpenGL" << endl;
 //        return 1;
@@ -1229,7 +1319,8 @@ int main(int argc, char** argv)
 //    int screen_w, screen_h;
 //    float pointSizeScale;
 //
-//    /* The window size and drawable size may be different when highdpi is enabled,
+//    /* The window size and drawable size may be different when highdpi is
+//    enabled,
 //     * due to the increased pixel density of the drawable. */
 //    SDL_GetWindowSize(gWindow, &screen_w, &screen_h);
 //    SDL_GL_GetDrawableSize(gWindow, &drawableW, &drawableH);
@@ -1246,7 +1337,8 @@ int main(int argc, char** argv)
 ////    SDL_GL_GetDrawableSize(gWindow, &w, &h);
 ////#endif
 //
-//    NJLI_HandleResize(drawableW, drawableH, gDisplayMode.format, gDisplayMode.refresh_rate);
+//    NJLI_HandleResize(drawableW, drawableH, gDisplayMode.format,
+//    gDisplayMode.refresh_rate);
 //
 //    gDone = (njli::NJLIGameEngine::start() == false)?1:0;
 //
@@ -1269,4 +1361,3 @@ int main(int argc, char** argv)
 //
 //    return 0;
 //}
-

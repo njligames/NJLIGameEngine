@@ -15,19 +15,20 @@
 #include "lua.hpp"
 #include <bitset>
 
-namespace njli {
-class MaterialBuilder;
-class MaterialProperty;
-class ShaderProgram;
-class AbstractFrameBufferObject;
-class Geometry;
-
-/**
-     *  <#Description#>
-     */
-ATTRIBUTE_ALIGNED16(class)
-Material : public AbstractFactoryObject
+namespace njli
 {
+  class MaterialBuilder;
+  class MaterialProperty;
+  class ShaderProgram;
+  class AbstractFrameBufferObject;
+  class Geometry;
+
+  /**
+       *  <#Description#>
+       */
+  ATTRIBUTE_ALIGNED16(class)
+  Material : public AbstractFactoryObject
+  {
     friend class WorldFactory;
     friend class Geometry;
     friend class Sprite2D;
@@ -35,19 +36,19 @@ Material : public AbstractFactoryObject
     friend class MaterialProperty;
     friend class Scene;
 
-protected:
+  protected:
     Material();
-    Material(const AbstractBuilder&);
-    Material(const Material&);
+    Material(const AbstractBuilder &);
+    Material(const Material &);
     BT_DECLARE_ALIGNED_ALLOCATOR();
     virtual ~Material();
-    Material& operator=(const Material&);
+    Material &operator=(const Material &);
 
-public:
+  public:
     using AbstractDecorator::setName;
     using AbstractDecorator::getName;
     using AbstractFactoryObject::create;
-//    using AbstractFactoryObject::clone;
+    //    using AbstractFactoryObject::clone;
     using AbstractFactoryObject::getPointer;
     using AbstractFactoryObject::getPointerValue;
     using AbstractFactoryObject::serializeObject;
@@ -67,14 +68,14 @@ public:
          *  @param dataBuffer   <#dataBuffer description#>
          *  @param btSerializer <#btSerializer description#>
          */
-    virtual void serialize(void* dataBuffer, btSerializer*) const;
+    virtual void serialize(void *dataBuffer, btSerializer *) const;
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    virtual const char* getClassName() const;
+    virtual const char *getClassName() const;
     /**
          *  <#Description#>
          *
@@ -95,7 +96,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Material** createArray(const u32 size);
+    static Material **createArray(const u32 size);
     /**
          *  <#Description#>
          *
@@ -107,7 +108,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Material* create();
+    static Material *create();
     /**
          *  <#Description#>
          *
@@ -115,7 +116,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Material* create(const MaterialBuilder& builder);
+    static Material *create(const MaterialBuilder &builder);
     /**
          *  <#Description#>
          *
@@ -123,7 +124,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Material* clone(const Material& object);
+    static Material *clone(const Material &object);
     /**
          *  <#Description#>
          *
@@ -131,7 +132,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Material* copy(const Material& object);
+    static Material *copy(const Material &object);
     /**
          *  <#Description#>
          *
@@ -153,106 +154,106 @@ public:
          */
     static u32 type();
 
-public:
-    //TODO: fill in specific methods for Material
+  public:
+    // TODO: fill in specific methods for Material
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    MaterialProperty* getDiffuse();
+    MaterialProperty *getDiffuse();
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    MaterialProperty* getAmbient();
+    MaterialProperty *getAmbient();
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    MaterialProperty* getSpecular();
+    MaterialProperty *getSpecular();
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    MaterialProperty* getNormal();
+    MaterialProperty *getNormal();
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    MaterialProperty* getReflective();
+    MaterialProperty *getReflective();
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    MaterialProperty* getEmission();
+    MaterialProperty *getEmission();
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    MaterialProperty* getTransparent();
+    MaterialProperty *getTransparent();
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    MaterialProperty* getMultiply();
+    MaterialProperty *getMultiply();
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const MaterialProperty* getDiffuse() const;
+    const MaterialProperty *getDiffuse() const;
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const MaterialProperty* getAmbient() const;
+    const MaterialProperty *getAmbient() const;
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const MaterialProperty* getSpecular() const;
+    const MaterialProperty *getSpecular() const;
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const MaterialProperty* getNormal() const;
+    const MaterialProperty *getNormal() const;
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const MaterialProperty* getReflective() const;
+    const MaterialProperty *getReflective() const;
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const MaterialProperty* getEmission() const;
+    const MaterialProperty *getEmission() const;
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const MaterialProperty* getTransparent() const;
+    const MaterialProperty *getTransparent() const;
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const MaterialProperty* getMultiply() const;
+    const MaterialProperty *getMultiply() const;
 
     /**
          *  <#Description#>
@@ -350,13 +351,13 @@ public:
          *
          *  @return <#return value description#>
          */
-    Geometry* getParent();
+    Geometry *getParent();
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const Geometry* getParent() const;
+    const Geometry *getParent() const;
 
     /**
          *  <#Description#>
@@ -365,7 +366,7 @@ public:
          */
     bool hasOpacity() const;
 
-protected:
+  protected:
     /**
          *  <#Description#>
          *
@@ -416,23 +417,24 @@ protected:
     void removeMultiply();
 
     //        void addTextureIDReference(MaterialProperty *);
-    //        void addTextureIDReference(MaterialProperty *, AbstractFrameBufferObject *);
+    //        void addTextureIDReference(MaterialProperty *,
+    //        AbstractFrameBufferObject *);
     //        void removeTextureIDReference(MaterialProperty *);
 
     void bind(ShaderProgram * shader);
-    void unBind() ;
+    void unBind();
 
-//    void render();
+    //    void render();
 
-private:
-    MaterialProperty* m_Diffuse; //
-    MaterialProperty* m_Ambient; //
-    MaterialProperty* m_Specular; //
-    MaterialProperty* m_Normal;
-    MaterialProperty* m_Reflective;
-    MaterialProperty* m_Emission;
-    MaterialProperty* m_Transparent;
-    MaterialProperty* m_Multiply;
+  private:
+    MaterialProperty *m_Diffuse;  //
+    MaterialProperty *m_Ambient;  //
+    MaterialProperty *m_Specular; //
+    MaterialProperty *m_Normal;
+    MaterialProperty *m_Reflective;
+    MaterialProperty *m_Emission;
+    MaterialProperty *m_Transparent;
+    MaterialProperty *m_Multiply;
     //        std::string m_Name;
     f32 m_Shininess;
     f32 m_FresnelExponent;
@@ -477,7 +479,7 @@ private:
     //        u32 m_isTransparentTextureCube;
     //        u32 m_isMultiplyTexture2D;
     //        u32 m_isMultiplyTextureCube;
-};
+  };
 }
 
 #endif /* defined(__JLIGameEngineTest__Material__) */

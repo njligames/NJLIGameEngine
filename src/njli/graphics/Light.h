@@ -13,30 +13,31 @@
 #include "AbstractFactoryObject.h"
 #include "lua.hpp"
 
-namespace njli {
-class LightBuilder;
-
-/**
-     *  <#Description#>
-     */
-ATTRIBUTE_ALIGNED16(class)
-Light : public AbstractFactoryObject
+namespace njli
 {
+  class LightBuilder;
+
+  /**
+       *  <#Description#>
+       */
+  ATTRIBUTE_ALIGNED16(class)
+  Light : public AbstractFactoryObject
+  {
     friend class WorldFactory;
 
-protected:
+  protected:
     Light();
-    Light(const AbstractBuilder&);
-    Light(const Light&);
+    Light(const AbstractBuilder &);
+    Light(const Light &);
     BT_DECLARE_ALIGNED_ALLOCATOR();
     virtual ~Light();
-    Light& operator=(const Light&);
+    Light &operator=(const Light &);
 
-public:
+  public:
     using AbstractDecorator::setName;
     using AbstractDecorator::getName;
     using AbstractFactoryObject::create;
-//    using AbstractFactoryObject::clone;
+    //    using AbstractFactoryObject::clone;
     using AbstractFactoryObject::getPointer;
     using AbstractFactoryObject::getPointerValue;
     using AbstractFactoryObject::serializeObject;
@@ -56,14 +57,14 @@ public:
          *  @param dataBuffer   <#dataBuffer description#>
          *  @param btSerializer <#btSerializer description#>
          */
-    virtual void serialize(void* dataBuffer, btSerializer*) const;
+    virtual void serialize(void *dataBuffer, btSerializer *) const;
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    virtual const char* getClassName() const;
+    virtual const char *getClassName() const;
     /**
          *  <#Description#>
          *
@@ -84,7 +85,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Light** createArray(const u32 size);
+    static Light **createArray(const u32 size);
     /**
          *  <#Description#>
          *
@@ -96,7 +97,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Light* create();
+    static Light *create();
     /**
          *  <#Description#>
          *
@@ -104,7 +105,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Light* create(const LightBuilder& builder);
+    static Light *create(const LightBuilder &builder);
     /**
          *  <#Description#>
          *
@@ -112,7 +113,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Light* clone(const Light& object);
+    static Light *clone(const Light &object);
     /**
          *  <#Description#>
          *
@@ -120,7 +121,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Light* copy(const Light& object);
+    static Light *copy(const Light &object);
     /**
          *  <#Description#>
          *
@@ -142,10 +143,10 @@ public:
          */
     static u32 type();
 
-    //TODO: fill in specific methods for Light
-protected:
-private:
-};
+    // TODO: fill in specific methods for Light
+  protected:
+  private:
+  };
 }
 
 #endif /* defined(__JLIGameEngineTest__Light__) */

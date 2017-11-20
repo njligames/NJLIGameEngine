@@ -19,32 +19,32 @@
 class btVector2;
 class btVector4;
 
-namespace njli {
-class LabelHUDBuilder;
-
-/**
-     *  <#Description#>
-     */
-ATTRIBUTE_ALIGNED16(class)
-LabelHUD : public AbstractFactoryObject,
-           public AbstractFrameBufferObject
+namespace njli
 {
+  class LabelHUDBuilder;
+
+  /**
+       *  <#Description#>
+       */
+  ATTRIBUTE_ALIGNED16(class)
+  LabelHUD : public AbstractFactoryObject, public AbstractFrameBufferObject
+  {
     friend class WorldFactory;
 
-protected:
+  protected:
     LabelHUD();
-    LabelHUD(const AbstractBuilder&);
-    LabelHUD(const LabelHUD&);
+    LabelHUD(const AbstractBuilder &);
+    LabelHUD(const LabelHUD &);
     BT_DECLARE_ALIGNED_ALLOCATOR();
     virtual ~LabelHUD();
-    LabelHUD& operator=(const LabelHUD&);
+    LabelHUD &operator=(const LabelHUD &);
     virtual void renderFunction(Camera * camera);
 
-public:
+  public:
     using AbstractDecorator::setName;
     using AbstractDecorator::getName;
     using AbstractFactoryObject::create;
-//    using AbstractFactoryObject::clone;
+    //    using AbstractFactoryObject::clone;
     using AbstractFactoryObject::getPointer;
     using AbstractFactoryObject::getPointerValue;
     using AbstractFactoryObject::serializeObject;
@@ -67,14 +67,14 @@ public:
          *  @param dataBuffer   <#dataBuffer description#>
          *  @param btSerializer <#btSerializer description#>
          */
-    virtual void serialize(void* dataBuffer, btSerializer*) const;
+    virtual void serialize(void *dataBuffer, btSerializer *) const;
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    virtual const char* getClassName() const;
+    virtual const char *getClassName() const;
     /**
          *  <#Description#>
          *
@@ -95,7 +95,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static LabelHUD** createArray(const u32 size);
+    static LabelHUD **createArray(const u32 size);
     /**
          *  <#Description#>
          *
@@ -107,7 +107,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static LabelHUD* create();
+    static LabelHUD *create();
     /**
          *  <#Description#>
          *
@@ -115,7 +115,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static LabelHUD* create(const LabelHUDBuilder& builder);
+    static LabelHUD *create(const LabelHUDBuilder &builder);
     /**
          *  <#Description#>
          *
@@ -123,7 +123,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static LabelHUD* clone(const LabelHUD& object);
+    static LabelHUD *clone(const LabelHUD &object);
     /**
          *  <#Description#>
          *
@@ -131,7 +131,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static LabelHUD* copy(const LabelHUD& object);
+    static LabelHUD *copy(const LabelHUD &object);
     /**
          *  <#Description#>
          *
@@ -153,7 +153,7 @@ public:
          */
     static u32 type();
 
-public:
+  public:
     /**
          *  <#Description#>
          *
@@ -172,26 +172,26 @@ public:
          *
          *  @param fontFace <#fontFace description#>
          */
-    void setFontFace(const char* fontFace);
+    void setFontFace(const char *fontFace);
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const char* getFontFace() const;
+    const char *getFontFace() const;
 
     /**
          *  <#Description#>
          *
          *  @param color <#color description#>
          */
-    void setFillColor(const btVector4& color);
+    void setFillColor(const btVector4 &color);
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const btVector4& getFillColor() const;
+    const btVector4 &getFillColor() const;
 
     /**
          *  <#Description#>
@@ -211,40 +211,40 @@ public:
          *
          *  @param pos <#pos description#>
          */
-    void setPosition(const btVector2& pos);
+    void setPosition(const btVector2 &pos);
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const btVector2& getPosition() const;
+    const btVector2 &getPosition() const;
 
     /**
          *  <#Description#>
          *
          *  @param text <#text description#>
          */
-    void setText(const char* text);
+    void setText(const char *text);
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const char* getText() const;
+    const char *getText() const;
 
-protected:
-private:
+  protected:
+  private:
     f32 m_fontSize;
     std::string m_fontFace;
-    btVector4* m_fillColor;
+    btVector4 *m_fillColor;
     s32 m_align;
-    btVector2* m_position;
-    btVector2* m_dimensions;
+    btVector2 *m_position;
+    btVector2 *m_dimensions;
     std::string m_text;
 
     //        NVGLUframebuffer *m_FBO;
-};
+  };
 }
 
 #endif /* defined(__JLIGameEngineTest__LabelHUD__) */

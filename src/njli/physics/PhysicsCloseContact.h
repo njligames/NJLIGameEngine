@@ -13,30 +13,31 @@
 #include "AbstractFactoryObject.h"
 #include "lua.hpp"
 
-namespace njli {
-class PhysicsCloseContactBuilder;
-
-/**
-     *  <#Description#>
-     */
-ATTRIBUTE_ALIGNED16(class)
-PhysicsCloseContact : public AbstractFactoryObject
+namespace njli
 {
+  class PhysicsCloseContactBuilder;
+
+  /**
+       *  <#Description#>
+       */
+  ATTRIBUTE_ALIGNED16(class)
+  PhysicsCloseContact : public AbstractFactoryObject
+  {
     friend class WorldFactory;
 
-protected:
+  protected:
     PhysicsCloseContact();
-    PhysicsCloseContact(const AbstractBuilder&);
-    PhysicsCloseContact(const PhysicsCloseContact&);
+    PhysicsCloseContact(const AbstractBuilder &);
+    PhysicsCloseContact(const PhysicsCloseContact &);
     BT_DECLARE_ALIGNED_ALLOCATOR();
     virtual ~PhysicsCloseContact();
-    PhysicsCloseContact& operator=(const PhysicsCloseContact&);
+    PhysicsCloseContact &operator=(const PhysicsCloseContact &);
 
-public:
+  public:
     using AbstractDecorator::setName;
     using AbstractDecorator::getName;
     using AbstractFactoryObject::create;
-//    using AbstractFactoryObject::clone;
+    //    using AbstractFactoryObject::clone;
     using AbstractFactoryObject::getPointer;
     using AbstractFactoryObject::getPointerValue;
     using AbstractFactoryObject::serializeObject;
@@ -56,14 +57,14 @@ public:
          *  @param dataBuffer   <#dataBuffer description#>
          *  @param btSerializer <#btSerializer description#>
          */
-    virtual void serialize(void* dataBuffer, btSerializer*) const;
+    virtual void serialize(void *dataBuffer, btSerializer *) const;
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    virtual const char* getClassName() const;
+    virtual const char *getClassName() const;
     /**
          *  <#Description#>
          *
@@ -84,7 +85,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static PhysicsCloseContact** createArray(const u32 size);
+    static PhysicsCloseContact **createArray(const u32 size);
     /**
          *  <#Description#>
          *
@@ -96,7 +97,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static PhysicsCloseContact* create();
+    static PhysicsCloseContact *create();
     /**
          *  <#Description#>
          *
@@ -104,7 +105,8 @@ public:
          *
          *  @return <#return value description#>
          */
-    static PhysicsCloseContact* create(const PhysicsCloseContactBuilder& builder);
+    static PhysicsCloseContact *create(
+        const PhysicsCloseContactBuilder &builder);
     /**
          *  <#Description#>
          *
@@ -112,7 +114,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static PhysicsCloseContact* clone(const PhysicsCloseContact& object);
+    static PhysicsCloseContact *clone(const PhysicsCloseContact &object);
     /**
          *  <#Description#>
          *
@@ -120,7 +122,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static PhysicsCloseContact* copy(const PhysicsCloseContact& object);
+    static PhysicsCloseContact *copy(const PhysicsCloseContact &object);
     /**
          *  <#Description#>
          *
@@ -134,7 +136,8 @@ public:
          *  @param L           <#L description#>
          *  @param stack_index <#stack_index description#>
          */
-    static void load(PhysicsCloseContact & object, lua_State * L, int stack_index);
+    static void load(PhysicsCloseContact & object, lua_State * L,
+                     int stack_index);
     /**
          *  <#Description#>
          *
@@ -142,11 +145,11 @@ public:
          */
     static u32 type();
 
-public:
-    //TODO: fill in specific methods for PhysicsCloseContact
-protected:
-private:
-};
+  public:
+    // TODO: fill in specific methods for PhysicsCloseContact
+  protected:
+  private:
+  };
 }
 
 #endif /* defined(__JLIGameEngineTest__PhysicsCloseContact__) */

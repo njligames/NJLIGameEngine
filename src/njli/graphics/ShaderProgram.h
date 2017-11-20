@@ -14,48 +14,45 @@
 #include "JLIFactoryTypes.h"
 #include "lua.hpp"
 
-#include <vector>
-#include <map>
 #include "btTransform.h"
+#include <map>
+#include <vector>
 
-typedef void (*GLInfoFunction)(u32 program,
-    s32 pname,
-    s32* params);
+typedef void (*GLInfoFunction)(u32 program, s32 pname, s32 *params);
 
-typedef void (*GLLogFunction)(u32 program,
-    s32 bufsize,
-    s32* length,
-    s8* infolog);
+typedef void (*GLLogFunction)(u32 program, s32 bufsize, s32 *length,
+                              s8 *infolog);
 
-namespace njli {
-class ShaderProgramBuilder;
-class Camera;
-    class Geometry;
-//    class btTransform;
-
-/**
-     *  <#Description#>
-     */
-ATTRIBUTE_ALIGNED16(class)
-ShaderProgram : public AbstractFactoryObject
+namespace njli
 {
+  class ShaderProgramBuilder;
+  class Camera;
+  class Geometry;
+  //    class btTransform;
+
+  /**
+       *  <#Description#>
+       */
+  ATTRIBUTE_ALIGNED16(class)
+  ShaderProgram : public AbstractFactoryObject
+  {
     friend class WorldFactory;
     friend class Geometry;
     friend class MaterialProperty;
 
-protected:
+  protected:
     ShaderProgram();
-    ShaderProgram(const AbstractBuilder&);
-    ShaderProgram(const ShaderProgram&);
+    ShaderProgram(const AbstractBuilder &);
+    ShaderProgram(const ShaderProgram &);
     BT_DECLARE_ALIGNED_ALLOCATOR();
     virtual ~ShaderProgram();
-    ShaderProgram& operator=(const ShaderProgram&);
+    ShaderProgram &operator=(const ShaderProgram &);
 
-public:
+  public:
     using AbstractDecorator::setName;
     using AbstractDecorator::getName;
     using AbstractFactoryObject::create;
-//    using AbstractFactoryObject::clone;
+    //    using AbstractFactoryObject::clone;
     using AbstractFactoryObject::getPointer;
     using AbstractFactoryObject::getPointerValue;
     using AbstractFactoryObject::serializeObject;
@@ -71,14 +68,14 @@ public:
          *
          *  @param btSerializer <#btSerializer description#>
          */
-    virtual void serialize(void*, btSerializer*) const;
+    virtual void serialize(void *, btSerializer *) const;
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    virtual const char* getClassName() const;
+    virtual const char *getClassName() const;
     /**
          *  <#Description#>
          *
@@ -99,7 +96,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static ShaderProgram** createArray(const u32 size);
+    static ShaderProgram **createArray(const u32 size);
     /**
          *  <#Description#>
          *
@@ -111,7 +108,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static ShaderProgram* create();
+    static ShaderProgram *create();
     /**
          *  <#Description#>
          *
@@ -119,7 +116,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static ShaderProgram* create(const ShaderProgramBuilder& builder);
+    static ShaderProgram *create(const ShaderProgramBuilder &builder);
     /**
          *  <#Description#>
          *
@@ -127,7 +124,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static ShaderProgram* clone(const ShaderProgram& object);
+    static ShaderProgram *clone(const ShaderProgram &object);
     /**
          *  <#Description#>
          *
@@ -135,7 +132,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static ShaderProgram* copy(const ShaderProgram& object);
+    static ShaderProgram *copy(const ShaderProgram &object);
     /**
          *  <#Description#>
          *
@@ -157,11 +154,11 @@ public:
          */
     static u32 type();
 
-public:
-    //TODO: fill in specific methods for ShaderProgram
+  public:
+    // TODO: fill in specific methods for ShaderProgram
 
-    void saveSource(const std::string& vertexShaderSource,
-        const std::string& fragmentShaderSource);
+    void saveSource(const std::string &vertexShaderSource,
+                    const std::string &fragmentShaderSource);
 
     bool isLinked() const;
 
@@ -170,7 +167,7 @@ public:
          */
     void unLoadGPU();
 
-protected:
+  protected:
     /**
          *  <#Description#>
          *
@@ -183,7 +180,7 @@ protected:
          *
          *  @param attributeName <#attributeName description#>
          */
-    bool bindAttribute(const char* attributeName);
+    bool bindAttribute(const char *attributeName);
 
     /**
          *  <#Description#>
@@ -192,13 +189,14 @@ protected:
          *
          *  @return <#return value description#>
          */
-    u32 getAttributeLocation(const char* attributeName) const;
+    u32 getAttributeLocation(const char *attributeName) const;
 
-public:
+  public:
     bool setUniformValue(const char *uniformName, s32 value);
     bool getUniformValue(const char *uniformName, s32 &value);
-    
-    bool setUniformValue(const char *uniformName, const btTransform &value, bool transpose = false);
+
+    bool setUniformValue(const char *uniformName, const btTransform &value,
+                         bool transpose = false);
     bool getUniformValue(const char *uniformName, btTransform &value);
     /**
          *  <#Description#>
@@ -207,26 +205,26 @@ public:
          *
          *  @return <#return value description#>
          */
-    u32 getUniformLocation(const char* uniformName) ;
+    u32 getUniformLocation(const char *uniformName);
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const char* vertexShaderLog() const;
+    const char *vertexShaderLog() const;
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const char* fragmentShaderLog() const;
+    const char *fragmentShaderLog() const;
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const char* programLog() const;
+    const char *programLog() const;
 
     /**
          *  <#Description#>
@@ -241,26 +239,28 @@ public:
          *
          *  @return <#return value description#>
          */
-    bool compile(const char* fileContent, njliShaderType type);
+    bool compile(const char *fileContent, njliShaderType type);
 
-    bool compileShader(s32 * shader, const u32 type, const char* source);
-    const char* logForOpenGLObject(u32 object, GLInfoFunction infoFunc, GLLogFunction logFunc) const;
+    bool compileShader(s32 * shader, const u32 type, const char *source);
+    const char *logForOpenGLObject(u32 object, GLInfoFunction infoFunc,
+                                   GLLogFunction logFunc) const;
 
-    Geometry* getParent();
-    const Geometry* getParent() const;
-private:
+    Geometry *getParent();
+    const Geometry *getParent() const;
+
+  private:
     s32 m_Program;
     s32 m_vertShader;
     s32 m_fragShader;
 
     std::string m_VertexShaderSource;
     std::string m_FragmentShaderSource;
-    
+
     typedef std::map<std::string, s32> UniformValueMap;
     typedef std::pair<std::string, s32> UniformValuePair;
     UniformValueMap m_uniformValueMap;
     float *m_mat4Buffer;
-};
+  };
 }
 
 #endif /* defined(__JLIGameEngineTest__ShaderProgram__) */

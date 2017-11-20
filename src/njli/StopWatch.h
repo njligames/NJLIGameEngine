@@ -15,31 +15,31 @@
 #include "LinearMath/btQuickprof.h"
 #include "lua.hpp"
 
-namespace njli {
-class StopWatchBuilder;
-
-/**
-     *  <#Description#>
-     */
-ATTRIBUTE_ALIGNED16(class)
-StopWatch : public AbstractFactoryObject,
-            public AbstractClock
+namespace njli
 {
+  class StopWatchBuilder;
+
+  /**
+       *  <#Description#>
+       */
+  ATTRIBUTE_ALIGNED16(class)
+  StopWatch : public AbstractFactoryObject, public AbstractClock
+  {
     friend class WorldFactory;
 
-protected:
+  protected:
     StopWatch();
-    StopWatch(const AbstractBuilder&);
-    StopWatch(const StopWatch&);
+    StopWatch(const AbstractBuilder &);
+    StopWatch(const StopWatch &);
     BT_DECLARE_ALIGNED_ALLOCATOR();
     virtual ~StopWatch();
-    StopWatch& operator=(const StopWatch&);
+    StopWatch &operator=(const StopWatch &);
 
-public:
+  public:
     using AbstractDecorator::setName;
     using AbstractDecorator::getName;
     using AbstractFactoryObject::create;
-//    using AbstractFactoryObject::clone;
+    //    using AbstractFactoryObject::clone;
     using AbstractFactoryObject::getPointer;
     using AbstractFactoryObject::getPointerValue;
     using AbstractFactoryObject::serializeObject;
@@ -55,14 +55,14 @@ public:
          *
          *  @param btSerializer <#btSerializer description#>
          */
-    virtual void serialize(void*, btSerializer*) const;
+    virtual void serialize(void *, btSerializer *) const;
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    virtual const char* getClassName() const;
+    virtual const char *getClassName() const;
     /**
          *  <#Description#>
          *
@@ -83,7 +83,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static StopWatch** createArray(const u32 size);
+    static StopWatch **createArray(const u32 size);
     /**
          *  <#Description#>
          *
@@ -95,7 +95,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static StopWatch* create();
+    static StopWatch *create();
     /**
          *  <#Description#>
          *
@@ -103,7 +103,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static StopWatch* create(const StopWatchBuilder& builder);
+    static StopWatch *create(const StopWatchBuilder &builder);
     /**
          *  <#Description#>
          *
@@ -111,7 +111,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static StopWatch* clone(const StopWatch& object);
+    static StopWatch *clone(const StopWatch &object);
     /**
          *  <#Description#>
          *
@@ -119,7 +119,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static StopWatch* copy(const StopWatch& object);
+    static StopWatch *copy(const StopWatch &object);
     /**
          *  <#Description#>
          *
@@ -148,34 +148,34 @@ public:
          */
     virtual void update(f64 milliseconds);
 
-public:
-    //TODO: fill in specific methods for StopWatch
+  public:
+    // TODO: fill in specific methods for StopWatch
 
-    //Start or continue the current lap.
+    // Start or continue the current lap.
     void start();
 
     unsigned long int getMilliseconds(s32 index = -1);
 
-    //stop the current lap
+    // stop the current lap
     void stop();
 
     bool isStopped() const;
 
-    //stop the current lap and start a new lap.
+    // stop the current lap and start a new lap.
     bool lap();
 
     void clearLaps();
 
-    //return the current number of laps.
+    // return the current number of laps.
     u64 numberOfLaps();
 
-protected:
-private:
+  protected:
+  private:
     std::vector<unsigned long int> m_Laps;
-    btClock* m_CurrentClock;
+    btClock *m_CurrentClock;
     bool m_IsStopped;
     unsigned long int m_StoppedMilliseconds;
-};
+  };
 }
 
 #endif /* defined(__JLIGameEngineTest__StopWatch__) */

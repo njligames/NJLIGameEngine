@@ -18,33 +18,34 @@
 
 #include "btTypedConstraint.h"
 
-namespace njli {
-class PhysicsConstraintBuilder;
-class Node;
-    class PhysicsBody;
-
-/**
-     *  <#Description#>
-     */
-ATTRIBUTE_ALIGNED16(class)
-PhysicsConstraint : public AbstractFactoryObject
+namespace njli
 {
+  class PhysicsConstraintBuilder;
+  class Node;
+  class PhysicsBody;
+
+  /**
+       *  <#Description#>
+       */
+  ATTRIBUTE_ALIGNED16(class)
+  PhysicsConstraint : public AbstractFactoryObject
+  {
     friend class WorldFactory;
     friend class PhysicsWorld;
 
-protected:
+  protected:
     PhysicsConstraint();
-    PhysicsConstraint(const AbstractBuilder&);
-    PhysicsConstraint(const PhysicsConstraint&);
+    PhysicsConstraint(const AbstractBuilder &);
+    PhysicsConstraint(const PhysicsConstraint &);
     BT_DECLARE_ALIGNED_ALLOCATOR();
     virtual ~PhysicsConstraint();
-    PhysicsConstraint& operator=(const PhysicsConstraint&);
+    PhysicsConstraint &operator=(const PhysicsConstraint &);
 
-public:
+  public:
     using AbstractDecorator::setName;
     using AbstractDecorator::getName;
     using AbstractFactoryObject::create;
-//    using AbstractFactoryObject::clone;
+    //    using AbstractFactoryObject::clone;
     using AbstractFactoryObject::getPointer;
     using AbstractFactoryObject::getPointerValue;
     using AbstractFactoryObject::serializeObject;
@@ -64,14 +65,14 @@ public:
          *  @param dataBuffer   <#dataBuffer description#>
          *  @param btSerializer <#btSerializer description#>
          */
-    virtual void serialize(void* dataBuffer, btSerializer*) const;
+    virtual void serialize(void *dataBuffer, btSerializer *) const;
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    virtual const char* getClassName() const;
+    virtual const char *getClassName() const;
     /**
          *  <#Description#>
          *
@@ -92,7 +93,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static PhysicsConstraint** createArray(const u32 size);
+    static PhysicsConstraint **createArray(const u32 size);
     /**
          *  <#Description#>
          *
@@ -104,7 +105,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static PhysicsConstraint* create();
+    static PhysicsConstraint *create();
     /**
          *  <#Description#>
          *
@@ -112,7 +113,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static PhysicsConstraint* create(const PhysicsConstraintBuilder& builder);
+    static PhysicsConstraint *create(const PhysicsConstraintBuilder &builder);
     /**
          *  <#Description#>
          *
@@ -120,7 +121,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static PhysicsConstraint* clone(const PhysicsConstraint& object);
+    static PhysicsConstraint *clone(const PhysicsConstraint &object);
     /**
          *  <#Description#>
          *
@@ -128,7 +129,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static PhysicsConstraint* copy(const PhysicsConstraint& object);
+    static PhysicsConstraint *copy(const PhysicsConstraint &object);
     /**
          *  <#Description#>
          *
@@ -142,7 +143,8 @@ public:
          *  @param L           <#L description#>
          *  @param stack_index <#stack_index description#>
          */
-    static void load(PhysicsConstraint & object, lua_State * L, int stack_index);
+    static void load(PhysicsConstraint & object, lua_State * L,
+                     int stack_index);
     /**
          *  <#Description#>
          *
@@ -150,32 +152,32 @@ public:
          */
     static u32 type();
 
-public:
-    //TODO: fill in specific methods for PhysicsConstraint
+  public:
+    // TODO: fill in specific methods for PhysicsConstraint
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    Node* getNodeA();
+    Node *getNodeA();
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const Node* getNodeA() const;
+    const Node *getNodeA() const;
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    Node* getNodeB();
+    Node *getNodeB();
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const Node* getNodeB() const;
+    const Node *getNodeB() const;
 
     /**
          *  <#Description#>
@@ -227,31 +229,30 @@ public:
          *  @return <#return value description#>
          */
     btVector3 getJointAppliedTorqueB() const;
-    
-    
+
     /**
      <#Description#>
 
      @return <#return value description#>
      */
     PhysicsBody *getParent();
-    
+
     /**
      <#Description#>
 
      @return <#return value description#>
      */
-    const PhysicsBody *getParent()const;
+    const PhysicsBody *getParent() const;
 
-protected:
-    virtual btTypedConstraint* getConstraint() = 0;
-    virtual const btTypedConstraint* getConstraint() const = 0;
+  protected:
+    virtual btTypedConstraint *getConstraint() = 0;
+    virtual const btTypedConstraint *getConstraint() const = 0;
 
     virtual void removeConstraint();
-//    virtual void setNodes(Node *nodeA, Node *nodeB=NULL);
+    //    virtual void setNodes(Node *nodeA, Node *nodeB=NULL);
 
-private:
-};
+  private:
+  };
 }
 
 #endif /* defined(__JLIGameEngineTest__PhysicsConstraint__) */

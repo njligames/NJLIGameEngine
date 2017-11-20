@@ -12,43 +12,47 @@
 #include "Util.h"
 //#include "AbstractObject.h"
 
-namespace njli {
-class DeviceInputTime // : public AbstractObject
-    {
-public:
-    virtual const char* getClassName() const { return "DeviceInputTime"; }
+namespace njli
+{
+  class DeviceInputTime // : public AbstractObject
+  {
+  public:
+    virtual const char *getClassName() const { return "DeviceInputTime"; }
     virtual s32 getType() const = 0;
 
-    void setTimeStampFrame(const f64 timeStamp) { m_timestamp_frame = timeStamp; }
-    void setTimeStampTick(const f64 timeStamp) { m_timestamp_soundtick = timeStamp; }
+    void setTimeStampFrame(const f64 timeStamp)
+    {
+      m_timestamp_frame = timeStamp;
+    }
+    void setTimeStampTick(const f64 timeStamp)
+    {
+      m_timestamp_soundtick = timeStamp;
+    }
     f64 getTimeStampFrame() const { return m_timestamp_frame; }
     f64 getTimeStampTick() const { return m_timestamp_soundtick; }
 
-protected:
-    DeviceInputTime()
-        : m_timestamp_frame(0)
-        , m_timestamp_soundtick(0)
+  protected:
+    DeviceInputTime() : m_timestamp_frame(0), m_timestamp_soundtick(0) {}
+    DeviceInputTime(const DeviceInputTime &rhs)
+        : m_timestamp_frame(rhs.m_timestamp_frame),
+          m_timestamp_soundtick(rhs.m_timestamp_soundtick)
     {
     }
-    DeviceInputTime(const DeviceInputTime& rhs)
-        : m_timestamp_frame(rhs.m_timestamp_frame)
-        , m_timestamp_soundtick(rhs.m_timestamp_soundtick)
+    DeviceInputTime &operator=(const DeviceInputTime &rhs)
     {
-    }
-    DeviceInputTime& operator=(const DeviceInputTime& rhs)
-    {
-        if (this != &rhs) {
-            m_timestamp_frame = rhs.m_timestamp_frame;
-            m_timestamp_soundtick = rhs.m_timestamp_soundtick;
+      if (this != &rhs)
+        {
+          m_timestamp_frame = rhs.m_timestamp_frame;
+          m_timestamp_soundtick = rhs.m_timestamp_soundtick;
         }
-        return *this;
+      return *this;
     }
     ~DeviceInputTime() {}
 
-private:
+  private:
     f64 m_timestamp_frame;
     f64 m_timestamp_soundtick;
-};
+  };
 }
 
 #endif /* defined(__JLIGameEngineTest__DeviceInputTime__) */

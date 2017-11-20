@@ -20,24 +20,23 @@
 #include "AbstractStateMachine.h"
 //#include "AbstractTransform.h"
 
-#include "PhysicsBody.h"
 #include "JLIFactoryTypes.h"
+#include "PhysicsBody.h"
 //#include "JLITransform.h"
-#include "PhysicsShape.h"
 #include "Geometry.h"
+#include "PhysicsShape.h"
 
 #include "World.h"
 #include "WorldFactory.h"
-#include "WorldSQLite.h"
 #include "WorldLuaVirtualMachine.h"
+#include "WorldSQLite.h"
 //#include "WorldPythonVirtualMachine.h"
-#include "WorldResourceLoader.h"
 #include "WorldClock.h"
-#include "WorldSocket.h"
 #include "WorldDebugDrawer.h"
+#include "WorldResourceLoader.h"
+#include "WorldSocket.h"
 //#include "WorldFacebook.h"
 //#include "WorldInput.h"
-
 
 #pragma mark Start AbstractFactoryObjects includes
 
@@ -57,10 +56,10 @@
 #include "ImageBuilder.h"
 #include "JsonJLI.h"
 #include "JsonJLIBuilder.h"
-#include "Light.h"
-#include "LightBuilder.h"
 #include "LevelOfDetail.h"
 #include "LevelOfDetailBuilder.h"
+#include "Light.h"
+#include "LightBuilder.h"
 //#include "Lua.h"
 //#include "LuaBuilder.h"
 #include "Material.h"
@@ -90,8 +89,6 @@
 #include "PhysicsConstraintPointToPoint.h"
 #include "PhysicsConstraintPointToPointBuilder.h"
 
-#include "PhysicsConstraintSlider.h"
-#include "PhysicsConstraintSliderBuilder.h"
 #include "PhysicsConstraintConeTwist.h"
 #include "PhysicsConstraintConeTwistBuilder.h"
 #include "PhysicsConstraintFixed.h"
@@ -100,7 +97,8 @@
 #include "PhysicsConstraintGeneric6DofBuilder.h"
 #include "PhysicsConstraintGeneric6DofSpring.h"
 #include "PhysicsConstraintGeneric6DofSpringBuilder.h"
-
+#include "PhysicsConstraintSlider.h"
+#include "PhysicsConstraintSliderBuilder.h"
 
 #include "PhysicsContact.h"
 #include "PhysicsContactBuilder.h"
@@ -109,33 +107,30 @@
 #include "PhysicsRayContact.h"
 #include "PhysicsRayContactBuilder.h"
 #include "PhysicsShapeBox.h"
-#include "PhysicsShapeBoxBuilder.h"
 #include "PhysicsShapeBox2D.h"
 #include "PhysicsShapeBox2DBuilder.h"
+#include "PhysicsShapeBoxBuilder.h"
 
-
-#include "PhysicsShapeSphere.h"
-#include "PhysicsShapeSphereBuilder.h"
-#include "PhysicsShapeCylinder.h"
-#include "PhysicsShapeCylinderBuilder.h"
+#include "PhysicsShapeBvhTriangleMesh.h"
+#include "PhysicsShapeBvhTriangleMeshBuilder.h"
 #include "PhysicsShapeCapsule.h"
 #include "PhysicsShapeCapsuleBuilder.h"
 #include "PhysicsShapeCone.h"
 #include "PhysicsShapeConeBuilder.h"
-#include "PhysicsShapeMultiSphere.h"
-#include "PhysicsShapeMultiSphereBuilder.h"
 #include "PhysicsShapeConvexHull.h"
 #include "PhysicsShapeConvexHullBuilder.h"
 #include "PhysicsShapeConvexTriangleMesh.h"
 #include "PhysicsShapeConvexTriangleMeshBuilder.h"
-#include "PhysicsShapeBvhTriangleMesh.h"
-#include "PhysicsShapeBvhTriangleMeshBuilder.h"
+#include "PhysicsShapeCylinder.h"
+#include "PhysicsShapeCylinderBuilder.h"
 #include "PhysicsShapeHeightfieldTerrain.h"
 #include "PhysicsShapeHeightfieldTerrainBuilder.h"
+#include "PhysicsShapeMultiSphere.h"
+#include "PhysicsShapeMultiSphereBuilder.h"
+#include "PhysicsShapeSphere.h"
+#include "PhysicsShapeSphereBuilder.h"
 #include "PhysicsShapeStaticPlane.h"
 #include "PhysicsShapeStaticPlaneBuilder.h"
-
-
 
 #include "PhysicsWorld.h"
 #include "PhysicsWorldBuilder.h"
@@ -159,11 +154,11 @@
 #include "SpriteFrameAtlasBuilder.h"
 
 #include "SteeringBehavior.h"
-#include "SteeringBehaviorBuilder.h"
 #include "SteeringBehaviorAlignment.h"
 #include "SteeringBehaviorAlignmentBuilder.h"
 #include "SteeringBehaviorArrive.h"
 #include "SteeringBehaviorArriveBuilder.h"
+#include "SteeringBehaviorBuilder.h"
 #include "SteeringBehaviorCohesion.h"
 #include "SteeringBehaviorCohesionBuilder.h"
 #include "SteeringBehaviorEvade.h"
@@ -199,11 +194,9 @@
 #include "SteeringBehaviorWander.h"
 #include "SteeringBehaviorWanderBuilder.h"
 
-
 #include "StopWatch.h"
 #include "StopWatchBuilder.h"
 #ifdef USE_NANOVG_LIBRARY
-#include "WorldHUD.h"
 #include "ButtonHUD.h"
 #include "ButtonHUDBuilder.h"
 #include "CheckboxHUD.h"
@@ -216,6 +209,7 @@
 #include "SliderHUDBuilder.h"
 #include "TextboxHUD.h"
 #include "TextboxHUDBuilder.h"
+#include "WorldHUD.h"
 #endif
 #include "Thread.h"
 #include "ThreadBuilder.h"

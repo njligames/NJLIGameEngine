@@ -11,16 +11,18 @@
 
 #include "Util.h"
 
-namespace njli {
-class Camera;
+namespace njli
+{
+  class Camera;
 
-/// <#Description#>
-class AbstractFrameBufferObject {
+  /// <#Description#>
+  class AbstractFrameBufferObject
+  {
     friend class MaterialProperty;
     friend class WorldHUD;
     friend class Material;
 
-public:
+  public:
     /**
          *  <#Description#>
          */
@@ -49,10 +51,10 @@ public:
          */
     void show();
 
-protected:
+  protected:
     bool isLoadedGPU() const;
     void loadGPU(u32 width = 2048, u32 height = 2048);
-    void render(Camera* camera);
+    void render(Camera *camera);
     u32 getTextureID() const;
     void unLoadGPU();
 
@@ -60,13 +62,13 @@ protected:
     u32 getHeight();
     f32 getAspectRatio();
 
-    virtual void renderFunction(Camera* camera) = 0;
+    virtual void renderFunction(Camera *camera) = 0;
 
-private:
-    AbstractFrameBufferObject(const AbstractFrameBufferObject& copy);
-    AbstractFrameBufferObject& operator=(const AbstractFrameBufferObject& rhs);
+  private:
+    AbstractFrameBufferObject(const AbstractFrameBufferObject &copy);
+    AbstractFrameBufferObject &operator=(const AbstractFrameBufferObject &rhs);
 
-    void renderInternal(u32 fbo, Camera* camera);
+    void renderInternal(u32 fbo, Camera *camera);
 
     u32 m_textureA;
     u32 m_textureB;
@@ -80,7 +82,7 @@ private:
     u32 m_depthBufferA;
     u32 m_depthBufferB;
     bool m_isHidden;
-};
+  };
 }
 
 #endif /* defined(__JLIGameEngineTest__AbstractFrameBufferObject__) */

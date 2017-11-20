@@ -15,30 +15,31 @@
 #include "LinearMath/btQuickprof.h"
 #include "lua.hpp"
 
-namespace njli {
-class TimerBuilder;
-
-/**
-     *  <#Description#>
-     */
-ATTRIBUTE_ALIGNED16(class)
-Timer : public AbstractFactoryObject
+namespace njli
 {
+  class TimerBuilder;
+
+  /**
+       *  <#Description#>
+       */
+  ATTRIBUTE_ALIGNED16(class)
+  Timer : public AbstractFactoryObject
+  {
     friend class WorldFactory;
 
-protected:
+  protected:
     Timer();
-    Timer(const AbstractBuilder&);
-    Timer(const Timer&);
+    Timer(const AbstractBuilder &);
+    Timer(const Timer &);
     BT_DECLARE_ALIGNED_ALLOCATOR();
     virtual ~Timer();
-    Timer& operator=(const Timer&);
+    Timer &operator=(const Timer &);
 
-public:
+  public:
     using AbstractDecorator::setName;
     using AbstractDecorator::getName;
     using AbstractFactoryObject::create;
-//    using AbstractFactoryObject::clone;
+    //    using AbstractFactoryObject::clone;
     using AbstractFactoryObject::getPointer;
     using AbstractFactoryObject::getPointerValue;
     using AbstractFactoryObject::serializeObject;
@@ -54,9 +55,9 @@ public:
          *
          *  @param btSerializer <#btSerializer description#>
          */
-    virtual void serialize(void*, btSerializer*) const;
+    virtual void serialize(void *, btSerializer *) const;
 
-    virtual const char* getClassName() const;
+    virtual const char *getClassName() const;
     /**
          *  <#Description#>
          *
@@ -70,7 +71,7 @@ public:
          */
     operator std::string() const;
 
-    static Timer** createArray(const u32 size);
+    static Timer **createArray(const u32 size);
     /**
          *  <#Description#>
          *
@@ -82,7 +83,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Timer* create();
+    static Timer *create();
     /**
          *  <#Description#>
          *
@@ -90,7 +91,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Timer* create(const TimerBuilder& builder);
+    static Timer *create(const TimerBuilder &builder);
     /**
          *  <#Description#>
          *
@@ -98,7 +99,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Timer* clone(const Timer& object);
+    static Timer *clone(const Timer &object);
     /**
          *  <#Description#>
          *
@@ -106,7 +107,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Timer* copy(const Timer& object);
+    static Timer *copy(const Timer &object);
     /**
          *  <#Description#>
          *
@@ -128,10 +129,10 @@ public:
          */
     static u32 type();
 
-public:
+  public:
     virtual void tick();
 
-    //TODO: fill in specific methods for Timer
+    // TODO: fill in specific methods for Timer
 
     void start(unsigned long int totalMilliseconds);
     void enablePause(bool enable = true);
@@ -140,12 +141,12 @@ public:
 
     unsigned long int getTimeMillisecondsLeft() const;
 
-protected:
-private:
-    btClock* m_Clock;
+  protected:
+  private:
+    btClock *m_Clock;
     long int m_CurrentTime;
     bool m_IsPaused;
-};
+  };
 }
 
 #endif /* defined(__JLIGameEngineTest__Timer__) */

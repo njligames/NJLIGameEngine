@@ -13,30 +13,31 @@
 #include "AbstractFactoryObject.h"
 #include "lua.hpp"
 
-namespace njli {
-class PhysicsContactBuilder;
-
-/**
-     *  <#Description#>
-     */
-ATTRIBUTE_ALIGNED16(class)
-PhysicsContact : public AbstractFactoryObject
+namespace njli
 {
+  class PhysicsContactBuilder;
+
+  /**
+       *  <#Description#>
+       */
+  ATTRIBUTE_ALIGNED16(class)
+  PhysicsContact : public AbstractFactoryObject
+  {
     friend class WorldFactory;
 
-protected:
+  protected:
     PhysicsContact();
-    PhysicsContact(const AbstractBuilder&);
-    PhysicsContact(const PhysicsContact&);
+    PhysicsContact(const AbstractBuilder &);
+    PhysicsContact(const PhysicsContact &);
     BT_DECLARE_ALIGNED_ALLOCATOR();
     virtual ~PhysicsContact();
-    PhysicsContact& operator=(const PhysicsContact&);
+    PhysicsContact &operator=(const PhysicsContact &);
 
-public:
+  public:
     using AbstractDecorator::setName;
     using AbstractDecorator::getName;
     using AbstractFactoryObject::create;
-//    using AbstractFactoryObject::clone;
+    //    using AbstractFactoryObject::clone;
     using AbstractFactoryObject::getPointer;
     using AbstractFactoryObject::getPointerValue;
     using AbstractFactoryObject::serializeObject;
@@ -56,14 +57,14 @@ public:
          *  @param dataBuffer   <#dataBuffer description#>
          *  @param btSerializer <#btSerializer description#>
          */
-    virtual void serialize(void* dataBuffer, btSerializer*) const;
+    virtual void serialize(void *dataBuffer, btSerializer *) const;
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    virtual const char* getClassName() const;
+    virtual const char *getClassName() const;
     /**
          *  <#Description#>
          *
@@ -84,7 +85,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static PhysicsContact** createArray(const u32 size);
+    static PhysicsContact **createArray(const u32 size);
     /**
          *  <#Description#>
          *
@@ -96,7 +97,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static PhysicsContact* create();
+    static PhysicsContact *create();
     /**
          *  <#Description#>
          *
@@ -104,7 +105,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static PhysicsContact* create(const PhysicsContactBuilder& builder);
+    static PhysicsContact *create(const PhysicsContactBuilder &builder);
     /**
          *  <#Description#>
          *
@@ -112,7 +113,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static PhysicsContact* clone(const PhysicsContact& object);
+    static PhysicsContact *clone(const PhysicsContact &object);
     /**
          *  <#Description#>
          *
@@ -120,7 +121,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static PhysicsContact* copy(const PhysicsContact& object);
+    static PhysicsContact *copy(const PhysicsContact &object);
     /**
          *  <#Description#>
          *
@@ -142,10 +143,10 @@ public:
          */
     static u32 type();
 
-    //TODO: fill in specific methods for PhysicsContact
-protected:
-private:
-};
+    // TODO: fill in specific methods for PhysicsContact
+  protected:
+  private:
+  };
 }
 
 #endif /* defined(__JLIGameEngineTest__PhysicsContact__) */

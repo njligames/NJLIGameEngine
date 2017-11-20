@@ -17,32 +17,32 @@
 class btVector2;
 class btVector4;
 
-namespace njli {
-class ButtonHUDBuilder;
-
-/**
-     *  <#Description#>
-     */
-ATTRIBUTE_ALIGNED16(class)
-ButtonHUD : public AbstractFactoryObject,
-            public AbstractFrameBufferObject
+namespace njli
 {
+  class ButtonHUDBuilder;
+
+  /**
+       *  <#Description#>
+       */
+  ATTRIBUTE_ALIGNED16(class)
+  ButtonHUD : public AbstractFactoryObject, public AbstractFrameBufferObject
+  {
     friend class WorldFactory;
 
-protected:
+  protected:
     ButtonHUD();
-    ButtonHUD(const AbstractBuilder&);
-    ButtonHUD(const ButtonHUD&);
+    ButtonHUD(const AbstractBuilder &);
+    ButtonHUD(const ButtonHUD &);
     BT_DECLARE_ALIGNED_ALLOCATOR();
     virtual ~ButtonHUD();
-    ButtonHUD& operator=(const ButtonHUD&);
+    ButtonHUD &operator=(const ButtonHUD &);
     virtual void renderFunction(Camera * camera);
 
-public:
+  public:
     using AbstractDecorator::setName;
     using AbstractDecorator::getName;
     using AbstractFactoryObject::create;
-//    using AbstractFactoryObject::clone;
+    //    using AbstractFactoryObject::clone;
     using AbstractFactoryObject::getPointer;
     using AbstractFactoryObject::getPointerValue;
     using AbstractFactoryObject::serializeObject;
@@ -65,14 +65,14 @@ public:
          *  @param dataBuffer   <#dataBuffer description#>
          *  @param btSerializer <#btSerializer description#>
          */
-    virtual void serialize(void* dataBuffer, btSerializer*) const;
+    virtual void serialize(void *dataBuffer, btSerializer *) const;
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    virtual const char* getClassName() const;
+    virtual const char *getClassName() const;
     /**
          *  <#Description#>
          *
@@ -93,7 +93,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static ButtonHUD** createArray(const u32 size);
+    static ButtonHUD **createArray(const u32 size);
     /**
          *  <#Description#>
          *
@@ -105,7 +105,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static ButtonHUD* create();
+    static ButtonHUD *create();
     /**
          *  <#Description#>
          *
@@ -113,7 +113,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static ButtonHUD* create(const ButtonHUDBuilder& builder);
+    static ButtonHUD *create(const ButtonHUDBuilder &builder);
     /**
          *  <#Description#>
          *
@@ -121,7 +121,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static ButtonHUD* clone(const ButtonHUD& object);
+    static ButtonHUD *clone(const ButtonHUD &object);
     /**
          *  <#Description#>
          *
@@ -129,7 +129,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static ButtonHUD* copy(const ButtonHUD& object);
+    static ButtonHUD *copy(const ButtonHUD &object);
     /**
          *  <#Description#>
          *
@@ -151,8 +151,8 @@ public:
          */
     static u32 type();
 
-public:
-    //TODO: fill in specific methods for ButtonHUD
+  public:
+    // TODO: fill in specific methods for ButtonHUD
     /**
          *  <#Description#>
          *
@@ -164,61 +164,61 @@ public:
          *
          *  @param face <#face description#>
          */
-    void setFontFace(const char* face);
+    void setFontFace(const char *face);
     /**
          *  <#Description#>
          *
          *  @param pos <#pos description#>
          */
-    void setPosition(const btVector2& pos);
+    void setPosition(const btVector2 &pos);
     /**
          *  <#Description#>
          *
          *  @param dim <#dim description#>
          */
-    void setDimensions(const btVector2& dim);
+    void setDimensions(const btVector2 &dim);
     /**
          *  <#Description#>
          *
          *  @param text <#text description#>
          */
-    void setText(const char* text);
+    void setText(const char *text);
     /**
          *  <#Description#>
          *
          *  @param color <#color description#>
          */
-    void setFillColor(const btVector4& color);
+    void setFillColor(const btVector4 &color);
     /**
          *  <#Description#>
          *
          *  @param color <#color description#>
          */
-    void setBorderColor(const btVector4& color);
+    void setBorderColor(const btVector4 &color);
     /**
          *  <#Description#>
          *
          *  @param color <#color description#>
          */
-    void setTextColor(const btVector4& color);
+    void setTextColor(const btVector4 &color);
     /**
          *  <#Description#>
          *
          *  @param color <#color description#>
          */
-    void setTextShadowColor(const btVector4& color);
+    void setTextShadowColor(const btVector4 &color);
     /**
          *  <#Description#>
          *
          *  @param start <#start description#>
          */
-    void setGradientStartColor(const btVector4& start);
+    void setGradientStartColor(const btVector4 &start);
     /**
          *  <#Description#>
          *
          *  @param end <#end description#>
          */
-    void setGradientEndColor(const btVector4& end);
+    void setGradientEndColor(const btVector4 &end);
     /**
          *  <#Description#>
          *
@@ -239,61 +239,61 @@ public:
          *
          *  @return <#return value description#>
          */
-    const char* getFontFace() const;
+    const char *getFontFace() const;
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const btVector2& getPosition() const;
+    const btVector2 &getPosition() const;
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const btVector2& getDimensions() const;
+    const btVector2 &getDimensions() const;
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const char* getText() const;
+    const char *getText() const;
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const btVector4& getFillColor() const;
+    const btVector4 &getFillColor() const;
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const btVector4& getBorderColor() const;
+    const btVector4 &getBorderColor() const;
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const btVector4& getTextColor() const;
+    const btVector4 &getTextColor() const;
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const btVector4& getTextShadowColor() const;
+    const btVector4 &getTextShadowColor() const;
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const btVector4& getGradientStartColor() const;
+    const btVector4 &getGradientStartColor() const;
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const btVector4& getGradientEndColor() const;
+    const btVector4 &getGradientEndColor() const;
     /**
          *  <#Description#>
          *
@@ -301,22 +301,22 @@ public:
          */
     f32 getCornerRadius() const;
 
-protected:
-private:
+  protected:
+  private:
     f32 m_fontSize;
     std::string m_fontFace;
     s32 m_align;
-    btVector2* m_position;
-    btVector2* m_dimensions;
+    btVector2 *m_position;
+    btVector2 *m_dimensions;
     std::string m_text;
-    btVector4* m_fillColor;
-    btVector4* m_borderColor;
-    btVector4* m_textColor;
-    btVector4* m_textShadowColor;
-    btVector4* m_gradientStartColor;
-    btVector4* m_gradientEndColor;
+    btVector4 *m_fillColor;
+    btVector4 *m_borderColor;
+    btVector4 *m_textColor;
+    btVector4 *m_textShadowColor;
+    btVector4 *m_gradientStartColor;
+    btVector4 *m_gradientEndColor;
     f32 m_cornerRadius;
-};
+  };
 }
 
 #endif /* defined(__JLIGameEngineTest__ButtonHUD__) */

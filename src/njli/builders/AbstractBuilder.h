@@ -16,16 +16,18 @@
 //#include "AbstractBuilder.h"
 #include <string>
 
-namespace njli {
-/// <#Description#>
-class AbstractBuilder : public AbstractFactoryObject {
+namespace njli
+{
+  /// <#Description#>
+  class AbstractBuilder : public AbstractFactoryObject
+  {
     friend class WorldFactory;
 
-public:
+  public:
     using AbstractDecorator::setName;
     using AbstractDecorator::getName;
     using AbstractFactoryObject::create;
-//    using AbstractFactoryObject::clone;
+    //    using AbstractFactoryObject::clone;
     using AbstractFactoryObject::getPointer;
     using AbstractFactoryObject::getPointerValue;
     using AbstractFactoryObject::serializeObject;
@@ -37,7 +39,7 @@ public:
     /**
          *  <#Description#>
          */
-    AbstractBuilder(const AbstractBuilder&);
+    AbstractBuilder(const AbstractBuilder &);
     /**
          *  <#Description#>
          *
@@ -51,7 +53,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    AbstractBuilder& operator=(const AbstractBuilder&);
+    AbstractBuilder &operator=(const AbstractBuilder &);
 
     /**
          *  <#Description#>
@@ -65,7 +67,8 @@ public:
          *  @param dataBuffer <#dataBuffer description#>
          *  @param serializer <#serializer description#>
          */
-    virtual void serialize(void* dataBuffer, btSerializer* serializer) const = 0;
+    virtual void serialize(void *dataBuffer,
+                           btSerializer *serializer) const = 0;
 
     /**
          *  <#Description#>
@@ -78,7 +81,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    virtual const char* getClassName() const = 0;
+    virtual const char *getClassName() const = 0;
     /**
          *  <#Description#>
          *
@@ -92,10 +95,10 @@ public:
          */
     virtual operator std::string() const = 0;
 
-    //TODO: fill in specific methods for AbstractBuilder
-protected:
-private:
-};
+    // TODO: fill in specific methods for AbstractBuilder
+  protected:
+  private:
+  };
 }
 
 #endif

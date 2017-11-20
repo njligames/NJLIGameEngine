@@ -22,38 +22,39 @@ class btVector3;
 class btVector4;
 class btTransform;
 
-namespace njli {
-
-class ParticleEmitterBuilder;
-class Geometry;
-class PhysicsBody;
-class Node;
-struct Particle;
-
-/**
-     *  <#Description#>
-     */
-ATTRIBUTE_ALIGNED16(class)
-ParticleEmitter : public AbstractFactoryObject //,
-//    public AbstractTransform
+namespace njli
 {
+
+  class ParticleEmitterBuilder;
+  class Geometry;
+  class PhysicsBody;
+  class Node;
+  struct Particle;
+
+  /**
+       *  <#Description#>
+       */
+  ATTRIBUTE_ALIGNED16(class)
+  ParticleEmitter : public AbstractFactoryObject //,
+  //    public AbstractTransform
+  {
     friend class WorldFactory;
     friend class Scene;
     friend class Node;
 
-protected:
+  protected:
     ParticleEmitter();
-    ParticleEmitter(const AbstractBuilder&);
-    ParticleEmitter(const ParticleEmitter&);
+    ParticleEmitter(const AbstractBuilder &);
+    ParticleEmitter(const ParticleEmitter &);
     BT_DECLARE_ALIGNED_ALLOCATOR();
     virtual ~ParticleEmitter();
-    ParticleEmitter& operator=(const ParticleEmitter&);
+    ParticleEmitter &operator=(const ParticleEmitter &);
 
-public:
+  public:
     using AbstractDecorator::setName;
     using AbstractDecorator::getName;
     using AbstractFactoryObject::create;
-//    using AbstractFactoryObject::clone;
+    //    using AbstractFactoryObject::clone;
     using AbstractFactoryObject::getPointer;
     using AbstractFactoryObject::getPointerValue;
     using AbstractFactoryObject::serializeObject;
@@ -73,14 +74,14 @@ public:
          *  @param dataBuffer   <#dataBuffer description#>
          *  @param btSerializer <#btSerializer description#>
          */
-    virtual void serialize(void* dataBuffer, btSerializer*) const;
+    virtual void serialize(void *dataBuffer, btSerializer *) const;
 
     /**
          *  The name of this class.
          *
          *  @return The name of this class.
          */
-    virtual const char* getClassName() const;
+    virtual const char *getClassName() const;
     /**
          *  Get the type of ::njliObjectEnumType enum value.
          *
@@ -101,7 +102,7 @@ public:
          *
          *  @return Pointer to the newly created array.
          */
-    static ParticleEmitter** createArray(const u32 size);
+    static ParticleEmitter **createArray(const u32 size);
     /**
          *  Destroy an Array of this class type.
          *
@@ -113,7 +114,7 @@ public:
          *
          *  @return Pointer to the newly created instance.
          */
-    static ParticleEmitter* create();
+    static ParticleEmitter *create();
     /**
          *  Create an instance of this class using a builder.
          *
@@ -121,23 +122,25 @@ public:
          *
          *  @return Pointer to the newly created instance.
          */
-    static ParticleEmitter* create(const ParticleEmitterBuilder& builder);
+    static ParticleEmitter *create(const ParticleEmitterBuilder &builder);
     /**
-         *  Create a shallow copy of an instance of this class (sharing pointers).
+         *  Create a shallow copy of an instance of this class (sharing
+     * pointers).
          *
          *  @param object The object to clone.
          *
          *  @return Pointer to the newly created instance.
          */
-    static ParticleEmitter* clone(const ParticleEmitter& object);
+    static ParticleEmitter *clone(const ParticleEmitter &object);
     /**
-         *  Create a deep copy of an instance of this class (NOT sharing pointers).
+         *  Create a deep copy of an instance of this class (NOT sharing
+     * pointers).
          *
          *  @param object The object to clone.
          *
          *  @return Pointer to the newly created instance.
          */
-    static ParticleEmitter* copy(const ParticleEmitter& object);
+    static ParticleEmitter *copy(const ParticleEmitter &object);
     /**
          *  Destroy an instance of this class.
          *
@@ -145,7 +148,8 @@ public:
          */
     static void destroy(ParticleEmitter * object);
     /**
-         *  Load a lua table representation of this class. This is used for JLIM.create(object).
+         *  Load a lua table representation of this class. This is used for
+     * JLIM.create(object).
          *
          *  @param object      The object to load.
          *  @param L           The current lua state.
@@ -159,8 +163,8 @@ public:
          */
     static u32 type();
 
-public:
-    //TODO: fill in specific methods for ParticleEmitter
+  public:
+    // TODO: fill in specific methods for ParticleEmitter
 
     /**
          *  <#Description#>
@@ -175,9 +179,10 @@ public:
          */
     void reset();
 
-    bool parseFileData(const char* source, const f32 z = 0);
+    bool parseFileData(const char *source, const f32 z = 0);
 
-    void setup(Node * particlesRootNode, Geometry * geometry, PhysicsBody* body = NULL);
+    void setup(Node * particlesRootNode, Geometry * geometry,
+               PhysicsBody *body = NULL);
 
     bool isActive() const;
 
@@ -186,13 +191,13 @@ public:
          *
          *  @return <#return value description#>
          */
-    Node* getParent();
+    Node *getParent();
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const Node* getParent() const;
+    const Node *getParent() const;
 
     btTransform getWorldTransform() const;
     /**
@@ -207,7 +212,7 @@ public:
          *
          *  @param scale <#scale description#>
          */
-    virtual void setScale(const btVector3& scale);
+    virtual void setScale(const btVector3 &scale);
 
     /**
          *  <#Description#>
@@ -221,273 +226,273 @@ public:
          *
          *  @return <#return value description#>
          */
-    const btVector3& getSourcePositionVariance() const;
+    const btVector3 &getSourcePositionVariance() const;
     /**
          *  <#Description#>
          *
          *  @param value <#value description#>
          */
-    void setSourcePositionVariance(const btVector3& value);
+    void setSourcePositionVariance(const btVector3 &value);
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const f32& getAngle() const;
+    const f32 &getAngle() const;
     /**
          *  <#Description#>
          *
          *  @param value <#value description#>
          */
-    void setAngle(const f32& value);
+    void setAngle(const f32 &value);
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const f32& getAngleVariance() const;
+    const f32 &getAngleVariance() const;
     /**
          *  <#Description#>
          *
          *  @param value <#value description#>
          */
-    void setAngleVariance(const f32& value);
+    void setAngleVariance(const f32 &value);
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const f32& getSpeed() const;
+    const f32 &getSpeed() const;
     /**
          *  <#Description#>
          *
          *  @param value <#value description#>
          */
-    void setSpeed(const f32& value);
+    void setSpeed(const f32 &value);
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const f32& getSpeedVariance() const;
+    const f32 &getSpeedVariance() const;
     /**
          *  <#Description#>
          *
          *  @param value <#value description#>
          */
-    void setSpeedVariance(const f32& value);
+    void setSpeedVariance(const f32 &value);
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const f32& getRadialAccel() const;
+    const f32 &getRadialAccel() const;
     /**
          *  <#Description#>
          *
          *  @param value <#value description#>
          */
-    void setRadialAccel(const f32& value);
+    void setRadialAccel(const f32 &value);
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const f32& getTangentialAccel() const;
+    const f32 &getTangentialAccel() const;
     /**
          *  <#Description#>
          *
          *  @param value <#value description#>
          */
-    void setTangentialAccel(const f32& value);
+    void setTangentialAccel(const f32 &value);
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const f32& getRadialAccelVariance() const;
+    const f32 &getRadialAccelVariance() const;
     /**
          *  <#Description#>
          *
          *  @param value <#value description#>
          */
-    void setRadialAccelVariance(const f32& value);
+    void setRadialAccelVariance(const f32 &value);
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const f32& getTangentialAccelVariance() const;
+    const f32 &getTangentialAccelVariance() const;
     /**
          *  <#Description#>
          *
          *  @param value <#value description#>
          */
-    void setTangentialAccelVariance(const f32& value);
+    void setTangentialAccelVariance(const f32 &value);
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const btVector3& getGravity() const;
+    const btVector3 &getGravity() const;
     /**
          *  <#Description#>
          *
          *  @param value <#value description#>
          */
-    void setGravity(const btVector3& value);
+    void setGravity(const btVector3 &value);
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const f32& getParticleLifespan() const;
+    const f32 &getParticleLifespan() const;
     /**
          *  <#Description#>
          *
          *  @param value <#value description#>
          */
-    void setParticleLifespan(const f32& value);
+    void setParticleLifespan(const f32 &value);
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const f32& getParticleLifespanVariance() const;
+    const f32 &getParticleLifespanVariance() const;
     /**
          *  <#Description#>
          *
          *  @param value <#value description#>
          */
-    void setParticleLifespanVariance(const f32& value);
+    void setParticleLifespanVariance(const f32 &value);
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const btVector4& getStartColor() const;
+    const btVector4 &getStartColor() const;
     /**
          *  <#Description#>
          *
          *  @param value <#value description#>
          */
-    void setStartColor(const btVector4& value);
+    void setStartColor(const btVector4 &value);
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const btVector4& getStartColorVariance() const;
+    const btVector4 &getStartColorVariance() const;
     /**
          *  <#Description#>
          *
          *  @param value <#value description#>
          */
-    void setStartColorVariance(const btVector4& value);
+    void setStartColorVariance(const btVector4 &value);
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const btVector4& getFinishColor() const;
+    const btVector4 &getFinishColor() const;
     /**
          *  <#Description#>
          *
          *  @param value <#value description#>
          */
-    void setFinishColor(const btVector4& value);
+    void setFinishColor(const btVector4 &value);
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const btVector4& getFinishColorVariance() const;
+    const btVector4 &getFinishColorVariance() const;
     /**
          *  <#Description#>
          *
          *  @param value <#value description#>
          */
-    void setFinishColorVariance(const btVector4& value);
+    void setFinishColorVariance(const btVector4 &value);
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const f32& getStartParticleSize() const;
+    const f32 &getStartParticleSize() const;
     /**
          *  <#Description#>
          *
          *  @param value <#value description#>
          */
-    void setStartParticleSize(const f32& value);
+    void setStartParticleSize(const f32 &value);
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const f32& getStartParticleSizeVariance() const;
+    const f32 &getStartParticleSizeVariance() const;
     /**
          *  <#Description#>
          *
          *  @param value <#value description#>
          */
-    void setStartParticleSizeVariance(const f32& value);
+    void setStartParticleSizeVariance(const f32 &value);
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const f32& getFinishParticleSize() const;
+    const f32 &getFinishParticleSize() const;
     /**
          *  <#Description#>
          *
          *  @param value <#value description#>
          */
-    void setFinishParticleSize(const f32& value);
+    void setFinishParticleSize(const f32 &value);
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const f32& getFinishParticleSizeVariance() const;
+    const f32 &getFinishParticleSizeVariance() const;
     /**
          *  <#Description#>
          *
          *  @param value <#value description#>
          */
-    void setFinishParticleSizeVariance(const f32& value);
+    void setFinishParticleSizeVariance(const f32 &value);
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const u32& getMaxParticles() const;
+    const u32 &getMaxParticles() const;
     /**
          *  <#Description#>
          *
          *  @param value <#value description#>
          */
-    void setMaxParticles(const u32& value);
+    void setMaxParticles(const u32 &value);
 
     /**
          *  <#Description#>
@@ -546,170 +551,170 @@ public:
          *
          *  @return <#return value description#>
          */
-    const f32& getDuration() const;
+    const f32 &getDuration() const;
     /**
          *  <#Description#>
          *
          *  @param value <#value description#>
          */
-    void setDuration(const f32& value);
+    void setDuration(const f32 &value);
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const f32& getRotationStart() const;
+    const f32 &getRotationStart() const;
     /**
          *  <#Description#>
          *
          *  @param value <#value description#>
          */
-    void setRotationStart(const f32& value);
+    void setRotationStart(const f32 &value);
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const f32& getRotationStartVariance() const;
+    const f32 &getRotationStartVariance() const;
     /**
          *  <#Description#>
          *
          *  @param value <#value description#>
          */
-    void setRotationStartVariance(const f32& value);
+    void setRotationStartVariance(const f32 &value);
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const f32& getRotationEnd() const;
+    const f32 &getRotationEnd() const;
     /**
          *  <#Description#>
          *
          *  @param value <#value description#>
          */
-    void setRotationEnd(const f32& value);
+    void setRotationEnd(const f32 &value);
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const f32& getRotationEndVariance() const;
+    const f32 &getRotationEndVariance() const;
     /**
          *  <#Description#>
          *
          *  @param value <#value description#>
          */
-    void setRotationEndVariance(const f32& value);
+    void setRotationEndVariance(const f32 &value);
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const f32& getMaxRadius() const;
+    const f32 &getMaxRadius() const;
     /**
          *  <#Description#>
          *
          *  @param value <#value description#>
          */
-    void setMaxRadius(const f32& value);
+    void setMaxRadius(const f32 &value);
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const f32& getMaxRadiusVariance() const;
+    const f32 &getMaxRadiusVariance() const;
     /**
          *  <#Description#>
          *
          *  @param value <#value description#>
          */
-    void setMaxRadiusVariance(const f32& value);
+    void setMaxRadiusVariance(const f32 &value);
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const f32& getMinRadius() const;
+    const f32 &getMinRadius() const;
     /**
          *  <#Description#>
          *
          *  @param value <#value description#>
          */
-    void setMinRadius(const f32& value);
+    void setMinRadius(const f32 &value);
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const f32& getMinRadiusVariance() const;
+    const f32 &getMinRadiusVariance() const;
     /**
          *  <#Description#>
          *
          *  @param value <#value description#>
          */
-    void setMinRadiusVariance(const f32& value);
+    void setMinRadiusVariance(const f32 &value);
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const f32& getRotatePerSecond() const;
+    const f32 &getRotatePerSecond() const;
     /**
          *  <#Description#>
          *
          *  @param value <#value description#>
          */
-    void setRotatePerSecond(const f32& value);
+    void setRotatePerSecond(const f32 &value);
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const f32& getRotatePerSecondVariance() const;
+    const f32 &getRotatePerSecondVariance() const;
     /**
          *  <#Description#>
          *
          *  @param value <#value description#>
          */
-    void setRotatePerSecondVariance(const f32& value);
+    void setRotatePerSecondVariance(const f32 &value);
 
-    const char* getTextureFilename() const;
+    const char *getTextureFilename() const;
 
-protected:
+  protected:
     void update(f32 timeStep);
 
     bool addParticle();
     void setRenderCategory(Node * node);
 
-private:
+  private:
     s32 emitterType;
-    btVector3* sourcePositionVariance;
+    btVector3 *sourcePositionVariance;
     f32 speed;
     f32 speedVariance;
     f32 particleLifespan;
     f32 angle;
     f32 angleVariance;
-    btVector3* gravity;
+    btVector3 *gravity;
     f32 radialAcceleration;
     f32 tangentialAcceleration;
-    btVector4* startColor;
+    btVector4 *startColor;
     f32 particleLifespanVariance;
     f32 radialAccelVariance;
     f32 tangentialAccelVariance;
-    btVector4* startColorVariance;
-    btVector4* finishColor;
-    btVector4* finishColorVariance;
+    btVector4 *startColorVariance;
+    btVector4 *finishColor;
+    btVector4 *finishColorVariance;
     u32 maxParticles;
     f32 startParticleSize;
     f32 finishParticleSize;
@@ -736,45 +741,47 @@ private:
     bool active;
     s32 particleIndex;
 
-    Node** m_Nodes;
+    Node **m_Nodes;
 
-    struct Particle {
-        Particle();
-        ~Particle();
+    struct Particle
+    {
+      Particle();
+      ~Particle();
 
-        btVector3* position;
-        btVector3* direction;
-        btVector3* startPos;
-        btVector4* color;
-        btVector4* deltaColor;
-        f32 rotation;
-        f32 rotationDelta;
-        f32 radialAcceleration;
-        f32 tangentialAcceleration;
-        f32 radius;
-        f32 radiusDelta;
-        f32 angle;
-        f32 degreesPerSecond;
-        f32 particleSize;
-        f32 particleSizeDelta;
-        f32 timeToLive;
-        Node* node;
-        bool used;
+      btVector3 *position;
+      btVector3 *direction;
+      btVector3 *startPos;
+      btVector4 *color;
+      btVector4 *deltaColor;
+      f32 rotation;
+      f32 rotationDelta;
+      f32 radialAcceleration;
+      f32 tangentialAcceleration;
+      f32 radius;
+      f32 radiusDelta;
+      f32 angle;
+      f32 degreesPerSecond;
+      f32 particleSize;
+      f32 particleSizeDelta;
+      f32 timeToLive;
+      Node *node;
+      bool used;
     };
-    Particle* m_ParticleArray;
+    Particle *m_ParticleArray;
 
-    enum kParticleTypes {
-        kParticleTypeGravity,
-        kParticleTypeRadial
+    enum kParticleTypes
+    {
+      kParticleTypeGravity,
+      kParticleTypeRadial
     };
 
-    Node* m_particlesRootNode;
-    Geometry* m_geometry;
-    PhysicsBody* m_body;
-    std::vector<Particle*> m_ActiveParticles;
-    Particle* findUnusedParticle();
-    btVector3* m_Scale;
-};
+    Node *m_particlesRootNode;
+    Geometry *m_geometry;
+    PhysicsBody *m_body;
+    std::vector<Particle *> m_ActiveParticles;
+    Particle *findUnusedParticle();
+    btVector3 *m_Scale;
+  };
 }
 
 #endif /* ParticleEmitter_hpp */

@@ -17,32 +17,32 @@
 class btVector2;
 class btVector4;
 
-namespace njli {
-class SliderHUDBuilder;
-
-/**
-     *  <#Description#>
-     */
-ATTRIBUTE_ALIGNED16(class)
-SliderHUD : public AbstractFactoryObject,
-            public AbstractFrameBufferObject
+namespace njli
 {
+  class SliderHUDBuilder;
+
+  /**
+       *  <#Description#>
+       */
+  ATTRIBUTE_ALIGNED16(class)
+  SliderHUD : public AbstractFactoryObject, public AbstractFrameBufferObject
+  {
     friend class WorldFactory;
 
-protected:
+  protected:
     SliderHUD();
-    SliderHUD(const AbstractBuilder&);
-    SliderHUD(const SliderHUD&);
+    SliderHUD(const AbstractBuilder &);
+    SliderHUD(const SliderHUD &);
     BT_DECLARE_ALIGNED_ALLOCATOR();
     virtual ~SliderHUD();
-    SliderHUD& operator=(const SliderHUD&);
+    SliderHUD &operator=(const SliderHUD &);
     virtual void renderFunction(Camera * camera);
 
-public:
+  public:
     using AbstractDecorator::setName;
     using AbstractDecorator::getName;
     using AbstractFactoryObject::create;
-//    using AbstractFactoryObject::clone;
+    //    using AbstractFactoryObject::clone;
     using AbstractFactoryObject::getPointer;
     using AbstractFactoryObject::getPointerValue;
     using AbstractFactoryObject::serializeObject;
@@ -61,14 +61,14 @@ public:
          *
          *  @param btSerializer <#btSerializer description#>
          */
-    virtual void serialize(void*, btSerializer*) const;
+    virtual void serialize(void *, btSerializer *) const;
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    virtual const char* getClassName() const;
+    virtual const char *getClassName() const;
     /**
          *  <#Description#>
          *
@@ -89,7 +89,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static SliderHUD** createArray(const u32 size);
+    static SliderHUD **createArray(const u32 size);
     /**
          *  <#Description#>
          *
@@ -101,7 +101,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static SliderHUD* create();
+    static SliderHUD *create();
     /**
          *  <#Description#>
          *
@@ -109,7 +109,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static SliderHUD* create(const SliderHUDBuilder& builder);
+    static SliderHUD *create(const SliderHUDBuilder &builder);
     /**
          *  <#Description#>
          *
@@ -117,7 +117,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static SliderHUD* clone(const SliderHUD& object);
+    static SliderHUD *clone(const SliderHUD &object);
     /**
          *  <#Description#>
          *
@@ -125,7 +125,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static SliderHUD* copy(const SliderHUD& object);
+    static SliderHUD *copy(const SliderHUD &object);
     /**
          *  <#Description#>
          *
@@ -147,30 +147,30 @@ public:
          */
     static u32 type();
 
-public:
-    //TODO: fill in specific methods for SliderHUD
+  public:
+    // TODO: fill in specific methods for SliderHUD
     void setValue(f32 v);
     f32 getValue() const;
 
-protected:
-private:
-    btVector2* m_dimensions;
-    btVector2* m_position;
+  protected:
+  private:
+    btVector2 *m_dimensions;
+    btVector2 *m_position;
     f32 m_knobPos;
 
     f32 m_slotHeight;
     f32 m_slotRadius;
     f32 m_slotFeather;
-    btVector4* m_gradientStartColor;
-    btVector4* m_gradientEndColor;
+    btVector4 *m_gradientStartColor;
+    btVector4 *m_gradientEndColor;
 
-    btVector4* m_knobShadowGradientStartColor;
-    btVector4* m_knobShadowGradientEndColor;
+    btVector4 *m_knobShadowGradientStartColor;
+    btVector4 *m_knobShadowGradientEndColor;
 
-    btVector4* m_knobGradientStartColor;
-    btVector4* m_knobGradientEndColor;
-    btVector4* m_knobColor;
-};
+    btVector4 *m_knobGradientStartColor;
+    btVector4 *m_knobGradientEndColor;
+    btVector4 *m_knobColor;
+  };
 }
 
 #endif /* defined(__JLIGameEngineTest__SliderHUD__) */

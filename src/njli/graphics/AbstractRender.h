@@ -11,7 +11,7 @@
 
 /**
  <#Description#>
- 
+
  :returns: <#return value description#>
  */
 void initGL();

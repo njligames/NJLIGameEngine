@@ -13,30 +13,31 @@
 #include "AbstractFactoryObject.h"
 #include "lua.hpp"
 
-namespace njli {
-class LevelOfDetailBuilder;
-
-/**
-     *  <#Description#>
-     */
-ATTRIBUTE_ALIGNED16(class)
-LevelOfDetail : public AbstractFactoryObject
+namespace njli
 {
+  class LevelOfDetailBuilder;
+
+  /**
+       *  <#Description#>
+       */
+  ATTRIBUTE_ALIGNED16(class)
+  LevelOfDetail : public AbstractFactoryObject
+  {
     friend class WorldFactory;
 
-protected:
+  protected:
     LevelOfDetail();
-    LevelOfDetail(const AbstractBuilder&);
-    LevelOfDetail(const LevelOfDetail&);
+    LevelOfDetail(const AbstractBuilder &);
+    LevelOfDetail(const LevelOfDetail &);
     BT_DECLARE_ALIGNED_ALLOCATOR();
     virtual ~LevelOfDetail();
-    LevelOfDetail& operator=(const LevelOfDetail&);
+    LevelOfDetail &operator=(const LevelOfDetail &);
 
-public:
+  public:
     using AbstractDecorator::setName;
     using AbstractDecorator::getName;
     using AbstractFactoryObject::create;
-//    using AbstractFactoryObject::clone;
+    //    using AbstractFactoryObject::clone;
     using AbstractFactoryObject::getPointer;
     using AbstractFactoryObject::getPointerValue;
     using AbstractFactoryObject::serializeObject;
@@ -56,14 +57,14 @@ public:
          *  @param dataBuffer   <#dataBuffer description#>
          *  @param btSerializer <#btSerializer description#>
          */
-    virtual void serialize(void* dataBuffer, btSerializer*) const;
+    virtual void serialize(void *dataBuffer, btSerializer *) const;
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    virtual const char* getClassName() const;
+    virtual const char *getClassName() const;
     /**
          *  <#Description#>
          *
@@ -84,7 +85,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static LevelOfDetail** createArray(const u32 size);
+    static LevelOfDetail **createArray(const u32 size);
     /**
          *  <#Description#>
          *
@@ -96,7 +97,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static LevelOfDetail* create();
+    static LevelOfDetail *create();
     /**
          *  <#Description#>
          *
@@ -104,7 +105,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static LevelOfDetail* create(const LevelOfDetailBuilder& builder);
+    static LevelOfDetail *create(const LevelOfDetailBuilder &builder);
     /**
          *  <#Description#>
          *
@@ -112,7 +113,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static LevelOfDetail* clone(const LevelOfDetail& object);
+    static LevelOfDetail *clone(const LevelOfDetail &object);
     /**
          *  <#Description#>
          *
@@ -120,7 +121,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static LevelOfDetail* copy(const LevelOfDetail& object);
+    static LevelOfDetail *copy(const LevelOfDetail &object);
     /**
          *  <#Description#>
          *
@@ -142,11 +143,11 @@ public:
          */
     static u32 type();
 
-public:
-    //TODO: fill in specific methods for LevelOfDetail
-protected:
-private:
-};
+  public:
+    // TODO: fill in specific methods for LevelOfDetail
+  protected:
+  private:
+  };
 }
 
 #endif /* defined(__JLIGameEngineTest__LevelOfDetail__) */

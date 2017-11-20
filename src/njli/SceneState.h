@@ -11,36 +11,37 @@
 
 #include "AbstractBuilder.h"
 #include "AbstractState.h"
+#include "DeviceTouch.h"
 #include "Scene.h"
 #include "lua.hpp"
-#include "DeviceTouch.h"
 
-namespace njli {
-class SceneStateBuilder;
-    class DeviceTouch;
-    class DeviceMouse;
-
-/**
-     *  <#Description#>
-     */
-ATTRIBUTE_ALIGNED16(class)
-SceneState : public AbstractState<Scene>
+namespace njli
 {
+  class SceneStateBuilder;
+  class DeviceTouch;
+  class DeviceMouse;
+
+  /**
+       *  <#Description#>
+       */
+  ATTRIBUTE_ALIGNED16(class)
+  SceneState : public AbstractState<Scene>
+  {
     friend class WorldFactory;
 
-protected:
+  protected:
     SceneState();
-    SceneState(const AbstractBuilder&);
-    SceneState(const SceneState&);
+    SceneState(const AbstractBuilder &);
+    SceneState(const SceneState &);
     BT_DECLARE_ALIGNED_ALLOCATOR();
     virtual ~SceneState();
-    SceneState& operator=(const SceneState&);
+    SceneState &operator=(const SceneState &);
 
-public:
+  public:
     using AbstractDecorator::setName;
     using AbstractDecorator::getName;
     using AbstractFactoryObject::create;
-//    using AbstractFactoryObject::clone;
+    //    using AbstractFactoryObject::clone;
     using AbstractFactoryObject::getPointer;
     using AbstractFactoryObject::getPointerValue;
     using AbstractFactoryObject::serializeObject;
@@ -59,14 +60,14 @@ public:
          *
          *  @param btSerializer <#btSerializer description#>
          */
-    virtual void serialize(void*, btSerializer*) const;
+    virtual void serialize(void *, btSerializer *) const;
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    virtual const char* getClassName() const;
+    virtual const char *getClassName() const;
     /**
          *  <#Description#>
          *
@@ -80,7 +81,7 @@ public:
          */
     operator std::string() const;
 
-public:
+  public:
     /**
          *  @author James Folk, 16-02-11 17:02:48
          *
@@ -119,123 +120,93 @@ public:
          *
          *  @return <#return value description#>
          */
-    virtual bool onMessage(Scene * scene, const Telegram& telegram) const;
+    virtual bool onMessage(Scene * scene, const Telegram &telegram) const;
 
-    
-    
     /**
      <#Description#>
 
      @param object <#object description#>
      @param touches <#touches description#>
      */
-    void touchDown(Scene *object, DeviceTouch * *touches);
-    
-    
+    void touchDown(Scene * object, DeviceTouch * *touches);
+
     /**
      <#Description#>
 
      @param object <#object description#>
      @param touches <#touches description#>
      */
-    void touchUp(Scene *object, DeviceTouch * *touches);
-    
-    
+    void touchUp(Scene * object, DeviceTouch * *touches);
+
     /**
      <#Description#>
 
      @param object <#object description#>
      @param touches <#touches description#>
      */
-    void touchMove(Scene *object, DeviceTouch * *touches);
-    
-    
+    void touchMove(Scene * object, DeviceTouch * *touches);
+
     /**
      <#Description#>
 
      @param object <#object description#>
      @param touches <#touches description#>
      */
-    void touchCancelled(Scene *object, DeviceTouch * *touches);
+    void touchCancelled(Scene * object, DeviceTouch * *touches);
 
-    
-    
-    
-    
     /**
      <#Description#>
 
      @param object <#object description#>
      @param touch <#touch description#>
      */
-    void touchDown(Scene *object, const DeviceTouch &touch);
-    
-    
+    void touchDown(Scene * object, const DeviceTouch &touch);
+
     /**
      <#Description#>
 
      @param object <#object description#>
      @param touch <#touch description#>
      */
-    void touchUp(Scene *object, const DeviceTouch &touch);
-    
-    
+    void touchUp(Scene * object, const DeviceTouch &touch);
+
     /**
      <#Description#>
 
      @param object <#object description#>
      @param touch <#touch description#>
      */
-    void touchMove(Scene *object, const DeviceTouch &touch);
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    void mouseDown(Scene *object, const DeviceMouse &touch);
-    void mouseUp(Scene *object, const DeviceMouse &touch);
-    void mouseMove(Scene *object, const DeviceMouse &touch);
-    
-    
-    
-    
-    
-    
-    
-    
+    void touchMove(Scene * object, const DeviceTouch &touch);
+
+    void mouseDown(Scene * object, const DeviceMouse &touch);
+    void mouseUp(Scene * object, const DeviceMouse &touch);
+    void mouseMove(Scene * object, const DeviceMouse &touch);
+
     /**
      <#Description#>
 
      @param object <#object description#>
      @param touch <#touch description#>
      */
-    void touchCancelled(Scene *object, const DeviceTouch &touch);
-    
+    void touchCancelled(Scene * object, const DeviceTouch &touch);
 
-    
-    
-    void keyboardShow(Scene *object);
-    void keyboardCancel(Scene *object);
-    void keyboardReturn(Scene *object, const char* text);
-    
-    void renderHUD(Scene *object);
-    void pauseGame(Scene *object);
-    void unPauseGame(Scene *object);
-    
-    void willResignActive(Scene *object);
-    void didBecomeActive(Scene *object);
-    void didEnterBackground(Scene *object);
-    void willEnterForeground(Scene *object);
-    void willTerminate(Scene *object);
-    void interrupt(Scene *object);
-    void resumeInterrupt(Scene *object);
-    
-    void receivedMemoryWarning(Scene *object);
+    void keyboardShow(Scene * object);
+    void keyboardCancel(Scene * object);
+    void keyboardReturn(Scene * object, const char *text);
+
+    void renderHUD(Scene * object);
+    void pauseGame(Scene * object);
+    void unPauseGame(Scene * object);
+
+    void willResignActive(Scene * object);
+    void didBecomeActive(Scene * object);
+    void didEnterBackground(Scene * object);
+    void willEnterForeground(Scene * object);
+    void willTerminate(Scene * object);
+    void interrupt(Scene * object);
+    void resumeInterrupt(Scene * object);
+
+    void receivedMemoryWarning(Scene * object);
     /**
          *  <#Description#>
          *
@@ -243,7 +214,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static SceneState** createArray(const u32 size);
+    static SceneState **createArray(const u32 size);
     /**
          *  <#Description#>
          *
@@ -255,7 +226,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static SceneState* create();
+    static SceneState *create();
     /**
          *  <#Description#>
          *
@@ -263,7 +234,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static SceneState* create(const SceneStateBuilder& builder);
+    static SceneState *create(const SceneStateBuilder &builder);
     /**
          *  <#Description#>
          *
@@ -271,7 +242,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static SceneState* clone(const SceneState& object);
+    static SceneState *clone(const SceneState &object);
     /**
          *  <#Description#>
          *
@@ -279,7 +250,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static SceneState* copy(const SceneState& object);
+    static SceneState *copy(const SceneState &object);
     /**
          *  <#Description#>
          *
@@ -301,10 +272,10 @@ public:
          */
     static u32 type();
 
-protected:
-private:
+  protected:
+  private:
     //        std::string m_Name;
-};
+  };
 }
 
 #endif /* defined(__JLIGameEngineTest__SceneState__) */

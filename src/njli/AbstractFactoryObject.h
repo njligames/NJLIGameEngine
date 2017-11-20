@@ -17,27 +17,29 @@
 //#include "AbstractBuilder.h"
 #include "btSerializer.h"
 
-namespace njli {
-class AbstractBuilder;
+namespace njli
+{
+  class AbstractBuilder;
 
-class AbstractFactoryObject : public AbstractObject {
+  class AbstractFactoryObject : public AbstractObject
+  {
     friend class WorldFactory;
 
-public:
+  public:
     using AbstractDecorator::setName;
     using AbstractDecorator::getName;
-    
-    AbstractFactoryObject(const void* ptr);
+
+    AbstractFactoryObject(const void *ptr);
 
     virtual ~AbstractFactoryObject();
 
-public:
+  public:
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    virtual const char* getClassName() const = 0;
+    virtual const char *getClassName() const = 0;
 
     /**
          *  <#Description#>
@@ -55,7 +57,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    virtual AbstractFactoryObject* create(const AbstractBuilder& builder) const;
+    virtual AbstractFactoryObject *create(const AbstractBuilder &builder) const;
 
     /**
          *  <#Description#>
@@ -64,7 +66,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    virtual AbstractFactoryObject* clone(bool shared = false) const;
+    virtual AbstractFactoryObject *clone(bool shared = false) const;
 
     /**
          *  <#Description#>
@@ -84,12 +86,13 @@ public:
          *  @param dataBuffer <#dataBuffer description#>
          *  @param serializer <#serializer description#>
          */
-    virtual void serialize(void* dataBuffer, btSerializer* serializer) const = 0;
+    virtual void serialize(void *dataBuffer,
+                           btSerializer *serializer) const = 0;
 
     /**
          *  <#Description#>
          */
-    const void* getPointer() const;
+    const void *getPointer() const;
 
     /**
          *  <#Description#>
@@ -105,7 +108,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    bool operator==(const AbstractFactoryObject& rhs) const;
+    bool operator==(const AbstractFactoryObject &rhs) const;
 
     /**
          *  <#Description#>
@@ -114,7 +117,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    bool operator<(const AbstractFactoryObject& rhs) const;
+    bool operator<(const AbstractFactoryObject &rhs) const;
 
     /**
          *  <#Description#>
@@ -123,7 +126,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    bool operator>(const AbstractFactoryObject& rhs) const;
+    bool operator>(const AbstractFactoryObject &rhs) const;
 
     /**
          *  <#Description#>
@@ -132,7 +135,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    bool operator!=(const AbstractFactoryObject& rhs) const;
+    bool operator!=(const AbstractFactoryObject &rhs) const;
 
     /**
          *  <#Description#>
@@ -141,7 +144,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    bool operator<=(const AbstractFactoryObject& rhs) const;
+    bool operator<=(const AbstractFactoryObject &rhs) const;
 
     /**
          *  <#Description#>
@@ -150,33 +153,34 @@ public:
          *
          *  @return <#return value description#>
          */
-    bool operator>=(const AbstractFactoryObject& rhs) const;
+    bool operator>=(const AbstractFactoryObject &rhs) const;
 
     /**
          *  <#Description#>
          *
          *  @param serializer <#serializer description#>
          */
-    virtual void serializeObject(class btSerializer* serializer) const;
+    virtual void serializeObject(class btSerializer *serializer) const;
 
-protected:
+  protected:
     virtual bool canDelete() const;
     virtual void enableCanDelete(const bool enable = true);
 
     bool isRenderObject() const;
     void enableRenderObject(const bool enable = true);
 
-private:
+  private:
     AbstractFactoryObject();
-    AbstractFactoryObject(const AbstractFactoryObject&);
-    AbstractFactoryObject& operator=(const AbstractFactoryObject&);
-    union {
-        const void* m_pointer;
-        u64 m_pointerVal;
+    AbstractFactoryObject(const AbstractFactoryObject &);
+    AbstractFactoryObject &operator=(const AbstractFactoryObject &);
+    union
+    {
+      const void *m_pointer;
+      u64 m_pointerVal;
     };
     bool m_canDelete;
     bool m_isRenderObject;
-};
+  };
 }
 
 #endif

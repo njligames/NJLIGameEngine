@@ -21,18 +21,19 @@ class btCollisionObject;
 class btVector3;
 class btTransform;
 
-namespace njli {
-class PhysicsWorld;
-class Node;
-class PhysicsShape;
-class PhysicsConstraint;
-
-/**
-     *  <#Description#>
-     */
-ATTRIBUTE_ALIGNED16(class)
-PhysicsBody : public AbstractFactoryObject
+namespace njli
 {
+  class PhysicsWorld;
+  class Node;
+  class PhysicsShape;
+  class PhysicsConstraint;
+
+  /**
+       *  <#Description#>
+       */
+  ATTRIBUTE_ALIGNED16(class)
+  PhysicsBody : public AbstractFactoryObject
+  {
     friend class WorldFactory;
     friend class PhysicsWorld;
     friend class Node;
@@ -48,21 +49,21 @@ PhysicsBody : public AbstractFactoryObject
 
     friend class PhysicsConstraint;
 
-public:
+  public:
     using AbstractDecorator::setName;
     using AbstractDecorator::getName;
     using AbstractFactoryObject::create;
-//    using AbstractFactoryObject::clone;
+    //    using AbstractFactoryObject::clone;
     using AbstractFactoryObject::getPointer;
     using AbstractFactoryObject::getPointerValue;
     using AbstractFactoryObject::serializeObject;
 
     PhysicsBody();
-    PhysicsBody(const AbstractBuilder&);
-    PhysicsBody(const PhysicsBody&);
+    PhysicsBody(const AbstractBuilder &);
+    PhysicsBody(const PhysicsBody &);
     BT_DECLARE_ALIGNED_ALLOCATOR();
     virtual ~PhysicsBody();
-    PhysicsBody& operator=(const PhysicsBody&);
+    PhysicsBody &operator=(const PhysicsBody &);
 
     /**
          *  <#Description#>
@@ -79,14 +80,14 @@ public:
          *  @param dataBuffer   <#dataBuffer description#>
          *  @param btSerializer <#btSerializer description#>
          */
-    virtual void serialize(void* dataBuffer, btSerializer*) const = 0;
+    virtual void serialize(void *dataBuffer, btSerializer *) const = 0;
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    virtual const char* getClassName() const = 0;
+    virtual const char *getClassName() const = 0;
     /**
          *  <#Description#>
          *
@@ -107,7 +108,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static PhysicsBody* create(u32 type);
+    static PhysicsBody *create(u32 type);
     /**
          *  <#Description#>
          *
@@ -129,22 +130,23 @@ public:
          */
     static u32 type();
 
-public:
-    //TODO: fill in specific methods for PhysicsBody
+  public:
+    // TODO: fill in specific methods for PhysicsBody
     /**
          *  <#Description#>
          *
          *  @param body               <#body description#>
          *  @param btManifoldPoint&pt <#btManifoldPoint&pt description#>
          */
-    void handleCollide(PhysicsBody * body, const btManifoldPoint& pt);
+    void handleCollide(PhysicsBody * body, const btManifoldPoint &pt);
     /**
          *  <#Description#>
          *
          *  @param body         <#body description#>
          *  @param dispatchInfo <#dispatchInfo description#>
          */
-    void handleCollisionNear(PhysicsBody * body, const btDispatcherInfo& dispatchInfo);
+    void handleCollisionNear(PhysicsBody * body,
+                             const btDispatcherInfo &dispatchInfo);
 
     /**
          *  <#Description#>
@@ -156,20 +158,20 @@ public:
          *  <#Description#>
          */
     void removePhysicsShape();
-    PhysicsShape* getPhysicsShape();
+    PhysicsShape *getPhysicsShape();
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const PhysicsShape* getPhysicsShape() const;
+    const PhysicsShape *getPhysicsShape() const;
 
     /**
          *  <#Description#>
          *
          *  @param transform <#transform description#>
          */
-    virtual void setWorldTransform(const btTransform& transform) = 0;
+    virtual void setWorldTransform(const btTransform &transform) = 0;
     /**
          *  <#Description#>
          *
@@ -317,13 +319,13 @@ public:
          *
          *  @return <#return value description#>
          */
-    virtual const btVector3& getVelocity() const = 0;
+    virtual const btVector3 &getVelocity() const = 0;
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    virtual const btVector3& getAngularVelocity() const = 0;
+    virtual const btVector3 &getAngularVelocity() const = 0;
 
     /**
          *  <#Description#>
@@ -331,16 +333,18 @@ public:
          *  @return <#return value description#>
          */
     virtual bool isInWorld() const = 0;
-    
+
     virtual void setMass(f32 mass) = 0;
-    virtual f32 getMass()const = 0;
+    virtual f32 getMass() const = 0;
 
-protected:
-    virtual const btCollisionObject* getCollisionObject() const = 0;
-    virtual btCollisionObject* getCollisionObject() = 0;
-    virtual void setCollisionObject(const btCollisionObject& obj, PhysicsShape* shape) = 0;
+  protected:
+    virtual const btCollisionObject *getCollisionObject() const = 0;
+    virtual btCollisionObject *getCollisionObject() = 0;
+    virtual void setCollisionObject(const btCollisionObject &obj,
+                                    PhysicsShape *shape) = 0;
 
-    virtual bool setTransform(const btTransform& transform = btTransform::getIdentity()) = 0;
+    virtual bool setTransform(const btTransform &transform =
+                                  btTransform::getIdentity()) = 0;
     virtual bool removePhysicsBody() = 0;
     //        virtual void enablePropertyChange(bool enable = true);
     //        virtual bool isPropertyChanged()const;
@@ -368,13 +372,14 @@ protected:
          */
     void removeAllPhysicsConstraints();
 
-public:
+  public:
     /**
          *  <#Description#>
          *
          *  @param physicsConstraints <#physicsConstraints description#>
          */
-    void getPhysicsConstraints(std::vector<PhysicsConstraint*> & physicsConstraints) const;
+    void getPhysicsConstraints(std::vector<PhysicsConstraint *> &
+                               physicsConstraints) const;
     /**
          *  <#Description#>
          *
@@ -390,7 +395,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    PhysicsConstraint* getPhysicsConstraint(const u32 index);
+    PhysicsConstraint *getPhysicsConstraint(const u32 index);
     /**
          *  <#Description#>
          *
@@ -398,7 +403,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    const PhysicsConstraint* getPhysicsConstraint(const u32 index) const;
+    const PhysicsConstraint *getPhysicsConstraint(const u32 index) const;
 
     bool hasPhysicsConstraint() const;
 
@@ -407,13 +412,13 @@ public:
          *
          *  @return <#return value description#>
          */
-    Node* getParent();
+    Node *getParent();
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const Node* getParent() const;
+    const Node *getParent() const;
 
     /**
          *  <#Description#>
@@ -428,11 +433,11 @@ public:
          */
     s32 getActivationState() const;
 
-private:
-    std::vector<PhysicsConstraint*> m_PhysicsConstraintList;
+  private:
+    std::vector<PhysicsConstraint *> m_PhysicsConstraintList;
     //        PhysicsWorld *m_PhysicsWorld;
 
-    PhysicsShape* m_PhysicsShape;
+    PhysicsShape *m_PhysicsShape;
     njliBitCategories m_CategoryBitMask;
     njliBitCategories m_CollisionBitMask;
 
@@ -442,7 +447,7 @@ private:
 
     s32 m_CollisionFlags;
     s32 m_ActivationState;
-};
+  };
 }
 
 #endif /* defined(__JLIGameEngineTest__AbstractPhysicsBody__) */

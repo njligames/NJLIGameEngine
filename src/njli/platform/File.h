@@ -9,18 +9,18 @@
 extern "C" {
 #endif
 
-//FILE* njli_fopen(const char* fname, const char* mode);
-const char* RESOURCE_PATH() SIMPLE_FUNCTION;
-const char* ASSET_PATH(const char* file) SIMPLE_FUNCTION;
-const char* BUNDLE_PATH() SIMPLE_FUNCTION;
-const char* DOCUMENT_PATH(const char* file) SIMPLE_FUNCTION;
-const char* DOCUMENT_BASEPATH() SIMPLE_FUNCTION;
+// FILE* njli_fopen(const char* fname, const char* mode);
+const char *RESOURCE_PATH() SIMPLE_FUNCTION;
+const char *ASSET_PATH(const char *file) SIMPLE_FUNCTION;
+const char *BUNDLE_PATH() SIMPLE_FUNCTION;
+const char *DOCUMENT_PATH(const char *file) SIMPLE_FUNCTION;
+const char *DOCUMENT_BASEPATH() SIMPLE_FUNCTION;
 void sleepThread(float milliseconds) SIMPLE_FUNCTION;
 
 void setupFileSystem() SIMPLE_FUNCTION;
-    
-    void setRunningPath(const char *file) ;
-    void setScriptDir(const char *path);
+
+void setRunningPath(const char *file);
+void setScriptDir(const char *path);
 
 #ifdef __cplusplus
 }

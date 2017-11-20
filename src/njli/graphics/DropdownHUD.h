@@ -14,32 +14,32 @@
 #include "AbstractFrameBufferObject.h"
 #include "lua.hpp"
 
-namespace njli {
-class DropdownHUDBuilder;
-
-/**
-     *  <#Description#>
-     */
-ATTRIBUTE_ALIGNED16(class)
-DropdownHUD : public AbstractFactoryObject,
-              public AbstractFrameBufferObject
+namespace njli
 {
+  class DropdownHUDBuilder;
+
+  /**
+       *  <#Description#>
+       */
+  ATTRIBUTE_ALIGNED16(class)
+  DropdownHUD : public AbstractFactoryObject, public AbstractFrameBufferObject
+  {
     friend class WorldFactory;
 
-protected:
+  protected:
     DropdownHUD();
-    DropdownHUD(const AbstractBuilder&);
-    DropdownHUD(const DropdownHUD&);
+    DropdownHUD(const AbstractBuilder &);
+    DropdownHUD(const DropdownHUD &);
     BT_DECLARE_ALIGNED_ALLOCATOR();
     virtual ~DropdownHUD();
-    DropdownHUD& operator=(const DropdownHUD&);
+    DropdownHUD &operator=(const DropdownHUD &);
     virtual void renderFunction(Camera * camera);
 
-public:
+  public:
     using AbstractDecorator::setName;
     using AbstractDecorator::getName;
     using AbstractFactoryObject::create;
-//    using AbstractFactoryObject::clone;
+    //    using AbstractFactoryObject::clone;
     using AbstractFactoryObject::getPointer;
     using AbstractFactoryObject::getPointerValue;
     using AbstractFactoryObject::serializeObject;
@@ -62,14 +62,14 @@ public:
          *  @param dataBuffer   <#dataBuffer description#>
          *  @param btSerializer <#btSerializer description#>
          */
-    virtual void serialize(void* dataBuffer, btSerializer*) const;
+    virtual void serialize(void *dataBuffer, btSerializer *) const;
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    virtual const char* getClassName() const;
+    virtual const char *getClassName() const;
     /**
          *  <#Description#>
          *
@@ -90,7 +90,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static DropdownHUD** createArray(const u32 size);
+    static DropdownHUD **createArray(const u32 size);
     /**
          *  <#Description#>
          *
@@ -102,7 +102,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static DropdownHUD* create();
+    static DropdownHUD *create();
     /**
          *  <#Description#>
          *
@@ -110,7 +110,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static DropdownHUD* create(const DropdownHUDBuilder& builder);
+    static DropdownHUD *create(const DropdownHUDBuilder &builder);
     /**
          *  <#Description#>
          *
@@ -118,7 +118,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static DropdownHUD* clone(const DropdownHUD& object);
+    static DropdownHUD *clone(const DropdownHUD &object);
     /**
          *  <#Description#>
          *
@@ -126,7 +126,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static DropdownHUD* copy(const DropdownHUD& object);
+    static DropdownHUD *copy(const DropdownHUD &object);
     /**
          *  <#Description#>
          *
@@ -148,11 +148,11 @@ public:
          */
     static u32 type();
 
-public:
-    //TODO: fill in specific methods for DropdownHUD
-protected:
-private:
-};
+  public:
+    // TODO: fill in specific methods for DropdownHUD
+  protected:
+  private:
+  };
 }
 
 #endif /* defined(__JLIGameEngineTest__DropdownHUD__) */

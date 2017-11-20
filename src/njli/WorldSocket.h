@@ -19,10 +19,12 @@
 
 #include "File.h"
 
-namespace njli {
-/// <#Description#>
-class WorldSocket : public AbstractObject {
-public:
+namespace njli
+{
+  /// <#Description#>
+  class WorldSocket : public AbstractObject
+  {
+  public:
     using AbstractDecorator::setName;
     using AbstractDecorator::getName;
 
@@ -42,7 +44,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    virtual const char* getClassName() const;
+    virtual const char *getClassName() const;
     /**
          *  <#Description#>
          *
@@ -56,8 +58,8 @@ public:
          */
     virtual operator std::string() const;
 
-public:
-    //TODO: fill in specific methods for WorldSocket
+  public:
+    // TODO: fill in specific methods for WorldSocket
 
     /**
          *  <#Description#>
@@ -67,13 +69,13 @@ public:
          *
          *  @return <#return value description#>
          */
-    bool connectJLI(const char* ip, u16 port);
+    bool connectJLI(const char *ip, u16 port);
 
-    void parseMessage(const std::string& delimeter = "root");
+    void parseMessage(const std::string &delimeter = "root");
     bool hasMessage() const;
     std::string popMessage();
 
-    void sendMessage(const std::string& message);
+    void sendMessage(const std::string &message);
     /**
          *  <#Description#>
          */
@@ -85,22 +87,22 @@ public:
          */
     bool isConnected() const;
 
-protected:
+  protected:
     void socketSetOpt();
 
-private:
-    WorldSocket(const WorldSocket&);
-    WorldSocket& operator=(const WorldSocket&);
+  private:
+    WorldSocket(const WorldSocket &);
+    WorldSocket &operator=(const WorldSocket &);
 
     s32 m_sck;
     struct sockaddr_in m_sck_addr;
-    s8* m_buffer;
+    s8 *m_buffer;
     bool m_isConnected;
 
     std::string m_SocketData;
 
     std::queue<std::string> m_MessageQueue;
-};
+  };
 }
 
 #endif /* defined(__JLIGameEngineTest__WorldSocket__) */

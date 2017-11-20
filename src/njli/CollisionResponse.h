@@ -13,30 +13,31 @@
 #include "AbstractFactoryObject.h"
 #include "lua.hpp"
 
-namespace njli {
-class CollisionResponseBuilder;
-
-/**
-     *  <#Description#>
-     */
-ATTRIBUTE_ALIGNED16(class)
-CollisionResponse : public AbstractFactoryObject
+namespace njli
 {
+  class CollisionResponseBuilder;
+
+  /**
+       *  <#Description#>
+       */
+  ATTRIBUTE_ALIGNED16(class)
+  CollisionResponse : public AbstractFactoryObject
+  {
     friend class WorldFactory;
 
-protected:
+  protected:
     CollisionResponse();
-    CollisionResponse(const AbstractBuilder&);
-    CollisionResponse(const CollisionResponse&);
+    CollisionResponse(const AbstractBuilder &);
+    CollisionResponse(const CollisionResponse &);
     BT_DECLARE_ALIGNED_ALLOCATOR();
     virtual ~CollisionResponse();
-    CollisionResponse& operator=(const CollisionResponse&);
+    CollisionResponse &operator=(const CollisionResponse &);
 
-public:
+  public:
     using AbstractDecorator::setName;
     using AbstractDecorator::getName;
     using AbstractFactoryObject::create;
-//    using AbstractFactoryObject::clone;
+    //    using AbstractFactoryObject::clone;
     using AbstractFactoryObject::getPointer;
     using AbstractFactoryObject::getPointerValue;
     using AbstractFactoryObject::serializeObject;
@@ -56,14 +57,14 @@ public:
          *  @param dataBuffer   <#dataBuffer description#>
          *  @param btSerializer <#btSerializer description#>
          */
-    virtual void serialize(void* dataBuffer, btSerializer*) const;
+    virtual void serialize(void *dataBuffer, btSerializer *) const;
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    virtual const char* getClassName() const;
+    virtual const char *getClassName() const;
     /**
          *  <#Description#>
          *
@@ -84,7 +85,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static CollisionResponse** createArray(const u32 size);
+    static CollisionResponse **createArray(const u32 size);
     /**
          *  <#Description#>
          *
@@ -96,7 +97,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static CollisionResponse* create();
+    static CollisionResponse *create();
     /**
          *  <#Description#>
          *
@@ -104,7 +105,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static CollisionResponse* create(const CollisionResponseBuilder& builder);
+    static CollisionResponse *create(const CollisionResponseBuilder &builder);
     /**
          *  <#Description#>
          *
@@ -112,7 +113,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static CollisionResponse* clone(const CollisionResponse& object);
+    static CollisionResponse *clone(const CollisionResponse &object);
     /**
          *  <#Description#>
          *
@@ -120,7 +121,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static CollisionResponse* copy(const CollisionResponse& object);
+    static CollisionResponse *copy(const CollisionResponse &object);
     /**
          *  <#Description#>
          *
@@ -134,7 +135,8 @@ public:
          *  @param L           <#L description#>
          *  @param stack_index <#stack_index description#>
          */
-    static void load(CollisionResponse & object, lua_State * L, int stack_index);
+    static void load(CollisionResponse & object, lua_State * L,
+                     int stack_index);
     /**
          *  <#Description#>
          *
@@ -142,10 +144,10 @@ public:
          */
     static u32 type();
 
-    //TODO: fill in specific methods for CollisionResponse
-protected:
-private:
-};
+    // TODO: fill in specific methods for CollisionResponse
+  protected:
+  private:
+  };
 }
 
 #endif /* defined(__JLIGameEngineTest__CollisionResponse__) */

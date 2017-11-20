@@ -15,31 +15,31 @@
 #include "LinearMath/btQuickprof.h"
 #include "lua.hpp"
 
-namespace njli {
-class ClockBuilder;
-/**
-     *  <#Description#>
-     */
-ATTRIBUTE_ALIGNED16(class)
-Clock : public AbstractFactoryObject,
-        public AbstractClock
+namespace njli
 {
+  class ClockBuilder;
+  /**
+       *  <#Description#>
+       */
+  ATTRIBUTE_ALIGNED16(class)
+  Clock : public AbstractFactoryObject, public AbstractClock
+  {
     friend class WorldFactory;
     friend class World;
 
-protected:
+  protected:
     Clock();
-    Clock(const AbstractBuilder&);
-    Clock(const Clock&);
+    Clock(const AbstractBuilder &);
+    Clock(const Clock &);
     BT_DECLARE_ALIGNED_ALLOCATOR();
     virtual ~Clock();
-    Clock& operator=(const Clock&);
+    Clock &operator=(const Clock &);
 
-public:
+  public:
     using AbstractDecorator::setName;
     using AbstractDecorator::getName;
     using AbstractFactoryObject::create;
-//    using AbstractFactoryObject::clone;
+    //    using AbstractFactoryObject::clone;
     using AbstractFactoryObject::getPointer;
     using AbstractFactoryObject::getPointerValue;
     using AbstractFactoryObject::serializeObject;
@@ -59,14 +59,14 @@ public:
          *  @param dataBuffer   <#dataBuffer description#>
          *  @param btSerializer <#btSerializer description#>
          */
-    virtual void serialize(void* dataBuffer, btSerializer*) const;
+    virtual void serialize(void *dataBuffer, btSerializer *) const;
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    virtual const char* getClassName() const;
+    virtual const char *getClassName() const;
     /**
          *  <#Description#>
          *
@@ -87,7 +87,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Clock** createArray(const u32 size);
+    static Clock **createArray(const u32 size);
     /**
          *  <#Description#>
          *
@@ -99,7 +99,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Clock* create();
+    static Clock *create();
     /**
          *  <#Description#>
          *
@@ -107,7 +107,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Clock* create(const ClockBuilder& builder);
+    static Clock *create(const ClockBuilder &builder);
     /**
          *  <#Description#>
          *
@@ -115,7 +115,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Clock* clone(const Clock& object);
+    static Clock *clone(const Clock &object);
     /**
          *  <#Description#>
          *
@@ -123,7 +123,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Clock* copy(const Clock& object);
+    static Clock *copy(const Clock &object);
     /**
          *  <#Description#>
          *
@@ -145,7 +145,7 @@ public:
          */
     static u32 type();
 
-    //TODO: fill in specific methods for Clock
+    // TODO: fill in specific methods for Clock
 
     virtual void update(f64 milliseconds);
 
@@ -160,10 +160,10 @@ public:
     /// the Clock was created.
     unsigned long int getTimeMicroseconds();
 
-protected:
-private:
-    btClock* m_btClock;
-};
+  protected:
+  private:
+    btClock *m_btClock;
+  };
 }
 
 #endif /* defined(__JLIGameEngineTest__Clock__) */

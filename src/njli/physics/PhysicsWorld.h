@@ -35,42 +35,45 @@ class btMinkowskiPenetrationDepthSolver;
 
 #include "JLIFactoryTypes.h"
 
-namespace njli {
-typedef void (*ghostCallback)();
-
-extern void DefaultCustomPreTickCallback(btDynamicsWorld* world, btScalar timeStep);
-extern void DefaultCustomPostTickCallback(btDynamicsWorld* world, btScalar timeStep);
-
-class Camera;
-class PhysicsWorldBuilder;
-class PhysicsBody;
-class PhysicsBodyRigid;
-class Node;
-class PhysicsRayContact;
-class PhysicsConstraint;
-
-/**
-     *  <#Description#>
-     */
-ATTRIBUTE_ALIGNED16(class)
-PhysicsWorld : public AbstractFactoryObject
+namespace njli
 {
+  typedef void (*ghostCallback)();
+
+  extern void DefaultCustomPreTickCallback(btDynamicsWorld *world,
+                                           btScalar timeStep);
+  extern void DefaultCustomPostTickCallback(btDynamicsWorld *world,
+                                            btScalar timeStep);
+
+  class Camera;
+  class PhysicsWorldBuilder;
+  class PhysicsBody;
+  class PhysicsBodyRigid;
+  class Node;
+  class PhysicsRayContact;
+  class PhysicsConstraint;
+
+  /**
+       *  <#Description#>
+       */
+  ATTRIBUTE_ALIGNED16(class)
+  PhysicsWorld : public AbstractFactoryObject
+  {
     friend class WorldFactory;
     friend class World;
 
-protected:
+  protected:
     PhysicsWorld();
-    PhysicsWorld(const AbstractBuilder&);
-    PhysicsWorld(const PhysicsWorld&);
+    PhysicsWorld(const AbstractBuilder &);
+    PhysicsWorld(const PhysicsWorld &);
     BT_DECLARE_ALIGNED_ALLOCATOR();
     virtual ~PhysicsWorld();
-    PhysicsWorld& operator=(const PhysicsWorld&);
+    PhysicsWorld &operator=(const PhysicsWorld &);
 
-public:
+  public:
     using AbstractDecorator::setName;
     using AbstractDecorator::getName;
     using AbstractFactoryObject::create;
-//    using AbstractFactoryObject::clone;
+    //    using AbstractFactoryObject::clone;
     using AbstractFactoryObject::getPointer;
     using AbstractFactoryObject::getPointerValue;
     using AbstractFactoryObject::serializeObject;
@@ -90,14 +93,14 @@ public:
          *  @param dataBuffer   <#dataBuffer description#>
          *  @param btSerializer <#btSerializer description#>
          */
-    virtual void serialize(void* dataBuffer, btSerializer*) const;
+    virtual void serialize(void *dataBuffer, btSerializer *) const;
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    virtual const char* getClassName() const;
+    virtual const char *getClassName() const;
     /**
          *  <#Description#>
          *
@@ -118,7 +121,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static PhysicsWorld** createArray(const u32 size);
+    static PhysicsWorld **createArray(const u32 size);
     /**
          *  <#Description#>
          *
@@ -130,7 +133,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static PhysicsWorld* create();
+    static PhysicsWorld *create();
     /**
          *  <#Description#>
          *
@@ -138,7 +141,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static PhysicsWorld* create(const PhysicsWorldBuilder& builder);
+    static PhysicsWorld *create(const PhysicsWorldBuilder &builder);
     /**
          *  <#Description#>
          *
@@ -146,7 +149,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static PhysicsWorld* clone(const PhysicsWorld& physics);
+    static PhysicsWorld *clone(const PhysicsWorld &physics);
     /**
          *  <#Description#>
          *
@@ -154,7 +157,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static PhysicsWorld* copy(const PhysicsWorld& object);
+    static PhysicsWorld *copy(const PhysicsWorld &object);
     /**
          *  <#Description#>
          *
@@ -176,32 +179,34 @@ public:
          */
     static u32 type();
 
-public:
-    //TODO: fill in specific methods for PhysicsWorld
+  public:
+    // TODO: fill in specific methods for PhysicsWorld
 
     /// <#Description#>
-    class CustomFilterCallback : public btOverlapFilterCallback {
+    class CustomFilterCallback : public btOverlapFilterCallback
+    {
     public:
-        /**
-             *  <#Description#>
-             */
-        CustomFilterCallback();
-        /**
-             *  <#Description#>
-             *
-             *  @return <#return value description#>
-             */
-        virtual ~CustomFilterCallback();
+      /**
+           *  <#Description#>
+           */
+      CustomFilterCallback();
+      /**
+           *  <#Description#>
+           *
+           *  @return <#return value description#>
+           */
+      virtual ~CustomFilterCallback();
 
-        /**
-             *  <#Description#>
-             *
-             *  @param proxy0 <#proxy0 description#>
-             *  @param proxy1 <#proxy1 description#>
-             *
-             *  @return <#return value description#>
-             */
-        virtual bool needBroadphaseCollision(btBroadphaseProxy* proxy0, btBroadphaseProxy* proxy1) const;
+      /**
+           *  <#Description#>
+           *
+           *  @param proxy0 <#proxy0 description#>
+           *  @param proxy1 <#proxy1 description#>
+           *
+           *  @return <#return value description#>
+           */
+      virtual bool needBroadphaseCollision(btBroadphaseProxy *proxy0,
+                                           btBroadphaseProxy *proxy1) const;
     };
 
     /**
@@ -222,7 +227,7 @@ public:
          *
          *  @param gravity <#gravity description#>
          */
-    void setGravity(const btVector3& gravity);
+    void setGravity(const btVector3 &gravity);
     /**
          *  <#Description#>
          *
@@ -274,9 +279,9 @@ public:
          *
          *  @return <#return value description#>
          */
-    bool rayTestClosest(const btVector3& rayFromWorld,
-        const btVector3& rayToWorld,
-        PhysicsRayContact& rayContact,
+    bool rayTestClosest(
+        const btVector3 &rayFromWorld, const btVector3 &rayToWorld,
+        PhysicsRayContact &rayContact,
         njliBitCategories collisionGroup = JLI_BIT_CATEGORY_DefaultFilter,
         njliBitCategories collisionMask = JLI_BIT_CATEGORY_AllFilter) const;
 
@@ -292,10 +297,10 @@ public:
          *
          *  @return <#return value description#>
          */
-    bool rayTestAll(const btVector3& rayFromWorld,
-        const btVector3& rayToWorld,
-        btAlignedObjectArray<PhysicsRayContact*>& rayContacts,
-        s32& numContacts,
+    bool rayTestAll(
+        const btVector3 &rayFromWorld, const btVector3 &rayToWorld,
+        btAlignedObjectArray<PhysicsRayContact *> &rayContacts,
+        s32 &numContacts,
         njliBitCategories collisionGroup = JLI_BIT_CATEGORY_DefaultFilter,
         njliBitCategories collisionMask = JLI_BIT_CATEGORY_AllFilter) const;
 
@@ -308,10 +313,10 @@ public:
          */
     bool isPaused() const;
 
-protected:
+  protected:
     void debugDrawWorld();
 
-public:
+  public:
     /**
          *  <#Description#>
          *
@@ -332,12 +337,15 @@ public:
     /**
          *  <#Description#>
          *
-         *  @param constraint                           <#constraint description#>
-         *  @param disableCollisionsBetweenLinkedBodies <#disableCollisionsBetweenLinkedBodies description#>
+         *  @param constraint                           <#constraint
+     * description#>
+         *  @param disableCollisionsBetweenLinkedBodies
+     * <#disableCollisionsBetweenLinkedBodies description#>
          *
          *  @return <#return value description#>
          */
-    bool addConstraint(PhysicsConstraint * constraint, bool disableCollisionsBetweenLinkedBodies = true);
+    bool addConstraint(PhysicsConstraint * constraint,
+                       bool disableCollisionsBetweenLinkedBodies = true);
     /**
          *  <#Description#>
          *
@@ -347,34 +355,34 @@ public:
          */
     bool removeConstraint(PhysicsConstraint * constraint);
 
-private:
+  private:
     void ghostObjectCollisionTest();
 
     f32 m_SimulationSpeed;
     f32 m_TimeStep;
 
-    btDefaultCollisionConfiguration* m_collisionConfiguration;
-    btCollisionDispatcher* m_dispatcher;
+    btDefaultCollisionConfiguration *m_collisionConfiguration;
+    btCollisionDispatcher *m_dispatcher;
 
-    btBroadphaseInterface* m_overlappingPairCache;
+    btBroadphaseInterface *m_overlappingPairCache;
 
-    btSequentialImpulseConstraintSolver* m_solver;
-    btDiscreteDynamicsWorld* m_dynamicsWorld;
-    btOverlapFilterCallback* m_btOverlapFilterCallback;
-    btGhostPairCallback* m_btGhostPairCallback;
+    btSequentialImpulseConstraintSolver *m_solver;
+    btDiscreteDynamicsWorld *m_dynamicsWorld;
+    btOverlapFilterCallback *m_btOverlapFilterCallback;
+    btGhostPairCallback *m_btGhostPairCallback;
 
-    btAlignedObjectArray<btPairCachingGhostObject*>* m_GhostObjects;
+    btAlignedObjectArray<btPairCachingGhostObject *> *m_GhostObjects;
 
-    btBroadphaseInterface* m_broadphase;
-    btAlignedObjectArray<struct btBroadphaseProxy*> m_proxies;
+    btBroadphaseInterface *m_broadphase;
+    btAlignedObjectArray<struct btBroadphaseProxy *> m_proxies;
 
-    btAlignedObjectArray<Node*> m_collisionNodes;
+    btAlignedObjectArray<Node *> m_collisionNodes;
 
     bool m_Paused;
 
-    btVoronoiSimplexSolver* m_simplexSolver;
-    btMinkowskiPenetrationDepthSolver* m_pdSolver;
-};
+    btVoronoiSimplexSolver *m_simplexSolver;
+    btMinkowskiPenetrationDepthSolver *m_pdSolver;
+  };
 }
 
 #endif /* defined(__JLIGameEngineTest__PhysicsWorld__) */

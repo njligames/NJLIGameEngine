@@ -15,30 +15,31 @@
 #include "AbstractFactoryObject.h"
 #include "lua.hpp"
 
-namespace njli {
-class SkinnerBuilder;
-
-/**
-     *  <#Description#>
-     */
-ATTRIBUTE_ALIGNED16(class)
-Skinner : public AbstractFactoryObject
+namespace njli
 {
+  class SkinnerBuilder;
+
+  /**
+       *  <#Description#>
+       */
+  ATTRIBUTE_ALIGNED16(class)
+  Skinner : public AbstractFactoryObject
+  {
     friend class WorldFactory;
 
-protected:
+  protected:
     Skinner();
-    Skinner(const AbstractBuilder&);
-    Skinner(const Skinner&);
+    Skinner(const AbstractBuilder &);
+    Skinner(const Skinner &);
     BT_DECLARE_ALIGNED_ALLOCATOR();
     virtual ~Skinner();
-    Skinner& operator=(const Skinner&);
+    Skinner &operator=(const Skinner &);
 
-public:
+  public:
     using AbstractDecorator::setName;
     using AbstractDecorator::getName;
     using AbstractFactoryObject::create;
-//    using AbstractFactoryObject::clone;
+    //    using AbstractFactoryObject::clone;
     using AbstractFactoryObject::getPointer;
     using AbstractFactoryObject::getPointerValue;
     using AbstractFactoryObject::serializeObject;
@@ -54,14 +55,14 @@ public:
          *
          *  @param btSerializer <#btSerializer description#>
          */
-    virtual void serialize(void*, btSerializer*) const;
+    virtual void serialize(void *, btSerializer *) const;
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    virtual const char* getClassName() const;
+    virtual const char *getClassName() const;
     /**
          *  <#Description#>
          *
@@ -82,7 +83,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Skinner** createArray(const u32 size);
+    static Skinner **createArray(const u32 size);
     /**
          *  <#Description#>
          *
@@ -94,7 +95,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Skinner* create();
+    static Skinner *create();
     /**
          *  <#Description#>
          *
@@ -102,7 +103,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Skinner* create(const SkinnerBuilder& builder);
+    static Skinner *create(const SkinnerBuilder &builder);
     /**
          *  <#Description#>
          *
@@ -110,7 +111,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Skinner* clone(const Skinner& object);
+    static Skinner *clone(const Skinner &object);
     /**
          *  <#Description#>
          *
@@ -118,7 +119,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Skinner* copy(const Skinner& object);
+    static Skinner *copy(const Skinner &object);
     /**
          *  <#Description#>
          *
@@ -140,11 +141,11 @@ public:
          */
     static u32 type();
 
-public:
-    //TODO: fill in specific methods for Skinner
-protected:
-private:
-};
+  public:
+    // TODO: fill in specific methods for Skinner
+  protected:
+  private:
+  };
 }
 
 #endif /* defined(__JLIGameEngineTest__Skinner__) */

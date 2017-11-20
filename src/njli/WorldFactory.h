@@ -25,20 +25,22 @@
 
 #include "JLIFactoryTypes.h"
 
-namespace njli {
-/// <#Description#>
-class WorldFactory : public AbstractObject {
+namespace njli
+{
+  /// <#Description#>
+  class WorldFactory : public AbstractObject
+  {
 
-public:
+  public:
     using AbstractDecorator::setName;
     using AbstractDecorator::getName;
 
-    typedef std::vector<AbstractFactoryObject*> ObjectList;
-    typedef std::vector<AbstractFactoryObject**> ObjectArrayList;
+    typedef std::vector<AbstractFactoryObject *> ObjectList;
+    typedef std::vector<AbstractFactoryObject **> ObjectArrayList;
     typedef std::pair<u64, s32> ObjectDuplicatePair;
     typedef std::map<u64, s32> ObjectDuplicateMap;
 
-public:
+  public:
     friend class AbstractFactoryObject;
 
     friend class Action;
@@ -166,10 +168,10 @@ public:
     friend class Sprite2DBuilder;
     friend class SpriteFrameAtlas;
     friend class SpriteFrameAtlasBuilder;
-    
+
     friend class SteeringBehavior;
     friend class SteeringBehaviorBuilder;
-    
+
     friend class SteeringBehaviorAlignment;
     friend class SteeringBehaviorAlignmentBuilder;
     friend class SteeringBehaviorArrive;
@@ -186,7 +188,7 @@ public:
     friend class SteeringBehaviorHideBuilder;
     friend class SteeringBehaviorInterpose;
     friend class SteeringBehaviorInterposeBuilder;
-    
+
     friend class SteeringBehaviorMachine;
     friend class SteeringBehaviorMachineBuilder;
     friend class SteeringBehaviorMachineDithered;
@@ -195,7 +197,7 @@ public:
     friend class SteeringBehaviorMachinePrioritizedBuilder;
     friend class SteeringBehaviorMachineWeighted;
     friend class SteeringBehaviorMachineWeightedBuilder;
-    
+
     friend class SteeringBehaviorObstacleAvoidance;
     friend class SteeringBehaviorObstacleAvoidanceBuilder;
     friend class SteeringBehaviorOffsetPursuit;
@@ -210,7 +212,7 @@ public:
     friend class SteeringBehaviorWallAvoidanceBuilder;
     friend class SteeringBehaviorWander;
     friend class SteeringBehaviorWanderBuilder;
-    
+
     friend class StopWatch;
     friend class StopWatchBuilder;
     friend class TextboxHUD;
@@ -227,7 +229,7 @@ public:
     friend class XmlBuilder;
     friend class World;
 
-protected:
+  protected:
     /**
          *  <#Description#>
          *
@@ -236,7 +238,7 @@ protected:
          *
          *  @return <#return value description#>
          */
-    virtual AbstractFactoryObject** createArray(const u32 type, const u32 size);
+    virtual AbstractFactoryObject **createArray(const u32 type, const u32 size);
     /**
          *  <#Description#>
          *
@@ -244,7 +246,7 @@ protected:
          *
          *  @return <#return value description#>
          */
-    virtual AbstractFactoryObject* create(const u32 type);
+    virtual AbstractFactoryObject *create(const u32 type);
     /**
          *  <#Description#>
          *
@@ -252,7 +254,7 @@ protected:
          *
          *  @return <#return value description#>
          */
-    virtual AbstractFactoryObject* create(const AbstractBuilder&);
+    virtual AbstractFactoryObject *create(const AbstractBuilder &);
     /**
          *  <#Description#>
          *
@@ -261,9 +263,10 @@ protected:
          *
          *  @return <#return value description#>
          */
-    virtual AbstractFactoryObject* clone(const AbstractFactoryObject&, bool = false);
+    virtual AbstractFactoryObject *clone(const AbstractFactoryObject &,
+                                         bool = false);
 
-public:
+  public:
     /**
          *  @author James Folk, 16-02-11 17:02:52
          *
@@ -273,24 +276,25 @@ public:
          *
          *  @return <#return value description#>
          */
-    virtual bool has(AbstractFactoryObject* object) const;
+    virtual bool has(AbstractFactoryObject *object) const;
 
-protected:
+  protected:
     /**
          *  <#Description#>
          *
          *  @param AbstractFactoryObject <#AbstractFactoryObject description#>
          *  @param array                 <#array description#>
          */
-    virtual void destroy(AbstractFactoryObject*, bool array = false);
+    virtual void destroy(AbstractFactoryObject *, bool array = false);
     /**
          *  <#Description#>
          *
          *  @param AbstractFactoryObject <#AbstractFactoryObject description#>
          */
-    virtual void destroyArray(AbstractFactoryObject**, const u32, bool isRenderObject = false);
+    virtual void destroyArray(AbstractFactoryObject **, const u32,
+                              bool isRenderObject = false);
 
-public:
+  public:
     /**
          *  <#Description#>
          */
@@ -312,7 +316,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    virtual s32 numberOfReferences(AbstractFactoryObject* object);
+    virtual s32 numberOfReferences(AbstractFactoryObject *object);
 
     /**
          *  <#Description#>
@@ -321,7 +325,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    virtual AbstractFactoryObject* get(const u32) const;
+    virtual AbstractFactoryObject *get(const u32) const;
 
     /**
          *  @author James Folk, 16-02-11 17:02:19
@@ -330,7 +334,7 @@ public:
          *
          *  @param objects <#objects description#>
          */
-    virtual void getAll(std::vector<AbstractFactoryObject*>& objects) const;
+    virtual void getAll(std::vector<AbstractFactoryObject *> &objects) const;
 
     /**
          *  @author James Folk, 16-02-11 17:02:32
@@ -341,21 +345,21 @@ public:
          *
          *  @return <#return value description#>
          */
-    virtual s32 index(AbstractFactoryObject* object) const;
+    virtual s32 index(AbstractFactoryObject *object) const;
 
     /**
          *  <#Description#>
          *
          *  @param serializer <#serializer description#>
          */
-    virtual void serialize(btSerializer* serializer);
+    virtual void serialize(btSerializer *serializer);
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    virtual const char* getClassName() const;
+    virtual const char *getClassName() const;
     /**
          *  <#Description#>
          *
@@ -378,7 +382,7 @@ public:
          */
     bool isBuilder(u32);
 
-protected:
+  protected:
     /**
          *  <#Description#>
          */
@@ -399,7 +403,7 @@ protected:
          *
          *  @return <#return value description#>
          */
-    virtual AbstractFactoryObject* ctor(const u32& size);
+    virtual AbstractFactoryObject *ctor(const u32 &size);
 
     /**
          *  @author James Folk, 16-02-11 18:02:59
@@ -411,7 +415,7 @@ protected:
          *
          *  @return <#return value description#>
          */
-    virtual AbstractFactoryObject** ctor(const u32& idx, u32 size);
+    virtual AbstractFactoryObject **ctor(const u32 &idx, u32 size);
 
     /**
          *  @author James Folk, 16-02-11 17:02:49
@@ -422,7 +426,7 @@ protected:
          *
          *  @return <#return value description#>
          */
-    virtual AbstractFactoryObject* ctor(const njli::AbstractBuilder& rhs);
+    virtual AbstractFactoryObject *ctor(const njli::AbstractBuilder &rhs);
 
     /**
          *  @author James Folk, 16-02-11 17:02:05
@@ -433,7 +437,7 @@ protected:
          *
          *  @return <#return value description#>
          */
-    virtual AbstractFactoryObject* ctor(const AbstractFactoryObject& rhs);
+    virtual AbstractFactoryObject *ctor(const AbstractFactoryObject &rhs);
 
     /**
          *  <#Description#>
@@ -442,7 +446,7 @@ protected:
          *
          *  @return <#return value description#>
          */
-    AbstractFactoryObject* create_Internal(const u32);
+    AbstractFactoryObject *create_Internal(const u32);
     /**
          *  <#Description#>
          *
@@ -450,7 +454,7 @@ protected:
          *
          *  @return <#return value description#>
          */
-    AbstractFactoryObject* create_Internal(const AbstractBuilder&);
+    AbstractFactoryObject *create_Internal(const AbstractBuilder &);
     /**
          *  <#Description#>
          *
@@ -459,7 +463,7 @@ protected:
          *
          *  @return <#return value description#>
          */
-    AbstractFactoryObject* clone_Internal(const AbstractFactoryObject&, bool);
+    AbstractFactoryObject *clone_Internal(const AbstractFactoryObject &, bool);
 
     /**
          *  <#Description#>
@@ -472,13 +476,13 @@ protected:
          *
          *  @param AbstractFactoryObject <#AbstractFactoryObject description#>
          */
-    bool removeObject_Internal(AbstractFactoryObject*);
+    bool removeObject_Internal(AbstractFactoryObject *);
     /**
          *  <#Description#>
          *
          *  @param AbstractFactoryObject <#AbstractFactoryObject description#>
          */
-    void addObject_Internal(AbstractFactoryObject*);
+    void addObject_Internal(AbstractFactoryObject *);
 
     s32 numberOfArrayObjects_Internal() const;
     /**
@@ -486,13 +490,13 @@ protected:
          *
          *  @param AbstractFactoryObject <#AbstractFactoryObject description#>
          */
-    void removeArrayObject_Internal(AbstractFactoryObject**);
+    void removeArrayObject_Internal(AbstractFactoryObject **);
     /**
          *  <#Description#>
          *
          *  @param AbstractFactoryObject <#AbstractFactoryObject description#>
          */
-    void addArrayObject_Internal(AbstractFactoryObject**);
+    void addArrayObject_Internal(AbstractFactoryObject **);
 
     /**
          *  <#Description#>
@@ -501,42 +505,45 @@ protected:
          *
          *  @return <#return value description#>
          */
-    s32 numberOfReferences_Internal(AbstractFactoryObject*);
+    s32 numberOfReferences_Internal(AbstractFactoryObject *);
 
     /**
          *  remove an instance from the object duplication map
          *
          *  @param AbstractFactoryObject the object
          *
-         *  @return returns true if the instance shoudl be removed from rhe ObjecdtArrayList
+         *  @return returns true if the instance shoudl be removed from rhe
+     * ObjecdtArrayList
          */
-    bool removeReference_Internal(AbstractFactoryObject*);
+    bool removeReference_Internal(AbstractFactoryObject *);
 
     /**
          *  add an instance to the object duplication map
          *
          *  @param AbstractFactoryObject the object
          *
-         *  @return returns true if the instance shoudl be added to the ObjecdtArrayList;
+         *  @return returns true if the instance shoudl be added to the
+     * ObjecdtArrayList;
          */
-    bool addReference_Internal(AbstractFactoryObject*);
-public:
+    bool addReference_Internal(AbstractFactoryObject *);
+
+  public:
     void collectGarbage();
     s64 collectGarbageSize() const;
     void collectGarbage_GPU();
     s64 collectGarbage_GPUSize() const;
 
-private:
+  private:
     ObjectList m_ObjectList;
     ObjectArrayList m_ObjectArrayList;
     ObjectDuplicateMap m_ObjectDuplicateMap;
 
-    std::vector<AbstractFactoryObject*> m_ObjectsToDelete;
-    std::vector<AbstractFactoryObject**> m_ArrayObjectsToDelete;
+    std::vector<AbstractFactoryObject *> m_ObjectsToDelete;
+    std::vector<AbstractFactoryObject **> m_ArrayObjectsToDelete;
 
-    std::vector<AbstractFactoryObject*> m_ObjectsToDelete_GPU;
-    std::vector<AbstractFactoryObject**> m_ArrayObjectsToDelete_GPU;
-};
+    std::vector<AbstractFactoryObject *> m_ObjectsToDelete_GPU;
+    std::vector<AbstractFactoryObject **> m_ArrayObjectsToDelete_GPU;
+  };
 }
 
 #endif

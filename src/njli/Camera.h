@@ -22,19 +22,20 @@ class btVector3;
 class btVector2;
 class btTransform;
 
-namespace njli {
-class CameraBuilder;
-struct OcclusionBuffer;
-class SceneRenderer;
-class Node;
-class PhysicsRayContact;
-
-/**
-     *  <#Description#>
-     */
-ATTRIBUTE_ALIGNED16(class)
-Camera : public AbstractFactoryObject
+namespace njli
 {
+  class CameraBuilder;
+  struct OcclusionBuffer;
+  class SceneRenderer;
+  class Node;
+  class PhysicsRayContact;
+
+  /**
+       *  <#Description#>
+       */
+  ATTRIBUTE_ALIGNED16(class)
+  Camera : public AbstractFactoryObject
+  {
     friend class WorldFactory;
     friend class PhysicsWorld;
     friend struct OcclusionBuffer;
@@ -47,19 +48,19 @@ Camera : public AbstractFactoryObject
     friend class WorldState;
     friend class WorldDebugDrawer;
 
-protected:
+  protected:
     Camera();
-    Camera(const AbstractBuilder&);
-    Camera(const Camera&);
+    Camera(const AbstractBuilder &);
+    Camera(const Camera &);
     BT_DECLARE_ALIGNED_ALLOCATOR();
     virtual ~Camera();
-    Camera& operator=(const Camera&);
+    Camera &operator=(const Camera &);
 
-public:
+  public:
     using AbstractDecorator::setName;
     using AbstractDecorator::getName;
     using AbstractFactoryObject::create;
-//    using AbstractFactoryObject::clone;
+    //    using AbstractFactoryObject::clone;
     using AbstractFactoryObject::getPointer;
     using AbstractFactoryObject::getPointerValue;
     using AbstractFactoryObject::serializeObject;
@@ -79,14 +80,14 @@ public:
          *  @param dataBuffer   <#dataBuffer description#>
          *  @param btSerializer <#btSerializer description#>
          */
-    virtual void serialize(void* dataBuffer, btSerializer*) const;
+    virtual void serialize(void *dataBuffer, btSerializer *) const;
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    virtual const char* getClassName() const;
+    virtual const char *getClassName() const;
     /**
          *  <#Description#>
          *
@@ -107,7 +108,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Camera** createArray(const u32 size);
+    static Camera **createArray(const u32 size);
     /**
          *  <#Description#>
          *
@@ -119,7 +120,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Camera* create();
+    static Camera *create();
     /**
          *  <#Description#>
          *
@@ -127,7 +128,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Camera* create(const CameraBuilder& builder);
+    static Camera *create(const CameraBuilder &builder);
     /**
          *  <#Description#>
          *
@@ -135,7 +136,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Camera* clone(const Camera& object);
+    static Camera *clone(const Camera &object);
     /**
          *  <#Description#>
          *
@@ -143,7 +144,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Camera* copy(const Camera& object);
+    static Camera *copy(const Camera &object);
     /**
          *  <#Description#>
          *
@@ -165,7 +166,7 @@ public:
          */
     static u32 type();
 
-public:
+  public:
     /**
          *  <#Description#>
          *
@@ -210,7 +211,8 @@ public:
          *
          *  @param enable <#enable description#>
          */
-    void enableOrthographic(const bool enable = true, const f32 near = 1000.0f, const f32 far = -1000.0f);
+    void enableOrthographic(const bool enable = true, const f32 near = 1000.0f,
+                            const f32 far = -1000.0f);
     /**
          *  <#Description#>
          *
@@ -258,7 +260,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    btVector3 unProject(const btVector2& windowPosition) const;
+    btVector3 unProject(const btVector2 &windowPosition) const;
     /**
          *  <#Description#>
          *
@@ -266,7 +268,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    btVector2 project(const btVector3& objectPosition) const;
+    btVector2 project(const btVector3 &objectPosition) const;
     /**
          *  <#Description#>
          *
@@ -274,7 +276,8 @@ public:
          *  @param from           <#from description#>
          *  @param to             <#to description#>
          */
-    void getTouchRay(const btVector2& windowPosition, btVector3& from, btVector3& to);
+    void getTouchRay(const btVector2 &windowPosition, btVector3 &from,
+                     btVector3 &to);
 
     /**
          *  <#Description#>
@@ -303,7 +306,8 @@ public:
          *  @param pos  <#pos description#>
          *  @param up    <#0 description#>
          */
-    void lookAt(const btVector3& pos, const btVector3& up = btVector3(0, 1.0f, 0));
+    void lookAt(const btVector3 &pos,
+                const btVector3 &up = btVector3(0, 1.0f, 0));
 
     /**
          *  <#Description#>
@@ -315,8 +319,8 @@ public:
          *
          *  @return <#return value description#>
          */
-    bool rayTestClosest(const btVector2& screenPosition,
-        PhysicsRayContact& rayContact,
+    bool rayTestClosest(
+        const btVector2 &screenPosition, PhysicsRayContact &rayContact,
         njliBitCategories collisionGroup = JLI_BIT_CATEGORY_DefaultFilter,
         njliBitCategories collisionMask = JLI_BIT_CATEGORY_AllFilter) const;
 
@@ -331,9 +335,10 @@ public:
          *
          *  @return <#return value description#>
          */
-    bool rayTestAll(const btVector2& screenPosition,
-        btAlignedObjectArray<PhysicsRayContact*>& rayContacts,
-        s32& numContacts,
+    bool rayTestAll(
+        const btVector2 &screenPosition,
+        btAlignedObjectArray<PhysicsRayContact *> &rayContacts,
+        s32 &numContacts,
         njliBitCategories collisionGroup = JLI_BIT_CATEGORY_DefaultFilter,
         njliBitCategories collisionMask = JLI_BIT_CATEGORY_AllFilter) const;
 
@@ -342,57 +347,57 @@ public:
          *
          *  @return <#return value description#>
          */
-    Node* getParent();
+    Node *getParent();
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const Node* getParent() const;
+    const Node *getParent() const;
 
-    
     /**
      <#Description#>
      */
     void updateViewSize();
-protected:
+
+  protected:
     void cull(btDbvtBroadphase * pbp);
 
-    const btTransform& getProjection() const;
-    const f32* getProjectionMatrixArray();
-//    const f32* getModelViewMatrixArray();
+    const btTransform &getProjection() const;
+    const f32 *getProjectionMatrixArray();
+    //    const f32* getModelViewMatrixArray();
     btTransform getModelView() const;
 
-    void getViewBounds(f32 & left, f32 & right, f32 & bottom, f32 & top, f32 & farLeft, f32 & farRight, f32 & farBottom, f32 & farTop) const;
+    void getViewBounds(f32 & left, f32 & right, f32 & bottom, f32 & top,
+                       f32 & farLeft, f32 & farRight, f32 & farBottom,
+                       f32 & farTop) const;
 
     btVector3 getTopLeftVector() const;
     btVector3 getTopRightVector() const;
     btVector3 getBottomLeftVector() const;
     btVector3 getBottomRightVector() const;
 
-    void render(const btDbvtNode* root1,
-        const btDbvtNode* root2,
-        const btVector3& sortaxis,
-        const btVector3* eye = NULL);
+    void render(const btDbvtNode *root1, const btDbvtNode *root2,
+                const btVector3 &sortaxis, const btVector3 *eye = NULL);
 
-private:
+  private:
     f32 m_Near;
     f32 m_Far;
     f32 m_Fov;
     bool m_Orthographic;
     njliBitCategories m_RenderCategory;
 
-    OcclusionBuffer* m_OcclusionBuffer;
-    SceneRenderer* m_SceneRenderer;
+    OcclusionBuffer *m_OcclusionBuffer;
+    SceneRenderer *m_SceneRenderer;
 
-    btTransform* m_projectionMatrix;
-    f32* m_ProjectionMatrixArray;
-    f32* m_ModelViewMatrixArray;
+    btTransform *m_projectionMatrix;
+    f32 *m_ProjectionMatrixArray;
+    f32 *m_ModelViewMatrixArray;
 
-    s32* m_ViewPort;
-    btScalar* m_ModelMatrix;
-    btScalar* m_ProjectionMatrix;
-};
+    s32 *m_ViewPort;
+    btScalar *m_ModelMatrix;
+    btScalar *m_ProjectionMatrix;
+  };
 }
 
 #endif /* defined(__JLIGameEngineTest__Camera__) */

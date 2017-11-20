@@ -19,17 +19,18 @@
 #include <queue>
 #include <vector>
 
-namespace njli {
-class ActionBuilder;
-class Node;
-
-ATTRIBUTE_ALIGNED16(class)
-Action : public AbstractFactoryObject
+namespace njli
 {
+  class ActionBuilder;
+  class Node;
+
+  ATTRIBUTE_ALIGNED16(class)
+  Action : public AbstractFactoryObject
+  {
     friend class WorldFactory;
     friend class AbstractActionable;
 
-public:
+  public:
     // Robert Penner's easing functions in GLSL
     // https://github.com/stackgl/glsl-easings
     // http://easings.net
@@ -64,19 +65,20 @@ public:
     static float backIn(float t);
     static float backOut(float t);
     static float backInOut(float t);
-protected:
+
+  protected:
     Action();
-    Action(const AbstractBuilder&);
-    Action(const Action&);
+    Action(const AbstractBuilder &);
+    Action(const Action &);
 
     virtual ~Action();
-    Action& operator=(const Action&);
+    Action &operator=(const Action &);
 
-public:
+  public:
     using AbstractDecorator::setName;
     using AbstractDecorator::getName;
     using AbstractFactoryObject::create;
-//    using AbstractFactoryObject::clone;
+    //    using AbstractFactoryObject::clone;
     using AbstractFactoryObject::getPointer;
     using AbstractFactoryObject::getPointerValue;
     using AbstractFactoryObject::serializeObject;
@@ -98,14 +100,14 @@ public:
          *  @param dataBuffer   <#dataBuffer description#>
          *  @param btSerializer <#btSerializer description#>
          */
-    virtual void serialize(void* dataBuffer, btSerializer*) const;
+    virtual void serialize(void *dataBuffer, btSerializer *) const;
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    virtual const char* getClassName() const;
+    virtual const char *getClassName() const;
     /**
          *  <#Description#>
          *
@@ -126,7 +128,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Action** createArray(const u32 size);
+    static Action **createArray(const u32 size);
     /**
          *  <#Description#>
          *
@@ -138,7 +140,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Action* create();
+    static Action *create();
     /**
          *  <#Description#>
          *
@@ -146,7 +148,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Action* create(const ActionBuilder& builder);
+    static Action *create(const ActionBuilder &builder);
     /**
          *  <#Description#>
          *
@@ -154,7 +156,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Action* clone(const Action& object);
+    static Action *clone(const Action &object);
     /**
          *  <#Description#>
          *
@@ -162,7 +164,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Action* copy(const Action& object);
+    static Action *copy(const Action &object);
     /**
          *  <#Description#>
          *
@@ -184,7 +186,7 @@ public:
          */
     static u32 type();
 
-public:
+  public:
     /**
          *  <#Description#>
          *
@@ -193,7 +195,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Action* createGroup(Action * *actions, u32 size);
+    static Action *createGroup(Action * *actions, u32 size);
     /**
          *  <#Description#>
          *
@@ -202,7 +204,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Action* createSequence(Action * *actions, u32 size);
+    static Action *createSequence(Action * *actions, u32 size);
 
     /**
          *  <#Description#>
@@ -283,15 +285,15 @@ public:
          *
          *  @return <#return value description#>
          */
-    Node* getParent();
+    Node *getParent();
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const Node* getParent() const;
+    const Node *getParent() const;
 
-protected:
+  protected:
     virtual void update(f32 timeStep);
     virtual bool isFinished() const;
     virtual bool isFinishedRepeating() const;
@@ -300,20 +302,21 @@ protected:
     void handleActionChildren(f32 timeStep);
     void decrementRepeatCounter();
 
-private:
-    struct Sequence {
-        std::queue<Action*>* sequenceQueue;
-        s32 numberOfActions;
+  private:
+    struct Sequence
+    {
+      std::queue<Action *> *sequenceQueue;
+      s32 numberOfActions;
     };
 
-    std::vector<Sequence*> m_ActionGroups;
+    std::vector<Sequence *> m_ActionGroups;
 
     f32 m_SpeedFactor;
     f32 m_Duration;
     njliActionTimingMode m_TimingMode;
     f64 m_timeLeft;
     s32 m_RepeatCount;
-};
+  };
 }
 
 #endif /* defined(__JLIGameEngineTest__Action__) */

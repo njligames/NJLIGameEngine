@@ -11,36 +11,37 @@
 
 #include "AbstractBuilder.h"
 #include "AbstractState.h"
-#include "DeviceTouch.h"
 #include "DeviceMouse.h"
+#include "DeviceTouch.h"
 #include "lua.hpp"
 
-namespace njli {
-class WorldStateBuilder;
-class Scene;
-class PhysicsRayContact;
-
-/**
-     *  <#Description#>
-     */
-ATTRIBUTE_ALIGNED16(class)
-WorldState : public AbstractState<void>
+namespace njli
 {
+  class WorldStateBuilder;
+  class Scene;
+  class PhysicsRayContact;
+
+  /**
+       *  <#Description#>
+       */
+  ATTRIBUTE_ALIGNED16(class)
+  WorldState : public AbstractState<void>
+  {
     friend class WorldFactory;
 
-protected:
+  protected:
     WorldState();
-    WorldState(const AbstractBuilder&);
-    WorldState(const WorldState&);
+    WorldState(const AbstractBuilder &);
+    WorldState(const WorldState &);
     BT_DECLARE_ALIGNED_ALLOCATOR();
     virtual ~WorldState();
-    WorldState& operator=(const WorldState&);
+    WorldState &operator=(const WorldState &);
 
-public:
+  public:
     using AbstractDecorator::setName;
     using AbstractDecorator::getName;
     using AbstractFactoryObject::create;
-//    using AbstractFactoryObject::clone;
+    //    using AbstractFactoryObject::clone;
     using AbstractFactoryObject::getPointer;
     using AbstractFactoryObject::getPointerValue;
     using AbstractFactoryObject::serializeObject;
@@ -59,14 +60,14 @@ public:
          *
          *  @param btSerializer <#btSerializer description#>
          */
-    virtual void serialize(void*, btSerializer*) const;
+    virtual void serialize(void *, btSerializer *) const;
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    virtual const char* getClassName() const;
+    virtual const char *getClassName() const;
     /**
          *  <#Description#>
          *
@@ -87,7 +88,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static WorldState** createArray(const u32 size);
+    static WorldState **createArray(const u32 size);
     /**
          *  <#Description#>
          *
@@ -99,7 +100,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static WorldState* create();
+    static WorldState *create();
     /**
          *  <#Description#>
          *
@@ -107,7 +108,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static WorldState* create(const WorldStateBuilder& builder);
+    static WorldState *create(const WorldStateBuilder &builder);
     /**
          *  <#Description#>
          *
@@ -115,7 +116,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static WorldState* clone(const WorldState& object);
+    static WorldState *clone(const WorldState &object);
     /**
          *  <#Description#>
          *
@@ -123,7 +124,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static WorldState* copy(const WorldState& object);
+    static WorldState *copy(const WorldState &object);
     /**
          *  <#Description#>
          *
@@ -148,17 +149,17 @@ public:
     /**
          *  <#Description#>
          */
-    virtual void enter(void*);
+    virtual void enter(void *);
     /**
          *  <#Description#>
          *
          *  @param f32 <#f32 description#>
          */
-    virtual void update(void*, f32);
+    virtual void update(void *, f32);
     /**
          *  <#Description#>
          */
-    virtual void exit(void*);
+    virtual void exit(void *);
     /**
          *  <#Description#>
          *
@@ -166,86 +167,64 @@ public:
          *
          *  @return <#return value description#>
          */
-    virtual bool onMessage(void*, const Telegram&) const;
+    virtual bool onMessage(void *, const Telegram &) const;
 
-public:
-    //TODO: fill in specific methods for WorldState
+  public:
+    // TODO: fill in specific methods for WorldState
 
-    
     /**
      <#Description#>
 
      @param touches <#touches description#>
      */
     void touchDown(DeviceTouch * *touches);
-    
-    
+
     /**
      <#Description#>
 
      @param touches <#touches description#>
      */
     void touchUp(DeviceTouch * *touches);
-    
-    
+
     /**
      <#Description#>
 
      @param touches <#touches description#>
      */
     void touchMove(DeviceTouch * *touches);
-    
-    
+
     /**
      <#Description#>
 
      @param touches <#touches description#>
      */
     void touchCancelled(DeviceTouch * *touches);
-    
-    
-    
-    
-    
-    
+
     /**
      <#Description#>
 
      @param touch <#touch description#>
      */
     void touchDown(const DeviceTouch &touch);
-    
-    
+
     /**
      <#Description#>
 
      @param touch <#touch description#>
      */
     void touchUp(const DeviceTouch &touch);
-    
-    
+
     /**
      <#Description#>
 
      @param touch <#touch description#>
      */
     void touchMove(const DeviceTouch &touch);
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     void mouseDown(const DeviceMouse &touch);
     void mouseUp(const DeviceMouse &touch);
     void mouseMove(const DeviceMouse &touch);
-    
-    
-    
+
     /**
      <#Description#>
 
@@ -253,15 +232,18 @@ public:
      */
     void touchCancelled(const DeviceTouch &touch);
 
-public:
-protected:
-    void checkRayCollision(DeviceTouch * *touches, const char* code, bool disableNodeTouched = false);
-    void checkRayCollision(const DeviceTouch &touch, const char* code, bool disableNodeTouched = false);
-    void checkRayCollision(const DeviceMouse &mouse, const char* code, bool disableNodeTouched = false);
+  public:
+  protected:
+    void checkRayCollision(DeviceTouch * *touches, const char *code,
+                           bool disableNodeTouched = false);
+    void checkRayCollision(const DeviceTouch &touch, const char *code,
+                           bool disableNodeTouched = false);
+    void checkRayCollision(const DeviceMouse &mouse, const char *code,
+                           bool disableNodeTouched = false);
 
-private:
-    btAlignedObjectArray<njli::PhysicsRayContact*> m_RayContacts;
-};
+  private:
+    btAlignedObjectArray<njli::PhysicsRayContact *> m_RayContacts;
+  };
 }
 
 #endif /* defined(__JLIGameEngineTest__WorldState__) */

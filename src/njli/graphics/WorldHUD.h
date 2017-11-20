@@ -26,16 +26,17 @@ class btMatrix3x3;
 
 #include <vector>
 
-namespace njli {
-class Image;
-class Rect;
-
-/**
-     *  <#Description#>
-     */
-ATTRIBUTE_ALIGNED16(struct)
-JLIPaint
+namespace njli
 {
+  class Image;
+  class Rect;
+
+  /**
+       *  <#Description#>
+       */
+  ATTRIBUTE_ALIGNED16(struct)
+  JLIPaint
+  {
     f32 xform[6];
     f32 extent[2];
     f32 radius;
@@ -43,50 +44,108 @@ JLIPaint
     btVector4 innerColor;
     btVector4 outerColor;
     s32 image;
-};
+  };
 
-/**
- *  <#Description#>
- */
-ATTRIBUTE_ALIGNED16(struct)
-JLIGlyphPosition
-{
-private:
-//    const s8* str; // Position of the glyph in the input string.
-    f32 x; // The x-coordinate of the logical glyph position.
+  /**
+   *  <#Description#>
+   */
+  ATTRIBUTE_ALIGNED16(struct)
+  JLIGlyphPosition
+  {
+  private:
+    //    const s8* str; // Position of the glyph in the input string.
+    f32 x;          // The x-coordinate of the logical glyph position.
     f32 minx, maxx; // The bounds of the glyph shape.
-public:
-    friend bool operator<(const JLIGlyphPosition& lhs, const JLIGlyphPosition& rhs) { return ((lhs.x < rhs.x) && (lhs.minx < rhs.minx) && (lhs.maxx < rhs.maxx)); }
-    friend bool operator>(const JLIGlyphPosition& lhs, const JLIGlyphPosition& rhs) { return ((lhs.x > rhs.x) && (lhs.minx > rhs.minx) && (lhs.maxx > rhs.maxx)); }
-    friend bool operator<=(const JLIGlyphPosition& lhs, const JLIGlyphPosition& rhs) { return ((lhs.x <= rhs.x) && (lhs.minx <= rhs.minx) && (lhs.maxx <= rhs.maxx)); }
-    friend bool operator>=(const JLIGlyphPosition& lhs, const JLIGlyphPosition& rhs) { return ((lhs.x >= rhs.x) && (lhs.minx >= rhs.minx) && (lhs.maxx >= rhs.maxx)); }
-    friend bool operator==(const JLIGlyphPosition& lhs, const JLIGlyphPosition& rhs) { return ((lhs.x == rhs.x) && (lhs.minx == rhs.minx) && (lhs.maxx == rhs.maxx)); }
-    friend bool operator!=(const JLIGlyphPosition& lhs, const JLIGlyphPosition& rhs) { return ((lhs.x != rhs.x) && (lhs.minx != rhs.minx) && (lhs.maxx != rhs.maxx)); }
-};
+  public:
+    friend bool operator<(const JLIGlyphPosition &lhs,
+                          const JLIGlyphPosition &rhs)
+    {
+      return ((lhs.x < rhs.x) && (lhs.minx < rhs.minx) &&
+              (lhs.maxx < rhs.maxx));
+    }
+    friend bool operator>(const JLIGlyphPosition &lhs,
+                          const JLIGlyphPosition &rhs)
+    {
+      return ((lhs.x > rhs.x) && (lhs.minx > rhs.minx) &&
+              (lhs.maxx > rhs.maxx));
+    }
+    friend bool operator<=(const JLIGlyphPosition &lhs,
+                           const JLIGlyphPosition &rhs)
+    {
+      return ((lhs.x <= rhs.x) && (lhs.minx <= rhs.minx) &&
+              (lhs.maxx <= rhs.maxx));
+    }
+    friend bool operator>=(const JLIGlyphPosition &lhs,
+                           const JLIGlyphPosition &rhs)
+    {
+      return ((lhs.x >= rhs.x) && (lhs.minx >= rhs.minx) &&
+              (lhs.maxx >= rhs.maxx));
+    }
+    friend bool operator==(const JLIGlyphPosition &lhs,
+                           const JLIGlyphPosition &rhs)
+    {
+      return ((lhs.x == rhs.x) && (lhs.minx == rhs.minx) &&
+              (lhs.maxx == rhs.maxx));
+    }
+    friend bool operator!=(const JLIGlyphPosition &lhs,
+                           const JLIGlyphPosition &rhs)
+    {
+      return ((lhs.x != rhs.x) && (lhs.minx != rhs.minx) &&
+              (lhs.maxx != rhs.maxx));
+    }
+  };
 
-/**
- *  <#Description#>
- */
-ATTRIBUTE_ALIGNED16(struct)
-JLITextRow
-{
-private:
-//    const s8* row_start; // Pointer to the input text where the row starts.
-//    const s8* row_end; // Pointer to the input text where the row ends (one past the last character).
-//    const s8* next; // Pointer to the beginning of the next row.
-    f32 width; // Logical width of the row.
-    f32 minx, maxx; // Actual bounds of the row. Logical with and bounds can differ because of kerning and some parts over extending.
-public:
-    friend bool operator<(const JLITextRow& lhs, const JLITextRow& rhs) { return ((lhs.width < rhs.width) && (lhs.minx < rhs.minx) && (lhs.maxx < rhs.maxx)); }
-    friend bool operator>(const JLITextRow& lhs, const JLITextRow& rhs) { return ((lhs.width > rhs.width) && (lhs.minx > rhs.minx) && (lhs.maxx > rhs.maxx)); }
-    friend bool operator<=(const JLITextRow& lhs, const JLITextRow& rhs) { return ((lhs.width <= rhs.width) && (lhs.minx <= rhs.minx) && (lhs.maxx <= rhs.maxx)); }
-    friend bool operator>=(const JLITextRow& lhs, const JLITextRow& rhs) { return ((lhs.width >= rhs.width) && (lhs.minx >= rhs.minx) && (lhs.maxx >= rhs.maxx)); }
-    friend bool operator==(const JLITextRow& lhs, const JLITextRow& rhs) { return ((lhs.width == rhs.width) && (lhs.minx == rhs.minx) && (lhs.maxx == rhs.maxx)); }
-    friend bool operator!=(const JLITextRow& lhs, const JLITextRow& rhs) { return ((lhs.width != rhs.width) && (lhs.minx != rhs.minx) && (lhs.maxx != rhs.maxx)); }
-};
+  /**
+   *  <#Description#>
+   */
+  ATTRIBUTE_ALIGNED16(struct)
+  JLITextRow
+  {
+  private:
+    //    const s8* row_start; // Pointer to the input text where the row
+    //    starts.
+    //    const s8* row_end; // Pointer to the input text where the row ends
+    //    (one past the last character).
+    //    const s8* next; // Pointer to the beginning of the next row.
+    f32 width;      // Logical width of the row.
+    f32 minx, maxx; // Actual bounds of the row. Logical with and bounds can
+                    // differ because of kerning and some parts over extending.
+  public:
+    friend bool operator<(const JLITextRow &lhs, const JLITextRow &rhs)
+    {
+      return ((lhs.width < rhs.width) && (lhs.minx < rhs.minx) &&
+              (lhs.maxx < rhs.maxx));
+    }
+    friend bool operator>(const JLITextRow &lhs, const JLITextRow &rhs)
+    {
+      return ((lhs.width > rhs.width) && (lhs.minx > rhs.minx) &&
+              (lhs.maxx > rhs.maxx));
+    }
+    friend bool operator<=(const JLITextRow &lhs, const JLITextRow &rhs)
+    {
+      return ((lhs.width <= rhs.width) && (lhs.minx <= rhs.minx) &&
+              (lhs.maxx <= rhs.maxx));
+    }
+    friend bool operator>=(const JLITextRow &lhs, const JLITextRow &rhs)
+    {
+      return ((lhs.width >= rhs.width) && (lhs.minx >= rhs.minx) &&
+              (lhs.maxx >= rhs.maxx));
+    }
+    friend bool operator==(const JLITextRow &lhs, const JLITextRow &rhs)
+    {
+      return ((lhs.width == rhs.width) && (lhs.minx == rhs.minx) &&
+              (lhs.maxx == rhs.maxx));
+    }
+    friend bool operator!=(const JLITextRow &lhs, const JLITextRow &rhs)
+    {
+      return ((lhs.width != rhs.width) && (lhs.minx != rhs.minx) &&
+              (lhs.maxx != rhs.maxx));
+    }
+  };
 
-/// <#Description#>
-class WorldHUD : public AbstractObject {
+  /// <#Description#>
+  class WorldHUD : public AbstractObject
+  {
     friend class World;
     friend class ButtonHUD;
     friend class CheckboxHUD;
@@ -96,7 +155,7 @@ class WorldHUD : public AbstractObject {
     friend class TextboxHUD;
     friend class AbstractFrameBufferObject;
 
-public:
+  public:
     using AbstractDecorator::setName;
     using AbstractDecorator::getName;
 
@@ -116,7 +175,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    virtual const s8* getClassName() const;
+    virtual const s8 *getClassName() const;
     /**
          *  <#Description#>
          *
@@ -130,8 +189,8 @@ public:
          */
     virtual operator std::string() const;
 
-public:
-    //TODO: fill in specific methods for WorldHUD
+  public:
+    // TODO: fill in specific methods for WorldHUD
     /**
          *  <#Description#>
          *
@@ -139,7 +198,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static s8* cpToUTF8(s32 cp);
+    static s8 *cpToUTF8(s32 cp);
     /**
          *  <#Description#>
          *
@@ -191,7 +250,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static btVector4 lerpRGBA(const btVector4& c0, const btVector4& c1, f32 u);
+    static btVector4 lerpRGBA(const btVector4 &c0, const btVector4 &c1, f32 u);
     /**
          *  <#Description#>
          *
@@ -200,7 +259,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static btVector4 transRGBA(const btVector4& c0, u8 a);
+    static btVector4 transRGBA(const btVector4 &c0, u8 a);
     /**
          *  <#Description#>
          *
@@ -209,7 +268,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static btVector4 transRGBAf(const btVector4& c0, f32 a);
+    static btVector4 transRGBAf(const btVector4 &c0, f32 a);
     /**
          *  <#Description#>
          *
@@ -237,56 +296,58 @@ public:
          *
          *  @param floats <#floats description#>
          */
-    static void transformIdentity(btMatrix3x3& floats);
+    static void transformIdentity(btMatrix3x3 &floats);
     /**
          *  <#Description#>
          *
          *  @param floats       <#floats description#>
          *  @param translatePos <#translatePos description#>
          */
-    static void transformTranslate(btMatrix3x3& floats, const btVector2& translatePos);
+    static void transformTranslate(btMatrix3x3 &floats,
+                                   const btVector2 &translatePos);
     /**
          *  <#Description#>
          *
          *  @param floats <#floats description#>
          *  @param scale  <#scale description#>
          */
-    static void transformScale(btMatrix3x3& floats, const btVector2& scale);
+    static void transformScale(btMatrix3x3 &floats, const btVector2 &scale);
     /**
          *  <#Description#>
          *
          *  @param floats <#floats description#>
          *  @param a      <#a description#>
          */
-    static void transformRotate(btMatrix3x3& floats, f32 a);
+    static void transformRotate(btMatrix3x3 &floats, f32 a);
     /**
          *  <#Description#>
          *
          *  @param floats <#floats description#>
          *  @param a      <#a description#>
          */
-    static void transformSkewX(btMatrix3x3& floats, f32 a);
+    static void transformSkewX(btMatrix3x3 &floats, f32 a);
     /**
          *  <#Description#>
          *
          *  @param floats <#floats description#>
          *  @param a      <#a description#>
          */
-    static void transformSkewY(btMatrix3x3& floats, f32 a);
+    static void transformSkewY(btMatrix3x3 &floats, f32 a);
     /**
          *  <#Description#>
          *
          *  @param floats <#floats description#>
          *  @param src    <#src description#>
          */
-    static void transformMultiply(btMatrix3x3& floats, const btMatrix3x3& src);
+    static void transformMultiply(btMatrix3x3 &floats, const btMatrix3x3 &src);
     /**
          *  <#Description#>
          *
          *  @param floats <#floats description#>
          *  @param src    <#src description#>
          */
-    static void transformPremultiply(btMatrix3x3& floats, const btMatrix3x3& src);
+    static void transformPremultiply(btMatrix3x3 &floats,
+                                     const btMatrix3x3 &src);
     /**
          *  <#Description#>
          *
@@ -295,14 +356,15 @@ public:
          *  @param xform     <#xform description#>
          *  @param sourcePos <#sourcePos description#>
          */
-    static void transformPoint(btMatrix3x3& dstx, btMatrix3x3& dsty, btMatrix3x3& xform, const btVector2& sourcePos);
+    static void transformPoint(btMatrix3x3 &dstx, btMatrix3x3 &dsty,
+                               btMatrix3x3 &xform, const btVector2 &sourcePos);
 
     /**
          *  <#Description#>
          *
          *  @param floats <#floats description#>
          */
-    static void transformIdentity(f32* floats);
+    static void transformIdentity(f32 *floats);
     /**
          *  <#Description#>
          *
@@ -310,7 +372,7 @@ public:
          *  @param tx     <#tx description#>
          *  @param ty     <#ty description#>
          */
-    static void transformTranslate(f32* floats, f32 tx, f32 ty);
+    static void transformTranslate(f32 *floats, f32 tx, f32 ty);
     /**
          *  <#Description#>
          *
@@ -318,42 +380,42 @@ public:
          *  @param sx     <#sx description#>
          *  @param sy     <#sy description#>
          */
-    static void transformScale(f32* floats, f32 sx, f32 sy);
+    static void transformScale(f32 *floats, f32 sx, f32 sy);
     /**
          *  <#Description#>
          *
          *  @param floats <#floats description#>
          *  @param a      <#a description#>
          */
-    static void transformRotate(f32* floats, f32 a);
+    static void transformRotate(f32 *floats, f32 a);
     /**
          *  <#Description#>
          *
          *  @param floats <#floats description#>
          *  @param a      <#a description#>
          */
-    static void transformSkewX(f32* floats, f32 a);
+    static void transformSkewX(f32 *floats, f32 a);
     /**
          *  <#Description#>
          *
          *  @param floats <#floats description#>
          *  @param a      <#a description#>
          */
-    static void transformSkewY(f32* floats, f32 a);
+    static void transformSkewY(f32 *floats, f32 a);
     /**
          *  <#Description#>
          *
          *  @param floats <#floats description#>
          *  @param src    <#src description#>
          */
-    static void transformMultiply(f32* floats, f32* src);
+    static void transformMultiply(f32 *floats, f32 *src);
     /**
          *  <#Description#>
          *
          *  @param floats <#floats description#>
          *  @param src    <#src description#>
          */
-    static void transformPremultiply(f32* floats, f32* src);
+    static void transformPremultiply(f32 *floats, f32 *src);
     /**
          *  <#Description#>
          *
@@ -363,7 +425,8 @@ public:
          *  @param srcx  <#srcx description#>
          *  @param srcy  <#srcy description#>
          */
-    static void transformPoint(f32* dstx, f32* dsty, f32* xform, f32 srcx, f32 srcy);
+    static void transformPoint(f32 *dstx, f32 *dsty, f32 *xform, f32 srcx,
+                               f32 srcy);
     /**
          *  <#Description#>
          *
@@ -398,7 +461,7 @@ public:
          *
          *  @param color <#color description#>
          */
-    void strokeColor(const btVector4& color);
+    void strokeColor(const btVector4 &color);
     /**
          *  <#Description#>
          *
@@ -410,7 +473,7 @@ public:
          *
          *  @param color <#color description#>
          */
-    void fillColor(const btVector4& color);
+    void fillColor(const btVector4 &color);
     /**
          *  <#Description#>
          *
@@ -456,13 +519,13 @@ public:
          *
          *  @param mtx <#mtx description#>
          */
-    void transform(const btMatrix3x3& mtx);
+    void transform(const btMatrix3x3 &mtx);
     /**
          *  <#Description#>
          *
          *  @param pos <#pos description#>
          */
-    void translate(const btVector2& pos);
+    void translate(const btVector2 &pos);
     /**
          *  <#Description#>
          *
@@ -486,13 +549,13 @@ public:
          *
          *  @param scale <#scale description#>
          */
-    void scale(const btVector2& scale);
+    void scale(const btVector2 &scale);
     /**
          *  <#Description#>
          *
          *  @param xform <#xform description#>
          */
-    void getTransform(btMatrix3x3& xform);
+    void getTransform(btMatrix3x3 &xform);
     /**
          *  <#Description#>
          *
@@ -501,7 +564,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    s32 createImage(const s8* filename, njliHUDImageFlags imageFlags);
+    s32 createImage(const s8 *filename, njliHUDImageFlags imageFlags);
     /**
          *  <#Description#>
          *
@@ -510,14 +573,14 @@ public:
          *
          *  @return <#return value description#>
          */
-    s32 createImageRGBA(const Image& image, njliHUDImageFlags imageFlags);
+    s32 createImageRGBA(const Image &image, njliHUDImageFlags imageFlags);
     /**
          *  <#Description#>
          *
          *  @param imageHandle <#imageHandle description#>
          *  @param image       <#image description#>
          */
-    void updateImage(s32 imageHandle, const Image& image);
+    void updateImage(s32 imageHandle, const Image &image);
     /**
          *  <#Description#>
          *
@@ -525,7 +588,7 @@ public:
          *  @param w           <#w description#>
          *  @param h           <#h description#>
          */
-    void imageSize(s32 imageHandle, s32& w, s32& h);
+    void imageSize(s32 imageHandle, s32 &w, s32 &h);
     /**
          *  <#Description#>
          *
@@ -542,7 +605,9 @@ public:
          *
          *  @return <#return value description#>
          */
-    JLIPaint linearGradient(const btVector2& startPos, const btVector2& endPos, const btVector4& startColor, const btVector4& endColor);
+    JLIPaint linearGradient(const btVector2 &startPos, const btVector2 &endPos,
+                            const btVector4 &startColor,
+                            const btVector4 &endColor);
     /**
          *  <#Description#>
          *
@@ -554,7 +619,9 @@ public:
          *
          *  @return <#return value description#>
          */
-    JLIPaint boxGradient(const Rect& rect, f32 radius, f32 feather, const btVector4& startColor, const btVector4& endColor);
+    JLIPaint boxGradient(const Rect &rect, f32 radius, f32 feather,
+                         const btVector4 &startColor,
+                         const btVector4 &endColor);
     /**
          *  <#Description#>
          *
@@ -566,7 +633,9 @@ public:
          *
          *  @return <#return value description#>
          */
-    JLIPaint radialGradient(const btVector2& center, f32 innerRadius, f32 outerRadius, const btVector4& startColor, const btVector4& endColor);
+    JLIPaint radialGradient(const btVector2 &center, f32 innerRadius,
+                            f32 outerRadius, const btVector4 &startColor,
+                            const btVector4 &endColor);
     /**
          *  <#Description#>
          *
@@ -578,19 +647,20 @@ public:
          *
          *  @return <#return value description#>
          */
-    JLIPaint imagePattern(const btVector2& startPos, const btVector2& endPos, f32 angle, s32 imageHandle, f32 alpha);
+    JLIPaint imagePattern(const btVector2 &startPos, const btVector2 &endPos,
+                          f32 angle, s32 imageHandle, f32 alpha);
     /**
          *  <#Description#>
          *
          *  @param rect <#rect description#>
          */
-    void scissor(const Rect& rect);
+    void scissor(const Rect &rect);
     /**
          *  <#Description#>
          *
          *  @param rect <#rect description#>
          */
-    void intersectScissor(const Rect& rect);
+    void intersectScissor(const Rect &rect);
     /**
          *  <#Description#>
          */
@@ -604,13 +674,13 @@ public:
          *
          *  @param position <#position description#>
          */
-    void moveTo(const btVector2& position);
+    void moveTo(const btVector2 &position);
     /**
          *  <#Description#>
          *
          *  @param position <#position description#>
          */
-    void lineTo(const btVector2& position);
+    void lineTo(const btVector2 &position);
     /**
          *  <#Description#>
          *
@@ -618,14 +688,15 @@ public:
          *  @param controlPoint2 <#controlPoint2 description#>
          *  @param pos           <#pos description#>
          */
-    void bezierTo(const btVector2& controlPoint1, const btVector2& controlPoint2, const btVector2& pos);
+    void bezierTo(const btVector2 &controlPoint1,
+                  const btVector2 &controlPoint2, const btVector2 &pos);
     /**
          *  <#Description#>
          *
          *  @param controlPoint <#controlPoint description#>
          *  @param pos          <#pos description#>
          */
-    void quadTo(const btVector2& controlPoint, const btVector2& pos);
+    void quadTo(const btVector2 &controlPoint, const btVector2 &pos);
     /**
          *  <#Description#>
          *
@@ -633,7 +704,7 @@ public:
          *  @param pos2   <#pos2 description#>
          *  @param radius <#radius description#>
          */
-    void arcTo(const btVector2& pos1, const btVector2& pos2, f32 radius);
+    void arcTo(const btVector2 &pos1, const btVector2 &pos2, f32 radius);
     /**
          *  <#Description#>
          */
@@ -653,34 +724,35 @@ public:
          *  @param toAngle   <#toAngle description#>
          *  @param dir       <#dir description#>
          */
-    void arc(const btVector2& center, f32 radius, f32 fromAngle, f32 toAngle, njliHUDWinding dir);
+    void arc(const btVector2 &center, f32 radius, f32 fromAngle, f32 toAngle,
+             njliHUDWinding dir);
     /**
          *  <#Description#>
          *
          *  @param rect <#rect description#>
          */
-    void rect(const Rect& rect);
+    void rect(const Rect &rect);
     /**
          *  <#Description#>
          *
          *  @param rect   <#rect description#>
          *  @param radius <#radius description#>
          */
-    void roundedRect(const Rect& rect, f32 radius);
+    void roundedRect(const Rect &rect, f32 radius);
     /**
          *  <#Description#>
          *
          *  @param center <#center description#>
          *  @param radius <#radius description#>
          */
-    void ellipse(const btVector2& center, const btVector2& radius);
+    void ellipse(const btVector2 &center, const btVector2 &radius);
     /**
          *  <#Description#>
          *
          *  @param center <#center description#>
          *  @param radius <#radius description#>
          */
-    void circle(const btVector2& center, f32 radius);
+    void circle(const btVector2 &center, f32 radius);
     /**
          *  <#Description#>
          */
@@ -697,7 +769,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    s32 createFont(const s8* name, const s8* filename);
+    s32 createFont(const s8 *name, const s8 *filename);
     /**
          *  <#Description#>
          *
@@ -705,7 +777,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    s32 findFont(const s8* name);
+    s32 findFont(const s8 *name);
     /**
          *  <#Description#>
          *
@@ -749,7 +821,7 @@ public:
          *
          *  @param font <#font description#>
          */
-    void fontFace(const s8* font);
+    void fontFace(const s8 *font);
     /**
          *  <#Description#>
          *
@@ -759,7 +831,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    f32 text(const btVector2& position, const s8* string, const s8* end = NULL);
+    f32 text(const btVector2 &position, const s8 *string, const s8 *end = NULL);
     /**
          *  <#Description#>
          *
@@ -768,7 +840,8 @@ public:
          *  @param string        <#string description#>
          *  @param end           <#end description#>
          */
-    void textBox(const btVector2& position, f32 breakRowWidth, const s8* string, const s8* end = NULL);
+    void textBox(const btVector2 &position, f32 breakRowWidth, const s8 *string,
+                 const s8 *end = NULL);
     /**
          *  <#Description#>
          *
@@ -779,7 +852,8 @@ public:
          *
          *  @return <#return value description#>
          */
-    f32 textBounds(const btVector2& position, Rect& bounds, const s8* string, const s8* end = NULL);
+    f32 textBounds(const btVector2 &position, Rect &bounds, const s8 *string,
+                   const s8 *end = NULL);
     /**
          *  <#Description#>
          *
@@ -789,7 +863,8 @@ public:
          *  @param string        <#string description#>
          *  @param end           <#end description#>
          */
-    void textBoxBounds(const btVector2& position, f32 breakRowWidth, Rect& bounds, const s8* string, const s8* end);
+    void textBoxBounds(const btVector2 &position, f32 breakRowWidth,
+                       Rect &bounds, const s8 *string, const s8 *end);
     /**
          *  <#Description#>
          *
@@ -798,7 +873,10 @@ public:
          *  @param end            <#end description#>
          *  @param glyphPositions <#glyphPositions description#>
          */
-    void textGlyphPositions(const btVector2& position, const s8* string, const s8* end, btAlignedObjectArray<JLIGlyphPosition>& glyphPositions);
+    void
+    textGlyphPositions(const btVector2 &position, const s8 *string,
+                       const s8 *end,
+                       btAlignedObjectArray<JLIGlyphPosition> &glyphPositions);
     /**
          *  <#Description#>
          *
@@ -806,7 +884,8 @@ public:
          *  @param descender <#descender description#>
          *  @param lineh     <#lineh description#>
          */
-    void textMetrics(btMatrix3x3& ascender, btMatrix3x3& descender, btMatrix3x3& lineh);
+    void textMetrics(btMatrix3x3 &ascender, btMatrix3x3 &descender,
+                     btMatrix3x3 &lineh);
     /**
          *  <#Description#>
          *
@@ -816,7 +895,8 @@ public:
          *
          *  @return <#return value description#>
          */
-    btAlignedObjectArray<JLITextRow> textBreakLines(const s8* string, const s8* end, f32 breakRowWidth);
+    btAlignedObjectArray<JLITextRow>
+    textBreakLines(const s8 *string, const s8 *end, f32 breakRowWidth);
 
     /**
          *  <#Description#>
@@ -855,7 +935,9 @@ public:
          *
          *  @return <#return value description#>
          */
-    JLIPaint linearGradient(f32 startx, f32 starty, f32 endx, f32 endy, const btVector4& startColor, const btVector4& endColor);
+    JLIPaint linearGradient(f32 startx, f32 starty, f32 endx, f32 endy,
+                            const btVector4 &startColor,
+                            const btVector4 &endColor);
     /**
          *  <#Description#>
          *
@@ -870,7 +952,9 @@ public:
          *
          *  @return <#return value description#>
          */
-    JLIPaint boxGradient(f32 x, f32 y, f32 width, f32 height, f32 radius, f32 feather, const btVector4& startColor, const btVector4& endColor);
+    JLIPaint boxGradient(f32 x, f32 y, f32 width, f32 height, f32 radius,
+                         f32 feather, const btVector4 &startColor,
+                         const btVector4 &endColor);
     /**
          *  <#Description#>
          *
@@ -883,7 +967,9 @@ public:
          *
          *  @return <#return value description#>
          */
-    JLIPaint radialGradient(f32 centerx, f32 centery, f32 innerRadius, f32 outerRadius, const btVector4& startColor, const btVector4& endColor);
+    JLIPaint radialGradient(f32 centerx, f32 centery, f32 innerRadius,
+                            f32 outerRadius, const btVector4 &startColor,
+                            const btVector4 &endColor);
     /**
          *  <#Description#>
          *
@@ -897,7 +983,8 @@ public:
          *
          *  @return <#return value description#>
          */
-    JLIPaint imagePattern(f32 startx, f32 starty, f32 endx, f32 endy, f32 angle, s32 imageHandle, f32 alpha);
+    JLIPaint imagePattern(f32 startx, f32 starty, f32 endx, f32 endy, f32 angle,
+                          s32 imageHandle, f32 alpha);
     /**
          *  <#Description#>
          *
@@ -940,7 +1027,8 @@ public:
          *  @param x              <#x description#>
          *  @param y              <#y description#>
          */
-    void bezierTo(f32 controlPoint1x, f32 controlPoint1y, f32 controlPoint2x, f32 controlPoint2y, f32 x, f32 y);
+    void bezierTo(f32 controlPoint1x, f32 controlPoint1y, f32 controlPoint2x,
+                  f32 controlPoint2y, f32 x, f32 y);
     /**
          *  <#Description#>
          *
@@ -970,7 +1058,8 @@ public:
          *  @param toAngle   <#toAngle description#>
          *  @param dir       <#dir description#>
          */
-    void arc(f32 centerx, f32 centery, f32 radius, f32 fromAngle, f32 toAngle, njliHUDWinding dir);
+    void arc(f32 centerx, f32 centery, f32 radius, f32 fromAngle, f32 toAngle,
+             njliHUDWinding dir);
     /**
          *  <#Description#>
          *
@@ -1017,7 +1106,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    f32 text(f32 x, f32 y, const s8* string, const s8* end = NULL);
+    f32 text(f32 x, f32 y, const s8 *string, const s8 *end = NULL);
     /**
          *  <#Description#>
          *
@@ -1027,7 +1116,8 @@ public:
          *  @param string        <#string description#>
          *  @param end           <#end description#>
          */
-    void textBox(f32 x, f32 y, f32 breakRowWidth, const s8* string, const s8* end = NULL);
+    void textBox(f32 x, f32 y, f32 breakRowWidth, const s8 *string,
+                 const s8 *end = NULL);
     /**
          *  <#Description#>
          *
@@ -1039,7 +1129,8 @@ public:
          *
          *  @return <#return value description#>
          */
-    f32 textBounds(f32 x, f32 y, Rect& bounds, const s8* string, const s8* end = NULL);
+    f32 textBounds(f32 x, f32 y, Rect &bounds, const s8 *string,
+                   const s8 *end = NULL);
     /**
          *  <#Description#>
          *
@@ -1050,7 +1141,8 @@ public:
          *  @param string        <#string description#>
          *  @param end           <#end description#>
          */
-    void textBoxBounds(f32 x, f32 y, f32 breakRowWidth, Rect& bounds, const s8* string, const s8* end = NULL);
+    void textBoxBounds(f32 x, f32 y, f32 breakRowWidth, Rect &bounds,
+                       const s8 *string, const s8 *end = NULL);
     /**
          *  <#Description#>
          *
@@ -1060,52 +1152,62 @@ public:
          *  @param end            <#end description#>
          *  @param glyphPositions <#glyphPositions description#>
          */
-    void textGlyphPositions(f32 x, f32 y, const s8* string, const s8* end, btAlignedObjectArray<JLIGlyphPosition>& glyphPositions);
+    void
+    textGlyphPositions(f32 x, f32 y, const s8 *string, const s8 *end,
+                       btAlignedObjectArray<JLIGlyphPosition> &glyphPositions);
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    Camera* getCamera();
+    Camera *getCamera();
 
-protected:
-    static void btVector4ToNVGcolor(NVGcolor& color, const btVector4& vColor);
-    static void NVGcolorTobtVector4(btVector4& color, const NVGcolor& vColor);
+  protected:
+    static void btVector4ToNVGcolor(NVGcolor &color, const btVector4 &vColor);
+    static void NVGcolorTobtVector4(btVector4 &color, const NVGcolor &vColor);
 
-    static void JLIPaintToNVGPaint(NVGpaint& nvgPaint, const JLIPaint& njliPaint);
-    static void NVGPaintToJLIPaint(JLIPaint& njliPaint, const NVGpaint& nvgPaint);
+    static void JLIPaintToNVGPaint(NVGpaint &nvgPaint,
+                                   const JLIPaint &njliPaint);
+    static void NVGPaintToJLIPaint(JLIPaint &njliPaint,
+                                   const NVGpaint &nvgPaint);
 
-    static void JLIGlyphPositionToNVGglyphPosition(NVGglyphPosition& nvgGlyphPos, const JLIGlyphPosition& njliGlyphPos);
-    static void NVGglyphPositionToJLIGlyphPosition(JLIGlyphPosition& njliGlyphPos, const NVGglyphPosition& nvgGlyphPos);
+    static void
+    JLIGlyphPositionToNVGglyphPosition(NVGglyphPosition &nvgGlyphPos,
+                                       const JLIGlyphPosition &njliGlyphPos);
+    static void
+    NVGglyphPositionToJLIGlyphPosition(JLIGlyphPosition &njliGlyphPos,
+                                       const NVGglyphPosition &nvgGlyphPos);
 
-    static void JLITextRowToNVGtextRow(NVGtextRow& nvgTextRow, const JLITextRow& njliTextRow);
-    static void NVGtextRowToJLITextRow(JLITextRow& njliTextRow, const NVGtextRow& nvgTextRow);
+    static void JLITextRowToNVGtextRow(NVGtextRow &nvgTextRow,
+                                       const JLITextRow &njliTextRow);
+    static void NVGtextRowToJLITextRow(JLITextRow &njliTextRow,
+                                       const NVGtextRow &nvgTextRow);
 
-    static void NVGaffineTobtMatrix3x3(btMatrix3x3& mtx, f32* floats);
-    static void btMatrix3x3ToNVGaffine(f32* floats, const btMatrix3x3& mtx);
+    static void NVGaffineTobtMatrix3x3(btMatrix3x3 &mtx, f32 *floats);
+    static void btMatrix3x3ToNVGaffine(f32 *floats, const btMatrix3x3 &mtx);
 
     void renderFBOs();
     void render();
 
-    NVGcontext* getContext();
-    void addFBO(AbstractFrameBufferObject* fbo);
-    void removeFBO(AbstractFrameBufferObject* fbo);
+    NVGcontext *getContext();
+    void addFBO(AbstractFrameBufferObject *fbo);
+    void removeFBO(AbstractFrameBufferObject *fbo);
 
-private:
-    WorldHUD(const WorldHUD&);
-    WorldHUD& operator=(const WorldHUD&);
+  private:
+    WorldHUD(const WorldHUD &);
+    WorldHUD &operator=(const WorldHUD &);
 
-    NVGcontext* m_NVGContext;
-    f32* m_matrixBuffer;
+    NVGcontext *m_NVGContext;
+    f32 *m_matrixBuffer;
 
     std::vector<s32> m_images;
-    std::vector<AbstractFrameBufferObject*> m_FBOvector;
+    std::vector<AbstractFrameBufferObject *> m_FBOvector;
 
-    Camera* m_Camera;
+    Camera *m_Camera;
 
     //        std::vector<NVGLUframebuffer*> m_NVGLUfb;
-};
+  };
 }
 
 #endif /* defined(__JLIGameEngineTest__WorldHUD__) */

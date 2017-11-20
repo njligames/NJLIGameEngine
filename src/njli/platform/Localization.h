@@ -11,9 +11,10 @@
 #ifndef JLIGameEngineTest_Localization_h
 #define JLIGameEngineTest_Localization_h
 
-//https://translate.google.com/#no/zh-TW/content
+// https://translate.google.com/#no/zh-TW/content
 
-std::string LOCALIZED_TEXT(const char* key, const char *default_value, const char *comment="no comment");
+std::string LOCALIZED_TEXT(const char *key, const char *default_value,
+                           const char *comment = "no comment");
 std::string LOCALIZED_LANGUAGE();
 
 #endif

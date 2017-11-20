@@ -16,33 +16,34 @@
 class btVector3;
 class btVector2;
 
-namespace njli {
-class PhysicsRayContactBuilder;
-class Node;
-
-/**
-     *  <#Description#>
-     */
-ATTRIBUTE_ALIGNED16(class)
-PhysicsRayContact : public AbstractFactoryObject
+namespace njli
 {
+  class PhysicsRayContactBuilder;
+  class Node;
+
+  /**
+       *  <#Description#>
+       */
+  ATTRIBUTE_ALIGNED16(class)
+  PhysicsRayContact : public AbstractFactoryObject
+  {
     friend class WorldFactory;
     friend class PhysicsWorld;
     friend class WorldState;
 
-protected:
+  protected:
     PhysicsRayContact();
-    PhysicsRayContact(const AbstractBuilder&);
-    PhysicsRayContact(const PhysicsRayContact&);
+    PhysicsRayContact(const AbstractBuilder &);
+    PhysicsRayContact(const PhysicsRayContact &);
     BT_DECLARE_ALIGNED_ALLOCATOR();
     virtual ~PhysicsRayContact();
-    PhysicsRayContact& operator=(const PhysicsRayContact&);
+    PhysicsRayContact &operator=(const PhysicsRayContact &);
 
-public:
+  public:
     using AbstractDecorator::setName;
     using AbstractDecorator::getName;
     using AbstractFactoryObject::create;
-//    using AbstractFactoryObject::clone;
+    //    using AbstractFactoryObject::clone;
     using AbstractFactoryObject::getPointer;
     using AbstractFactoryObject::getPointerValue;
     using AbstractFactoryObject::serializeObject;
@@ -62,14 +63,14 @@ public:
          *  @param dataBuffer   <#dataBuffer description#>
          *  @param btSerializer <#btSerializer description#>
          */
-    virtual void serialize(void* dataBuffer, btSerializer*) const;
+    virtual void serialize(void *dataBuffer, btSerializer *) const;
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    virtual const char* getClassName() const;
+    virtual const char *getClassName() const;
     /**
          *  <#Description#>
          *
@@ -90,7 +91,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static PhysicsRayContact** createArray(const u32 size);
+    static PhysicsRayContact **createArray(const u32 size);
     /**
          *  <#Description#>
          *
@@ -102,7 +103,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static PhysicsRayContact* create();
+    static PhysicsRayContact *create();
     /**
          *  <#Description#>
          *
@@ -110,7 +111,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static PhysicsRayContact* create(const PhysicsRayContactBuilder& builder);
+    static PhysicsRayContact *create(const PhysicsRayContactBuilder &builder);
     /**
          *  <#Description#>
          *
@@ -118,7 +119,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static PhysicsRayContact* clone(const PhysicsRayContact& object);
+    static PhysicsRayContact *clone(const PhysicsRayContact &object);
     /**
          *  <#Description#>
          *
@@ -126,7 +127,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static PhysicsRayContact* copy(const PhysicsRayContact& object);
+    static PhysicsRayContact *copy(const PhysicsRayContact &object);
     /**
          *  <#Description#>
          *
@@ -140,7 +141,8 @@ public:
          *  @param L           <#L description#>
          *  @param stack_index <#stack_index description#>
          */
-    static void load(PhysicsRayContact & object, lua_State * L, int stack_index);
+    static void load(PhysicsRayContact & object, lua_State * L,
+                     int stack_index);
     /**
          *  <#Description#>
          *
@@ -148,8 +150,8 @@ public:
          */
     static u32 type();
 
-public:
-    //TODO: fill in specific methods for PhysicsRayContact
+  public:
+    // TODO: fill in specific methods for PhysicsRayContact
 
     /**
          *  <#Description#>
@@ -162,40 +164,38 @@ public:
          *
          *  @return <#return value description#>
          */
-    const btVector3& getHitNormalWorld() const;
+    const btVector3 &getHitNormalWorld() const;
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const btVector3& getHitPointWorld() const;
+    const btVector3 &getHitPointWorld() const;
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    Node* getHitNode() const;
+    Node *getHitNode() const;
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const btVector2& getTouchPosition() const;
+    const btVector2 &getTouchPosition() const;
 
-protected:
-    void screenPosition(const btVector2& pos);
-    void set(f32 m_closestHitFraction,
-        const btVector3& m_hitNormalWorld,
-        const btVector3& m_hitPointWorld,
-        Node* m_node);
+  protected:
+    void screenPosition(const btVector2 &pos);
+    void set(f32 m_closestHitFraction, const btVector3 &m_hitNormalWorld,
+             const btVector3 &m_hitPointWorld, Node *m_node);
 
-private:
+  private:
     f32 m_closestHitFraction;
-    btVector3* m_hitNormalWorld;
-    btVector3* m_hitPointWorld;
-    Node* m_node;
-    btVector2* m_touchPosition;
-};
+    btVector3 *m_hitNormalWorld;
+    btVector3 *m_hitPointWorld;
+    Node *m_node;
+    btVector2 *m_touchPosition;
+  };
 }
 
 #endif /* defined(__JLIGameEngineTest__PhysicsRayContact__) */

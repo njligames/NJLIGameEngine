@@ -15,29 +15,30 @@
 
 #include "json/json.h"
 
-namespace njli {
-class JsonJLIBuilder;
-/**
-     *  <#Description#>
-     */
-ATTRIBUTE_ALIGNED16(class)
-JsonJLI : public AbstractFactoryObject
+namespace njli
 {
+  class JsonJLIBuilder;
+  /**
+       *  <#Description#>
+       */
+  ATTRIBUTE_ALIGNED16(class)
+  JsonJLI : public AbstractFactoryObject
+  {
     friend class WorldFactory;
 
-protected:
+  protected:
     JsonJLI();
-    JsonJLI(const AbstractBuilder&);
-    JsonJLI(const JsonJLI&);
+    JsonJLI(const AbstractBuilder &);
+    JsonJLI(const JsonJLI &);
     BT_DECLARE_ALIGNED_ALLOCATOR();
     virtual ~JsonJLI();
-    JsonJLI& operator=(const JsonJLI&);
+    JsonJLI &operator=(const JsonJLI &);
 
-public:
+  public:
     using AbstractDecorator::setName;
     using AbstractDecorator::getName;
     using AbstractFactoryObject::create;
-//    using AbstractFactoryObject::clone;
+    //    using AbstractFactoryObject::clone;
     using AbstractFactoryObject::getPointer;
     using AbstractFactoryObject::getPointerValue;
     using AbstractFactoryObject::serializeObject;
@@ -57,14 +58,14 @@ public:
          *  @param dataBuffer   <#dataBuffer description#>
          *  @param btSerializer <#btSerializer description#>
          */
-    virtual void serialize(void* dataBuffer, btSerializer*) const;
+    virtual void serialize(void *dataBuffer, btSerializer *) const;
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    virtual const char* getClassName() const;
+    virtual const char *getClassName() const;
     /**
          *  <#Description#>
          *
@@ -85,7 +86,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static JsonJLI** createArray(const u32 size);
+    static JsonJLI **createArray(const u32 size);
     /**
          *  <#Description#>
          *
@@ -97,7 +98,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static JsonJLI* create();
+    static JsonJLI *create();
     /**
          *  <#Description#>
          *
@@ -105,7 +106,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static JsonJLI* create(const JsonJLIBuilder& builder);
+    static JsonJLI *create(const JsonJLIBuilder &builder);
     /**
          *  <#Description#>
          *
@@ -113,7 +114,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static JsonJLI* clone(const JsonJLI& object);
+    static JsonJLI *clone(const JsonJLI &object);
     /**
          *  <#Description#>
          *
@@ -121,7 +122,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static JsonJLI* copy(const JsonJLI& object);
+    static JsonJLI *copy(const JsonJLI &object);
     /**
          *  <#Description#>
          *
@@ -143,24 +144,24 @@ public:
          */
     static u32 type();
 
-public:
-    //TODO: fill in specific methods for JsonJLI
-    static std::string parse(const char* str, bool compact = false);
+  public:
+    // TODO: fill in specific methods for JsonJLI
+    static std::string parse(const char *str, bool compact = false);
 
-    bool parseJson(const char* str);
+    bool parseJson(const char *str);
 
-    void addValue(const std::string& key, const std::string& value);
-    void addValue(const std::string& key, const JsonJLI& value);
+    void addValue(const std::string &key, const std::string &value);
+    void addValue(const std::string &key, const JsonJLI &value);
 
-    std::string getValue(const std::string& key);
+    std::string getValue(const std::string &key);
 
-    void append(const std::string& value);
-    void append(const JsonJLI& value);
+    void append(const std::string &value);
+    void append(const JsonJLI &value);
 
-protected:
-private:
+  protected:
+  private:
     Json::Value m_value;
-};
+  };
 }
 
 #endif /* defined(__JLIGameEngineTest__JsonJLI__) */

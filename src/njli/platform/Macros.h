@@ -11,7 +11,8 @@
 #define SIMPLE_FUNCTION __attribute__((pure))
 #define UNUSED __attribute__((unused))
 #define PACKED __attribute__((packed))
-#define PRINTF(formatpos, argpos) __attribute__((format(printf, formatpos, argpos)))
+#define PRINTF(formatpos, argpos)                                              \
+  __attribute__((format(printf, formatpos, argpos)))
 #else
 #define DEPRECATED
 #define SIMPLE_FUNCTION

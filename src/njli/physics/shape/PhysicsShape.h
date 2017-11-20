@@ -19,31 +19,32 @@ class btRigidBody;
 class btMotionState;
 class btTransform;
 
-namespace njli {
-class PhysicsBody;
-class PhysicsShapeBuilder;
-
-ATTRIBUTE_ALIGNED16(class)
-PhysicsShape : public AbstractFactoryObject
+namespace njli
 {
+  class PhysicsBody;
+  class PhysicsShapeBuilder;
+
+  ATTRIBUTE_ALIGNED16(class)
+  PhysicsShape : public AbstractFactoryObject
+  {
     friend class WorldFactory;
     friend class PhysicsBody;
     friend class PhysicsBodyRigid;
     friend class Node;
 
-protected:
+  protected:
     PhysicsShape();
-    PhysicsShape(const AbstractBuilder&);
-    PhysicsShape(const PhysicsShape&);
+    PhysicsShape(const AbstractBuilder &);
+    PhysicsShape(const PhysicsShape &);
     BT_DECLARE_ALIGNED_ALLOCATOR();
     virtual ~PhysicsShape();
-    PhysicsShape& operator=(const PhysicsShape&);
+    PhysicsShape &operator=(const PhysicsShape &);
 
-public:
+  public:
     using AbstractDecorator::setName;
     using AbstractDecorator::getName;
     using AbstractFactoryObject::create;
-//    using AbstractFactoryObject::clone;
+    //    using AbstractFactoryObject::clone;
     using AbstractFactoryObject::getPointer;
     using AbstractFactoryObject::getPointerValue;
     using AbstractFactoryObject::serializeObject;
@@ -59,14 +60,14 @@ public:
          *
          *  @param btSerializer <#btSerializer description#>
          */
-    virtual void serialize(void*, btSerializer*) const = 0;
+    virtual void serialize(void *, btSerializer *) const = 0;
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    virtual const char* getClassName() const = 0;
+    virtual const char *getClassName() const = 0;
     /**
          *  <#Description#>
          *
@@ -87,7 +88,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static PhysicsShape* create(u32 type);
+    static PhysicsShape *create(u32 type);
     /**
          *  <#Description#>
          *
@@ -109,8 +110,8 @@ public:
          */
     static u32 type();
 
-public:
-    //TODO: fill in specific methods for PhysicsShape
+  public:
+    // TODO: fill in specific methods for PhysicsShape
     /**
          *  <#Description#>
          *
@@ -120,7 +121,9 @@ public:
          *
          *  @return <#return value description#>
          */
-    btRigidBody* createRigidBodyWithShape(f32 mass, btMotionState * motionState, const btVector3& localInertia = btVector3(0, 0, 0));
+    btRigidBody *createRigidBodyWithShape(f32 mass, btMotionState * motionState,
+                                          const btVector3 &localInertia =
+                                              btVector3(0, 0, 0));
     /**
          *  <#Description#>
          *
@@ -149,14 +152,14 @@ public:
          *  @param pa <#pa description#>
          *  @param pb <#pb description#>
          */
-    virtual void getEdge(int i, btVector3& pa, btVector3& pb) const = 0;
+    virtual void getEdge(int i, btVector3 &pa, btVector3 &pb) const = 0;
     /**
          *  <#Description#>
          *
          *  @param i   <#i description#>
          *  @param vtx <#vtx description#>
          */
-    virtual void getVertex(int i, btVector3& vtx) const = 0;
+    virtual void getVertex(int i, btVector3 &vtx) const = 0;
     /**
          *  <#Description#>
          *
@@ -170,7 +173,8 @@ public:
          *  @param planeSupport <#planeSupport description#>
          *  @param i            <#i description#>
          */
-    virtual void getPlane(btVector3 & planeNormal, btVector3 & planeSupport, int i) const = 0;
+    virtual void getPlane(btVector3 & planeNormal, btVector3 & planeSupport,
+                          int i) const = 0;
 
     /**
          *  <#Description#>
@@ -180,14 +184,14 @@ public:
          *
          *  @return <#return value description#>
          */
-    virtual bool isInside(const btVector3& pt, btScalar tolerance) const = 0;
+    virtual bool isInside(const btVector3 &pt, btScalar tolerance) const = 0;
 
     /**
          *  <#Description#>
          *
          *  @param scaling <#scaling description#>
          */
-    virtual void setLocalScaling(const btVector3& scaling);
+    virtual void setLocalScaling(const btVector3 &scaling);
     /**
          *  <#Description#>
          *
@@ -195,22 +199,23 @@ public:
          *  @param aabbMin <#aabbMin description#>
          *  @param aabbMax <#aabbMax description#>
          */
-    virtual void getAabb(const btTransform& t, btVector3& aabbMin, btVector3& aabbMax) const;
+    virtual void getAabb(const btTransform &t, btVector3 &aabbMin,
+                         btVector3 &aabbMax) const;
 
-protected:
-    virtual const btCollisionShape* getCollisionShape() const = 0;
-    virtual btCollisionShape* getCollisionShape() = 0;
-    virtual void setCollisionShape(const btCollisionShape& shape) = 0;
+  protected:
+    virtual const btCollisionShape *getCollisionShape() const = 0;
+    virtual btCollisionShape *getCollisionShape() = 0;
+    virtual void setCollisionShape(const btCollisionShape &shape) = 0;
 
     //        void applyPhysicsShape();
 
-    PhysicsBody* getParent();
-    const PhysicsBody* getParent() const;
+    PhysicsBody *getParent();
+    const PhysicsBody *getParent() const;
     //        virtual void enablePropertyChange(bool enable = true);
     //        virtual bool isPropertyChanged()const;
-private:
+  private:
     //        bool m_PropertyChanged;
-};
+  };
 }
 
 #endif /* defined(__JLIGameEngineTest__PhysicsShape__) */

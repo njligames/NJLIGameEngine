@@ -19,35 +19,36 @@
 
 class btTransform;
 
-namespace njli {
-class MaterialPropertyBuilder;
-class Image;
-class ShaderProgram;
-class AbstractFrameBufferObject;
-class Material;
-
-/**
-     *  <#Description#>
-     */
-ATTRIBUTE_ALIGNED16(class)
-MaterialProperty : public AbstractFactoryObject
+namespace njli
 {
+  class MaterialPropertyBuilder;
+  class Image;
+  class ShaderProgram;
+  class AbstractFrameBufferObject;
+  class Material;
+
+  /**
+       *  <#Description#>
+       */
+  ATTRIBUTE_ALIGNED16(class)
+  MaterialProperty : public AbstractFactoryObject
+  {
     friend class WorldFactory;
     friend class Material;
 
-protected:
+  protected:
     MaterialProperty();
-    MaterialProperty(const AbstractBuilder&);
-    MaterialProperty(const MaterialProperty&);
+    MaterialProperty(const AbstractBuilder &);
+    MaterialProperty(const MaterialProperty &);
     BT_DECLARE_ALIGNED_ALLOCATOR();
     virtual ~MaterialProperty();
-    MaterialProperty& operator=(const MaterialProperty&);
+    MaterialProperty &operator=(const MaterialProperty &);
 
-public:
+  public:
     using AbstractDecorator::setName;
     using AbstractDecorator::getName;
     using AbstractFactoryObject::create;
-//    using AbstractFactoryObject::clone;
+    //    using AbstractFactoryObject::clone;
     using AbstractFactoryObject::getPointer;
     using AbstractFactoryObject::getPointerValue;
     using AbstractFactoryObject::serializeObject;
@@ -67,14 +68,14 @@ public:
          *  @param dataBuffer   <#dataBuffer description#>
          *  @param btSerializer <#btSerializer description#>
          */
-    virtual void serialize(void* dataBuffer, btSerializer*) const;
+    virtual void serialize(void *dataBuffer, btSerializer *) const;
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    virtual const char* getClassName() const;
+    virtual const char *getClassName() const;
     /**
          *  <#Description#>
          *
@@ -95,7 +96,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static MaterialProperty** createArray(const u32 size);
+    static MaterialProperty **createArray(const u32 size);
     /**
          *  <#Description#>
          *
@@ -107,7 +108,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static MaterialProperty* create();
+    static MaterialProperty *create();
     /**
          *  <#Description#>
          *
@@ -115,7 +116,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static MaterialProperty* create(const MaterialPropertyBuilder& builder);
+    static MaterialProperty *create(const MaterialPropertyBuilder &builder);
     /**
          *  <#Description#>
          *
@@ -123,7 +124,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static MaterialProperty* clone(const MaterialProperty& object);
+    static MaterialProperty *clone(const MaterialProperty &object);
     /**
          *  <#Description#>
          *
@@ -131,7 +132,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static MaterialProperty* copy(const MaterialProperty& object);
+    static MaterialProperty *copy(const MaterialProperty &object);
     /**
          *  <#Description#>
          *
@@ -158,16 +159,16 @@ public:
          *
          *  @return <#return value description#>
          */
-    Material* getParent();
+    Material *getParent();
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const Material* getParent() const;
+    const Material *getParent() const;
 
-public:
-    //TODO: fill in specific methods for Texture
+  public:
+    // TODO: fill in specific methods for Texture
 
     /**
          *  <#Description#>
@@ -230,7 +231,7 @@ public:
          *
          *  @param img <#img description#>
          */
-    void loadGPU(const Image& img);
+    void loadGPU(const Image &img);
     /**
          *  <#Description#>
          *
@@ -241,12 +242,9 @@ public:
          *  @param positiveY <#positiveY description#>
          *  @param positiveZ <#positiveZ description#>
          */
-    void loadGPU(const Image& negativeX,
-        const Image& negativeY,
-        const Image& negativeZ,
-        const Image& positiveX,
-        const Image& positiveY,
-        const Image& positiveZ);
+    void loadGPU(const Image &negativeX, const Image &negativeY,
+                 const Image &negativeZ, const Image &positiveX,
+                 const Image &positiveY, const Image &positiveZ);
     /**
          *  <#Description#>
          *
@@ -265,7 +263,7 @@ public:
          *  @param img <#img description#>
          *  @param offset   <#0 description#>
          */
-    void reLoadGPU(const Image& img, const btVector2& offset = btVector2(0, 0));
+    void reLoadGPU(const Image &img, const btVector2 &offset = btVector2(0, 0));
 
     /**
          *  <#Description#>
@@ -274,20 +272,21 @@ public:
          *  @param cubeSide <#cubeSide description#>
          *  @param offset        <#0 description#>
          */
-    void reLoadGPU(const Image& img, njliTextureCubeSides cubeSide, const btVector2& offset = btVector2(0, 0));
+    void reLoadGPU(const Image &img, njliTextureCubeSides cubeSide,
+                   const btVector2 &offset = btVector2(0, 0));
 
     /**
          *  <#Description#>
          *
          *  @param transform <#transform description#>
          */
-    void setTextureTransform(const btTransform& transform);
+    void setTextureTransform(const btTransform &transform);
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const btTransform& getTextureTransform() const;
+    const btTransform &getTextureTransform() const;
 
     /**
          *  <#Description#>
@@ -324,21 +323,22 @@ public:
 
     static void initReferences();
 
-protected:
+  protected:
     u8 getTextureIndex() const;
     void setTextureIndex(u8 index);
 
     bool bind(ShaderProgram * program);
-    void unBind() ;
+    void unBind();
 
-    void loadTexImage2DInternal(const Image& img, s32 target);
-    void reLoadTexImage2DInternal(const Image& img, s32 target, const btVector2& offset = btVector2(0, 0));
-    
+    void loadTexImage2DInternal(const Image &img, s32 target);
+    void reLoadTexImage2DInternal(const Image &img, s32 target,
+                                  const btVector2 &offset = btVector2(0, 0));
+
     virtual void loadProperties() const;
 
-//    void render();
+    //    void render();
 
-private:
+  private:
     bool m_diffuseBound;
     bool *m_materialBound;
     u32 m_textureID;
@@ -347,7 +347,7 @@ private:
     njliTextureWrapType m_sWrap;
     njliTextureWrapType m_tWrap;
     s32 m_textureType;
-    btTransform* m_TextureTransform;
+    btTransform *m_TextureTransform;
     u8 m_TextureIndex;
     u32 m_Width;
     u32 m_Height;
@@ -357,13 +357,13 @@ private:
     u32 m_CubeUniform;
     u32 m_is2DUniform;
     u32 m_isCubeUniform;
-    AbstractFrameBufferObject* m_AbstractFrameBufferObject;
+    AbstractFrameBufferObject *m_AbstractFrameBufferObject;
     bool m_hasOpacity;
 
-private:
-    static void addReference(MaterialProperty*);
-    static void removeReference(MaterialProperty*);
-    static bool hasReference(MaterialProperty*);
+  private:
+    static void addReference(MaterialProperty *);
+    static void removeReference(MaterialProperty *);
+    static bool hasReference(MaterialProperty *);
 
     static std::bitset<16> s_TextureIDReferences;
 #if !(defined(NDEBUG))
@@ -371,29 +371,27 @@ private:
     static u64 s_MaxTextureSize;
 #endif
 
-    enum njliLoadGPUType {
-        JLI_LOAD_GPU_TYPE_NONE,
-        JLI_LOAD_GPU_TYPE_2D_EMPTY,
-        JLI_LOAD_GPU_TYPE_2D,
-        JLI_LOAD_GPU_TYPE_CUBE,
-        JLI_LOAD_GPU_TYPE_FBO,
-        JLI_LOAD_GPU_TYPE_MAX
+    enum njliLoadGPUType
+    {
+      JLI_LOAD_GPU_TYPE_NONE,
+      JLI_LOAD_GPU_TYPE_2D_EMPTY,
+      JLI_LOAD_GPU_TYPE_2D,
+      JLI_LOAD_GPU_TYPE_CUBE,
+      JLI_LOAD_GPU_TYPE_FBO,
+      JLI_LOAD_GPU_TYPE_MAX
     };
 
     njliLoadGPUType m_njliLoadGPUType;
-    AbstractFrameBufferObject* m_loadGPU_fbo;
-//    Image** m_loadGPU_images;
+    AbstractFrameBufferObject *m_loadGPU_fbo;
+    //    Image** m_loadGPU_images;
 
     void loadGPU_Internal();
-    void loadGPU_Internal(const Image& img);
-    void loadGPU_Internal(const Image& negativeX,
-        const Image& negativeY,
-        const Image& negativeZ,
-        const Image& positiveX,
-        const Image& positiveY,
-        const Image& positiveZ);
+    void loadGPU_Internal(const Image &img);
+    void loadGPU_Internal(const Image &negativeX, const Image &negativeY,
+                          const Image &negativeZ, const Image &positiveX,
+                          const Image &positiveY, const Image &positiveZ);
     void loadGPU_Internal(AbstractFrameBufferObject * fbo);
-};
+  };
 }
 
 #endif /* defined(__JLIGameEngineTest__MaterialProperty__) */

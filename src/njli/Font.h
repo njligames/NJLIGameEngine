@@ -13,30 +13,31 @@
 #include "AbstractFactoryObject.h"
 #include "lua.hpp"
 
-namespace njli {
-class FontBuilder;
-
-/**
-     *  <#Description#>
-     */
-ATTRIBUTE_ALIGNED16(class)
-Font : public AbstractFactoryObject
+namespace njli
 {
+  class FontBuilder;
+
+  /**
+       *  <#Description#>
+       */
+  ATTRIBUTE_ALIGNED16(class)
+  Font : public AbstractFactoryObject
+  {
     friend class WorldFactory;
 
-protected:
+  protected:
     Font();
-    Font(const AbstractBuilder&);
-    Font(const Font&);
+    Font(const AbstractBuilder &);
+    Font(const Font &);
     BT_DECLARE_ALIGNED_ALLOCATOR();
     virtual ~Font();
-    Font& operator=(const Font&);
+    Font &operator=(const Font &);
 
-public:
+  public:
     using AbstractDecorator::setName;
     using AbstractDecorator::getName;
     using AbstractFactoryObject::create;
-//    using AbstractFactoryObject::clone;
+    //    using AbstractFactoryObject::clone;
     using AbstractFactoryObject::getPointer;
     using AbstractFactoryObject::getPointerValue;
     using AbstractFactoryObject::serializeObject;
@@ -56,14 +57,14 @@ public:
          *  @param dataBuffer   <#dataBuffer description#>
          *  @param btSerializer <#btSerializer description#>
          */
-    virtual void serialize(void* dataBuffer, btSerializer*) const;
+    virtual void serialize(void *dataBuffer, btSerializer *) const;
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    virtual const char* getClassName() const;
+    virtual const char *getClassName() const;
     /**
          *  <#Description#>
          *
@@ -84,7 +85,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Font** createArray(const u32 size);
+    static Font **createArray(const u32 size);
     /**
          *  <#Description#>
          *
@@ -96,7 +97,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Font* create();
+    static Font *create();
     /**
          *  <#Description#>
          *
@@ -104,7 +105,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Font* create(const FontBuilder& builder);
+    static Font *create(const FontBuilder &builder);
     /**
          *  <#Description#>
          *
@@ -112,7 +113,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Font* clone(const Font& object);
+    static Font *clone(const Font &object);
     /**
          *  <#Description#>
          *
@@ -120,7 +121,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Font* copy(const Font& object);
+    static Font *copy(const Font &object);
     /**
          *  <#Description#>
          *
@@ -142,11 +143,11 @@ public:
          */
     static u32 type();
 
-public:
-    //TODO: fill in specific methods for Font
-protected:
-private:
-};
+  public:
+    // TODO: fill in specific methods for Font
+  protected:
+  private:
+  };
 }
 
 #endif /* defined(__JLIGameEngineTest__Font__) */

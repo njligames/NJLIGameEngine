@@ -10,63 +10,65 @@
 #define __JLIGameEngineTest__WorldInput__
 
 #include "AbstractObject.h"
-#include <string>
-#include "DeviceTouch.h"
 #include "DeviceMouse.h"
+#include "DeviceTouch.h"
+#include <string>
 #include <unordered_map>
 
-namespace njli {
-class DeviceTouch;
+namespace njli
+{
+  class DeviceTouch;
 
-class WorldInput : public AbstractObject {
-public:
-    
+  class WorldInput : public AbstractObject
+  {
+  public:
     using AbstractDecorator::setName;
     using AbstractDecorator::getName;
 
     WorldInput();
     virtual ~WorldInput();
 
-    virtual const char* getClassName() const;
+    virtual const char *getClassName() const;
     virtual s32 getType() const;
     operator std::string() const;
 
-public:
-    void handleFinger(int touchDevId, int pointerFingerId, int eventType, float x, float y, float dx, float dy, float pressure);
+  public:
+    void handleFinger(int touchDevId, int pointerFingerId, int eventType,
+                      float x, float y, float dx, float dy, float pressure);
     void handleFingers();
-    
+
     void handleMouse(int button, int eventType, float x, float y, int clicks);
-    
+
     void keyboardShow();
     void keyboardCancel();
-    void keyboardReturn(const char* text);
-    
+    void keyboardReturn(const char *text);
+
     void setOrientation(const s32 orientation);
     bool isPortraitOrientation() const;
     bool isLandscapeOrientation() const;
     s32 getOrientation() const;
 
-    void showKeyboard(const char* currentText);
+    void showKeyboard(const char *currentText);
 
-protected:
-//    void clearTouches();
+  protected:
+    //    void clearTouches();
     DeviceTouch *popNextTouch();
     void recycleTouch(DeviceTouch *touch);
 
-private:
-    WorldInput(const WorldInput&);
-    WorldInput& operator=(const WorldInput&);
-    
-    std::unordered_map<int, DeviceTouch*> m_FingerDownMap;
-    std::unordered_map<int, DeviceTouch*> m_FingerUpMap;
-    std::unordered_map<int, DeviceTouch*> m_FingerMoveMap;
-    
+  private:
+    WorldInput(const WorldInput &);
+    WorldInput &operator=(const WorldInput &);
+
+    std::unordered_map<int, DeviceTouch *> m_FingerDownMap;
+    std::unordered_map<int, DeviceTouch *> m_FingerUpMap;
+    std::unordered_map<int, DeviceTouch *> m_FingerMoveMap;
+
     DeviceMouse *m_Mouse;
-    
+
     DeviceTouch **m_TouchBuffer;
-    
+
     s32 m_Orientation;
-};
+  };
 }
 
 #endif /* defined(__JLIGameEngineTest__WorldInput__) */

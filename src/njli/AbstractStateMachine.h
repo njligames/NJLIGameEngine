@@ -16,15 +16,17 @@
 #include "btQuickprof.h"
 #include <queue>
 
-namespace njli {
-/// <#Description#>
-template <class OWNER_TYPE>
-class AbstractStateMachine : public AbstractFactoryObject {
-public:
+namespace njli
+{
+  /// <#Description#>
+  template <class OWNER_TYPE>
+  class AbstractStateMachine : public AbstractFactoryObject
+  {
+  public:
     using AbstractDecorator::setName;
     using AbstractDecorator::getName;
     using AbstractFactoryObject::create;
-//    using AbstractFactoryObject::clone;
+    //    using AbstractFactoryObject::clone;
     using AbstractFactoryObject::getPointer;
     using AbstractFactoryObject::getPointerValue;
     using AbstractFactoryObject::serializeObject;
@@ -36,11 +38,11 @@ public:
     /**
          *  <#Description#>
          */
-    AbstractStateMachine(const AbstractBuilder& builder);
+    AbstractStateMachine(const AbstractBuilder &builder);
     /**
          *  <#Description#>
          */
-    AbstractStateMachine(const AbstractStateMachine& copy);
+    AbstractStateMachine(const AbstractStateMachine &copy);
     /**
          *  <#Description#>
          *
@@ -55,9 +57,9 @@ public:
          *
          *  @return <#return value description#>
          */
-    AbstractStateMachine& operator=(const AbstractStateMachine&);
+    AbstractStateMachine &operator=(const AbstractStateMachine &);
 
-public:
+  public:
     /**
          *  <#Description#>
          *
@@ -72,27 +74,28 @@ public:
          *
          *  @return <#return value description#>
          */
-    bool handleMessage(const Telegram&);
+    bool handleMessage(const Telegram &);
 
     /**
          *  <#Description#>
          *
-         *  @param AbstractState<OWNER_TYPE> <#AbstractState<OWNER_TYPE> description#>
+         *  @param AbstractState<OWNER_TYPE> <#AbstractState<OWNER_TYPE>
+     * description#>
          */
-    void pushState(AbstractState<OWNER_TYPE>*);
+    void pushState(AbstractState<OWNER_TYPE> *);
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    AbstractState<OWNER_TYPE>* const getState() const;
+    AbstractState<OWNER_TYPE> *const getState() const;
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    AbstractState<OWNER_TYPE>* const getPreviousState() const;
+    AbstractState<OWNER_TYPE> *const getPreviousState() const;
 
     /**
          *  <#Description#>
@@ -101,19 +104,19 @@ public:
          */
     void clear(bool callExit = true);
 
-public:
+  public:
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    virtual AbstractFactoryObject* getOwner();
+    virtual AbstractFactoryObject *getOwner();
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    virtual const AbstractFactoryObject* getOwner() const;
+    virtual const AbstractFactoryObject *getOwner() const;
 
     /**
          *  <#Description#>
@@ -122,48 +125,47 @@ public:
          */
     virtual bool hasOwner() const;
 
-private:
-    AbstractState<OWNER_TYPE>* m_pCurrentState;
-    AbstractState<OWNER_TYPE>* m_pPreviousState;
+  private:
+    AbstractState<OWNER_TYPE> *m_pCurrentState;
+    AbstractState<OWNER_TYPE> *m_pPreviousState;
 
-    std::queue<AbstractState<OWNER_TYPE>*> m_StateQueue;
+    std::queue<AbstractState<OWNER_TYPE> *> m_StateQueue;
 
-    void setState(AbstractState<OWNER_TYPE>*);
-    void changeState(AbstractState<OWNER_TYPE>*);
+    void setState(AbstractState<OWNER_TYPE> *);
+    void changeState(AbstractState<OWNER_TYPE> *);
 
     //        AbstractFactoryObject *m_pOwner;
-};
+  };
 
-template <class OWNER_TYPE>
-AbstractStateMachine<OWNER_TYPE>::AbstractStateMachine()
-    : AbstractFactoryObject(this)
-    , m_pCurrentState(NULL)
-    , m_pPreviousState(NULL) //,
-//    m_pOwner(NULL)
-{
-}
+  template <class OWNER_TYPE>
+  AbstractStateMachine<OWNER_TYPE>::AbstractStateMachine()
+      : AbstractFactoryObject(this), m_pCurrentState(NULL),
+        m_pPreviousState(NULL) //,
+  //    m_pOwner(NULL)
+  {
+  }
 
-template <class OWNER_TYPE>
-AbstractStateMachine<OWNER_TYPE>::AbstractStateMachine(const AbstractBuilder& builder)
-    : AbstractFactoryObject(this)
-    , m_pCurrentState(NULL)
-    , m_pPreviousState(NULL) //,
-//    m_pOwner(NULL)
-{
-}
+  template <class OWNER_TYPE>
+  AbstractStateMachine<OWNER_TYPE>::AbstractStateMachine(
+      const AbstractBuilder &builder)
+      : AbstractFactoryObject(this), m_pCurrentState(NULL),
+        m_pPreviousState(NULL) //,
+  //    m_pOwner(NULL)
+  {
+  }
 
-template <class OWNER_TYPE>
-AbstractStateMachine<OWNER_TYPE>::AbstractStateMachine(const AbstractStateMachine& copy)
-    : AbstractFactoryObject(this)
-    , m_pCurrentState(copy.m_pCurrentState)
-    , m_pPreviousState(copy.m_pPreviousState) //,
-//    m_pOwner(NULL)
-{
-}
+  template <class OWNER_TYPE>
+  AbstractStateMachine<OWNER_TYPE>::AbstractStateMachine(
+      const AbstractStateMachine &copy)
+      : AbstractFactoryObject(this), m_pCurrentState(copy.m_pCurrentState),
+        m_pPreviousState(copy.m_pPreviousState) //,
+  //    m_pOwner(NULL)
+  {
+  }
 
-template <class OWNER_TYPE>
-AbstractStateMachine<OWNER_TYPE>::~AbstractStateMachine()
-{
+  template <class OWNER_TYPE>
+  AbstractStateMachine<OWNER_TYPE>::~AbstractStateMachine()
+  {
     //        clear(true);
 
     //        if(m_pCurrentState)
@@ -189,180 +191,202 @@ AbstractStateMachine<OWNER_TYPE>::~AbstractStateMachine()
     //            theNextState->enableCanDelete(true);
     //            m_StateQueue.pop();
     //        }
-}
+  }
 
-template <class OWNER_TYPE>
-AbstractStateMachine<OWNER_TYPE>& AbstractStateMachine<OWNER_TYPE>::operator=(const AbstractStateMachine& rhs)
-{
-    if (this != &rhs) {
+  template <class OWNER_TYPE>
+  AbstractStateMachine<OWNER_TYPE> &AbstractStateMachine<OWNER_TYPE>::
+  operator=(const AbstractStateMachine &rhs)
+  {
+    if (this != &rhs)
+      {
         m_pCurrentState = rhs.m_pCurrentState;
         m_pPreviousState = rhs.m_pPreviousState;
-    }
+      }
     return *this;
-}
+  }
 
-template <class OWNER_TYPE>
-void AbstractStateMachine<OWNER_TYPE>::update(f32 deltaTimeStep)
-{
+  template <class OWNER_TYPE>
+  void AbstractStateMachine<OWNER_TYPE>::update(f32 deltaTimeStep)
+  {
     BT_PROFILE("AbstractStateMachine::update");
-    AbstractState<OWNER_TYPE>* const theCurrentState = getState();
+    AbstractState<OWNER_TYPE> *const theCurrentState = getState();
     bool pushNextState = false;
     u32 queueSize = m_StateQueue.size();
 
-    if (theCurrentState && (queueSize > 0)) {
+    if (theCurrentState && (queueSize > 0))
+      {
         pushNextState = theCurrentState->isFinished();
-    }
-    else {
+      }
+    else
+      {
         pushNextState = (queueSize > 0);
-    }
+      }
 
-    if (pushNextState) {
-        AbstractState<OWNER_TYPE>* theNextState = NULL;
+    if (pushNextState)
+      {
+        AbstractState<OWNER_TYPE> *theNextState = NULL;
 
-        if (!m_StateQueue.empty()) {
+        if (!m_StateQueue.empty())
+          {
             theNextState = m_StateQueue.front();
             m_StateQueue.pop();
-        }
+          }
 
         changeState(theNextState);
-    }
-    else {
+      }
+    else
+      {
         if (theCurrentState)
-            theCurrentState->update(dynamic_cast<OWNER_TYPE*>(getOwner()),
-                deltaTimeStep);
-    }
-}
+          theCurrentState->update(dynamic_cast<OWNER_TYPE *>(getOwner()),
+                                  deltaTimeStep);
+      }
+  }
 
-template <class OWNER_TYPE>
-bool AbstractStateMachine<OWNER_TYPE>::handleMessage(const Telegram& msg)
-{
-    const AbstractState<OWNER_TYPE>* theCurrentState = getState();
+  template <class OWNER_TYPE>
+  bool AbstractStateMachine<OWNER_TYPE>::handleMessage(const Telegram &msg)
+  {
+    const AbstractState<OWNER_TYPE> *theCurrentState = getState();
 
-    if (theCurrentState && theCurrentState->onMessage(dynamic_cast<OWNER_TYPE*>(getOwner()), msg)) {
+    if (theCurrentState &&
+        theCurrentState->onMessage(dynamic_cast<OWNER_TYPE *>(getOwner()), msg))
+      {
         return true;
-    }
+      }
     return false;
-}
+  }
 
-template <class OWNER_TYPE>
-void AbstractStateMachine<OWNER_TYPE>::pushState(AbstractState<OWNER_TYPE>* state)
-{
-    if (NULL == state) {
-        AbstractState<OWNER_TYPE>* theCurrentState = getState();
-        if (theCurrentState) {
-            theCurrentState->exit(dynamic_cast<OWNER_TYPE*>(getOwner()));
+  template <class OWNER_TYPE>
+  void
+  AbstractStateMachine<OWNER_TYPE>::pushState(AbstractState<OWNER_TYPE> *state)
+  {
+    if (NULL == state)
+      {
+        AbstractState<OWNER_TYPE> *theCurrentState = getState();
+        if (theCurrentState)
+          {
+            theCurrentState->exit(dynamic_cast<OWNER_TYPE *>(getOwner()));
             theCurrentState->enableCanDelete(true);
-        }
-    }
-    else {
+          }
+      }
+    else
+      {
         state->enableCanDelete(false);
         m_StateQueue.push(state);
-    }
-}
+      }
+  }
 
-template <class OWNER_TYPE>
-AbstractState<OWNER_TYPE>* const AbstractStateMachine<OWNER_TYPE>::getState() const
-{
+  template <class OWNER_TYPE>
+  AbstractState<OWNER_TYPE> *const
+  AbstractStateMachine<OWNER_TYPE>::getState() const
+  {
     return m_pCurrentState;
-}
+  }
 
-template <class OWNER_TYPE>
-AbstractState<OWNER_TYPE>* const AbstractStateMachine<OWNER_TYPE>::getPreviousState() const
-{
+  template <class OWNER_TYPE>
+  AbstractState<OWNER_TYPE> *const
+  AbstractStateMachine<OWNER_TYPE>::getPreviousState() const
+  {
     return m_pPreviousState;
-}
+  }
 
-template <class OWNER_TYPE>
-void AbstractStateMachine<OWNER_TYPE>::clear(bool callExit)
-{
-    AbstractState<OWNER_TYPE>* theNextState = NULL;
+  template <class OWNER_TYPE>
+  void AbstractStateMachine<OWNER_TYPE>::clear(bool callExit)
+  {
+    AbstractState<OWNER_TYPE> *theNextState = NULL;
 
-    if (m_pCurrentState) {
+    if (m_pCurrentState)
+      {
         if (callExit)
-            m_pCurrentState->exit(dynamic_cast<OWNER_TYPE*>(getOwner()));
+          m_pCurrentState->exit(dynamic_cast<OWNER_TYPE *>(getOwner()));
         m_pCurrentState->enableCanDelete(true);
-    }
+      }
 
-    while (!m_StateQueue.empty()) {
+    while (!m_StateQueue.empty())
+      {
         theNextState = m_StateQueue.front();
-        if (theNextState) {
+        if (theNextState)
+          {
             if (callExit)
-                theNextState->exit(dynamic_cast<OWNER_TYPE*>(getOwner()));
+              theNextState->exit(dynamic_cast<OWNER_TYPE *>(getOwner()));
             theNextState->enableCanDelete(true);
-        }
+          }
 
         m_StateQueue.pop();
-    }
+      }
     m_pCurrentState = NULL;
-}
+  }
 
-template <class OWNER_TYPE>
-AbstractFactoryObject* AbstractStateMachine<OWNER_TYPE>::getOwner()
-{
-//#if !(defined(NDEBUG))
-//    return dynamic_cast<AbstractFactoryObject*>(getParent());
-//#else
-//    SDL_assert(dynamic_cast<AbstractFactoryObject*>(getParent()));
-    return dynamic_cast<AbstractFactoryObject*>(getParent());
-//#endif
-    
-    
+  template <class OWNER_TYPE>
+  AbstractFactoryObject *AbstractStateMachine<OWNER_TYPE>::getOwner()
+  {
+    //#if !(defined(NDEBUG))
+    //    return dynamic_cast<AbstractFactoryObject*>(getParent());
+    //#else
+    //    SDL_assert(dynamic_cast<AbstractFactoryObject*>(getParent()));
+    return dynamic_cast<AbstractFactoryObject *>(getParent());
+    //#endif
+
     //        return m_pOwner;
-}
+  }
 
-template <class OWNER_TYPE>
-const AbstractFactoryObject* AbstractStateMachine<OWNER_TYPE>::getOwner() const
-{
-//#if !(defined(NDEBUG))
-//    return dynamic_cast<const AbstractFactoryObject*>(getParent());
-//#else
-//    SDL_assert(dynamic_cast<const AbstractFactoryObject*>(getParent()));
-    return dynamic_cast<const AbstractFactoryObject*>(getParent());
-//#endif
-    
-    
+  template <class OWNER_TYPE>
+  const AbstractFactoryObject *
+  AbstractStateMachine<OWNER_TYPE>::getOwner() const
+  {
+    //#if !(defined(NDEBUG))
+    //    return dynamic_cast<const AbstractFactoryObject*>(getParent());
+    //#else
+    //    SDL_assert(dynamic_cast<const AbstractFactoryObject*>(getParent()));
+    return dynamic_cast<const AbstractFactoryObject *>(getParent());
+    //#endif
+
     //        return m_pOwner;
-}
+  }
 
-//    template <class OWNER_TYPE>
-//    void AbstractStateMachine<OWNER_TYPE>::setOwner(AbstractFactoryObject* owner)
-//    {
-//        m_pOwner = owner;
-//    }
+  //    template <class OWNER_TYPE>
+  //    void AbstractStateMachine<OWNER_TYPE>::setOwner(AbstractFactoryObject*
+  //    owner)
+  //    {
+  //        m_pOwner = owner;
+  //    }
 
-template <class OWNER_TYPE>
-bool AbstractStateMachine<OWNER_TYPE>::hasOwner() const
-{
+  template <class OWNER_TYPE>
+  bool AbstractStateMachine<OWNER_TYPE>::hasOwner() const
+  {
     return (NULL != getOwner());
-}
+  }
 
-template <class OWNER_TYPE>
-void AbstractStateMachine<OWNER_TYPE>::setState(AbstractState<OWNER_TYPE>* state)
-{
+  template <class OWNER_TYPE>
+  void
+  AbstractStateMachine<OWNER_TYPE>::setState(AbstractState<OWNER_TYPE> *state)
+  {
     m_pCurrentState = state;
-}
+  }
 
-template <class OWNER_TYPE>
-void AbstractStateMachine<OWNER_TYPE>::changeState(AbstractState<OWNER_TYPE>* state)
-{
+  template <class OWNER_TYPE>
+  void AbstractStateMachine<OWNER_TYPE>::changeState(
+      AbstractState<OWNER_TYPE> *state)
+  {
 
-    AbstractState<OWNER_TYPE>* theCurrentState = getState();
+    AbstractState<OWNER_TYPE> *theCurrentState = getState();
 
     m_pPreviousState = theCurrentState;
 
-    if (theCurrentState) {
-        theCurrentState->exit(dynamic_cast<OWNER_TYPE*>(getOwner()));
+    if (theCurrentState)
+      {
+        theCurrentState->exit(dynamic_cast<OWNER_TYPE *>(getOwner()));
         theCurrentState->enableCanDelete(true);
         //            theCurrentState->enableFinished(false);
-    }
+      }
 
     setState(state);
 
     theCurrentState = getState();
-    if (theCurrentState) {
-        theCurrentState->enter(dynamic_cast<OWNER_TYPE*>(getOwner()));
-    }
-}
+    if (theCurrentState)
+      {
+        theCurrentState->enter(dynamic_cast<OWNER_TYPE *>(getOwner()));
+      }
+  }
 }
 
 #endif

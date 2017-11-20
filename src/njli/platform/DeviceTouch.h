@@ -11,74 +11,62 @@
 
 #include "DeviceInputTime.h"
 //#include "JLIFactoryTypes.h"
+#include "Game.h"
 #include "btVector2.h"
 #include <string>
-#include "Game.h"
 
-namespace njli {
-class DeviceTouch : public DeviceInputTime {
-public:
+namespace njli
+{
+  class DeviceTouch : public DeviceInputTime
+  {
+  public:
     DeviceTouch()
-        : m_xpos(0)
-        , m_ypos(0)
-        , m_prev_xpos(0)
-        , m_prev_ypos(0)
-        , m_address(0)
-        , m_tapCount(0)
-        , m_touchIndex(0)
-        , m_touchTotal(0)
-    , m_scale(1.0f)
-    , m_pressure(0.0)
+        : m_xpos(0), m_ypos(0), m_prev_xpos(0), m_prev_ypos(0), m_address(0),
+          m_tapCount(0), m_touchIndex(0), m_touchTotal(0), m_scale(1.0f),
+          m_pressure(0.0)
     {
     }
 
-    DeviceTouch(const DeviceTouch& rhs)
-        : m_xpos(rhs.m_xpos)
-        , m_ypos(rhs.m_ypos)
-        , m_prev_xpos(rhs.m_prev_xpos)
-        , m_prev_ypos(rhs.m_prev_ypos)
-        , m_address(rhs.m_address)
-        , m_tapCount(rhs.m_tapCount)
-        , m_touchIndex(rhs.m_touchIndex)
-    , m_touchTotal(rhs.m_touchTotal)
-    , m_scale(rhs.m_scale)
-    , m_pressure(rhs.m_pressure)
+    DeviceTouch(const DeviceTouch &rhs)
+        : m_xpos(rhs.m_xpos), m_ypos(rhs.m_ypos), m_prev_xpos(rhs.m_prev_xpos),
+          m_prev_ypos(rhs.m_prev_ypos), m_address(rhs.m_address),
+          m_tapCount(rhs.m_tapCount), m_touchIndex(rhs.m_touchIndex),
+          m_touchTotal(rhs.m_touchTotal), m_scale(rhs.m_scale),
+          m_pressure(rhs.m_pressure)
     {
     }
 
-    DeviceTouch& operator=(const DeviceTouch& rhs)
+    DeviceTouch &operator=(const DeviceTouch &rhs)
     {
-        if (this != &rhs) {
-            m_xpos = rhs.m_xpos;
-            m_ypos = rhs.m_ypos;
-            m_prev_xpos = rhs.m_prev_xpos;
-            m_prev_ypos = rhs.m_prev_ypos;
+      if (this != &rhs)
+        {
+          m_xpos = rhs.m_xpos;
+          m_ypos = rhs.m_ypos;
+          m_prev_xpos = rhs.m_prev_xpos;
+          m_prev_ypos = rhs.m_prev_ypos;
 
-            m_address = rhs.m_address;
-            m_tapCount = rhs.m_tapCount;
-            m_touchIndex = rhs.m_touchIndex;
-            m_touchTotal = rhs.m_touchTotal;
-            m_scale = rhs.m_scale;
-            
-            m_pressure = rhs.m_pressure;
+          m_address = rhs.m_address;
+          m_tapCount = rhs.m_tapCount;
+          m_touchIndex = rhs.m_touchIndex;
+          m_touchTotal = rhs.m_touchTotal;
+          m_scale = rhs.m_scale;
+
+          m_pressure = rhs.m_pressure;
         }
-        return *this;
+      return *this;
     }
 
-    DeviceTouch(const void* touch, int n, int N)
-    {
-        set(touch, n, N);
-    }
+    DeviceTouch(const void *touch, int n, int N) { set(touch, n, N); }
 
     virtual ~DeviceTouch() {}
 
-    virtual const char* getClassName() const { return "DeviceTouch"; }
+    virtual const char *getClassName() const { return "DeviceTouch"; }
     virtual s32 getType() const { return 0; }
     operator std::string() const
     {
-        char buffer[1024];
+      char buffer[1024];
 
-        sprintf(buffer, "\n\
+      sprintf(buffer, "\n\
                     Current Pos [%.0f, %.0f]\n\
                     Previous Pos [%.0f, %.0f]\n\
                     Frame [%f]\n\
@@ -86,90 +74,84 @@ public:
                     Address [%lu]\n\
                     TapCount [%lu]\n\
                     Touch %d of %d\n",
-            m_xpos, m_ypos,
-            m_prev_xpos, m_prev_ypos,
-            //                    m_pos.x(), m_pos.y(),
-            //                    m_prev_pos.x(), m_prev_pos.y(),
-            getTimeStampFrame(), getTimeStampTick(),
-            m_address, m_tapCount,
-            m_touchIndex + 1, m_touchTotal);
-        return std::string(buffer);
+              m_xpos, m_ypos, m_prev_xpos, m_prev_ypos,
+              //                    m_pos.x(), m_pos.y(),
+              //                    m_prev_pos.x(), m_prev_pos.y(),
+              getTimeStampFrame(), getTimeStampTick(), m_address, m_tapCount,
+              m_touchIndex + 1, m_touchTotal);
+      return std::string(buffer);
     }
 
-    btVector2 getPosition() const
-    {
-        return btVector2(m_xpos,
-                         m_ypos);
-    }
+    btVector2 getPosition() const { return btVector2(m_xpos, m_ypos); }
     btVector2 getPreviousPosition() const
     {
-        return btVector2(m_prev_xpos,
-                         m_prev_ypos);
+      return btVector2(m_prev_xpos, m_prev_ypos);
     }
     unsigned int getAddress() const { return m_address; }
     unsigned int getTapCount() const { return m_tapCount; }
     unsigned int getTouchIndex() const { return m_touchIndex; }
     unsigned int getTouchTotal() const { return m_touchTotal; }
 
-    void set(const void* touch, int n, int N)
+    void set(const void *touch, int n, int N)
     {
-        convert(*this, touch);
+      convert(*this, touch);
 
-        m_touchIndex = n;
-        m_touchTotal = N;
+      m_touchIndex = n;
+      m_touchTotal = N;
     }
     void set(u32 x, u32 y, int n, int N, float scaleFactor)
     {
-        setTimeStampFrame(0);
-        m_xpos = x * scaleFactor;
-        m_ypos = y * scaleFactor;
-        m_prev_xpos = 0;
-        m_prev_ypos = 0;
-        m_address = 0;
-        m_tapCount = 0;
-        m_scale = scaleFactor;
-    }
-    
-//    void set(SDL_Finger *finger)
-//    {
-//        
-//        setTimeStampFrame(0);
-//        m_prev_xpos = m_xpos;
-//        m_prev_ypos = m_ypos;
-//        m_xpos = finger->x * njli::NJLIGameEngine::width();
-//        m_ypos = finger->y * njli::NJLIGameEngine::height();
-//        m_address = finger->id;
-//        m_pressure = finger->pressure;
-//    }
-    
-    void set(int touchDevId, int pointerFingerId, int eventType, float x, float y, float dx, float dy, float pressure)
-    {
-        setTimeStampFrame(0);
-        m_prev_xpos = m_xpos;
-        m_prev_ypos = m_ypos;
-        m_xpos = x;
-        m_ypos = y;
-        m_address = pointerFingerId;
-        m_pressure = pressure;
-    }
-    
-    void set(u32 x, u32 y)
-    {
-        setTimeStampFrame(0);
-        m_prev_xpos = m_xpos;
-        m_prev_ypos = m_ypos;
-        m_xpos = x ;
-        m_ypos = y ;
-        m_address = 0;
-        m_pressure = 0;
+      setTimeStampFrame(0);
+      m_xpos = x * scaleFactor;
+      m_ypos = y * scaleFactor;
+      m_prev_xpos = 0;
+      m_prev_ypos = 0;
+      m_address = 0;
+      m_tapCount = 0;
+      m_scale = scaleFactor;
     }
 
-    float getScale()const {return m_scale ;}
+    //    void set(SDL_Finger *finger)
+    //    {
+    //
+    //        setTimeStampFrame(0);
+    //        m_prev_xpos = m_xpos;
+    //        m_prev_ypos = m_ypos;
+    //        m_xpos = finger->x * njli::NJLIGameEngine::width();
+    //        m_ypos = finger->y * njli::NJLIGameEngine::height();
+    //        m_address = finger->id;
+    //        m_pressure = finger->pressure;
+    //    }
+
+    void set(int touchDevId, int pointerFingerId, int eventType, float x,
+             float y, float dx, float dy, float pressure)
+    {
+      setTimeStampFrame(0);
+      m_prev_xpos = m_xpos;
+      m_prev_ypos = m_ypos;
+      m_xpos = x;
+      m_ypos = y;
+      m_address = pointerFingerId;
+      m_pressure = pressure;
+    }
+
+    void set(u32 x, u32 y)
+    {
+      setTimeStampFrame(0);
+      m_prev_xpos = m_xpos;
+      m_prev_ypos = m_ypos;
+      m_xpos = x;
+      m_ypos = y;
+      m_address = 0;
+      m_pressure = 0;
+    }
+
+    float getScale() const { return m_scale; }
 
     static const u8 MAX_TOUCHES;
 
-private:
-    void convert(DeviceTouch& t, const void* touch);
+  private:
+    void convert(DeviceTouch &t, const void *touch);
 
     f32 m_xpos;
     f32 m_ypos;
@@ -181,7 +163,7 @@ private:
     u32 m_touchTotal;
     f32 m_scale;
     f32 m_pressure;
-};
+  };
 }
 
 #endif /* defined(__JLIGameEngineTest__DeviceTouch__) */

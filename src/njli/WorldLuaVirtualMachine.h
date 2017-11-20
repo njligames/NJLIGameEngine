@@ -15,8 +15,8 @@
 #include "lua.hpp"
 
 #include "AbstractState.h"
-#include "DeviceTouch.h"
 #include "DeviceMouse.h"
+#include "DeviceTouch.h"
 #include "Node.h"
 #include "Scene.h"
 #include "btDispatcher.h"
@@ -25,12 +25,13 @@
 #include "Action.h"
 #include "PhysicsRayContact.h"
 #include "btAlignedObjectArray.h"
-#include "btAlignedObjectArray.h"
 
-namespace njli {
-/// <#Description#>
-class WorldLuaVirtualMachine : public AbstractObject {
-public:
+namespace njli
+{
+  /// <#Description#>
+  class WorldLuaVirtualMachine : public AbstractObject
+  {
+  public:
     using AbstractDecorator::setName;
     using AbstractDecorator::getName;
 
@@ -57,7 +58,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    virtual const char* getClassName() const;
+    virtual const char *getClassName() const;
 
     /**
          *  @author James Folk, 16-02-11 18:02:21
@@ -93,7 +94,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    bool loadFile(const char* filePath);
+    bool loadFile(const char *filePath);
 
     /**
          *  @author James Folk, 16-02-11 18:02:37
@@ -104,7 +105,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    bool loadString(const char* code);
+    bool loadString(const char *code);
 
     /**
          *  @author James Folk, 16-02-11 18:02:43
@@ -115,7 +116,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    bool doFile(const char* filePath);
+    bool doFile(const char *filePath);
 
     /**
          *  @author James Folk, 16-02-11 18:02:46
@@ -126,7 +127,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    bool doString(const char* code);
+    bool doString(const char *code);
 
     /**
          *  @author James Folk, 16-02-11 18:02:48
@@ -144,7 +145,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    bool execute(const char* code);
+    bool execute(const char *code);
 
     /**
          *  @author James Folk, 16-02-11 18:02:57
@@ -156,7 +157,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    bool execute(const char* code, const char* str);
+    bool execute(const char *code, const char *str);
 
     /**
          *  @author James Folk, 16-02-11 18:02:00
@@ -168,7 +169,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    bool execute(const char* code, s32 num);
+    bool execute(const char *code, s32 num);
 
     /**
          *  @author James Folk, 16-02-11 18:02:04
@@ -180,7 +181,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    bool execute(const char* code, f32 num);
+    bool execute(const char *code, f32 num);
 
     /**
          *  @author James Folk, 16-02-11 18:02:10
@@ -193,7 +194,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    bool execute(const char* code, const Telegram& tele, bool& b);
+    bool execute(const char *code, const Telegram &tele, bool &b);
 
     /**
          *  @author James Folk, 16-02-11 18:02:15
@@ -205,8 +206,8 @@ public:
          *
          *  @return <#return value description#>
          */
-    bool execute(const char* code, Scene* scene);
-    
+    bool execute(const char *code, Scene *scene);
+
     /**
      <#Description#>
 
@@ -216,7 +217,7 @@ public:
 
      @return <#return value description#>
      */
-    bool execute(const char *code, Scene *scene, const char* str);
+    bool execute(const char *code, Scene *scene, const char *str);
 
     /**
          *  @author James Folk, 16-02-11 18:02:19
@@ -229,7 +230,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    bool execute(const char* code, Scene* scene, f32 num);
+    bool execute(const char *code, Scene *scene, f32 num);
 
     /**
          *  @author James Folk, 16-02-11 18:02:23
@@ -243,7 +244,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    bool execute(const char* code, Scene* scene, const Telegram& tele, bool& b);
+    bool execute(const char *code, Scene *scene, const Telegram &tele, bool &b);
 
     /**
          *  @author James Folk, 16-02-11 18:02:28
@@ -255,7 +256,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    bool execute(const char* code, Node* node);
+    bool execute(const char *code, Node *node);
 
     /**
          *  @author James Folk, 16-02-11 18:02:31
@@ -268,7 +269,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    bool execute(const char* code, Node* node, f32 num);
+    bool execute(const char *code, Node *node, f32 num);
 
     /**
          *  @author James Folk, 16-02-11 18:02:35
@@ -282,9 +283,8 @@ public:
          *
          *  @return <#return value description#>
          */
-    bool execute(const char* code, Node* node, const Telegram& tele, bool& b);
+    bool execute(const char *code, Node *node, const Telegram &tele, bool &b);
 
-    
     /**
      <#Description#>
 
@@ -292,9 +292,8 @@ public:
      @param touches <#touches description#>
      @return <#return value description#>
      */
-    bool execute(const char* code, DeviceTouch** touches);
-    
-    
+    bool execute(const char *code, DeviceTouch **touches);
+
     /**
      <#Description#>
 
@@ -302,8 +301,8 @@ public:
      @param touch <#touch description#>
      @return <#return value description#>
      */
-    bool execute(const char* code, const DeviceTouch &touch);
-    
+    bool execute(const char *code, const DeviceTouch &touch);
+
     /**
      <#Description#>
 
@@ -311,9 +310,8 @@ public:
      @param mouse <#mouse description#>
      @return <#return value description#>
      */
-    bool execute(const char* code, const DeviceMouse &mouse);
-    
-    
+    bool execute(const char *code, const DeviceMouse &mouse);
+
     /**
      <#Description#>
 
@@ -323,7 +321,7 @@ public:
      @return <#return value description#>
      */
     bool execute(const char *code, Scene *pEntity, DeviceTouch **touches);
-    
+
     /**
      <#Description#>
 
@@ -333,7 +331,7 @@ public:
      @return <#return value description#>
      */
     bool execute(const char *code, Scene *pEntity, const DeviceTouch &touch);
-    
+
     /**
      <#Description#>
 
@@ -356,7 +354,8 @@ public:
          *
          *  @return <#return value description#>
          */
-    bool execute(const char* code, Node* node, Node* node2, const btManifoldPoint& mani);
+    bool execute(const char *code, Node *node, Node *node2,
+                 const btManifoldPoint &mani);
 
     /**
          *  @author James Folk, 16-02-11 18:02:47
@@ -370,7 +369,8 @@ public:
          *
          *  @return <#return value description#>
          */
-    bool execute(const char* code, Node* node, Node* node2, const btDispatcherInfo& mani);
+    bool execute(const char *code, Node *node, Node *node2,
+                 const btDispatcherInfo &mani);
 
     /**
          *  @author James Folk, 16-02-11 18:02:51
@@ -382,7 +382,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    bool execute(const char* code, const PhysicsRayContact& rayContact);
+    bool execute(const char *code, const PhysicsRayContact &rayContact);
 
     /**
          *  @author James Folk, 16-02-11 18:02:55
@@ -394,9 +394,11 @@ public:
          *
          *  @return <#return value description#>
          */
-    bool execute(const char* code, const btAlignedObjectArray<njli::PhysicsRayContact*>& rayContacts);
-    
-    bool execute(const char* code, s32 width, s32 height, s32 orientation);
+    bool
+    execute(const char *code,
+            const btAlignedObjectArray<njli::PhysicsRayContact *> &rayContacts);
+
+    bool execute(const char *code, s32 width, s32 height, s32 orientation);
 
     /**
          *  @author James Folk, 16-02-11 18:02:58
@@ -408,7 +410,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    bool execute(const char* code, Action* action);
+    bool execute(const char *code, Action *action);
 
     /**
          *  @author James Folk, 16-02-11 18:02:02
@@ -421,9 +423,8 @@ public:
          *
          *  @return <#return value description#>
          */
-    bool execute(const char* code, Action* action, f32 num);
-    
-    
+    bool execute(const char *code, Action *action, f32 num);
+
     /**
      <#Description#>
 
@@ -434,7 +435,7 @@ public:
      @return <#return value description#>
      */
     bool execute(const char *code, Node *pEntity, DeviceTouch **touches);
-    
+
     /**
      <#Description#>
 
@@ -444,7 +445,7 @@ public:
      @return <#return value description#>
      */
     bool execute(const char *code, Node *pEntity, const DeviceTouch &touch);
-    
+
     /**
      <#Description#>
 
@@ -454,7 +455,7 @@ public:
      @return <#return value description#>
      */
     bool execute(const char *code, Node *pEntity, const DeviceMouse &mouse);
-    
+
     /**
      <#Description#>
 
@@ -464,8 +465,8 @@ public:
 
      @return <#return value description#>
      */
-    bool execute(const char *code, Node *node, const char* str);
-    
+    bool execute(const char *code, Node *node, const char *str);
+
     /**
          *  @author James Folk, 16-02-11 18:02:04
          *
@@ -492,18 +493,18 @@ public:
          *  @return <#return value description#>
          */
     bool compile();
-    
+
     bool compileString(const char *code);
     bool compileFile(const char *filePath);
 
     /**
          <#Description#>
-         
+
          - returns: <#return value description#>
          */
     void init();
-//    int initLua(int argc, char **argv);
-//    lua_State *init(int argc, char **argv);
+    //    int initLua(int argc, char **argv);
+    //    lua_State *init(int argc, char **argv);
 
     /**
          *  @author James Folk, 16-02-11 18:02:16
@@ -511,45 +512,43 @@ public:
          *  @brief <#Description#>
          */
     void unInit();
-    
+
     bool error(const char *description);
-    
+
     /*
      ** Do the REPL: repeatedly read (load) a line, evaluate (call) it, and
      ** print any results.
      */
-//    void doREPL ();
+    //    void doREPL ();
 
-protected:
-    void getError(const char* code, int error);
+  protected:
+    void getError(const char *code, int error);
 
-    lua_State* m_lua_State;
+    lua_State *m_lua_State;
 
-private:
-    WorldLuaVirtualMachine(const WorldLuaVirtualMachine&);
-    WorldLuaVirtualMachine& operator=(const WorldLuaVirtualMachine&);
+  private:
+    WorldLuaVirtualMachine(const WorldLuaVirtualMachine &);
+    WorldLuaVirtualMachine &operator=(const WorldLuaVirtualMachine &);
 
     //        swig_type_info* typeinfo = SWIG_TypeQuery( m_L, "njli::Scene" );
-//    swig_type_info* m_SceneTypeInfo;
-//    swig_type_info* m_TelegramTypeInfo;
-//    swig_type_info* m_NodeTypeInfo;
-//    swig_type_info* m_DeviceTouchTypeInfo;
-//    swig_type_info* m_PhysicsRayContactTypeInfo;
-//    swig_type_info* m_ActionTypeInfo;
-    
-private:
+    //    swig_type_info* m_SceneTypeInfo;
+    //    swig_type_info* m_TelegramTypeInfo;
+    //    swig_type_info* m_NodeTypeInfo;
+    //    swig_type_info* m_DeviceTouchTypeInfo;
+    //    swig_type_info* m_PhysicsRayContactTypeInfo;
+    //    swig_type_info* m_ActionTypeInfo;
+
+  private:
     static std::string m_previousMessage;
     static lua_State *globalL;
-    static void lstop (lua_State *L, lua_Debug *ar);
-    static void laction (int i);
-    static int msghandler (lua_State *L);
-    static int docall (lua_State *L, int narg, int nres);
-    
-    static void l_message (const char *pname, const char *msg);
-//    static int report (lua_State *L, int status);
-    
-    
-};
+    static void lstop(lua_State *L, lua_Debug *ar);
+    static void laction(int i);
+    static int msghandler(lua_State *L);
+    static int docall(lua_State *L, int narg, int nres);
+
+    static void l_message(const char *pname, const char *msg);
+    //    static int report (lua_State *L, int status);
+  };
 }
 
 #endif /* defined(__JLIGameEngineTest__WorldLuaVirtualMachine__) */

@@ -12,38 +12,39 @@
 #include "AbstractBuilder.h"
 #include "AbstractFactoryObject.h"
 
+#include "JLIFactoryTypes.h"
+#include "WorldResourceLoader.h"
 #include "btVector2.h"
 #include "btVector3.h"
 #include "lua.hpp"
-#include "JLIFactoryTypes.h"
-#include "WorldResourceLoader.h"
 
 //#include "PVRTTexture.h"
 
-namespace njli {
-class ImageBuilder;
-
-/**
-     *  <#Description#>
-     */
-ATTRIBUTE_ALIGNED16(class)
-Image : public AbstractFactoryObject
+namespace njli
 {
+  class ImageBuilder;
+
+  /**
+       *  <#Description#>
+       */
+  ATTRIBUTE_ALIGNED16(class)
+  Image : public AbstractFactoryObject
+  {
     friend class WorldFactory;
     friend class WorldResourceLoader;
 
-protected:
+  protected:
     Image();
-    Image(const AbstractBuilder&);
-    Image(const Image&);
+    Image(const AbstractBuilder &);
+    Image(const Image &);
     BT_DECLARE_ALIGNED_ALLOCATOR();
     virtual ~Image();
 
-public:
+  public:
     using AbstractDecorator::setName;
     using AbstractDecorator::getName;
     using AbstractFactoryObject::create;
-//    using AbstractFactoryObject::clone;
+    //    using AbstractFactoryObject::clone;
     using AbstractFactoryObject::getPointer;
     using AbstractFactoryObject::getPointerValue;
     using AbstractFactoryObject::serializeObject;
@@ -55,7 +56,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    Image& operator=(const Image&);
+    Image &operator=(const Image &);
 
     /**
          *  <#Description#>
@@ -72,14 +73,14 @@ public:
          *  @param dataBuffer   <#dataBuffer description#>
          *  @param btSerializer <#btSerializer description#>
          */
-    virtual void serialize(void* dataBuffer, btSerializer*) const;
+    virtual void serialize(void *dataBuffer, btSerializer *) const;
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    virtual const char* getClassName() const;
+    virtual const char *getClassName() const;
     /**
          *  <#Description#>
          *
@@ -100,7 +101,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Image** createArray(const u32 size);
+    static Image **createArray(const u32 size);
     /**
          *  <#Description#>
          *
@@ -112,7 +113,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Image* create();
+    static Image *create();
     /**
          *  <#Description#>
          *
@@ -120,7 +121,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Image* create(const ImageBuilder& builder);
+    static Image *create(const ImageBuilder &builder);
     /**
          *  <#Description#>
          *
@@ -128,7 +129,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Image* clone(const Image& object);
+    static Image *clone(const Image &object);
     /**
          *  <#Description#>
          *
@@ -136,7 +137,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Image* copy(const Image& object);
+    static Image *copy(const Image &object);
     /**
          *  <#Description#>
          *
@@ -158,7 +159,7 @@ public:
          */
     static u32 type();
 
-public:
+  public:
     /**
          *  <#Description#>
          *
@@ -168,9 +169,11 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Image* createSubImage(const Image& imageSource, const btVector2& position, const btVector2& dimensions);
+    static Image *createSubImage(const Image &imageSource,
+                                 const btVector2 &position,
+                                 const btVector2 &dimensions);
 
-    //TODO: fill in specific methods for Image
+    // TODO: fill in specific methods for Image
     /**
          *  <#Description#>
          *
@@ -179,7 +182,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    bool setPixel(const btVector2& position, const btVector4& color);
+    bool setPixel(const btVector2 &position, const btVector4 &color);
     /**
          *  <#Description#>
          *
@@ -188,7 +191,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    bool setPixel(const btVector2& position, const Image& imageSource);
+    bool setPixel(const btVector2 &position, const Image &imageSource);
     /**
          *  <#Description#>
          *
@@ -197,10 +200,8 @@ public:
          *
          *  @return <#return value description#>
          */
-    bool getPixel(const btVector2& position, btVector4& pixel) const;
-    btVector4 getPixel(const btVector2 &position)const;
-    
-    
+    bool getPixel(const btVector2 &position, btVector4 &pixel) const;
+    btVector4 getPixel(const btVector2 &position) const;
 
     /**
          *  <#Description#>
@@ -211,9 +212,8 @@ public:
          *
          *  @return <#return value description#>
          */
-    bool setPixels(const btVector2& position,
-        const btVector2& dimensions,
-        const btVector4& color);
+    bool setPixels(const btVector2 &position, const btVector2 &dimensions,
+                   const btVector4 &color);
 
     /**
          *  <#Description#>
@@ -226,10 +226,9 @@ public:
          *
          *  @return <#return value description#>
          */
-    bool setPixels(const btVector2& position,
-        const btVector2& dimensions,
-        const Image& sourceImage,
-        const btVector2& sourceImageOffset = btVector2(0, 0));
+    bool setPixels(const btVector2 &position, const btVector2 &dimensions,
+                   const Image &sourceImage,
+                   const btVector2 &sourceImageOffset = btVector2(0, 0));
 
     /**
          *  <#Description#>
@@ -242,10 +241,10 @@ public:
          *
          *  @return <#return value description#>
          */
-    bool getPixels(const btVector2& position,
-        const btVector2& dimension,
-        Image& destinationImage,
-        const btVector2& destinationImageOffset = btVector2(0, 0)) const;
+    bool getPixels(const btVector2 &position, const btVector2 &dimension,
+                   Image &destinationImage,
+                   const btVector2 &destinationImageOffset = btVector2(0, 0))
+        const;
 
     /**
          *  <#Description#>
@@ -270,36 +269,35 @@ public:
          *
          *  @return <#return value description#>
          */
-    const char* getFilename() const;
+    const char *getFilename() const;
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
     u8 getBytesPerPixel() const;
-    
-    
-    u8 *getDataPtr()const;
-    long getDataSize()const;
-    
+
+    u8 *getDataPtr() const;
+    long getDataSize() const;
+
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-//    const u8* getDataRaw() const;
-    
-    bool isPvr()const;
-    bool isCompressed()const;
-    
-    njliImageType getImageType()const;
-    
+    //    const u8* getDataRaw() const;
+
+    bool isPvr() const;
+    bool isCompressed() const;
+
+    njliImageType getImageType() const;
+
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-//    u8* getDataRaw();
+    //    u8* getDataRaw();
     /**
          *  <#Description#>
          *
@@ -312,9 +310,11 @@ public:
          *  @param 1.0f               <#1.0f description#>
          *  @param 0.0f               <#0.0f description#>
          */
-//    void setDataRaw(u32 width, u32 height, u8 numberOfComponents, const u8* const, const btVector4& fillColor = btVector4(1.0f, 1.0f, 1.0f, 0.0f));
-//    void copy(const char *fileName);
-    
+    //    void setDataRaw(u32 width, u32 height, u8 numberOfComponents, const
+    //    u8* const, const btVector4& fillColor = btVector4(1.0f, 1.0f, 1.0f,
+    //    0.0f));
+    //    void copy(const char *fileName);
+
     /**
          *  <#Description#>
          *
@@ -326,13 +326,15 @@ public:
          *  @param 1.0f               <#1.0f description#>
          *  @param 1.0f               <#1.0f description#>
          */
-    void generate(u32 width, u32 height, u8 numberOfComponents, const btVector4& fillColor = btVector4(1.0f, 1.0f, 1.0f, 1.0f));
+    void generate(u32 width, u32 height, u8 numberOfComponents,
+                  const btVector4 &fillColor =
+                      btVector4(1.0f, 1.0f, 1.0f, 1.0f));
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-//    u64 getDataRawLength() const;
+    //    u64 getDataRawLength() const;
 
     /**
          *  <#Description#>
@@ -341,7 +343,8 @@ public:
          *  @param to    <#to description#>
          *  @param color <#color description#>
          */
-    void drawLine(const btVector2& from, const btVector2& to, const btVector4& color);
+    void drawLine(const btVector2 &from, const btVector2 &to,
+                  const btVector4 &color);
 
     /**
          *  <#Description#>
@@ -350,7 +353,8 @@ public:
          *  @param to          <#to description#>
          *  @param imageSource <#imageSource description#>
          */
-    void drawLine(const btVector2& from, const btVector2& to, const Image& imageSource);
+    void drawLine(const btVector2 &from, const btVector2 &to,
+                  const Image &imageSource);
 
     /**
          *  <#Description#>
@@ -363,7 +367,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    bool setAlpha(const Image& image);
+    bool setAlpha(const Image &image);
     /**
          *  <#Description#>
          *
@@ -386,30 +390,37 @@ public:
          *  <#Description#>
          */
     void flip();
-    
-    void rotate();
-    
-//    void setPVRData(u8 *pvrData, unsigned long dataSize, const char *fileName);
-//    u8 *getCompressedData()const;
 
-    //get the pixel row
-    std::vector<btVector4> operator[] (u32 row);
-protected:
-    bool copyData(void *dataPtr, long dataSize, s32 width, s32 height, s32 components, njliImageType imageType, const std::string &filename);
-    
+    void rotate();
+
+    //    void setPVRData(u8 *pvrData, unsigned long dataSize, const char
+    //    *fileName);
+    //    u8 *getCompressedData()const;
+
+    // get the pixel row
+    std::vector<btVector4> operator[](u32 row);
+
+  protected:
+    bool copyData(void *dataPtr, long dataSize, s32 width, s32 height,
+                  s32 components, njliImageType imageType,
+                  const std::string &filename);
+
     bool copyData(const WorldResourceLoader::ImageFileData *fileData);
     u32 getClosestValidGLDim(const u32 dim) const;
-//    void setDataRawFromWorldResourceLoader(u8*, u32 x, u32 y, u8 numberOfComponents, const char* filename);
-//    bool isInWorldResourceLoader() const;
+    //    void setDataRawFromWorldResourceLoader(u8*, u32 x, u32 y, u8
+    //    numberOfComponents, const char* filename);
+    //    bool isInWorldResourceLoader() const;
 
     void setPixelRow(u8 * data, u32 row, u32 width, u32 xOffset = 0);
     void getPixelRow(u8 * data, u32 row, u32 width);
-    
 
-    u8* createFillRow_createsmemory(s32 xOffset, s32 fillWidth, const btVector4& fillColor = btVector4(1.0f, 1.0f, 1.0f, 1.0f));
+    u8 *createFillRow_createsmemory(s32 xOffset, s32 fillWidth,
+                                    const btVector4 &fillColor =
+                                        btVector4(1.0f, 1.0f, 1.0f, 1.0f));
 
-private:
-    // An output image with N components has the following components interleaved
+  private:
+    // An output image with N components has the following components
+    // interleaved
     // in this order in each pixel:
     //
     //     N=#comp     components
@@ -418,21 +429,21 @@ private:
     //       3           red, green, blue
     //       4           red, green, blue, alpha
 
-    u8* m_RawData;
+    u8 *m_RawData;
 
     long m_RawDataSize;
     njliImageType m_njliImageType;
-    
+
     u32 m_Width;
     u32 m_Height;
     u8 m_Componenents;
-    
+
     std::string m_Filename;
-//    bool m_hasAlpha;
-    
-//    bool m_IsInWorldResourceLoader;
-//    unsigned long m_pvrDataSize;
-};
+    //    bool m_hasAlpha;
+
+    //    bool m_IsInWorldResourceLoader;
+    //    unsigned long m_pvrDataSize;
+  };
 }
 
 #endif /* defined(__JLIGameEngineTest__Image__) */

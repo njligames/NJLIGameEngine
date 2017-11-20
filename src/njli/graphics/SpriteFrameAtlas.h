@@ -15,18 +15,18 @@
 #include "AbstractFactoryObject.h"
 #include "btAlignedObjectArray.h"
 #include "lua.hpp"
-#include "lua.hpp"
 
 class btVector2;
 
-namespace njli {
-/**
-     *  <#Description#>
-     */
-ATTRIBUTE_ALIGNED16(class)
-Rect
+namespace njli
 {
-public:
+  /**
+       *  <#Description#>
+       */
+  ATTRIBUTE_ALIGNED16(class)
+  Rect
+  {
+  public:
     /**
      *  <#Description#>
      */
@@ -34,7 +34,7 @@ public:
     /**
      *  <#Description#>
      */
-    Rect(const Rect& copy);
+    Rect(const Rect &copy);
     /**
      *  <#Description#>
      *
@@ -42,7 +42,7 @@ public:
      *
      *  @return <#return value description#>
      */
-    Rect& operator=(const Rect& rhs);
+    Rect &operator=(const Rect &rhs);
     /**
      *  <#Description#>
      *
@@ -104,32 +104,32 @@ public:
      *
      *  @param offset <#offset description#>
      */
-    void setOffset(const btVector2& offset);
+    void setOffset(const btVector2 &offset);
     /**
      *  <#Description#>
      *
      *  @param dimension <#dimension description#>
      */
-    void setDimension(const btVector2& dimension);
+    void setDimension(const btVector2 &dimension);
 
     /**
      *  <#Description#>
      *
      *  @param dimension <#dimension description#>
      */
-    void setDimensionFile(const btVector2& dimension);
+    void setDimensionFile(const btVector2 &dimension);
     /**
      *  <#Description#>
      *
      *  @param pivotPoint <#pivotPoint description#>
      */
-    void setPivotPoint(const btVector2& pivotPoint);
+    void setPivotPoint(const btVector2 &pivotPoint);
     /**
      *  <#Description#>
      *
      *  @param trimmedname <#trimmedname description#>
      */
-    void setTrimmedName(const char* trimmedname);
+    void setTrimmedName(const char *trimmedname);
 
     bool finishedPopulating() const;
     void resetPopulation();
@@ -139,31 +139,31 @@ public:
      *
      *  @return <#return value description#>
      */
-    const btVector2& getOffset() const;
+    const btVector2 &getOffset() const;
     /**
      *  <#Description#>
      *
      *  @return <#return value description#>
      */
-    const btVector2& getDimension() const;
+    const btVector2 &getDimension() const;
     /**
      *  <#Description#>
      *
      *  @return <#return value description#>
      */
-    const btVector2& getDimensionFile() const;
+    const btVector2 &getDimensionFile() const;
     /**
      *  <#Description#>
      *
      *  @return <#return value description#>
      */
-    const btVector2& getPivotPoint() const;
+    const btVector2 &getPivotPoint() const;
     /**
      *  <#Description#>
      *
      *  @return <#return value description#>
      */
-    const std::string& getTrimmedName() const;
+    const std::string &getTrimmedName() const;
 
     operator std::string() const;
 
@@ -172,47 +172,47 @@ public:
     void setSourceWidth(const f32 width);
     void setSourceHeight(const f32 height);
 
-    const btVector2& getSource() const;
-    const btVector2& getSourceDimension() const;
+    const btVector2 &getSource() const;
+    const btVector2 &getSourceDimension() const;
 
-private:
-    btVector2* offset;
-    btVector2* dimension;
-    btVector2* dimensionFile;
-    btVector2* pivotPoint;
+  private:
+    btVector2 *offset;
+    btVector2 *dimension;
+    btVector2 *dimensionFile;
+    btVector2 *pivotPoint;
     std::string trimmedname;
-    btVector2* sourcePosition;
-    btVector2* sourceDimension;
+    btVector2 *sourcePosition;
+    btVector2 *sourceDimension;
 
     s32 populationCount;
-};
+  };
 
-class SpriteFrameAtlasBuilder;
+  class SpriteFrameAtlasBuilder;
 
-/**
- *  <#Description#>
- */
-ATTRIBUTE_ALIGNED16(class)
-SpriteFrameAtlas : public AbstractFactoryObject
-{
+  /**
+   *  <#Description#>
+   */
+  ATTRIBUTE_ALIGNED16(class)
+  SpriteFrameAtlas : public AbstractFactoryObject
+  {
     friend class WorldFactory;
 
-protected:
+  protected:
     SpriteFrameAtlas();
-    SpriteFrameAtlas(const AbstractBuilder&);
-    SpriteFrameAtlas(const SpriteFrameAtlas&);
+    SpriteFrameAtlas(const AbstractBuilder &);
+    SpriteFrameAtlas(const SpriteFrameAtlas &);
     BT_DECLARE_ALIGNED_ALLOCATOR();
     virtual ~SpriteFrameAtlas();
-    SpriteFrameAtlas& operator=(const SpriteFrameAtlas&);
+    SpriteFrameAtlas &operator=(const SpriteFrameAtlas &);
 
     static s32 countParameters;
     static njli::Rect rect;
 
-public:
+  public:
     using AbstractDecorator::setName;
     using AbstractDecorator::getName;
     using AbstractFactoryObject::create;
-//    using AbstractFactoryObject::clone;
+    //    using AbstractFactoryObject::clone;
     using AbstractFactoryObject::getPointer;
     using AbstractFactoryObject::getPointerValue;
     using AbstractFactoryObject::serializeObject;
@@ -228,14 +228,14 @@ public:
          *
          *  @param btSerializer <#btSerializer description#>
          */
-    virtual void serialize(void*, btSerializer*) const;
+    virtual void serialize(void *, btSerializer *) const;
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    virtual const char* getClassName() const;
+    virtual const char *getClassName() const;
     /**
          *  <#Description#>
          *
@@ -256,7 +256,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static SpriteFrameAtlas** createArray(const u32 size);
+    static SpriteFrameAtlas **createArray(const u32 size);
     /**
          *  <#Description#>
          *
@@ -268,7 +268,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static SpriteFrameAtlas* create();
+    static SpriteFrameAtlas *create();
     /**
          *  <#Description#>
          *
@@ -276,7 +276,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static SpriteFrameAtlas* create(const SpriteFrameAtlasBuilder& builder);
+    static SpriteFrameAtlas *create(const SpriteFrameAtlasBuilder &builder);
     /**
          *  <#Description#>
          *
@@ -284,7 +284,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static SpriteFrameAtlas* clone(const SpriteFrameAtlas& object);
+    static SpriteFrameAtlas *clone(const SpriteFrameAtlas &object);
     /**
          *  <#Description#>
          *
@@ -292,7 +292,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static SpriteFrameAtlas* copy(const SpriteFrameAtlas& object);
+    static SpriteFrameAtlas *copy(const SpriteFrameAtlas &object);
     /**
          *  <#Description#>
          *
@@ -314,14 +314,14 @@ public:
          */
     static u32 type();
 
-public:
-    //TODO: fill in specific methods for SpriteFrameAtlas
+  public:
+    // TODO: fill in specific methods for SpriteFrameAtlas
     /**
          *  <#Description#>
          *
          *  @param filename <#filename description#>
          */
-    void setSourceFilename(const char* filename);
+    void setSourceFilename(const char *filename);
     /**
          *  <#Description#>
          *
@@ -348,7 +348,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    const Rect& getFrame(const char* name) const;
+    const Rect &getFrame(const char *name) const;
     /**
          *  <#Description#>
          *
@@ -356,14 +356,14 @@ public:
          *
          *  @return <#return value description#>
          */
-    const Rect& getFrame(int index) const;
+    const Rect &getFrame(int index) const;
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const std::string& getSourceFilename() const;
+    const std::string &getSourceFilename() const;
     /**
          *  <#Description#>
          *
@@ -375,15 +375,15 @@ public:
          *
          *  @return <#return value description#>
          */
-    const btVector2& contentDimension() const;
+    const btVector2 &contentDimension() const;
 
-protected:
-private:
+  protected:
+  private:
     std::string m_SourceFilename;
-    btVector2* m_ContentDimension;
+    btVector2 *m_ContentDimension;
     btAlignedObjectArray<Rect> m_Frames;
     //        btHashMap<btHashString, Rect> m_FrameNames;
-};
+  };
 }
 
 #endif /* defined(__JLIGameEngineTest__SpriteFrameAtlas__) */

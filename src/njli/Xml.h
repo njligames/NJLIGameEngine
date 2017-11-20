@@ -13,30 +13,31 @@
 #include "AbstractFactoryObject.h"
 #include "lua.hpp"
 
-namespace njli {
-class XmlBuilder;
-
-/**
-     *  <#Description#>
-     */
-ATTRIBUTE_ALIGNED16(class)
-Xml : public AbstractFactoryObject
+namespace njli
 {
+  class XmlBuilder;
+
+  /**
+       *  <#Description#>
+       */
+  ATTRIBUTE_ALIGNED16(class)
+  Xml : public AbstractFactoryObject
+  {
     friend class WorldFactory;
 
-protected:
+  protected:
     Xml();
-    Xml(const AbstractBuilder&);
-    Xml(const Xml&);
+    Xml(const AbstractBuilder &);
+    Xml(const Xml &);
     BT_DECLARE_ALIGNED_ALLOCATOR();
     virtual ~Xml();
-    Xml& operator=(const Xml&);
+    Xml &operator=(const Xml &);
 
-public:
+  public:
     using AbstractDecorator::setName;
     using AbstractDecorator::getName;
     using AbstractFactoryObject::create;
-//    using AbstractFactoryObject::clone;
+    //    using AbstractFactoryObject::clone;
     using AbstractFactoryObject::getPointer;
     using AbstractFactoryObject::getPointerValue;
     using AbstractFactoryObject::serializeObject;
@@ -52,14 +53,14 @@ public:
          *
          *  @param btSerializer <#btSerializer description#>
          */
-    virtual void serialize(void*, btSerializer*) const;
+    virtual void serialize(void *, btSerializer *) const;
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    virtual const char* getClassName() const;
+    virtual const char *getClassName() const;
     /**
          *  <#Description#>
          *
@@ -80,7 +81,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Xml** createArray(const u32 size);
+    static Xml **createArray(const u32 size);
     /**
          *  <#Description#>
          *
@@ -92,7 +93,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Xml* create();
+    static Xml *create();
     /**
          *  <#Description#>
          *
@@ -100,7 +101,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Xml* create(const XmlBuilder& builder);
+    static Xml *create(const XmlBuilder &builder);
     /**
          *  <#Description#>
          *
@@ -108,7 +109,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Xml* clone(const Xml& object);
+    static Xml *clone(const Xml &object);
     /**
          *  <#Description#>
          *
@@ -116,7 +117,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Xml* copy(const Xml& object);
+    static Xml *copy(const Xml &object);
     /**
          *  <#Description#>
          *
@@ -138,11 +139,11 @@ public:
          */
     static u32 type();
 
-public:
-    //TODO: fill in specific methods for Xml
-protected:
-private:
-};
+  public:
+    // TODO: fill in specific methods for Xml
+  protected:
+  private:
+  };
 }
 
 #endif /* defined(__JLIGameEngineTest__Xml__) */

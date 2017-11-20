@@ -22,28 +22,29 @@
 class btTransform;
 class btVector2;
 
-namespace njli {
-class SceneState;
-class SceneBuilder;
-class Node;
-class Camera;
-class Light;
-class SceneStateMachine;
-class ParticleEmitter;
-class Material;
-class PhysicsWorld;
-class PhysicsRayContact;
-class Clock;
-class Geometry;
-    class DeviceTouch;
-    class DeviceMouse;
-
-/**
-     *  <#Description#>
-     */
-ATTRIBUTE_ALIGNED16(class)
-Scene : public AbstractFactoryObject
+namespace njli
 {
+  class SceneState;
+  class SceneBuilder;
+  class Node;
+  class Camera;
+  class Light;
+  class SceneStateMachine;
+  class ParticleEmitter;
+  class Material;
+  class PhysicsWorld;
+  class PhysicsRayContact;
+  class Clock;
+  class Geometry;
+  class DeviceTouch;
+  class DeviceMouse;
+
+  /**
+       *  <#Description#>
+       */
+  ATTRIBUTE_ALIGNED16(class)
+  Scene : public AbstractFactoryObject
+  {
     friend class WorldFactory;
     friend class World;
     friend class Node;
@@ -51,19 +52,19 @@ Scene : public AbstractFactoryObject
     friend class WorldState;
     friend class SceneState;
 
-protected:
+  protected:
     Scene();
-    Scene(const AbstractBuilder&);
-    Scene(const Scene&);
+    Scene(const AbstractBuilder &);
+    Scene(const Scene &);
     BT_DECLARE_ALIGNED_ALLOCATOR();
     virtual ~Scene();
-    Scene& operator=(const Scene&);
+    Scene &operator=(const Scene &);
 
-public:
+  public:
     using AbstractDecorator::setName;
     using AbstractDecorator::getName;
     using AbstractFactoryObject::create;
-//    using AbstractFactoryObject::clone;
+    //    using AbstractFactoryObject::clone;
     using AbstractFactoryObject::getPointer;
     using AbstractFactoryObject::getPointerValue;
     using AbstractFactoryObject::serializeObject;
@@ -79,14 +80,14 @@ public:
          *
          *  @param btSerializer <#btSerializer description#>
          */
-    virtual void serialize(void*, btSerializer*) const;
+    virtual void serialize(void *, btSerializer *) const;
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    virtual const char* getClassName() const;
+    virtual const char *getClassName() const;
     /**
          *  <#Description#>
          *
@@ -107,7 +108,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Scene** createArray(const u32 size);
+    static Scene **createArray(const u32 size);
     /**
          *  <#Description#>
          *
@@ -119,7 +120,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Scene* create();
+    static Scene *create();
     /**
          *  <#Description#>
          *
@@ -127,7 +128,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Scene* create(const SceneBuilder& builder);
+    static Scene *create(const SceneBuilder &builder);
     /**
          *  <#Description#>
          *
@@ -135,7 +136,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Scene* clone(const Scene& object);
+    static Scene *clone(const Scene &object);
     /**
          *  <#Description#>
          *
@@ -143,7 +144,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static Scene* copy(const Scene& object);
+    static Scene *copy(const Scene &object);
     /**
          *  <#Description#>
          *
@@ -165,13 +166,13 @@ public:
          */
     static u32 type();
 
-protected:
-    //TODO: fill in specific methods for Scene
+  protected:
+    // TODO: fill in specific methods for Scene
 
     void update(f32 timeStep, const u32 numSubSteps = 2);
     void render();
 
-public:
+  public:
     /**
          *  <#Description#>
          *
@@ -187,26 +188,26 @@ public:
          *
          *  @return <#return value description#>
          */
-    Node* getRootNode();
+    Node *getRootNode();
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const Node* getRootNode() const;
+    const Node *getRootNode() const;
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    SceneStateMachine* getStateMachine();
+    SceneStateMachine *getStateMachine();
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const SceneStateMachine* getStateMachine() const;
+    const SceneStateMachine *getStateMachine() const;
 
     void removeStateMachine();
 
@@ -235,7 +236,8 @@ public:
          *
          *  @param particleEmitters <#particleEmitters description#>
          */
-    //        void getParticleEmitters(std::vector<ParticleEmitter*> &particleEmitters)const;
+    //        void getParticleEmitters(std::vector<ParticleEmitter*>
+    //        &particleEmitters)const;
     /**
          *  <#Description#>
          *
@@ -278,13 +280,13 @@ public:
          *
          *  @return <#return value description#>
          */
-    Material* getBackground();
+    Material *getBackground();
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const Material* getBackground() const;
+    const Material *getBackground() const;
 
     /**
          *  <#Description#>
@@ -301,13 +303,13 @@ public:
          *
          *  @return <#return value description#>
          */
-    PhysicsWorld* getPhysicsWorld();
+    PhysicsWorld *getPhysicsWorld();
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    const PhysicsWorld* getPhysicsWorld() const;
+    const PhysicsWorld *getPhysicsWorld() const;
 
     /**
          *  <#Description#>
@@ -334,7 +336,7 @@ public:
          *
          *  @param clocks <#clocks description#>
          */
-    void getClocks(std::vector<Clock*> & clocks) const;
+    void getClocks(std::vector<Clock *> & clocks) const;
     /**
          *  <#Description#>
          *
@@ -350,7 +352,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    Clock* getClock(const u32 index);
+    Clock *getClock(const u32 index);
     /**
          *  <#Description#>
          *
@@ -358,7 +360,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    const Clock* getClock(const u32 index) const;
+    const Clock *getClock(const u32 index) const;
 
     /**
          *  <#Description#>
@@ -374,94 +376,76 @@ public:
          *  @return <#return value description#>
          */
     //        bool isPaused()const;
-    
-    
-    
+
     /**
      <#Description#>
 
      @param touches <#touches description#>
      */
-    void touchDown(DeviceTouch** touches);
-    
-    
+    void touchDown(DeviceTouch * *touches);
+
     /**
      <#Description#>
 
      @param touches <#touches description#>
      */
-    void touchUp(DeviceTouch** touches);
-    
-    
+    void touchUp(DeviceTouch * *touches);
+
     /**
      <#Description#>
 
      @param touches <#touches description#>
      */
-    void touchMove(DeviceTouch** touches);
-    
-    
+    void touchMove(DeviceTouch * *touches);
+
     /**
      <#Description#>
 
      @param touches <#touches description#>
      */
-    void touchCancelled(DeviceTouch** touches);
-    
-    
+    void touchCancelled(DeviceTouch * *touches);
+
     /**
      <#Description#>
 
      @param touch <#touch description#>
      */
     void touchDown(const DeviceTouch &touch);
-    
-    
+
     /**
      <#Description#>
 
      @param touch <#touch description#>
      */
     void touchUp(const DeviceTouch &touch);
-    
-    
+
     /**
      <#Description#>
 
      @param touch <#touch description#>
      */
     void touchMove(const DeviceTouch &touch);
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     void mouseDown(const DeviceMouse &mouse);
     void mouseUp(const DeviceMouse &mouse);
     void mouseMove(const DeviceMouse &mouse);
-    
-    
+
     /**
      <#Description#>
 
      @param touch <#touch description#>
      */
     void touchCancelled(const DeviceTouch &touch);
-    
+
     void keyboardShow();
     void keyboardCancel();
-    void keyboardReturn(const char* text);
-    
+    void keyboardReturn(const char *text);
+
     void renderHUD();
-    
+
     void pauseGame();
     void unPauseGame();
-    
+
     void willResignActive();
     void didBecomeActive();
     void didEnterBackground();
@@ -469,38 +453,39 @@ public:
     void willTerminate();
     void interrupt();
     void resumeInterrupt();
-    
+
     void receivedMemoryWarning();
-    
+
     void updateViewSize();
-    
-    void addCameraNode(Node *cameraNode, bool touchCamera = false);
-    
+
+    void addCameraNode(Node * cameraNode, bool touchCamera = false);
+
     /**
      *  <#Description#>
      *
      *  @param camera <#camera description#>
      */
-    void setTouchCamera(Camera* camera);
+    void setTouchCamera(Camera * camera);
     /**
      *  <#Description#>
      *
      *  @return <#return value description#>
      */
-    Camera* getTouchCamera();
+    Camera *getTouchCamera();
     /**
      *  <#Description#>
      *
      *  @return <#return value description#>
      */
-    const Camera* getTouchCamera() const;
-protected:
+    const Camera *getTouchCamera() const;
+
+  protected:
     void addActiveCamera(Camera * camera);
     void removeActiveCamera(Camera * camera);
 
     void addActiveNode(Node * node);
     void removeActiveNode(Node * node);
-    void getActiveNodes(btAlignedObjectArray<Node*> &activeNodes)const;
+    void getActiveNodes(btAlignedObjectArray<Node *> & activeNodes) const;
 
     void addActiveParticleEmitter(ParticleEmitter * particleEmitter);
     void removeActiveParticleEmitter(ParticleEmitter * particleEmitter);
@@ -515,27 +500,27 @@ protected:
 
     void clearAllStates();
 
-private:
-    Node* m_RootNode;
-    
-    SceneStateMachine* m_SceneStateMachine;
+  private:
+    Node *m_RootNode;
+
+    SceneStateMachine *m_SceneStateMachine;
     //        std::vector<ParticleEmitter*> m_ParticleEmitterList;
-    Material* m_BackgroundMaterial;
-    PhysicsWorld* m_PhysicsWorld;
-    std::vector<Clock*> m_ClockList;
+    Material *m_BackgroundMaterial;
+    PhysicsWorld *m_PhysicsWorld;
+    std::vector<Clock *> m_ClockList;
     //        bool m_isPaused;
 
-    std::vector<Geometry*> m_ActiveGeometries;
+    std::vector<Geometry *> m_ActiveGeometries;
 
-    btAlignedObjectArray<Camera*>* m_ActiveCameras;
-    btAlignedObjectArray<Node*>* m_ActiveNodes;
+    btAlignedObjectArray<Camera *> *m_ActiveCameras;
+    btAlignedObjectArray<Node *> *m_ActiveNodes;
 
-    btAlignedObjectArray<ParticleEmitter*>* m_ActiveParticleEmitters;
-    btAlignedObjectArray<Clock*>* m_ActiveClocks;
-    btAlignedObjectArray<Geometry*>* m_ActiveGeometry;
-    
-    Camera* m_TouchCamera;
-};
+    btAlignedObjectArray<ParticleEmitter *> *m_ActiveParticleEmitters;
+    btAlignedObjectArray<Clock *> *m_ActiveClocks;
+    btAlignedObjectArray<Geometry *> *m_ActiveGeometry;
+
+    Camera *m_TouchCamera;
+  };
 }
 
 #endif /* defined(__JLIGameEngineTest__Scene__) */

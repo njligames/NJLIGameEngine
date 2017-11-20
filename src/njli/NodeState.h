@@ -14,30 +14,31 @@
 #include "Node.h"
 #include "lua.hpp"
 
-namespace njli {
-class NodeStateBuilder;
-
-/**
-     *  <#Description#>
-     */
-ATTRIBUTE_ALIGNED16(class)
-NodeState : public AbstractState<Node>
+namespace njli
 {
+  class NodeStateBuilder;
+
+  /**
+       *  <#Description#>
+       */
+  ATTRIBUTE_ALIGNED16(class)
+  NodeState : public AbstractState<Node>
+  {
     friend class WorldFactory;
 
-protected:
+  protected:
     NodeState();
-    NodeState(const AbstractBuilder&);
-    NodeState(const NodeState&);
+    NodeState(const AbstractBuilder &);
+    NodeState(const NodeState &);
     BT_DECLARE_ALIGNED_ALLOCATOR();
     virtual ~NodeState();
-    NodeState& operator=(const NodeState&);
+    NodeState &operator=(const NodeState &);
 
-public:
+  public:
     using AbstractDecorator::setName;
     using AbstractDecorator::getName;
     using AbstractFactoryObject::create;
-//    using AbstractFactoryObject::clone;
+    //    using AbstractFactoryObject::clone;
     using AbstractFactoryObject::getPointer;
     using AbstractFactoryObject::getPointerValue;
     using AbstractFactoryObject::serializeObject;
@@ -60,14 +61,14 @@ public:
          *  @param dataBuffer   <#dataBuffer description#>
          *  @param btSerializer <#btSerializer description#>
          */
-    virtual void serialize(void* dataBuffer, btSerializer*) const;
+    virtual void serialize(void *dataBuffer, btSerializer *) const;
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    virtual const char* getClassName() const;
+    virtual const char *getClassName() const;
     /**
          *  <#Description#>
          *
@@ -88,7 +89,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static NodeState** createArray(const u32 size);
+    static NodeState **createArray(const u32 size);
     /**
          *  <#Description#>
          *
@@ -100,7 +101,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static NodeState* create();
+    static NodeState *create();
     /**
          *  <#Description#>
          *
@@ -108,7 +109,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static NodeState* create(const NodeStateBuilder& builder);
+    static NodeState *create(const NodeStateBuilder &builder);
     /**
          *  <#Description#>
          *
@@ -116,7 +117,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static NodeState* clone(const NodeState& object);
+    static NodeState *clone(const NodeState &object);
     /**
          *  <#Description#>
          *
@@ -124,7 +125,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static NodeState* copy(const NodeState& object);
+    static NodeState *copy(const NodeState &object);
     /**
          *  <#Description#>
          *
@@ -146,7 +147,7 @@ public:
          */
     static u32 type();
 
-public:
+  public:
     /**
          *  @author James Folk, 16-02-11 17:02:22
          *
@@ -185,12 +186,12 @@ public:
          *
          *  @return <#return value description#>
          */
-    virtual bool onMessage(Node * node, const Telegram& telegram) const;
+    virtual bool onMessage(Node * node, const Telegram &telegram) const;
 
-protected:
-private:
+  protected:
+  private:
     //        std::string m_Name;
-};
+  };
 }
 
 #endif /* defined(__JLIGameEngineTest__NodeState__) */

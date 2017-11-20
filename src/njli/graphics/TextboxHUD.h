@@ -18,32 +18,32 @@
 class btVector2;
 class btVector4;
 
-namespace njli {
-class TextboxHUDBuilder;
-
-/**
-     *  <#Description#>
-     */
-ATTRIBUTE_ALIGNED16(class)
-TextboxHUD : public AbstractFactoryObject,
-             public AbstractFrameBufferObject
+namespace njli
 {
+  class TextboxHUDBuilder;
+
+  /**
+       *  <#Description#>
+       */
+  ATTRIBUTE_ALIGNED16(class)
+  TextboxHUD : public AbstractFactoryObject, public AbstractFrameBufferObject
+  {
     friend class WorldFactory;
 
-protected:
+  protected:
     TextboxHUD();
-    TextboxHUD(const AbstractBuilder&);
-    TextboxHUD(const TextboxHUD&);
+    TextboxHUD(const AbstractBuilder &);
+    TextboxHUD(const TextboxHUD &);
     BT_DECLARE_ALIGNED_ALLOCATOR();
     virtual ~TextboxHUD();
-    TextboxHUD& operator=(const TextboxHUD&);
+    TextboxHUD &operator=(const TextboxHUD &);
     virtual void renderFunction(Camera * camera);
 
-public:
+  public:
     using AbstractDecorator::setName;
     using AbstractDecorator::getName;
     using AbstractFactoryObject::create;
-//    using AbstractFactoryObject::clone;
+    //    using AbstractFactoryObject::clone;
     using AbstractFactoryObject::getPointer;
     using AbstractFactoryObject::getPointerValue;
     using AbstractFactoryObject::serializeObject;
@@ -62,14 +62,14 @@ public:
          *
          *  @param btSerializer <#btSerializer description#>
          */
-    virtual void serialize(void*, btSerializer*) const;
+    virtual void serialize(void *, btSerializer *) const;
 
     /**
          *  <#Description#>
          *
          *  @return <#return value description#>
          */
-    virtual const char* getClassName() const;
+    virtual const char *getClassName() const;
     /**
          *  <#Description#>
          *
@@ -90,7 +90,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static TextboxHUD** createArray(const u32 size);
+    static TextboxHUD **createArray(const u32 size);
     /**
          *  <#Description#>
          *
@@ -102,7 +102,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static TextboxHUD* create();
+    static TextboxHUD *create();
     /**
          *  <#Description#>
          *
@@ -110,7 +110,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static TextboxHUD* create(const TextboxHUDBuilder& builder);
+    static TextboxHUD *create(const TextboxHUDBuilder &builder);
     /**
          *  <#Description#>
          *
@@ -118,7 +118,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static TextboxHUD* clone(const TextboxHUD& object);
+    static TextboxHUD *clone(const TextboxHUD &object);
     /**
          *  <#Description#>
          *
@@ -126,7 +126,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    static TextboxHUD* copy(const TextboxHUD& object);
+    static TextboxHUD *copy(const TextboxHUD &object);
     /**
          *  <#Description#>
          *
@@ -148,23 +148,23 @@ public:
          */
     static u32 type();
 
-public:
-    //TODO: fill in specific methods for TextboxHUD
-protected:
-private:
-    btVector2* m_dimensions;
-    btVector2* m_position;
-    btVector4* m_gradientStartColor;
-    btVector4* m_gradientEndColor;
+  public:
+    // TODO: fill in specific methods for TextboxHUD
+  protected:
+  private:
+    btVector2 *m_dimensions;
+    btVector2 *m_position;
+    btVector4 *m_gradientStartColor;
+    btVector4 *m_gradientEndColor;
     f32 m_cornerRadius;
     f32 m_cornerFeather;
-    btVector4* m_borderColor;
+    btVector4 *m_borderColor;
     f32 m_fontSize;
     std::string m_fontFace;
-    btVector4* m_fontColor;
+    btVector4 *m_fontColor;
     s32 m_align;
     std::string m_text;
-};
+  };
 }
 
 #endif /* defined(__JLIGameEngineTest__TextboxHUD__) */

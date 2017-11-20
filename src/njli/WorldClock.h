@@ -12,15 +12,15 @@
 #include "AbstractClock.h"
 #include "AbstractObject.h"
 #include "LinearMath/btQuickprof.h"
-#include <string>
 #include <stddef.h>
+#include <string>
 
-namespace njli {
-/// <#Description#>
-class WorldClock : public AbstractClock,
-                   public AbstractObject,
-                   public btClock {
-public:
+namespace njli
+{
+  /// <#Description#>
+  class WorldClock : public AbstractClock, public AbstractObject, public btClock
+  {
+  public:
     using AbstractDecorator::setName;
     using AbstractDecorator::getName;
 
@@ -40,7 +40,7 @@ public:
          *
          *  @return <#return value description#>
          */
-    virtual const char* getClassName() const;
+    virtual const char *getClassName() const;
     /**
          *  <#Description#>
          *
@@ -54,7 +54,7 @@ public:
          */
     operator std::string() const;
 
-public:
+  public:
     /**
          *  <#Description#>
          *
@@ -74,16 +74,16 @@ public:
          *  @param milliseconds <#milliseconds description#>
          */
     virtual void update(f64 milliseconds);
-    //TODO: fill in specific methods for WorldClock
+    // TODO: fill in specific methods for WorldClock
 
-protected:
-private:
-    WorldClock(const WorldClock&);
-    WorldClock& operator=(const WorldClock&);
+  protected:
+  private:
+    WorldClock(const WorldClock &);
+    WorldClock &operator=(const WorldClock &);
 
     f32 m_TimeStep;
     f64 m_TotalMilliseconds;
-};
+  };
 }
 
 #endif /* defined(__JLIGameEngineTest__WorldClock__) */

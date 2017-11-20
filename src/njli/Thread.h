@@ -20,34 +20,35 @@ extern "C" {
 #include "pthread.h"
 }
 
-typedef void(JLIthreadcallback(void*));
+typedef void(JLIthreadcallback(void *));
 
-namespace njli {
-class ThreadBuilder;
-
-/**
-     *  <#Description#>
-     */
-ATTRIBUTE_ALIGNED16(class)
-Thread : public AbstractFactoryObject
+namespace njli
 {
+  class ThreadBuilder;
+
+  /**
+       *  <#Description#>
+       */
+  ATTRIBUTE_ALIGNED16(class)
+  Thread : public AbstractFactoryObject
+  {
     friend class WorldFactory;
     friend struct wrap;
     friend class Node;
 
-protected:
+  protected:
     Thread();
-    Thread(const AbstractBuilder&);
-    Thread(const Thread&);
+    Thread(const AbstractBuilder &);
+    Thread(const Thread &);
     BT_DECLARE_ALIGNED_ALLOCATOR();
     virtual ~Thread();
-    Thread& operator=(const Thread&);
+    Thread &operator=(const Thread &);
 
-public:
+  public:
     using AbstractDecorator::setName;
     using AbstractDecorator::getName;
     using AbstractFactoryObject::create;
-//    using AbstractFactoryObject::clone;
+    //    using AbstractFactoryObject::clone;
     using AbstractFactoryObject::getPointer;
     using AbstractFactoryObject::getPointerValue;
     using AbstractFactoryObject::serializeObject;
@@ -63,14 +64,14 @@ public:
          *
          *  @param btSerializer the serializer which does the serialize.
          */
-    virtual void serialize(void*, btSerializer*) const;
+    virtual void serialize(void *, btSerializer *) const;
 
     /**
          *  The name of this class.
          *
          *  @return The name of this class.
          */
-    virtual const char* getClassName() const;
+    virtual const char *getClassName() const;
     /**
          *  Get the type of ::njliObjectEnumType enum value.
          *
@@ -91,7 +92,7 @@ public:
          *
          *  @return Pointer to the newly created array.
          */
-    static Thread** createArray(const u32 size);
+    static Thread **createArray(const u32 size);
     /**
          *  Destroy an Array of this class type.
          *
@@ -103,7 +104,7 @@ public:
          *
          *  @return Pointer to the newly created instance.
          */
-    static Thread* create();
+    static Thread *create();
     /**
          *  Create an instance of this class using a builder.
          *
@@ -111,23 +112,25 @@ public:
          *
          *  @return Pointer to the newly created instance.
          */
-    static Thread* create(const ThreadBuilder& builder);
+    static Thread *create(const ThreadBuilder &builder);
     /**
-         *  Create a shallow copy of an instance of this class (sharing pointers).
+         *  Create a shallow copy of an instance of this class (sharing
+     * pointers).
          *
          *  @param object The object to clone.
          *
          *  @return Pointer to the newly created instance.
          */
-    static Thread* clone(const Thread& object);
+    static Thread *clone(const Thread &object);
     /**
-         *  Create a deep copy of an instance of this class (NOT sharing pointers).
+         *  Create a deep copy of an instance of this class (NOT sharing
+     * pointers).
          *
          *  @param object The object to clone.
          *
          *  @return Pointer to the newly created instance.
          */
-    static Thread* copy(const Thread& object);
+    static Thread *copy(const Thread &object);
     /**
          *  Destroy an instance of this class.
          *
@@ -135,7 +138,8 @@ public:
          */
     static void destroy(Thread * object);
     /**
-         *  Load a lua table representation of this class. This is used for JLIM.create(object).
+         *  Load a lua table representation of this class. This is used for
+     * JLIM.create(object).
          *
          *  @param object      The object to load.
          *  @param L           The current lua state.
@@ -149,21 +153,21 @@ public:
          */
     static u32 type();
 
-public:
-    //TODO: fill in specific methods for Thread
+  public:
+    // TODO: fill in specific methods for Thread
 
-    void setup(const std::string& luaFunctionName, int _priority);
+    void setup(const std::string &luaFunctionName, int _priority);
 
     void enablePause(bool enable = true);
     bool isPaused() const;
     void stop();
     void run();
 
-protected:
-    void setup(JLIthreadcallback * _JLIthreadcallback, void* _userdata,
-        int _priority);
+  protected:
+    void setup(JLIthreadcallback * _JLIthreadcallback, void *_userdata,
+               int _priority);
 
-private:
+  private:
     unsigned char m_state;
 
     int m_priority;
@@ -171,36 +175,36 @@ private:
     pthread_t m_thread;
     unsigned int m_thread_hdl;
 
-    JLIthreadcallback* m_JLIthreadcallback;
+    JLIthreadcallback *m_JLIthreadcallback;
 
-    void* m_userdata;
-};
+    void *m_userdata;
+  };
 
-enum SIO2_THREAD_PRIORITY {
+  enum SIO2_THREAD_PRIORITY
+  {
     SIO2_THREAD_PRIORITY_VERY_LOW = 15,
     SIO2_THREAD_PRIORITY_LOW = 23,
     SIO2_THREAD_PRIORITY_NORMAL = 31,
     SIO2_THREAD_PRIORITY_HIGH = 39,
     SIO2_THREAD_PRIORITY_VERY_HIGH = 47
 
-};
+  };
 
-enum SIO2_STATE {
+  enum SIO2_STATE
+  {
     SIO2_STOP = 0,
     SIO2_PLAY,
     SIO2_PAUSE
 
-};
+  };
 
-struct wrap {
+  struct wrap
+  {
     //        char * msg;
     Thread ins;
 
-    wrap(const Thread& f)
-        : ins(f)
-    {
-    }
-};
+    wrap(const Thread &f) : ins(f) {}
+  };
 }
 
 #endif /* Thread_hpp */
