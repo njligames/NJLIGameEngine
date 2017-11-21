@@ -19,7 +19,7 @@
 	<key>CFBundleShortVersionString</key>
   <string>@NJLIGameEngine_VERSION_MAJOR@.@NJLIGameEngine_VERSION_MINOR@</string>
   <key>CFBundleVersion</key>
-  <string>@NJLIGameEngine_VERSION_RELEASE@</string>
+  <string>@NJLIGameEngine_BUILD_NUMBER@</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
 	<key>NSHumanReadableCopyright</key>
