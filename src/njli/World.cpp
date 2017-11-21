@@ -1223,7 +1223,7 @@ namespace njli
             //                if ( child ) {
             //                    source = child->Value();
             ////                    const TiXmlText* childText =
-            ///child->ToText();
+            /// child->ToText();
             ////                    if ( childText ) {
             ////                        TiXmlString s = childText->ValueTStr();
             ////                        source = s.data();

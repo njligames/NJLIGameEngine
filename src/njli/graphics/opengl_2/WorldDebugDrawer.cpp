@@ -592,15 +592,16 @@ namespace njli
     //	if (textProgram_GlyphTextureLocation < 0)
     //	{
     //		std::cerr << "Unable to get u_glyphTexture uniform location!" <<
-    //std::endl;
+    // std::endl;
     //	}
 
     //	textProgram_ScreenDimensions = glGetUniformLocation(textProgram,
     //"u_screenDimensions");
     //	if (textProgram_ScreenDimensions < 0)
     //	{
-    //		std::cerr << "Unable to get u_screenDimensions uniform location!" <<
-    //std::endl;
+    //		std::cerr << "Unable to get u_screenDimensions uniform location!"
+    //<<
+    // std::endl;
     //	}
 
     //	checkGLError(__FILE__, __LINE__);

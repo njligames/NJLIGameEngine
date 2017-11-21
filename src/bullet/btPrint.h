@@ -32,7 +32,7 @@ const btVector3 btVector3Zero = btVector3(0, 0, 0);
 //\"z\":\"%f\", \"w\":\"%f\"}]}"
 //#define btManifold_BASE "{\"btManifoldPoint\":[{\"distance\":\"%f\",
 //\"lifetime\":\"%d\", \"Position On A\":%s, \"Position On B\":%s, \"Applied
-//Impulse\":\"%f\"}]}"
+// Impulse\":\"%f\"}]}"
 //#define btQuaternion_BASE "{\"btQuaternion\":[{\"angle\":\"%f\",
 //\"axis\":%s}]}"
 //#define btMatrix3x3_BASE "{\"btMatrix3x3\":[{\"xx\":\"%f\", \"xy\":\"%f\",

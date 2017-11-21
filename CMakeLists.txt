@@ -43,6 +43,7 @@ STRING( COMPARE EQUAL "${CMAKE_BUILD_TYPE}" "Release" IS_RELEASE )
 SET ( NJLIGameEngine_VERSION_MAJOR $ENV{NJLIGameEngine_VERSION_MAJOR} )
 SET ( NJLIGameEngine_VERSION_MINOR $ENV{NJLIGameEngine_VERSION_MINOR} )
 SET ( NJLIGameEngine_VERSION_RELEASE $ENV{NJLIGameEngine_VERSION_RELEASE} )
+SET ( NJLIGameEngine_BUILD_NUMBER $ENV{NJLIGameEngine_BUILD_NUMBER} )
 SET ( NJLIGameEngine_VERSION "${NJLIGameEngine_VERSION_MAJOR}.${NJLIGameEngine_VERSION_MINOR}.${NJLIGameEngine_VERSION_RELEASE}")
 
 SET ( NJLIGameEngine_PACKAGE_STRING "${NJLIGameEngine_PACKAGE_NAME} ${NJLIGameEngine_VERSION}")
@@ -5483,14 +5484,20 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     ENDIF(IS_RELEASE)
   ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
     IF(IS_RELEASE)
-      file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/postprocess_bundle.cmake "
+      set(CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR})
+      install(CODE "
       include(BundleUtilities)
-      message(\"Fixing up application bundle: ${BUNDLE_PATH}\")
-      fixup_bundle(\"${BUNDLE_PATH}\" \"\" \"${GAME_ASSETS}\")
-      ")
-      add_custom_command(TARGET ${NJLI_PRODUCT_NAME} POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -P postprocess_bundle.cmake
-        )
+      fixup_bundle(\"${BUNDLE_PATH}\" \"\" \"${GAME_ASSETS}\" )
+      " COMPONENT Runtime)
+
+      #file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/postprocess_bundle.cmake "
+      #include(BundleUtilities)
+      #message(\"Fixing up application bundle: ${BUNDLE_PATH}\")
+      #fixup_bundle(\"${BUNDLE_PATH}\" \"\" \"${GAME_ASSETS}\" )
+      #")
+      #add_custom_command(TARGET ${NJLI_PRODUCT_NAME} POST_BUILD
+      #  COMMAND ${CMAKE_COMMAND} -P postprocess_bundle.cmake
+      #  )
     ENDIF(IS_RELEASE)
 
     INSTALL(TARGETS lua luac RUNTIME DESTINATION platform/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin )

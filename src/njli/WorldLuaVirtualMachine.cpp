@@ -840,7 +840,7 @@ LUALIB_API int luaopen_JLIM(lua_State *L)
 //    std::string trigger2 = "\" },\n";
 //
 ////    std::string sublime_completions = "\n{\n\t\"scope\": \"source.lua -
-///source - meta.tag, punctuation.definition.tag.begin\",\n";
+/// source - meta.tag, punctuation.definition.tag.begin\",\n";
 ////
 ////    sublime_completions += "\n\n\t\"completions\":\n\t[\n";
 //
@@ -930,7 +930,7 @@ LUALIB_API int luaopen_JLIM(lua_State *L)
 ////                    sprintf(buffer,
 ///"%s::%s()\n",ptr->name,ptr->methods[j].name);
 //////                    functions += buffer;
-////						SDL_LogVerbose(SDL_LOG_CATEGORY_TEST,
+//// SDL_LogVerbose(SDL_LOG_CATEGORY_TEST,
 ///"%s::%s()\n",ptr->name,ptr->methods[j].name);
 ////                }
 //            }

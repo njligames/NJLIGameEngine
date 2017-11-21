@@ -28,7 +28,7 @@ namespace njli
     //    static void setTouch(const void* touch, const int index, const
     //    unsigned long num_touches);
     ////    static void setTouch(int deviceIndex, int touchIndex, int
-    ///num_touches);
+    /// num_touches);
     //    static void setTouch(const int x, const int y);
     //    static void setTouch(int touchDevId, int pointerFingerId, int
     //    eventType, float x, float y, float dx, float dy, float pressure);

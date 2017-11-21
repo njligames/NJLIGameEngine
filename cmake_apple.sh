@@ -1,4 +1,22 @@
-#!/bin/sh
+#!/bin/bash
+
+
+
+WORK_DIR=`mktemp -d`
+
+if [[ ! "$WORK_DIR" || ! -d "$WORK_DIR" ]]; then
+  echo "Could not create temp dir"
+  exit 1
+else
+  echo "Created temp working directory $WORK_DIR"
+fi
+
+function cleanup {
+  rm -rf "$WORK_DIR"
+  echo "Deleted temp working directory $WORK_DIR"
+}
+
+trap cleanup EXIT
 
 if IFS= read -r var
 then
@@ -45,8 +63,7 @@ build_apple_xcode()
   INSTALL_DIR_FULL=`pwd`/${NJLI_INSTALL_PREFIX}/platform/${MY_BUILD_DIR}/${NJLI_BUILD_TYPE}/package
 
   if [ ! -z "${EXPORT}" ]; then
-
-    FILE=.${NJLI_PRODUCT_NAME}.${MY_PLATFORM}
+    FILE=../../.${NJLI_PRODUCT_NAME}.${MY_PLATFORM}
     if [ -e $FILE ]
     then
       if IFS= read -r var
@@ -58,8 +75,11 @@ build_apple_xcode()
     fi
 
     RELEASE=$((NJLIGameEngine_BUILD_NUMBER + 1))
+    export NJLIGameEngine_BUILD_NUMBER=$RELEASE
+
     echo ${RELEASE} > ${FILE}
   fi
+
   
   MY_GRAPHICS_PLATFORM=opengl_es_2
   if [ $MY_PLATFORM == macOS ]
@@ -96,41 +116,55 @@ build_apple_xcode()
   
   if [ ! -z "${EXPORT}" ]; then
     
-    FILE=.${NJLI_PRODUCT_NAME}.${my_version}
-    if [ -e $FILE ]
-    then
-      if IFS= read -r var
-      then
-        export NJLIGameEngine_BUILD_NUMBER=$var
-      fi < ${FILE}
-    else
-      export NJLIGameEngine_BUILD_NUMBER=0
-    fi
-    
-    RELEASE=$((NJLIGameEngine_BUILD_NUMBER + 1))
-    echo ${RELEASE} > ${FILE}
-    
     SCHEME_NAME=${NJLI_PRODUCT_NAME}
     TARGET_SDK=${MY_BUILD_PLAT}
     EXPORT_PLIST=`pwd`/../../appstore.plist
     ARCHIVEPATH=`pwd`/MyStage/Release/
+    export CFG_IGNORE_ITEM=".DS_Store"
 
-    # Archive the application
+
+
+
+
     xcodebuild \
       -scheme "${SCHEME_NAME}" \
       -sdk "${TARGET_SDK}" \
-      -archivePath "${ARCHIVEPATH}/${NJLI_PRODUCT_NAME}.xcarchive" \
-      -configuration Release \
-      -target install build \
-      archive
-    
-    # Export the archive to an ipa
+      -configuration AppStoreDistribution \
+      archive \
+      -archivePath "${WORK_DIR}/${NJLI_PRODUCT_NAME}.xcarchive"
+
     xcodebuild \
-      -allowProvisioningUpdates \
       -exportArchive \
-      -archivePath "${ARCHIVEPATH}/${NJLI_PRODUCT_NAME}.xcarchive" \
+      -archivePath "${WORK_DIR}/${NJLI_PRODUCT_NAME}.xcarchive" \
       -exportOptionsPlist "${EXPORT_PLIST}" \
       -exportPath "${INSTALL_DIR_FULL}/xcarchive"
+
+     
+
+
+
+
+
+
+    ## Archive the application
+    #xcodebuild \
+    #  -scheme "${SCHEME_NAME}" \
+    #  -sdk "${TARGET_SDK}" \
+    #  -archivePath "${WORK_DIR}/${NJLI_PRODUCT_NAME}.xcarchive" \
+    #  -configuration Release \
+    #  -target install build \
+    #  archive
+    #
+    ## Export the archive to an ipa
+    #xcodebuild \
+    #  -exportFormat IPA \
+    #  -allowProvisioningUpdates \
+    #  -exportArchive \
+    #  -archivePath "${WORK_DIR}/${NJLI_PRODUCT_NAME}.xcarchive" \
+    #  -exportOptionsPlist "${EXPORT_PLIST}" \
+    #  -exportPath "${INSTALL_DIR_FULL}/xcarchive"
+
+    #cp -r "${WORK_DIR}/${NJLI_PRODUCT_NAME}.xcarchive" ${ARCHIVEPATH}
       
     
     # https://help.apple.com/itc/apploader/#/apdATD1E53-D1E1A1303-D1E53A1126
@@ -163,7 +197,7 @@ cd ..
 rm -rf macOS_Xcode
 mkdir -p macOS_Xcode
 cd macOS_Xcode
-build_apple_xcode macOS ${CMAKE_MACOS_SYSTEM_VERSION}
+build_apple_xcode macOS ${CMAKE_MACOS_SYSTEM_VERSION} macosx
 cd ..
 
 ##########################################3

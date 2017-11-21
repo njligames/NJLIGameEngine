@@ -30,19 +30,20 @@ const u8 DeviceTouch::MAX_TOUCHES = 5;
 ////                    // Simply scale the image size by the size of the frame
 ////                case UIViewContentModeScaleToFill:
 ////                    // Redraw is basically the same as scale to fill but
-///redraws itself in the drawRect call (so when bounds change)
+/// redraws itself in the drawRect call (so when bounds change)
 ////                case UIViewContentModeRedraw:
 ////                    return
-///CGPointMake(floor(touch.x/(view.frame.size.width/view.image.size.width)),floor(touch.y/(view.frame.size.height/view.image.size.height)));
+/// CGPointMake(floor(touch.x/(view.frame.size.width/view.image.size.width)),floor(touch.y/(view.frame.size.height/view.image.size.height)));
 ////                    // Although the documentation doesn't state it, we will
-///assume a centered image. This mode makes the image fit into the view with its
-///aspect ratio
+/// assume a centered image. This mode makes the image fit into the view with
+/// its
+/// aspect ratio
 ////                case UIViewContentModeScaleAspectFit:
 ////                {
 ////                    // If the aspect ratio favours width over height in
-///relation to the images aspect ratio
+/// relation to the images aspect ratio
 ////                    if(view.frame.size.width/view.frame.size.height >
-///view.image.size.width/view.image.size.height)
+/// view.image.size.width/view.image.size.height)
 ////                    {
 ////                        // Checking whether the touch coordinate is not in a
 ///'blank' spot on the view
@@ -52,19 +53,19 @@ const u8 DeviceTouch::MAX_TOUCHES = 5;
 ///(view.frame.size.width/2.0)+(((view.frame.size.height/view.image.size.height)*view.image.size.width)/2.0))
 ////                        {
 ////                            // Scaling by using the height ratio as a
-///reference, and minusing the blank x coordiantes on the view
+/// reference, and minusing the blank x coordiantes on the view
 ////                            return
-///CGPointMake(floor((touch.x-((view.frame.size.width/2.0)-(((view.frame.size.height/view.image.size.height)*view.image.size.width)/2.0)))/(view.frame.size.height/view.image.size.height)),floor(touch.y/(view.frame.size.height/view.image.size.height)));
+/// CGPointMake(floor((touch.x-((view.frame.size.width/2.0)-(((view.frame.size.height/view.image.size.height)*view.image.size.width)/2.0)))/(view.frame.size.height/view.image.size.height)),floor(touch.y/(view.frame.size.height/view.image.size.height)));
 ////                        }
 ////                        break;
 ////                    }
 ////                    // Or if the aspect ratio favours height over width in
-///relation to the images aspect ratio
+/// relation to the images aspect ratio
 ////                    else if(view.frame.size.width/view.frame.size.height <
-///view.image.size.width/view.image.size.height)
+/// view.image.size.width/view.image.size.height)
 ////                    {
 ////                        // Obtaining half of the view that is taken up by
-///the aspect ratio
+/// the aspect ratio
 ////                        CGFloat halfAspectFit =
 ///((view.frame.size.width/view.image.size.width)*view.image.size.height)/2.0;
 ////                        // Checking whether the touch coordinate is not in a
@@ -75,53 +76,53 @@ const u8 DeviceTouch::MAX_TOUCHES = 5;
 ///(view.frame.size.height/2.0)+halfAspectFit)
 ////                        {
 ////                            // Scaling by using the width ratio as a
-///reference, and minusing the blank y coordinates on the view
+/// reference, and minusing the blank y coordinates on the view
 ////                            return
-///CGPointMake(floor(touch.x/(view.frame.size.width/view.image.size.width)),floor((touch.y-((view.frame.size.width/2.0)-halfAspectFit))/(view.frame.size.height/view.image.size.height)));
+/// CGPointMake(floor(touch.x/(view.frame.size.width/view.image.size.width)),floor((touch.y-((view.frame.size.width/2.0)-halfAspectFit))/(view.frame.size.height/view.image.size.height)));
 ////                        }
 ////                    }
 ////                    // This is just the same as a scale to fill mode if the
-///aspect ratios from the view and the image are the same
+/// aspect ratios from the view and the image are the same
 ////                    else return
-///CGPointMake(floor(touch.x/(view.frame.size.width/view.image.size.width)),floor(touch.y/(view.frame.size.width/view.image.size.height)));
+/// CGPointMake(floor(touch.x/(view.frame.size.width/view.image.size.width)),floor(touch.y/(view.frame.size.width/view.image.size.height)));
 ////                        break;
 ////                }
 ////                    // This fills the view with the image in its aspect
-///ratio, meaning that it could get cut off in either axis
+/// ratio, meaning that it could get cut off in either axis
 ////                case UIViewContentModeScaleAspectFill:
 ////                {
 ////                    // If the aspect ratio favours width over height in
-///relation to the images aspect ratio
+/// relation to the images aspect ratio
 ////                    if(view.frame.size.width/view.frame.size.height >
-///view.image.size.width/view.image.size.height)
+/// view.image.size.width/view.image.size.height)
 ////                    {
 ////                        // Scaling by using the width ratio, this will cut
-///off some height
+/// off some height
 ////                        return
-///CGPointMake(floor(touch.x/(view.frame.size.width/view.image.size.width)),floor(touch.y/(view.frame.size.width/view.image.size.width)));
+/// CGPointMake(floor(touch.x/(view.frame.size.width/view.image.size.width)),floor(touch.y/(view.frame.size.width/view.image.size.width)));
 ////                    }
 ////                    // If the aspect ratio favours height over width in
-///relation to the images aspect ratio
+/// relation to the images aspect ratio
 ////                    else if(view.frame.size.width/view.frame.size.height <
-///view.image.size.width/view.image.size.height)
+/// view.image.size.width/view.image.size.height)
 ////                    {
 ////                        // Scaling by using the height ratio, this will cut
-///off some width
+/// off some width
 ////                        return
-///CGPointMake(floor(touch.x/(view.frame.size.height/view.image.size.height)),floor(touch.y/(view.frame.size.height/view.image.size.height)));
+/// CGPointMake(floor(touch.x/(view.frame.size.height/view.image.size.height)),floor(touch.y/(view.frame.size.height/view.image.size.height)));
 ////                    }
 ////                    // Again if the aspect ratios are the same, then it will
-///just be another copy of scale to fill mode
+/// just be another copy of scale to fill mode
 ////                    else return
-///CGPointMake(floor(touch.x/(view.frame.size.width/view.image.size.width)),floor(touch.y/(view.frame.size.width/view.image.size.height)));
+/// CGPointMake(floor(touch.x/(view.frame.size.width/view.image.size.width)),floor(touch.y/(view.frame.size.width/view.image.size.height)));
 ////                        break;
 ////                }
 ////                    // This centers the image in the view both vertically
-///and horizontally
+/// and horizontally
 ////                case UIViewContentModeCenter:
 ////                {
 ////                    // Check whether our touch is on the image centered
-///vertically and horizontally
+/// vertically and horizontally
 ////                    if(touch.x >=
 ///(view.frame.size.width/2.0)-(view.image.size.width/2.0)
 ////                       && touch.x <=
@@ -131,77 +132,77 @@ const u8 DeviceTouch::MAX_TOUCHES = 5;
 ////                       && touch.y <=
 ///(view.frame.size.height/2.0)+(view.image.size.height/2.0))
 ////                        // Just return the touch coordinates and minus the
-///offset
+/// offset
 ////                        return
-///CGPointMake(floor(touch.x-((view.frame.size.width/2.0)-(view.image.size.width/2.0))),floor(touch.y-((view.frame.size.height/2.0)-(view.image.size.height/2.0))));
+/// CGPointMake(floor(touch.x-((view.frame.size.width/2.0)-(view.image.size.width/2.0))),floor(touch.y-((view.frame.size.height/2.0)-(view.image.size.height/2.0))));
 ////                        break;
 ////                }
 ////                    // This centers the image horizontally and moves it up
-///to the top
+/// to the top
 ////                case UIViewContentModeTop:
 ////                {
 ////                    // Check whether our touch is on the image centered
-///horizontally and put at the vertical start
+/// horizontally and put at the vertical start
 ////                    if(touch.x >=
 ///(view.frame.size.width/2.0)-(view.image.size.width/2.0)
 ////                       && touch.x <=
 ///(view.frame.size.width/2.0)+(view.image.size.width/2.0)
 ////                       && touch.y <= view.image.size.height)
 ////                        // Just return the touch coordinates and minus the
-///offset
+/// offset
 ////                        return
-///CGPointMake(floor(touch.x-((view.frame.size.width/2.0)-(view.image.size.width/2.0))),floor(touch.y));
+/// CGPointMake(floor(touch.x-((view.frame.size.width/2.0)-(view.image.size.width/2.0))),floor(touch.y));
 ////                        break;
 ////                }
 ////                    // This centers the image horizontally and moves it down
-///to the bottom
+/// to the bottom
 ////                case UIViewContentModeBottom:
 ////                {
 ////                    // Check whether our touch is on the image centered
-///horizontally and put at the vertical end
+/// horizontally and put at the vertical end
 ////                    if(touch.x >=
 ///(view.frame.size.width/2.0)-(view.image.size.width/2.0)
 ////                       && touch.x <=
 ///(view.frame.size.width/2.0)+(view.image.size.width/2.0)
 ////                       && touch.y >=
-///view.frame.size.height-view.image.size.height)
+/// view.frame.size.height-view.image.size.height)
 ////                        // Just return the touch coordinates and minus the
-///offset
+/// offset
 ////                        return
-///CGPointMake(floor(touch.x-((view.frame.size.width/2.0)-(view.image.size.width/2.0))),floor(touch.y-(view.frame.size.height-view.image.size.height)));
+/// CGPointMake(floor(touch.x-((view.frame.size.width/2.0)-(view.image.size.width/2.0))),floor(touch.y-(view.frame.size.height-view.image.size.height)));
 ////                        break;
 ////                }
 ////                    // This moves the image to the horizontal start and
-///centers it vertically
+/// centers it vertically
 ////                case UIViewContentModeLeft:
 ////                {
 ////                    // Check whether our touch is on the image at the
-///horizontal start and centered vertically
+/// horizontal start and centered vertically
 ////                    if(touch.x <= view.image.size.width
 ////                       && touch.y >=
 ///(view.frame.size.height/2.0)-(view.image.size.height/2.0)
 ////                       && touch.y <=
 ///(view.frame.size.height/2.0)+(view.image.size.height/2.0))
 ////                        return
-///CGPointMake(floor(touch.x),floor(touch.y-((view.frame.size.height/2.0)-(view.image.size.height/2.0))));
+/// CGPointMake(floor(touch.x),floor(touch.y-((view.frame.size.height/2.0)-(view.image.size.height/2.0))));
 ////                        break;
 ////                }
 ////                    // This moves the image to the horizontal end and
-///centers it vertically
+/// centers it vertically
 ////                case UIViewContentModeRight:
 ////                {
 ////                    if(touch.x >=
-///view.frame.size.width-view.image.size.width
+/// view.frame.size.width-view.image.size.width
 ////                       && touch.y >=
 ///(view.frame.size.height/2.0)-(view.image.size.height/2.0)
 ////                       && touch.y <=
 ///(view.frame.size.height/2.0)+(view.image.size.height/2.0))
 ////                        return
-///CGPointMake(floor(touch.x-(view.frame.size.width-view.image.size.width)),floor(touch.y-((view.frame.size.height/2.0)-(view.image.size.height/2.0))));
+/// CGPointMake(floor(touch.x-(view.frame.size.width-view.image.size.width)),floor(touch.y-((view.frame.size.height/2.0)-(view.image.size.height/2.0))));
 ////                        break;
 ////                }
 ////                    // This simply moves the image to the horizontal and
-///vertical start
+/// vertical start
 ////                case UIViewContentModeTopLeft:
 ////                {
 ////                    if(touch.x <= view.image.size.width
@@ -211,37 +212,37 @@ const u8 DeviceTouch::MAX_TOUCHES = 5;
 ////                        break;
 ////                }
 ////                    // This moves the image to the horizontal end and
-///vertical start
+/// vertical start
 ////                case UIViewContentModeTopRight:
 ////                {
 ////                    if(touch.x >=
-///view.frame.size.width-view.image.size.width
+/// view.frame.size.width-view.image.size.width
 ////                       && touch.y <= view.image.size.height)
 ////                        return
-///CGPointMake(floor(touch.x-(view.frame.size.width-view.image.size.width)),floor(touch.y));
+/// CGPointMake(floor(touch.x-(view.frame.size.width-view.image.size.width)),floor(touch.y));
 ////                        break;
 ////                }
 ////                    // This moves the image to the horizontal start and
-///vertical end
+/// vertical end
 ////                case UIViewContentModeBottomLeft:
 ////                {
 ////                    if(touch.x <= view.image.size.width
 ////                       && touch.y <=
-///view.frame.size.height-view.image.size.height)
+/// view.frame.size.height-view.image.size.height)
 ////                        return
-///CGPointMake(floor(touch.x),floor(touch.y-(view.frame.size.height-view.image.size.height)));
+/// CGPointMake(floor(touch.x),floor(touch.y-(view.frame.size.height-view.image.size.height)));
 ////                        break;
 ////                }
 ////                    // This moves the image to the horizontal and vertical
-///end
+/// end
 ////                case UIViewContentModeBottomRight:
 ////                {
 ////                    if(touch.x <=
-///view.frame.size.width-view.image.size.width
+/// view.frame.size.width-view.image.size.width
 ////                       && touch.y <=
-///view.frame.size.height-view.image.size.height)
+/// view.frame.size.height-view.image.size.height)
 ////                        return
-///CGPointMake(floor(touch.x-(view.frame.size.width-view.image.size.width)),floor(touch.y-(view.frame.size.height-view.image.size.height)));
+/// CGPointMake(floor(touch.x-(view.frame.size.width-view.image.size.width)),floor(touch.y-(view.frame.size.height-view.image.size.height)));
 ////                        break;
 ////                }
 ////                default: break;

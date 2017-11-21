@@ -101,13 +101,13 @@ int main(int argc, char **argv) { return njli::run_main(argc, argv); }
 //        /* Mouse and finger motion are really spammy */
 //
 ////        SDL_Log("SDL EVENT: Finger: %s touch=%ld, finger=%ld, x=%f, y=%f,
-///dx=%f, dy=%f, pressure=%f",
+/// dx=%f, dy=%f, pressure=%f",
 ////                (event->type == SDL_FINGERDOWN) ? "down" : "up",
 ////                (long) event->tfinger.touchId,
 ////                (long) event->tfinger.fingerId,
 ////                event->tfinger.x, event->tfinger.y,
 ////                event->tfinger.dx, event->tfinger.dy,
-///event->tfinger.pressure);
+/// event->tfinger.pressure);
 //
 //        return;
 //    }

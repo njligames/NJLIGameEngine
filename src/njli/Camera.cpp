@@ -1556,9 +1556,9 @@ namespace njli
   ////            m_Far = -1000.0f;
   ////
   ////            *m_projectionMatrix = makeOrtho(0,
-  ///njli::World::getInstance()->getViewportDimensions().x(),
+  /// njli::World::getInstance()->getViewportDimensions().x(),
   ////                                            0,
-  ///njli::World::getInstance()->getViewportDimensions().y(),
+  /// njli::World::getInstance()->getViewportDimensions().y(),
   ////                                            getZNear(), getZFar());
   ////
   ////            getProjection().getOpenGLMatrix(m_ProjectionMatrixArray);
@@ -1569,8 +1569,8 @@ namespace njli
   ////            m_Far = 1000.0f;
   ////
   ////            *m_projectionMatrix = makeFrustum(m_ProjectionMatrixArray,
-  ///getFov(), njli::World::getInstance()->getAspectRatio(), getZNear(),
-  ///getZFar());
+  /// getFov(), njli::World::getInstance()->getAspectRatio(), getZNear(),
+  /// getZFar());
   ////        }
   //
   //
@@ -1585,9 +1585,9 @@ namespace njli
   ////            if(m_Orthographic)
   ////            {
   ////                *m_projectionMatrix = makeOrtho(0,
-  ///njli::World::getInstance()->getViewportDimensions().x(),
+  /// njli::World::getInstance()->getViewportDimensions().x(),
   ////                                                0,
-  ///njli::World::getInstance()->getViewportDimensions().y(),
+  /// njli::World::getInstance()->getViewportDimensions().y(),
   ////                                                getZNear(), getZFar());
   ////
   ////                getProjection().getOpenGLMatrix(m_ProjectionMatrixArray);
@@ -1595,8 +1595,8 @@ namespace njli
   ////            else
   ////            {
   ////                *m_projectionMatrix = makeFrustum(m_ProjectionMatrixArray,
-  ///getFov(), njli::World::getInstance()->getAspectRatio(), getZNear(),
-  ///getZFar());
+  /// getFov(), njli::World::getInstance()->getAspectRatio(), getZNear(),
+  /// getZFar());
   ////            }
   ////        }
   //    }

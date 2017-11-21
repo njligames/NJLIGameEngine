@@ -399,13 +399,13 @@ namespace njli
   //        unsigned long file_size;
   //
   ////
-  ///if(njli::World::getInstance()->getWorldResourceLoader()->loadDataFromFile(filePath,
+  /// if(njli::World::getInstance()->getWorldResourceLoader()->loadDataFromFile(filePath,
   //// &content,
   //// &file_size))
   ////        {
   ////            PVRTextureHeaderV3 *header = (PVRTextureHeaderV3*)content;
   ////            img.setPVRData((u8*)content, PVRTGetTextureDataSize(*header),
-  ///filePath);
+  /// filePath);
   ////
   ////            return true;
   ////        }
