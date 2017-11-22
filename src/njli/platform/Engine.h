@@ -20,7 +20,7 @@
 
 namespace njli
 {
-  int run_main(int argc, char **argv);
+    int run_main(int argc, char** argv);
 }
 
 #endif /* Engine_h */

@@ -1,0 +1,20 @@
+
+{
+  "images" : [
+    {
+      "idiom" : "tv",
+      "filename" : "IconFront-App@1x.png",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "tv",
+      "filename" : "IconFront-App@2x.png",
+      "scale" : "2x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "NJLIGames"
+  }
+}
+
