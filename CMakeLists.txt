@@ -46,6 +46,31 @@ SET ( NJLIGameEngine_VERSION_RELEASE $ENV{NJLIGameEngine_VERSION_RELEASE} )
 SET ( NJLIGameEngine_BUILD_NUMBER $ENV{NJLIGameEngine_BUILD_NUMBER} )
 SET ( NJLIGameEngine_VERSION "${NJLIGameEngine_VERSION_MAJOR}.${NJLIGameEngine_VERSION_MINOR}.${NJLIGameEngine_VERSION_RELEASE}")
 
+
+
+
+if( ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+
+  IF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" )
+    SET(NJLI_APPICON_NAME "App Icon & Top Shelf Image")
+  ELSE()
+    SET(NJLI_APPICON_NAME "AppIcon")
+  ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" )
+  SET( NJLIGameEngine_PRODUCT_BUNDLE_IDENTIFIER "com.njligames.engine.${NJLI_BUILD_PLATFORM}.source")
+  SET( NJLIGameEngine_PRODUCT_NAME ${NJLI_PRODUCT_NAME})
+  SET( NJLIGameEngine_EXECUTABLE_NAME ${NJLI_PRODUCT_NAME})
+
+endif( ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+
+
+
+
+
+
+
+
+
+
 SET ( NJLIGameEngine_PACKAGE_STRING "${NJLIGameEngine_PACKAGE_NAME} ${NJLIGameEngine_VERSION}")
 
 SET ( NJLIGameEngine_COMMON_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/common")
@@ -3987,7 +4012,6 @@ IF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" )
 
 
 
-  SET(NJLI_APPICON_NAME "App Icon & Top Shelf Image")
 
   LIST(APPEND NJLIGameEngine_HDRS /Applications/Xcode.app/Contents/Developer/Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS.sdk/System/Library/Frameworks )
 
@@ -4087,7 +4111,6 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
   SET(imported_vorbisenc_location                   "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/libvorbisenc.a")
   SET(imported_vorbisfile_location                  "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/libvorbisfile.a")
 
-  SET(NJLI_APPICON_NAME "AppIcon")
 
   LIST(APPEND NJLIGameEngine_HDRS /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks  )
 
@@ -4188,7 +4211,6 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
   SET(imported_vorbisenc_location                   "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/10.12/Release/libvorbisenc.a")
   SET(imported_vorbisfile_location                  "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/10.12/Release/libvorbisfile.a")
 
-  SET(NJLI_APPICON_NAME "AppIcon")
 
   LIST(APPEND NJLIGameEngine_HDRS /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks  )
 
@@ -5488,21 +5510,38 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     ENDIF(IS_RELEASE)
   ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
     IF(IS_RELEASE)
-      set(CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR})
-      install(CODE "
+      file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/postprocess_bundle.cmake "
       include(BundleUtilities)
       fixup_bundle(\"${BUNDLE_PATH}\" \"\" \"${GAME_ASSETS}\" )
-      " COMPONENT Runtime)
-
-      #file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/postprocess_bundle.cmake "
-      #include(BundleUtilities)
-      #message(\"Fixing up application bundle: ${BUNDLE_PATH}\")
-      #fixup_bundle(\"${BUNDLE_PATH}\" \"\" \"${GAME_ASSETS}\" )
-      #")
-      #add_custom_command(TARGET ${NJLI_PRODUCT_NAME} POST_BUILD
-      #  COMMAND ${CMAKE_COMMAND} -P postprocess_bundle.cmake
-      #  )
+      message(\"Signing application bundle: ${BUNDLE_PATH}\")
+      # https://www.slicer.org/wiki/Documentation/Nightly/Developers/Mac_OS_X_Code_Signing
+      execute_process(
+        COMMAND codesign --deep --force --sign \"$ENV{NJLI_DEVELOPMENT_TEAM}\" -i \"com.njligames.engine.${NJLI_BUILD_PLATFORM}.source\" \"${BUNDLE_PATH}\"
+        )
+      execute_process(
+        COMMAND codesign -dv \"${BUNDLE_PATH}\"
+        )
+      ")
+      add_custom_command(TARGET ${NJLI_PRODUCT_NAME} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/postprocess_bundle.cmake
+        )
     ENDIF(IS_RELEASE)
+    #IF(IS_RELEASE)
+    #  set(CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR})
+    #  install(CODE "
+    #  include(BundleUtilities)
+    #  fixup_bundle(\"${BUNDLE_PATH}\" \"\" \"${GAME_ASSETS}\" )
+    #  " COMPONENT Runtime)
+
+    #  #file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/postprocess_bundle.cmake "
+    #  #include(BundleUtilities)
+    #  #message(\"Fixing up application bundle: ${BUNDLE_PATH}\")
+    #  #fixup_bundle(\"${BUNDLE_PATH}\" \"\" \"${GAME_ASSETS}\" )
+    #  #")
+    #  #add_custom_command(TARGET ${NJLI_PRODUCT_NAME} POST_BUILD
+    #  #  COMMAND ${CMAKE_COMMAND} -P postprocess_bundle.cmake
+    #  #  )
+    #ENDIF(IS_RELEASE)
 
     INSTALL(TARGETS lua luac RUNTIME DESTINATION platform/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin )
   ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" )
