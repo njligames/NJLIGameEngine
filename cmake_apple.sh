@@ -178,11 +178,11 @@ cd projects
 
 ##########################################3
 
-#rm -rf ios_Xcode
-#mkdir -p ios_Xcode
-#cd ios_Xcode
-#build_apple_xcode ios ${CMAKE_IOS_SYSTEM_VERSION} iphoneos 
-#cd ..
+rm -rf ios_Xcode
+mkdir -p ios_Xcode
+cd ios_Xcode
+build_apple_xcode ios ${CMAKE_IOS_SYSTEM_VERSION} iphoneos 
+cd ..
 
 ##########################################3
 
@@ -194,11 +194,11 @@ cd ..
 
 ##########################################3
 
-#rm -rf macOS_Xcode
-#mkdir -p macOS_Xcode
-#cd macOS_Xcode
-#build_apple_xcode macOS ${CMAKE_MACOS_SYSTEM_VERSION} macosx
-#cd ..
+rm -rf macOS_Xcode
+mkdir -p macOS_Xcode
+cd macOS_Xcode
+build_apple_xcode macOS ${CMAKE_MACOS_SYSTEM_VERSION} macosx
+cd ..
 
 ##########################################3
 
