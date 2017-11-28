@@ -46,9 +46,6 @@ SET ( NJLIGameEngine_VERSION_RELEASE $ENV{NJLIGameEngine_VERSION_RELEASE} )
 SET ( NJLIGameEngine_BUILD_NUMBER $ENV{NJLIGameEngine_BUILD_NUMBER} )
 SET ( NJLIGameEngine_VERSION "${NJLIGameEngine_VERSION_MAJOR}.${NJLIGameEngine_VERSION_MINOR}.${NJLIGameEngine_VERSION_RELEASE}")
 
-
-
-
 if( ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
   IF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" )
@@ -61,15 +58,6 @@ if( ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
   SET( NJLIGameEngine_EXECUTABLE_NAME ${NJLI_PRODUCT_NAME})
 
 endif( ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-
-
-
-
-
-
-
-
-
 
 SET ( NJLIGameEngine_PACKAGE_STRING "${NJLIGameEngine_PACKAGE_NAME} ${NJLIGameEngine_VERSION}")
 
@@ -87,12 +75,9 @@ SET ( CMAKE_INSTALL_DATADIR data CACHE STRING "The data directory" )
 SET ( CMAKE_INSTALL_DOCDIR doc CACHE STRING "The documentation directory" )
 SET ( CMAKE_INSTALL_TESTDIR tests CACHE STRING "The tests directory" )
 SET ( NJLI_THIRDPARTY_DIRECTORY "${CMAKE_SOURCE_DIR}/../External/thirdparty" CACHE STRING "The third party include directory" )
-# SET ( NJLI_GRAPHICS_PLATFORM opengl_es_2 CACHE STRING  "The rendering platform to use" )
-# SET ( NJLI_SOUND_PLATFORM fmod CACHE STRING "The sound to use" )
 SET ( NJLI_SOURCE_DIRECTORY "${CMAKE_SOURCE_DIR}/src" CACHE STRING "The njli source directory" )
 SET ( NJLI_SWIGIN_DIRECTORY "${CMAKE_SOURCE_DIR}/src/swig.in" CACHE STRING "The njli source directory" )
 SET ( NJLI_THIRDPARTY_SWIGIN_DIRECTORY "${CMAKE_SOURCE_DIR}/../External/thirdparty/swig.in" CACHE STRING "The njli source directory" )
-# SET ( NJLI_SCRIPT_LANGUAGE lua CACHE STRING  "The scripting language to use" )
 
 set(NJLI_SCRIPT_LANGUAGE "lua" CACHE STRING "The rendering platform to use")
 set(NJLI_SCRIPT_LANGUAGE_Values "lua;v8;node;jsc;python")
@@ -510,14 +495,6 @@ FOREACH(filename ${src})
   ENDIF()
 ENDFOREACH()
 
-
-
-
-
-
-
-
-
 FILE( GLOB src
   ${NJLI_SOURCE_DIRECTORY}/njli/generated/swig/embind/*
 )
@@ -531,7 +508,6 @@ FOREACH(filename ${src})
   ENDIF()
 ENDFOREACH()
 
-
 FILE( GLOB src
   ${NJLI_SOURCE_DIRECTORY}/njli/generated/swig/embind/${NJLI_GRAPHICS_PLATFORM}/*
 )
@@ -544,29 +520,6 @@ FOREACH(filename ${src})
     LIST(APPEND group_other ${filename})
   ENDIF()
 ENDFOREACH()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 FILE( GLOB src
   ${NJLI_SOURCE_DIRECTORY}/njli/graphics/*.h
@@ -4527,6 +4480,8 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "linux" )
 
 ENDIF()
 
+SET(THIRD_PARTY_LIBS "")
+
 #https://developer.android.com/studio/projects/add-native-code.html
 INCLUDE_DIRECTORIES( ${NJLIGameEngine_HDRS} )
 
@@ -4534,45 +4489,45 @@ INCLUDE_DIRECTORIES("${CMAKE_SOURCE_DIR}/../External/thirdparty/SDL2/include" )
 
 ADD_LIBRARY(imported_SDL2 SHARED IMPORTED )
 SET_TARGET_PROPERTIES(imported_SDL2 PROPERTIES IMPORTED_LOCATION ${imported_SDL2_location})
-LIST(APPEND EXTRA_PLATFORM_LIBS imported_SDL2)
+LIST(APPEND THIRD_PARTY_LIBS imported_SDL2)
 
 IF( ${NJLI_SOUND_PLATFORM} STREQUAL "fmod" )
   INCLUDE_DIRECTORIES("${CMAKE_SOURCE_DIR}/../External/thirdparty/fmod/include" )
 
   ADD_LIBRARY(imported_fmod SHARED IMPORTED )
   SET_TARGET_PROPERTIES(imported_fmod PROPERTIES IMPORTED_LOCATION ${imported_fmod_location})
-  LIST(APPEND EXTRA_PLATFORM_LIBS imported_fmod)
+  LIST(APPEND THIRD_PARTY_LIBS imported_fmod)
 ELSEIF( ${NJLI_SOUND_PLATFORM} STREQUAL "openal" )
   IF( ${NJLI_BUILD_PLATFORM} STREQUAL "android" )
     ADD_LIBRARY(imported_openal STATIC IMPORTED )
     SET_TARGET_PROPERTIES(imported_openal PROPERTIES IMPORTED_LOCATION ${imported_openal_location})
-    LIST(APPEND EXTRA_PLATFORM_LIBS imported_openal)
+    LIST(APPEND THIRD_PARTY_LIBS imported_openal)
   ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "android" )
 
   #    INCLUDE_DIRECTORIES("${CMAKE_SOURCE_DIR}/../External/thirdparty/alut/include" )
   #    ADD_LIBRARY(imported_alut STATIC IMPORTED )
   #    SET_TARGET_PROPERTIES(imported_alut PROPERTIES IMPORTED_LOCATION ${imported_alut_location})
-  #    LIST(APPEND EXTRA_PLATFORM_LIBS imported_alut)
+  #    LIST(APPEND THIRD_PARTY_LIBS imported_alut)
 
   #INCLUDE_DIRECTORIES("${CMAKE_SOURCE_DIR}/../External/thirdparty/ogg/include" )
   ADD_LIBRARY(imported_ogg STATIC IMPORTED )
   SET_TARGET_PROPERTIES(imported_ogg PROPERTIES IMPORTED_LOCATION ${imported_ogg_location})
-  LIST(APPEND EXTRA_PLATFORM_LIBS imported_ogg)
+  LIST(APPEND THIRD_PARTY_LIBS imported_ogg)
   ##MESSAGE("imported_ogg_location ${imported_ogg_location}")
 
   #INCLUDE_DIRECTORIES("${CMAKE_SOURCE_DIR}/../External/thirdparty/vorbis/include" )
   ADD_LIBRARY(imported_vorbis STATIC IMPORTED )
   SET_TARGET_PROPERTIES(imported_vorbis PROPERTIES IMPORTED_LOCATION ${imported_vorbis_location})
-  LIST(APPEND EXTRA_PLATFORM_LIBS imported_vorbis)
+  LIST(APPEND THIRD_PARTY_LIBS imported_vorbis)
   #MESSAGE("imported_vorbis_location ${imported_vorbis_location}")
 
   ADD_LIBRARY(imported_vorbisenc STATIC IMPORTED )
   SET_TARGET_PROPERTIES(imported_vorbisenc PROPERTIES IMPORTED_LOCATION ${imported_vorbisenc_location})
-  LIST(APPEND EXTRA_PLATFORM_LIBS imported_vorbisenc)
+  LIST(APPEND THIRD_PARTY_LIBS imported_vorbisenc)
 
   ADD_LIBRARY(imported_vorbisfile STATIC IMPORTED )
   SET_TARGET_PROPERTIES(imported_vorbisfile PROPERTIES IMPORTED_LOCATION ${imported_vorbisfile_location})
-  LIST(APPEND EXTRA_PLATFORM_LIBS imported_vorbisfile)
+  LIST(APPEND THIRD_PARTY_LIBS imported_vorbisfile)
 ENDIF( ${NJLI_SOUND_PLATFORM} STREQUAL "fmod" )
 
 IF(NJLI_USE_ASSIMP_LIBRARY)
@@ -4580,7 +4535,7 @@ IF(NJLI_USE_ASSIMP_LIBRARY)
 
   ADD_LIBRARY(imported_assimp STATIC IMPORTED )
   SET_TARGET_PROPERTIES(imported_assimp PROPERTIES IMPORTED_LOCATION ${imported_assimp_location})
-  LIST(APPEND EXTRA_PLATFORM_LIBS imported_assimp)
+  LIST(APPEND THIRD_PARTY_LIBS imported_assimp)
 ENDIF(NJLI_USE_ASSIMP_LIBRARY)
 
 IF(NJLI_USE_BULLET_LIBRARY)
@@ -4624,24 +4579,24 @@ IF(NJLI_USE_BULLET_LIBRARY)
   SET_TARGET_PROPERTIES(imported_HACD PROPERTIES IMPORTED_LOCATION ${imported_HACD_location})
   SET_TARGET_PROPERTIES(imported_LinearMath PROPERTIES IMPORTED_LOCATION ${imported_LinearMath_location})
 
-  LIST(APPEND EXTRA_PLATFORM_LIBS imported_Bullet2FileLoader )
-  LIST(APPEND EXTRA_PLATFORM_LIBS imported_Bullet3Collision )
-  LIST(APPEND EXTRA_PLATFORM_LIBS imported_Bullet3Common )
-  LIST(APPEND EXTRA_PLATFORM_LIBS imported_Bullet3Dynamics )
-  LIST(APPEND EXTRA_PLATFORM_LIBS imported_Bullet3Geometry )
-  LIST(APPEND EXTRA_PLATFORM_LIBS imported_Bullet3OpenCL_clew )
-  LIST(APPEND EXTRA_PLATFORM_LIBS imported_BulletCollision)
-  LIST(APPEND EXTRA_PLATFORM_LIBS imported_BulletDynamics)
-  LIST(APPEND EXTRA_PLATFORM_LIBS imported_BulletFileLoader)
-  LIST(APPEND EXTRA_PLATFORM_LIBS imported_BulletInverseDynamics)
-  LIST(APPEND EXTRA_PLATFORM_LIBS imported_BulletInverseDynamicsUtils)
-  LIST(APPEND EXTRA_PLATFORM_LIBS imported_BulletSoftBody)
-  LIST(APPEND EXTRA_PLATFORM_LIBS imported_BulletWorldImporter)
-  LIST(APPEND EXTRA_PLATFORM_LIBS imported_BulletXmlWorldImporter)
-  LIST(APPEND EXTRA_PLATFORM_LIBS imported_ConvexDecomposition)
-  LIST(APPEND EXTRA_PLATFORM_LIBS imported_GIMPACTUtils)
-  LIST(APPEND EXTRA_PLATFORM_LIBS imported_HACD)
-  LIST(APPEND EXTRA_PLATFORM_LIBS imported_LinearMath)
+  LIST(APPEND THIRD_PARTY_LIBS imported_Bullet2FileLoader )
+  LIST(APPEND THIRD_PARTY_LIBS imported_Bullet3Collision )
+  LIST(APPEND THIRD_PARTY_LIBS imported_Bullet3Common )
+  LIST(APPEND THIRD_PARTY_LIBS imported_Bullet3Dynamics )
+  LIST(APPEND THIRD_PARTY_LIBS imported_Bullet3Geometry )
+  LIST(APPEND THIRD_PARTY_LIBS imported_Bullet3OpenCL_clew )
+  LIST(APPEND THIRD_PARTY_LIBS imported_BulletCollision)
+  LIST(APPEND THIRD_PARTY_LIBS imported_BulletDynamics)
+  LIST(APPEND THIRD_PARTY_LIBS imported_BulletFileLoader)
+  LIST(APPEND THIRD_PARTY_LIBS imported_BulletInverseDynamics)
+  LIST(APPEND THIRD_PARTY_LIBS imported_BulletInverseDynamicsUtils)
+  LIST(APPEND THIRD_PARTY_LIBS imported_BulletSoftBody)
+  LIST(APPEND THIRD_PARTY_LIBS imported_BulletWorldImporter)
+  LIST(APPEND THIRD_PARTY_LIBS imported_BulletXmlWorldImporter)
+  LIST(APPEND THIRD_PARTY_LIBS imported_ConvexDecomposition)
+  LIST(APPEND THIRD_PARTY_LIBS imported_GIMPACTUtils)
+  LIST(APPEND THIRD_PARTY_LIBS imported_HACD)
+  LIST(APPEND THIRD_PARTY_LIBS imported_LinearMath)
 ENDIF(NJLI_USE_BULLET_LIBRARY)
 
 IF(NJLI_USE_CONCURRENTQUEUE_LIBRARY)
@@ -4657,7 +4612,7 @@ IF(NJLI_USE_FLATBUFFERS_LIBRARY)
 
   ADD_LIBRARY(imported_flatbuffers STATIC IMPORTED)
   SET_TARGET_PROPERTIES(imported_flatbuffers PROPERTIES IMPORTED_LOCATION ${imported_flatbuffers_location})
-  LIST(APPEND EXTRA_PLATFORM_LIBS imported_flatbuffers)
+  LIST(APPEND THIRD_PARTY_LIBS imported_flatbuffers)
 ENDIF(NJLI_USE_FLATBUFFERS_LIBRARY)
 
 IF(NJLI_USE_GLM_LIBRARY)
@@ -4669,7 +4624,7 @@ IF(NJLI_USE_IMGUI_LIBRARY)
 
   ADD_LIBRARY(imported_imgui STATIC IMPORTED )
   SET_TARGET_PROPERTIES(imported_imgui PROPERTIES IMPORTED_LOCATION ${imported_imgui_location})
-  LIST(APPEND EXTRA_PLATFORM_LIBS imported_imgui)
+  LIST(APPEND THIRD_PARTY_LIBS imported_imgui)
 ENDIF(NJLI_USE_IMGUI_LIBRARY)
 
 #IF(NJLI_USE_IMGUIZMO_LIBRARY)
@@ -4677,7 +4632,7 @@ ENDIF(NJLI_USE_IMGUI_LIBRARY)
 #
 #    ADD_LIBRARY(imported_ImGuizmo STATIC IMPORTED )
 #    SET_TARGET_PROPERTIES(imported_ImGuizmo PROPERTIES IMPORTED_LOCATION ${imported_ImGuizmo_location})
-#    LIST(APPEND EXTRA_PLATFORM_LIBS imported_ImGuizmo)
+#    LIST(APPEND THIRD_PARTY_LIBS imported_ImGuizmo)
 #ENDIF(NJLI_USE_IMGUIZMO_LIBRARY)
 
 IF(NJLI_USE_JSONCPP_LIBRARY)
@@ -4685,7 +4640,7 @@ IF(NJLI_USE_JSONCPP_LIBRARY)
 
   ADD_LIBRARY(imported_jsoncpp STATIC IMPORTED )
   SET_TARGET_PROPERTIES(imported_jsoncpp PROPERTIES IMPORTED_LOCATION ${imported_jsoncpp_location})
-  LIST(APPEND EXTRA_PLATFORM_LIBS imported_jsoncpp)
+  LIST(APPEND THIRD_PARTY_LIBS imported_jsoncpp)
 ENDIF(NJLI_USE_JSONCPP_LIBRARY)
 
 IF(NJLI_USE_NANOVG_LIBRARY)
@@ -4693,7 +4648,7 @@ IF(NJLI_USE_NANOVG_LIBRARY)
 
   ADD_LIBRARY(imported_nanovg STATIC IMPORTED )
   SET_TARGET_PROPERTIES(imported_nanovg PROPERTIES IMPORTED_LOCATION ${imported_nanovg_location})
-  LIST(APPEND EXTRA_PLATFORM_LIBS imported_nanovg)
+  LIST(APPEND THIRD_PARTY_LIBS imported_nanovg)
 ENDIF(NJLI_USE_NANOVG_LIBRARY)
 
 IF(NJLI_USE_OPENCV_LIBRARY)
@@ -4701,55 +4656,55 @@ IF(NJLI_USE_OPENCV_LIBRARY)
 
   ADD_LIBRARY(imported_opencv_calib3d STATIC IMPORTED)
   SET_TARGET_PROPERTIES(imported_opencv_calib3d PROPERTIES IMPORTED_LOCATION ${imported_opencv_calib3d_location})
-  LIST(APPEND EXTRA_PLATFORM_LIBS imported_opencv_calib3d)
+  LIST(APPEND THIRD_PARTY_LIBS imported_opencv_calib3d)
 
   ADD_LIBRARY(imported_opencv_core STATIC IMPORTED)
   SET_TARGET_PROPERTIES(imported_opencv_core PROPERTIES IMPORTED_LOCATION ${imported_opencv_core_location})
-  LIST(APPEND EXTRA_PLATFORM_LIBS imported_opencv_core)
+  LIST(APPEND THIRD_PARTY_LIBS imported_opencv_core)
 
   ADD_LIBRARY(imported_opencv_features2d STATIC IMPORTED)
   SET_TARGET_PROPERTIES(imported_opencv_features2d PROPERTIES IMPORTED_LOCATION ${imported_opencv_features2d_location})
-  LIST(APPEND EXTRA_PLATFORM_LIBS imported_opencv_features2d)
+  LIST(APPEND THIRD_PARTY_LIBS imported_opencv_features2d)
 
   ADD_LIBRARY(imported_opencv_flann STATIC IMPORTED)
   SET_TARGET_PROPERTIES(imported_opencv_flann PROPERTIES IMPORTED_LOCATION ${imported_opencv_flann_location})
-  LIST(APPEND EXTRA_PLATFORM_LIBS imported_opencv_flann)
+  LIST(APPEND THIRD_PARTY_LIBS imported_opencv_flann)
 
   ADD_LIBRARY(imported_opencv_imgcodecs STATIC IMPORTED)
   SET_TARGET_PROPERTIES(imported_opencv_imgcodecs PROPERTIES IMPORTED_LOCATION ${imported_opencv_imgcodecs_location})
-  LIST(APPEND EXTRA_PLATFORM_LIBS imported_opencv_imgcodecs)
+  LIST(APPEND THIRD_PARTY_LIBS imported_opencv_imgcodecs)
 
   ADD_LIBRARY(imported_opencv_imgproc STATIC IMPORTED)
   SET_TARGET_PROPERTIES(imported_opencv_imgproc PROPERTIES IMPORTED_LOCATION ${imported_opencv_imgproc_location})
-  LIST(APPEND EXTRA_PLATFORM_LIBS imported_opencv_imgproc)
+  LIST(APPEND THIRD_PARTY_LIBS imported_opencv_imgproc)
 
   ADD_LIBRARY(imported_opencv_ml STATIC IMPORTED)
   SET_TARGET_PROPERTIES(imported_opencv_ml PROPERTIES IMPORTED_LOCATION ${imported_opencv_ml_location})
-  LIST(APPEND EXTRA_PLATFORM_LIBS imported_opencv_ml)
+  LIST(APPEND THIRD_PARTY_LIBS imported_opencv_ml)
 
   ADD_LIBRARY(imported_opencv_objdetect STATIC IMPORTED)
   SET_TARGET_PROPERTIES(imported_opencv_objdetect PROPERTIES IMPORTED_LOCATION ${imported_opencv_objdetect_location})
-  LIST(APPEND EXTRA_PLATFORM_LIBS imported_opencv_objdetect)
+  LIST(APPEND THIRD_PARTY_LIBS imported_opencv_objdetect)
 
   ADD_LIBRARY(imported_opencv_photo STATIC IMPORTED)
   SET_TARGET_PROPERTIES(imported_opencv_photo PROPERTIES IMPORTED_LOCATION ${imported_opencv_photo_location})
-  LIST(APPEND EXTRA_PLATFORM_LIBS imported_opencv_photo)
+  LIST(APPEND THIRD_PARTY_LIBS imported_opencv_photo)
 
   ADD_LIBRARY(imported_opencv_shape STATIC IMPORTED)
   SET_TARGET_PROPERTIES(imported_opencv_shape PROPERTIES IMPORTED_LOCATION ${imported_opencv_shape_location})
-  LIST(APPEND EXTRA_PLATFORM_LIBS imported_opencv_shape)
+  LIST(APPEND THIRD_PARTY_LIBS imported_opencv_shape)
 
   ADD_LIBRARY(imported_opencv_stitching STATIC IMPORTED)
   SET_TARGET_PROPERTIES(imported_opencv_stitching PROPERTIES IMPORTED_LOCATION ${imported_opencv_stitching_location})
-  LIST(APPEND EXTRA_PLATFORM_LIBS imported_opencv_stitching)
+  LIST(APPEND THIRD_PARTY_LIBS imported_opencv_stitching)
 
   ADD_LIBRARY(imported_opencv_video STATIC IMPORTED)
   SET_TARGET_PROPERTIES(imported_opencv_video PROPERTIES IMPORTED_LOCATION ${imported_opencv_video_location})
-  LIST(APPEND EXTRA_PLATFORM_LIBS imported_opencv_video)
+  LIST(APPEND THIRD_PARTY_LIBS imported_opencv_video)
 
   ADD_LIBRARY(imported_opencv_videostab STATIC IMPORTED)
   SET_TARGET_PROPERTIES(imported_opencv_videostab PROPERTIES IMPORTED_LOCATION ${imported_opencv_videostab_location})
-  LIST(APPEND EXTRA_PLATFORM_LIBS imported_opencv_videostab)
+  LIST(APPEND THIRD_PARTY_LIBS imported_opencv_videostab)
 ENDIF(NJLI_USE_OPENCV_LIBRARY)
 
 IF(NJLI_USE_SQLITE_LIBRARY)
@@ -4757,7 +4712,7 @@ IF(NJLI_USE_SQLITE_LIBRARY)
 
   ADD_LIBRARY(imported_sqlite STATIC IMPORTED)
   SET_TARGET_PROPERTIES(imported_sqlite PROPERTIES IMPORTED_LOCATION ${imported_sqlite_location})
-  LIST(APPEND EXTRA_PLATFORM_LIBS imported_sqlite)
+  LIST(APPEND THIRD_PARTY_LIBS imported_sqlite)
 ENDIF(NJLI_USE_SQLITE_LIBRARY)
 
 IF(NJLI_USE_STB_LIBRARY)
@@ -4765,7 +4720,7 @@ IF(NJLI_USE_STB_LIBRARY)
 
   ADD_LIBRARY(imported_stb STATIC IMPORTED )
   SET_TARGET_PROPERTIES(imported_stb PROPERTIES IMPORTED_LOCATION ${imported_stb_location})
-  LIST(APPEND EXTRA_PLATFORM_LIBS imported_stb)
+  LIST(APPEND THIRD_PARTY_LIBS imported_stb)
 ENDIF(NJLI_USE_STB_LIBRARY)
 
 #IF(NJLI_USE_TINYXML2_LIBRARY)
@@ -4773,7 +4728,7 @@ ENDIF(NJLI_USE_STB_LIBRARY)
 #
 #    ADD_LIBRARY(imported_tinyxml2 STATIC IMPORTED )
 #    SET_TARGET_PROPERTIES(imported_tinyxml2 PROPERTIES IMPORTED_LOCATION ${imported_tinyxml2_location})
-#    LIST(APPEND EXTRA_PLATFORM_LIBS imported_tinyxml2)
+#    LIST(APPEND THIRD_PARTY_LIBS imported_tinyxml2)
 #ENDIF(NJLI_USE_TINYXML2_LIBRARY)
 
 IF(NJLI_USE_USYNERGY_LIBRARY)
@@ -4781,7 +4736,7 @@ IF(NJLI_USE_USYNERGY_LIBRARY)
 
   ADD_LIBRARY(imported_uSynergy STATIC IMPORTED )
   SET_TARGET_PROPERTIES(imported_uSynergy PROPERTIES IMPORTED_LOCATION ${imported_uSynergy_location})
-  LIST(APPEND EXTRA_PLATFORM_LIBS imported_uSynergy)
+  LIST(APPEND THIRD_PARTY_LIBS imported_uSynergy)
 ENDIF(NJLI_USE_USYNERGY_LIBRARY)
 
 LIST(REMOVE_ITEM NJLIGameEngine_SRCS
@@ -5054,7 +5009,7 @@ IF( ${NJLI_BUILD_PLATFORM} STREQUAL "android" )
     ${NJLI_SOURCE_DIRECTORY}/njli/platform/main.cpp
     ${NJLIGameEngine_THIRDPARTY_INC}
   )
-  TARGET_LINK_LIBRARIES( njli ${EXTRA_PLATFORM_LIBS}
+  TARGET_LINK_LIBRARIES( njli ${EXTRA_PLATFORM_LIBS} ${THIRD_PARTY_LIBS}
     ${NJLIGameEngine_LBY}
   )
   SET_TARGET_PROPERTIES( njli PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
@@ -5065,16 +5020,17 @@ IF( ${NJLI_BUILD_PLATFORM} STREQUAL "android" )
   #  WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
   #)
 
-  IF (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+  IF (APPLE)
     ADD_CUSTOM_COMMAND(TARGET njli
       PRE_BUILD
-      COMMAND export NJLI_GAME_ENGINE_ASSET_DIR=${NJLIGameEngine_COMMON_DIRECTORY} && export NJLI_BUILD_PLATFORM=${NJLI_BUILD_PLATFORM} && export NJLI_GRAPHICS_PLATFORM=${NJLI_GRAPHICS_PLATFORM} && export NJLI_SOUND_PLATFORM=${NJLI_SOUND_PLATFORM} &&  make
+      COMMAND export NJLI_GAME_ENGINE_ASSET_DIR=${NJLIGameEngine_COMMON_DIRECTORY} && export NJLI_BUILD_PLATFORM=${NJLI_BUILD_PLATFORM} && export NJLI_GRAPHICS_PLATFORM=${NJLI_GRAPHICS_PLATFORM} && export NJLI_SOUND_PLATFORM=${NJLI_SOUND_PLATFORM} && make
       WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/projects/COMMON
     )
     ADD_CUSTOM_TARGET(really-clean
       COMMAND export NJLI_GAME_ENGINE_ASSET_DIR=${NJLIGameEngine_COMMON_DIRECTORY} && export NJLI_BUILD_PLATFORM=${NJLI_BUILD_PLATFORM} && export NJLI_GRAPHICS_PLATFORM=${NJLI_GRAPHICS_PLATFORM} && export NJLI_SOUND_PLATFORM=${NJLI_SOUND_PLATFORM} && make clean
+      WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/projects/COMMON
     )
-  ENDIF (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+  ENDIF (APPLE)
 
 ELSE()
   IF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" AND IS_DEBUG )
@@ -5085,7 +5041,7 @@ ELSE()
     )
     SET_TARGET_PROPERTIES( libnjli_bytecode_shared PROPERTIES OUTPUT_NAME libnjli )
     SET_TARGET_PROPERTIES( libnjli_bytecode_shared PROPERTIES PREFIX "")
-    TARGET_LINK_LIBRARIES( libnjli_bytecode_shared ${EXTRA_PLATFORM_LIBS} ${NJLIGameEngine_LBY} )
+    TARGET_LINK_LIBRARIES( libnjli_bytecode_shared ${EXTRA_PLATFORM_LIBS} ${THIRD_PARTY_LIBS} ${NJLIGameEngine_LBY} )
     SET_TARGET_PROPERTIES( libnjli_bytecode_shared PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
     ADD_DEPENDENCIES(libnjli_bytecode_shared WrapSWIG)
     #ADD_CUSTOM_COMMAND(TARGET libnjli_bytecode_shared PRE_BUILD
@@ -5096,38 +5052,35 @@ ELSE()
   ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" AND IS_DEBUG )
 
   IF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" OR ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" OR ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
-    LIST(APPEND unity_build_srcs_NJLIGameEngine ${NJLIGameEngine_SRCS} )
-    LIST(APPEND unity_build_srcs_NJLIGameEngine ${njli_generated} )
-    LIST(APPEND unity_build_srcs_NJLIGameEngine ${njli_generated_swig} )
-    LIST(APPEND unity_build_srcs_NJLIGameEngine ${njli_generated_swig_lua} )
-    LIST(APPEND unity_build_srcs_NJLIGameEngine ${njli_generated_swig_lua_platform})
-    LIST(APPEND unity_build_srcs_NJLIGameEngine ${NJLI_SOURCE_DIRECTORY}/njli/platform/Engine.h)
+    LIST(APPEND unity_build_srcs_NJLI ${NJLIGameEngine_SRCS} )
+    LIST(APPEND unity_build_srcs_NJLI ${njli_generated} )
+    LIST(APPEND unity_build_srcs_NJLI ${njli_generated_swig} )
+    LIST(APPEND unity_build_srcs_NJLI ${njli_generated_swig_lua} )
+    LIST(APPEND unity_build_srcs_NJLI ${njli_generated_swig_lua_platform})
+    LIST(APPEND unity_build_srcs_NJLI ${NJLI_SOURCE_DIRECTORY}/njli/platform/Engine.h)
 
-    FOREACH(item ${unity_build_srcs_NJLIGameEngine})
+    FOREACH(item ${unity_build_srcs_NJLI})
       IF(${item} MATCHES "[A-Za-z0-9/]*DS_Store")
-        LIST(REMOVE_ITEM unity_build_srcs_NJLIGameEngine ${item})
+        LIST(REMOVE_ITEM unity_build_srcs_NJLI ${item})
       ENDIF(${item} MATCHES "[A-Za-z0-9/]*DS_Store")
 
       IF(${item} MATCHES "[A-Za-z0-9/]*swp")
-        LIST(REMOVE_ITEM unity_build_srcs_NJLIGameEngine ${item})
+        LIST(REMOVE_ITEM unity_build_srcs_NJLI ${item})
       ENDIF(${item} MATCHES "[A-Za-z0-9/]*swp")
     ENDFOREACH(item)
 
     IF(${NJLI_UNITY_BUILD})
-      enable_unity_build(UnityBuild_NJLIGameEngine "${unity_build_srcs_NJLIGameEngine}")
+      enable_unity_build(UnityBuild_NJLIGameEngine "${unity_build_srcs_NJLI}")
     ENDIF(${NJLI_UNITY_BUILD})
 
-    ADD_LIBRARY( NJLI
-      SHARED
-      ${unity_build_srcs_NJLIGameEngine}
-    )
+    ADD_LIBRARY( NJLI SHARED ${unity_build_srcs_NJLI})
 
     SET_TARGET_PROPERTIES( NJLI PROPERTIES VERSION ${NJLIGameEngine_VERSION})
     SET_TARGET_PROPERTIES( NJLI PROPERTIES SOVERSION ${NJLIGameEngine_VERSION})
     SET_TARGET_PROPERTIES( NJLI PROPERTIES FRAMEWORK true)
     SET_TARGET_PROPERTIES( NJLI PROPERTIES PUBLIC_HEADER ${NJLI_SOURCE_DIRECTORY}/njli/platform/Engine.h)
 
-    TARGET_LINK_LIBRARIES( NJLI ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} )
+    TARGET_LINK_LIBRARIES( NJLI ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} ${THIRD_PARTY_LIBS} )
     ADD_DEPENDENCIES(NJLI WrapSWIG)
     #ADD_CUSTOM_COMMAND(TARGET NJLI PRE_BUILD
     #  COMMAND sh ${CMAKE_CURRENT_SOURCE_DIR}/njli-build-count.sh .NJLI.${NJLI_BUILD_PLATFORM}
@@ -5157,27 +5110,17 @@ ELSE()
     enable_unity_build(UnityBuild_libnjli_static "${unity_build_srcs_libnjli_static}")
   ENDIF(${NJLI_UNITY_BUILD})
 
-  ADD_LIBRARY( libnjli_static STATIC
-    ${unity_build_srcs_libnjli_static}
-  )
+  ADD_LIBRARY( libnjli_static STATIC ${unity_build_srcs_libnjli_static})
+
   SET_TARGET_PROPERTIES( libnjli_static PROPERTIES OUTPUT_NAME libnjli )
   SET_TARGET_PROPERTIES( libnjli_static PROPERTIES PREFIX "")
-  TARGET_LINK_LIBRARIES( libnjli_static ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} )
+  TARGET_LINK_LIBRARIES( libnjli_static ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} ${THIRD_PARTY_LIBS})
   SET_TARGET_PROPERTIES( libnjli_static PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
   SET_TARGET_PROPERTIES( libnjli_static PROPERTIES PUBLIC_HEADER ${NJLI_SOURCE_DIRECTORY}/njli/platform/Engine.h)
   ADD_DEPENDENCIES(libnjli_static WrapSWIG)
-  #ADD_CUSTOM_COMMAND(TARGET libnjli_static PRE_BUILD
-  #  COMMAND sh ${CMAKE_CURRENT_SOURCE_DIR}/njli-build-count.sh .libnjli_static.${NJLI_BUILD_PLATFORM}
-  #  WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-  #)
 
   IF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" OR ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
 
-    # LIST(APPEND unity_build_srcs_lua ${NJLIGameEngine_SRCS})
-    # LIST(APPEND unity_build_srcs_lua ${njli_generated})
-    # LIST(APPEND unity_build_srcs_lua ${njli_generated_swig})
-    # LIST(APPEND unity_build_srcs_lua ${njli_generated_swig_lua})
-    # LIST(APPEND unity_build_srcs_lua ${njli_generated_swig_lua_platform})
     LIST(APPEND unity_build_srcs_lua "${NJLI_SOURCE_DIRECTORY}/lua/src/lua.c")
 
     FOREACH(item ${unity_build_srcs_lua})
@@ -5201,12 +5144,12 @@ ELSE()
     SET_TARGET_PROPERTIES( lua PROPERTIES RESOURCE "${LUA_ASSETS}" )
     IF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
       IF(IS_DEBUG)
-        TARGET_LINK_LIBRARIES( lua ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} "--shell-file ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/emscripten/lua/debug_shell.html" libnjli_static)
+        TARGET_LINK_LIBRARIES( lua ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} ${THIRD_PARTY_LIBS} "--shell-file ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/emscripten/lua/debug_shell.html" libnjli_static)
       ELSE()
-        TARGET_LINK_LIBRARIES( lua ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} "--shell-file ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/emscripten/lua/release_shell.html" libnjli_static)
+        TARGET_LINK_LIBRARIES( lua ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} ${THIRD_PARTY_LIBS} "--shell-file ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/emscripten/lua/release_shell.html" libnjli_static)
       ENDIF(IS_DEBUG)
     ELSE()
-      TARGET_LINK_LIBRARIES( lua ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} libnjli_static)
+      TARGET_LINK_LIBRARIES( lua ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} ${THIRD_PARTY_LIBS} libnjli_static)
     ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
 
     SET_SOURCE_FILES_PROPERTIES(
@@ -5217,11 +5160,6 @@ ELSE()
     ADD_DEPENDENCIES(lua WrapSWIG)
     ADD_DEPENDENCIES(lua libnjli_static)
 
-    # LIST(APPEND unity_build_srcs_luac ${NJLIGameEngine_SRCS})
-    # LIST(APPEND unity_build_srcs_luac ${njli_generated})
-    # LIST(APPEND unity_build_srcs_luac ${njli_generated_swig})
-    # LIST(APPEND unity_build_srcs_luac ${njli_generated_swig_lua})
-    # LIST(APPEND unity_build_srcs_luac ${njli_generated_swig_lua_platform})
     LIST(APPEND unity_build_srcs_luac "${NJLI_SOURCE_DIRECTORY}/lua/src/luac.c")
 
     FOREACH(item ${unity_build_srcs_luac})
@@ -5246,12 +5184,12 @@ ELSE()
     SET_TARGET_PROPERTIES( luac PROPERTIES RESOURCE "${LUAC_ASSETS}" )
     IF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
       IF(IS_DEBUG)
-        TARGET_LINK_LIBRARIES( luac ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} "--shell-file ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/emscripten/luac/debug_shell.html" libnjli_static)
+        TARGET_LINK_LIBRARIES( luac ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} ${THIRD_PARTY_LIBS} "--shell-file ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/emscripten/luac/debug_shell.html" libnjli_static)
       ELSE()
-        TARGET_LINK_LIBRARIES( luac ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} "--shell-file ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/emscripten/luac/release_shell.html" libnjli_static)
+        TARGET_LINK_LIBRARIES( luac ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} ${THIRD_PARTY_LIBS} "--shell-file ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/emscripten/luac/release_shell.html" libnjli_static)
       ENDIF(IS_DEBUG)
     ELSE()
-      TARGET_LINK_LIBRARIES( luac ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} libnjli_static)
+      TARGET_LINK_LIBRARIES( luac ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} ${THIRD_PARTY_LIBS} libnjli_static)
     ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
 
     SET_SOURCE_FILES_PROPERTIES(
@@ -5282,19 +5220,14 @@ ELSE()
       enable_unity_build(UnityBuild_libnjli_lua_module "${unity_build_srcs_libnjli_lua_module}")
     ENDIF(${NJLI_UNITY_BUILD})
 
-    ADD_LIBRARY( libnjli_lua_module MODULE
-      ${unity_build_srcs_libnjli_lua_module}
-    )
+    ADD_LIBRARY( libnjli_lua_module MODULE ${unity_build_srcs_libnjli_lua_module})
+
     SET_TARGET_PROPERTIES( libnjli_lua_module PROPERTIES OUTPUT_NAME njli )
     SET_TARGET_PROPERTIES( libnjli_lua_module PROPERTIES PREFIX "")
-    TARGET_LINK_LIBRARIES( libnjli_lua_module ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} )
+    TARGET_LINK_LIBRARIES( libnjli_lua_module ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} ${THIRD_PARTY_LIBS} )
     SET_TARGET_PROPERTIES( libnjli_lua_module PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
     SET_TARGET_PROPERTIES( libnjli_lua_module PROPERTIES PUBLIC_HEADER ${NJLI_SOURCE_DIRECTORY}/njli/platform/Engine.h)
     ADD_DEPENDENCIES(libnjli_lua_module WrapSWIG)
-    #ADD_CUSTOM_COMMAND(TARGET libnjli_lua_module PRE_BUILD
-    #  COMMAND sh ${CMAKE_CURRENT_SOURCE_DIR}/njli-build-count.sh .libnjli_lua_module.${NJLI_BUILD_PLATFORM}
-    #  WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-    #)
 
   ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" OR ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten")
 
@@ -5332,7 +5265,7 @@ ELSE()
   ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" )
   SET_TARGET_PROPERTIES( libnjli_shared PROPERTIES OUTPUT_NAME libnjli )
   SET_TARGET_PROPERTIES( libnjli_shared PROPERTIES PREFIX "")
-  TARGET_LINK_LIBRARIES( libnjli_shared ${EXTRA_PLATFORM_LIBS} ${NJLIGameEngine_LBY} )
+  TARGET_LINK_LIBRARIES( libnjli_shared ${EXTRA_PLATFORM_LIBS} ${THIRD_PARTY_LIBS} ${NJLIGameEngine_LBY} )
   SET_TARGET_PROPERTIES( libnjli_shared PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
   SET_TARGET_PROPERTIES( libnjli_shared PROPERTIES PUBLIC_HEADER ${NJLI_SOURCE_DIRECTORY}/njli/platform/Engine.h)
   ADD_DEPENDENCIES(libnjli_shared WrapSWIG)
@@ -5349,7 +5282,7 @@ ELSE()
   #LIST(APPEND unity_build_srcs_EngineSource ${njli_generated_swig_lua} )
   #LIST(APPEND unity_build_srcs_EngineSource ${njli_generated_swig_lua_platform} )
   LIST(APPEND unity_build_srcs_EngineSource ${NJLI_SOURCE_DIRECTORY}/njli/platform/main.cpp )
-  LIST(APPEND unity_build_srcs_EngineSource ${NJLIGameEngine_THIRDPARTY_INC} )
+  #LIST(APPEND unity_build_srcs_EngineSource ${NJLIGameEngine_THIRDPARTY_INC} )
 
   FOREACH(item ${unity_build_srcs_EngineSource})
     IF(${item} MATCHES "[A-Za-z0-9/]*DS_Store")
@@ -5369,16 +5302,20 @@ ELSE()
     ${unity_build_srcs_EngineSource}
     ${NJLI_RESOURCES}
   )
+
   IF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" AND IS_DEBUG )
     TARGET_LINK_LIBRARIES( ${NJLI_PRODUCT_NAME} libnjli_bytecode_shared)
   ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" AND IS_DEBUG )
-  TARGET_LINK_LIBRARIES( ${NJLI_PRODUCT_NAME} libnjli_static)
+
+  if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    TARGET_LINK_LIBRARIES( ${NJLI_PRODUCT_NAME} ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} ${THIRD_PARTY_LIBS} libnjli_static)
+    ADD_DEPENDENCIES(${NJLI_PRODUCT_NAME} libnjli_static)
+  else()
+    TARGET_LINK_LIBRARIES( ${NJLI_PRODUCT_NAME} ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} ${THIRD_PARTY_LIBS} libnjli_static)
+    ADD_DEPENDENCIES(${NJLI_PRODUCT_NAME} libnjli_static)
+  endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+
   ADD_DEPENDENCIES(${NJLI_PRODUCT_NAME} WrapSWIG)
-  ADD_DEPENDENCIES(${NJLI_PRODUCT_NAME} libnjli_static)
-  #ADD_CUSTOM_COMMAND(TARGET ${NJLI_PRODUCT_NAME} PRE_BUILD
-  #  COMMAND sh ${CMAKE_CURRENT_SOURCE_DIR}/njli-build-count.sh .${NJLI_PRODUCT_NAME}.${NJLI_BUILD_PLATFORM}
-  #  WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-  #)
 
   #SET_TARGET_PROPERTIES( ${NJLI_PRODUCT_NAME} PROPERTIES OUTPUT_NAME ${NJLI_PRODUCT_NAME} )
   #SET_TARGET_PROPERTIES( ${NJLI_PRODUCT_NAME} PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
@@ -5421,19 +5358,19 @@ ELSE()
       XCODE_ATTRIBUTE_DEVELOPMENT_TEAM $ENV{NJLI_DEVELOPMENT_TEAM}
     )
 
-  ENDIF()
+  ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" OR ${NJLI_BUILD_PLATFORM} STREQUAL "ios" OR ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
 
   IF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
     IF(IS_DEBUG)
-      TARGET_LINK_LIBRARIES( ${NJLI_PRODUCT_NAME} ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} "--shell-file ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/emscripten/executable/debug_shell.html" libnjli_static)
+      TARGET_LINK_LIBRARIES( ${NJLI_PRODUCT_NAME} ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} ${THIRD_PARTY_LIBS} "--shell-file ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/emscripten/executable/debug_shell.html" libnjli_static)
     ELSE()
-      TARGET_LINK_LIBRARIES( ${NJLI_PRODUCT_NAME} ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} "--shell-file ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/emscripten/executable/release_shell.html" libnjli_static)
+      TARGET_LINK_LIBRARIES( ${NJLI_PRODUCT_NAME} ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} ${THIRD_PARTY_LIBS} "--shell-file ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/emscripten/executable/release_shell.html" libnjli_static)
     ENDIF(IS_DEBUG)
   ELSE()
-    TARGET_LINK_LIBRARIES( ${NJLI_PRODUCT_NAME} ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} libnjli_static)
+    TARGET_LINK_LIBRARIES( ${NJLI_PRODUCT_NAME} ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} ${THIRD_PARTY_LIBS} libnjli_static)
   ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
 
-  IF (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+  IF (APPLE)
     ADD_CUSTOM_COMMAND(TARGET ${NJLI_PRODUCT_NAME}
       PRE_BUILD
       COMMAND export NJLI_GAME_ENGINE_ASSET_DIR=${NJLIGameEngine_COMMON_DIRECTORY} && export NJLI_BUILD_PLATFORM=${NJLI_BUILD_PLATFORM} && export NJLI_GRAPHICS_PLATFORM=${NJLI_GRAPHICS_PLATFORM} && export NJLI_SOUND_PLATFORM=${NJLI_SOUND_PLATFORM} && make
@@ -5441,8 +5378,9 @@ ELSE()
       )
     ADD_CUSTOM_TARGET(really-clean
       COMMAND export NJLI_GAME_ENGINE_ASSET_DIR=${NJLIGameEngine_COMMON_DIRECTORY} && export NJLI_BUILD_PLATFORM=${NJLI_BUILD_PLATFORM} && export NJLI_GRAPHICS_PLATFORM=${NJLI_GRAPHICS_PLATFORM} && export NJLI_SOUND_PLATFORM=${NJLI_SOUND_PLATFORM} && make clean
+      WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/projects/COMMON
       )
-  ENDIF (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+  ENDIF (APPLE)
 
   IF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" OR ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" OR ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
     INSTALL(TARGETS NJLI
@@ -5526,22 +5464,6 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
         COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/postprocess_bundle.cmake
         )
     ENDIF(IS_RELEASE)
-    #IF(IS_RELEASE)
-    #  set(CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR})
-    #  install(CODE "
-    #  include(BundleUtilities)
-    #  fixup_bundle(\"${BUNDLE_PATH}\" \"\" \"${GAME_ASSETS}\" )
-    #  " COMPONENT Runtime)
-
-    #  #file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/postprocess_bundle.cmake "
-    #  #include(BundleUtilities)
-    #  #message(\"Fixing up application bundle: ${BUNDLE_PATH}\")
-    #  #fixup_bundle(\"${BUNDLE_PATH}\" \"\" \"${GAME_ASSETS}\" )
-    #  #")
-    #  #add_custom_command(TARGET ${NJLI_PRODUCT_NAME} POST_BUILD
-    #  #  COMMAND ${CMAKE_COMMAND} -P postprocess_bundle.cmake
-    #  #  )
-    #ENDIF(IS_RELEASE)
 
     INSTALL(TARGETS lua luac RUNTIME DESTINATION platform/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin )
   ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" )
