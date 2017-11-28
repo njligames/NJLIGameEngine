@@ -759,7 +759,6 @@ ENDIF()
 
 FILE(GLOB NJLIGameEngine_SRCS
   ${bullet}
-  #${group_other}
   ${lua_exts}
   ${lua_exts_luasocket}
   ${lua_src}
@@ -774,9 +773,6 @@ FILE(GLOB NJLIGameEngine_SRCS
   ${njli_builders_sound}
   ${njli_builders_steering}
   ${njli_builders_steering_behavior}
-  #${njli_generated}
-  #${njli_generated_swig}
-  #${njli_generated_swig_lua}
   ${njli_graphics}
   ${njli_graphics_specific}
   ${njli_modules}
@@ -791,6 +787,12 @@ FILE(GLOB NJLIGameEngine_SRCS
   ${njli_sound_specific}
   ${njli_steering}
   ${njli_steering_behavior}
+  ${CMAKE_SOURCE_DIR}/../External/thirdparty/android_file.cpp
+  ${CMAKE_SOURCE_DIR}/../External/thirdparty/android_file.h
+  ${njli_generated}
+  ${njli_generated_swig}
+  ${njli_generated_swig_lua}
+  ${njli_generated_swig_lua_platform}
 )
 
 
@@ -4743,16 +4745,6 @@ LIST(REMOVE_ITEM NJLIGameEngine_SRCS
   ${NJLI_SOURCE_DIRECTORY}/njli/platform/main.cpp
 )
 
-#SET(Binary_FILES
-#  ${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/lua/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin/lua${NJLI_BINARY_EXTENSION}
-#  ${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/lua/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin/luac${NJLI_BINARY_EXTENSION}
-#  ${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/assimp/${NJLI_BUILD_DIR}/Release/bin/assimp${NJLI_ASSIMP_POSTFIX}${NJLI_BINARY_EXTENSION}
-#)
-
-
-
-
-
 
 # This is a CMake example for Python
 
@@ -4997,28 +4989,15 @@ SET_SOURCE_FILES_PROPERTIES( ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/html/index.htm
 
 IF( ${NJLI_BUILD_PLATFORM} STREQUAL "android" )
   ADD_LIBRARY( njli SHARED
-    # ${NJLIGameEngine_HDRS}
     ${NJLIGameEngine_SRCS}
-    ${njli_generated}
-    ${njli_generated_swig}
-    ${njli_generated_swig_lua}
-    ${njli_generated_swig_lua_platform}
     ${CMAKE_SOURCE_DIR}/../External/thirdparty/SDL2-2.0.5/src/main/android/SDL_android_main.c
-    ${CMAKE_SOURCE_DIR}/../External/thirdparty/android_file.h
-    ${CMAKE_SOURCE_DIR}/../External/thirdparty/android_file.cpp
     ${NJLI_SOURCE_DIRECTORY}/njli/platform/main.cpp
-    ${NJLIGameEngine_THIRDPARTY_INC}
   )
   TARGET_LINK_LIBRARIES( njli ${EXTRA_PLATFORM_LIBS} ${THIRD_PARTY_LIBS}
     ${NJLIGameEngine_LBY}
   )
   SET_TARGET_PROPERTIES( njli PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
   ADD_DEPENDENCIES(njli WrapSWIG)
-  #ADD_CUSTOM_COMMAND(TARGET njli
-  #  PRE_BUILD
-  #  COMMAND sh ${CMAKE_CURRENT_SOURCE_DIR}/njli-build-count.sh .njli.${NJLI_BUILD_PLATFORM}
-  #  WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-  #)
 
   IF (APPLE)
     ADD_CUSTOM_COMMAND(TARGET njli
@@ -5033,31 +5012,25 @@ IF( ${NJLI_BUILD_PLATFORM} STREQUAL "android" )
   ENDIF (APPLE)
 
 ELSE()
-  IF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" AND IS_DEBUG )
+  IF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten")
 
-    ADD_LIBRARY( libnjli_bytecode_shared SHARED
-      ${njli_generated_swig_embind}
-      ${njli_generated_swig_embind_platform}
-    )
-    SET_TARGET_PROPERTIES( libnjli_bytecode_shared PROPERTIES OUTPUT_NAME libnjli )
-    SET_TARGET_PROPERTIES( libnjli_bytecode_shared PROPERTIES PREFIX "")
-    TARGET_LINK_LIBRARIES( libnjli_bytecode_shared ${EXTRA_PLATFORM_LIBS} ${THIRD_PARTY_LIBS} ${NJLIGameEngine_LBY} )
-    SET_TARGET_PROPERTIES( libnjli_bytecode_shared PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
-    ADD_DEPENDENCIES(libnjli_bytecode_shared WrapSWIG)
-    #ADD_CUSTOM_COMMAND(TARGET libnjli_bytecode_shared PRE_BUILD
-    #  COMMAND sh ${CMAKE_CURRENT_SOURCE_DIR}/njli-build-count.sh .libnjli_bytecode_shared.${NJLI_BUILD_PLATFORM}
-    #  WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-    #)
+    IF(IS_DEBUG)
+      ADD_LIBRARY( libnjli_bytecode_shared SHARED
+        ${njli_generated_swig_embind}
+        ${njli_generated_swig_embind_platform}
+      )
+      SET_TARGET_PROPERTIES( libnjli_bytecode_shared PROPERTIES OUTPUT_NAME libnjli )
+      SET_TARGET_PROPERTIES( libnjli_bytecode_shared PROPERTIES PREFIX "")
+      TARGET_LINK_LIBRARIES( libnjli_bytecode_shared ${EXTRA_PLATFORM_LIBS} ${THIRD_PARTY_LIBS} ${NJLIGameEngine_LBY} )
+      SET_TARGET_PROPERTIES( libnjli_bytecode_shared PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
+      ADD_DEPENDENCIES(libnjli_bytecode_shared WrapSWIG)
+    ENDIF(IS_DEBUG)
 
-  ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" AND IS_DEBUG )
+
+  ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
 
   IF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" OR ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" OR ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
     LIST(APPEND unity_build_srcs_NJLI ${NJLIGameEngine_SRCS} )
-    LIST(APPEND unity_build_srcs_NJLI ${njli_generated} )
-    LIST(APPEND unity_build_srcs_NJLI ${njli_generated_swig} )
-    LIST(APPEND unity_build_srcs_NJLI ${njli_generated_swig_lua} )
-    LIST(APPEND unity_build_srcs_NJLI ${njli_generated_swig_lua_platform})
-    LIST(APPEND unity_build_srcs_NJLI ${NJLI_SOURCE_DIRECTORY}/njli/platform/Engine.h)
 
     FOREACH(item ${unity_build_srcs_NJLI})
       IF(${item} MATCHES "[A-Za-z0-9/]*DS_Store")
@@ -5082,19 +5055,11 @@ ELSE()
 
     TARGET_LINK_LIBRARIES( NJLI ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} ${THIRD_PARTY_LIBS} )
     ADD_DEPENDENCIES(NJLI WrapSWIG)
-    #ADD_CUSTOM_COMMAND(TARGET NJLI PRE_BUILD
-    #  COMMAND sh ${CMAKE_CURRENT_SOURCE_DIR}/njli-build-count.sh .NJLI.${NJLI_BUILD_PLATFORM}
-    #  WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-    #)
 
   ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" OR ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" OR ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
 
 
   LIST(APPEND unity_build_srcs_libnjli_static ${NJLIGameEngine_SRCS} )
-  LIST(APPEND unity_build_srcs_libnjli_static ${njli_generated} )
-  LIST(APPEND unity_build_srcs_libnjli_static ${njli_generated_swig} )
-  LIST(APPEND unity_build_srcs_libnjli_static ${njli_generated_swig_lua} )
-  LIST(APPEND unity_build_srcs_libnjli_static ${njli_generated_swig_lua_platform})
 
   FOREACH(item ${unity_build_srcs_libnjli_static})
     IF(${item} MATCHES "[A-Za-z0-9/]*DS_Store")
@@ -5201,10 +5166,6 @@ ELSE()
     ADD_DEPENDENCIES(luac libnjli_static)
 
     LIST(APPEND unity_build_srcs_libnjli_lua_module ${NJLIGameEngine_SRCS} )
-    LIST(APPEND unity_build_srcs_libnjli_lua_module ${njli_generated} )
-    LIST(APPEND unity_build_srcs_libnjli_lua_module ${njli_generated_swig} )
-    LIST(APPEND unity_build_srcs_libnjli_lua_module ${njli_generated_swig_lua})
-    LIST(APPEND unity_build_srcs_libnjli_lua_module ${njli_generated_swig_lua_platform})
 
     FOREACH(item ${unity_build_srcs_libnjli_lua_module})
       IF(${item} MATCHES "[A-Za-z0-9/]*DS_Store")
@@ -5231,13 +5192,7 @@ ELSE()
 
   ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" OR ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten")
 
-  #IF( NOT ${NJLI_BUILD_PLATFORM} STREQUAL "linux")
-
   LIST(APPEND unity_build_srcs_libnjli_shared ${NJLIGameEngine_SRCS} )
-  LIST(APPEND unity_build_srcs_libnjli_shared ${njli_generated} )
-  LIST(APPEND unity_build_srcs_libnjli_shared ${njli_generated_swig})
-  LIST(APPEND unity_build_srcs_libnjli_shared ${njli_generated_swig_lua})
-  LIST(APPEND unity_build_srcs_libnjli_shared ${njli_generated_swig_lua_platform} )
 
   FOREACH(item ${unity_build_srcs_libnjli_shared})
     IF(${item} MATCHES "[A-Za-z0-9/]*DS_Store")
@@ -5258,10 +5213,10 @@ ELSE()
   )
 
   IF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" )
-    SET_TARGET_PROPERTIES( libnjli_shared PROPERTIES 
+    SET_TARGET_PROPERTIES( libnjli_shared PROPERTIES
       XCODE_ATTRIBUTE_DEVELOPMENT_TEAM $ENV{NJLI_DEVELOPMENT_TEAM}
       XCODE_ATTRIBUTE_ENABLE_BITCODE TRUE
-      )
+    )
   ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" )
   SET_TARGET_PROPERTIES( libnjli_shared PROPERTIES OUTPUT_NAME libnjli )
   SET_TARGET_PROPERTIES( libnjli_shared PROPERTIES PREFIX "")
@@ -5269,20 +5224,8 @@ ELSE()
   SET_TARGET_PROPERTIES( libnjli_shared PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
   SET_TARGET_PROPERTIES( libnjli_shared PROPERTIES PUBLIC_HEADER ${NJLI_SOURCE_DIRECTORY}/njli/platform/Engine.h)
   ADD_DEPENDENCIES(libnjli_shared WrapSWIG)
-  #ADD_CUSTOM_COMMAND(TARGET libnjli_shared PRE_BUILD
-  #  COMMAND sh ${CMAKE_CURRENT_SOURCE_DIR}/njli-build-count.sh .libnjli_shared.${NJLI_BUILD_PLATFORM}
-  #  WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-  #)
 
-  LIST(APPEND unity_build_srcs_EngineSource ${CMAKE_SOURCE_DIR}/../External/thirdparty/android_file.cpp )
-  LIST(APPEND unity_build_srcs_EngineSource ${CMAKE_SOURCE_DIR}/../External/thirdparty/android_file.h )
-  #LIST(APPEND unity_build_srcs_EngineSource ${NJLIGameEngine_SRCS} )
-  #LIST(APPEND unity_build_srcs_EngineSource ${njli_generated} )
-  #LIST(APPEND unity_build_srcs_EngineSource ${njli_generated_swig} )
-  #LIST(APPEND unity_build_srcs_EngineSource ${njli_generated_swig_lua} )
-  #LIST(APPEND unity_build_srcs_EngineSource ${njli_generated_swig_lua_platform} )
   LIST(APPEND unity_build_srcs_EngineSource ${NJLI_SOURCE_DIRECTORY}/njli/platform/main.cpp )
-  #LIST(APPEND unity_build_srcs_EngineSource ${NJLIGameEngine_THIRDPARTY_INC} )
 
   FOREACH(item ${unity_build_srcs_EngineSource})
     IF(${item} MATCHES "[A-Za-z0-9/]*DS_Store")
@@ -5303,9 +5246,15 @@ ELSE()
     ${NJLI_RESOURCES}
   )
 
-  IF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" AND IS_DEBUG )
-    TARGET_LINK_LIBRARIES( ${NJLI_PRODUCT_NAME} libnjli_bytecode_shared)
-  ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" AND IS_DEBUG )
+  IF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
+    IF(IS_DEBUG)
+      TARGET_LINK_LIBRARIES( ${NJLI_PRODUCT_NAME} libnjli_bytecode_shared)
+    ENDIF(IS_DEBUG)
+
+    SET_TARGET_PROPERTIES( lua PROPERTIES OUTPUT_NAME index )
+    SET_TARGET_PROPERTIES( luac PROPERTIES OUTPUT_NAME index )
+    SET_TARGET_PROPERTIES( ${NJLI_PRODUCT_NAME} PROPERTIES OUTPUT_NAME index )
+  ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
 
   if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     TARGET_LINK_LIBRARIES( ${NJLI_PRODUCT_NAME} ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} ${THIRD_PARTY_LIBS} libnjli_static)
@@ -5375,158 +5324,158 @@ ELSE()
       PRE_BUILD
       COMMAND export NJLI_GAME_ENGINE_ASSET_DIR=${NJLIGameEngine_COMMON_DIRECTORY} && export NJLI_BUILD_PLATFORM=${NJLI_BUILD_PLATFORM} && export NJLI_GRAPHICS_PLATFORM=${NJLI_GRAPHICS_PLATFORM} && export NJLI_SOUND_PLATFORM=${NJLI_SOUND_PLATFORM} && make
       WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/projects/COMMON
-      )
+    )
     ADD_CUSTOM_TARGET(really-clean
       COMMAND export NJLI_GAME_ENGINE_ASSET_DIR=${NJLIGameEngine_COMMON_DIRECTORY} && export NJLI_BUILD_PLATFORM=${NJLI_BUILD_PLATFORM} && export NJLI_GRAPHICS_PLATFORM=${NJLI_GRAPHICS_PLATFORM} && export NJLI_SOUND_PLATFORM=${NJLI_SOUND_PLATFORM} && make clean
       WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/projects/COMMON
-      )
+    )
   ENDIF (APPLE)
 
   IF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" OR ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" OR ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
     INSTALL(TARGETS NJLI
       FRAMEWORK DESTINATION platform/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/framework
-      )
+    )
   ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" OR ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" OR ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
 
-INSTALL(TARGETS libnjli_static libnjli_shared
-  INCLUDES DESTINATION include
-  ARCHIVE DESTINATION platform/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/lib/static
-  LIBRARY DESTINATION platform/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/lib
-  RUNTIME DESTINATION platform/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin
-  BUNDLE DESTINATION platform/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bundle
-  PRIVATE_HEADER DESTINATION platform/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/private_header
-  PUBLIC_HEADER DESTINATION include
-  RESOURCE DESTINATION ${NJLI_PRODUCT_NAME}/Contents/Resources
-)
-IF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" OR ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten")
-  INSTALL(TARGETS libnjli_lua_module
+  INSTALL(TARGETS libnjli_static libnjli_shared
     INCLUDES DESTINATION include
-    RUNTIME DESTINATION platform/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin
+    ARCHIVE DESTINATION platform/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/lib/static
     LIBRARY DESTINATION platform/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/lib
+    RUNTIME DESTINATION platform/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin
+    BUNDLE DESTINATION platform/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bundle
+    PRIVATE_HEADER DESTINATION platform/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/private_header
     PUBLIC_HEADER DESTINATION include
     RESOURCE DESTINATION ${NJLI_PRODUCT_NAME}/Contents/Resources
   )
-  #INSTALL(PROGRAMS ${Binary_FILES} DESTINATION platform/${NJLI_BUILD_DIR}/bin/thirdparty )
-ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" OR ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten")
+  IF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" OR ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten")
+    INSTALL(TARGETS libnjli_lua_module
+      INCLUDES DESTINATION include
+      RUNTIME DESTINATION platform/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin
+      LIBRARY DESTINATION platform/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/lib
+      PUBLIC_HEADER DESTINATION include
+      RESOURCE DESTINATION ${NJLI_PRODUCT_NAME}/Contents/Resources
+    )
+    #INSTALL(PROGRAMS ${Binary_FILES} DESTINATION platform/${NJLI_BUILD_DIR}/bin/thirdparty )
+  ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" OR ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten")
 
-if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-  #http://git.quintin.ninja/mjones/Dolphin/blob/1bd42b7acc0611e7120e4a16c442fd09f575a297/Source/Core/DolphinWX/CMakeLists.txt
-  #INCLUDE(BundleUtilities)
-  SET(BUNDLE_PATH ${CMAKE_BINARY_DIR}/${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE}/${NJLI_PRODUCT_NAME}.app)
+  if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    #http://git.quintin.ninja/mjones/Dolphin/blob/1bd42b7acc0611e7120e4a16c442fd09f575a297/Source/Core/DolphinWX/CMakeLists.txt
+    #INCLUDE(BundleUtilities)
+    SET(BUNDLE_PATH ${CMAKE_BINARY_DIR}/${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE}/${NJLI_PRODUCT_NAME}.app)
 
-  IF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" )
-    IF(IS_RELEASE)
-      file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/postprocess_bundle.cmake "
-      message(\"Signing application bundle: ${BUNDLE_PATH}\")
-      # https://www.slicer.org/wiki/Documentation/Nightly/Developers/Mac_OS_X_Code_Signing
-      execute_process(
-        COMMAND codesign --deep --force --sign \"$ENV{NJLI_DEVELOPMENT_TEAM}\" -i \"com.njligames.engine.${NJLI_BUILD_PLATFORM}.source\" \"${BUNDLE_PATH}\"
+    IF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" )
+      IF(IS_RELEASE)
+        file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/postprocess_bundle.cmake "
+          message(\"Signing application bundle: ${BUNDLE_PATH}\")
+          # https://www.slicer.org/wiki/Documentation/Nightly/Developers/Mac_OS_X_Code_Signing
+          execute_process(
+            COMMAND codesign --deep --force --sign \"$ENV{NJLI_DEVELOPMENT_TEAM}\" -i \"com.njligames.engine.${NJLI_BUILD_PLATFORM}.source\" \"${BUNDLE_PATH}\"
+          )
+          execute_process(
+            COMMAND codesign -dv \"${BUNDLE_PATH}\"
+          )
+        ")
+        add_custom_command(TARGET ${NJLI_PRODUCT_NAME} POST_BUILD
+          COMMAND ${CMAKE_COMMAND} -P postprocess_bundle.cmake
         )
-      execute_process(
-        COMMAND codesign -dv \"${BUNDLE_PATH}\"
+      ENDIF(IS_RELEASE)
+    ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
+      IF(IS_RELEASE)
+        file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/postprocess_bundle.cmake "
+          message(\"Signing application bundle: ${BUNDLE_PATH}\")
+          # https://www.slicer.org/wiki/Documentation/Nightly/Developers/Mac_OS_X_Code_Signing
+          execute_process(
+            COMMAND codesign --deep --force --sign \"$ENV{NJLI_DEVELOPMENT_TEAM}\" -i \"com.njligames.engine.${NJLI_BUILD_PLATFORM}.source\" \"${BUNDLE_PATH}\"
+          )
+          execute_process(
+            COMMAND codesign -dv \"${BUNDLE_PATH}\"
+          )
+        ")
+        add_custom_command(TARGET ${NJLI_PRODUCT_NAME} POST_BUILD
+          COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/postprocess_bundle.cmake
         )
-      ")
-      add_custom_command(TARGET ${NJLI_PRODUCT_NAME} POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -P postprocess_bundle.cmake
+      ENDIF(IS_RELEASE)
+    ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
+      IF(IS_RELEASE)
+        file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/postprocess_bundle.cmake "
+          include(BundleUtilities)
+          fixup_bundle(\"${BUNDLE_PATH}\" \"\" \"${GAME_ASSETS}\" )
+          message(\"Signing application bundle: ${BUNDLE_PATH}\")
+          # https://www.slicer.org/wiki/Documentation/Nightly/Developers/Mac_OS_X_Code_Signing
+          execute_process(
+            COMMAND codesign --deep --force --sign \"$ENV{NJLI_DEVELOPMENT_TEAM}\" -i \"com.njligames.engine.${NJLI_BUILD_PLATFORM}.source\" \"${BUNDLE_PATH}\"
+          )
+          execute_process(
+            COMMAND codesign -dv \"${BUNDLE_PATH}\"
+          )
+        ")
+        add_custom_command(TARGET ${NJLI_PRODUCT_NAME} POST_BUILD
+          COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/postprocess_bundle.cmake
         )
-    ENDIF(IS_RELEASE)
-  ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
-    IF(IS_RELEASE)
-      file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/postprocess_bundle.cmake "
-      message(\"Signing application bundle: ${BUNDLE_PATH}\")
-      # https://www.slicer.org/wiki/Documentation/Nightly/Developers/Mac_OS_X_Code_Signing
-      execute_process(
-        COMMAND codesign --deep --force --sign \"$ENV{NJLI_DEVELOPMENT_TEAM}\" -i \"com.njligames.engine.${NJLI_BUILD_PLATFORM}.source\" \"${BUNDLE_PATH}\"
-        )
-      execute_process(
-        COMMAND codesign -dv \"${BUNDLE_PATH}\"
-        )
-      ")
-      add_custom_command(TARGET ${NJLI_PRODUCT_NAME} POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/postprocess_bundle.cmake
-        )
-    ENDIF(IS_RELEASE)
-  ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
-    IF(IS_RELEASE)
-      file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/postprocess_bundle.cmake "
-      include(BundleUtilities)
-      fixup_bundle(\"${BUNDLE_PATH}\" \"\" \"${GAME_ASSETS}\" )
-      message(\"Signing application bundle: ${BUNDLE_PATH}\")
-      # https://www.slicer.org/wiki/Documentation/Nightly/Developers/Mac_OS_X_Code_Signing
-      execute_process(
-        COMMAND codesign --deep --force --sign \"$ENV{NJLI_DEVELOPMENT_TEAM}\" -i \"com.njligames.engine.${NJLI_BUILD_PLATFORM}.source\" \"${BUNDLE_PATH}\"
-        )
-      execute_process(
-        COMMAND codesign -dv \"${BUNDLE_PATH}\"
-        )
-      ")
-      add_custom_command(TARGET ${NJLI_PRODUCT_NAME} POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/postprocess_bundle.cmake
-        )
-    ENDIF(IS_RELEASE)
+      ENDIF(IS_RELEASE)
 
-    INSTALL(TARGETS lua luac RUNTIME DESTINATION platform/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin )
-  ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" )
+      INSTALL(TARGETS lua luac RUNTIME DESTINATION platform/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin )
+    ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" )
 
-  INSTALL( DIRECTORY ${BUNDLE_PATH} DESTINATION platform/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin USE_SOURCE_PERMISSIONS )
-else()
-  IF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
-
-    SET(ENGINESOURCE_HTML_BUNDLE_PATH platform/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin/${NJLI_PRODUCT_NAME})
-    INSTALL(TARGETS ${NJLI_PRODUCT_NAME} RUNTIME DESTINATION ${ENGINESOURCE_HTML_BUNDLE_PATH} )
-    INSTALL(FILES ${CMAKE_BINARY_DIR}/${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${NJLI_PRODUCT_NAME}.html.mem DESTINATION ${ENGINESOURCE_HTML_BUNDLE_PATH})
-    INSTALL(FILES ${CMAKE_BINARY_DIR}/${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${NJLI_PRODUCT_NAME}.asm.js DESTINATION ${ENGINESOURCE_HTML_BUNDLE_PATH})
-    INSTALL(FILES ${CMAKE_BINARY_DIR}/${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${NJLI_PRODUCT_NAME}.js DESTINATION ${ENGINESOURCE_HTML_BUNDLE_PATH})
-    INSTALL(FILES ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/emscripten/executable/favicon-32x32.ico DESTINATION ${ENGINESOURCE_HTML_BUNDLE_PATH})
-
-    SET(LUA_HTML_BUNDLE_PATH platform/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin/lua)
-    INSTALL(TARGETS lua RUNTIME DESTINATION ${LUA_HTML_BUNDLE_PATH} )
-    INSTALL(FILES ${CMAKE_BINARY_DIR}/${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/lua.html.mem DESTINATION ${LUA_HTML_BUNDLE_PATH})
-    INSTALL(FILES ${CMAKE_BINARY_DIR}/${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/lua.asm.js DESTINATION ${LUA_HTML_BUNDLE_PATH})
-    INSTALL(FILES ${CMAKE_BINARY_DIR}/${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/lua.js DESTINATION ${LUA_HTML_BUNDLE_PATH})
-    INSTALL(FILES ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/emscripten/lua/favicon-32x32.ico DESTINATION ${LUA_HTML_BUNDLE_PATH})
-
-    SET(LUAC_HTML_BUNDLE_PATH platform/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin/luac)
-    INSTALL(TARGETS luac RUNTIME DESTINATION ${LUAC_HTML_BUNDLE_PATH} )
-    INSTALL(FILES ${CMAKE_BINARY_DIR}/${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/luac.html.mem DESTINATION ${LUAC_HTML_BUNDLE_PATH})
-    INSTALL(FILES ${CMAKE_BINARY_DIR}/${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/luac.asm.js DESTINATION ${LUAC_HTML_BUNDLE_PATH})
-    INSTALL(FILES ${CMAKE_BINARY_DIR}/${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/luac.js DESTINATION ${LUAC_HTML_BUNDLE_PATH})
-    INSTALL(FILES ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/emscripten/luac/favicon-32x32.ico DESTINATION ${LUAC_HTML_BUNDLE_PATH})
-
+    INSTALL( DIRECTORY ${BUNDLE_PATH} DESTINATION platform/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin USE_SOURCE_PERMISSIONS )
   else()
-    INSTALL(TARGETS lua luac ${NJLI_PRODUCT_NAME} RUNTIME DESTINATION platform/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin )
-  ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
+    IF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
 
-endif()
+      SET(ENGINESOURCE_HTML_BUNDLE_PATH platform/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin/${NJLI_PRODUCT_NAME})
+      INSTALL(TARGETS ${NJLI_PRODUCT_NAME} RUNTIME DESTINATION ${ENGINESOURCE_HTML_BUNDLE_PATH} )
+      INSTALL(FILES ${CMAKE_BINARY_DIR}/${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/index.html.mem DESTINATION ${ENGINESOURCE_HTML_BUNDLE_PATH})
+      INSTALL(FILES ${CMAKE_BINARY_DIR}/${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/index.asm.js DESTINATION ${ENGINESOURCE_HTML_BUNDLE_PATH})
+      INSTALL(FILES ${CMAKE_BINARY_DIR}/${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/index.js DESTINATION ${ENGINESOURCE_HTML_BUNDLE_PATH})
+      INSTALL(FILES ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/emscripten/executable/favicon-32x32.ico DESTINATION ${ENGINESOURCE_HTML_BUNDLE_PATH})
 
-INSTALL(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/ldoc DESTINATION ${CMAKE_INSTALL_DOCDIR})
-INSTALL(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/html DESTINATION ${CMAKE_INSTALL_DOCDIR})
-INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/lnjli.xml DESTINATION ${CMAKE_INSTALL_DATADIR}/swig/lua)
-INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/lbullet.xml DESTINATION ${CMAKE_INSTALL_DATADIR}/swig/lua)
-INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/${NJLI_GRAPHICS_PLATFORM}.xml DESTINATION ${CMAKE_INSTALL_DATADIR}/swig/lua)
-INSTALL(FILES ${NJLIGameEngine_DATAFILES} DESTINATION ${CMAKE_INSTALL_DATADIR})
-INSTALL(FILES ${NJLIGameEngine_TESTFILES} DESTINATION ${CMAKE_INSTALL_TESTDIR})
+      SET(LUA_HTML_BUNDLE_PATH platform/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin/lua)
+      INSTALL(TARGETS lua RUNTIME DESTINATION ${LUA_HTML_BUNDLE_PATH} )
+      INSTALL(FILES ${CMAKE_BINARY_DIR}/${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/index.html.mem DESTINATION ${LUA_HTML_BUNDLE_PATH})
+      INSTALL(FILES ${CMAKE_BINARY_DIR}/${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/index.asm.js DESTINATION ${LUA_HTML_BUNDLE_PATH})
+      INSTALL(FILES ${CMAKE_BINARY_DIR}/${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/index.js DESTINATION ${LUA_HTML_BUNDLE_PATH})
+      INSTALL(FILES ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/emscripten/lua/favicon-32x32.ico DESTINATION ${LUA_HTML_BUNDLE_PATH})
+
+      SET(LUAC_HTML_BUNDLE_PATH platform/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin/luac)
+      INSTALL(TARGETS luac RUNTIME DESTINATION ${LUAC_HTML_BUNDLE_PATH} )
+      INSTALL(FILES ${CMAKE_BINARY_DIR}/${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/index.html.mem DESTINATION ${LUAC_HTML_BUNDLE_PATH})
+      INSTALL(FILES ${CMAKE_BINARY_DIR}/${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/index.asm.js DESTINATION ${LUAC_HTML_BUNDLE_PATH})
+      INSTALL(FILES ${CMAKE_BINARY_DIR}/${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/index.js DESTINATION ${LUAC_HTML_BUNDLE_PATH})
+      INSTALL(FILES ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/emscripten/luac/favicon-32x32.ico DESTINATION ${LUAC_HTML_BUNDLE_PATH})
+
+    else()
+      INSTALL(TARGETS lua luac ${NJLI_PRODUCT_NAME} RUNTIME DESTINATION platform/${NJLI_BUILD_DIR}/${CMAKE_BUILD_TYPE}/bin )
+    ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
+
+  endif()
+
+  INSTALL(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/ldoc DESTINATION ${CMAKE_INSTALL_DOCDIR})
+  INSTALL(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/html DESTINATION ${CMAKE_INSTALL_DOCDIR})
+  INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/lnjli.xml DESTINATION ${CMAKE_INSTALL_DATADIR}/swig/lua)
+  INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/lbullet.xml DESTINATION ${CMAKE_INSTALL_DATADIR}/swig/lua)
+  INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/${NJLI_GRAPHICS_PLATFORM}.xml DESTINATION ${CMAKE_INSTALL_DATADIR}/swig/lua)
+  INSTALL(FILES ${NJLIGameEngine_DATAFILES} DESTINATION ${CMAKE_INSTALL_DATADIR})
+  INSTALL(FILES ${NJLIGameEngine_TESTFILES} DESTINATION ${CMAKE_INSTALL_TESTDIR})
 
 
-# https://cmake.org/Wiki/CMake:CPackConfiguration
+  # https://cmake.org/Wiki/CMake:CPackConfiguration
 
-INCLUDE (InstallRequiredSystemLibraries)
+  INCLUDE (InstallRequiredSystemLibraries)
 
-#SET (CPACK_BUNDLE_ICON ${CMAKE_SOURCE_DIR}/projects/COMMON/icons/IconInput.png)
-#SET (CPACK_PACKAGE_ICON ${CMAKE_SOURCE_DIR}/projects/COMMON/icons/IconInput.png)
-SET (CPACK_OUTPUT_FILE_PREFIX ${NJLI_PACKAGE_DIR})
-SET (CPACK_PACKAGE_NAME ${NJLIGameEngine_PACKAGE})
-SET (CPACK_PACKAGE_VENDOR "NJLI Games LLC.")
-SET (CPACK_PACKAGE_DESCRIPTION_SUMMARY ${NJLIGameEngine_PACKAGE_STRING})
-SET (CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
-SET (CPACK_PACKAGE_VERSION_MAJOR "${NJLIGameEngine_VERSION_MAJOR}")
-SET (CPACK_PACKAGE_VERSION_MINOR "${NJLIGameEngine_VERSION_MINOR}")
-SET (CPACK_PACKAGE_VERSION_RELEASE "${NJLIGameEngine_VERSION_RELEASE}")
-SET (CPACK_PACKAGE_VERSION_PATCH "local")
+  #SET (CPACK_BUNDLE_ICON ${CMAKE_SOURCE_DIR}/projects/COMMON/icons/IconInput.png)
+  #SET (CPACK_PACKAGE_ICON ${CMAKE_SOURCE_DIR}/projects/COMMON/icons/IconInput.png)
+  SET (CPACK_OUTPUT_FILE_PREFIX ${NJLI_PACKAGE_DIR})
+  SET (CPACK_PACKAGE_NAME ${NJLIGameEngine_PACKAGE})
+  SET (CPACK_PACKAGE_VENDOR "NJLI Games LLC.")
+  SET (CPACK_PACKAGE_DESCRIPTION_SUMMARY ${NJLIGameEngine_PACKAGE_STRING})
+  SET (CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
+  SET (CPACK_PACKAGE_VERSION_MAJOR "${NJLIGameEngine_VERSION_MAJOR}")
+  SET (CPACK_PACKAGE_VERSION_MINOR "${NJLIGameEngine_VERSION_MINOR}")
+  SET (CPACK_PACKAGE_VERSION_RELEASE "${NJLIGameEngine_VERSION_RELEASE}")
+  SET (CPACK_PACKAGE_VERSION_PATCH "local")
 
-if (NOT $ENV{NJLIGameEngine_BUILD_NUMBER})
-  SET (CPACK_PACKAGE_VERSION_PATCH $ENV{NJLIGameEngine_BUILD_NUMBER})
-endif (NOT $ENV{NJLIGameEngine_BUILD_NUMBER})
-INCLUDE(CPack)
+  if (NOT $ENV{NJLIGameEngine_BUILD_NUMBER})
+    SET (CPACK_PACKAGE_VERSION_PATCH $ENV{NJLIGameEngine_BUILD_NUMBER})
+  endif (NOT $ENV{NJLIGameEngine_BUILD_NUMBER})
+  INCLUDE(CPack)
 
 ENDIF()
