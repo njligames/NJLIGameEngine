@@ -58,9 +58,20 @@ build_apple_xcode()
   MY_BUILD_PLAT=$3
   NJLI_BUILD_TYPE=Release
   
-  MY_BUILD_DIR="${MY_PLATFORM}/${MY_VERSION}/${MY_BUILD_PLAT}"
+  MY_BUILD_DIR="${MY_PLATFORM}/${MY_VERSION}/${MY_BUILD_PLAT}/${NJLI_BUILD_TYPE}"
+
+  if [ $MY_PLATFORM == ios ]
+  then
+    MY_BUILD_DIR="${MY_PLATFORM}/${MY_VERSION}/${NJLI_BUILD_TYPE}-${MY_BUILD_PLAT}"
+  fi
+
+  if [ $MY_PLATFORM == appletv ]
+  then
+    MY_BUILD_DIR="${MY_PLATFORM}/${MY_VERSION}/${NJLI_BUILD_TYPE}-${MY_BUILD_PLAT}"
+  fi
+
   NJLI_INSTALL_PREFIX=../../generated
-  INSTALL_DIR_FULL=`pwd`/${NJLI_INSTALL_PREFIX}/platform/${MY_BUILD_DIR}/${NJLI_BUILD_TYPE}/package
+  INSTALL_DIR_FULL=`pwd`/${NJLI_INSTALL_PREFIX}/platform/${MY_BUILD_DIR}/package
 
   if [ ! -z "${EXPORT}" ]; then
     FILE=../../.${NJLI_PRODUCT_NAME}.${MY_PLATFORM}
@@ -181,7 +192,8 @@ cd projects
 rm -rf ios_Xcode
 mkdir -p ios_Xcode
 cd ios_Xcode
-build_apple_xcode ios ${CMAKE_IOS_SYSTEM_VERSION} iphoneos 
+build_apple_xcode ios ${CMAKE_IOS_SYSTEM_VERSION} iphoneos
+build_apple_xcode ios ${CMAKE_IOS_SYSTEM_VERSION} iphonesimulator
 cd ..
 
 ##########################################3
@@ -189,7 +201,8 @@ cd ..
 rm -rf tvos_Xcode
 mkdir -p tvos_Xcode
 cd tvos_Xcode
-build_apple_xcode appletv ${CMAKE_TVOS_SYSTEM_VERSION} appletvos 
+build_apple_xcode appletv ${CMAKE_TVOS_SYSTEM_VERSION} appletvos
+build_apple_xcode appletv ${CMAKE_TVOS_SYSTEM_VERSION} appletvsimulator
 cd ..
 
 ##########################################3
