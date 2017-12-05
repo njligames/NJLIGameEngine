@@ -99,6 +99,7 @@ build_apple_xcode()
   fi
   
   cmake ../.. -G "Xcode" \
+    -DNJLI_BUILD_PLAT=${MY_BUILD_PLAT} \
     -DCMAKE_CXX_FLAGS='-std=gnu++11' \
     -DCMAKE_INSTALL_PREFIX=${NJLI_INSTALL_PREFIX} \
     -DNJLI_THIRDPARTY_DIRECTORY:STRING=${MY_THIRDPARTY_DIR} \
@@ -212,6 +213,6 @@ mkdir -p macOS_Xcode
 cd macOS_Xcode
 build_apple_xcode macOS ${CMAKE_MACOS_SYSTEM_VERSION} macosx
 cd ..
-
+#
 ##########################################3
 

@@ -1,5 +1,5 @@
 #include "Engine.h"
-int main(int argc, char **argv) { return njli::run_main(argc, argv); }
+int main(int argc, char *argv[]) { return njli::run_main(argc, argv); }
 ///*
 // *  rectangles.c
 // *  written by Holmes Futrell

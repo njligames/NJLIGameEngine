@@ -3970,7 +3970,7 @@ IF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" )
 
   LIST(APPEND NJLIGameEngine_HDRS /Applications/Xcode.app/Contents/Developer/Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS.sdk/System/Library/Frameworks )
 
-  SET( CMAKE_OSX_SYSROOT "appletvos" )
+  SET( CMAKE_OSX_SYSROOT "${NJLI_BUILD_PLAT}" )
   SET( CMAKE_XCODE_EFFECTIVE_PLATFORMS "-appletvos;-appletvsimulator" )
 
   #SET ( CMAKE_OSX_ARCHITECTURES ${ARCHS_STANDARD_32_BIT} CACHE string "Build architecture for appletv" )
@@ -4069,7 +4069,7 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
 
   LIST(APPEND NJLIGameEngine_HDRS /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks  )
 
-  SET( CMAKE_OSX_SYSROOT "iphoneos" )
+  SET( CMAKE_OSX_SYSROOT "${NJLI_BUILD_PLAT}" )
   SET( CMAKE_XCODE_EFFECTIVE_PLATFORMS "-iphoneos;-iphonesimulator" )
 
   #SET ( CMAKE_OSX_ARCHITECTURES ${ARCHS_STANDARD_32_BIT} CACHE string "Build architecture for iOS" )
@@ -4741,9 +4741,6 @@ IF(NJLI_USE_USYNERGY_LIBRARY)
   LIST(APPEND THIRD_PARTY_LIBS imported_uSynergy)
 ENDIF(NJLI_USE_USYNERGY_LIBRARY)
 
-LIST(REMOVE_ITEM NJLIGameEngine_SRCS
-  ${NJLI_SOURCE_DIRECTORY}/njli/platform/main.cpp
-)
 
 
 # This is a CMake example for Python
@@ -5047,6 +5044,8 @@ ELSE()
 
     ADD_LIBRARY( NJLI SHARED ${unity_build_srcs_NJLI})
 
+    SET_TARGET_PROPERTIES( NJLI PROPERTIES LINK_FLAGS "-Wl,-all_load")
+
     IF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" OR ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
       SET_TARGET_PROPERTIES( NJLI PROPERTIES
         XCODE_ATTRIBUTE_DEVELOPMENT_TEAM $ENV{NJLI_DEVELOPMENT_TEAM}
@@ -5248,17 +5247,15 @@ ELSE()
   SET_TARGET_PROPERTIES( libnjli_shared PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
   SET_TARGET_PROPERTIES( libnjli_shared PROPERTIES PUBLIC_HEADER ${NJLI_SOURCE_DIRECTORY}/njli/platform/Engine.h)
 
-  IF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS")
-    # https://stackoverflow.com/questions/11429055/cmake-how-create-a-single-shared-library-from-all-static-libraries-of-subprojec/41854795#41854795
-    IF (WIN32)
-      SET_TARGET_PROPERTIES( libnjli_shared PROPERTIES LINK_FLAGS "/WHOLEARCHIVE")
-    ELSEIF (APPLE)
-      SET_TARGET_PROPERTIES( libnjli_shared PROPERTIES LINK_FLAGS "-Wl,-all_load")
-    ELSE ()
-      SET_TARGET_PROPERTIES( libnjli_shared PROPERTIES LINK_FLAGS "-Wl,--whole-archive")
-    ENDIF (WIN32)
+  # https://stackoverflow.com/questions/11429055/cmake-how-create-a-single-shared-library-from-all-static-libraries-of-subprojec/41854795#41854795
+  IF (WIN32)
+    SET_TARGET_PROPERTIES( libnjli_shared PROPERTIES LINK_FLAGS "/WHOLEARCHIVE")
+  ELSEIF (APPLE)
+    SET_TARGET_PROPERTIES( libnjli_shared PROPERTIES LINK_FLAGS "-Wl,-all_load")
+  ELSE ()
+    SET_TARGET_PROPERTIES( libnjli_shared PROPERTIES LINK_FLAGS "-Wl,--whole-archive")
+  ENDIF (WIN32)
 
-  ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS")
 
   ADD_DEPENDENCIES(libnjli_shared WrapSWIG)
 
