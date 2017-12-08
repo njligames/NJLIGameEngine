@@ -120,7 +120,9 @@ build_apple_xcode()
     
     xcodebuild \
       -configuration Release \
-      -target install build \
+      -target install build 
+    
+    #\
       #> ../../generated/ERRORS/${MY_PLATFORM}.log
     
     cpack ../.. --config CPackSourceConfig.cmake
@@ -194,7 +196,7 @@ rm -rf ios_Xcode
 mkdir -p ios_Xcode
 cd ios_Xcode
 build_apple_xcode ios ${CMAKE_IOS_SYSTEM_VERSION} iphoneos
-build_apple_xcode ios ${CMAKE_IOS_SYSTEM_VERSION} iphonesimulator
+#build_apple_xcode ios ${CMAKE_IOS_SYSTEM_VERSION} iphonesimulator
 cd ..
 
 ##########################################3
@@ -203,7 +205,7 @@ rm -rf tvos_Xcode
 mkdir -p tvos_Xcode
 cd tvos_Xcode
 build_apple_xcode appletv ${CMAKE_TVOS_SYSTEM_VERSION} appletvos
-build_apple_xcode appletv ${CMAKE_TVOS_SYSTEM_VERSION} appletvsimulator
+#build_apple_xcode appletv ${CMAKE_TVOS_SYSTEM_VERSION} appletvsimulator
 cd ..
 
 ##########################################3
@@ -213,6 +215,6 @@ mkdir -p macOS_Xcode
 cd macOS_Xcode
 build_apple_xcode macOS ${CMAKE_MACOS_SYSTEM_VERSION} macosx
 cd ..
-#
+
 ##########################################3
 

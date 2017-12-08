@@ -20,7 +20,7 @@ namespace njli
     static int height();
     static int orientation();
 
-    static bool start();
+    static bool start(int argc, char **argv);
     static void update(float step);
     static void render();
     static void destroy();

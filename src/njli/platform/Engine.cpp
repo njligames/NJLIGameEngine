@@ -1357,7 +1357,7 @@ namespace njli
                       gDisplayMode.refresh_rate);
     //#endif
 
-    gDone = (njli::NJLIGameEngine::start() == false) ? 1 : 0;
+    gDone = (njli::NJLIGameEngine::start(argc, argv) == false) ? 1 : 0;
 
 #if defined(__EMSCRIPTEN__)
     emscripten_set_main_loop(mainloop, 0, 0);
