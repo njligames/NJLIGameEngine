@@ -192,27 +192,27 @@ cd projects
 
 ##########################################3
 
-rm -rf ios_Xcode
-mkdir -p ios_Xcode
 cd ios_Xcode
+rm -rf build
+rm CMakeCache.txt
 build_apple_xcode ios ${CMAKE_IOS_SYSTEM_VERSION} iphoneos
 build_apple_xcode ios ${CMAKE_IOS_SYSTEM_VERSION} iphonesimulator
 cd ..
 
 ##########################################3
 
-rm -rf tvos_Xcode
-mkdir -p tvos_Xcode
 cd tvos_Xcode
+rm -rf build
+rm CMakeCache.txt
 build_apple_xcode appletv ${CMAKE_TVOS_SYSTEM_VERSION} appletvos
 build_apple_xcode appletv ${CMAKE_TVOS_SYSTEM_VERSION} appletvsimulator
 cd ..
 
 ##########################################3
 
-rm -rf macOS_Xcode
-mkdir -p macOS_Xcode
 cd macOS_Xcode
+rm -rf build
+rm CMakeCache.txt
 build_apple_xcode macOS ${CMAKE_MACOS_SYSTEM_VERSION} macosx
 cd ..
 
