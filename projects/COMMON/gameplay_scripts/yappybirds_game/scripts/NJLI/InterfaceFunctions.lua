@@ -57,7 +57,7 @@ local Create = function()
       Geometry2D[i]:setMaterial(material)
       Geometry2D[i]:setShaderProgram(shader)
       Geometry2D[i]:show(OrthographicCameraNode:getCamera())
-      Geometry2D[i]:hide(PerspectiveCameraNode:getCamera())
+      Geometry2D[i]:show(PerspectiveCameraNode:getCamera())
     end
   end
   

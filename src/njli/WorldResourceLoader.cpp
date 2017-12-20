@@ -105,7 +105,7 @@ namespace njli
 
   bool WorldResourceLoader::FileData::load(const char *filePath)
   {
-    SDL_Log("filePath %s", ASSET_PATH(filePath));
+    //SDL_Log("filePath %s", ASSET_PATH(filePath));
     FILE *file = mobile__fopen(ASSET_PATH(filePath), "r");
 
     if (file)

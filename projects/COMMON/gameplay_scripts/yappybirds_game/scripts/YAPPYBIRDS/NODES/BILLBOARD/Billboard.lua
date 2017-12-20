@@ -17,11 +17,25 @@ Billboard.__index = Billboard
 --#############################################################################
 
 local __ctor = function(self, init)
-  --TODO: construct this Entity
+    assert(init, "init variable is nil.")
+    assert(type(init) == "table", "Init variable is expecting a states table")
+    assert(init.atlas ~= nil, "init.atlas variable is nil")
+    assert(init.geometry ~= nil, "init.geometry variable is nil")
+
+    self._scale = init.scale or 1.0
+    
+--    self._screenPercentWidth = init.screenPercentWidth or 1.0
+--    self._screenPercentHeight = init.screenPercentHeight or 1.0
+
+    local node = self:getNode() 
+
+    node:setGeometry(init.geometry)
+
+    self._spriteFrameAtlas = init.atlas
 end
 
 local __dtor = function(self)
-  --TODO: destruct this Entity
+  self:getNode():removeGeometry()
 end
 
 local __load = function(self)
@@ -33,6 +47,80 @@ local __unLoad = function(self)
 end
 
 --#############################################################################
+
+
+
+
+
+
+--function Billboard:screenPercentWidth(s)
+--    if s ~= nil then
+--        self._screenPercentWidth = s
+--    end
+--    return self._screenPercentWidth
+--end
+
+--function Billboard:screenPercentHeight(s)
+--    if s ~= nil then
+--        self._screenPercentHeight = s
+--    end
+--    return self._screenPercentHeight
+--end
+
+function Billboard:scale(s)
+    if s ~= nil then
+        self._scale = s
+    end
+    return self._scale
+end
+
+function Billboard:setSpriteAtlasFrame(nodeStateName, match)
+	local parts = nodeStateName:split("[^,%s]+")
+  
+	local name = nodeStateName
+	if #parts ~= 1 then
+		name = parts[1] -- .. parts[3]
+	end
+  
+  assert(self:getNode())
+  assert(self:getNode():getGeometry())
+  self:getNode():getGeometry():setSpriteAtlasFrame(self:getNode(), self._spriteFrameAtlas, name, match)
+end
+
+--function Image:setSpriteAtlasFrame(nodeStateName, match)
+--    self:getNode():getGeometry():setSpriteAtlasFrame(self:getNode(), self._spriteFrameAtlas, nodeStateName, match)
+--end
+
+function Billboard:getDimensions()
+    return self:getNode():getGeometry():getDimensions(self:getNode())
+end
+
+function Billboard:setDimensions(dimension)
+  self:getNode():getGeometry():setDimensions(self:getNode(), dimension)
+end
+
+function Billboard:show(camera)
+  self:getNode():show(camera)
+end
+
+function Billboard:hide(camera)
+  self:getNode():hide(camera)
+end
+
+--function Billboard:display(enable)
+--  if nil ~= enable and nil ~= OrthographicCameraNode and OrthographicCameraNode:getCamera() then
+--    if enable then
+--      self:show(OrthographicCameraNode:getCamera())
+--    else
+--      self:hide(OrthographicCameraNode:getCamera())
+--    end
+--  end
+--end
+
+
+
+
+
 
 function Billboard:enter()
   BaseClass.enter(self)

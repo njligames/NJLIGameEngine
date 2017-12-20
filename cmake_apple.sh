@@ -196,7 +196,6 @@ cd ios_Xcode
 rm -rf build
 rm CMakeCache.txt
 build_apple_xcode ios ${CMAKE_IOS_SYSTEM_VERSION} iphoneos
-build_apple_xcode ios ${CMAKE_IOS_SYSTEM_VERSION} iphonesimulator
 cd ..
 
 ##########################################3
@@ -205,7 +204,6 @@ cd tvos_Xcode
 rm -rf build
 rm CMakeCache.txt
 build_apple_xcode appletv ${CMAKE_TVOS_SYSTEM_VERSION} appletvos
-build_apple_xcode appletv ${CMAKE_TVOS_SYSTEM_VERSION} appletvsimulator
 cd ..
 
 ##########################################3

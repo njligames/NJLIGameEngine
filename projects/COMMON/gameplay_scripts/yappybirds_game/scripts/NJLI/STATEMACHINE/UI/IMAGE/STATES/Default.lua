@@ -136,7 +136,7 @@ function Default:rayMouseMissed(node)
 end
 
 function Default:collide(otherNode, collisionPoint)
-  BaseClass.collide(self, collisionPoint)
+  BaseClass.collide(self, otherNode, collisionPoint)
 end
 
 function Default:near(otherNode)
@@ -144,7 +144,7 @@ function Default:near(otherNode)
 end
 
 function Default:actionUpdate(action, timeStep)
-  BaseClass.actionUpdate(self, timeStep)
+  BaseClass.actionUpdate(self, action, timeStep)
 end
 
 function Default:actionComplete(action)

@@ -29,6 +29,10 @@ SET(CMAKE_PRIVATE_HEADER_OUTPUT_DIRECTORY build)
 SET(CMAKE_PUBLIC_HEADER_OUTPUT_DIRECTORY build)
 SET(CMAKE_RESOURCE_OUTPUT_DIRECTORY build)
 
+#SET(CMAKE_SHARED_LINKER_FLAGS "-Wall")
+#SET(CMAKE_STATIC_LINKER_FLAGS "-Wall")
+#SET(CMAKE_EXE_LINKER_FLAGS "-Wall")
+
 SET ( NJLIGameEngine_PACKAGE "NJLIGameEngine-${NJLI_BUILD_PLATFORM}" )
 SET ( NJLIGameEngine_PACKAGE_TARNAME "NJLIGameEngine" )
 SET ( NJLIGameEngine_PACKAGE_NAME "The NJLIGames LLC. Game Engine" )
@@ -3984,7 +3988,7 @@ IF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" )
   SET( CMAKE_XCODE_EFFECTIVE_PLATFORMS "-appletvos;-appletvsimulator" )
 
   #SET ( CMAKE_OSX_ARCHITECTURES ${ARCHS_STANDARD_32_BIT} CACHE string "Build architecture for appletv" )
-  SET ( CMAKE_OSX_ARCHITECTURES $(ARCHS_UNIVERSAL_APPLETV_OS) CACHE string "Build architecture for appletv" )
+  #SET ( CMAKE_OSX_ARCHITECTURES $(ARCHS_UNIVERSAL_APPLETV_OS) CACHE string "Build architecture for appletv" )
   SET ( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fvisibility=hidden" )
 
   SET ( EXTRA_PLATFORM_LIBS
@@ -4077,13 +4081,13 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
   SET(imported_vorbisfile_location                  "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/10.3/Release\$(EFFECTIVE_PLATFORM_NAME)/libvorbisfile.a")
 
 
-  LIST(APPEND NJLIGameEngine_HDRS /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks  )
+  #LIST(APPEND NJLIGameEngine_HDRS /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks  )
 
   SET( CMAKE_OSX_SYSROOT "${NJLI_BUILD_PLAT}" )
   SET( CMAKE_XCODE_EFFECTIVE_PLATFORMS "-iphoneos;-iphonesimulator" )
 
   #SET ( CMAKE_OSX_ARCHITECTURES ${ARCHS_STANDARD_32_BIT} CACHE string "Build architecture for iOS" )
-  SET ( CMAKE_OSX_ARCHITECTURES $(ARCHS_UNIVERSAL_IPHONE_OS) CACHE string "Build architecture for iOS" )
+  #SET ( CMAKE_OSX_ARCHITECTURES $(ARCHS_UNIVERSAL_IPHONE_OS) CACHE string "Build architecture for iOS" )
   SET ( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fvisibility=hidden" )
   SET ( EXTRA_PLATFORM_LIBS
     ${EXTRA_PLATFORM_LIBS}
@@ -4177,9 +4181,9 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
   SET(imported_vorbisfile_location                  "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/10.12/Release/libvorbisfile.a")
 
 
-  LIST(APPEND NJLIGameEngine_HDRS /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks  )
+  #LIST(APPEND NJLIGameEngine_HDRS /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks  )
 
-  SET ( CMAKE_OSX_ARCHITECTURES ${ARCHS_STANDARD_32_BIT} CACHE string "Build architecture for macOS" )
+  #SET ( CMAKE_OSX_ARCHITECTURES ${ARCHS_STANDARD_32_BIT} CACHE string "Build architecture for macOS" )
   SET ( EXTRA_PLATFORM_LIBS
     ${EXTRA_PLATFORM_LIBS}
     "-framework OpenGL"
@@ -5449,10 +5453,12 @@ IF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" OR ${NJLI_BUILD_PLATFORM} STREQUAL
     XCODE_ATTRIBUTE_ASSETCATALOG_COMPILER_APPICON_NAME ${NJLI_APPICON_NAME}
     XCODE_ATTRIBUTE_PRODUCT_NAME ${NJLI_PRODUCT_NAME}
     XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER "com.njligames.engine.${NJLI_BUILD_PLATFORM}.source"
+    XCODE_ATTRIBUTE_FRAMEWORK_SEARCH_PATHS "\$(inherited) "
   )
   #SET_TARGET_PROPERTIES( ${NJLI_PRODUCT_NAME} PROPERTIES
   #XCODE_ATTRIBUTE_ENABLE_BITCODE TRUE
 #)
+  
 IF(NOT "$ENV{NJLI_DEVELOPMENT_TEAM}" STREQUAL "")
   SET_TARGET_PROPERTIES( ${NJLI_PRODUCT_NAME} PROPERTIES
     XCODE_ATTRIBUTE_DEVELOPMENT_TEAM $ENV{NJLI_DEVELOPMENT_TEAM}
@@ -5469,6 +5475,7 @@ IF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
   ENDIF(IS_DEBUG)
 ELSE()
   TARGET_LINK_LIBRARIES( ${NJLI_PRODUCT_NAME} ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} ${THIRD_PARTY_LIBS} libnjli_static)
+  #TARGET_LINK_LIBRARIES( ${NJLI_PRODUCT_NAME} ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} ${THIRD_PARTY_LIBS} NJLI)
 ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
 
 IF (APPLE)

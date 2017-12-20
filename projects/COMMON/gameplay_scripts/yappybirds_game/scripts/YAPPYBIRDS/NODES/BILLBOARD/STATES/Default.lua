@@ -35,7 +35,32 @@ end
 --############################################################################# 
 
 function Default:enter()
-  BaseClass.enter(self)
+    BaseClass.enter(self)
+    
+--    ui_background:setSpriteAtlasFrame(ui_background:getNode():getName(), true)
+--    self:getNodeEntity():setDimensions(self:scaleDimension(self:getNodeEntity():getDimensions(), 1.0, 1.0))
+
+
+
+
+
+
+
+    local frameName = self:getNodeEntity():getNode():getName()
+    local scale = self:getNodeEntity():scale()
+    
+    print("the scale is " .. scale)
+    
+--    local pw = self:getNodeEntity():screenPercentWidth()
+--    local ph = self:getNodeEntity():screenPercentHeight()
+
+    self:getNodeEntity():setSpriteAtlasFrame(frameName, true)
+    local dimSprite = self:getNodeEntity():getDimensions()
+    
+    
+--    self:getNodeEntity():setDimensions(scaleDimension(dimSprite, pw, ph))
+    
+    self:getNodeEntity():setDimensions(bullet.btVector2( (dimSprite:x() * scale), (dimSprite:y() * scale) ))
 end
 
 function Default:update(timeStep)

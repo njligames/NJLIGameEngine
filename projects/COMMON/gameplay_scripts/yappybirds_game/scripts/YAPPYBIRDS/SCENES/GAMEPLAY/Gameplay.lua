@@ -46,15 +46,20 @@ local __ctor = function(self, init)
   Geometry2D[3]:getMaterial():getDiffuse():loadGPU(image)
   njli.Image.destroy(image)
   
-  
-
   self:getScene():addCameraNode(OrthographicCameraNode, true)
   self:getScene():addCameraNode(PerspectiveCameraNode)
   
   -- local yappyBirdLevelLoader = require "YAPPYBIRDS.yappyBirdLevelLoader"
   -- self.level = yappyBirdLevelLoader.new(self)
   
-  self:createBillboard()
+  self:createBillboard({
+  name="512tree00",
+  x=0.0,
+  y=0.0,
+  z=600,
+  visible=true,
+  scale=1.0
+  })
 --  self:createBalloon()
 --  self:createDog()
 --  self:createBird({name="jim"})
@@ -191,15 +196,40 @@ function Gameplay:createBalloon( ... )
 end
 
 function Gameplay:createBillboard( ... )
-
-  local billboardNodeEntity = BillboardNodeEntity.class({
-  entityOwner = self,
-  states = BillboardNodeEntity.states,
-  atlasArray = {self._spriteAtlas_country0},
-  geometryArray = {Geometry2D[1]},
+  arg=...
+  
+  local name = arg.name or "512tree00"
+  local x = arg.x or 0.0
+  local y = arg.y or 0.0
+  local z = arg.z or 0.0
+  local visible = arg.visible or true
+  local scale = arg.scale or 1.0
+  
+  print("name .. " .. name)
+  print("x .. " .. x)
+  print("y .. " .. y)
+  print("z .. " .. z)
+  print("visible .. " .. tostring(visible))
+  print("scale .. " .. scale)
+  
+  local billboardNodeEntity = BillboardNodeEntity.class(
+  {
+    name = name,
+    scale = scale,
+    states = BillboardNodeEntity.states,
+    entityOwner = self,
+--  atlasArray = {self._spriteAtlas_country0},
+--  geometryArray = {Geometry2D[1]},
+    atlas = self._spriteAtlas_country0,
+    geometry = Geometry2D[1],
   })
   
   self:addNodeEntity(billboardNodeEntity)
+  
+  billboardNodeEntity:show(PerspectiveCameraNode:getCamera())
+  billboardNodeEntity:hide(OrthographicCameraNode:getCamera())
+
+  billboardNodeEntity:getNode():setOrigin(bullet.btVector3(x, y, z))
   
   return billboardNodeEntity
   
