@@ -47,20 +47,23 @@ function Default:enter()
 
 
     local frameName = self:getNodeEntity():getNode():getName()
-    local scale = self:getNodeEntity():scale()
+    local dimensions = self:getNodeEntity()._dimensions
+    local origin = self:getNodeEntity()._origin
+    -- local scale = self:getNodeEntity():scale()
     
-    print("the scale is " .. scale)
+    -- print("the scale is " .. scale)
     
 --    local pw = self:getNodeEntity():screenPercentWidth()
 --    local ph = self:getNodeEntity():screenPercentHeight()
 
     self:getNodeEntity():setSpriteAtlasFrame(frameName, true)
-    local dimSprite = self:getNodeEntity():getDimensions()
+    -- local dimSprite = self:getNodeEntity():getDimensions()
     
     
 --    self:getNodeEntity():setDimensions(scaleDimension(dimSprite, pw, ph))
     
-    self:getNodeEntity():setDimensions(bullet.btVector2( (dimSprite:x() * scale), (dimSprite:y() * scale) ))
+    self:getNodeEntity():setDimensions(dimensions)
+    self:getNodeEntity():getNode():setOrigin(origin)
 end
 
 function Default:update(timeStep)

@@ -25,10 +25,7 @@ local __ctor = function(self, init)
   njli.World.getInstance():getWorldResourceLoader():load("images/generated/country0.png", image)
   Geometry2D[1]:getMaterial():getDiffuse():loadGPU(image)
   njli.Image.destroy(image)
-  
-  
-  
-  
+
   spriteAtlasPath = njli.ASSET_PATH("scripts/generated/texturepacker/gameplay0.lua")
   self._spriteAtlas_gameplay0 = njli.build((loadfile(spriteAtlasPath))():getSheet(), njli.JLI_OBJECT_TYPE_SpriteFrameAtlas)
 
@@ -36,7 +33,6 @@ local __ctor = function(self, init)
   njli.World.getInstance():getWorldResourceLoader():load("images/generated/gameplay0.png", image)
   Geometry2D[2]:getMaterial():getDiffuse():loadGPU(image)
   njli.Image.destroy(image)
-  
   
   spriteAtlasPath = njli.ASSET_PATH("scripts/generated/texturepacker/gameplay1.lua")
   self._spriteAtlas_gameplay1 = njli.build((loadfile(spriteAtlasPath))():getSheet(), njli.JLI_OBJECT_TYPE_SpriteFrameAtlas)
@@ -48,22 +44,60 @@ local __ctor = function(self, init)
   
   self:getScene():addCameraNode(OrthographicCameraNode, true)
   self:getScene():addCameraNode(PerspectiveCameraNode)
-  
+    
   -- local yappyBirdLevelLoader = require "YAPPYBIRDS.yappyBirdLevelLoader"
   -- self.level = yappyBirdLevelLoader.new(self)
   
-  self:createBillboard({
-  name="512tree00",
-  x=0.0,
-  y=0.0,
-  z=600,
-  visible=true,
-  scale=1.0
-  })
+  -- self:createBillboard({
+  -- name="512tree00",
+  -- x=0.0,
+  -- y=0.0,
+  -- z=600,
+  -- visible=true,
+  -- scale=1.0
+  -- })
 --  self:createBalloon()
 --  self:createDog()
 --  self:createBird({name="jim"})
-  
+
+  local LevelLoader = require "YAPPYBIRDS.LevelLoader"
+  self.levelLoader = LevelLoader()
+  self.levelLoader:loadLevel()
+
+  -- local tileInfo = self.levelLoader:getTile(1)
+  -- print_r(tileInfo)
+
+  -- local origin = self.levelLoader.Params:originForLayer(tileInfo)
+  -- print(origin)
+
+  -- local dimensions = self.levelLoader.Params:tileDimensions(tileInfo.tile, origin:z())
+  -- print(dimensions)
+
+  -- local name = tileInfo.tile.image
+  -- print(name)
+
+  for i = 1, self.levelLoader:numTiles() do
+
+    local billboardParams = self.levelLoader:getBillboardParams(i)
+
+    self:createBillboard({
+    name=billboardParams.name,
+    origin=billboardParams.origin,
+    dimensions=billboardParams.dimensions,
+    visible=true
+    })
+    
+  end
+
+  -- local billboardParams = self.levelLoader:getBillboardParams(1)
+
+  -- self:createBillboard({
+  -- name=billboardParams.name,
+  -- origin=billboardParams.origin,
+  -- dimensions=billboardParams.dimensions,
+  -- visible=true
+  -- })
+
 end
 
 local __dtor = function(self)
@@ -199,29 +233,21 @@ function Gameplay:createBillboard( ... )
   arg=...
   
   local name = arg.name or "512tree00"
-  local x = arg.x or 0.0
-  local y = arg.y or 0.0
-  local z = arg.z or 0.0
   local visible = arg.visible or true
-  local scale = arg.scale or 1.0
-  
-  print("name .. " .. name)
-  print("x .. " .. x)
-  print("y .. " .. y)
-  print("z .. " .. z)
-  print("visible .. " .. tostring(visible))
-  print("scale .. " .. scale)
+  local origin = arg.origin or bullet.btVector3( 0.0, 0.0, 0.0 )
+  local dimensions = arg.dimensions or bullet.btVector2( 1.0, 1.0 )
   
   local billboardNodeEntity = BillboardNodeEntity.class(
   {
     name = name,
-    scale = scale,
     states = BillboardNodeEntity.states,
     entityOwner = self,
 --  atlasArray = {self._spriteAtlas_country0},
 --  geometryArray = {Geometry2D[1]},
     atlas = self._spriteAtlas_country0,
     geometry = Geometry2D[1],
+    origin = origin,
+    dimensions = dimensions,
   })
   
   self:addNodeEntity(billboardNodeEntity)
@@ -229,7 +255,7 @@ function Gameplay:createBillboard( ... )
   billboardNodeEntity:show(PerspectiveCameraNode:getCamera())
   billboardNodeEntity:hide(OrthographicCameraNode:getCamera())
 
-  billboardNodeEntity:getNode():setOrigin(bullet.btVector3(x, y, z))
+  -- billboardNodeEntity:getNode():setOrigin(origin)
   
   return billboardNodeEntity
   

@@ -6,7 +6,7 @@
         <key>texturePackerVersion</key>
         <string>4.0.1</string>
         <key>fileName</key>
-        <string>/Users/jamesfolk/Dropbox/GameDevelopment/mygames/games/jli_game_engine_test/COMMON/levels/_tilesheet_background_country.tps</string>
+        <string>/Users/jamesfolk/Documents/NJLI/Engine/projects/COMMON/countryLevel/_tilesheet_background_country.tps</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -84,7 +84,7 @@
         <key>textureFormat</key>
         <enum type="SettingsBase::TextureFormat">png</enum>
         <key>borderPadding</key>
-        <uint>0</uint>
+        <uint>1</uint>
         <key>maxTextureSize</key>
         <QSize>
             <key>width</key>

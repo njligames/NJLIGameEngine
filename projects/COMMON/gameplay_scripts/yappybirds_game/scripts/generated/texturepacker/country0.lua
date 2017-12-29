@@ -1,7 +1,7 @@
 --
 -- created with TexturePacker (http://www.codeandweb.com/texturepacker)
 --
--- $TexturePacker:SmartUpdate:5a0b42cad0e4ed58098c2a7fbd581f1f:21555c5bf2b2d178c8166fbd454d81c4:18cc0faedb801f0310f07fa32ca9fcf5$
+-- $TexturePacker:SmartUpdate:450bfc5b1eeff600fe801324eaa2a168:a7f4837f8cd5db744fb6dfe001ba5b76:18cc0faedb801f0310f07fa32ca9fcf5$
 --
 -- local sheetInfo = require("mysheet")
 -- local myImageSheet = graphics.newImageSheet( "mysheet.png", sheetInfo:getSheet() )
@@ -224,6 +224,48 @@ SheetInfo.sheet =
             trimmedName = "8x8",
         },
     
+        {
+            x=3038,
+            y=108,
+            
+            width=32,
+            height=32,
+
+	        widthFile=32,
+	        heightFile=32,
+
+            pivotx=16,
+            pivoty=16,
+
+            sourceX = 0,
+            sourceY = 0,
+            sourceWidth = 32,
+            sourceHeight = 32,
+
+            trimmedName = "8x8_blue",
+        },
+    
+        {
+            x=3004,
+            y=108,
+            
+            width=32,
+            height=32,
+
+	        widthFile=32,
+	        heightFile=32,
+
+            pivotx=16,
+            pivoty=16,
+
+            sourceX = 0,
+            sourceY = 0,
+            sourceWidth = 32,
+            sourceHeight = 32,
+
+            trimmedName = "8x8_red",
+        },
+    
     },
     fileName = "images/country0.png",
     sheetContentWidth = 4096,
@@ -242,7 +284,7 @@ SheetInfo.sheet =
 
 
 
-    -- smartUpdateKey = $TexturePacker:SmartUpdate:5a0b42cad0e4ed58098c2a7fbd581f1f:21555c5bf2b2d178c8166fbd454d81c4:18cc0faedb801f0310f07fa32ca9fcf5$,
+    -- smartUpdateKey = $TexturePacker:SmartUpdate:450bfc5b1eeff600fe801324eaa2a168:a7f4837f8cd5db744fb6dfe001ba5b76:18cc0faedb801f0310f07fa32ca9fcf5$,
     -- settings_autoSDSettings = {
     -- 
     --     {
@@ -308,6 +350,8 @@ SheetInfo.frameIndex =
     ["256tree00"] = 8,
     ["512tree00"] = 9,
     ["8x8"] = 10,
+    ["8x8_blue"] = 11,
+    ["8x8_red"] = 12,
 }
 
 function SheetInfo:getSheet()

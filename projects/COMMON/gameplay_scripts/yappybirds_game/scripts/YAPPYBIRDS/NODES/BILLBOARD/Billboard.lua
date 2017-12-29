@@ -21,15 +21,14 @@ local __ctor = function(self, init)
     assert(type(init) == "table", "Init variable is expecting a states table")
     assert(init.atlas ~= nil, "init.atlas variable is nil")
     assert(init.geometry ~= nil, "init.geometry variable is nil")
+    assert(init.origin ~= nil, "init.origin variable is nil")
+    assert(init.dimensions ~= nil, "init.dimensions variable is nil")
 
     self._scale = init.scale or 1.0
-    
---    self._screenPercentWidth = init.screenPercentWidth or 1.0
---    self._screenPercentHeight = init.screenPercentHeight or 1.0
+    self._origin = init.origin or bullet.btVector3( 0.0, 0.0, 0.0 )
+    self._dimensions = init.dimensions or bullet.btVector2( 1.0, 1.0 )
 
-    local node = self:getNode() 
-
-    node:setGeometry(init.geometry)
+    self:getNode():setGeometry(init.geometry)
 
     self._spriteFrameAtlas = init.atlas
 end
