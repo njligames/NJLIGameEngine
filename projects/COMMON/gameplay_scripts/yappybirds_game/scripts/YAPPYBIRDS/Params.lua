@@ -16,9 +16,9 @@ ParamInfo =
     {
         Gravity = bullet.btVector3(0,-60.81,0),
         LayerDistance = 15.24, --meters (50 feet), How far each layer is from eachother
-        LayerMax = 60.96, --meters (200 feet), How far the 4th (farthest) layer is from the camera
-        WorldOffset = bullet.btVector2(1.0, 19.7),
-        WorldScale = 89.0,
+        LayerMax = 60.55, --meters (200 feet), How far the 4th (farthest) layer is from the camera
+        WorldOffset = bullet.btVector2(0.72, 20.19),
+        WorldScale = 89.0430,
         MinBrightnessForDistance = 0.8, --value from 0.0 (black) to 1.0 (the image's brightness)
     },
 	Projectile = 
@@ -202,8 +202,8 @@ ParamInfo =
 	end,
 	tileDimensions = function(self, tile, z)
 		local scaleFactor = (z / self.World.LayerMax)
-		local width = (tile.width - 2) * scaleFactor
-    	local height = (tile.height - 2) * scaleFactor
+		local width = (tile.width) * scaleFactor
+    	local height = (tile.height) * scaleFactor
     	local divisor = self:getGameViewDivisor()
 
 		return bullet.btVector2( (width / divisor) * 2, (height / divisor) * 2 )
@@ -211,7 +211,7 @@ ParamInfo =
 	end,
 	getGameViewDivisor = function(self)
 		local scale = self.World.WorldScale
-    	return math.floor(2048 / scale)
+    	return math.floor(2048.0 / scale)
 	end,
 }
 

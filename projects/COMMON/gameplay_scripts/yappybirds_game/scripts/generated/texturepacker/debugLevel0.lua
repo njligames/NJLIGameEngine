@@ -1,7 +1,7 @@
 --
 -- created with TexturePacker (http://www.codeandweb.com/texturepacker)
 --
--- $TexturePacker:SmartUpdate:44d16df03b5bf288a207cf5e1f274b18:0de42c1470a35ef61b7f1838bfe559d2:5fdc0a8de722d80554b4ddbd0594cf82$
+-- $TexturePacker:SmartUpdate:79de9ff6fe4c7603ea3f7c2cfe7266f1:b85027dccc397144e14e380877155842:5fdc0a8de722d80554b4ddbd0594cf82$
 --
 -- local sheetInfo = require("mysheet")
 -- local myImageSheet = graphics.newImageSheet( "mysheet.png", sheetInfo:getSheet() )
@@ -18,48 +18,69 @@ SheetInfo.sheet =
             x=1,
             y=1,
             
-            width=8,
-            height=8,
+            width=32,
+            height=32,
 
-	        widthFile=8,
-	        heightFile=8,
+	        widthFile=32,
+	        heightFile=32,
 
-            pivotx=4,
-            pivoty=4,
+            pivotx=16,
+            pivoty=16,
 
             sourceX = 0,
             sourceY = 0,
-            sourceWidth = 8,
-            sourceHeight = 8,
+            sourceWidth = 32,
+            sourceHeight = 32,
 
-            trimmedName = "8x8_blue",
+            trimmedName = "blue",
         },
     
         {
             x=1,
-            y=11,
+            y=35,
             
-            width=8,
-            height=8,
+            width=32,
+            height=32,
 
-	        widthFile=8,
-	        heightFile=8,
+	        widthFile=32,
+	        heightFile=32,
 
-            pivotx=4,
-            pivoty=4,
+            pivotx=16,
+            pivoty=16,
 
             sourceX = 0,
             sourceY = 0,
-            sourceWidth = 8,
-            sourceHeight = 8,
+            sourceWidth = 32,
+            sourceHeight = 32,
 
-            trimmedName = "8x8_red",
+            trimmedName = "green",
+        },
+    
+        {
+            x=1,
+            y=69,
+            
+            width=32,
+            height=32,
+
+	        widthFile=32,
+	        heightFile=32,
+
+            pivotx=16,
+            pivoty=16,
+
+            sourceX = 0,
+            sourceY = 0,
+            sourceWidth = 32,
+            sourceHeight = 32,
+
+            trimmedName = "red",
         },
     
     },
     fileName = "images/debugLevel0.png",
-    sheetContentWidth = 32,
-    sheetContentHeight = 32,
+    sheetContentWidth = 128,
+    sheetContentHeight = 128,
     scale = 1,
     shapePadding = 0,
     borderPadding = 0,
@@ -74,7 +95,7 @@ SheetInfo.sheet =
 
 
 
-    -- smartUpdateKey = $TexturePacker:SmartUpdate:44d16df03b5bf288a207cf5e1f274b18:0de42c1470a35ef61b7f1838bfe559d2:5fdc0a8de722d80554b4ddbd0594cf82$,
+    -- smartUpdateKey = $TexturePacker:SmartUpdate:79de9ff6fe4c7603ea3f7c2cfe7266f1:b85027dccc397144e14e380877155842:5fdc0a8de722d80554b4ddbd0594cf82$,
     -- settings_autoSDSettings = {
     -- 
     --     {
@@ -130,8 +151,9 @@ SheetInfo.sheet =
 SheetInfo.frameIndex =
 {
 
-    ["8x8_blue"] = 1,
-    ["8x8_red"] = 2,
+    ["blue"] = 1,
+    ["green"] = 2,
+    ["red"] = 3,
 }
 
 function SheetInfo:getSheet()

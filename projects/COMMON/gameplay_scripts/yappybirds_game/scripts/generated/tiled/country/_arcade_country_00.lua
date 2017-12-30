@@ -98,7 +98,7 @@ return {
   layers = {
     {
       type = "tilelayer",
-      name = "tileLayer_farTrees;00_0",
+      name = "tileLayer_farTrees;01_1",
       x = 0,
       y = 0,
       width = 64,
@@ -178,7 +178,7 @@ return {
     },
     {
       type = "tilelayer",
-      name = "tileLayer_closeTree;01_0",
+      name = "tileLayer_closeTree;02_1",
       x = 0,
       y = 0,
       width = 64,
@@ -258,7 +258,7 @@ return {
     },
     {
       type = "tilelayer",
-      name = "tileLayer_closeHills;03_1",
+      name = "tileLayer_closeHills;04_2",
       x = 0,
       y = 0,
       width = 64,
@@ -338,7 +338,7 @@ return {
     },
     {
       type = "tilelayer",
-      name = "tileLayer_farClouds;00_1",
+      name = "tileLayer_farClouds;01_2",
       x = 0,
       y = 0,
       width = 64,
@@ -418,7 +418,7 @@ return {
     },
     {
       type = "objectgroup",
-      name = "objectLayer_birds-all;02",
+      name = "objectLayer_birds-all;03",
       visible = true,
       opacity = 1,
       offsetx = 0,
@@ -468,7 +468,7 @@ return {
     },
     {
       type = "objectgroup",
-      name = "objectLayer_dog-path;03_2",
+      name = "objectLayer_dog-path;04_3",
       visible = true,
       opacity = 1,
       offsetx = 0,

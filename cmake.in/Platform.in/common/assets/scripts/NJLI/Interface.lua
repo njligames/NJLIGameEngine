@@ -47,7 +47,7 @@ function Interface:getStateMachine()
 end
 
 function Interface:getDeviceEntity()
-njli.World.getInstance():setBackgroundColor(0.453, 0.108, 0.000)
+--njli.World.getInstance():setBackgroundColor(0.453, 0.108, 0.000)
   return self._deviceEntity
 end
 

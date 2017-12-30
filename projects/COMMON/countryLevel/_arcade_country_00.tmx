@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="32" tileheight="32" backgroundcolor="#9eceef" nextobjectid="70">
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="32" tileheight="32" backgroundcolor="#9eceef" nextobjectid="70">
  <tileset firstgid="1" name="Tiles" tilewidth="2048" tileheight="512" tilecount="10" columns="0">
   <tile id="0">
    <image width="128" height="105" source="128cloud00.png"/>
@@ -32,7 +32,7 @@
    <image width="454" height="512" source="512tree00.png"/>
   </tile>
  </tileset>
- <layer name="tileLayer_farTrees;00_0" width="64" height="64">
+ <layer name="tileLayer_farTrees;01_1" width="64" height="64">
   <data>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -4132,7 +4132,7 @@
    <tile gid="0"/>
   </data>
  </layer>
- <layer name="tileLayer_closeTree;01_0" width="64" height="64">
+ <layer name="tileLayer_closeTree;02_1" width="64" height="64">
   <data>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -8232,7 +8232,7 @@
    <tile gid="0"/>
   </data>
  </layer>
- <layer name="tileLayer_closeHills;03_1" width="64" height="64">
+ <layer name="tileLayer_closeHills;04_2" width="64" height="64">
   <data>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -12332,7 +12332,7 @@
    <tile gid="0"/>
   </data>
  </layer>
- <layer name="tileLayer_farClouds;00_1" width="64" height="64">
+ <layer name="tileLayer_farClouds;01_2" width="64" height="64">
   <data>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -16432,7 +16432,7 @@
    <tile gid="0"/>
   </data>
  </layer>
- <objectgroup color="#00ff00" name="objectLayer_birds-all;02">
+ <objectgroup color="#00ff00" name="objectLayer_birds-all;03">
   <object id="65" name="chubiBird_Right" type="birdSpawnPoint" x="2224.24" y="1442.42">
    <properties>
     <property name="birdType" value="chubiBird"/>
@@ -16454,7 +16454,7 @@
    <ellipse/>
   </object>
  </objectgroup>
- <objectgroup name="objectLayer_dog-path;03_2">
+ <objectgroup name="objectLayer_dog-path;04_3">
   <object id="57" name="p0" type="dogWayPoint" x="67.5066" y="1676.67" width="117.647" height="109.244">
    <properties>
     <property name="pathIndex" value="0"/>

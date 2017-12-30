@@ -68,12 +68,13 @@ function LevelLoader:loadLevel()
     assert(_layer ~= nil, "Unable to extract layer " .. layer)
     assert(_subLayer ~= nil, "Unable to extract subLayer " .. subLayer)
 
-    -- print(layer, subLayer)
+    print("layer = ", layer, "sublayer = ", subLayer)
 
     return _layer, _subLayer
   end
 
-	local filePath = njli.ASSET_PATH("scripts/generated/tiled/country/_arcade_country_00.lua")
+	-- local filePath = njli.ASSET_PATH("scripts/generated/tiled/country/_arcade_country_00.lua")
+  local filePath = njli.ASSET_PATH("scripts/generated/tiled/debugLevel.lua")
   
   local level = loadfile(filePath)()
   -- print_r(level)
@@ -213,9 +214,13 @@ function LevelLoader:_parseTileLayer(level, layer, objectLayer, subObjectLayer, 
 end     
 
 function LevelLoader:_parseBackgroundColor(level)
-  local backgroundcolor = bullet.btVector4(level.backgroundcolor[1]/255,
-  level.backgroundcolor[2]/255,
-  level.backgroundcolor[3]/255,1.0)
+  local backgroundcolor = bullet.btVector4(1.0, 0.0, 0.0, 1.0)
+
+  if level.backgroundcolor then
+    backgroundcolor = bullet.btVector4(level.backgroundcolor[1]/255,
+    level.backgroundcolor[2]/255,
+    level.backgroundcolor[3]/255,1.0)
+  end
 
   return backgroundcolor
 end

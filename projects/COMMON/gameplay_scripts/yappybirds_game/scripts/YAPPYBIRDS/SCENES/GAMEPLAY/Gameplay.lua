@@ -41,40 +41,31 @@ local __ctor = function(self, init)
   njli.World.getInstance():getWorldResourceLoader():load("images/generated/gameplay1.png", image)
   Geometry2D[3]:getMaterial():getDiffuse():loadGPU(image)
   njli.Image.destroy(image)
+
+
+
+
+
+
+  spriteAtlasPath = njli.ASSET_PATH("scripts/generated/texturepacker/debugLevel0.lua")
+  self._spriteAtlas_debug = njli.build((loadfile(spriteAtlasPath))():getSheet(), njli.JLI_OBJECT_TYPE_SpriteFrameAtlas)
+
+  image = njli.Image.create()
+  njli.World.getInstance():getWorldResourceLoader():load("images/generated/debugLevel0.png", image)
+  Geometry2D[4]:getMaterial():getDiffuse():loadGPU(image)
+  njli.Image.destroy(image)
+
+
+  
   
   self:getScene():addCameraNode(OrthographicCameraNode, true)
   self:getScene():addCameraNode(PerspectiveCameraNode)
-    
-  -- local yappyBirdLevelLoader = require "YAPPYBIRDS.yappyBirdLevelLoader"
-  -- self.level = yappyBirdLevelLoader.new(self)
   
-  -- self:createBillboard({
-  -- name="512tree00",
-  -- x=0.0,
-  -- y=0.0,
-  -- z=600,
-  -- visible=true,
-  -- scale=1.0
-  -- })
---  self:createBalloon()
---  self:createDog()
---  self:createBird({name="jim"})
 
   local LevelLoader = require "YAPPYBIRDS.LevelLoader"
   self.levelLoader = LevelLoader()
   self.levelLoader:loadLevel()
 
-  -- local tileInfo = self.levelLoader:getTile(1)
-  -- print_r(tileInfo)
-
-  -- local origin = self.levelLoader.Params:originForLayer(tileInfo)
-  -- print(origin)
-
-  -- local dimensions = self.levelLoader.Params:tileDimensions(tileInfo.tile, origin:z())
-  -- print(dimensions)
-
-  -- local name = tileInfo.tile.image
-  -- print(name)
 
   for i = 1, self.levelLoader:numTiles() do
 
@@ -89,14 +80,8 @@ local __ctor = function(self, init)
     
   end
 
-  -- local billboardParams = self.levelLoader:getBillboardParams(1)
+  njli.World.getInstance():setBackgroundColor(self.levelLoader.backgroundColor)
 
-  -- self:createBillboard({
-  -- name=billboardParams.name,
-  -- origin=billboardParams.origin,
-  -- dimensions=billboardParams.dimensions,
-  -- visible=true
-  -- })
 
 end
 
@@ -244,8 +229,8 @@ function Gameplay:createBillboard( ... )
     entityOwner = self,
 --  atlasArray = {self._spriteAtlas_country0},
 --  geometryArray = {Geometry2D[1]},
-    atlas = self._spriteAtlas_country0,
-    geometry = Geometry2D[1],
+    atlas = self._spriteAtlas_debug,
+    geometry = Geometry2D[4],
     origin = origin,
     dimensions = dimensions,
   })
