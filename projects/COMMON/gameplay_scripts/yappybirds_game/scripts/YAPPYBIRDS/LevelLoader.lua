@@ -44,7 +44,7 @@ function LevelLoader:loadLevel()
   -- @param layerName The name of the layer
   -- @return layer and subLayer
   local extractLayersFromName = function(layerName)
-    print("extractLayersFromName", layerName)
+    -- print("extractLayersFromName", layerName)
 
     local layer, subLayer = 1, 1
 
@@ -68,13 +68,13 @@ function LevelLoader:loadLevel()
     assert(_layer ~= nil, "Unable to extract layer " .. layer)
     assert(_subLayer ~= nil, "Unable to extract subLayer " .. subLayer)
 
-    print("layer = ", layer, "sublayer = ", subLayer)
+    -- print("layer = ", layer, "sublayer = ", subLayer)
 
     return _layer, _subLayer
   end
 
-	-- local filePath = njli.ASSET_PATH("scripts/generated/tiled/country/_arcade_country_00.lua")
-  local filePath = njli.ASSET_PATH("scripts/generated/tiled/debugLevel.lua")
+	local filePath = njli.ASSET_PATH("scripts/generated/tiled/country/arcade_00.lua")
+  -- local filePath = njli.ASSET_PATH("scripts/generated/tiled/debugLevel.lua")
   
   local level = loadfile(filePath)()
   -- print_r(level)
@@ -275,16 +275,19 @@ end
 
 function LevelLoader:getBillboardParams(index)
   local tileInfo = self:getTile(index)
-  print_r(tileInfo)
+  -- print_r("tileInfo", tileInfo)
 
   local origin = self.Params:originForLayer(tileInfo)
-  print(origin)
+  -- print(origin)
 
   local dimensions = self.Params:tileDimensions(tileInfo.tile, origin:z())
-  print(dimensions)
+  -- print("dimensions", dimensions)
 
   local name = tileInfo.tile.image
-  print(name)
+  -- print(name)
+
+  -- origin:setX(origin:x() + (dimensions:x() * 0.5))
+  -- origin:setY(origin:y() + (dimensions:y() * 0.5))
 
   return {origin = origin, dimensions = dimensions, name = name}
 end

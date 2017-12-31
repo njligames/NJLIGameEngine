@@ -1,7 +1,7 @@
 --
 -- created with TexturePacker (http://www.codeandweb.com/texturepacker)
 --
--- $TexturePacker:SmartUpdate:450bfc5b1eeff600fe801324eaa2a168:a7f4837f8cd5db744fb6dfe001ba5b76:18cc0faedb801f0310f07fa32ca9fcf5$
+-- $TexturePacker:SmartUpdate:e8bb7c29ea477c4e10671125b4e20220:c819214bca96bf3c5c0c951ce8397410:18cc0faedb801f0310f07fa32ca9fcf5$
 --
 -- local sheetInfo = require("mysheet")
 -- local myImageSheet = graphics.newImageSheet( "mysheet.png", sheetInfo:getSheet() )
@@ -203,69 +203,6 @@ SheetInfo.sheet =
             trimmedName = "512tree00",
         },
     
-        {
-            x=3004,
-            y=108,
-            
-            width=32,
-            height=32,
-
-	        widthFile=32,
-	        heightFile=32,
-
-            pivotx=16,
-            pivoty=16,
-
-            sourceX = 0,
-            sourceY = 0,
-            sourceWidth = 32,
-            sourceHeight = 32,
-
-            trimmedName = "8x8",
-        },
-    
-        {
-            x=3038,
-            y=108,
-            
-            width=32,
-            height=32,
-
-	        widthFile=32,
-	        heightFile=32,
-
-            pivotx=16,
-            pivoty=16,
-
-            sourceX = 0,
-            sourceY = 0,
-            sourceWidth = 32,
-            sourceHeight = 32,
-
-            trimmedName = "8x8_blue",
-        },
-    
-        {
-            x=3004,
-            y=108,
-            
-            width=32,
-            height=32,
-
-	        widthFile=32,
-	        heightFile=32,
-
-            pivotx=16,
-            pivoty=16,
-
-            sourceX = 0,
-            sourceY = 0,
-            sourceWidth = 32,
-            sourceHeight = 32,
-
-            trimmedName = "8x8_red",
-        },
-    
     },
     fileName = "images/country0.png",
     sheetContentWidth = 4096,
@@ -284,7 +221,7 @@ SheetInfo.sheet =
 
 
 
-    -- smartUpdateKey = $TexturePacker:SmartUpdate:450bfc5b1eeff600fe801324eaa2a168:a7f4837f8cd5db744fb6dfe001ba5b76:18cc0faedb801f0310f07fa32ca9fcf5$,
+    -- smartUpdateKey = $TexturePacker:SmartUpdate:e8bb7c29ea477c4e10671125b4e20220:c819214bca96bf3c5c0c951ce8397410:18cc0faedb801f0310f07fa32ca9fcf5$,
     -- settings_autoSDSettings = {
     -- 
     --     {
@@ -349,9 +286,6 @@ SheetInfo.frameIndex =
     ["256house00"] = 7,
     ["256tree00"] = 8,
     ["512tree00"] = 9,
-    ["8x8"] = 10,
-    ["8x8_blue"] = 11,
-    ["8x8_red"] = 12,
 }
 
 function SheetInfo:getSheet()

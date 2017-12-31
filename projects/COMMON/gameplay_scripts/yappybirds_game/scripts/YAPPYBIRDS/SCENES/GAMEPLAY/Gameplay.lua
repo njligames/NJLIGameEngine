@@ -60,7 +60,7 @@ local __ctor = function(self, init)
   
   self:getScene():addCameraNode(OrthographicCameraNode, true)
   self:getScene():addCameraNode(PerspectiveCameraNode)
-  
+
 
   local LevelLoader = require "YAPPYBIRDS.LevelLoader"
   self.levelLoader = LevelLoader()
@@ -229,8 +229,15 @@ function Gameplay:createBillboard( ... )
     entityOwner = self,
 --  atlasArray = {self._spriteAtlas_country0},
 --  geometryArray = {Geometry2D[1]},
-    atlas = self._spriteAtlas_debug,
-    geometry = Geometry2D[4],
+
+
+    atlas = self._spriteAtlas_country0,
+    geometry = Geometry2D[1],
+
+    -- atlas = self._spriteAtlas_debug,
+    -- geometry = Geometry2D[4],
+
+    
     origin = origin,
     dimensions = dimensions,
   })

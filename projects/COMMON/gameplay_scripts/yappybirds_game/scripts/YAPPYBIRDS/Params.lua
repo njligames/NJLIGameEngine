@@ -17,8 +17,10 @@ ParamInfo =
         Gravity = bullet.btVector3(0,-60.81,0),
         LayerDistance = 15.24, --meters (50 feet), How far each layer is from eachother
         LayerMax = 60.55, --meters (200 feet), How far the 4th (farthest) layer is from the camera
-        WorldOffset = bullet.btVector2(0.72, 20.19),
+        WorldOffset = bullet.btVector2(0.18, 19.45),
+        -- WorldOffset = bullet.btVector2(0.10, 19.45),
         WorldScale = 89.0430,
+        -- WorldScale = 88,
         MinBrightnessForDistance = 0.8, --value from 0.0 (black) to 1.0 (the image's brightness)
     },
 	Projectile = 
@@ -154,42 +156,46 @@ ParamInfo =
 		},
 		
 	},
-	originForLayer = function(self, tile)
-		local x = tile.x
-		local y = tile.y
-		local layer = tile.layer
-		local sublayer = tile.sublayer
+	originForLayer = function(self, tileInfo)
+		local x        = tileInfo.x
+		local y        = tileInfo.y
+		local layer    = tileInfo.layer
+		local sublayer = tileInfo.sublayer
+		local width    = tileInfo.tile.width
+		local height   = tileInfo.tile.height
+
+		print("width", width)
+		print("height", height)
 
 		function transformCoordinate(origin, layerMax)
-		    function adjustPosition(oldPosition, newDistance)
-		        local ret = oldPosition
+			function adjustPosition(oldPosition, newDistance)
+		        local ret                     = oldPosition
 		        local totalDistanceFromCamera = layerMax
 
 		        if newDistance ~= totalDistanceFromCamera then
-		            local theta = math.atan(oldPosition, totalDistanceFromCamera)
+		            local theta       = math.atan(oldPosition, totalDistanceFromCamera)
 		            local newPosition = math.tan(theta) * newDistance
-		            ret = newPosition
+		            ret               = newPosition
 		        end
 
 		        return ret
 		    end
 
 		    local zz = origin:z() 
-		    local xx = adjustPosition(origin:x(), zz)
-		    local yy = adjustPosition(origin:y(), zz)
+		    local xx = adjustPosition(origin:x() , zz)
+		    local yy = adjustPosition(origin:y() , zz)
 
 		    return bullet.btVector3(xx, yy, zz)
 		end
 
-
 		local subLayerOffset = -0.1
-		local divisor = self:getGameViewDivisor()--self:getDivisor()
+		local divisor = self:getGameViewDivisor() --self:getDivisor()
 
-		local x_offset = (0.5 * self.World.WorldScale )
-		local y_offset = (0.5 * self.World.WorldScale )
+		local x_offset = ( 0.5 * self.World.WorldScale )
+		local y_offset = ( 0.5 * self.World.WorldScale )
 
-		local xx = ((self.World.WorldOffset:x()) + ((x/divisor)-x_offset))
-		local yy = ((self.World.WorldOffset:y()) + ((y/divisor)-y_offset))
+		local xx = ((self.World.WorldOffset:x()) + (((x + (width * 0.5)) / divisor) - x_offset))
+		local yy = ((self.World.WorldOffset:y()) + (((y + (height * 0.5)) / divisor) - y_offset))
 		local offset = 0
 		if sublayer ~= nil then
 			offset = (sublayer * subLayerOffset)
@@ -198,9 +204,11 @@ ParamInfo =
 		local zz = self.World.LayerMax + (0.1 - (self.World.LayerDistance * (layer - 1))) + offset
 
 		local origin = bullet.btVector3(xx, yy, zz)
+
 		return transformCoordinate(origin, self.World.LayerMax)
 	end,
 	tileDimensions = function(self, tile, z)
+		print("the dimensions", tile.width, tile.height)
 		local scaleFactor = (z / self.World.LayerMax)
 		local width = (tile.width) * scaleFactor
     	local height = (tile.height) * scaleFactor

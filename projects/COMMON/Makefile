@@ -18,6 +18,7 @@ all:
 	@mkdir -p $(NJLI_GAME_ENGINE_ASSET_DIR)/assets/sounds
 	@mkdir -p $(NJLI_GAME_ENGINE_ASSET_DIR)/assets/strings
 
+	@cd $(MAKEFILE_PATH)/debugLevel && make
 	@cd $(MAKEFILE_PATH)/countryLevel && make
 	@cd $(MAKEFILE_PATH)/gameplay && make
 	@cd $(MAKEFILE_PATH)/interface && make
@@ -32,6 +33,7 @@ clean:
 	@cd $(MAKEFILE_PATH)/interface && make clean
 	@cd $(MAKEFILE_PATH)/gameplay && make clean
 	@cd $(MAKEFILE_PATH)/countryLevel && make clean
+	@cd $(MAKEFILE_PATH)/debugLevel && make clean
 	@cd $(MAKEFILE_PATH)/fonts && make clean
 	@cd $(MAKEFILE_PATH)/shaders && make clean
 	@rm -rf $(MAKEFILE_PATH)/assets/images/generated

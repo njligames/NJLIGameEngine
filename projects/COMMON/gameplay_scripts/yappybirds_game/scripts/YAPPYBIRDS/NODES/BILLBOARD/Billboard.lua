@@ -17,12 +17,12 @@ Billboard.__index = Billboard
 --#############################################################################
 
 local __ctor = function(self, init)
-    assert(init, "init variable is nil.")
-    assert(type(init) == "table", "Init variable is expecting a states table")
-    assert(init.atlas ~= nil, "init.atlas variable is nil")
-    assert(init.geometry ~= nil, "init.geometry variable is nil")
-    assert(init.origin ~= nil, "init.origin variable is nil")
-    assert(init.dimensions ~= nil, "init.dimensions variable is nil")
+    assert( init, "init variable is nil." )
+    assert( type(init) == "table", "Init variable is expecting a states table" )
+    assert( init.atlas ~= nil, "init.atlas variable is nil" )
+    assert( init.geometry ~= nil, "init.geometry variable is nil" )
+    assert( init.origin ~= nil, "init.origin variable is nil" )
+    assert( init.dimensions ~= nil, "init.dimensions variable is nil" )
 
     self._scale = init.scale or 1.0
     self._origin = init.origin or bullet.btVector3( 0.0, 0.0, 0.0 )
