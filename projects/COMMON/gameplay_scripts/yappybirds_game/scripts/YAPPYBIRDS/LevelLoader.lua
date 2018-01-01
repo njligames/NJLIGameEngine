@@ -68,13 +68,13 @@ function LevelLoader:loadLevel()
     assert(_layer ~= nil, "Unable to extract layer " .. layer)
     assert(_subLayer ~= nil, "Unable to extract subLayer " .. subLayer)
 
-    -- print("layer = ", layer, "sublayer = ", subLayer)
+    print("layer = ", layer, "sublayer = ", subLayer)
 
     return _layer, _subLayer
   end
 
 	local filePath = njli.ASSET_PATH("scripts/generated/tiled/country/arcade_00.lua")
-  -- local filePath = njli.ASSET_PATH("scripts/generated/tiled/debugLevel.lua")
+  -- local filePath = njli.ASSET_PATH("scripts/generated/tiled/debug/debugLevel.lua")
   
   local level = loadfile(filePath)()
   -- print_r(level)
@@ -92,14 +92,19 @@ function LevelLoader:loadLevel()
   self.wayPointTable = {}
 
   -- print("There are ", #level.layers, "layers")
+  local layerNumber = #level.layers + 1
   for i = 1, #level.layers do
     local layer = level.layers[i]
+    print(layerNumber, layer.name)
+    layerNumber = layerNumber - 1
 
     -- print_r(layer)
 
     if layer.visible then
 
-      local currentObjectLayer, currentSubObjectLayer = extractLayersFromName(layer.name)
+      -- local currentObjectLayer, currentSubObjectLayer = extractLayersFromName(layer.name)
+      currentObjectLayer = layerNumber
+      currentSubObjectLayer = 1
 
       if layer.type == "objectgroup" then
         for j = 1, #layer.objects do

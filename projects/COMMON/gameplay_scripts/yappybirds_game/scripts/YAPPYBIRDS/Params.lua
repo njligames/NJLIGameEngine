@@ -15,7 +15,8 @@ ParamInfo =
     World =
     {
         Gravity = bullet.btVector3(0,-60.81,0),
-        LayerDistance = 15.24, --meters (50 feet), How far each layer is from eachother
+        -- LayerDistance = 15.24, --meters (50 feet), How far each layer is from eachother
+        LayerDistance = 0.1, --meters (50 feet), How far each layer is from eachother
         LayerMax = 60.4125, --meters (200 feet), How far the 4th (farthest) layer is from the camera
         WorldOffset = bullet.btVector2(0.00, 19.52),
         -- WorldOffset = bullet.btVector2(0.10, 19.45),
@@ -164,8 +165,10 @@ ParamInfo =
 		local width    = tileInfo.tile.width
 		local height   = tileInfo.tile.height
 
-		print("width", width)
-		print("height", height)
+		assert((layer >= 1 and layer <= 4), "The layer (" .. layer .. ") number must be one of (1, 2, 3, 4)")
+
+		-- print("width", width)
+		-- print("height", height)
 
 		function transformCoordinate(origin, layerMax)
 			function adjustPosition(oldPosition, newDistance)
@@ -188,7 +191,7 @@ ParamInfo =
 		    return bullet.btVector3(xx, yy, zz)
 		end
 
-		local subLayerOffset = -0.1
+		-- local subLayerOffset = -0.1
 		local divisor = self:getGameViewDivisor() --self:getDivisor()
 
 		local x_offset = ( 0.5 * self.World.WorldScale )
@@ -196,19 +199,35 @@ ParamInfo =
 
 		local xx = ((self.World.WorldOffset:x()) + (((x + (width * 0.5)) / divisor) - x_offset))
 		local yy = ((self.World.WorldOffset:y()) + (((y + (height * 0.5)) / divisor) - y_offset))
-		local offset = 0
-		if sublayer ~= nil then
-			offset = (sublayer * subLayerOffset)
-		end
+		-- local offset = 0
+		-- if sublayer ~= nil then
+		-- 	offset = (sublayer * subLayerOffset)
+		-- end
 
-		local zz = self.World.LayerMax + (0.1 - (self.World.LayerDistance * (layer - 1))) + offset
+		-- print("sublayer, subLayerOffset", sublayer, subLayerOffset)
+
+		-- 4th layer is the furthest layer number.
+
+		-- local layer_offset = self.World.LayerDistance * ((4 - layer) + 1)
+
+		
+		-- local zz = self.World.LayerMax - (self.World.LayerDistance * 0) -- furthest layer (4th)
+		-- local zz = self.World.LayerMax - (self.World.LayerDistance * 1) -- second furthest layer (3rd)
+		-- local zz = self.World.LayerMax - (self.World.LayerDistance * 2) -- second closest layer (2nd)
+		-- local zz = self.World.LayerMax - (self.World.LayerDistance * 3) -- closest layer (1st)
+
+		-- local zz = self.World.LayerMax + (0.1 - (self.World.LayerDistance * (layer - 1))) -- + offset
+
+		-- print_r(tileInfo)
+		local zz = self.World.LayerMax - (self.World.LayerDistance * (4 - layer))
+		-- print(zz)
 
 		local origin = bullet.btVector3(xx, yy, zz)
 
 		return transformCoordinate(origin, self.World.LayerMax)
 	end,
 	tileDimensions = function(self, tile, z)
-		print("the dimensions", tile.width, tile.height)
+		
 		local scaleFactor = (z / self.World.LayerMax)
 		local width = (tile.width) * scaleFactor
     	local height = (tile.height) * scaleFactor
