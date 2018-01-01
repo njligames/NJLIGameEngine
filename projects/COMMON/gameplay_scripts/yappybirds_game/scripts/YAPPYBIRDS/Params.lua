@@ -16,8 +16,8 @@ ParamInfo =
     {
         Gravity = bullet.btVector3(0,-60.81,0),
         LayerDistance = 15.24, --meters (50 feet), How far each layer is from eachother
-        LayerMax = 60.55, --meters (200 feet), How far the 4th (farthest) layer is from the camera
-        WorldOffset = bullet.btVector2(0.18, 19.45),
+        LayerMax = 60.4125, --meters (200 feet), How far the 4th (farthest) layer is from the camera
+        WorldOffset = bullet.btVector2(0.00, 19.52),
         -- WorldOffset = bullet.btVector2(0.10, 19.45),
         WorldScale = 89.0430,
         -- WorldScale = 88,

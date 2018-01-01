@@ -47,11 +47,11 @@ local __ctor = function(self, init)
 
 
 
-  spriteAtlasPath = njli.ASSET_PATH("scripts/generated/texturepacker/debugLevel0.lua")
+  spriteAtlasPath = njli.ASSET_PATH("scripts/generated/texturepacker/debug0.lua")
   self._spriteAtlas_debug = njli.build((loadfile(spriteAtlasPath))():getSheet(), njli.JLI_OBJECT_TYPE_SpriteFrameAtlas)
 
   image = njli.Image.create()
-  njli.World.getInstance():getWorldResourceLoader():load("images/generated/debugLevel0.png", image)
+  njli.World.getInstance():getWorldResourceLoader():load("images/generated/debug0.png", image)
   Geometry2D[4]:getMaterial():getDiffuse():loadGPU(image)
   njli.Image.destroy(image)
 
