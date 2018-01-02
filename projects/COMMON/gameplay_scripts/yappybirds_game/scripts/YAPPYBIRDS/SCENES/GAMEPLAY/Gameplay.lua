@@ -17,6 +17,8 @@ Gameplay.__index = Gameplay
 --#############################################################################
 
 local __ctor = function(self, init)
+
+  local debug = true
   
   local spriteAtlasPath = njli.ASSET_PATH("scripts/generated/texturepacker/country0.lua")
   self._spriteAtlas_country0 = njli.build((loadfile(spriteAtlasPath))():getSheet(), njli.JLI_OBJECT_TYPE_SpriteFrameAtlas)
@@ -42,29 +44,22 @@ local __ctor = function(self, init)
   Geometry2D[3]:getMaterial():getDiffuse():loadGPU(image)
   njli.Image.destroy(image)
 
+  if debug then
+    spriteAtlasPath = njli.ASSET_PATH("scripts/generated/texturepacker/debug0.lua")
+    self._spriteAtlas_debug = njli.build((loadfile(spriteAtlasPath))():getSheet(), njli.JLI_OBJECT_TYPE_SpriteFrameAtlas)
 
+    image = njli.Image.create()
+    njli.World.getInstance():getWorldResourceLoader():load("images/generated/debug0.png", image)
+    Geometry2D[4]:getMaterial():getDiffuse():loadGPU(image)
+    njli.Image.destroy(image)
+  end
 
-
-
-
-  spriteAtlasPath = njli.ASSET_PATH("scripts/generated/texturepacker/debug0.lua")
-  self._spriteAtlas_debug = njli.build((loadfile(spriteAtlasPath))():getSheet(), njli.JLI_OBJECT_TYPE_SpriteFrameAtlas)
-
-  image = njli.Image.create()
-  njli.World.getInstance():getWorldResourceLoader():load("images/generated/debug0.png", image)
-  Geometry2D[4]:getMaterial():getDiffuse():loadGPU(image)
-  njli.Image.destroy(image)
-
-
-  
-  
   self:getScene():addCameraNode(OrthographicCameraNode, true)
   self:getScene():addCameraNode(PerspectiveCameraNode)
 
-
   local LevelLoader = require "YAPPYBIRDS.LevelLoader"
   self.levelLoader = LevelLoader()
-  self.levelLoader:loadLevel()
+  self.levelLoader:loadLevel({debug=debug})
 
 
   for i = 1, self.levelLoader:numTiles() do
@@ -75,7 +70,8 @@ local __ctor = function(self, init)
     name=billboardParams.name,
     origin=billboardParams.origin,
     dimensions=billboardParams.dimensions,
-    visible=true
+    visible=true,
+    debug=debug
     })
     
   end
@@ -221,33 +217,29 @@ function Gameplay:createBillboard( ... )
   local visible = arg.visible or true
   local origin = arg.origin or bullet.btVector3( 0.0, 0.0, 0.0 )
   local dimensions = arg.dimensions or bullet.btVector2( 1.0, 1.0 )
-  
-  local billboardNodeEntity = BillboardNodeEntity.class(
-  {
+  local debug = arg.debug or false
+
+  local load_tbl = {
     name = name,
     states = BillboardNodeEntity.states,
     entityOwner = self,
---  atlasArray = {self._spriteAtlas_country0},
---  geometryArray = {Geometry2D[1]},
-
-
     atlas = self._spriteAtlas_country0,
     geometry = Geometry2D[1],
-
-    -- atlas = self._spriteAtlas_debug,
-    -- geometry = Geometry2D[4],
-
-    
     origin = origin,
     dimensions = dimensions,
-  })
+  }
+
+  if debug then
+    load_tbl.atlas = self._spriteAtlas_debug
+    load_tbl.geometry = Geometry2D[4]
+  end
+
+  local billboardNodeEntity = BillboardNodeEntity.class(load_tbl)
   
   self:addNodeEntity(billboardNodeEntity)
   
   billboardNodeEntity:show(PerspectiveCameraNode:getCamera())
   billboardNodeEntity:hide(OrthographicCameraNode:getCamera())
-
-  -- billboardNodeEntity:getNode():setOrigin(origin)
   
   return billboardNodeEntity
   

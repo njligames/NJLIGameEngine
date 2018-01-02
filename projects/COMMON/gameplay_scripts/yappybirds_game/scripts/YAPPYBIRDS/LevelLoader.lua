@@ -36,7 +36,12 @@ end
 --############################################################################# 
 
 --TODO: write function here for LevelLoader
-function LevelLoader:loadLevel()
+function LevelLoader:loadLevel(...)
+  arg=...
+
+  local level = arg.level or 0
+  local mode = arg.mode or 'arcade'
+  local debug = arg.debug or false
 
   --- Extract the layer and subLayer number from the layer name.
   -- The layer.name for tile layers should be in the form:
@@ -74,7 +79,10 @@ function LevelLoader:loadLevel()
   end
 
 	local filePath = njli.ASSET_PATH("scripts/generated/tiled/country/arcade_00.lua")
-  -- local filePath = njli.ASSET_PATH("scripts/generated/tiled/debug/debugLevel.lua")
+
+  if debug then
+    filePath = njli.ASSET_PATH("scripts/generated/tiled/debug/debugLevel.lua")
+  end
   
   local level = loadfile(filePath)()
   -- print_r(level)
