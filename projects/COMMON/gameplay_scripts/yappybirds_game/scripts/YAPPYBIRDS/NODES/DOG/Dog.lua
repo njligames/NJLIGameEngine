@@ -33,9 +33,50 @@ local __ctor = function(self, init)
 
     self.arrayIndex = 1
 
-
-
     self:getNode():setGeometry(self._geometryArray[self.arrayIndex])
+
+
+    local physicsBody = njli.PhysicsBodyRigid.create()
+    local physicsShape = njli.PhysicsShapeCylinder.create()
+    physicsShape:setMargin(1)
+
+    physicsBody:setPhysicsShape(physicsShape)
+    self:getNode():setPhysicsBody(physicsBody)
+
+
+
+
+    local function getRootName(name)
+      local rootname = string.sub(name, string.find(name, "/") + 1)
+      -- print("rootname", rootname)
+      return rootname
+    end
+
+    local function getFrameName(name, frameAction, frameSide, frameNumber)
+      local folderName = getRootName(name) .. "_" .. frameAction .. "_" .. frameSide
+      local fileName = folderName .. "_" .. string.format("%.5d", frameNumber)
+
+      local framename = folderName .. "/" .. fileName
+      -- print("framename", framename)
+
+      return framename
+    end
+
+    local function createActionValues()
+      local action = njli.Action.create()
+      action:setName('run')
+      action:setRepeatForever()
+
+      local frameActionName = "run"
+      local frameNumber = 0
+      local frameIncrement = 1
+      local frameSideName = "side"
+
+      return action, frameActionName, frameSideName, frameNumber, frameIncrement
+    end
+
+    self.action, self.frameActionName, self.frameSideName, self.frameNumber, self.frameIncrement = createActionValues(getRootName(init.name))
+
 end
 
 local __dtor = function(self)
@@ -55,7 +96,21 @@ end
 
 
 
+function Dog:getAction()
+  return self.action
+end
 
+function Dog:getFrameActionName()
+  return self.frameActionName
+end
+ 
+function Dog:setFrameActionName(frameActionName)
+  self.frameActionName = frameActionName
+end
+
+function Dog:getFrameSideName()
+  return self.frameSideName
+end
 
 --function Dog:screenPercentWidth(s)
 --    if s ~= nil then
@@ -88,9 +143,6 @@ function Dog:setSpriteAtlasFrame(nodeStateName, match)
   
   assert(self:getNode())
   assert(self:getNode():getGeometry())
-
-  print(name)
-  print(match)
 
   self:getNode():getGeometry():setSpriteAtlasFrame(self:getNode(), self._spriteFrameAtlasArray[self.arrayIndex], name, match)
 end
@@ -128,6 +180,8 @@ end
 
 function Dog:enter()
   BaseClass.enter(self)
+
+  self:getNode():runAction(self:getAction())
 end
 
 function Dog:update(timeStep)

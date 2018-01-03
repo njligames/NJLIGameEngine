@@ -62,27 +62,27 @@ local __ctor = function(self, init)
   self.levelLoader:loadLevel({debug=debug})
 
 
-  -- for i = 1, self.levelLoader:numTiles() do
+  for i = 1, self.levelLoader:numTiles() do
 
-  --   local billboardParams = self.levelLoader:getBillboardParams(i)
+    local billboardParams = self.levelLoader:getBillboardParams(i)
 
-  --   self:createBillboard({
-  --   name=billboardParams.name,
-  --   origin=billboardParams.origin,
-  --   dimensions=billboardParams.dimensions,
-  --   visible=true,
-  --   debug=debug
-  --   })
+    self:createBillboard({
+    name=billboardParams.name,
+    origin=billboardParams.origin,
+    dimensions=billboardParams.dimensions,
+    visible=true,
+    debug=debug
+    })
     
-  -- end
+  end
 
   njli.World.getInstance():setBackgroundColor(self.levelLoader.backgroundColor)
 
-  print_r(self.levelLoader:getDogWayPointParams(1))
+  -- print_r(self.levelLoader:getDogWayPointParams(1))
 
-  print("getSpawnPointOrigin", self.levelLoader:getSpawnPointOrigin(1))
+  -- print("getSpawnPointOrigin", self.levelLoader:getSpawnPointOrigin(1))
 
-  print("self.levelLoader:getDogWayPointParams(1).origin", self.levelLoader:getDogWayPointParams(1).origin)
+  -- print("self.levelLoader:getDogWayPointParams(1).origin", self.levelLoader:getDogWayPointParams(1).origin)
   
   self:createDog({
     name="character_dog_run_side/character_dog_run_side_00000",
