@@ -36,31 +36,12 @@ end
 
 function Default:enter()
     BaseClass.enter(self)
-    
---    ui_background:setSpriteAtlasFrame(ui_background:getNode():getName(), true)
---    self:getNodeEntity():setDimensions(self:scaleDimension(self:getNodeEntity():getDimensions(), 1.0, 1.0))
-
-
-
-
-
-
 
     local frameName = self:getNodeEntity():getNode():getName()
     local dimensions = self:getNodeEntity()._dimensions
     local origin = self:getNodeEntity()._origin
-    -- local scale = self:getNodeEntity():scale()
-    
-    -- print("the scale is " .. scale)
-    
---    local pw = self:getNodeEntity():screenPercentWidth()
---    local ph = self:getNodeEntity():screenPercentHeight()
 
     self:getNodeEntity():setSpriteAtlasFrame(frameName, true)
-    -- local dimSprite = self:getNodeEntity():getDimensions()
-    
-    
---    self:getNodeEntity():setDimensions(scaleDimension(dimSprite, pw, ph))
     
     self:getNodeEntity():setDimensions(dimensions)
     self:getNodeEntity():getNode():setOrigin(origin)

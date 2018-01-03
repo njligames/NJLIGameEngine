@@ -8,7 +8,7 @@ return {
   height = 64,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 1,
+  nextobjectid = 18,
   backgroundcolor = { 158, 206, 239 },
   properties = {},
   tilesets = {
@@ -91,6 +91,66 @@ return {
     }
   },
   layers = {
+    {
+      type = "imagelayer",
+      name = "DebugArea",
+      visible = true,
+      opacity = 0.05,
+      offsetx = 0,
+      offsety = 0,
+      image = "../../../../../../debugLevel/debugArea.png",
+      properties = {}
+    },
+    {
+      type = "objectgroup",
+      name = "Bird Spawnpoint",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      draworder = "topdown",
+      properties = {},
+      objects = {
+        {
+          id = 8,
+          name = "chubiBird",
+          type = "birdSpawnPoint",
+          shape = "ellipse",
+          x = 2224.24,
+          y = 1442.42,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["birdType"] = "chubiBird",
+            ["initialVelocity"] = 1.2,
+            ["spawnAmount"] = 4,
+            ["timeFrequency"] = 5,
+            ["timeStart"] = 1
+          }
+        },
+        {
+          id = 13,
+          name = "chubiBird",
+          type = "birdSpawnPoint",
+          shape = "ellipse",
+          x = -190.91,
+          y = 1445.45,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["birdType"] = "chubiBird",
+            ["initialVelocity"] = 1.2,
+            ["spawnAmount"] = 4,
+            ["timeFrequency"] = 5,
+            ["timeStart"] = 1
+          }
+        }
+      }
+    },
     {
       type = "tilelayer",
       name = "hill(furthest)",
@@ -329,6 +389,83 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+      }
+    },
+    {
+      type = "objectgroup",
+      name = "Dog Waypoint",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      draworder = "topdown",
+      properties = {},
+      objects = {
+        {
+          id = 1,
+          name = "dog",
+          type = "dogWayPoint",
+          shape = "ellipse",
+          x = 300,
+          y = 1700.42,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 2,
+          name = "dog",
+          type = "dogWayPoint",
+          shape = "ellipse",
+          x = 348.563,
+          y = 1940.65,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 3,
+          name = "dog",
+          type = "dogWayPoint",
+          shape = "ellipse",
+          x = 1488.46,
+          y = 1959.49,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 4,
+          name = "dog",
+          type = "dogWayPoint",
+          shape = "ellipse",
+          x = 1750.07,
+          y = 1983.04,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 5,
+          name = "dog",
+          type = "dogWayPoint",
+          shape = "ellipse",
+          x = 617.051,
+          y = 1785.21,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        }
       }
     }
   }

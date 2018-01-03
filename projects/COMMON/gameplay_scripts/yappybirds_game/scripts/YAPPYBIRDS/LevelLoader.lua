@@ -103,7 +103,7 @@ function LevelLoader:loadLevel(...)
   local layerNumber = #level.layers + 1
   for i = 1, #level.layers do
     local layer = level.layers[i]
-    print(layerNumber, layer.name)
+    -- print(layerNumber, layer.name)
     layerNumber = layerNumber - 1
 
     -- print_r(layer)
@@ -169,6 +169,7 @@ function LevelLoader:_parseBirdSpawnPointObject(object, objectLayer, subObjectLa
 end
 
 function LevelLoader:_parseDogWayPointObject(object, objectLayer, subObjectLayer)
+
   local wayPoint = 
   {
     x = object.x,
@@ -190,7 +191,9 @@ function LevelLoader:_parseObject(object, objectLayer, subObjectLayer)
   elseif object.type== "dogWayPoint" then
     local dogWayPoint = self:_parseDogWayPointObject(object, objectLayer, subObjectLayer)
 
-    table.insert(self.wayPointTable, dogWayPoint)
+    assert(object.id, "There has to be an ID for objects of type dogWayPoint")
+
+    table.insert(self.wayPointTable, object.id, dogWayPoint)
    -- print_r(dogWayPoint)
   end
 end
@@ -288,21 +291,44 @@ end
 
 function LevelLoader:getBillboardParams(index)
   local tileInfo = self:getTile(index)
-  -- print_r("tileInfo", tileInfo)
 
   local origin = self.Params:originForLayer(tileInfo)
-  -- print(origin)
 
   local dimensions = self.Params:tileDimensions(tileInfo.tile, origin:z())
-  -- print("dimensions", dimensions)
 
   local name = tileInfo.tile.image
-  -- print(name)
-
-  -- origin:setX(origin:x() + (dimensions:x() * 0.5))
-  -- origin:setY(origin:y() + (dimensions:y() * 0.5))
 
   return {origin = origin, dimensions = dimensions, name = name}
+end
+
+function LevelLoader:getDogWayPointParams(index)
+  assert(index >= 1 and index <= #self.wayPointTable, "way point index is out of range")
+
+  local wayPoint = self.wayPointTable[index]
+
+  local origin = self.Params:originForLayer(wayPoint)
+
+  local dimensions = self.Params:tileDimensions({width=256, height=256}, origin:z())
+
+  return { origin = origin, dimensions = dimensions }
+end
+
+function LevelLoader:numDogWayPoints()
+  return #self.wayPointTable
+end
+
+function LevelLoader:getSpawnPointOrigin(index)
+  assert(index >= 1 and index <= #self.spawnPointTable, "spawn point index is out of range")
+
+  local spawnPoint = self.spawnPointTable[index]
+
+  local origin = self.Params:originForLayer(spawnPoint)
+
+  return origin
+end
+
+function LevelLoader:numSpawnPoints()
+  return #self.spawnPointTable
 end
 
 --############################################################################# 

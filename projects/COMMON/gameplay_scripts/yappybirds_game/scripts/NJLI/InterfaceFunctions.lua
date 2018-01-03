@@ -43,7 +43,7 @@ local Create = function()
   if nil == Geometry2D then
     Geometry2D = {}
     
-    for i=1,4 do
+    for i=1,5 do
       Geometry2D[i] = njli.Sprite2D.create()
       Geometry2D[i]:setName("YappyBird Geometry " .. i)
       

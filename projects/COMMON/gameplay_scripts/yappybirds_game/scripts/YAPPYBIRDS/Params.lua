@@ -160,12 +160,16 @@ ParamInfo =
 	originForLayer = function(self, tileInfo)
 		local x        = tileInfo.x
 		local y        = tileInfo.y
-		local layer    = tileInfo.layer
-		local sublayer = tileInfo.sublayer
-		local width    = tileInfo.tile.width
-		local height   = tileInfo.tile.height
+		local layer    = tileInfo.layer or 1
+		local sublayer = tileInfo.sublayer or 1
+		local width    = 1.0
+		local height   = 1.0
+		if tileInfo.tile then
+			width    = tileInfo.tile.width or 1.0
+			height   = tileInfo.tile.height or 1.0
+		end
 
-		assert((layer >= 1 and layer <= 4), "The layer (" .. layer .. ") number must be one of (1, 2, 3, 4)")
+		-- assert((layer >= 1 and layer <= 4), "The layer (" .. layer .. ") number must be one of (1, 2, 3, 4)")
 
 		-- print("width", width)
 		-- print("height", height)
@@ -227,19 +231,47 @@ ParamInfo =
 		return transformCoordinate(origin, self.World.LayerMax)
 	end,
 	tileDimensions = function(self, tile, z)
+		local width, height = 256, 256
+		if tile then
+			width = tile.width or width
+			height = tile.height or height
+		end
 		
 		local scaleFactor = (z / self.World.LayerMax)
-		local width = (tile.width) * scaleFactor
-    	local height = (tile.height) * scaleFactor
+		local width = (width) * scaleFactor
+    	local height = (height) * scaleFactor
     	local divisor = self:getGameViewDivisor()
 
 		return bullet.btVector2( (width / divisor) * 2, (height / divisor) * 2 )
-		-- return bullet.btVector2(0.0, 0.0)
 	end,
 	getGameViewDivisor = function(self)
 		local scale = self.World.WorldScale
     	return math.floor(2048.0 / scale)
 	end,
+	setupSpriteFrame = function(self, frameName, node, characterSheetInfo, spriteAtlas, geometry)
+		for k,v in pairs(characterSheetInfo) do
+			if v:getFrameIndex(frameName) then
+				local frameIndex = v:getFrameIndex(frameName)
+				local width = v:getSheet().frames[frameIndex].width - 2
+				local height = v:getSheet().frames[frameIndex].height - 2
+				local divisor = self:getGameViewDivisor()
+				local dimSprite = njli.btVector2( (width/divisor)*2, (height/divisor)*2 )
+
+				node:addGeometry(geometry[k])
+
+				node:getGeometry():setSpriteAtlasFrame(node, spriteAtlas[k], frameName, false)
+				node:getGeometry():setDimensions(node, dimSprite)
+			end
+		end
+	end,
+	getSpriteAlasFromFrameName = function(self, frameName, spriteAtlasArray)
+		for k, v in pairs(spriteAtlasArray) do
+			print(k)
+			print(v)
+			print('end')
+		end
+	end
+
 }
 
 return ParamInfo

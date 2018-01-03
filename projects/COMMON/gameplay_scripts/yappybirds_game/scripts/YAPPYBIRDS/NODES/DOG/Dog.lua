@@ -17,11 +17,29 @@ Dog.__index = Dog
 --#############################################################################
 
 local __ctor = function(self, init)
-  --TODO: construct this Entity
+    assert( init, "init variable is nil." )
+    assert( type(init) == "table", "Init variable is expecting a states table" )
+    assert( init.atlasArray ~= nil, "init.atlasArray variable is nil" )
+    assert( init.geometryArray ~= nil, "init.geometryArray variable is nil" )
+    assert( init.origin ~= nil, "init.origin variable is nil" )
+    assert( init.dimensions ~= nil, "init.dimensions variable is nil" )
+
+    self._scale = init.scale or 1.0
+    self._origin = init.origin or bullet.btVector3( 0.0, 0.0, 0.0 )
+    self._dimensions = init.dimensions or bullet.btVector2( 1.0, 1.0 )
+
+    self._spriteFrameAtlasArray = init.atlasArray
+    self._geometryArray = init.geometryArray
+
+    self.arrayIndex = 1
+
+
+
+    self:getNode():setGeometry(self._geometryArray[self.arrayIndex])
 end
 
 local __dtor = function(self)
-  --TODO: destruct this Entity
+  self:getNode():removeGeometry()
 end
 
 local __load = function(self)
@@ -33,6 +51,80 @@ local __unLoad = function(self)
 end
 
 --#############################################################################
+
+
+
+
+
+
+--function Dog:screenPercentWidth(s)
+--    if s ~= nil then
+--        self._screenPercentWidth = s
+--    end
+--    return self._screenPercentWidth
+--end
+
+--function Dog:screenPercentHeight(s)
+--    if s ~= nil then
+--        self._screenPercentHeight = s
+--    end
+--    return self._screenPercentHeight
+--end
+
+function Dog:scale(s)
+    if s ~= nil then
+        self._scale = s
+    end
+    return self._scale
+end
+
+function Dog:setSpriteAtlasFrame(nodeStateName, match)
+	local parts = nodeStateName:split("[^,%s]+")
+  
+	local name = nodeStateName
+	if #parts ~= 1 then
+		name = parts[1] -- .. parts[3]
+	end
+  
+  assert(self:getNode())
+  assert(self:getNode():getGeometry())
+
+  print(name)
+  print(match)
+
+  self:getNode():getGeometry():setSpriteAtlasFrame(self:getNode(), self._spriteFrameAtlasArray[self.arrayIndex], name, match)
+end
+
+function Dog:getDimensions()
+    return self:getNode():getGeometry():getDimensions(self:getNode())
+end
+
+function Dog:setDimensions(dimension)
+  self:getNode():getGeometry():setDimensions(self:getNode(), dimension)
+end
+
+function Dog:show(camera)
+  self:getNode():show(camera)
+end
+
+function Dog:hide(camera)
+  self:getNode():hide(camera)
+end
+
+--function Dog:display(enable)
+--  if nil ~= enable and nil ~= OrthographicCameraNode and OrthographicCameraNode:getCamera() then
+--    if enable then
+--      self:show(OrthographicCameraNode:getCamera())
+--    else
+--      self:hide(OrthographicCameraNode:getCamera())
+--    end
+--  end
+--end
+
+
+
+
+
 
 function Dog:enter()
   BaseClass.enter(self)

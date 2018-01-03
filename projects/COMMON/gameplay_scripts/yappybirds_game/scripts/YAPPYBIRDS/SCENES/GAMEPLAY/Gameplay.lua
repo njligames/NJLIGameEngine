@@ -18,7 +18,7 @@ Gameplay.__index = Gameplay
 
 local __ctor = function(self, init)
 
-  local debug = true
+  local debug = false
   
   local spriteAtlasPath = njli.ASSET_PATH("scripts/generated/texturepacker/country0.lua")
   self._spriteAtlas_country0 = njli.build((loadfile(spriteAtlasPath))():getSheet(), njli.JLI_OBJECT_TYPE_SpriteFrameAtlas)
@@ -62,21 +62,35 @@ local __ctor = function(self, init)
   self.levelLoader:loadLevel({debug=debug})
 
 
-  for i = 1, self.levelLoader:numTiles() do
+  -- for i = 1, self.levelLoader:numTiles() do
 
-    local billboardParams = self.levelLoader:getBillboardParams(i)
+  --   local billboardParams = self.levelLoader:getBillboardParams(i)
 
-    self:createBillboard({
-    name=billboardParams.name,
-    origin=billboardParams.origin,
-    dimensions=billboardParams.dimensions,
+  --   self:createBillboard({
+  --   name=billboardParams.name,
+  --   origin=billboardParams.origin,
+  --   dimensions=billboardParams.dimensions,
+  --   visible=true,
+  --   debug=debug
+  --   })
+    
+  -- end
+
+  njli.World.getInstance():setBackgroundColor(self.levelLoader.backgroundColor)
+
+  print_r(self.levelLoader:getDogWayPointParams(1))
+
+  print("getSpawnPointOrigin", self.levelLoader:getSpawnPointOrigin(1))
+
+  print("self.levelLoader:getDogWayPointParams(1).origin", self.levelLoader:getDogWayPointParams(1).origin)
+  
+  self:createDog({
+    name="character_dog_run_side/character_dog_run_side_00000",
+    origin=self.levelLoader:getDogWayPointParams(1).origin,
+    dimensions=self.levelLoader:getDogWayPointParams(1).dimensions,
     visible=true,
     debug=debug
     })
-    
-  end
-
-  njli.World.getInstance():setBackgroundColor(self.levelLoader.backgroundColor)
 
 
 end
@@ -102,45 +116,45 @@ end
 
 --#############################################################################
 
-function Gameplay:transfromLevelPositionAndWidth( ... )
-  local arg=...
+-- function Gameplay:transfromLevelPositionAndWidth( ... )
+--   local arg=...
   
-  assert(arg, "the paramters are nil in transfromLevelPositionAndWidth")
+--   assert(arg, "the paramters are nil in transfromLevelPositionAndWidth")
   
-  local x = arg.x or 0
-  local y = arg.y or 0
-  local layer = arg.layer or 1
-  local sublayer = arg.sublayer or 1
-  local width = arg.width or 1.0
-  local height = arg.height or 1.0
-  local pivotPoint = bullet.btVector2(0.0, 0.0)
+--   local x = arg.x or 0
+--   local y = arg.y or 0
+--   local layer = arg.layer or 1
+--   local sublayer = arg.sublayer or 1
+--   local width = arg.width or 1.0
+--   local height = arg.height or 1.0
+--   local pivotPoint = bullet.btVector2(0.0, 0.0)
   
---  local function getGameViewDivisor()
---      local scale = 89.0
---      return math.floor(2048 / scale)
---  end
+-- --  local function getGameViewDivisor()
+-- --      local scale = 89.0
+-- --      return math.floor(2048 / scale)
+-- --  end
   
   
   
---  local subLayerOffset = -0.1
---  local divisor = getGameViewDivisor()
---  local x_offset = (0.5 * self.scale )
---  local y_offset = (0.5 * self.scale )
+-- --  local subLayerOffset = -0.1
+-- --  local divisor = getGameViewDivisor()
+-- --  local x_offset = (0.5 * self.scale )
+-- --  local y_offset = (0.5 * self.scale )
 
---  local xx = ((self.WORLD_XOFFSET) + ((x/divisor)-x_offset))
---  local yy = ((self.WORLD_YOFFSET) + ((y/divisor)-y_offset))
---  local offset = 0
---  if sublayer ~= nil then
---      offset = (sublayer * subLayerOffset)
---  end
+-- --  local xx = ((self.WORLD_XOFFSET) + ((x/divisor)-x_offset))
+-- --  local yy = ((self.WORLD_YOFFSET) + ((y/divisor)-y_offset))
+-- --  local offset = 0
+-- --  if sublayer ~= nil then
+-- --      offset = (sublayer * subLayerOffset)
+-- --  end
 
---  local zz = self.LAYER_MAX + (0.1 - (self.LAYER_DISTANCE * (layer - 1))) + offset
+-- --  local zz = self.LAYER_MAX + (0.1 - (self.LAYER_DISTANCE * (layer - 1))) + offset
 
---  return bullet.btVector3(xx, yy, zz)
+-- --  return bullet.btVector3(xx, yy, zz)
   
   
   
-end
+-- end
 
 function Gameplay:updateTimerDisplay( ... )
   -- body
@@ -183,16 +197,48 @@ function Gameplay:createBird( ... )
 end
 
 function Gameplay:createDog( ... )
+  arg=...
+  
+  local name = arg.name or "dog"
+  local visible = arg.visible or true
+  local origin = arg.origin or bullet.btVector3( 0.0, 0.0, 0.0 )
+  local dimensions = arg.dimensions or bullet.btVector2( 1.0, 1.0 )
+  local debug = arg.debug or false
 
-  local dogNodeEntity = DogNodeEntity.class({
-  entityOwner = self,
-  states = DogNodeEntity.states,
-  atlasArray = {self._spriteAtlas_gameplay0, self._spriteAtlas_gameplay1},
-  geometryArray = {Geometry2D[2], Geometry2D[3]},
-  })
+  local load_tbl = {
+    name = name,
+    states = DogNodeEntity.states,
+    entityOwner = self,
+    atlasArray = {self._spriteAtlas_gameplay0, self._spriteAtlas_gameplay1},
+    geometryArray = {Geometry2D[2], Geometry2D[3]},
+    origin = origin,
+    dimensions = dimensions,
+  }
+
+  local dogNodeEntity = DogNodeEntity.class(load_tbl)
+  
   self:addNodeEntity(dogNodeEntity)
   
+  dogNodeEntity:show(PerspectiveCameraNode:getCamera())
+  dogNodeEntity:hide(OrthographicCameraNode:getCamera())
+  
   return dogNodeEntity
+
+
+
+
+
+
+
+  -- local dogNodeEntity = DogNodeEntity.class({
+  -- entityOwner = self,
+  -- states = DogNodeEntity.states,
+  -- atlasArray = {self._spriteAtlas_gameplay0, self._spriteAtlas_gameplay1},
+  -- geometryArray = {Geometry2D[2], Geometry2D[3]},
+  -- })
+  -- self:addNodeEntity(dogNodeEntity)
+  
+  -- return dogNodeEntity
   
 end
 
