@@ -16,6 +16,8 @@ Dog.__index = Dog
 -- __unLoad()
 --#############################################################################
 
+
+
 local __ctor = function(self, init)
     assert( init, "init variable is nil." )
     assert( type(init) == "table", "Init variable is expecting a states table" )
@@ -46,21 +48,6 @@ local __ctor = function(self, init)
 
 
 
-    local function getRootName(name)
-      local rootname = string.sub(name, string.find(name, "/") + 1)
-      -- print("rootname", rootname)
-      return rootname
-    end
-
-    local function getFrameName(name, frameAction, frameSide, frameNumber)
-      local folderName = getRootName(name) .. "_" .. frameAction .. "_" .. frameSide
-      local fileName = folderName .. "_" .. string.format("%.5d", frameNumber)
-
-      local framename = folderName .. "/" .. fileName
-      -- print("framename", framename)
-
-      return framename
-    end
 
     local function createActionValues()
       local action = njli.Action.create()
@@ -75,7 +62,10 @@ local __ctor = function(self, init)
       return action, frameActionName, frameSideName, frameNumber, frameIncrement
     end
 
-    self.action, self.frameActionName, self.frameSideName, self.frameNumber, self.frameIncrement = createActionValues(getRootName(init.name))
+    self.action, self.frameActionName, self.frameSideName, self.frameNumber, self.frameIncrement = createActionValues()
+
+
+    self.animationClock = njli.Clock.create()
 
 end
 
@@ -110,6 +100,31 @@ end
 
 function Dog:getFrameSideName()
   return self.frameSideName
+end
+
+function Dog:getFrameNumber()
+  assert(self.frameNumber, "self.frameNumber is nil")
+  return self.frameNumber
+end
+
+function Dog:getFrameIncrement()
+  assert(self.frameIncrement, "self.frameIncrement is nil")
+  
+  return self.frameIncrement
+end
+
+function Dog:incrementFrame()
+  self.frameNumber = self:getFrameNumber() + self:getFrameIncrement()
+  
+  if self:getFrameNumber() > 8 then
+    self.frameNumber = 0
+  end
+end
+
+function Dog:getAnimationClock()
+  assert(self.animationClock, "self.animationClock is nil")
+  
+  return self.animationClock
 end
 
 --function Dog:screenPercentWidth(s)
@@ -180,6 +195,8 @@ end
 
 function Dog:enter()
   BaseClass.enter(self)
+
+  print("Dog:enter()")
 
   self:getNode():runAction(self:getAction())
 end
@@ -262,6 +279,24 @@ end
 
 function Dog:actionUpdate(action, timeStep)
   BaseClass.actionUpdate(self, action, timeStep)
+
+  local node = action:getParent()
+
+  if (self:getAnimationClock():getTimeMilliseconds() / 1000) > (1.0/30.0) then
+    self:getAnimationClock():reset()
+    self:incrementFrame()
+
+    self:setSpriteAtlasFrame(self:getFrameName(), false)
+  end
+
+end
+
+function Dog:getFrameName()
+
+    local folderName = self:getNode():getName() .. "_" .. self:getFrameActionName() .. "_" .. self:getFrameSideName()
+    local frameName =  folderName .. "/" .. folderName .. "_" .. string.format("%.5d", self:getFrameNumber())
+
+    return frameName
 end
 
 function Dog:actionComplete(action)

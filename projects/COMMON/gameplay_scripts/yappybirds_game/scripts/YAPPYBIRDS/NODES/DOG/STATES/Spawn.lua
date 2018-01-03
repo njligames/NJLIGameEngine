@@ -37,7 +37,8 @@ end
 function Spawn:enter()
     BaseClass.enter(self)
 
-    local frameName = self:getNodeEntity():getNode():getName()
+    --local frameName = self:getNodeEntity():getNode():getName()
+    local frameName = self:getNodeEntity():getFrameName()
     local dimensions = self:getNodeEntity()._dimensions
     local origin = self:getNodeEntity()._origin
 

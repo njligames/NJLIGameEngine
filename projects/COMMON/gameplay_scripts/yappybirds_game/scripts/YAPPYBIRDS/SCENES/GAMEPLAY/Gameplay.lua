@@ -85,7 +85,7 @@ local __ctor = function(self, init)
   -- print("self.levelLoader:getDogWayPointParams(1).origin", self.levelLoader:getDogWayPointParams(1).origin)
   
   self:createDog({
-    name="character_dog_run_side/character_dog_run_side_00000",
+    name="character_dog",
     origin=self.levelLoader:getDogWayPointParams(1).origin,
     dimensions=self.levelLoader:getDogWayPointParams(1).dimensions,
     visible=true,
