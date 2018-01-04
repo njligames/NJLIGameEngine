@@ -17,11 +17,55 @@ BirdBeak.__index = BirdBeak
 --#############################################################################
 
 local __ctor = function(self, init)
-  --TODO: construct this Entity
+    assert( init, "init variable is nil." )
+    assert( type(init) == "table", "Init variable is expecting a states table" )
+    assert( init.atlasArray ~= nil, "init.atlasArray variable is nil" )
+    assert( init.geometryArray ~= nil, "init.geometryArray variable is nil" )
+    assert( init.origin ~= nil, "init.origin variable is nil" )
+    assert( init.dimensions ~= nil, "init.dimensions variable is nil" )
+
+    self._scale = init.scale or 1.0
+    self._origin = init.origin or bullet.btVector3( 0.0, 0.0, 0.0 )
+    self._dimensions = init.dimensions or bullet.btVector2( 1.0, 1.0 )
+
+    self._origin = self._origin - bullet.btVector3(0.0, 0.0, 0.1)
+
+    self._spriteFrameAtlasArray = init.atlasArray
+    self._geometryArray = init.geometryArray
+
+    self.texturePackerArrayIndex = 1
+
+    self:getNode():setGeometry(self._geometryArray[self.texturePackerArrayIndex])
+
+    local physicsBody = njli.PhysicsBodyRigid.create()
+    local physicsShape = njli.PhysicsShapeCylinder.create()
+    physicsShape:setMargin(1)
+
+    physicsBody:setPhysicsShape(physicsShape)
+    self:getNode():setPhysicsBody(physicsBody)
+
+    local function createActionValues()
+      local action = njli.Action.create()
+      action:setName('run')
+      action:setRepeatForever()
+
+      local frameActionName = "idle"
+      local frameNumber = math.random(0,8)
+      local frameIncrement = 1
+      local frameSideName = "front"
+      local numberOfFrames = 8
+
+      return action, frameActionName, frameSideName, frameNumber, frameIncrement, numberOfFrames
+    end
+
+    self.action, self.frameActionName, self.frameSideName, self.frameNumber, self.frameIncrement, self.numberOfFrames = createActionValues()
+
+    self.animationClock = njli.Clock.create()
+
 end
 
 local __dtor = function(self)
-  --TODO: destruct this Entity
+  self:getNode():removeGeometry()
 end
 
 local __load = function(self)
@@ -34,8 +78,133 @@ end
 
 --#############################################################################
 
+function BirdBeak:getFrameName()
+
+  local folderName = self:getEntityName() .. "_" .. self:getFrameActionName() .. "_" .. self:getFrameSideName()
+
+  local frameName =  folderName .. "/" .. folderName .. "_" .. string.format("%.5d", self:getFrameNumber())
+
+  return frameName
+end
+
+function BirdBeak:getAction()
+  return self.action
+end
+
+function BirdBeak:getFrameActionName()
+  return self.frameActionName
+end
+ 
+function BirdBeak:setFrameAction(frameActionName, numberOfFrames)
+  self.frameActionName = frameActionName
+  self.numberOfFrames = numberOfFrames
+end
+
+function BirdBeak:getFrameSideName()
+  return self.frameSideName
+end
+
+function BirdBeak:getFrameNumber()
+  assert(self.frameNumber, "self.frameNumber is nil")
+  return self.frameNumber
+end
+
+function BirdBeak:setFrameNumber(frameNumber)
+  self.frameNumber = frameNumber
+end
+
+function BirdBeak:getFrameIncrement()
+  assert(self.frameIncrement, "self.frameIncrement is nil")
+  
+  return self.frameIncrement
+end
+
+function BirdBeak:incrementFrame()
+  self.frameNumber = self:getFrameNumber() + self:getFrameIncrement()
+  
+  if self:getFrameNumber() > self.numberOfFrames then
+    self.frameNumber = 0
+  end
+end
+
+function BirdBeak:getAnimationClock()
+  assert(self.animationClock, "self.animationClock is nil")
+  
+  return self.animationClock
+end
+
+function BirdBeak:scale(s)
+    if s ~= nil then
+        self._scale = s
+    end
+    return self._scale
+end
+
+function BirdBeak:setSpriteAtlasFrame(nodeStateName, match)
+	local parts = nodeStateName:split("[^,%s]+")
+  
+	local name = nodeStateName
+	if #parts ~= 1 then
+		name = parts[1] -- .. parts[3]
+	end
+
+  assert(self:getNode())
+  assert(self:getNode():getGeometry())
+
+  local idx = -1
+  for i = 1, #self._spriteFrameAtlasArray do
+    if self._spriteFrameAtlasArray[i]:hasFrame(name) then
+      idx = i
+      break
+    end
+  end
+
+  if idx ~= self.texturePackerArrayIndex then
+    self.texturePackerArrayIndex = idx
+    self:getNode():setGeometry(self._geometryArray[self.texturePackerArrayIndex])
+  end
+
+  self:getNode():getGeometry():setSpriteAtlasFrame(self:getNode(), self._spriteFrameAtlasArray[self.texturePackerArrayIndex], name, match)
+
+end
+
+function BirdBeak:getDimensions()
+    return self:getNode():getGeometry():getDimensions(self:getNode())
+end
+
+function BirdBeak:setDimensions(dimension)
+  self:getNode():getGeometry():setDimensions(self:getNode(), dimension)
+end
+
+function BirdBeak:show(camera)
+  self:getNode():show(camera)
+end
+
+function BirdBeak:hide(camera)
+  self:getNode():hide(camera)
+end
+
+--function BirdBeak:display(enable)
+--  if nil ~= enable and nil ~= OrthographicCameraNode and OrthographicCameraNode:getCamera() then
+--    if enable then
+--      self:show(OrthographicCameraNode:getCamera())
+--    else
+--      self:hide(OrthographicCameraNode:getCamera())
+--    end
+--  end
+--end
+
+
+
+
+
+
 function BirdBeak:enter()
   BaseClass.enter(self)
+
+  print("BirdBeak:enter()")
+
+  self:getNode():runAction(self:getAction())
 end
 
 function BirdBeak:update(timeStep)
@@ -116,6 +285,16 @@ end
 
 function BirdBeak:actionUpdate(action, timeStep)
   BaseClass.actionUpdate(self, action, timeStep)
+
+  local node = action:getParent()
+
+  if (self:getAnimationClock():getTimeMilliseconds() / 1000) > (1.0/30.0) then
+    self:getAnimationClock():reset()
+    self:incrementFrame()
+
+    self:setSpriteAtlasFrame(self:getFrameName(), false)
+  end
+
 end
 
 function BirdBeak:actionComplete(action)

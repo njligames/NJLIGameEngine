@@ -273,7 +273,30 @@ function Gameplay:createBird( ... )
   
   entity:show(PerspectiveCameraNode:getCamera())
   entity:hide(OrthographicCameraNode:getCamera())
+
+
+
+
+
+
+  load_tbl.name = "character_" .. birdType .. "Bird_mouth"
+  load_tbl.states = BirdBeakNodeEntity.states
+
+  local beakEntity = BirdBeakNodeEntity.class(load_tbl)
   
+  self:addNodeEntity(beakEntity)
+  
+  beakEntity:show(PerspectiveCameraNode:getCamera())
+  beakEntity:hide(OrthographicCameraNode:getCamera())
+  
+
+  
+  beakEntity:setFrameNumber(entity:getFrameNumber())
+
+
+
+
+
   return entity
   
 
