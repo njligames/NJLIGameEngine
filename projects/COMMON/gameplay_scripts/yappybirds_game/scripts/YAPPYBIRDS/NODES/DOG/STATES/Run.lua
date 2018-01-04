@@ -10,8 +10,7 @@ Run.__index = Run
 --#############################################################################
 --Begin Custom Code
 --Required local functions:
--- __ctor()
--- __dtor()
+-- __ctor() __dtor()
 -- __load()
 -- __unLoad()
 --#############################################################################
@@ -36,6 +35,18 @@ end
 
 function Run:enter()
   BaseClass.enter(self)
+
+  
+  self:getNodeEntity():setFrameAction('run', 8)
+
+  local frameName = self:getNodeEntity():getFrameName()
+  local dimensions = self:getNodeEntity()._dimensions
+  local origin = self:getNodeEntity()._origin
+
+  self:getNodeEntity():setSpriteAtlasFrame(frameName, true)
+  
+  self:getNodeEntity():setDimensions(dimensions)
+  self:getNodeEntity():getNode():setOrigin(origin)
 end
 
 function Run:update(timeStep)

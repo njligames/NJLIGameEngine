@@ -35,22 +35,18 @@ end
 --############################################################################# 
 
 function Spawn:enter()
-    BaseClass.enter(self)
+  BaseClass.enter(self)
 
-    --local frameName = self:getNodeEntity():getNode():getName()
-    local frameName = self:getNodeEntity():getFrameName()
-    local dimensions = self:getNodeEntity()._dimensions
-    local origin = self:getNodeEntity()._origin
+  self:getNodeEntity():setFrameAction('idle', 8)
 
-    print("Spawn:dimensions")
-    print_r(dimensions)
-    print("Spawn:origin")
-    print_r(origin)
+  local frameName = self:getNodeEntity():getFrameName()
+  local dimensions = self:getNodeEntity()._dimensions
+  local origin = self:getNodeEntity()._origin
 
-    self:getNodeEntity():setSpriteAtlasFrame(frameName, true)
-    
-    self:getNodeEntity():setDimensions(dimensions)
-    self:getNodeEntity():getNode():setOrigin(origin)
+  self:getNodeEntity():setSpriteAtlasFrame(frameName, true)
+  
+  self:getNodeEntity():setDimensions(dimensions)
+  self:getNodeEntity():getNode():setOrigin(origin)
 end
 
 function Spawn:update(timeStep)

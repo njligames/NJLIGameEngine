@@ -94,8 +94,9 @@ function Dog:getFrameActionName()
   return self.frameActionName
 end
  
-function Dog:setFrameActionName(frameActionName)
+function Dog:setFrameAction(frameActionName, numberOfFrames)
   self.frameActionName = frameActionName
+  self.numberOfFrames = numberOfFrames
 end
 
 function Dog:getFrameSideName()
@@ -116,7 +117,7 @@ end
 function Dog:incrementFrame()
   self.frameNumber = self:getFrameNumber() + self:getFrameIncrement()
   
-  if self:getFrameNumber() > 8 then
+  if self:getFrameNumber() > self.numberOfFrames then
     self.frameNumber = 0
   end
 end
@@ -292,11 +293,10 @@ function Dog:actionUpdate(action, timeStep)
 end
 
 function Dog:getFrameName()
+  local folderName = self:getNode():getName() .. "_" .. self:getFrameActionName() .. "_" .. self:getFrameSideName()
+  local frameName =  folderName .. "/" .. folderName .. "_" .. string.format("%.5d", self:getFrameNumber())
 
-    local folderName = self:getNode():getName() .. "_" .. self:getFrameActionName() .. "_" .. self:getFrameSideName()
-    local frameName =  folderName .. "/" .. folderName .. "_" .. string.format("%.5d", self:getFrameNumber())
-
-    return frameName
+  return frameName
 end
 
 function Dog:actionComplete(action)
