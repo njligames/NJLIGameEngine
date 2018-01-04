@@ -149,8 +149,6 @@ function Dog:setSpriteAtlasFrame(nodeStateName, match)
 		name = parts[1] -- .. parts[3]
 	end
 
-  print("frame name is " .. name)
-  
   assert(self:getNode())
   assert(self:getNode():getGeometry())
 

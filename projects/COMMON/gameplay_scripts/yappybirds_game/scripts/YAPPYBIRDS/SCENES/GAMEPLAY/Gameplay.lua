@@ -84,6 +84,21 @@ local __ctor = function(self, init)
 
   -- print("self.levelLoader:getDogWayPointParams(1).origin", self.levelLoader:getDogWayPointParams(1).origin)
   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   -- for i = 1, self.levelLoader:numDogWayPoints() do
   --   self:createDog({
   --     name="character_dog",
@@ -94,26 +109,67 @@ local __ctor = function(self, init)
   --     })
   -- end
 
-  local colors = {}
-  table.insert(colors, "Blue")
-  table.insert(colors, "Green")
-  table.insert(colors, "Purple")
-  table.insert(colors, "Red")
-  table.insert(colors, "Yellow")
-  
-  for i = 1, self.levelLoader:numDogWayPoints() do
-    local colorIdx = i % (#colors + 1)
 
-    self:createBalloon({
-      name="projectile_waterBalloon",
-      color=colors[colorIdx],
+
+
+
+
+
+
+
+
+
+
+
+
+
+  -- local colors = {}
+  -- table.insert(colors, "Blue")
+  -- table.insert(colors, "Green")
+  -- table.insert(colors, "Purple")
+  -- table.insert(colors, "Red")
+  -- table.insert(colors, "Yellow")
+  -- 
+  -- for i = 1, self.levelLoader:numDogWayPoints() do
+  --   local colorIdx = i % (#colors + 1)
+
+  --   self:createBalloon({
+  --     name="projectile_waterBalloon",
+  --     color=colors[colorIdx],
+  --     origin=self.levelLoader:getDogWayPointParams(i).origin,
+  --     dimensions=self.levelLoader:getDogWayPointParams(i).dimensions,
+  --     visible=true,
+  --     debug=debug
+  --     })
+  -- end
+
+
+
+
+
+
+
+
+
+
+  local birdNames = {}
+  table.insert(birdNames, "chubi")
+  table.insert(birdNames, "garu")
+  table.insert(birdNames, "momi")
+  table.insert(birdNames, "puffy")
+  table.insert(birdNames, "webo")
+  table.insert(birdNames, "zuru")
+  for i = 1, self.levelLoader:numDogWayPoints() do
+    local birdIdx = i % (#birdNames + 1)
+
+    self:createBird({
+      birdType=birdNames[1],
       origin=self.levelLoader:getDogWayPointParams(i).origin,
       dimensions=self.levelLoader:getDogWayPointParams(i).dimensions,
       visible=true,
       debug=debug
       })
   end
-
 
 end
 
@@ -191,30 +247,58 @@ function Gameplay:updatePointsCounterDisplay( ... )
 end
 
 function Gameplay:createBird( ... )
+  arg=...
+  
+  local birdType = arg.birdType or "chubi"
+  local visible = arg.visible or true
+  local origin = arg.origin or bullet.btVector3( 0.0, 0.0, 10.0 )
+  local dimensions = arg.dimensions or bullet.btVector2( 1.0, 1.0 )
+  local debug = arg.debug or false
 
-  local arg = ...
-  assert(arg, "the paramters are nil in createBird")
-  assert(arg.name ~= nil, "init.name is nil")
+  local load_tbl = {
+    name = "character_" .. birdType .. "Bird",
+    birdType = birdType,
+    states = BirdNodeEntity.states,
+    entityOwner = self,
+    atlasArray = {self._spriteAtlas_gameplay0, self._spriteAtlas_gameplay1},
+    geometryArray = {Geometry2D[2], Geometry2D[3]},
+    origin = origin,
+    dimensions = dimensions,
+  }
+
+  local entity = BirdNodeEntity.class(load_tbl)
   
+  self:addNodeEntity(entity)
   
-  local beakNodeEntity = BirdBeakNodeEntity.class({
-  entityOwner = self,
-  states = BirdBeakNodeEntity.states,
-  atlasArray = {self._spriteAtlas_gameplay0, self._spriteAtlas_gameplay1},
-  geometryArray = {Geometry2D[2], Geometry2D[3]},
-  })
+  entity:show(PerspectiveCameraNode:getCamera())
+  entity:hide(OrthographicCameraNode:getCamera())
   
-  local birdNodeEntity = BirdNodeEntity.class({
-  name = arg.name,
-  entityOwner = self,
-  states = BirdNodeEntity.states,
-  beakNodeEntity = beakNodeEntity,
-  atlasArray = {self._spriteAtlas_gameplay0, self._spriteAtlas_gameplay1},
-  geometryArray = {Geometry2D[2], Geometry2D[3]},
-  })
-  self:addNodeEntity(birdNodeEntity)
+  return entity
   
-  return birdNodeEntity
+
+--   local arg = ...
+--   assert(arg, "the paramters are nil in createBird")
+--   assert(arg.name ~= nil, "init.name is nil")
+--   
+--   
+--   local beakNodeEntity = BirdBeakNodeEntity.class({
+--   entityOwner = self,
+--   states = BirdBeakNodeEntity.states,
+--   atlasArray = {self._spriteAtlas_gameplay0, self._spriteAtlas_gameplay1},
+--   geometryArray = {Geometry2D[2], Geometry2D[3]},
+--   })
+--   
+--   local birdNodeEntity = BirdNodeEntity.class({
+--   name = arg.name,
+--   entityOwner = self,
+--   states = BirdNodeEntity.states,
+--   beakNodeEntity = beakNodeEntity,
+--   atlasArray = {self._spriteAtlas_gameplay0, self._spriteAtlas_gameplay1},
+--   geometryArray = {Geometry2D[2], Geometry2D[3]},
+--   })
+--   self:addNodeEntity(birdNodeEntity)
+--   
+--   return birdNodeEntity
   
 end
 
@@ -277,16 +361,6 @@ function Gameplay:createBalloon( ... )
   entity:hide(OrthographicCameraNode:getCamera())
   
   return entity
-
-  -- local balloonNodeEntity = BalloonNodeEntity.class({
-  -- entityOwner = self,
-  -- states = BalloonNodeEntity.states,
-  -- atlasArray = {self._spriteAtlas_gameplay0, self._spriteAtlas_gameplay1},
-  -- geometryArray = {Geometry2D[2], Geometry2D[3]},
-  -- })
-  -- self:addNodeEntity(balloonNodeEntity)
-  -- 
-  -- return balloonNodeEntity
   
 end
 
