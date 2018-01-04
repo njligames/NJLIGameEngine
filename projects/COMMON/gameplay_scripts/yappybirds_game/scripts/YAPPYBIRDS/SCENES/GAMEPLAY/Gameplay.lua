@@ -84,13 +84,35 @@ local __ctor = function(self, init)
 
   -- print("self.levelLoader:getDogWayPointParams(1).origin", self.levelLoader:getDogWayPointParams(1).origin)
   
-  self:createDog({
-    name="character_dog",
-    origin=self.levelLoader:getDogWayPointParams(1).origin,
-    dimensions=self.levelLoader:getDogWayPointParams(1).dimensions,
-    visible=true,
-    debug=debug
-    })
+  -- for i = 1, self.levelLoader:numDogWayPoints() do
+  --   self:createDog({
+  --     name="character_dog",
+  --     origin=self.levelLoader:getDogWayPointParams(i).origin,
+  --     dimensions=self.levelLoader:getDogWayPointParams(i).dimensions,
+  --     visible=true,
+  --     debug=debug
+  --     })
+  -- end
+
+  local colors = {}
+  table.insert(colors, "Blue")
+  table.insert(colors, "Green")
+  table.insert(colors, "Purple")
+  table.insert(colors, "Red")
+  table.insert(colors, "Yellow")
+  
+  for i = 1, self.levelLoader:numDogWayPoints() do
+    local colorIdx = i % (#colors + 1)
+
+    self:createBalloon({
+      name="projectile_waterBalloon",
+      color=colors[colorIdx],
+      origin=self.levelLoader:getDogWayPointParams(i).origin,
+      dimensions=self.levelLoader:getDogWayPointParams(i).dimensions,
+      visible=true,
+      debug=debug
+      })
+  end
 
 
 end
@@ -199,9 +221,9 @@ end
 function Gameplay:createDog( ... )
   arg=...
   
-  local name = arg.name or "dog"
+  local name = arg.name or "character_dog"
   local visible = arg.visible or true
-  local origin = arg.origin or bullet.btVector3( 0.0, 0.0, 0.0 )
+  local origin = arg.origin or bullet.btVector3( 0.0, 0.0, 10.0 )
   local dimensions = arg.dimensions or bullet.btVector2( 1.0, 1.0 )
   local debug = arg.debug or false
 
@@ -223,36 +245,48 @@ function Gameplay:createDog( ... )
   dogNodeEntity:hide(OrthographicCameraNode:getCamera())
   
   return dogNodeEntity
-
-
-
-
-
-
-
-  -- local dogNodeEntity = DogNodeEntity.class({
-  -- entityOwner = self,
-  -- states = DogNodeEntity.states,
-  -- atlasArray = {self._spriteAtlas_gameplay0, self._spriteAtlas_gameplay1},
-  -- geometryArray = {Geometry2D[2], Geometry2D[3]},
-  -- })
-  -- self:addNodeEntity(dogNodeEntity)
-  
-  -- return dogNodeEntity
   
 end
 
 function Gameplay:createBalloon( ... )
-
-  local balloonNodeEntity = BalloonNodeEntity.class({
-  entityOwner = self,
-  states = BalloonNodeEntity.states,
-  atlasArray = {self._spriteAtlas_gameplay0, self._spriteAtlas_gameplay1},
-  geometryArray = {Geometry2D[2], Geometry2D[3]},
-  })
-  self:addNodeEntity(balloonNodeEntity)
+  arg=...
   
-  return balloonNodeEntity
+  local color = arg.color or "Blue"
+  local name = arg.name or "projectile_waterBalloon"
+  local visible = arg.visible or true
+  local origin = arg.origin or bullet.btVector3( 0.0, 0.0, 10.0 )
+  local dimensions = arg.dimensions or bullet.btVector2( 1.0, 1.0 )
+  local debug = arg.debug or false
+
+  local load_tbl = {
+    name = name .. color,
+    color = color,
+    states = BalloonNodeEntity.states,
+    entityOwner = self,
+    atlasArray = {self._spriteAtlas_gameplay0, self._spriteAtlas_gameplay1},
+    geometryArray = {Geometry2D[2], Geometry2D[3]},
+    origin = origin,
+    dimensions = dimensions,
+  }
+
+  local entity = BalloonNodeEntity.class(load_tbl)
+  
+  self:addNodeEntity(entity)
+  
+  entity:show(PerspectiveCameraNode:getCamera())
+  entity:hide(OrthographicCameraNode:getCamera())
+  
+  return entity
+
+  -- local balloonNodeEntity = BalloonNodeEntity.class({
+  -- entityOwner = self,
+  -- states = BalloonNodeEntity.states,
+  -- atlasArray = {self._spriteAtlas_gameplay0, self._spriteAtlas_gameplay1},
+  -- geometryArray = {Geometry2D[2], Geometry2D[3]},
+  -- })
+  -- self:addNodeEntity(balloonNodeEntity)
+  -- 
+  -- return balloonNodeEntity
   
 end
 

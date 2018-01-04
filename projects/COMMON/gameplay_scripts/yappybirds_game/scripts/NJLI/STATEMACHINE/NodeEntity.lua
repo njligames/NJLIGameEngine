@@ -28,6 +28,7 @@ local __ctor = function(self, init)
       self:getNode():setName("NJLI.STATEMACHINE.NodeEntity")
   end
   self._entityName = self:getNode():getName()
+  print("self._entityName", self._entityName)
 
   local startState = nil
 

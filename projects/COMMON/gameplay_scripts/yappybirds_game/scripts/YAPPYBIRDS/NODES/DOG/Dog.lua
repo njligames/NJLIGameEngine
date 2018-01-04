@@ -33,10 +33,9 @@ local __ctor = function(self, init)
     self._spriteFrameAtlasArray = init.atlasArray
     self._geometryArray = init.geometryArray
 
-    self.arrayIndex = 1
+    self.texturePackerArrayIndex = 1
 
-    self:getNode():setGeometry(self._geometryArray[self.arrayIndex])
-
+    self:getNode():setGeometry(self._geometryArray[self.texturePackerArrayIndex])
 
     local physicsBody = njli.PhysicsBodyRigid.create()
     local physicsShape = njli.PhysicsShapeCylinder.create()
@@ -58,11 +57,12 @@ local __ctor = function(self, init)
       local frameNumber = 0
       local frameIncrement = 1
       local frameSideName = "side"
+      local numberOfFrames = 3
 
-      return action, frameActionName, frameSideName, frameNumber, frameIncrement
+      return action, frameActionName, frameSideName, frameNumber, frameIncrement, numberOfFrames
     end
 
-    self.action, self.frameActionName, self.frameSideName, self.frameNumber, self.frameIncrement = createActionValues()
+    self.action, self.frameActionName, self.frameSideName, self.frameNumber, self.frameIncrement, self.numberOfFrames = createActionValues()
 
 
     self.animationClock = njli.Clock.create()
@@ -83,8 +83,14 @@ end
 
 --#############################################################################
 
+function Dog:getFrameName()
 
+  local folderName = self:getEntityName() .. "_" .. self:getFrameActionName() .. "_" .. self:getFrameSideName()
 
+  local frameName =  folderName .. "/" .. folderName .. "_" .. string.format("%.5d", self:getFrameNumber())
+
+  return frameName
+end
 
 function Dog:getAction()
   return self.action
@@ -128,20 +134,6 @@ function Dog:getAnimationClock()
   return self.animationClock
 end
 
---function Dog:screenPercentWidth(s)
---    if s ~= nil then
---        self._screenPercentWidth = s
---    end
---    return self._screenPercentWidth
---end
-
---function Dog:screenPercentHeight(s)
---    if s ~= nil then
---        self._screenPercentHeight = s
---    end
---    return self._screenPercentHeight
---end
-
 function Dog:scale(s)
     if s ~= nil then
         self._scale = s
@@ -156,11 +148,13 @@ function Dog:setSpriteAtlasFrame(nodeStateName, match)
 	if #parts ~= 1 then
 		name = parts[1] -- .. parts[3]
 	end
+
+  print("frame name is " .. name)
   
   assert(self:getNode())
   assert(self:getNode():getGeometry())
 
-  self:getNode():getGeometry():setSpriteAtlasFrame(self:getNode(), self._spriteFrameAtlasArray[self.arrayIndex], name, match)
+  self:getNode():getGeometry():setSpriteAtlasFrame(self:getNode(), self._spriteFrameAtlasArray[self.texturePackerArrayIndex], name, match)
 end
 
 function Dog:getDimensions()
@@ -290,13 +284,6 @@ function Dog:actionUpdate(action, timeStep)
     self:setSpriteAtlasFrame(self:getFrameName(), false)
   end
 
-end
-
-function Dog:getFrameName()
-  local folderName = self:getNode():getName() .. "_" .. self:getFrameActionName() .. "_" .. self:getFrameSideName()
-  local frameName =  folderName .. "/" .. folderName .. "_" .. string.format("%.5d", self:getFrameNumber())
-
-  return frameName
 end
 
 function Dog:actionComplete(action)
