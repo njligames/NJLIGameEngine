@@ -208,6 +208,7 @@ cd ..
 
 ##########################################3
 
+#rm -rf macOS_Xcode && mkdir macOS_Xcode
 cd macOS_Xcode
 rm -rf build
 rm CMakeCache.txt

@@ -163,7 +163,7 @@ local __ctor = function(self, init)
     local birdIdx = i % (#birdNames + 1)
 
     self:createBird({
-      birdType=birdNames[1],
+      birdType=birdNames[i],
       origin=self.levelLoader:getDogWayPointParams(i).origin,
       dimensions=self.levelLoader:getDogWayPointParams(i).dimensions,
       visible=true,

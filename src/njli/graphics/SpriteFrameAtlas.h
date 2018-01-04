@@ -340,6 +340,8 @@ namespace njli
          *  @param rect <#rect description#>
          */
     void addFrame(Rect rect);
+      
+      bool hasFrame(const char *name)const;
 
     /**
          *  <#Description#>

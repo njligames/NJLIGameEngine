@@ -48,7 +48,7 @@ local __ctor = function(self, init)
       action:setRepeatForever()
 
       local frameActionName = "idle"
-      local frameNumber = 0
+      local frameNumber = math.random(0,8)
       local frameIncrement = 1
       local frameSideName = "front"
       local numberOfFrames = 8
@@ -145,7 +145,21 @@ function Bird:setSpriteAtlasFrame(nodeStateName, match)
   assert(self:getNode())
   assert(self:getNode():getGeometry())
 
+  local idx = -1
+  for i = 1, #self._spriteFrameAtlasArray do
+    if self._spriteFrameAtlasArray[i]:hasFrame(name) then
+      idx = i
+      break
+    end
+  end
+
+  if idx ~= self.texturePackerArrayIndex then
+    self.texturePackerArrayIndex = idx
+    self:getNode():setGeometry(self._geometryArray[self.texturePackerArrayIndex])
+  end
+
   self:getNode():getGeometry():setSpriteAtlasFrame(self:getNode(), self._spriteFrameAtlasArray[self.texturePackerArrayIndex], name, match)
+
 end
 
 function Bird:getDimensions()
