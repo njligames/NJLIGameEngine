@@ -62,19 +62,19 @@ local __ctor = function(self, init)
   self.levelLoader:loadLevel({debug=debug})
 
 
-  for i = 1, self.levelLoader:numTiles() do
+  --for i = 1, self.levelLoader:numTiles() do
 
-    local billboardParams = self.levelLoader:getBillboardParams(i)
+  --  local billboardParams = self.levelLoader:getBillboardParams(i)
 
-    self:createBillboard({
-    name=billboardParams.name,
-    origin=billboardParams.origin,
-    dimensions=billboardParams.dimensions,
-    visible=true,
-    debug=debug
-    })
-    
-  end
+  --  self:createBillboard({
+  --  name=billboardParams.name,
+  --  origin=billboardParams.origin,
+  --  dimensions=billboardParams.dimensions,
+  --  visible=true,
+  --  debug=debug
+  --  })
+  --  
+  --end
 
   njli.World.getInstance():setBackgroundColor(self.levelLoader.backgroundColor)
 
@@ -152,26 +152,29 @@ local __ctor = function(self, init)
 
 
 
-  local birdNames = {}
-  table.insert(birdNames, "chubi")
-  table.insert(birdNames, "garu")
-  table.insert(birdNames, "momi")
-  table.insert(birdNames, "puffy")
-  table.insert(birdNames, "webo")
-  table.insert(birdNames, "zuru")
-  for i = 1, self.levelLoader:numDogWayPoints() do
-    local birdIdx = i % (#birdNames + 1)
+  -- local birdNames = {}
+  -- table.insert(birdNames, "chubi")
+  -- table.insert(birdNames, "garu")
+  -- table.insert(birdNames, "momi")
+  -- table.insert(birdNames, "puffy")
+  -- table.insert(birdNames, "webo")
+  -- table.insert(birdNames, "zuru")
+  -- for i = 1, self.levelLoader:numDogWayPoints() do
+  --   local birdIdx = i % (#birdNames + 1)
 
-    self:createBird({
-      birdType=birdNames[i],
-      origin=self.levelLoader:getDogWayPointParams(i).origin,
-      dimensions=self.levelLoader:getDogWayPointParams(i).dimensions,
-      visible=true,
-      debug=debug
-      })
-  end
+  --   self:createBird({
+  --     birdType=birdNames[i],
+  --     origin=self.levelLoader:getDogWayPointParams(i).origin,
+  --     dimensions=self.levelLoader:getDogWayPointParams(i).dimensions,
+  --     visible=true,
+  --     debug=debug
+  --     })
+  -- end
 
 
+  self:createPointsCounter()
+
+  self:createBirdCounter()
 end
 
 local __dtor = function(self)
@@ -428,11 +431,59 @@ function Gameplay:createTimerCounter( ... )
 end
 
 function Gameplay:createBirdCounter( ... )
-  -- body
+  local arg=...
+
+  local bird_count = (arg and arg.count) or 0
+
+  local str = string.format("%.5d", bird_count) .. " Birds Left"
+
+  local vert_margin = njli.SCREEN():y() / 30.0
+  local horiz_margin = njli.SCREEN():x() / 40.0
+
+  local node, rect = RanchersFont:printf(str, njli.SCREEN():x(), 'left')
+
+  -- bottom left
+  -- node:setOrigin(bullet.btVector3(0.0 + horiz_margin, 0.0 + vert_margin, -1))
+
+  -- top left
+  node:setOrigin(bullet.btVector3(0.0 + horiz_margin, njli.SCREEN():y() - rect.height - vert_margin, -1))
+
+  -- top right
+  -- node:setOrigin(bullet.btVector3(njli.SCREEN():x() - rect.width - horiz_margin, njli.SCREEN():y() - rect.height - vert_margin, -1))
+
+  -- bottom right
+  -- node:setOrigin(bullet.btVector3(njli.SCREEN():x() - rect.width - horiz_margin, 0.0 + vert_margin, -1))
+
+  node:show(OrthographicCameraNode:getCamera())
+
+  return node, rect
 end
 
-function Gameplay:createPointsCounter( ... )
-  -- body
+function Gameplay:createPointsCounter(...)
+  local arg=...
+
+  local points = (arg and arg.points) or 0
+
+  local vert_margin = njli.SCREEN():y() / 30.0
+  local horiz_margin = njli.SCREEN():x() / 40.0
+
+  local node, rect = RanchersFont:printf(string.format("%.5d", points), njli.SCREEN():x(), 'left')
+
+  -- bottom left
+  -- node:setOrigin(bullet.btVector3(0.0 + horiz_margin, 0.0 + vert_margin, -1))
+
+  -- top left
+  -- node:setOrigin(bullet.btVector3(0.0 + horiz_margin, njli.SCREEN():y() - rect.height - vert_margin, -1))
+
+  -- top right
+  node:setOrigin(bullet.btVector3(njli.SCREEN():x() - rect.width - horiz_margin, njli.SCREEN():y() - rect.height - vert_margin, -1))
+
+  -- bottom right
+  -- node:setOrigin(bullet.btVector3(njli.SCREEN():x() - rect.width - horiz_margin, 0.0 + vert_margin, -1))
+
+  node:show(OrthographicCameraNode:getCamera())
+
+  return node, rect
 end
 
 --#############################################################################
