@@ -62,19 +62,19 @@ local __ctor = function(self, init)
   self.levelLoader:loadLevel({debug=debug})
 
 
-  --for i = 1, self.levelLoader:numTiles() do
+  for i = 1, self.levelLoader:numTiles() do
 
-  --  local billboardParams = self.levelLoader:getBillboardParams(i)
+    local billboardParams = self.levelLoader:getBillboardParams(i)
 
-  --  self:createBillboard({
-  --  name=billboardParams.name,
-  --  origin=billboardParams.origin,
-  --  dimensions=billboardParams.dimensions,
-  --  visible=true,
-  --  debug=debug
-  --  })
-  --  
-  --end
+    self:createBillboard({
+    name=billboardParams.name,
+    origin=billboardParams.origin,
+    dimensions=billboardParams.dimensions,
+    visible=true,
+    debug=debug
+    })
+    
+  end
 
   njli.World.getInstance():setBackgroundColor(self.levelLoader.backgroundColor)
 
@@ -172,9 +172,11 @@ local __ctor = function(self, init)
   -- end
 
 
-  self:createPointsCounter()
+  self.pointCounter = self:createPointsCounter()
 
-  self:createBirdCounter()
+  self.birdCounter = self:createBirdCounter()
+
+  self.timeAttackTimer = self:createTimeAttackTime()
 end
 
 local __dtor = function(self)
@@ -426,14 +428,86 @@ function Gameplay:createBillboard( ... )
   
 end
 
-function Gameplay:createTimerCounter( ... )
-  -- body
+function Gameplay:createTimeAttackTime( ... )
+  local arg=...
+
+  local milliseconds = (arg and arg.ms) or 1234567890
+
+  local ms = math.floor(milliseconds % 1000)
+  local seconds = math.floor((milliseconds / 1000) % 60)
+  local minutes = math.floor((milliseconds / 1000) / 60)
+
+  local msString = string.format("%.4d", tostring(ms))
+  local secondsString = string.format("%.2d", tostring(seconds))
+  local minutesString = string.format("%.2d", tostring(minutes))
+
+  local str = minutesString .. ":" .. secondsString .. "." .. msString
+
+  local vert_margin = njli.SCREEN():y() / 30.0
+  local horiz_margin = njli.SCREEN():x() / 40.0
+
+  local node, rect = RanchersFont:printf(str, njli.SCREEN():x(), 'left')
+
+  -- bottom left
+  node:setOrigin(bullet.btVector3(0.0 + horiz_margin, 0.0 + vert_margin, -1))
+
+  -- top left
+  -- node:setOrigin(bullet.btVector3(0.0 + horiz_margin, njli.SCREEN():y() - rect.height - vert_margin, -1))
+
+  -- top right
+  -- node:setOrigin(bullet.btVector3(njli.SCREEN():x() - rect.width - horiz_margin, njli.SCREEN():y() - rect.height - vert_margin, -1))
+
+  -- bottom right
+  -- node:setOrigin(bullet.btVector3(njli.SCREEN():x() - rect.width - horiz_margin, 0.0 + vert_margin, -1))
+
+  node:show(OrthographicCameraNode:getCamera())
+
+  return node
+end
+
+function Gameplay:createSurvivalTime( ... )
+  local arg=...
+
+  local milliseconds = (arg and arg.ms) or 1234567890
+
+  local ms = math.floor(milliseconds % 1000)
+  local seconds = math.floor((milliseconds / 1000) % 60)
+  local minutes = math.floor((milliseconds / 1000) / 60)
+  local hours = math.floor((milliseconds / 1000) / (60 * 60))
+
+  local msString = string.format("%.4d", tostring(ms))
+  local secondsString = string.format("%.2d", tostring(seconds))
+  local minutesString = string.format("%.2d", tostring(minutes))
+  local hoursString = string.format("%.2d", tostring(hours))
+
+  local str = hoursString .. ":" .. minutesString .. ":" .. secondsString .. "." .. msString
+
+  local vert_margin = njli.SCREEN():y() / 30.0
+  local horiz_margin = njli.SCREEN():x() / 40.0
+
+  local node, rect = RanchersFont:printf(str, njli.SCREEN():x(), 'left')
+
+  -- bottom left
+  node:setOrigin(bullet.btVector3(0.0 + horiz_margin, 0.0 + vert_margin, -1))
+
+  -- top left
+  -- node:setOrigin(bullet.btVector3(0.0 + horiz_margin, njli.SCREEN():y() - rect.height - vert_margin, -1))
+
+  -- top right
+  -- node:setOrigin(bullet.btVector3(njli.SCREEN():x() - rect.width - horiz_margin, njli.SCREEN():y() - rect.height - vert_margin, -1))
+
+  -- bottom right
+  -- node:setOrigin(bullet.btVector3(njli.SCREEN():x() - rect.width - horiz_margin, 0.0 + vert_margin, -1))
+
+  node:show(OrthographicCameraNode:getCamera())
+
+  return node
 end
 
 function Gameplay:createBirdCounter( ... )
   local arg=...
 
-  local bird_count = (arg and arg.count) or 0
+  local bird_count = (arg and arg.count) or 12345
 
   local str = string.format("%.5d", bird_count) .. " Birds Left"
 
@@ -456,13 +530,13 @@ function Gameplay:createBirdCounter( ... )
 
   node:show(OrthographicCameraNode:getCamera())
 
-  return node, rect
+  return node
 end
 
 function Gameplay:createPointsCounter(...)
   local arg=...
 
-  local points = (arg and arg.points) or 0
+  local points = (arg and arg.points) or 1234567890
 
   local vert_margin = njli.SCREEN():y() / 30.0
   local horiz_margin = njli.SCREEN():x() / 40.0
@@ -483,7 +557,7 @@ function Gameplay:createPointsCounter(...)
 
   node:show(OrthographicCameraNode:getCamera())
 
-  return node, rect
+  return node
 end
 
 --#############################################################################
