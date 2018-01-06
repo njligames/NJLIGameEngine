@@ -1,6 +1,7 @@
 #!/bin/bash
 
-
+#PROJ=YappyBirds
+PROJ=ELIA
 
 WORK_DIR=`mktemp -d`
 
@@ -109,7 +110,8 @@ build_apple_xcode()
     -DCMAKE_BUILD_TYPE=${NJLI_BUILD_TYPE} \
     -DNJLI_BUILD_DIR=${MY_BUILD_DIR} \
     -DNJLI_PRODUCT_NAME=${NJLI_PRODUCT_NAME} \
-    -DNJLI_PACKAGE_DIR=${NJLI_INSTALL_PREFIX}
+    -DNJLI_PACKAGE_DIR=${NJLI_INSTALL_PREFIX} \
+    -DNJLI_PROJECT=${PROJ}
   
   mkdir -p ../../SETTINGS
   
@@ -188,12 +190,14 @@ build_apple_xcode()
   fi
 }
 
+
 cd projects
 
 ##########################################3
 
-rm -rf ios_Xcode && mkdir ios_Xcode
-cd ios_Xcode
+DIR=${PROJ}_ios_Xcode
+rm -rf ${DIR} && mkdir ${DIR}
+cd ${DIR}
 rm -rf build
 rm CMakeCache.txt
 build_apple_xcode ios ${CMAKE_IOS_SYSTEM_VERSION} iphoneos
@@ -201,8 +205,9 @@ cd ..
 
 ##########################################3
 
-rm -rf tvos_Xcode && mkdir tvos_Xcode
-cd tvos_Xcode
+DIR=${PROJ}_tvos_Xcode
+rm -rf ${DIR} && mkdir ${DIR}
+cd ${DIR}
 rm -rf build
 rm CMakeCache.txt
 build_apple_xcode appletv ${CMAKE_TVOS_SYSTEM_VERSION} appletvos
@@ -210,8 +215,9 @@ cd ..
 
 ##########################################3
 
-rm -rf macOS_Xcode && mkdir macOS_Xcode
-cd macOS_Xcode
+DIR=${PROJ}_macOS_Xcode
+rm -rf ${DIR} && mkdir ${DIR}
+cd ${DIR}
 rm -rf build
 rm CMakeCache.txt
 build_apple_xcode macOS ${CMAKE_MACOS_SYSTEM_VERSION} macosx

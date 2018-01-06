@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:ELIA_tvos_Xcode/appletv.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:ELIA_macOS_Xcode/macOS.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:ELIA_ios_Xcode/ios.xcodeproj">
+   </FileRef>
+</Workspace>

@@ -1,0 +1,1299 @@
+# DO NOT EDIT
+# This makefile makes sure all linkable targets are
+# up-to-date with anything they link to
+default:
+	echo "Do not invoke directly"
+
+# Rules to remove targets that are older than anything to which they
+# link.  This forces Xcode to relink the targets from scratch.  It
+# does not seem to check these dependencies itself.
+PostBuild.NJLI.Debug:
+/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Debug/NJLI.framework/NJLI:\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/SDL2/lib/macOS/10.12/Release/libSDL2.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/ogg/macOS/10.12/Release/libogg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbis.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisenc.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisfile.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Collision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Common.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Dynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Geometry.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3OpenCL_clew.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletCollision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletFileLoader.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamicsUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletSoftBody.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletXmlWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libConvexDecomposition.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libGIMPACTUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libHACD.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libLinearMath.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/imgui/macOS/10.12/Release/libimgui.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/jsoncpp/macOS/10.12/Release/libjsoncpp.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/nanovg/macOS/10.12/Release/libnanovg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/stb/macOS/10.12/Release/libstb.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/usynergy/macOS/10.12/Release/libuSynergy.a
+	/bin/rm -f /Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Debug/NJLI.framework/NJLI
+
+
+PostBuild.NJLIGameEngine.Debug:
+PostBuild.libnjli_static.Debug: /Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Debug/NJLIGameEngine.app/Contents/MacOS/NJLIGameEngine
+PostBuild.libnjli_static.Debug: /Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Debug/NJLIGameEngine.app/Contents/MacOS/NJLIGameEngine
+/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Debug/NJLIGameEngine.app/Contents/MacOS/NJLIGameEngine:\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/ogg/macOS/10.12/Release/libogg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbis.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisenc.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisfile.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Collision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Common.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Dynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Geometry.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3OpenCL_clew.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletCollision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletFileLoader.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamicsUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletSoftBody.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletXmlWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libConvexDecomposition.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libGIMPACTUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libHACD.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libLinearMath.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/imgui/macOS/10.12/Release/libimgui.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/jsoncpp/macOS/10.12/Release/libjsoncpp.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/nanovg/macOS/10.12/Release/libnanovg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/stb/macOS/10.12/Release/libstb.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/usynergy/macOS/10.12/Release/libuSynergy.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Debug/libnjli.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/ogg/macOS/10.12/Release/libogg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbis.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisenc.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisfile.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Collision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Common.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Dynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Geometry.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3OpenCL_clew.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletCollision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletFileLoader.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamicsUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletSoftBody.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletXmlWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libConvexDecomposition.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libGIMPACTUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libHACD.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libLinearMath.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/imgui/macOS/10.12/Release/libimgui.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/jsoncpp/macOS/10.12/Release/libjsoncpp.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/nanovg/macOS/10.12/Release/libnanovg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/stb/macOS/10.12/Release/libstb.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/usynergy/macOS/10.12/Release/libuSynergy.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Debug/libnjli.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/SDL2/lib/macOS/10.12/Release/libSDL2.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/ogg/macOS/10.12/Release/libogg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbis.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisenc.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisfile.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Collision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Common.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Dynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Geometry.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3OpenCL_clew.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletCollision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletFileLoader.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamicsUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletSoftBody.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletXmlWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libConvexDecomposition.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libGIMPACTUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libHACD.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libLinearMath.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/imgui/macOS/10.12/Release/libimgui.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/jsoncpp/macOS/10.12/Release/libjsoncpp.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/nanovg/macOS/10.12/Release/libnanovg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/stb/macOS/10.12/Release/libstb.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/usynergy/macOS/10.12/Release/libuSynergy.a
+	/bin/rm -f /Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Debug/NJLIGameEngine.app/Contents/MacOS/NJLIGameEngine
+
+
+PostBuild.libnjli_lua_module.Debug:
+/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Debug/njli.so:\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/SDL2/lib/macOS/10.12/Release/libSDL2.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/ogg/macOS/10.12/Release/libogg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbis.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisenc.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisfile.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Collision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Common.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Dynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Geometry.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3OpenCL_clew.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletCollision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletFileLoader.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamicsUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletSoftBody.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletXmlWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libConvexDecomposition.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libGIMPACTUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libHACD.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libLinearMath.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/imgui/macOS/10.12/Release/libimgui.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/jsoncpp/macOS/10.12/Release/libjsoncpp.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/nanovg/macOS/10.12/Release/libnanovg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/stb/macOS/10.12/Release/libstb.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/usynergy/macOS/10.12/Release/libuSynergy.a
+	/bin/rm -f /Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Debug/njli.so
+
+
+PostBuild.libnjli_shared.Debug:
+/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Debug/libnjli.dylib:\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/SDL2/lib/macOS/10.12/Release/libSDL2.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/ogg/macOS/10.12/Release/libogg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbis.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisenc.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisfile.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Collision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Common.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Dynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Geometry.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3OpenCL_clew.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletCollision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletFileLoader.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamicsUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletSoftBody.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletXmlWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libConvexDecomposition.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libGIMPACTUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libHACD.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libLinearMath.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/imgui/macOS/10.12/Release/libimgui.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/jsoncpp/macOS/10.12/Release/libjsoncpp.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/nanovg/macOS/10.12/Release/libnanovg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/stb/macOS/10.12/Release/libstb.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/usynergy/macOS/10.12/Release/libuSynergy.a
+	/bin/rm -f /Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Debug/libnjli.dylib
+
+
+PostBuild.libnjli_static.Debug:
+/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Debug/libnjli.a:
+	/bin/rm -f /Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Debug/libnjli.a
+
+
+PostBuild.lua.Debug:
+PostBuild.libnjli_static.Debug: /Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Debug/lua
+/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Debug/lua:\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/ogg/macOS/10.12/Release/libogg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbis.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisenc.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisfile.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Collision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Common.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Dynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Geometry.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3OpenCL_clew.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletCollision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletFileLoader.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamicsUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletSoftBody.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletXmlWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libConvexDecomposition.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libGIMPACTUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libHACD.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libLinearMath.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/imgui/macOS/10.12/Release/libimgui.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/jsoncpp/macOS/10.12/Release/libjsoncpp.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/nanovg/macOS/10.12/Release/libnanovg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/stb/macOS/10.12/Release/libstb.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/usynergy/macOS/10.12/Release/libuSynergy.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Debug/libnjli.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/SDL2/lib/macOS/10.12/Release/libSDL2.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/ogg/macOS/10.12/Release/libogg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbis.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisenc.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisfile.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Collision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Common.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Dynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Geometry.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3OpenCL_clew.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletCollision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletFileLoader.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamicsUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletSoftBody.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletXmlWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libConvexDecomposition.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libGIMPACTUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libHACD.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libLinearMath.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/imgui/macOS/10.12/Release/libimgui.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/jsoncpp/macOS/10.12/Release/libjsoncpp.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/nanovg/macOS/10.12/Release/libnanovg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/stb/macOS/10.12/Release/libstb.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/usynergy/macOS/10.12/Release/libuSynergy.a
+	/bin/rm -f /Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Debug/lua
+
+
+PostBuild.luac.Debug:
+PostBuild.libnjli_static.Debug: /Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Debug/luac
+/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Debug/luac:\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/ogg/macOS/10.12/Release/libogg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbis.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisenc.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisfile.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Collision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Common.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Dynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Geometry.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3OpenCL_clew.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletCollision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletFileLoader.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamicsUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletSoftBody.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletXmlWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libConvexDecomposition.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libGIMPACTUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libHACD.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libLinearMath.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/imgui/macOS/10.12/Release/libimgui.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/jsoncpp/macOS/10.12/Release/libjsoncpp.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/nanovg/macOS/10.12/Release/libnanovg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/stb/macOS/10.12/Release/libstb.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/usynergy/macOS/10.12/Release/libuSynergy.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Debug/libnjli.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/SDL2/lib/macOS/10.12/Release/libSDL2.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/ogg/macOS/10.12/Release/libogg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbis.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisenc.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisfile.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Collision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Common.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Dynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Geometry.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3OpenCL_clew.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletCollision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletFileLoader.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamicsUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletSoftBody.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletXmlWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libConvexDecomposition.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libGIMPACTUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libHACD.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libLinearMath.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/imgui/macOS/10.12/Release/libimgui.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/jsoncpp/macOS/10.12/Release/libjsoncpp.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/nanovg/macOS/10.12/Release/libnanovg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/stb/macOS/10.12/Release/libstb.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/usynergy/macOS/10.12/Release/libuSynergy.a
+	/bin/rm -f /Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Debug/luac
+
+
+PostBuild.NJLIGameEngineTest_macOS.Debug:
+/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Debug/NJLIGameEngine.app/Contents/PlugIns/NJLIGameEngineTest_macOS.xctest/Contents/MacOS/NJLIGameEngineTest_macOS:
+	/bin/rm -f /Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Debug/NJLIGameEngine.app/Contents/PlugIns/NJLIGameEngineTest_macOS.xctest/Contents/MacOS/NJLIGameEngineTest_macOS
+
+
+PostBuild.NJLI.Release:
+/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Release/NJLI.framework/NJLI:\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/SDL2/lib/macOS/10.12/Release/libSDL2.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/ogg/macOS/10.12/Release/libogg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbis.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisenc.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisfile.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Collision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Common.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Dynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Geometry.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3OpenCL_clew.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletCollision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletFileLoader.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamicsUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletSoftBody.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletXmlWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libConvexDecomposition.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libGIMPACTUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libHACD.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libLinearMath.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/imgui/macOS/10.12/Release/libimgui.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/jsoncpp/macOS/10.12/Release/libjsoncpp.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/nanovg/macOS/10.12/Release/libnanovg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/stb/macOS/10.12/Release/libstb.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/usynergy/macOS/10.12/Release/libuSynergy.a
+	/bin/rm -f /Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Release/NJLI.framework/NJLI
+
+
+PostBuild.NJLIGameEngine.Release:
+PostBuild.libnjli_static.Release: /Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Release/NJLIGameEngine.app/Contents/MacOS/NJLIGameEngine
+PostBuild.libnjli_static.Release: /Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Release/NJLIGameEngine.app/Contents/MacOS/NJLIGameEngine
+/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Release/NJLIGameEngine.app/Contents/MacOS/NJLIGameEngine:\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/ogg/macOS/10.12/Release/libogg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbis.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisenc.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisfile.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Collision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Common.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Dynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Geometry.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3OpenCL_clew.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletCollision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletFileLoader.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamicsUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletSoftBody.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletXmlWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libConvexDecomposition.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libGIMPACTUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libHACD.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libLinearMath.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/imgui/macOS/10.12/Release/libimgui.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/jsoncpp/macOS/10.12/Release/libjsoncpp.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/nanovg/macOS/10.12/Release/libnanovg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/stb/macOS/10.12/Release/libstb.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/usynergy/macOS/10.12/Release/libuSynergy.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Release/libnjli.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/ogg/macOS/10.12/Release/libogg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbis.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisenc.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisfile.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Collision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Common.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Dynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Geometry.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3OpenCL_clew.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletCollision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletFileLoader.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamicsUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletSoftBody.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletXmlWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libConvexDecomposition.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libGIMPACTUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libHACD.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libLinearMath.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/imgui/macOS/10.12/Release/libimgui.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/jsoncpp/macOS/10.12/Release/libjsoncpp.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/nanovg/macOS/10.12/Release/libnanovg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/stb/macOS/10.12/Release/libstb.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/usynergy/macOS/10.12/Release/libuSynergy.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Release/libnjli.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/SDL2/lib/macOS/10.12/Release/libSDL2.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/ogg/macOS/10.12/Release/libogg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbis.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisenc.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisfile.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Collision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Common.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Dynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Geometry.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3OpenCL_clew.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletCollision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletFileLoader.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamicsUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletSoftBody.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletXmlWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libConvexDecomposition.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libGIMPACTUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libHACD.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libLinearMath.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/imgui/macOS/10.12/Release/libimgui.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/jsoncpp/macOS/10.12/Release/libjsoncpp.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/nanovg/macOS/10.12/Release/libnanovg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/stb/macOS/10.12/Release/libstb.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/usynergy/macOS/10.12/Release/libuSynergy.a
+	/bin/rm -f /Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Release/NJLIGameEngine.app/Contents/MacOS/NJLIGameEngine
+
+
+PostBuild.libnjli_lua_module.Release:
+/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Release/njli.so:\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/SDL2/lib/macOS/10.12/Release/libSDL2.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/ogg/macOS/10.12/Release/libogg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbis.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisenc.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisfile.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Collision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Common.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Dynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Geometry.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3OpenCL_clew.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletCollision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletFileLoader.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamicsUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletSoftBody.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletXmlWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libConvexDecomposition.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libGIMPACTUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libHACD.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libLinearMath.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/imgui/macOS/10.12/Release/libimgui.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/jsoncpp/macOS/10.12/Release/libjsoncpp.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/nanovg/macOS/10.12/Release/libnanovg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/stb/macOS/10.12/Release/libstb.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/usynergy/macOS/10.12/Release/libuSynergy.a
+	/bin/rm -f /Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Release/njli.so
+
+
+PostBuild.libnjli_shared.Release:
+/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Release/libnjli.dylib:\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/SDL2/lib/macOS/10.12/Release/libSDL2.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/ogg/macOS/10.12/Release/libogg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbis.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisenc.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisfile.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Collision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Common.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Dynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Geometry.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3OpenCL_clew.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletCollision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletFileLoader.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamicsUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletSoftBody.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletXmlWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libConvexDecomposition.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libGIMPACTUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libHACD.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libLinearMath.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/imgui/macOS/10.12/Release/libimgui.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/jsoncpp/macOS/10.12/Release/libjsoncpp.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/nanovg/macOS/10.12/Release/libnanovg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/stb/macOS/10.12/Release/libstb.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/usynergy/macOS/10.12/Release/libuSynergy.a
+	/bin/rm -f /Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Release/libnjli.dylib
+
+
+PostBuild.libnjli_static.Release:
+/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Release/libnjli.a:
+	/bin/rm -f /Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Release/libnjli.a
+
+
+PostBuild.lua.Release:
+PostBuild.libnjli_static.Release: /Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Release/lua
+/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Release/lua:\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/ogg/macOS/10.12/Release/libogg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbis.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisenc.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisfile.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Collision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Common.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Dynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Geometry.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3OpenCL_clew.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletCollision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletFileLoader.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamicsUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletSoftBody.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletXmlWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libConvexDecomposition.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libGIMPACTUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libHACD.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libLinearMath.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/imgui/macOS/10.12/Release/libimgui.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/jsoncpp/macOS/10.12/Release/libjsoncpp.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/nanovg/macOS/10.12/Release/libnanovg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/stb/macOS/10.12/Release/libstb.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/usynergy/macOS/10.12/Release/libuSynergy.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Release/libnjli.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/SDL2/lib/macOS/10.12/Release/libSDL2.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/ogg/macOS/10.12/Release/libogg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbis.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisenc.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisfile.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Collision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Common.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Dynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Geometry.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3OpenCL_clew.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletCollision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletFileLoader.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamicsUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletSoftBody.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletXmlWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libConvexDecomposition.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libGIMPACTUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libHACD.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libLinearMath.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/imgui/macOS/10.12/Release/libimgui.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/jsoncpp/macOS/10.12/Release/libjsoncpp.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/nanovg/macOS/10.12/Release/libnanovg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/stb/macOS/10.12/Release/libstb.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/usynergy/macOS/10.12/Release/libuSynergy.a
+	/bin/rm -f /Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Release/lua
+
+
+PostBuild.luac.Release:
+PostBuild.libnjli_static.Release: /Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Release/luac
+/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Release/luac:\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/ogg/macOS/10.12/Release/libogg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbis.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisenc.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisfile.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Collision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Common.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Dynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Geometry.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3OpenCL_clew.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletCollision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletFileLoader.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamicsUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletSoftBody.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletXmlWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libConvexDecomposition.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libGIMPACTUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libHACD.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libLinearMath.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/imgui/macOS/10.12/Release/libimgui.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/jsoncpp/macOS/10.12/Release/libjsoncpp.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/nanovg/macOS/10.12/Release/libnanovg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/stb/macOS/10.12/Release/libstb.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/usynergy/macOS/10.12/Release/libuSynergy.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Release/libnjli.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/SDL2/lib/macOS/10.12/Release/libSDL2.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/ogg/macOS/10.12/Release/libogg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbis.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisenc.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisfile.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Collision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Common.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Dynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Geometry.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3OpenCL_clew.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletCollision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletFileLoader.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamicsUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletSoftBody.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletXmlWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libConvexDecomposition.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libGIMPACTUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libHACD.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libLinearMath.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/imgui/macOS/10.12/Release/libimgui.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/jsoncpp/macOS/10.12/Release/libjsoncpp.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/nanovg/macOS/10.12/Release/libnanovg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/stb/macOS/10.12/Release/libstb.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/usynergy/macOS/10.12/Release/libuSynergy.a
+	/bin/rm -f /Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Release/luac
+
+
+PostBuild.NJLIGameEngineTest_macOS.Release:
+/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Release/NJLIGameEngine.app/Contents/PlugIns/NJLIGameEngineTest_macOS.xctest/Contents/MacOS/NJLIGameEngineTest_macOS:
+	/bin/rm -f /Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Release/NJLIGameEngine.app/Contents/PlugIns/NJLIGameEngineTest_macOS.xctest/Contents/MacOS/NJLIGameEngineTest_macOS
+
+
+PostBuild.NJLI.MinSizeRel:
+/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/MinSizeRel/NJLI.framework/NJLI:\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/SDL2/lib/macOS/10.12/Release/libSDL2.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/ogg/macOS/10.12/Release/libogg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbis.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisenc.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisfile.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Collision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Common.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Dynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Geometry.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3OpenCL_clew.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletCollision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletFileLoader.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamicsUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletSoftBody.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletXmlWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libConvexDecomposition.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libGIMPACTUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libHACD.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libLinearMath.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/imgui/macOS/10.12/Release/libimgui.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/jsoncpp/macOS/10.12/Release/libjsoncpp.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/nanovg/macOS/10.12/Release/libnanovg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/stb/macOS/10.12/Release/libstb.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/usynergy/macOS/10.12/Release/libuSynergy.a
+	/bin/rm -f /Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/MinSizeRel/NJLI.framework/NJLI
+
+
+PostBuild.NJLIGameEngine.MinSizeRel:
+PostBuild.libnjli_static.MinSizeRel: /Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/MinSizeRel/NJLIGameEngine.app/Contents/MacOS/NJLIGameEngine
+PostBuild.libnjli_static.MinSizeRel: /Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/MinSizeRel/NJLIGameEngine.app/Contents/MacOS/NJLIGameEngine
+/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/MinSizeRel/NJLIGameEngine.app/Contents/MacOS/NJLIGameEngine:\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/ogg/macOS/10.12/Release/libogg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbis.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisenc.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisfile.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Collision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Common.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Dynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Geometry.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3OpenCL_clew.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletCollision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletFileLoader.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamicsUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletSoftBody.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletXmlWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libConvexDecomposition.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libGIMPACTUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libHACD.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libLinearMath.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/imgui/macOS/10.12/Release/libimgui.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/jsoncpp/macOS/10.12/Release/libjsoncpp.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/nanovg/macOS/10.12/Release/libnanovg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/stb/macOS/10.12/Release/libstb.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/usynergy/macOS/10.12/Release/libuSynergy.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/MinSizeRel/libnjli.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/ogg/macOS/10.12/Release/libogg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbis.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisenc.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisfile.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Collision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Common.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Dynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Geometry.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3OpenCL_clew.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletCollision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletFileLoader.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamicsUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletSoftBody.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletXmlWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libConvexDecomposition.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libGIMPACTUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libHACD.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libLinearMath.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/imgui/macOS/10.12/Release/libimgui.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/jsoncpp/macOS/10.12/Release/libjsoncpp.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/nanovg/macOS/10.12/Release/libnanovg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/stb/macOS/10.12/Release/libstb.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/usynergy/macOS/10.12/Release/libuSynergy.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/MinSizeRel/libnjli.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/SDL2/lib/macOS/10.12/Release/libSDL2.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/ogg/macOS/10.12/Release/libogg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbis.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisenc.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisfile.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Collision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Common.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Dynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Geometry.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3OpenCL_clew.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletCollision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletFileLoader.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamicsUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletSoftBody.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletXmlWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libConvexDecomposition.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libGIMPACTUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libHACD.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libLinearMath.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/imgui/macOS/10.12/Release/libimgui.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/jsoncpp/macOS/10.12/Release/libjsoncpp.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/nanovg/macOS/10.12/Release/libnanovg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/stb/macOS/10.12/Release/libstb.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/usynergy/macOS/10.12/Release/libuSynergy.a
+	/bin/rm -f /Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/MinSizeRel/NJLIGameEngine.app/Contents/MacOS/NJLIGameEngine
+
+
+PostBuild.libnjli_lua_module.MinSizeRel:
+/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/MinSizeRel/njli.so:\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/SDL2/lib/macOS/10.12/Release/libSDL2.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/ogg/macOS/10.12/Release/libogg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbis.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisenc.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisfile.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Collision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Common.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Dynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Geometry.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3OpenCL_clew.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletCollision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletFileLoader.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamicsUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletSoftBody.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletXmlWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libConvexDecomposition.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libGIMPACTUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libHACD.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libLinearMath.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/imgui/macOS/10.12/Release/libimgui.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/jsoncpp/macOS/10.12/Release/libjsoncpp.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/nanovg/macOS/10.12/Release/libnanovg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/stb/macOS/10.12/Release/libstb.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/usynergy/macOS/10.12/Release/libuSynergy.a
+	/bin/rm -f /Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/MinSizeRel/njli.so
+
+
+PostBuild.libnjli_shared.MinSizeRel:
+/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/MinSizeRel/libnjli.dylib:\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/SDL2/lib/macOS/10.12/Release/libSDL2.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/ogg/macOS/10.12/Release/libogg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbis.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisenc.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisfile.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Collision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Common.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Dynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Geometry.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3OpenCL_clew.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletCollision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletFileLoader.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamicsUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletSoftBody.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletXmlWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libConvexDecomposition.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libGIMPACTUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libHACD.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libLinearMath.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/imgui/macOS/10.12/Release/libimgui.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/jsoncpp/macOS/10.12/Release/libjsoncpp.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/nanovg/macOS/10.12/Release/libnanovg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/stb/macOS/10.12/Release/libstb.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/usynergy/macOS/10.12/Release/libuSynergy.a
+	/bin/rm -f /Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/MinSizeRel/libnjli.dylib
+
+
+PostBuild.libnjli_static.MinSizeRel:
+/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/MinSizeRel/libnjli.a:
+	/bin/rm -f /Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/MinSizeRel/libnjli.a
+
+
+PostBuild.lua.MinSizeRel:
+PostBuild.libnjli_static.MinSizeRel: /Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/MinSizeRel/lua
+/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/MinSizeRel/lua:\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/ogg/macOS/10.12/Release/libogg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbis.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisenc.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisfile.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Collision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Common.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Dynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Geometry.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3OpenCL_clew.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletCollision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletFileLoader.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamicsUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletSoftBody.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletXmlWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libConvexDecomposition.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libGIMPACTUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libHACD.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libLinearMath.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/imgui/macOS/10.12/Release/libimgui.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/jsoncpp/macOS/10.12/Release/libjsoncpp.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/nanovg/macOS/10.12/Release/libnanovg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/stb/macOS/10.12/Release/libstb.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/usynergy/macOS/10.12/Release/libuSynergy.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/MinSizeRel/libnjli.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/SDL2/lib/macOS/10.12/Release/libSDL2.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/ogg/macOS/10.12/Release/libogg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbis.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisenc.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisfile.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Collision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Common.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Dynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Geometry.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3OpenCL_clew.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletCollision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletFileLoader.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamicsUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletSoftBody.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletXmlWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libConvexDecomposition.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libGIMPACTUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libHACD.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libLinearMath.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/imgui/macOS/10.12/Release/libimgui.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/jsoncpp/macOS/10.12/Release/libjsoncpp.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/nanovg/macOS/10.12/Release/libnanovg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/stb/macOS/10.12/Release/libstb.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/usynergy/macOS/10.12/Release/libuSynergy.a
+	/bin/rm -f /Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/MinSizeRel/lua
+
+
+PostBuild.luac.MinSizeRel:
+PostBuild.libnjli_static.MinSizeRel: /Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/MinSizeRel/luac
+/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/MinSizeRel/luac:\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/ogg/macOS/10.12/Release/libogg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbis.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisenc.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisfile.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Collision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Common.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Dynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Geometry.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3OpenCL_clew.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletCollision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletFileLoader.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamicsUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletSoftBody.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletXmlWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libConvexDecomposition.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libGIMPACTUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libHACD.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libLinearMath.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/imgui/macOS/10.12/Release/libimgui.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/jsoncpp/macOS/10.12/Release/libjsoncpp.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/nanovg/macOS/10.12/Release/libnanovg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/stb/macOS/10.12/Release/libstb.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/usynergy/macOS/10.12/Release/libuSynergy.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/MinSizeRel/libnjli.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/SDL2/lib/macOS/10.12/Release/libSDL2.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/ogg/macOS/10.12/Release/libogg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbis.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisenc.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisfile.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Collision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Common.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Dynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Geometry.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3OpenCL_clew.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletCollision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletFileLoader.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamicsUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletSoftBody.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletXmlWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libConvexDecomposition.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libGIMPACTUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libHACD.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libLinearMath.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/imgui/macOS/10.12/Release/libimgui.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/jsoncpp/macOS/10.12/Release/libjsoncpp.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/nanovg/macOS/10.12/Release/libnanovg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/stb/macOS/10.12/Release/libstb.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/usynergy/macOS/10.12/Release/libuSynergy.a
+	/bin/rm -f /Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/MinSizeRel/luac
+
+
+PostBuild.NJLIGameEngineTest_macOS.MinSizeRel:
+/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/MinSizeRel/NJLIGameEngine.app/Contents/PlugIns/NJLIGameEngineTest_macOS.xctest/Contents/MacOS/NJLIGameEngineTest_macOS:
+	/bin/rm -f /Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/MinSizeRel/NJLIGameEngine.app/Contents/PlugIns/NJLIGameEngineTest_macOS.xctest/Contents/MacOS/NJLIGameEngineTest_macOS
+
+
+PostBuild.NJLI.RelWithDebInfo:
+/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/RelWithDebInfo/NJLI.framework/NJLI:\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/SDL2/lib/macOS/10.12/Release/libSDL2.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/ogg/macOS/10.12/Release/libogg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbis.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisenc.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisfile.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Collision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Common.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Dynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Geometry.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3OpenCL_clew.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletCollision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletFileLoader.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamicsUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletSoftBody.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletXmlWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libConvexDecomposition.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libGIMPACTUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libHACD.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libLinearMath.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/imgui/macOS/10.12/Release/libimgui.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/jsoncpp/macOS/10.12/Release/libjsoncpp.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/nanovg/macOS/10.12/Release/libnanovg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/stb/macOS/10.12/Release/libstb.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/usynergy/macOS/10.12/Release/libuSynergy.a
+	/bin/rm -f /Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/RelWithDebInfo/NJLI.framework/NJLI
+
+
+PostBuild.NJLIGameEngine.RelWithDebInfo:
+PostBuild.libnjli_static.RelWithDebInfo: /Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/RelWithDebInfo/NJLIGameEngine.app/Contents/MacOS/NJLIGameEngine
+PostBuild.libnjli_static.RelWithDebInfo: /Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/RelWithDebInfo/NJLIGameEngine.app/Contents/MacOS/NJLIGameEngine
+/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/RelWithDebInfo/NJLIGameEngine.app/Contents/MacOS/NJLIGameEngine:\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/ogg/macOS/10.12/Release/libogg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbis.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisenc.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisfile.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Collision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Common.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Dynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Geometry.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3OpenCL_clew.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletCollision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletFileLoader.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamicsUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletSoftBody.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletXmlWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libConvexDecomposition.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libGIMPACTUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libHACD.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libLinearMath.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/imgui/macOS/10.12/Release/libimgui.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/jsoncpp/macOS/10.12/Release/libjsoncpp.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/nanovg/macOS/10.12/Release/libnanovg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/stb/macOS/10.12/Release/libstb.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/usynergy/macOS/10.12/Release/libuSynergy.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/RelWithDebInfo/libnjli.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/ogg/macOS/10.12/Release/libogg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbis.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisenc.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisfile.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Collision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Common.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Dynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Geometry.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3OpenCL_clew.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletCollision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletFileLoader.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamicsUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletSoftBody.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletXmlWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libConvexDecomposition.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libGIMPACTUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libHACD.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libLinearMath.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/imgui/macOS/10.12/Release/libimgui.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/jsoncpp/macOS/10.12/Release/libjsoncpp.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/nanovg/macOS/10.12/Release/libnanovg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/stb/macOS/10.12/Release/libstb.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/usynergy/macOS/10.12/Release/libuSynergy.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/RelWithDebInfo/libnjli.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/SDL2/lib/macOS/10.12/Release/libSDL2.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/ogg/macOS/10.12/Release/libogg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbis.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisenc.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisfile.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Collision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Common.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Dynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Geometry.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3OpenCL_clew.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletCollision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletFileLoader.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamicsUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletSoftBody.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletXmlWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libConvexDecomposition.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libGIMPACTUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libHACD.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libLinearMath.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/imgui/macOS/10.12/Release/libimgui.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/jsoncpp/macOS/10.12/Release/libjsoncpp.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/nanovg/macOS/10.12/Release/libnanovg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/stb/macOS/10.12/Release/libstb.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/usynergy/macOS/10.12/Release/libuSynergy.a
+	/bin/rm -f /Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/RelWithDebInfo/NJLIGameEngine.app/Contents/MacOS/NJLIGameEngine
+
+
+PostBuild.libnjli_lua_module.RelWithDebInfo:
+/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/RelWithDebInfo/njli.so:\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/SDL2/lib/macOS/10.12/Release/libSDL2.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/ogg/macOS/10.12/Release/libogg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbis.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisenc.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisfile.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Collision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Common.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Dynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Geometry.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3OpenCL_clew.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletCollision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletFileLoader.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamicsUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletSoftBody.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletXmlWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libConvexDecomposition.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libGIMPACTUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libHACD.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libLinearMath.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/imgui/macOS/10.12/Release/libimgui.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/jsoncpp/macOS/10.12/Release/libjsoncpp.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/nanovg/macOS/10.12/Release/libnanovg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/stb/macOS/10.12/Release/libstb.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/usynergy/macOS/10.12/Release/libuSynergy.a
+	/bin/rm -f /Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/RelWithDebInfo/njli.so
+
+
+PostBuild.libnjli_shared.RelWithDebInfo:
+/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/RelWithDebInfo/libnjli.dylib:\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/SDL2/lib/macOS/10.12/Release/libSDL2.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/ogg/macOS/10.12/Release/libogg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbis.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisenc.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisfile.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Collision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Common.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Dynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Geometry.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3OpenCL_clew.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletCollision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletFileLoader.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamicsUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletSoftBody.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletXmlWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libConvexDecomposition.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libGIMPACTUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libHACD.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libLinearMath.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/imgui/macOS/10.12/Release/libimgui.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/jsoncpp/macOS/10.12/Release/libjsoncpp.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/nanovg/macOS/10.12/Release/libnanovg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/stb/macOS/10.12/Release/libstb.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/usynergy/macOS/10.12/Release/libuSynergy.a
+	/bin/rm -f /Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/RelWithDebInfo/libnjli.dylib
+
+
+PostBuild.libnjli_static.RelWithDebInfo:
+/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/RelWithDebInfo/libnjli.a:
+	/bin/rm -f /Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/RelWithDebInfo/libnjli.a
+
+
+PostBuild.lua.RelWithDebInfo:
+PostBuild.libnjli_static.RelWithDebInfo: /Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/RelWithDebInfo/lua
+/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/RelWithDebInfo/lua:\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/ogg/macOS/10.12/Release/libogg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbis.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisenc.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisfile.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Collision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Common.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Dynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Geometry.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3OpenCL_clew.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletCollision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletFileLoader.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamicsUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletSoftBody.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletXmlWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libConvexDecomposition.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libGIMPACTUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libHACD.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libLinearMath.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/imgui/macOS/10.12/Release/libimgui.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/jsoncpp/macOS/10.12/Release/libjsoncpp.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/nanovg/macOS/10.12/Release/libnanovg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/stb/macOS/10.12/Release/libstb.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/usynergy/macOS/10.12/Release/libuSynergy.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/RelWithDebInfo/libnjli.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/SDL2/lib/macOS/10.12/Release/libSDL2.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/ogg/macOS/10.12/Release/libogg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbis.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisenc.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisfile.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Collision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Common.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Dynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Geometry.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3OpenCL_clew.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletCollision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletFileLoader.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamicsUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletSoftBody.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletXmlWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libConvexDecomposition.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libGIMPACTUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libHACD.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libLinearMath.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/imgui/macOS/10.12/Release/libimgui.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/jsoncpp/macOS/10.12/Release/libjsoncpp.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/nanovg/macOS/10.12/Release/libnanovg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/stb/macOS/10.12/Release/libstb.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/usynergy/macOS/10.12/Release/libuSynergy.a
+	/bin/rm -f /Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/RelWithDebInfo/lua
+
+
+PostBuild.luac.RelWithDebInfo:
+PostBuild.libnjli_static.RelWithDebInfo: /Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/RelWithDebInfo/luac
+/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/RelWithDebInfo/luac:\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/ogg/macOS/10.12/Release/libogg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbis.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisenc.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisfile.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Collision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Common.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Dynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Geometry.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3OpenCL_clew.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletCollision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletFileLoader.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamicsUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletSoftBody.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletXmlWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libConvexDecomposition.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libGIMPACTUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libHACD.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libLinearMath.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/imgui/macOS/10.12/Release/libimgui.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/jsoncpp/macOS/10.12/Release/libjsoncpp.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/nanovg/macOS/10.12/Release/libnanovg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/stb/macOS/10.12/Release/libstb.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/usynergy/macOS/10.12/Release/libuSynergy.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/RelWithDebInfo/libnjli.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/SDL2/lib/macOS/10.12/Release/libSDL2.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/ogg/macOS/10.12/Release/libogg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbis.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisenc.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisfile.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Collision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Common.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Dynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Geometry.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3OpenCL_clew.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletCollision.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletFileLoader.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamics.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamicsUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletSoftBody.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletXmlWorldImporter.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libConvexDecomposition.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libGIMPACTUtils.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libHACD.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libLinearMath.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/imgui/macOS/10.12/Release/libimgui.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/jsoncpp/macOS/10.12/Release/libjsoncpp.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/nanovg/macOS/10.12/Release/libnanovg.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/stb/macOS/10.12/Release/libstb.a\
+	/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/usynergy/macOS/10.12/Release/libuSynergy.a
+	/bin/rm -f /Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/RelWithDebInfo/luac
+
+
+PostBuild.NJLIGameEngineTest_macOS.RelWithDebInfo:
+/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/RelWithDebInfo/NJLIGameEngine.app/Contents/PlugIns/NJLIGameEngineTest_macOS.xctest/Contents/MacOS/NJLIGameEngineTest_macOS:
+	/bin/rm -f /Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/RelWithDebInfo/NJLIGameEngine.app/Contents/PlugIns/NJLIGameEngineTest_macOS.xctest/Contents/MacOS/NJLIGameEngineTest_macOS
+
+
+
+
+# For each target create a dummy ruleso the target does not have to exist
+/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Collision.a:
+/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Common.a:
+/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Dynamics.a:
+/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3Geometry.a:
+/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBullet3OpenCL_clew.a:
+/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletCollision.a:
+/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletDynamics.a:
+/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletFileLoader.a:
+/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamics.a:
+/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletInverseDynamicsUtils.a:
+/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletSoftBody.a:
+/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletWorldImporter.a:
+/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libBulletXmlWorldImporter.a:
+/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libConvexDecomposition.a:
+/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libGIMPACTUtils.a:
+/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libHACD.a:
+/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/bullet3/macOS/10.12/Release/lib/libLinearMath.a:
+/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/imgui/macOS/10.12/Release/libimgui.a:
+/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/jsoncpp/macOS/10.12/Release/libjsoncpp.a:
+/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/nanovg/macOS/10.12/Release/libnanovg.a:
+/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/ogg/macOS/10.12/Release/libogg.a:
+/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/stb/macOS/10.12/Release/libstb.a:
+/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/usynergy/macOS/10.12/Release/libuSynergy.a:
+/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbis.a:
+/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisenc.a:
+/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/BUILD/lib/vorbis/macOS/10.12/Release/libvorbisfile.a:
+/Users/jamesfolk/Documents/NJLI/Engine/../External/thirdparty/SDL2/lib/macOS/10.12/Release/libSDL2.a:
+/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Debug/libnjli.a:
+/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/MinSizeRel/libnjli.a:
+/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/RelWithDebInfo/libnjli.a:
+/Users/jamesfolk/Documents/NJLI/Engine/projects/YappyBirds_macOS_Xcode/build/Release/libnjli.a:
