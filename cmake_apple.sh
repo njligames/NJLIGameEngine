@@ -192,6 +192,7 @@ cd projects
 
 ##########################################3
 
+rm -rf ios_Xcode && mkdir ios_Xcode
 cd ios_Xcode
 rm -rf build
 rm CMakeCache.txt
@@ -200,6 +201,7 @@ cd ..
 
 ##########################################3
 
+rm -rf tvos_Xcode && mkdir tvos_Xcode
 cd tvos_Xcode
 rm -rf build
 rm CMakeCache.txt
@@ -208,7 +210,7 @@ cd ..
 
 ##########################################3
 
-#rm -rf macOS_Xcode && mkdir macOS_Xcode
+rm -rf macOS_Xcode && mkdir macOS_Xcode
 cd macOS_Xcode
 rm -rf build
 rm CMakeCache.txt
