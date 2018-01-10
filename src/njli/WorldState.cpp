@@ -732,6 +732,42 @@ namespace njli
     sprintf(buffer, "Mouse%s", action);
     checkRayCollision(mouse, buffer);
   }
+    
+    void WorldState::keyUp(const char *keycodeName,
+                           bool withCapsLock,
+                           bool withControl,
+                           bool withShift,
+                           bool withAlt,
+                           bool withGui)
+    {
+        char buffer[BUFFER_SIZE];
+        sprintf(buffer, "%s", "__NJLIWorldKeyUp");
+        njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer,
+                                                                         keycodeName,
+                                                                         withCapsLock,
+                                                                         withControl,
+                                                                         withShift,
+                                                                         withAlt,
+                                                                         withGui);
+    }
+    
+    void WorldState::keyDown(const char *keycodeName,
+                             bool withCapsLock,
+                             bool withControl,
+                             bool withShift,
+                             bool withAlt,
+                             bool withGui)
+    {
+        char buffer[BUFFER_SIZE];
+        sprintf(buffer, "%s", "__NJLIWorldKeyDown");
+        njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer,
+                                                                         keycodeName,
+                                                                         withCapsLock,
+                                                                         withControl,
+                                                                         withShift,
+                                                                         withAlt,
+                                                                         withGui);
+    }
 
   void WorldState::touchCancelled(const DeviceTouch &touch)
   {

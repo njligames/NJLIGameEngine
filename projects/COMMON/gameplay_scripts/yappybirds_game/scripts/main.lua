@@ -384,5 +384,6 @@ Worlds =
   }
 }
 
-InterfaceFunctions = require "NJLI.InterfaceFunctions"
+--InterfaceFunctions = require "NJLI.InterfaceFunctions"
+InterfaceFunctions = require "NJLI.ELIAInterfaceFunctions"
 

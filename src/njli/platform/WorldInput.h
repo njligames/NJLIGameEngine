@@ -38,6 +38,20 @@ namespace njli
     void handleFingers();
 
     void handleMouse(int button, int eventType, float x, float y, int clicks);
+      
+      void handleKeyUp(const char *keycodeName,
+                       bool withCapsLock,
+                       bool withControl,
+                       bool withShift,
+                       bool withAlt,
+                       bool withGui);
+      
+      void handleKeyDown(const char *keycodeName,
+                         bool withCapsLock,
+                         bool withControl,
+                         bool withShift,
+                         bool withAlt,
+                         bool withGui);
 
     void keyboardShow();
     void keyboardCancel();

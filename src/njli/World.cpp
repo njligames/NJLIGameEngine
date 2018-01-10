@@ -546,7 +546,7 @@ namespace njli
       }
     else
       {
-        SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no WorldState\n");
+//        SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no WorldState\n");
       }
 
     if (getScene())
@@ -569,7 +569,7 @@ namespace njli
       }
     else
       {
-        SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no WorldState\n");
+//        SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no WorldState\n");
       }
 
     if (getScene())
@@ -592,7 +592,7 @@ namespace njli
       }
     else
       {
-        SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no WorldState\n");
+//        SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no WorldState\n");
       }
 
     if (getScene())
@@ -603,6 +603,92 @@ namespace njli
     njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer,
                                                                      mouse);
   }
+    
+    void World::keyUp(const char *keycodeName,
+                      bool withCapsLock,
+                      bool withControl,
+                      bool withShift,
+                      bool withAlt,
+                      bool withGui)
+    {
+        WorldState *currentState =
+        dynamic_cast<WorldState *>(m_stateMachine->getState());
+        
+        if (currentState)
+        {
+            currentState->keyUp(keycodeName,
+                                withCapsLock,
+                                withControl,
+                                withShift,
+                                withAlt,
+                                withGui);
+        }
+        else
+        {
+//            SDL_LogDebug(SDL _LOG_CATEGORY_TEST, "There is no WorldState\n");
+        }
+
+        if (getScene())
+            getScene()->keyUp(keycodeName,
+                              withCapsLock,
+                              withControl,
+                              withShift,
+                              withAlt,
+                              withGui);
+        
+        char buffer[256];
+        sprintf(buffer, "%s", "__NJLIKeyUp");
+        njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer,
+                                                                         keycodeName,
+                                                                         withCapsLock,
+                                                                         withControl,
+                                                                         withShift,
+                                                                         withAlt,
+                                                                         withGui);
+    }
+    
+    void World::keyDown(const char *keycodeName,
+                        bool withCapsLock,
+                        bool withControl,
+                        bool withShift,
+                        bool withAlt,
+                        bool withGui)
+    {
+        WorldState *currentState =
+        dynamic_cast<WorldState *>(m_stateMachine->getState());
+        
+        if (currentState)
+        {
+            currentState->keyDown(keycodeName,
+                                  withCapsLock,
+                                  withControl,
+                                  withShift,
+                                  withAlt,
+                                  withGui);
+        }
+        else
+        {
+//            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no WorldState\n");
+        }
+        
+        if (getScene())
+            getScene()->keyDown(keycodeName,
+                                withCapsLock,
+                                withControl,
+                                withShift,
+                                withAlt,
+                                withGui);
+        
+        char buffer[256];
+        sprintf(buffer, "%s", "__NJLIKeyDown");
+        njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer,
+                                                                         keycodeName,
+                                                                         withCapsLock,
+                                                                         withControl,
+                                                                         withShift,
+                                                                         withAlt,
+                                                                         withGui);
+    }
 
   //    void World::touchCancelled(const DeviceTouch &touches)
   //    {
@@ -705,7 +791,7 @@ namespace njli
   void World::destroyScript()
   {
     char buffer[256];
-    sprintf(buffer, "%s", "__NJLIDestroy");
+    sprintf(buffer, "%s", "__NJLIDestroy()");
     njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer);
   }
 

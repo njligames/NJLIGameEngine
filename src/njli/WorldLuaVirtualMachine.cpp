@@ -1650,6 +1650,32 @@ namespace njli
       }
     return false;
   }
+    
+    bool WorldLuaVirtualMachine::execute(const char *code, DeviceKey **keys)
+    {
+        if (m_lua_State)
+        {
+            lua_getglobal(m_lua_State, code);
+            
+            s32 i;
+            lua_newtable(m_lua_State);
+//            for( i = 0; i < numStates; i++)
+//            {
+//                lua_pushboolean(m_lua_State, states[i]);
+////                lua_rawseti(m_lua_State, -2, i + 1); /* -1 is the number, -2 is the table*/
+//                lua_setfield(m_lua_State, -2, SDL_GetScancodeName(states[i]));  /* table["name"] = row->name. Pops key value */
+//            }
+            
+            /* call the function with 1 arguments, return 0 result */
+            //            int error_code = lua_pcall(m_lua_State, 1, 0, 0);
+            int status = docall(m_lua_State, 1, 0);
+            
+            if (LUA_OK == status)
+                return true;
+            getError(code, status);
+        }
+        return false;
+    }
 
   bool WorldLuaVirtualMachine::execute(const char *code,
                                        const DeviceTouch &touch)
@@ -2076,4 +2102,113 @@ namespace njli
 
     return false;
   }
+    
+    bool WorldLuaVirtualMachine::execute(const char *code,
+                                         const char *keycodeName,
+                                         bool withCapsLock,
+                                         bool withControl,
+                                         bool withShift,
+                                         bool withAlt,
+                                         bool withGui)
+    {
+        if (m_lua_State)
+        {
+            lua_getglobal(m_lua_State, code);
+            
+//            swig_type_info *sceneTypeInfo =
+//            SWIG_TypeQuery(m_lua_State, "_p_njli__Node");
+//            SWIG_NewPointerObj(m_lua_State, (void *)node, sceneTypeInfo, 0);
+            
+            lua_pushstring(m_lua_State, keycodeName);
+            lua_pushboolean(m_lua_State, withCapsLock);
+            lua_pushboolean(m_lua_State, withControl);
+            lua_pushboolean(m_lua_State, withShift);
+            lua_pushboolean(m_lua_State, withAlt);
+            lua_pushboolean(m_lua_State, withGui);
+            
+            /* do the call (2 arguments, 0 result) */
+            //            int error_code = lua_pcall(m_lua_State, 2, 0, 0);
+            int status = docall(m_lua_State, 6, 0);
+            
+            if (LUA_OK == status)
+                return true;
+            getError(code, status);
+        }
+        
+        return false;
+    }
+    
+    
+    
+    bool WorldLuaVirtualMachine::execute(const char *code,
+                                         Node *node,
+                                         const char *keycodeName,
+                                         bool withCapsLock,
+                                         bool withControl,
+                                         bool withShift,
+                                         bool withAlt,
+                                         bool withGui)
+    {
+        if (m_lua_State)
+        {
+            lua_getglobal(m_lua_State, code);
+            
+            swig_type_info *sceneTypeInfo =
+            SWIG_TypeQuery(m_lua_State, "_p_njli__Node");
+            SWIG_NewPointerObj(m_lua_State, (void *)node, sceneTypeInfo, 0);
+            
+            lua_pushstring(m_lua_State, keycodeName);
+            lua_pushboolean(m_lua_State, withCapsLock);
+            lua_pushboolean(m_lua_State, withControl);
+            lua_pushboolean(m_lua_State, withShift);
+            lua_pushboolean(m_lua_State, withAlt);
+            lua_pushboolean(m_lua_State, withGui);
+            
+            /* do the call (2 arguments, 0 result) */
+            //            int error_code = lua_pcall(m_lua_State, 2, 0, 0);
+            int status = docall(m_lua_State, 7, 0);
+            
+            if (LUA_OK == status)
+                return true;
+            getError(code, status);
+        }
+        
+        return false;
+    }
+    
+    bool WorldLuaVirtualMachine::execute(const char *code,
+                                         Scene *pEntity,
+                                         const char *keycodeName,
+                                         bool withCapsLock,
+                                         bool withControl,
+                                         bool withShift,
+                                         bool withAlt,
+                                         bool withGui)
+    {
+        if (m_lua_State)
+        {
+            lua_getglobal(m_lua_State, code);
+            
+            swig_type_info *sceneTypeInfo =
+            SWIG_TypeQuery(m_lua_State, "_p_njli__Scene");
+            SWIG_NewPointerObj(m_lua_State, (void *)pEntity, sceneTypeInfo, 0);
+            
+            lua_pushstring(m_lua_State, keycodeName);
+            lua_pushboolean(m_lua_State, withCapsLock);
+            lua_pushboolean(m_lua_State, withControl);
+            lua_pushboolean(m_lua_State, withShift);
+            lua_pushboolean(m_lua_State, withAlt);
+            lua_pushboolean(m_lua_State, withGui);
+            
+            /* do the call (2 arguments, 0 result) */
+            //            int error_code = lua_pcall(m_lua_State, 2, 0, 0);
+            int status = docall(m_lua_State, 7, 0);
+            
+            if (LUA_OK == status)
+                return true;
+            getError(code, status);
+        }
+        
+        return false;
+    }
 }

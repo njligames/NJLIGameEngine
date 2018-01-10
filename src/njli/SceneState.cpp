@@ -422,6 +422,86 @@ namespace njli
       }
   }
 
+    void SceneState::keyUp(Scene *scene,
+                           const char *keycodeName,
+                           bool withCapsLock,
+                           bool withControl,
+                           bool withShift,
+                           bool withAlt,
+                           bool withGui)
+    {
+        char action[BUFFER_SIZE] = "Up";
+        char buffer[BUFFER_SIZE] = "";
+        
+        sprintf(buffer, "__NJLISceneKey%s", action);
+        njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer,
+                                                                         scene,
+                                                                         keycodeName,
+                                                                         withCapsLock,
+                                                                         withControl,
+                                                                         withShift,
+                                                                         withAlt,
+                                                                         withGui);
+        
+        if (scene)
+        {
+            sprintf(buffer, "__NJLINodeKey%s", action);
+            btAlignedObjectArray<Node *> activeNodes;
+            scene->getActiveNodes(activeNodes);
+            for (unsigned int i = 0; i < activeNodes.size(); i++)
+            {
+                njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer,
+                                                                                 activeNodes[i],
+                                                                                 keycodeName,
+                                                                                 withCapsLock,
+                                                                                 withControl,
+                                                                                 withShift,
+                                                                                 withAlt,
+                                                                                 withGui);
+            }
+        }
+    }
+    
+    void SceneState::keyDown(Scene *scene,
+                             const char *keycodeName,
+                             bool withCapsLock,
+                             bool withControl,
+                             bool withShift,
+                             bool withAlt,
+                             bool withGui)
+    {
+        char action[BUFFER_SIZE] = "Down";
+        char buffer[BUFFER_SIZE] = "";
+        
+        sprintf(buffer, "__NJLISceneKey%s", action);
+        njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer,
+                                                                         scene,
+                                                                         keycodeName,
+                                                                         withCapsLock,
+                                                                         withControl,
+                                                                         withShift,
+                                                                         withAlt,
+                                                                         withGui);
+        
+        if (scene)
+        {
+            sprintf(buffer, "__NJLINodeKey%s", action);
+            btAlignedObjectArray<Node *> activeNodes;
+            scene->getActiveNodes(activeNodes);
+            for (unsigned int i = 0; i < activeNodes.size(); i++)
+            {
+                njli::World::getInstance()->getWorldLuaVirtualMachine()->execute(buffer,
+                                                                                 activeNodes[i],
+                                                                                 keycodeName,
+                                                                                 withCapsLock,
+                                                                                 withControl,
+                                                                                 withShift,
+                                                                                 withAlt,
+                                                                                 withGui);
+            }
+        }
+    }
+    
   void SceneState::touchCancelled(Scene *scene, const DeviceTouch &touch)
   {
     char action[BUFFER_SIZE] = "Cancelled";

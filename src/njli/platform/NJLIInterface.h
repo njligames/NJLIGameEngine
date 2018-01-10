@@ -45,9 +45,20 @@ int NJLI_HandlePadDown(int device_id, int keycode);
 int NJLI_HandlePadUp(int device_id, int keycode);
 void NJLI_HandleJoy(int device_id, int axis, float value);
 void NJLI_HandleHat(int device_id, int hat_id, int x, int y);
-void NJLI_HandleKeyDown(int keycode);
-void NJLI_HandleKeyUp(int keycode);
+    void NJLI_HandleKeyDown(const std::string &keycodeName,
+                            bool withCapsLock,
+                            bool withControl,
+                            bool withShift,
+                            bool withAlt,
+                            bool withGui);
+    void NJLI_HandleKeyUp(const std::string &keycodeName,
+                          bool withCapsLock,
+                          bool withControl,
+                          bool withShift,
+                          bool withAlt,
+                          bool withGui);
 void NJLI_HandleKeyboardFocusLost();
+    void NJLI_HandleKeyboardFinish(const unsigned char *state, int numStates);
 void NJLI_HandleMouse(int button, int eventType, float x, float y, int clicks);
 
 void NJLI_HandleTouch(int touchDevId, int pointerFingerId, int eventType,

@@ -224,6 +224,20 @@ namespace njli
     void mouseDown(const DeviceMouse &touch);
     void mouseUp(const DeviceMouse &touch);
     void mouseMove(const DeviceMouse &touch);
+      
+      void keyUp(const char *keycodeName,
+                 bool withCapsLock,
+                 bool withControl,
+                 bool withShift,
+                 bool withAlt,
+                 bool withGui);
+      
+      void keyDown(const char *keycodeName,
+                   bool withCapsLock,
+                   bool withControl,
+                   bool withShift,
+                   bool withAlt,
+                   bool withGui);
 
     /**
      <#Description#>

@@ -103,6 +103,8 @@ Runtime = {
     MouseDown = {},
     MouseUp = {},
     MouseMove = {},
+    KeyDown = {},
+    KeyUp = {},
     WorldEnterState = {},
     WorldUpdateState = {},
     WorldExitState = {},
@@ -125,6 +127,8 @@ Runtime = {
     WorldMouseDown = {},
     WorldMouseUp = {},
     WorldMouseMove = {},
+    WorldKeyDown = {},
+    WorldKeyUp = {},
     WorldWillResignActive = {},
     WorldDidBecomeActive = {},
     WorldDidEnterBackground = {},
@@ -153,6 +157,8 @@ Runtime = {
     SceneMouseDown = {},
     SceneMouseUp = {},
     SceneMouseMove = {},
+    SceneKeyDown = {},
+    SceneKeyUp = {},
     SceneReceivedMemoryWarning = {},
     SceneWillResignActive = {},
     SceneDidBecomeActive = {},
@@ -200,6 +206,8 @@ Runtime = {
     NodeMouseDown = {},
     NodeMouseUp = {},
     NodeMouseMove = {},
+    NodeKeyDown = {},
+    NodeKeyUp = {},
 }
 
 function RegisterCreate(name, func)
@@ -265,7 +273,15 @@ end
 function RegisterMouseMove(name, func)
     Runtime.MouseMove[name] = func
 end
-
+      
+function RegisterKeyDown(name, func)
+    Runtime.KeyDown[name] = func
+end
+      
+function RegisterKeyUp(name, func)
+    Runtime.KeyUp[name] = func
+end
+      
 function RegisterWorldEnterState(name, func)
     Runtime.WorldEnterState[name] = func
 end
@@ -353,6 +369,18 @@ end
 function RegisterWorldMouseMove(name, func)
     Runtime.WorldMouseMove[name] = func
 end
+      
+      
+      
+      
+function RegisterWorldKeyDown(name, func)
+    Runtime.WorldKeyDown[name] = func
+end
+
+function RegisterWorldKeyUp(name, func)
+    Runtime.WorldKeyUp[name] = func
+end
+      
 
 function RegisterWorldWillResignActive(name, func)
     Runtime.WorldWillResignActive[name] = func
@@ -464,6 +492,16 @@ end
 
 function RegisterSceneMouseMove(name, func)
     Runtime.SceneMouseMove[name] = func
+end
+      
+      
+      
+function RegisterSceneKeyDown(name, func)
+    Runtime.SceneKeyDown[name] = func
+end
+
+function RegisterSceneKeyUp(name, func)
+    Runtime.SceneKeyUp[name] = func
 end
 
 function RegisterSceneReceivedMemoryWarning(name, func)
@@ -653,6 +691,21 @@ end
 function RegisterNodeMouseMove(name, func)
     Runtime.NodeMouseMove[name] = func
 end
+      
+      
+      
+
+      
+
+function RegisterNodeKeyDown(name, func)
+    Runtime.NodeKeyDown[name] = func
+end
+
+function RegisterNodeKeyUp(name, func)
+    Runtime.NodeKeyUp[name] = func
+end
+
+
 
 function __NJLICreate()
     for k, v in pairs(Runtime.Create) do v() end
@@ -717,6 +770,20 @@ end
 function __NJLIMouseMove(mouse)
     for k, v in pairs(Runtime.MouseMove) do v(mouse) end
 end
+
+function __NJLIKeyDown(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui)
+    for k, v in pairs(Runtime.KeyDown) do v(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui) end
+end
+
+function __NJLIKeyUp(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui)
+    for k, v in pairs(Runtime.KeyUp) do v(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui) end
+end
+                
+                
+                
+                
+                
+                
 
 function __NJLIWorldEnterState()
     for k, v in pairs(Runtime.WorldEnterState) do v() end
@@ -805,6 +872,27 @@ end
 function __NJLIWorldMouseMove(mouse)
     for k, v in pairs(Runtime.WorldMouseMove) do v(mouse) end 
 end
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+function __NJLIWorldKeyDown(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui)
+    for k, v in pairs(Runtime.WorldKeyDown) do v(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui) end
+end
+
+function __NJLIWorldKeyUp(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui)
+    for k, v in pairs(Runtime.WorldKeyUp) do v(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui) end
+end
+                
+                
 
 function __NJLIWorldWillResignActive()
     for k, v in pairs(Runtime.WorldWillResignActive) do v() end 
@@ -917,6 +1005,23 @@ end
 function __NJLISceneMouseMove(scene, mouse)
     for k, v in pairs(Runtime.SceneMouseMove) do v(scene, mouse) end 
 end
+        
+        
+        
+        
+function __NJLISceneKeyDown(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui)
+    for k, v in pairs(Runtime.SceneKeyDown) do v(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui) end
+end
+
+function __NJLISceneKeyUp(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui)
+    for k, v in pairs(Runtime.SceneKeyUp) do v(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui) end
+end
+        
+        
+        
+        
+        
+        
 
 function __NJLISceneReceivedMemoryWarning(scene)
     for k, v in pairs(Runtime.SceneReceivedMemoryWarning) do v(scene) end 
@@ -1105,6 +1210,18 @@ end
 function __NJLINodeMouseMove(node, mouse)
     for k, v in pairs(Runtime.NodeMouseMove) do v(node, mouse) end 
 end
+        
+        
+        
+        
+        
+function __NJLINodeKeyDown(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui)
+    for k, v in pairs(Runtime.NodeKeyDown) do v(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui) end
+end
+
+function __NJLINodeKeyUp(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui)
+    for k, v in pairs(Runtime.NodeKeyUp) do v(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui) end
+end
         )";
 
     bool ret = false;
@@ -1196,6 +1313,26 @@ end
     njli::World::getInstance()->getWorldInput()->handleMouse(button, eventType,
                                                              x, y, clicks);
   }
+    
+    void NJLIGameEngine::keyUp(const char *keycodeName,
+                               bool withCapsLock,
+                               bool withControl,
+                               bool withShift,
+                               bool withAlt,
+                               bool withGui)
+    {
+        njli::World::getInstance()->getWorldInput()->handleKeyUp(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui);
+    }
+    
+    void NJLIGameEngine::keyDown(const char *keycodeName,
+                                 bool withCapsLock,
+                                 bool withControl,
+                                 bool withShift,
+                                 bool withAlt,
+                                 bool withGui)
+    {
+        njli::World::getInstance()->getWorldInput()->handleKeyDown(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui);
+    }
 
   void NJLIGameEngine::handleEvent(void *event)
   {

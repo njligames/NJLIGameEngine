@@ -219,6 +219,26 @@ namespace njli
         break;
       }
   }
+    
+    void WorldInput::handleKeyUp(const char *keycodeName,
+                                 bool withCapsLock,
+                                 bool withControl,
+                                 bool withShift,
+                                 bool withAlt,
+                                 bool withGui)
+    {
+        njli::World::getInstance()->keyUp(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui);
+    }
+    
+    void WorldInput::handleKeyDown(const char *keycodeName,
+                                   bool withCapsLock,
+                                   bool withControl,
+                                   bool withShift,
+                                   bool withAlt,
+                                   bool withGui)
+    {
+        njli::World::getInstance()->keyDown(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui);
+    }
 
   void WorldInput::keyboardShow()
   {

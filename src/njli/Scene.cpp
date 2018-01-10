@@ -910,6 +910,48 @@ namespace njli
                      "There is no SceneState in mouseMove\n");
       }
   }
+    
+    void Scene::keyUp(const char *keycodeName,
+                      bool withCapsLock,
+                      bool withControl,
+                      bool withShift,
+                      bool withAlt,
+                      bool withGui)
+    {
+        SceneState *currentState =
+        dynamic_cast<SceneState *>(m_SceneStateMachine->getState());
+        
+        if (currentState)
+        {
+            currentState->keyUp(this, keycodeName, withCapsLock, withControl, withShift, withAlt, withGui);
+        }
+        else
+        {
+            SDL_LogDebug(SDL_LOG_CATEGORY_TEST,
+                         "There is no SceneState in keyUp\n");
+        }
+    }
+    
+    void Scene::keyDown(const char *keycodeName,
+                        bool withCapsLock,
+                        bool withControl,
+                        bool withShift,
+                        bool withAlt,
+                        bool withGui)
+    {
+        SceneState *currentState =
+        dynamic_cast<SceneState *>(m_SceneStateMachine->getState());
+        
+        if (currentState)
+        {
+            currentState->keyDown(this, keycodeName, withCapsLock, withControl, withShift, withAlt, withGui);
+        }
+        else
+        {
+            SDL_LogDebug(SDL_LOG_CATEGORY_TEST,
+                         "There is no SceneState in keyUp\n");
+        }
+    }
 
   void Scene::touchCancelled(const DeviceTouch &touch)
   {

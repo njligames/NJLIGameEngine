@@ -136,7 +136,7 @@ local Update = function(timeStep)
     end
 
     if not debugging then
-        --require("mobdebug").start()
+        require("mobdebug").start()
         --require("mobdebug").coro()
         debugging = true
     end
@@ -231,6 +231,27 @@ local MouseMove = function(mouse)
     gInterface:getDeviceEntity():mouseMove(mouse)
   end
 end
+
+
+
+
+local KeyDown = function(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui)
+  print('keyDown')
+   if gInterface then
+     gInterface:getDeviceEntity():mouseMove(mouse)
+   end
+end
+
+local KeyUp = function(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui)
+  print('keyUp')
+   if gInterface then
+     gInterface:getDeviceEntity():mouseMove(mouse)
+   end
+end
+
+
+
+
 
 local WorldEnterState = function()
   if gInterface then
@@ -363,6 +384,27 @@ local WorldMouseMove = function(mouse)
         gInterface:getStateMachine():_worldMouseMove(mouse)
     end
 end
+
+
+
+
+
+local WorldKeyDown = function(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui)
+--  print('WorldKeyDown')
+--  if gInterface then
+--    gInterface:getDeviceEntity():mouseMove(mouse)
+--  end
+end
+
+local WorldKeyUp = function(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui)
+--    print('WorldKeyUp')
+-- if gInterface then
+--   gInterface:getDeviceEntity():mouseMove(mouse)
+-- end
+end
+
+
+
 
 local WorldWillResignActive = function()
     if gInterface then
@@ -531,6 +573,26 @@ local SceneMouseMove = function(scene, mouse)
         gInterface:getStateMachine():_sceneMouseMove(scene, mouse)
     end
 end
+
+
+
+
+
+local SceneKeyDown = function(scene, keycodeName, withCapsLock, withControl, withShift, withAlt, withGui)
+--    print('SceneKeyDown')
+-- if gInterface then
+--   gInterface:getDeviceEntity():mouseMove(mouse)
+-- end
+end
+
+local SceneKeyUp = function(scene, keycodeName, withCapsLock, withControl, withShift, withAlt, withGui)
+--    print('SceneKeyUp')
+-- if gInterface then
+--   gInterface:getDeviceEntity():mouseMove(mouse)
+-- end
+end
+
+
 
 local SceneReceivedMemoryWarning = function(scene)
     if gInterface then
@@ -814,6 +876,21 @@ local NodeMouseMove = function(node, mouse)
     end
 end
 
+local NodeKeyDown = function(node, keycodeName, withCapsLock, withControl, withShift, withAlt, withGui)
+--    print('NodeKeyDown')
+-- if gInterface then
+--   gInterface:getDeviceEntity():mouseMove(mouse)
+-- end
+end
+
+local NodeKeyUp = function(node, keycodeName, withCapsLock, withControl, withShift, withAlt, withGui)
+--    print('NodeKeyUp')
+-- if gInterface then
+--   gInterface:getDeviceEntity():mouseMove(mouse)
+-- end
+end
+
+
 RegisterCreate("Create",                                         function() pcall(Create) end)
 RegisterDestroy("Destroy",                                       function() pcall(Destroy) end )
 RegisterUpdate("Update",                                         function() pcall(Update) end )
@@ -830,6 +907,13 @@ RegisterTouchCancelled("TouchCancelled",                         function(touch)
 RegisterMouseDown("MouseDown",                                   function(mouse) pcall(MouseDown, mouse) end )
 RegisterMouseUp("MouseUp",                                       function(mouse) pcall(MouseUp, mouse) end )
 RegisterMouseMove("MouseMove",                                   function(mouse) pcall(MouseMove, mouse) end )
+
+
+
+RegisterKeyDown("KeyDown",                                       function(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui) pcall(KeyDown, keycodeName, withCapsLock, withControl, withShift, withAlt, withGui) end )
+RegisterKeyUp("KeyUp",                                         function(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui) pcall(KeyUp, keycodeName, withCapsLock, withControl, withShift, withAlt, withGui) end )
+
+
 RegisterWorldEnterState("WorldEnterState",                       function() pcall(WorldEnterState) end )
 RegisterWorldUpdateState("WorldUpdateState",                     function(timeStep) pcall(WorldUpdateState, timeStep) end )
 RegisterWorldExitState("WorldExitState",                         function() pcall(WorldExitState) end )
@@ -852,6 +936,13 @@ RegisterWorldTouchCancelled("WorldTouchCancelled",               function(touch)
 RegisterWorldMouseDown("WorldMouseDown",                         function(mouse) pcall(WorldMouseDown, mouse) end )
 RegisterWorldMouseUp("WorldMouseUp",                             function(mouse) pcall(WorldMouseUp, mouse) end )
 RegisterWorldMouseMove("WorldMouseMove",                         function(mouse) pcall(WorldMouseMove, mouse) end )
+
+
+RegisterWorldKeyDown("WorldKeyDown",                                       function(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui) pcall(WorldKeyDown, keycodeName, withCapsLock, withControl, withShift, withAlt, withGui) end )
+RegisterWorldKeyUp("WorldKeyUp",                                         function(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui) pcall(WorldKeyUp, keycodeName, withCapsLock, withControl, withShift, withAlt, withGui) end )
+
+
+
 RegisterWorldWillResignActive("WorldWillResignActive",           function() pcall(WorldWillResignActive) end )
 RegisterWorldDidBecomeActive("WorldDidBecomeActive",             function() pcall(WorldDidBecomeActive) end )
 RegisterWorldDidEnterBackground("WorldDidEnterBackground",       function() pcall(WorldDidEnterBackground) end )
@@ -880,6 +971,13 @@ RegisterSceneTouchCancelled("SceneTouchCancelled",               function(scene,
 RegisterSceneMouseDown("SceneMouseDown",                         function(scene, mouse) pcall(SceneMouseDown, scene, mouse) end )
 RegisterSceneMouseUp("SceneMouseUp",                             function(scene, mouse) pcall(SceneMouseUp, scene, mouse) end )
 RegisterSceneMouseMove("SceneMouseMove",                         function(scene, mouse) pcall(SceneMouseMove, scene, mouse) end )
+
+
+RegisterSceneKeyDown("SceneKeyDown",                              function(scene, keycodeName, withCapsLock, withControl, withShift, withAlt, withGui) pcall(SceneKeyDown, keycodeName, withCapsLock, withControl, withShift, withAlt, withGui) end )
+RegisterSceneKeyUp("SceneKeyUp",                                   function(scene, keycodeName, withCapsLock, withControl, withShift, withAlt, withGui) pcall(SceneKeyUp, keycodeName, withCapsLock, withControl, withShift, withAlt, withGui) end )
+
+
+
 RegisterSceneReceivedMemoryWarning("SceneReceivedMemoryWarning", function(scene) pcall(SceneReceivedMemoryWarning) end )
 RegisterSceneWillResignActive("SceneWillResignActive",           function(scene) pcall(SceneWillResignActive, scene) end )
 RegisterSceneDidBecomeActive("SceneDidBecomeActive",             function(scene) pcall(SceneDidBecomeActive, scene) end )
@@ -927,6 +1025,10 @@ RegisterNodeTouchCancelled("NodeTouchCancelled",                 function(node, 
 RegisterNodeMouseDown("NodeMouseDown",                           function(node, mouse) pcall(NodeMouseDown, node, mouse) end )
 RegisterNodeMouseUp("NodeMouseUp",                               function(node, mouse) pcall(NodeMouseUp, node, mouse) end )
 RegisterNodeMouseMove("NodeMouseMove",                           function(node, mouse) pcall(NodeMouseMove, node, mouse) end )
+
+RegisterNodeKeyDown("NodeKeyDown",                              function(node, keycodeName, withCapsLock, withControl, withShift, withAlt, withGui) pcall(NodeKeyDown, keycodeName, withCapsLock, withControl, withShift, withAlt, withGui) end )
+RegisterNodeKeyUp("NodeKeyUp",                                   function(node, keycodeName, withCapsLock, withControl, withShift, withAlt, withGui) pcall(NodeKeyUp, keycodeName, withCapsLock, withControl, withShift, withAlt, withGui) end )
+
 
 --return gInterface
 
