@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="32" tileheight="32" backgroundcolor="#9eceef" nextobjectid="70">
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="32" tileheight="32" backgroundcolor="#9eceef" nextobjectid="72">
  <tileset firstgid="1" name="Tiles" tilewidth="2048" tileheight="512" tilecount="10" columns="0">
   <tile id="0">
    <image width="128" height="105" source="128cloud00.png"/>
@@ -16451,6 +16451,12 @@
     <property name="timeFrequency" value="5"/>
     <property name="timeStart" value="1"/>
    </properties>
+   <ellipse/>
+  </object>
+  <object id="70" x="2222.78" y="1448.55">
+   <ellipse/>
+  </object>
+  <object id="71" x="2237.76" y="1448.55">
    <ellipse/>
   </object>
  </objectgroup>

@@ -6,6 +6,7 @@ local BitmapFont = require 'NJLI.BitmapFont'
 local YappyGame = require "YAPPYBIRDS.YappyGame"
 
 RanchersFont = nil
+ELIAFont = nil
 Geometry2D = nil
 OrthographicCameraNode = nil
 PerspectiveCameraNode = nil
@@ -13,6 +14,22 @@ MyGame = nil
 gInterface = nil
 
 local Create = function()
+
+
+  local scene = njli.Scene.create()
+  local rootNode = njli.Node.create()
+  
+  local physicsWorld = njli.PhysicsWorld.create()
+  scene:setPhysicsWorld(physicsWorld)
+  
+  scene:setRootNode(rootNode)
+  
+  njli.World.getInstance():setScene(scene)
+  
+  
+  
+  
+  
 
   if nil == OrthographicCameraNode then
     OrthographicCameraNode = njli.Node.create()
@@ -26,6 +43,8 @@ local Create = function()
     OrthographicCameraNode:setCamera(camera)
     
     njli.World.getInstance():enableDebugDraw(OrthographicCameraNode:getCamera())
+    
+    rootNode:addChildNode(OrthographicCameraNode)
   end
   
   if nil == PerspectiveCameraNode then
@@ -38,6 +57,8 @@ local Create = function()
     camera:setName("perspectiveCamera")
 
     PerspectiveCameraNode:setCamera(camera)
+    
+    rootNode:addChildNode(PerspectiveCameraNode)
   end
   
   if nil == Geometry2D then
@@ -68,10 +89,42 @@ local Create = function()
     RanchersFont:hide(PerspectiveCameraNode:getCamera())
   end
   
---  if nil == gInterface then
---    gInterface = Interface()
---    gInterface:getDeviceEntity():create()
---  end
+  if nil == ELIAFont then
+    ELIAFont = BitmapFont({file='Elia_GlyphDesigner.fnt'})
+    ELIAFont:load()
+    ELIAFont:show(OrthographicCameraNode:getCamera())
+    ELIAFont:hide(PerspectiveCameraNode:getCamera())
+  end 
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+  
+  
+  
+  
+    
+  local points = (arg and arg.points) or 1234567890
+  local vert_margin = njli.SCREEN():y() / 30.0
+  local horiz_margin = njli.SCREEN():x() / 40.0
+  local node, rect = ELIAFont:printf(string.format("%.5d", points), njli.SCREEN():x(), 'left')
+  node:setOrigin(bullet.btVector3(njli.SCREEN():x() - rect.width - horiz_margin, njli.SCREEN():y() - rect.height - vert_margin, -1))
+  node:show(OrthographicCameraNode:getCamera())
+  node:setCurrentScene(njli.World.getInstance():getScene())
+  
+  rootNode:addChildNode(node)
+  
+  
+  
+  
+  
+  
   
 --  if nil == MyGame then
 --    MyGame = YappyGame(Worlds.yappygame)
@@ -82,15 +135,11 @@ end
   
 local Destroy = function()
 
-  if MyGame then
-    MyGame:stopStateMachine()
-    MyGame = nil
-  end
+--  if MyGame then
+--    MyGame:stopStateMachine()
+--    MyGame = nil
+--  end
   
-  if gInterface then
-    gInterface:getDeviceEntity():destroy()
-    gInterface = nil
-  end
   
   if RanchersFont then
     RanchersFont:unLoad()
@@ -105,7 +154,6 @@ local Destroy = function()
     njli.ShaderProgram.destroy(shader)
     
     njli.Sprite2D.destroy(Geometry2D[1])
---    Geometry2D = nil
   end
   
   if PerspectiveCameraNode then
@@ -126,8 +174,6 @@ local Destroy = function()
   
 end
 
---function(event) pcall(onUpdate, event) end
-
 local Update = function(timeStep)
 
   if debugging == nil then
@@ -147,426 +193,79 @@ local Update = function(timeStep)
 --  local color = bullet.btVector4(0.202, 0.643, 0.000, 1)
 --  njli.World.getInstance():getDebugDrawer():point(pos, color, 100)--, 100000, 10)
   
-  if gInterface then
-    gInterface:getDeviceEntity():update(timeStep)
-  end
+--  if gInterface then
+--    gInterface:getDeviceEntity():update(timeStep)
+--  end
   
  njli.World.getInstance():setBackgroundColor(1.000, 1.000, 1.000)
 end
 
-local Render = function()
-  if gInterface then
-    gInterface:getDeviceEntity():render()
-  end
-end
-
-local Resize = function(width, height, orientation)
-  if gInterface then
-    gInterface:getDeviceEntity():resize(width, height, orientation)
-  end
-end
-
-local TouchesDown = function(touches)
-  if gInterface then
-    gInterface:getDeviceEntity():touchesDown(touches)
-  end
-end
-
-local TouchesUp = function(touches)
-  if gInterface then
-    gInterface:getDeviceEntity():touchesUp(touches)
-  end
-end
-
-local TouchesMove = function(touches)
-  if gInterface then
-    gInterface:getDeviceEntity():touchesMove(touches)
-  end
-end
-
-local TouchesCancelled = function(touches)
-  if gInterface then
-    gInterface:getDeviceEntity():touchesCancelled(touches)
-  end
-end
-
-local TouchDown = function(touch)
-  if gInterface then
-    gInterface:getDeviceEntity():touchDown(touch)
-  end
-end
-
-local TouchUp = function(touch)
-  if gInterface then
-    gInterface:getDeviceEntity():touchUp(touch)
-  end
-end
-
-local TouchMove = function(touch)
-  if gInterface then
-    gInterface:getDeviceEntity():touchMove(touch)
-  end
-end
-
-local TouchCancelled = function(touches)
-  if gInterface then
-    gInterface:getDeviceEntity():touchCancelled(touches)
-  end
-end
-
-local MouseDown = function(mouse)
-  if gInterface then
-    gInterface:getDeviceEntity():mouseDown(mouse)
-  end
-end
-
-local MouseUp = function(mouse)
-  if gInterface then
-    gInterface:getDeviceEntity():mouseUp(mouse)
-  end
-end
-
-local MouseMove = function(mouse)
-  if gInterface then
-    gInterface:getDeviceEntity():mouseMove(mouse)
-  end
-end
-
-
-
-
-local KeyDown = function(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui)
-  print('keyDown')
-   if gInterface then
-     gInterface:getDeviceEntity():mouseMove(mouse)
-   end
-end
-
-local KeyUp = function(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui)
-  print('keyUp')
-   if gInterface then
-     gInterface:getDeviceEntity():mouseMove(mouse)
-   end
-end
-
-
-
-
-
-local WorldEnterState = function()
-  if gInterface then
-    gInterface:getStateMachine():_worldEnterState()
-  end
-end
-
-local WorldUpdateState = function(timeStep)
-  if gInterface then
-    gInterface:getStateMachine():_worldUpdateState(timeStep)
-  end
-end
-
-local WorldExitState = function()
-  if gInterface then
-    gInterface:getStateMachine():_worldExitState()
-  end
-end
-
-local WorldOnMessage = function(message)
-  if gInterface then
-    gInterface:getStateMachine():_worldOnMessage(message)
-  end
-end
-
-local WorldKeyboardShow = function()
-  if gInterface then
-    gInterface:getStateMachine():_worldKeyboardShow()
-  end
-end
-
-local WorldKeyboardCancel = function()
-  if gInterface then
-    gInterface:getStateMachine():_worldKeyboardCancel()
-  end  
-end
-
-local WorldKeyboardReturn = function(text)
-  if gInterface then
-    gInterface:getStateMachine():_worldKeyboardReturn(text)
-  end
-end
-
-local WorldReceivedMemoryWarning = function()
-  if gInterface then
-    gInterface:getStateMachine():_worldReceivedMemoryWarning()
-  end
-end
-
-local WorldGamePause = function()
-  if gInterface then
-    gInterface:getStateMachine():_worldGamePause()
-  end
-end
-
-local WorldGameUnPause = function()
-  if gInterface then
-    gInterface:getStateMachine():_worldGameUnPause()
-  end
-end
-
-local WorldRenderHUD = function()
-  if gInterface then
-    gInterface:getStateMachine():_worldRenderHUD()
-  end
-end
-
-local WorldTouchesDown = function(touches)
-    if gInterface then
-        gInterface:getStateMachine():_worldTouchesDown(touches)
-    end
-end
-
-local WorldTouchesUp = function(touches)
-    if gInterface then
-        gInterface:getStateMachine():_worldTouchesUp(touches)
-    end
-end
-
-local WorldTouchesMove = function(touches)
-    if gInterface then
-        gInterface:getStateMachine():_worldTouchesMove(touches)
-    end
-end
-
-local WorldTouchesCancelled = function(touches)
-    if gInterface then
-        gInterface:getStateMachine():_worldTouchesCancelled(touches)
-    end
-end
-
-local WorldTouchDown = function(touch)
-    if gInterface then
-        gInterface:getStateMachine():_worldTouchDown(touch)
-    end
-end
-
-local WorldTouchUp = function(touch)
-    if gInterface then
-        gInterface:getStateMachine():_worldTouchUp(touch)
-    end
-end
-
-local WorldTouchMove = function(touch)
-    if gInterface then
-        gInterface:getStateMachine():_worldTouchMove(touch)
-    end
-end
-
-local WorldTouchCancelled = function(touch)
-    if gInterface then
-        gInterface:getStateMachine():_worldTouchCancelled(touch)
-    end
-end
-
-local WorldMouseDown = function(mouse)
-    if gInterface then
-        gInterface:getStateMachine():_worldMouseDown(mouse)
-    end
-end
-
-local WorldMouseUp = function(mouse)
-    if gInterface then
-        gInterface:getStateMachine():_worldMouseUp(mouse)
-    end
-end
-
-local WorldMouseMove = function(mouse)
-    if gInterface then
-        gInterface:getStateMachine():_worldMouseMove(mouse)
-    end
-end
-
-
-
-
-
-local WorldKeyDown = function(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui)
---  print('WorldKeyDown')
---  if gInterface then
---    gInterface:getDeviceEntity():mouseMove(mouse)
---  end
-end
-
-local WorldKeyUp = function(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui)
---    print('WorldKeyUp')
--- if gInterface then
---   gInterface:getDeviceEntity():mouseMove(mouse)
--- end
-end
-
-
-
-
-local WorldWillResignActive = function()
-    if gInterface then
-        gInterface:getStateMachine():_worldWillResignActive()
-    end
-end
-
-local WorldDidBecomeActive = function()
-    if gInterface then
-        gInterface:getStateMachine():_worldDidBecomeActive()
-    end
-end
-
-local WorldDidEnterBackground = function()
-    if gInterface then
-        gInterface:getStateMachine():_worldDidEnterBackground()
-    end
-end
-
-local WorldWillEnterForeground = function()
-    if gInterface then
-        gInterface:getStateMachine():_worldWillEnterForeground()
-    end
-end
-
-local WorldWillTerminate = function()
-    if gInterface then
-        gInterface:getStateMachine():_worldWillTerminate()
-    end
-end
-
-local WorldInterrupt = function()
-    if gInterface then
-        gInterface:getStateMachine():_worldInterrupt()
-    end
-end
-
-local WorldResumeInterrupt = function()
-    if gInterface then
-        gInterface:getStateMachine():_worldResumeInterrupt()
-    end
-end
-
-local SceneEnterState = function(scene)
-    if gInterface then
-        gInterface:getStateMachine():_sceneEnterState(scene)
-    end
-end
-
-local SceneUpdateState = function(scene, timeStep)
-    if gInterface then
-        gInterface:getStateMachine():_sceneUpdateState(scene, timeStep)
-    end
-end
-
-local SceneExitState = function(scene)
-    if gInterface then
-        gInterface:getStateMachine():_sceneExitState(scene)
-    end
-end
-
-local SceneOnMessage = function(scene, message)
-    if gInterface then
-        gInterface:getStateMachine():_sceneOnMessage(scene, message)
-    end
-end
-
-local SceneKeyboardShow = function(scene)
-    if gInterface then
-        gInterface:getStateMachine():_sceneKeyboardShow(scene)
-    end
-end
-
-local SceneKeyboardCancel = function(scene)
-    if gInterface then
-        gInterface:getStateMachine():_sceneKeyboardCancel(scene)
-    end
-end
-
-local SceneKeyboardReturn = function(scene, text)
-    if gInterface then
-        gInterface:getStateMachine():_sceneKeyboardReturn(scene, text)
-    end
-end
-
-local SceneRenderHUD = function(scene)
-    if gInterface then
-        gInterface:getStateMachine():_sceneRenderHUD(scene)
-    end
-end
-
-local SceneGamePause = function(scene)
-    if gInterface then
-        gInterface:getStateMachine():_sceneGamePause(scene)
-    end
-end
-
-local SceneGameUnPause = function(scene)
-    if gInterface then
-        gInterface:getStateMachine():_sceneGameUnPause(scene)
-    end
-end
-
-local SceneTouchesDown = function(scene, touches)
-    if gInterface then
-        gInterface:getStateMachine():_sceneTouchesDown(scene, touches)
-    end
-end
-
-local SceneTouchesUp = function(scene, touches)
-    if gInterface then
-        gInterface:getStateMachine():_sceneTouchesUp(scene, touches)
-    end
-end
-
-local SceneTouchesMove = function(scene, touches)
-    if gInterface then
-        gInterface:getStateMachine():_sceneTouchesMove(scene, touches)
-    end
-end
-
-local SceneTouchesCancelled = function(scene, touches)
-    if gInterface then
-        gInterface:getStateMachine():_sceneTouchesCancelled(scene, touches)
-    end
-end
-
-local SceneTouchDown = function(scene, touch)
-    if gInterface then
-        gInterface:getStateMachine():_sceneTouchDown(scene, touch)
-    end
-end
-
-local SceneTouchUp = function(scene, touch)
-    if gInterface then
-        gInterface:getStateMachine():_sceneTouchUp(scene, touch)
-    end
-end
-
-local SceneTouchMove = function(scene, touch)
-    if gInterface then
-        gInterface:getStateMachine():_sceneTouchMove(scene, touch)
-    end
-end
-
-local SceneTouchCancelled = function(scene, touch)
-    if gInterface then
-        gInterface:getStateMachine():_sceneTouchCancelled(scene, touch)
-    end
-end
-
-local SceneMouseDown = function(scene, mouse)
-    if gInterface then
-        gInterface:getStateMachine():_sceneMouseDown(scene, mouse)
-    end
-end
-
-local SceneMouseUp = function(scene, mouse)
-    if gInterface then
-        gInterface:getStateMachine():_sceneMouseUp(scene, mouse)
-    end
-end
+local Render = function() end
+local Resize = function(width, height, orientation) end
+local TouchesDown = function(touches) end
+local TouchesUp = function(touches) end
+local TouchesMove = function(touches) end
+local TouchesCancelled = function(touches) end
+local TouchDown = function(touch) end
+local TouchUp = function(touch) end
+local TouchMove = function(touch) end
+local TouchCancelled = function(touches) end
+local MouseDown = function(mouse) end
+local MouseUp = function(mouse) end
+local MouseMove = function(mouse) end
+local KeyDown = function(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui) end
+local KeyUp = function(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui) end
+local WorldEnterState = function() end
+local WorldUpdateState = function(timeStep) end
+local WorldExitState = function() end
+local WorldOnMessage = function(message) end
+local WorldKeyboardShow = function() end
+local WorldKeyboardCancel = function() end
+local WorldKeyboardReturn = function(text) end
+local WorldReceivedMemoryWarning = function() end
+local WorldGamePause = function() end
+local WorldGameUnPause = function() end
+local WorldRenderHUD = function() end
+local WorldTouchesDown = function(touches) end
+local WorldTouchesUp = function(touches) end
+local WorldTouchesMove = function(touches) end
+local WorldTouchesCancelled = function(touches) end
+local WorldTouchDown = function(touch) end
+local WorldTouchUp = function(touch) end
+local WorldTouchMove = function(touch) end
+local WorldTouchCancelled = function(touch) end
+local WorldMouseDown = function(mouse) end
+local WorldMouseUp = function(mouse) end
+local WorldMouseMove = function(mouse) end
+local WorldKeyDown = function(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui) end
+local WorldKeyUp = function(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui) end
+local WorldWillResignActive = function() end
+local WorldDidBecomeActive = function() end
+local WorldDidEnterBackground = function() end
+local WorldWillEnterForeground = function() end
+local WorldWillTerminate = function() end
+local WorldInterrupt = function() end
+local WorldResumeInterrupt = function() end
+local SceneEnterState = function(scene) end
+local SceneUpdateState = function(scene, timeStep) end
+local SceneExitState = function(scene) end
+local SceneOnMessage = function(scene, message) end
+local SceneKeyboardShow = function(scene) end
+local SceneKeyboardCancel = function(scene) end
+local SceneKeyboardReturn = function(scene, text) end
+local SceneRenderHUD = function(scene) end
+local SceneGamePause = function(scene) end
+local SceneGameUnPause = function(scene) end
+local SceneTouchesDown = function(scene, touches) end
+local SceneTouchesUp = function(scene, touches) end
+local SceneTouchesMove = function(scene, touches) end
+local SceneTouchesCancelled = function(scene, touches) end
+local SceneTouchDown = function(scene, touch) end
+local SceneTouchUp = function(scene, touch) end
+local SceneTouchMove = function(scene, touch) end
+local SceneTouchCancelled = function(scene, touch) end
+local SceneMouseDown = function(scene, mouse) end
+local SceneMouseUp = function(scene, mouse) end
 
 local SceneMouseMove = function(scene, mouse)
     if gInterface then

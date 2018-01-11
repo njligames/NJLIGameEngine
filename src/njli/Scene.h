@@ -494,7 +494,7 @@ namespace njli
     const Camera *getTouchCamera() const;
 
   protected:
-    void addActiveCamera(Camera * camera);
+    void addActiveCamera(Camera * camera = NULL);
     void removeActiveCamera(Camera * camera);
 
     void addActiveNode(Node * node);

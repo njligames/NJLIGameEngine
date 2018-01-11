@@ -906,8 +906,7 @@ namespace njli
       }
     else
       {
-        SDL_LogDebug(SDL_LOG_CATEGORY_TEST,
-                     "There is no SceneState in mouseMove\n");
+//        SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState in mouseMove\n");
       }
   }
     
@@ -927,8 +926,7 @@ namespace njli
         }
         else
         {
-            SDL_LogDebug(SDL_LOG_CATEGORY_TEST,
-                         "There is no SceneState in keyUp\n");
+//            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState in keyUp\n");
         }
     }
     
@@ -948,8 +946,7 @@ namespace njli
         }
         else
         {
-            SDL_LogDebug(SDL_LOG_CATEGORY_TEST,
-                         "There is no SceneState in keyUp\n");
+            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState in keyDown\n");
         }
     }
 
@@ -1028,8 +1025,7 @@ namespace njli
       }
     else
       {
-        SDL_LogDebug(SDL_LOG_CATEGORY_TEST,
-                     "There is no SceneState in renderHUD\n");
+//        SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState in renderHUD\n");
       }
   }
 
