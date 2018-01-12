@@ -15,15 +15,56 @@ BitmapFont2.__index = BitmapFont2
 --#############################################################################
 
 local __ctor = function(self, init)
-  --TODO: construct this Entity
+
+  local fonts = init or {}
+
+  self._fonts = {}
+  for i=1,#fonts do
+    local font = fonts[i]
+    local assetPath = njli.ASSET_PATH("fonts/" .. font .. ".lua")
+    local data = loadfile(assetPath)()
+
+    local image = njli.Image.create()
+    if njli.World.getInstance():getWorldResourceLoader():load("fonts/" .. font .. ".png", image) then
+      local shader = njli.ShaderProgram.create()
+      if njli.World.getInstance():getWorldResourceLoader():load("shaders/objectShader.vsh", "shaders/objectShader.fsh", shader) then
+        local material = njli.Material.create()
+        local geometry = njli.Sprite2D.create()
+
+        geometry:setMaterial(material)
+        geometry:setShaderProgram(shader)
+
+        geometry:getMaterial():getDiffuse():loadGPU(image)
+
+        table.insert(self._fonts, {image=image, data=data, material=material, shader=shader, geometry=geometry})
+      else
+        njli.ShaderProgram.destroy(shader)
+      end
+    else
+      njli.Image.destroy(image)
+    end
+  end
+  print_r(self._fonts)
 end
 
 local __dtor = function(self)
-  --TODO: destruct this Entity
+  for i=1,#self._fonts do
+    local image = self._fonts[i].image
+    njli.Image.destroy(image)
+
+    local material = self._fonts[i].material
+    njli.Material.destroy(material)
+
+    local shader = self._fonts[i].shader
+    njli.ShaderProgram.destroy(shader)
+
+    local geometry = self._fonts[i].geometry
+    njli.Sprite2D.destroy(geometry)
+  end
+  self._fonts = nil
 end
 
 local __load = function(self)
-  --TODO: load this Entity
 end
 
 local __unLoad = function(self)
@@ -31,24 +72,6 @@ local __unLoad = function(self)
 end
 
 --############################################################################# 
-
---TODO: write function here for BitmapFont2
---function BitmapFont2:somefunction()
---end
-
-function BitmapFont2:load(...)
-  local fonts = ... or {}
-
-  local baseFontPath = "fonts/"
-
-  self._fonts = {}
-
-  for i=1,#fonts do
-    local font = fonts[i]
-    print(font)
-  end
-
-end
 
 function BitmapFont2:printf(...)
 	local arg = ... or {}
@@ -61,10 +84,12 @@ function BitmapFont2:printf(...)
 		align = arg.align
 	end
 
+  local mainNode = arg.mainNode or njli.Node.create()
+  local rect = { 0, 0, 0, 0 }
+
 	for c in string.gmatch( text .. '\n', '(.)' ) do
 		print(c)
 	end
-
 
 	local mainNode
 end

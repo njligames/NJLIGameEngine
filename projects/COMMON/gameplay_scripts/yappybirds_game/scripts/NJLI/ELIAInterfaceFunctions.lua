@@ -3,6 +3,7 @@ debugging = nil
 
 local Interface = require 'NJLI.Interface'
 local BitmapFont = require 'NJLI.BitmapFont'
+local BitmapFont2 = require 'NJLI.BitmapFont2'
 local YappyGame = require "YAPPYBIRDS.YappyGame"
 
 RanchersFont = nil
@@ -82,44 +83,45 @@ local Create = function()
     end
   end
   
-  if nil == RanchersFont then
-    RanchersFont = BitmapFont({file='Ranchers_GlyphDesigner.fnt'})
-    RanchersFont:load()
-    RanchersFont:show(OrthographicCameraNode:getCamera())
-    RanchersFont:hide(PerspectiveCameraNode:getCamera())
-  end
+  -- if nil == RanchersFont then
+  --   RanchersFont = BitmapFont({file='Ranchers_GlyphDesigner.fnt'})
+  --   RanchersFont:load()
+  --   RanchersFont:show(OrthographicCameraNode:getCamera())
+  --   RanchersFont:hide(PerspectiveCameraNode:getCamera())
+  -- end
+  -- 
+  -- if nil == ELIAFont then
+  --   ELIAFont = BitmapFont({file='Elia_GlyphDesigner.fnt'})
+  --   ELIAFont:load()
+  --   ELIAFont:show(OrthographicCameraNode:getCamera())
+  --   ELIAFont:hide(PerspectiveCameraNode:getCamera())
+  -- end 
   
-  if nil == ELIAFont then
-    ELIAFont = BitmapFont({file='Elia_GlyphDesigner.fnt'})
-    ELIAFont:load()
-    ELIAFont:show(OrthographicCameraNode:getCamera())
-    ELIAFont:hide(PerspectiveCameraNode:getCamera())
-  end 
+  
+  local bitmapfont2_test = BitmapFont2({"Elia_GlyphDesigner"})
+  
+  
+  
+    
+    
+    
+  
   
   
   
   
   
     
-    
-    
-  
-  
-  
-  
-  
-  
-    
-  -- local points = (arg and arg.points) or 1234567890
-  local vert_margin = njli.SCREEN():y() / 30.0
-  local horiz_margin = njli.SCREEN():x() / 40.0
-  -- local node, rect = ELIAFont:printf(string.format("%.5d", points), njli.SCREEN():x(), 'left')
-  local node, rect = ELIAFont:printf("jim", njli.SCREEN():x(), 'left')
-  node:setOrigin(bullet.btVector3(njli.SCREEN():x() - rect.width - horiz_margin, njli.SCREEN():y() - rect.height - vert_margin, -1))
-  node:show(OrthographicCameraNode:getCamera())
-  node:setCurrentScene(njli.World.getInstance():getScene())
-  
-  rootNode:addChildNode(node)
+  -- -- local points = (arg and arg.points) or 1234567890
+  -- local vert_margin = njli.SCREEN():y() / 30.0
+  -- local horiz_margin = njli.SCREEN():x() / 40.0
+  -- -- local node, rect = ELIAFont:printf(string.format("%.5d", points), njli.SCREEN():x(), 'left')
+  -- local node, rect = ELIAFont:printf("jim", njli.SCREEN():x(), 'left')
+  -- node:setOrigin(bullet.btVector3(njli.SCREEN():x() - rect.width - horiz_margin, njli.SCREEN():y() - rect.height - vert_margin, -1))
+  -- node:show(OrthographicCameraNode:getCamera())
+  -- node:setCurrentScene(njli.World.getInstance():getScene())
+  -- 
+  -- rootNode:addChildNode(node)
   
   
   
@@ -132,6 +134,7 @@ local Create = function()
 --    MyGame:startStateMachine()
 --  end
   
+
 end
   
 local Destroy = function()
