@@ -110,10 +110,11 @@ local Create = function()
   
   
     
-  local points = (arg and arg.points) or 1234567890
+  -- local points = (arg and arg.points) or 1234567890
   local vert_margin = njli.SCREEN():y() / 30.0
   local horiz_margin = njli.SCREEN():x() / 40.0
-  local node, rect = ELIAFont:printf(string.format("%.5d", points), njli.SCREEN():x(), 'left')
+  -- local node, rect = ELIAFont:printf(string.format("%.5d", points), njli.SCREEN():x(), 'left')
+  local node, rect = ELIAFont:printf("jim", njli.SCREEN():x(), 'left')
   node:setOrigin(bullet.btVector3(njli.SCREEN():x() - rect.width - horiz_margin, njli.SCREEN():y() - rect.height - vert_margin, -1))
   node:show(OrthographicCameraNode:getCamera())
   node:setCurrentScene(njli.World.getInstance():getScene())
