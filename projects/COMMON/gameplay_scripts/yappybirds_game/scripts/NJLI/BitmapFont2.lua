@@ -19,10 +19,13 @@ local __ctor = function(self, init)
   local fonts = init or {}
 
   self._fonts = {}
+  self._maxLineHeight = 0
   for i=1,#fonts do
     local font = fonts[i]
     local assetPath = njli.ASSET_PATH("fonts/" .. font .. ".lua")
     local data = loadfile(assetPath)()
+
+    self._maxLineHeight = math.max(self._maxLineHeight, data.common.lineHeight)
 
     local image = njli.Image.create()
     if njli.World.getInstance():getWorldResourceLoader():load("fonts/" .. font .. ".png", image) then
@@ -87,6 +90,18 @@ end
 
 --############################################################################# 
 
+function BitmapFont2:maxLineHeight()
+  print(self._maxLineHeight)
+  return self._maxLineHeight
+end
+
+function BitmapFont2:lineHeight(fontIndex)
+  local fi = fontIndex or 1
+  if fi  <= #self._fonts then
+      return self._fonts[fi].data.common.lineHeight
+  end
+end
+
 function BitmapFont2:_renderLetter(...)
 
   local arg = ... or {}
@@ -100,6 +115,7 @@ function BitmapFont2:_renderLetter(...)
   local charData = self._fonts[fontIndex].data.chars[ascii - 31]
 
   local node = nil
+  local recycled = false
   if charData then
 
     local geometry = self._fonts[fontIndex].geometry
@@ -107,9 +123,9 @@ function BitmapFont2:_renderLetter(...)
     local letterIndex = arg.letterIndex or 1
     if (letterIndex - 1) < mainNode:numberOfChildrenNodes() then
       node = mainNode:getChildNode(letterIndex - 1)
+      recycled = true
     else
       node = njli.Node.create()
-      -- mainNode:addChildNode(node)
     end
 
     local letter = {xPivot=0,yPivot=0}
@@ -129,7 +145,7 @@ function BitmapFont2:_renderLetter(...)
 
   end
 
-  return charData, node
+  return charData, node, recycled
 
 end
 
@@ -214,6 +230,7 @@ function BitmapFont2:printf(...)
 
   local node = nil
   local charData = nil
+  local recycleNode = false
 
 	for c in string.gmatch( text .. '\n', '(.)' ) do
     local ascii = string.byte(c)
@@ -232,7 +249,7 @@ function BitmapFont2:printf(...)
     end
 
     if (ascii >= 32 and ascii <= 126) then
-      charData, node = self:_renderLetter(paramTable)
+      charData, node, recycleNode = self:_renderLetter(paramTable)
 
       local fontIndex = paramTable.fontIndex or 1
       local lineHeight = self._fonts[fontIndex].data.common.lineHeight
@@ -245,7 +262,9 @@ function BitmapFont2:printf(...)
 
       if node then
         node:setOrigin(bullet.btVector3(xpos, ypos, 0))
-        mainNode:addChildNode(node)
+        if not recycleNode then
+          mainNode:addChildNode(node)
+        end
       end
     else
       -- if LINEFEED
@@ -254,7 +273,7 @@ function BitmapFont2:printf(...)
       -- if TAB
       elseif  ascii == 9 then
         for i=1, spacesInTab do
-          charData, node = self:_renderLetter(paramTable)
+          charData, node, recycleNode = self:_renderLetter(paramTable)
 
           local fontIndex = paramTable.fontIndex or 1
           local lineHeight = self._fonts[fontIndex].data.common.lineHeight
@@ -267,7 +286,9 @@ function BitmapFont2:printf(...)
 
           if node then
             node:setOrigin(bullet.btVector3(xpos, ypos, 0))
-            mainNode:addChildNode(node)
+            if not recycleNode then
+              mainNode:addChildNode(node)
+            end
           end
         end
       end

@@ -126,7 +126,7 @@ local Create = function()
     fontIndexTable[i] = 1
   end
 
-  -- print_r(fontIndexTable)
+  fontIndexTable[currentTypeIndex] = 2
 
   currentNode, rect = ELIAFont:printf({
     mainNode=nil,
@@ -135,8 +135,9 @@ local Create = function()
     align="Left",
   })
 
-  currentNode:setOrigin(bullet.btVector3(0 + horiz_margin, 0 + vert_margin, -1))
+  currentNode:setOrigin(bullet.btVector3(0 + horiz_margin, njli.SCREEN():y() - (ELIAFont:maxLineHeight() + vert_margin), -1))
   rootNode:addChildNode(currentNode)
+
 
 
   
@@ -266,14 +267,19 @@ local KeyDown = function(keycodeName, withCapsLock, withControl, withShift, with
   local targetChar = string.upper(string.sub(currentText, currentTypeIndex, currentTypeIndex))
 
   if currentChar == targetChar then
+    -- Set the correct letter to regular font face
     fontIndexTable[currentTypeIndex] = 7
+    -- Set the current letter to blue
+    if currentTypeIndex + 1 < string.len(currentText) then
+      fontIndexTable[currentTypeIndex + 1] = 2
+    end
 
-    -- currentNode, rect = ELIAFont:printf({
-    --   mainNode=currentNode,
-    --   text=currentText,
-    --   fontIndexTable=fontIndexTable,
-    --   align="Left",
-    -- })
+    currentNode, rect = ELIAFont:printf({
+      mainNode=currentNode,
+      text=currentText,
+      fontIndexTable=fontIndexTable,
+      align="Left",
+    })
 
     currentTypeIndex = currentTypeIndex + 1
     if currentTypeIndex > string.len(currentText) then
@@ -282,6 +288,15 @@ local KeyDown = function(keycodeName, withCapsLock, withControl, withShift, with
 
     print("yes")
   else
+    -- Set the current letter to Red
+    fontIndexTable[currentTypeIndex] = 4
+
+    currentNode, rect = ELIAFont:printf({
+      mainNode=currentNode,
+      text=currentText,
+      fontIndexTable=fontIndexTable,
+      align="Left",
+    })
     print("no")
   end
 end
