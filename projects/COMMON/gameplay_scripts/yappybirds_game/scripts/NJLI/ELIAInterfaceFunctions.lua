@@ -104,7 +104,7 @@ local Create = function()
   -- end 
   
   
-  local ELIAFont = BitmapFont2(
+  ELIAFont = BitmapFont2(
   {
     "Elia_GlyphDesigner_Black",
     "Elia_GlyphDesigner_Blue",
@@ -128,19 +128,15 @@ local Create = function()
 
   -- print_r(fontIndexTable)
 
-  local node, rect = ELIAFont:printf({
+  currentNode, rect = ELIAFont:printf({
+    mainNode=nil,
     text=currentText,
     fontIndexTable=fontIndexTable,
     align="Left",
   })
 
-  node:setOrigin(bullet.btVector3(0 + horiz_margin, 0 + vert_margin, -1))
-  currentNode = node
-  print(currentNode:getOrigin())
-  -- node:setOrigin(bullet.btVector3(njli.SCREEN():x() - rect.width - horiz_margin, njli.SCREEN():y() - rect.height - vert_margin, -1))
-  node:setCurrentScene(njli.World.getInstance():getScene())
-  
-  rootNode:addChildNode(node)
+  currentNode:setOrigin(bullet.btVector3(0 + horiz_margin, 0 + vert_margin, -1))
+  rootNode:addChildNode(currentNode)
 
 
   
@@ -270,6 +266,15 @@ local KeyDown = function(keycodeName, withCapsLock, withControl, withShift, with
   local targetChar = string.upper(string.sub(currentText, currentTypeIndex, currentTypeIndex))
 
   if currentChar == targetChar then
+    fontIndexTable[currentTypeIndex] = 7
+
+    -- currentNode, rect = ELIAFont:printf({
+    --   mainNode=currentNode,
+    --   text=currentText,
+    --   fontIndexTable=fontIndexTable,
+    --   align="Left",
+    -- })
+
     currentTypeIndex = currentTypeIndex + 1
     if currentTypeIndex > string.len(currentText) then
       currentTypeIndex = 1

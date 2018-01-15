@@ -946,7 +946,7 @@ namespace njli
         }
         else
         {
-            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState in keyDown\n");
+//            SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState in keyDown\n");
         }
     }
 
