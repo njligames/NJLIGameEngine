@@ -16,6 +16,9 @@ gInterface = nil
 
 
 currentNode = nil
+currentText = "JamesGregoryFolk"
+fontIndexTable = {}
+currentTypeIndex = 1
 
 local Create = function()
 
@@ -119,16 +122,14 @@ local Create = function()
   local horiz_margin = njli.SCREEN():x() / 40.0
 
 
-  local text = "JamesGregoryFolk"
-  local fontIndexTable = {}
-  for i=1, string.len(text) do
+  for i=1, string.len(currentText) do
     fontIndexTable[i] = 1
   end
 
   -- print_r(fontIndexTable)
 
   local node, rect = ELIAFont:printf({
-    text=text,
+    text=currentText,
     fontIndexTable=fontIndexTable,
     align="Left",
   })
@@ -246,7 +247,7 @@ local Update = function(timeStep)
  njli.World.getInstance():setBackgroundColor(1.000, 1.000, 1.000)
  --print("update")
   if currentNode then
-    print(currentNode:getOrigin(), timeStep)
+    --print(currentNode:getOrigin(), timeStep)
   end
 end
 
@@ -263,7 +264,23 @@ local TouchCancelled = function(touches) end
 local MouseDown = function(mouse) end
 local MouseUp = function(mouse) end
 local MouseMove = function(mouse) end
-local KeyDown = function(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui) end
+
+local KeyDown = function(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui) 
+  local currentChar = string.upper(keycodeName)
+  local targetChar = string.upper(string.sub(currentText, currentTypeIndex, currentTypeIndex))
+
+  if currentChar == targetChar then
+    currentTypeIndex = currentTypeIndex + 1
+    if currentTypeIndex > string.len(currentText) then
+      currentTypeIndex = 1
+    end
+
+    print("yes")
+  else
+    print("no")
+  end
+end
+
 local KeyUp = function(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui) end
 local WorldEnterState = function() end
 local WorldUpdateState = function(timeStep) end
