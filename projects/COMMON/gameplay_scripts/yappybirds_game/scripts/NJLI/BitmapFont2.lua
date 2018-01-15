@@ -36,7 +36,21 @@ local __ctor = function(self, init)
 
         geometry:getMaterial():getDiffuse():loadGPU(image)
 
-        table.insert(self._fonts, {image=image, data=data, material=material, shader=shader, geometry=geometry})
+        table.insert(self._fonts, {font=font, image=image, data=data, material=material, shader=shader, geometry=geometry})
+
+        local kerningTable = {}
+
+        for kerningIdx=1,#data.kerning do
+          local kerningData = data.kerning[kerningIdx]
+          local firstChar = string.char(kerningData.first)
+          local secondChar = string.char(kerningData.second)
+          local kerningAmt = kerningData.amount
+          local key = firstChar .. secondChar
+          kerningTable[key] = kerningAmt
+        end
+
+        self._fonts[i].kerningTable = kerningTable
+
       else
         njli.ShaderProgram.destroy(shader)
       end
@@ -44,7 +58,7 @@ local __ctor = function(self, init)
       njli.Image.destroy(image)
     end
   end
-  print_r(self._fonts)
+
 end
 
 local __dtor = function(self)
@@ -73,25 +87,203 @@ end
 
 --############################################################################# 
 
+function BitmapFont2:_renderLetter(...)
+
+  local arg = ... or {}
+  local mainNode = arg.mainNode or nil
+  assert(mainNode, "There must me a main node to attach the letter to.")
+
+  local charValue = arg.charValue or "?"
+  local fontIndex = arg.fontIndex or 1
+
+  local ascii = string.byte(charValue) or error("This should be impossible", 1)
+  local charData = self._fonts[fontIndex].data.chars[ascii - 31]
+
+  local node = nil
+  if charData then
+
+    local geometry = self._fonts[fontIndex].geometry
+
+    local letterIndex = arg.letterIndex or 1
+    if (letterIndex - 1) < mainNode:numberOfChildrenNodes() then
+      node = mainNode:getChildNode(letterIndex - 1)
+    else
+      node = njli.Node.create()
+      -- mainNode:addChildNode(node)
+    end
+
+    local letter = {xPivot=0,yPivot=0}
+
+    node:setName(charValue)
+    node:setGeometry(geometry)
+    
+    geometry:setSpriteAtlasFrame(node,
+      charData.x,
+      charData.y,
+      charData.width,
+      charData.height)
+
+    geometry:setDimensions(node,
+      bullet.btVector2( charData.width*2, charData.height*2),
+      bullet.btVector2( letter.xPivot, letter.yPivot ))
+
+  end
+
+  return charData, node
+
+end
+
+function BitmapFont2:_renderNewline(...)
+  print('render new line')
+end
+
+function BitmapFont2:hide(camera)
+  self._hiddenCamera=camera
+
+  for i=1,#self._fonts do
+    local geometry = self._fonts[i].geometry
+    if geometry then
+      geometry:hide(camera)
+    end
+  end
+end
+
+function BitmapFont2:show(camera)
+  self._showCamera=camera
+
+  for i=1,#self._fonts do
+    local geometry = self._fonts[i].geometry
+    if geometry then
+      geometry:show(camera)
+    end
+  end
+end
+
+function BitmapFont2:updateFont(...)
+  local arg = ... or {}
+
+  local node = arg.node
+  local fontIndexTable = arg.fontIndexTable 
+  local align = arg.align or "left"
+
+  local arg =
+  {
+    mainNode=node,
+    text=node:getName(),
+    align=align or "left"
+  }
+
+  print_r(arg)
+end
+
 function BitmapFont2:printf(...)
 	local arg = ... or {}
 
-	local text = arg.text or "BitmapFont2 Text"
-	local align = "left"
-	local fontIndex = arg.fontIndex or 1
+	local text = arg.text or "???"
+	local align = arg.align or "left"
 
 	if arg.align and (arg.align == "left" or arg.align == "center" or arg.align == "right") then
 		align = arg.align
 	end
 
   local mainNode = arg.mainNode or njli.Node.create()
+  mainNode:setName(text)
+
   local rect = { 0, 0, 0, 0 }
 
+  local fontIndexTable = {}
+  if arg.fontIndexTable then
+    for i=1, #arg.fontIndexTable do
+      fontIndexTable[i] = arg.fontIndexTable[i] or 1
+    end
+  else
+    for i=1,string.len(text) do
+      fontIndexTable[i] = 1
+    end
+  end
+  self._fontIndexTable = fontIndexTable
+
+
+  local spacesInTab = arg.spacesInTab or 2
+
+  local xStart, yStart = 0, 0
+  --TODO: Calculate the starting position based on the justification
+  local letterIndex = 1
+
+  local xCurrent, yCurrent = xStart, yStart
+
+  local node = nil
+  local charData = nil
+
 	for c in string.gmatch( text .. '\n', '(.)' ) do
-		print(c)
+    local ascii = string.byte(c)
+
+    local paramTable =
+    {
+      mainNode = mainNode,
+      letterIndex = letterIndex,
+      charValue = c,
+      fontIndex = fontIndexTable[letterIndex]
+    }
+
+    -- if TAB
+    if ascii == 9 then
+      paramTable.charValue = " "
+    end
+
+    if (ascii >= 32 and ascii <= 126) then
+      charData, node = self:_renderLetter(paramTable)
+
+      local fontIndex = paramTable.fontIndex or 1
+      local lineHeight = self._fonts[fontIndex].data.common.lineHeight
+      local base = self._fonts[fontIndex].data.common.base
+
+      local xpos = xCurrent + charData.xoffset
+      local ypos = (lineHeight - charData.yoffset) - charData.height - (lineHeight - base) - yCurrent
+
+      xCurrent = xCurrent + charData.xadvance
+
+      if node then
+        node:setOrigin(bullet.btVector3(xpos, ypos, 0))
+        mainNode:addChildNode(node)
+      end
+    else
+      -- if LINEFEED
+      if ascii == 10 then
+        -- xOffset, yOffset, xAdvance = self:_renderNewline(paramTable)
+      -- if TAB
+      elseif  ascii == 9 then
+        for i=1, spacesInTab do
+          charData, node = self:_renderLetter(paramTable)
+
+          local fontIndex = paramTable.fontIndex or 1
+          local lineHeight = self._fonts[fontIndex].data.common.lineHeight
+          local base = self._fonts[fontIndex].data.common.base
+
+          local xpos = xCurrent + charData.xoffset
+          local ypos = (lineHeight - charData.yoffset) - charData.height - (lineHeight - base) - yCurrent
+
+          xCurrent = xCurrent + charData.xadvance
+
+          if node then
+            node:setOrigin(bullet.btVector3(xpos, ypos, 0))
+            mainNode:addChildNode(node)
+          end
+        end
+      end
+    end
+
+    letterIndex = letterIndex + 1
 	end
 
-	local mainNode
+  if self._showCamera then
+    mainNode:show(self._showCamera)
+  end
+  if self._hiddenCamera then
+    mainNode:hide(self._hiddenCamera)
+  end
+
+  return mainNode, rect
 end
 
 --############################################################################# 

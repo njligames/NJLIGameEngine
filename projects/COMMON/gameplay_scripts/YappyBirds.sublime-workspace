@@ -4,6 +4,30 @@
 		"selected_items":
 		[
 			[
+				"btVect",
+				"btVector3"
+			],
+			[
+				"way",
+				"wayPoint"
+			],
+			[
+				"wayPoint",
+				"wayPointTable"
+			],
+			[
+				"level",
+				"levelLoader"
+			],
+			[
+				"ta",
+				"table.insert	(table, [pos,] value)"
+			],
+			[
+				"tabl",
+				"table.insert	(table, [pos,] value)"
+			],
+			[
 				"no",
 				"nodeEntityChild	nodeEntity"
 			],
@@ -130,10 +154,6 @@
 			[
 				"table",
 				"table.insert	(table, [pos,] value)"
-			],
-			[
-				"tabl",
-				"table.remove	(table [, pos])"
 			],
 			[
 				"fo",
@@ -328,66 +348,35 @@
 	"buffers":
 	[
 		{
-			"file": "yappybirds_game/scripts/main.lua",
+			"file": "yappybirds_game/scripts/NJLI/BitmapFont2.lua",
 			"settings":
 			{
-				"buffer_size": 11226,
+				"buffer_size": 5183,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "yappybirds_game/scripts/YAPPYBIRDS/SCENES/MENU/Menu.lua",
+			"contents": "Warning: No joysticks connected!\n  Renderer opengl:\n    Flags: 0x0000000E (Accelerated | PresentVSync | 0x00000008)\n    Texture formats (1): ARGB8888\n2018-01-12 18:03:01.956316-0500 NJLIGameEngine[8945:3431371] INFO: opengl\n2018-01-12 18:03:02.027049-0500 NJLIGameEngine[8945:3431371] INFO: SDL_GetWindowSize #0: current display mode is 1440x817px\n2018-01-12 18:03:02.027090-0500 NJLIGameEngine[8945:3431371] INFO: SDL_GL_GetDrawableSize #0: current display mode is 1440x817px\nhello world from NJLIGameEngine.\n2018-01-12 18:03:02.156148-0500 NJLIGameEngine[8945:3431371] VERBOSE: Platform Name = `MacOSx`\n2018-01-12 18:03:02.156186-0500 NJLIGameEngine[8945:3431371] VERBOSE: Device Name = `x86_64`\n2018-01-12 18:03:02.156278-0500 NJLIGameEngine[8945:3431371] ERROR: \n<LUA>\n	<ERROR>\n	(LUA_ERRRUN - a runtime error)\n	</ERROR>\n	<DESCRIPTION>\n	attempt to call a nil value\nstack traceback:\n	</DESCRIPTION>\n	<CODE>\n	__NJLIResize\n	</CODE>\n</LUA>\ntable: 0x600002469200 {\n [1] => table: 0x600002469200 {\n          [xoffset] => 0\n          [y] => 478\n          [id] => 32\n          [chnl] => 0\n          [letter] => \"space\"\n          [width] => 0\n          [page] => 0\n          [x] => 140\n          [yoffset] => 53\n          [height] => 0\n          [xadvance] => 46\n        }\n [2] => table: 0x600002469200 {\n          [xoffset] => 4\n          [y] => 177\n          [id] => 33\n          [chnl] => 0\n          [letter] => \"!\"\n          [width] => 13\n          [page] => 0\n          [x] => 416\n          [yoffset] => 4\n          [height] => 49\n          [xadvance] => 33\n        }\n [3] => table: 0x600002469200 {\n          [xoffset] => 6\n          [y] => 432\n          [id] => 34\n          [chnl] => 0\n          [letter] => \"\"\"\n          [width] => 14\n          [page] => 0\n          [x] => 382\n          [yoffset] => 3\n          [height] => 21\n          [xadvance] => 39\n        }\n [4] => table: 0x600002469200 {\n          [xoffset] => 3\n          [y] => 177\n          [id] => 35\n          [chnl] => 0\n          [letter] => \"#\"\n          [width] => 33\n          [page] => 0\n          [x] => 347\n          [yoffset] => 4\n          [height] => 49\n          [xadvance] => 49\n        }\n [5] => table: 0x600002469200 {\n          [xoffset] => 7\n          [y] => 432\n          [id] => 36\n          [chnl] => 0\n          [letter] => \"$\"\n          [width] => 22\n          [page] => 0\n          [x] => 223\n          [yoffset] => 12\n          [height] => 33\n          [xadvance] => 38\n        }\n [6] => table: 0x600002469200 {\n          [xoffset] => 1\n          [y] => 382\n          [id] => 37\n          [chnl] => 0\n          [letter] => \"%\"\n          [width] => 42\n          [page] => 0\n          [x] => 96\n          [yoffset] => 6\n          [height] => 47\n          [xadvance] => 57\n        }\n [7] => table: 0x600002469200 {\n          [xoffset] => 2\n          [y] => 177\n          [id] => 38\n          [chnl] => 0\n          [letter] => \"&\"\n          [width] => 47\n          [page] => 0\n          [x] => 229\n          [yoffset] => 2\n          [height] => 51\n          [xadvance] => 62\n        }\n [8] => table: 0x600002469200 {\n          [xoffset] => 5\n          [y] => 432\n          [id] => 39\n          [chnl] => 0\n          [letter] => \"'\"\n          [width] => 7\n          [page] => 0\n          [x] => 423\n          [yoffset] => 4\n          [height] => 21\n          [xadvance] => 32\n        }\n [9] => table: 0x600002469200 {\n          [xoffset] => 5\n          [y] => 2\n          [id] => 40\n          [chnl] => 0\n          [letter] => \"(\"\n          [width] => 18\n          [page] => 0\n          [x] => 112\n          [yoffset] => -1\n          [height] => 63\n          [xadvance] => 37\n        }\n [10] => table: 0x600002469200 {\n           [xoffset] => 4\n           [y] => 2\n           [id] => 41\n           [chnl] => 0\n           [letter] => \")\"\n           [width] => 18\n           [page] => 0\n           [x] => 132\n           [yoffset] => -1\n           [height] => 63\n           [xadvance] => 38\n         }\n [11] => table: 0x600002469200 {\n           [xoffset] => 2\n           [y] => 432\n           [id] => 42\n           [chnl] => 0\n           [letter] => \"*\"\n           [width] => 32\n           [page] => 0\n           [x] => 247\n           [yoffset] => 2\n           [height] => 29\n           [xadvance] => 50\n         }\n [12] => table: 0x600002469200 {\n           [xoffset] => 2\n           [y] => 432\n           [id] => 43\n           [chnl] => 0\n           [letter] => \"+\"\n           [width] => 33\n           [page] => 0\n           [x] => 312\n           [yoffset] => 17\n           [height] => 24\n           [xadvance] => 50\n         }\n [13] => table: 0x600002469200 {\n           [xoffset] => 5\n           [y] => 432\n           [id] => 44\n           [chnl] => 0\n           [letter] => \",\"\n           [width] => 11\n           [page] => 0\n           [x] => 398\n           [yoffset] => 43\n           [height] => 21\n           [xadvance] => 24\n         }\n [14] => table: 0x600002469200 {\n           [xoffset] => 0\n           [y] => 478\n           [id] => 45\n           [chnl] => 0\n           [letter] => \"-\"\n           [width] => 24\n           [page] => 0\n           [x] => 72\n           [yoffset] => 31\n           [height] => 8\n           [xadvance] => 41\n         }\n [15] => table: 0x600002469200 {\n           [xoffset] => 4\n           [y] => 478\n           [id] => 46\n           [chnl] => 0\n           [letter] => \".\"\n           [width] => 15\n           [page] => 0\n           [x] => 2\n           [yoffset] => 39\n           [height] => 15\n           [xadvance] => 35\n         }\n [16] => table: 0x600002469200 {\n           [xoffset] => -1\n           [y] => 2\n           [id] => 47\n           [chnl] => 0\n           [letter] => \"/\"\n           [width] => 29\n           [page] => 0\n           [x] => 195\n           [yoffset] => 3\n           [height] => 58\n           [xadvance] => 45\n         }\n [17] => table: 0x600002469200 {\n           [xoffset] => 0\n           [y] => 332\n           [id] => 48\n           [chnl] => 0\n           [letter] => \"0\"\n           [width] => 45\n           [page] => 0\n           [x] => 55\n           [yoffset] => 5\n           [height] => 48\n           [xadvance] => 63\n         }\n [18] => table: 0x600002469200 {\n           [xoffset] => 0\n           [y] => 332\n           [id] => 49\n           [chnl] => 0\n           [letter] => \"1\"\n           [width] => 45\n           [page] => 0\n           [x] => 102\n           [yoffset] => 5\n           [height] => 48\n           [xadvance] => 63\n         }\n [19] => table: 0x600002469200 {\n           [xoffset] => 0\n           [y] => 332\n           [id] => 50\n           [chnl] => 0\n           [letter] => \"2\"\n           [width] => 45\n           [page] => 0\n           [x] => 149\n           [yoffset] => 5\n           [height] => 48\n           [xadvance] => 63\n         }\n [20] => table: 0x600002469200 {\n           [xoffset] => 0\n           [y] => 332\n           [id] => 51\n           [chnl] => 0\n           [letter] => \"3\"\n           [width] => 45\n           [page] => 0\n           [x] => 196\n           [yoffset] => 5\n           [height] => 48\n           [xadvance] => 63\n         }\n [21] => table: 0x600002469200 {\n           [xoffset] => 0\n           [y] => 332\n           [id] => 52\n           [chnl] => 0\n           [letter] => \"4\"\n           [width] => 45\n           [page] => 0\n           [x] => 243\n           [yoffset] => 5\n           [height] => 48\n           [xadvance] => 63\n         }\n [22] => table: 0x600002469200 {\n           [xoffset] => 0\n           [y] => 332\n           [id] => 53\n           [chnl] => 0\n           [letter] => \"5\"\n           [width] => 45\n           [page] => 0\n           [x] => 290\n           [yoffset] => 5\n           [height] => 48\n           [xadvance] => 63\n         }\n [23] => table: 0x600002469200 {\n           [xoffset] => 0\n           [y] => 332\n           [id] => 54\n           [chnl] => 0\n           [letter] => \"6\"\n           [width] => 45\n           [page] => 0\n           [x] => 337\n           [yoffset] => 5\n           [height] => 48\n           [xadvance] => 63\n         }\n [24] => table: 0x600002469200 {\n           [xoffset] => 0\n           [y] => 332\n           [id] => 55\n           [chnl] => 0\n           [letter] => \"7\"\n           [width] => 45\n           [page] => 0\n           [x] => 384\n           [yoffset] => 5\n           [height] => 48\n           [xadvance] => 63\n         }\n [25] => table: 0x600002469200 {\n           [xoffset] => 0\n           [y] => 382\n           [id] => 56\n           [chnl] => 0\n           [letter] => \"8\"\n           [width] => 45\n           [page] => 0\n           [x] => 2\n           [yoffset] => 5\n           [height] => 48\n           [xadvance] => 63\n         }\n [26] => table: 0x600002469200 {\n           [xoffset] => 0\n           [y] => 382\n           [id] => 57\n           [chnl] => 0\n           [letter] => \"9\"\n           [width] => 45\n           [page] => 0\n           [x] => 49\n           [yoffset] => 5\n           [height] => 48\n           [xadvance] => 63\n         }\n [27] => table: 0x600002469200 {\n           [xoffset] => 6\n           [y] => 432\n           [id] => 58\n           [chnl] => 0\n           [letter] => \":\"\n           [width] => 10\n           [page] => 0\n           [x] => 411\n           [yoffset] => 26\n           [height] => 21\n           [xadvance] => 24\n         }\n [28] => table: 0x600002469200 {\n           [xoffset] => 5\n           [y] => 432\n           [id] => 59\n           [chnl] => 0\n           [letter] => \";\"\n           [width] => 11\n           [page] => 0\n           [x] => 210\n           [yoffset] => 27\n           [height] => 34\n           [xadvance] => 23\n         }\n [29] => table: 0x600002469200 {\n           [xoffset] => 4\n           [y] => 432\n           [id] => 60\n           [chnl] => 0\n           [letter] => \"<\"\n           [width] => 33\n           [page] => 0\n           [x] => 140\n           [yoffset] => 12\n           [height] => 34\n           [xadvance] => 51\n         }\n [30] => table: 0x600002469200 {\n           [xoffset] => 4\n           [y] => 432\n           [id] => 61\n           [chnl] => 0\n           [letter] => \"=\"\n           [width] => 33\n           [page] => 0\n           [x] => 347\n           [yoffset] => 18\n           [height] => 22\n           [xadvance] => 51\n         }\n [31] => table: 0x600002469200 {\n           [xoffset] => 4\n           [y] => 432\n           [id] => 62\n           [chnl] => 0\n           [letter] => \">\"\n           [width] => 33\n           [page] => 0\n           [x] => 175\n           [yoffset] => 12\n           [height] => 34\n           [xadvance] => 51\n         }\n [32] => table: 0x600002469200 {\n           [xoffset] => 3\n           [y] => 177\n           [id] => 63\n           [chnl] => 0\n           [letter] => \"?\"\n           [width] => 32\n           [page] => 0\n           [x] => 382\n           [yoffset] => 4\n           [height] => 49\n           [xadvance] => 49\n         }\n [33] => table: 0x600002469200 {\n           [xoffset] => 3\n           [y] => 2\n           [id] => 64\n           [chnl] => 0\n           [letter] => \"@\"\n           [width] => 62\n           [page] => 0\n           [x] => 2\n           [yoffset] => 3\n           [height] => 63\n           [xadvance] => 80\n         }\n [34] => table: 0x600002469200 {\n           [xoffset] => 0\n           [y] => 177\n           [id] => 65\n           [chnl] => 0\n           [letter] => \"A\"\n           [width] => 45\n           [page] => 0\n           [x] => 278\n           [yoffset] => 0\n           [height] => 51\n           [xadvance] => 62\n         }\n [35] => table: 0x600002469200 {\n           [xoffset] => 0\n           [y] => 177\n           [id] => 66\n           [chnl] => 0\n           [letter] => \"B\"\n           [width] => 43\n           [page] => 0\n           [x] => 140\n           [yoffset] => 0\n           [height] => 53\n           [xadvance] => 61\n         }\n [36] => table: 0x600002469200 {\n           [xoffset] => -1\n           [y] => 177\n           [id] => 67\n           [chnl] => 0\n           [letter] => \"C\"\n           [width] => 42\n           [page] => 0\n           [x] => 185\n           [yoffset] => 1\n           [height] => 53\n           [xadvance] => 60\n         }\n [37] => table: 0x600002469200 {\n           [xoffset] => 0\n           [y] => 122\n           [id] => 68\n           [chnl] => 0\n           [letter] => \"D\"\n           [width] => 44\n           [page] => 0\n           [x] => 361\n           [yoffset] => 1\n           [height] => 53\n           [xadvance] => 61\n         }\n [38] => table: 0x600002469200 {\n           [xoffset] => -3\n           [y] => 2\n           [id] => 69\n           [chnl] => 0\n           [letter] => \"E\"\n           [width] => 51\n           [page] => 0\n           [x] => 226\n           [yoffset] => 0\n           [height] => 53\n           [xadvance] => 66\n         }\n [39] => table: 0x600002469200 {\n           [xoffset] => -3\n           [y] => 2\n           [id] => 70\n           [chnl] => 0\n           [letter] => \"F\"\n           [width] => 51\n           [page] => 0\n           [x] => 279\n           [yoffset] => 0\n           [height] => 53\n           [xadvance] => 66\n         }\n [40] => table: 0x600002469200 {\n           [xoffset] => -3\n           [y] => 2\n           [id] => 71\n           [chnl] => 0\n           [letter] => \"G\"\n           [width] => 51\n           [page] => 0\n           [x] => 332\n           [yoffset] => 0\n           [height] => 53\n           [xadvance] => 66\n         }\n [41] => table: 0x600002469200 {\n           [xoffset] => -3\n           [y] => 2\n           [id] => 72\n           [chnl] => 0\n           [letter] => \"H\"\n           [width] => 51\n           [page] => 0\n           [x] => 385\n           [yoffset] => 0\n           [height] => 53\n           [xadvance] => 66\n         }\n [42] => table: 0x600002469200 {\n           [xoffset] => -3\n           [y] => 67\n           [id] => 73\n           [chnl] => 0\n           [letter] => \"I\"\n           [width] => 51\n           [page] => 0\n           [x] => 2\n           [yoffset] => 0\n           [height] => 53\n           [xadvance] => 66\n         }\n [43] => table: 0x600002469200 {\n           [xoffset] => -3\n           [y] => 67\n           [id] => 74\n           [chnl] => 0\n           [letter] => \"J\"\n           [width] => 51\n           [page] => 0\n           [x] => 55\n           [yoffset] => 0\n           [height] => 53\n           [xadvance] => 66\n         }\n [44] => table: 0x600002469200 {\n           [xoffset] => -3\n           [y] => 67\n           [id] => 75\n           [chnl] => 0\n           [letter] => \"K\"\n           [width] => 51\n           [page] => 0\n           [x] => 108\n           [yoffset] => 0\n           [height] => 53\n           [xadvance] => 66\n         }\n [45] => table: 0x600002469200 {\n           [xoffset] => -3\n           [y] => 67\n           [id] => 76\n           [chnl] => 0\n           [letter] => \"L\"\n           [width] => 51\n           [page] => 0\n           [x] => 161\n           [yoffset] => 0\n           [height] => 53\n           [xadvance] => 66\n         }\n [46] => table: 0x600002469200 {\n           [xoffset] => -3\n           [y] => 67\n           [id] => 77\n           [chnl] => 0\n           [letter] => \"M\"\n           [width] => 51\n           [page] => 0\n           [x] => 214\n           [yoffset] => 0\n           [height] => 53\n           [xadvance] => 66\n         }\n [47] => table: 0x600002469200 {\n           [xoffset] => -3\n           [y] => 67\n           [id] => 78\n           [chnl] => 0\n           [letter] => \"N\"\n           [width] => 51\n           [page] => 0\n           [x] => 267\n           [yoffset] => 0\n           [height] => 53\n           [xadvance] => 66\n         }\n [48] => table: 0x600002469200 {\n           [xoffset] => 0\n           [y] => 177\n           [id] => 79\n           [chnl] => 0\n           [letter] => \"O\"\n           [width] => 44\n           [page] => 0\n           [x] => 2\n           [yoffset] => 0\n           [height] => 53\n           [xadvance] => 62\n         }\n [49] => table: 0x600002469200 {\n           [xoffset] => 0\n           [y] => 177\n           [id] => 80\n           [chnl] => 0\n           [letter] => \"P\"\n           [width] => 44\n           [page] => 0\n           [x] => 48\n           [yoffset] => 0\n           [height] => 53\n           [xadvance] => 62\n         }\n [50] => table: 0x600002469200 {\n           [xoffset] => 0\n           [y] => 122\n           [id] => 81\n           [chnl] => 0\n           [letter] => \"Q\"\n           [width] => 45\n           [page] => 0\n           [x] => 267\n           [yoffset] => 0\n           [height] => 53\n           [xadvance] => 63\n         }\n [51] => table: 0x600002469200 {\n           [xoffset] => 0\n           [y] => 177\n           [id] => 82\n           [chnl] => 0\n           [letter] => \"R\"\n           [width] => 44\n           [page] => 0\n           [x] => 94\n           [yoffset] => 0\n           [height] => 53\n           [xadvance] => 62\n         }\n [52] => table: 0x600002469200 {\n           [xoffset] => 0\n           [y] => 122\n           [id] => 83\n           [chnl] => 0\n           [letter] => \"S\"\n           [width] => 45\n           [page] => 0\n           [x] => 314\n           [yoffset] => 0\n           [height] => 53\n           [xadvance] => 63\n         }\n [53] => table: 0x600002469200 {\n           [xoffset] => -3\n           [y] => 67\n           [id] => 84\n           [chnl] => 0\n           [letter] => \"T\"\n           [width] => 51\n           [page] => 0\n           [x] => 320\n           [yoffset] => 0\n           [height] => 53\n           [xadvance] => 66\n         }\n [54] => table: 0x600002469200 {\n           [xoffset] => -3\n           [y] => 67\n           [id] => 85\n           [chnl] => 0\n           [letter] => \"U\"\n           [width] => 51\n           [page] => 0\n           [x] => 373\n           [yoffset] => 0\n           [height] => 53\n           [xadvance] => 66\n         }\n [55] => table: 0x600002469200 {\n           [xoffset] => -3\n           [y] => 122\n           [id] => 86\n           [chnl] => 0\n           [letter] => \"V\"\n           [width] => 51\n           [page] => 0\n           [x] => 2\n           [yoffset] => 0\n           [height] => 53\n           [xadvance] => 66\n         }\n [56] => table: 0x600002469200 {\n           [xoffset] => -3\n           [y] => 122\n           [id] => 87\n           [chnl] => 0\n           [letter] => \"W\"\n           [width] => 51\n           [page] => 0\n           [x] => 55\n           [yoffset] => 0\n           [height] => 53\n           [xadvance] => 66\n         }\n [57] => table: 0x600002469200 {\n           [xoffset] => -3\n           [y] => 122\n           [id] => 88\n           [chnl] => 0\n           [letter] => \"X\"\n           [width] => 51\n           [page] => 0\n           [x] => 108\n           [yoffset] => 0\n           [height] => 53\n           [xadvance] => 66\n         }\n [58] => table: 0x600002469200 {\n           [xoffset] => -3\n           [y] => 122\n           [id] => 89\n           [chnl] => 0\n           [letter] => \"Y\"\n           [width] => 51\n           [page] => 0\n           [x] => 161\n           [yoffset] => 0\n           [height] => 53\n           [xadvance] => 66\n         }\n [59] => table: 0x600002469200 {\n           [xoffset] => -3\n           [y] => 122\n           [id] => 90\n           [chnl] => 0\n           [letter] => \"Z\"\n           [width] => 51\n           [page] => 0\n           [x] => 214\n           [yoffset] => 0\n           [height] => 53\n           [xadvance] => 66\n         }\n [60] => table: 0x600002469200 {\n           [xoffset] => 4\n           [y] => 2\n           [id] => 91\n           [chnl] => 0\n           [letter] => \"[\"\n           [width] => 15\n           [page] => 0\n           [x] => 161\n           [yoffset] => 5\n           [height] => 61\n           [xadvance] => 28\n         }\n [61] => table: 0x600002469200 {\n           [xoffset] => 0\n           [y] => 177\n           [id] => 92\n           [chnl] => 0\n           [letter] => \"\\\"\n           [width] => 20\n           [page] => 0\n           [x] => 325\n           [yoffset] => 4\n           [height] => 50\n           [xadvance] => 34\n         }\n [62] => table: 0x600002469200 {\n           [xoffset] => 1\n           [y] => 2\n           [id] => 93\n           [chnl] => 0\n           [letter] => \"]\"\n           [width] => 15\n           [page] => 0\n           [x] => 178\n           [yoffset] => 5\n           [height] => 61\n           [xadvance] => 35\n         }\n [63] => table: 0x600002469200 {\n           [xoffset] => 2\n           [y] => 432\n           [id] => 94\n           [chnl] => 0\n           [letter] => \"^\"\n           [width] => 29\n           [page] => 0\n           [x] => 281\n           [yoffset] => 3\n           [height] => 28\n           [xadvance] => 45\n         }\n [64] => table: 0x600002469200 {\n           [xoffset] => -1\n           [y] => 478\n           [id] => 95\n           [chnl] => 0\n           [letter] => \"_\"\n           [width] => 40\n           [page] => 0\n           [x] => 98\n           [yoffset] => 59\n           [height] => 7\n           [xadvance] => 34\n         }\n [65] => table: 0x600002469200 {\n           [xoffset] => 3\n           [y] => 478\n           [id] => 96\n           [chnl] => 0\n           [letter] => \"`\"\n           [width] => 14\n           [page] => 0\n           [x] => 56\n           [yoffset] => 5\n           [height] => 11\n           [xadvance] => 32\n         }\n [66] => table: 0x600002469200 {\n           [xoffset] => 0\n           [y] => 432\n           [id] => 97\n           [chnl] => 0\n           [letter] => \"a\"\n           [width] => 45\n           [page] => 0\n           [x] => 93\n           [yoffset] => 10\n           [height] => 41\n           [xadvance] => 62\n         }\n [67] => table: 0x600002469200 {\n           [xoffset] => 0\n           [y] => 432\n           [id] => 98\n           [chnl] => 0\n           [letter] => \"b\"\n           [width] => 43\n           [page] => 0\n           [x] => 48\n           [yoffset] => 9\n           [height] => 44\n           [xadvance] => 61\n         }\n [68] => table: 0x600002469200 {\n           [xoffset] => -1\n           [y] => 382\n           [id] => 99\n           [chnl] => 0\n           [letter] => \"c\"\n           [width] => 42\n           [page] => 0\n           [x] => 280\n           [yoffset] => 9\n           [height] => 45\n           [xadvance] => 60\n         }\n [69] => table: 0x600002469200 {\n           [xoffset] => 0\n           [y] => 382\n           [id] => 100\n           [chnl] => 0\n           [letter] => \"d\"\n           [width] => 44\n           [page] => 0\n           [x] => 234\n           [yoffset] => 9\n           [height] => 45\n           [xadvance] => 61\n         }\n [70] => table: 0x600002469200 {\n           [xoffset] => -3\n           [y] => 232\n           [id] => 101\n           [chnl] => 0\n           [letter] => \"e\"\n           [width] => 51\n           [page] => 0\n           [x] => 2\n           [yoffset] => 5\n           [height] => 48\n           [xadvance] => 66\n         }\n [71] => table: 0x600002469200 {\n           [xoffset] => -3\n           [y] => 232\n           [id] => 102\n           [chnl] => 0\n           [letter] => \"f\"\n           [width] => 51\n           [page] => 0\n           [x] => 55\n           [yoffset] => 5\n           [height] => 48\n           [xadvance] => 66\n         }\n [72] => table: 0x600002469200 {\n           [xoffset] => -3\n           [y] => 232\n           [id] => 103\n           [chnl] => 0\n           [letter] => \"g\"\n           [width] => 51\n           [page] => 0\n           [x] => 108\n           [yoffset] => 5\n           [height] => 48\n           [xadvance] => 66\n         }\n [73] => table: 0x600002469200 {\n           [xoffset] => -3\n           [y] => 232\n           [id] => 104\n           [chnl] => 0\n           [letter] => \"h\"\n           [width] => 51\n           [page] => 0\n           [x] => 161\n           [yoffset] => 5\n           [height] => 48\n           [xadvance] => 66\n         }\n [74] => table: 0x600002469200 {\n           [xoffset] => -3\n           [y] => 232\n           [id] => 105\n           [chnl] => 0\n           [letter] => \"i\"\n           [width] => 51\n           [page] => 0\n           [x] => 214\n           [yoffset] => 5\n           [height] => 48\n           [xadvance] => 66\n         }\n [75] => table: 0x600002469200 {\n           [xoffset] => -3\n           [y] => 232\n           [id] => 106\n           [chnl] => 0\n           [letter] => \"j\"\n           [width] => 51\n           [page] => 0\n           [x] => 267\n           [yoffset] => 5\n           [height] => 48\n           [xadvance] => 66\n         }\n [76] => table: 0x600002469200 {\n           [xoffset] => -3\n           [y] => 232\n           [id] => 107\n           [chnl] => 0\n           [letter] => \"k\"\n           [width] => 51\n           [page] => 0\n           [x] => 320\n           [yoffset] => 5\n           [height] => 48\n           [xadvance] => 66\n         }\n [77] => table: 0x600002469200 {\n           [xoffset] => -3\n           [y] => 232\n           [id] => 108\n           [chnl] => 0\n           [letter] => \"l\"\n           [width] => 51\n           [page] => 0\n           [x] => 373\n           [yoffset] => 5\n           [height] => 48\n           [xadvance] => 66\n         }\n [78] => table: 0x600002469200 {\n           [xoffset] => -3\n           [y] => 282\n           [id] => 109\n           [chnl] => 0\n           [letter] => \"m\"\n           [width] => 51\n           [page] => 0\n           [x] => 2\n           [yoffset] => 5\n           [height] => 48\n           [xadvance] => 66\n         }\n [79] => table: 0x600002469200 {\n           [xoffset] => -3\n           [y] => 282\n           [id] => 110\n           [chnl] => 0\n           [letter] => \"n\"\n           [width] => 51\n           [page] => 0\n           [x] => 55\n           [yoffset] => 5\n           [height] => 48\n           [xadvance] => 66\n         }\n [80] => table: 0x600002469200 {\n           [xoffset] => 0\n           [y] => 382\n           [id] => 111\n           [chnl] => 0\n           [letter] => \"o\"\n           [width] => 44\n           [page] => 0\n           [x] => 324\n           [yoffset] => 9\n           [height] => 44\n           [xadvance] => 62\n         }\n [81] => table: 0x600002469200 {\n           [xoffset] => 0\n           [y] => 382\n           [id] => 112\n           [chnl] => 0\n           [letter] => \"p\"\n           [width] => 44\n           [page] => 0\n           [x] => 370\n           [yoffset] => 9\n           [height] => 44\n           [xadvance] => 62\n         }\n [82] => table: 0x600002469200 {\n           [xoffset] => 0\n           [y] => 382\n           [id] => 113\n           [chnl] => 0\n           [letter] => \"q\"\n           [width] => 45\n           [page] => 0\n           [x] => 140\n           [yoffset] => 8\n           [height] => 45\n           [xadvance] => 63\n         }\n [83] => table: 0x600002469200 {\n           [xoffset] => 0\n           [y] => 432\n           [id] => 114\n           [chnl] => 0\n           [letter] => \"r\"\n           [width] => 44\n           [page] => 0\n           [x] => 2\n           [yoffset] => 9\n           [height] => 44\n           [xadvance] => 62\n         }\n [84] => table: 0x600002469200 {\n           [xoffset] => 0\n           [y] => 382\n           [id] => 115\n           [chnl] => 0\n           [letter] => \"s\"\n           [width] => 45\n           [page] => 0\n           [x] => 187\n           [yoffset] => 8\n           [height] => 45\n           [xadvance] => 63\n         }\n [85] => table: 0x600002469200 {\n           [xoffset] => -3\n           [y] => 282\n           [id] => 116\n           [chnl] => 0\n           [letter] => \"t\"\n           [width] => 51\n           [page] => 0\n           [x] => 108\n           [yoffset] => 5\n           [height] => 48\n           [xadvance] => 66\n         }\n [86] => table: 0x600002469200 {\n           [xoffset] => -3\n           [y] => 282\n           [id] => 117\n           [chnl] => 0\n           [letter] => \"u\"\n           [width] => 51\n           [page] => 0\n           [x] => 161\n           [yoffset] => 5\n           [height] => 48\n           [xadvance] => 66\n         }\n [87] => table: 0x600002469200 {\n           [xoffset] => -3\n           [y] => 282\n           [id] => 118\n           [chnl] => 0\n           [letter] => \"v\"\n           [width] => 51\n           [page] => 0\n           [x] => 214\n           [yoffset] => 5\n           [height] => 48\n           [xadvance] => 66\n         }\n [88] => table: 0x600002469200 {\n           [xoffset] => -3\n           [y] => 282\n           [id] => 119\n           [chnl] => 0\n           [letter] => \"w\"\n           [width] => 51\n           [page] => 0\n           [x] => 267\n           [yoffset] => 5\n           [height] => 48\n           [xadvance] => 66\n         }\n [89] => table: 0x600002469200 {\n           [xoffset] => -3\n           [y] => 282\n           [id] => 120\n           [chnl] => 0\n           [letter] => \"x\"\n           [width] => 51\n           [page] => 0\n           [x] => 320\n           [yoffset] => 5\n           [height] => 48\n           [xadvance] => 66\n         }\n [90] => table: 0x600002469200 {\n           [xoffset] => -3\n           [y] => 282\n           [id] => 121\n           [chnl] => 0\n           [letter] => \"y\"\n           [width] => 51\n           [page] => 0\n           [x] => 373\n           [yoffset] => 5\n           [height] => 48\n           [xadvance] => 66\n         }\n [91] => table: 0x600002469200 {\n           [xoffset] => -3\n           [y] => 332\n           [id] => 122\n           [chnl] => 0\n           [letter] => \"z\"\n           [width] => 51\n           [page] => 0\n           [x] => 2\n           [yoffset] => 5\n           [height] => 48\n           [xadvance] => 66\n         }\n [92] => table: 0x600002469200 {\n           [xoffset] => 2\n           [y] => 2\n           [id] => 123\n           [chnl] => 0\n           [letter] => \"{\"\n           [width] => 21\n           [page] => 0\n           [x] => 66\n           [yoffset] => 3\n           [height] => 63\n           [xadvance] => 31\n         }\n [93] => table: 0x600002469200 {\n           [xoffset] => 6\n           [y] => 2\n           [id] => 124\n           [chnl] => 0\n           [letter] => \"|\"\n           [width] => 7\n           [page] => 0\n           [x] => 152\n           [yoffset] => 3\n           [height] => 63\n           [xadvance] => 33\n         }\n [94] => table: 0x600002469200 {\n           [xoffset] => 1\n           [y] => 2\n           [id] => 125\n           [chnl] => 0\n           [letter] => \"}\"\n           [width] => 21\n           [page] => 0\n           [x] => 89\n           [yoffset] => 3\n           [height] => 63\n           [xadvance] => 37\n         }\n [95] => table: 0x600002469200 {\n           [xoffset] => 3\n           [y] => 478\n           [id] => 126\n           [chnl] => 0\n           [letter] => \"~\"\n           [width] => 35\n           [page] => 0\n           [x] => 19\n           [yoffset] => 23\n           [height] => 13\n           [xadvance] => 53\n         }\n}\n\n66	B\n105	i\n116	t\n109	m\n97	a\n112	p\n70	F\n111	o\n110	n\n116	t\n50	2\n32	 \n84	T\n101	e\n120	x\n116	t\n10	\n\nCould not connect to localhost:8172: connection refused\n",
 			"settings":
 			{
-				"buffer_size": 15075,
+				"buffer_size": 30838,
+				"line_ending": "Unix",
+				"name": "Warning: No joysticks connected!"
+			}
+		},
+		{
+			"file": "yappybirds_game/scripts/NJLI/ELIAInterfaceFunctions.lua",
+			"settings":
+			{
+				"buffer_size": 31930,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "yappybirds_game/scripts/YAPPYBIRDS/SCENES/GAMEPLAY/Gameplay.lua",
+			"file": "yappybirds_game/scripts/NJLI/BitmapFont.lua",
 			"settings":
 			{
-				"buffer_size": 10128,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "yappybirds_game/scripts/YAPPYBIRDS/SCENES/GAMEPLAY/STATES/Loading.lua",
-			"settings":
-			{
-				"buffer_size": 4912,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "yappybirds_game/scripts/YAPPYBIRDS/NODES/BIRD/Bird.lua",
-			"settings":
-			{
-				"buffer_size": 5727,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "yappybirds_game/scripts/YAPPYBIRDS/NODES/BIRD/STATES/Spawn.lua",
-			"settings":
-			{
-				"buffer_size": 5765,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "yappybirds_game/scripts/NJLI/STATEMACHINE/UI/BUTTON/Button.lua",
-			"settings":
-			{
-				"buffer_size": 16587,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "yappybirds_game/scripts/YAPPYBIRDS/NODES/BILLBOARD/Billboard.lua",
-			"settings":
-			{
-				"buffer_size": 5996,
+				"buffer_size": 16145,
 				"line_ending": "Unix"
 			}
 		}
@@ -504,6 +493,29 @@
 	},
 	"file_history":
 	[
+		"/Users/jamesfolk/Documents/NJLI/Engine/projects/COMMON/gameplay_scripts/yappybirds_game/scripts/YAPPYBIRDS/NODES/DOG/Dog.lua",
+		"/Users/jamesfolk/Documents/NJLI/Engine/projects/COMMON/gameplay_scripts/yappybirds_game/scripts/generated/texturepacker/gameplay0.lua",
+		"/Users/jamesfolk/Documents/NJLI/Engine/projects/COMMON/gameplay_scripts/yappybirds_game/scripts/generated/texturepacker/gameplay1.lua",
+		"/Users/jamesfolk/Documents/NJLI/Engine/projects/COMMON/gameplay_scripts/yappybirds_game/scripts/NJLI/STATEMACHINE/NodeEntity.lua",
+		"/Users/jamesfolk/Documents/NJLI/Engine/projects/COMMON/gameplay_scripts/yappybirds_game/scripts/YAPPYBIRDS/NODES/BILLBOARD/STATES/Default.lua",
+		"/Users/jamesfolk/Documents/NJLI/Engine/projects/COMMON/gameplay_scripts/yappybirds_game/scripts/YAPPYBIRDS/NODES/BILLBOARD/Billboard.lua",
+		"/Users/jamesfolk/Documents/NJLI/Engine/projects/COMMON/gameplay_scripts/yappybirds_game/scripts/YAPPYBIRDS/LevelLoader.lua",
+		"/Users/jamesfolk/Documents/NJLI/Engine/projects/COMMON/gameplay_scripts/yappybirds_game/scripts/main.lua",
+		"/Users/jamesfolk/Documents/NJLI/Engine/projects/COMMON/gameplay_scripts/yappybirds_game/scripts/YAPPYBIRDS/YappyGame.lua",
+		"/Users/jamesfolk/Documents/NJLI/Engine/projects/COMMON/gameplay_scripts/yappybirds_game/scripts/YAPPYBIRDS/SCENES/GAMEPLAY/Gameplay.lua",
+		"/Users/jamesfolk/Documents/NJLI/Engine/projects/COMMON/gameplay_scripts/yappybirds_game/scripts/YAPPYBIRDS/NODES/DOG/STATES/Spawn.lua",
+		"/Users/jamesfolk/Documents/NJLI/Engine/projects/COMMON/gameplay_scripts/yappybirds_game/scripts/YAPPYBIRDS/Params.lua",
+		"/Users/jamesfolk/Documents/NJLI/Engine/projects/COMMON/gameplay_scripts/yappybirds_game/scripts/NJLI/STATEMACHINE/NodeEntityState.lua",
+		"/Users/jamesfolk/Documents/NJLI/Engine/projects/COMMON/gameplay_scripts/yappybirds_game/scripts/YAPPYBIRDS/_yappyBirdLevelLoader.lua",
+		"/Users/jamesfolk/Documents/NJLI/Engine/projects/COMMON/gameplay_scripts/yappybirds_game/scripts/YAPPYBIRDS/_birdSpawnMachine.lua",
+		"/Users/jamesfolk/Documents/NJLI/Engine/projects/COMMON/gameplay_scripts/yappybirds_game/scripts/generated/texturepacker/country0.lua",
+		"/Users/jamesfolk/Documents/NJLI/Engine/projects/COMMON/gameplay_scripts/yappybirds_game/scripts/generated/tiled/country/_arcade_country_00.lua",
+		"/Users/jamesfolk/Documents/NJLI/Engine/cmake.in/Platform.in/common/assets/scripts/generated/tiled/country/_arcade_country_00.lua",
+		"/Users/jamesfolk/Documents/NJLI/Engine/projects/COMMON/gameplay_scripts/yappybirds_game/scripts/YAPPYBIRDS/SCENES/MENU/Menu.lua",
+		"/Users/jamesfolk/Documents/NJLI/Engine/projects/COMMON/gameplay_scripts/yappybirds_game/scripts/YAPPYBIRDS/SCENES/GAMEPLAY/STATES/Loading.lua",
+		"/Users/jamesfolk/Documents/NJLI/Engine/projects/COMMON/gameplay_scripts/yappybirds_game/scripts/YAPPYBIRDS/NODES/BIRD/Bird.lua",
+		"/Users/jamesfolk/Documents/NJLI/Engine/projects/COMMON/gameplay_scripts/yappybirds_game/scripts/YAPPYBIRDS/NODES/BIRD/STATES/Spawn.lua",
+		"/Users/jamesfolk/Documents/NJLI/Engine/projects/COMMON/gameplay_scripts/yappybirds_game/scripts/NJLI/STATEMACHINE/UI/BUTTON/Button.lua",
 		"/Users/jamesfolk/Desktop/find_first_usb.py",
 		"/Users/jamesfolk/Documents/NJLI/Engine/projects/COMMON/gameplay_scripts/yappybirds_game/scripts/YAPPYBIRDS/birdSpawnMachine.lua",
 		"/Users/jamesfolk/Documents/NJLI/Engine/projects/COMMON/gameplay_scripts/yappybirds_game/scripts/NJLI/InterfaceFunctions.lua",
@@ -608,30 +620,7 @@
 		"/Users/jamesfolk/Dropbox/YappyBirds/COMMON/gameplay_scripts/scripts/YAPPYBIRDS/SCENES/GAMEPLAY/STATES/Pause.lua",
 		"/Users/jamesfolk/Library/Application Support/Sublime Text 2/Packages/sublluanjligameengine/Njli/worldEntityState.sublime-snippet",
 		"/Users/jamesfolk/Dropbox/YappyBirds/COMMON/gameplay_scripts/scripts/YAPPYBIRDS/WORLDS/YAPPYBIRDS/STATES/Gameplay.lua",
-		"/Users/jamesfolk/Dropbox/YappyBirds/COMMON/gameplay_scripts/scripts/YAPPYBIRDS/WORLDS/YAPPYBIRDS/STATES/Menu.lua",
-		"/Users/jamesfolk/Dropbox/YappyBirds/COMMON/gameplay_scripts/scripts/YAPPYBIRDS/WORLDS/YAPPYBIRDS/STATES/Results.lua",
-		"/Users/jamesfolk/Library/Application Support/Sublime Text 2/Packages/sublluanjligameengine/Njli/sceneEntity.sublime-snippet",
-		"/Users/jamesfolk/Library/Application Support/Sublime Text 2/Packages/sublluanjligameengine/Njli/worldEntity.sublime-snippet",
-		"/Users/jamesfolk/Dropbox/YappyBirds/COMMON/gameplay_scripts/scripts/njli/statemachine/WorldEntityState.lua",
-		"/Users/jamesfolk/Dropbox/YappyBirds/COMMON/gameplay_scripts/scripts/njli/statemachine/WorldEntity.lua",
-		"/Users/jamesfolk/Dropbox/YappyBirds/COMMON/gameplay_scripts/scripts/njli/statemachine/StateMachineEntity.lua",
-		"/Users/jamesfolk/Dropbox/YappyBirds/COMMON/gameplay_scripts/scripts/njli/statemachine/entitymanager.lua",
-		"/Users/jamesfolk/Dropbox/YappyBirds/COMMON/gameplay_scripts/scripts/njli/DeviceEntity.lua",
-		"/Users/jamesfolk/Dropbox/YappyBirds/COMMON/gameplay_scripts/scripts/njli/Interface.lua",
-		"/Users/jamesfolk/Dropbox/YappyBirds/COMMON/gameplay_scripts/scripts/njli/statemachine/sceneentitystate.lua",
-		"/Users/jamesfolk/Dropbox/YappyBirds/COMMON/gameplay_scripts/scripts/yappybirds/YappyGame.lua",
-		"/Users/jamesfolk/Dropbox/YappyBirds/COMMON/gameplay_scripts/scripts/njli/statemachine/sceneentity.lua",
-		"/Users/jamesfolk/Dropbox/YappyBirds/COMMON/gameplay_scripts/scripts/njli/statemachine/statemachine.lua",
-		"/Users/jamesfolk/Dropbox/YappyBirds/COMMON/gameplay_scripts/scripts/njli/statemachine/worldentitystate.lua",
-		"/Users/jamesfolk/Dropbox/YappyBirds/COMMON/gameplay_scripts/scripts/njli/statemachine/nodeentitystate.lua",
-		"/Users/jamesfolk/Dropbox/YappyBirds/COMMON/gameplay_scripts/scripts/njli/statemachine/nodeentity.lua",
-		"/Users/jamesfolk/Dropbox/YappyBirds/COMMON/gameplay_scripts/scripts/njli/statemachine/worldentity.lua",
-		"/Users/jamesfolk/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
-		"/Users/jamesfolk/Dropbox/YappyBirds/COMMON/gameplay_scripts/scripts/njli/main.lua",
-		"/Users/jamesfolk/Dropbox/YappyBirds/COMMON/gameplay_scripts/scripts/njli/util.lua",
-		"/Users/jamesfolk/Dropbox/YappyBirds/COMMON/gameplay_scripts/scripts/yappybirds/util.lua",
-		"/Users/jamesfolk/Dropbox/YappyBirds/COMMON/gameplay_scripts/scripts/njli/device.lua",
-		"/Users/jamesfolk/Dropbox/YappyBirds/COMMON/gameplay_scripts/scripts/njli/entitymanager.lua"
+		"/Users/jamesfolk/Dropbox/YappyBirds/COMMON/gameplay_scripts/scripts/YAPPYBIRDS/WORLDS/YAPPYBIRDS/STATES/Menu.lua"
 	],
 	"find":
 	{
@@ -690,134 +679,134 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"weboBird_idle",
+			"weboBird",
+			"character_weboBird_idle_front/character_weboBird_idle_front_00000",
+			"webo",
+			"print_r",
+			"print",
+			"Param",
+			"transfromLevelPositionAndWidth",
+			"getGameViewDivisor",
+			"btVector3",
+			"setSpriteAtlasFrame",
+			"setDimensions",
+			"Geometry2D",
+			"createDog",
+			"_spriteFrameAtlas",
+			"_spriteFrameAtlasArray",
+			"createDog",
+			"dog",
+			"_dimensions",
+			"createDog",
+			"256",
+			"createDog",
+			"btVector3",
+			"createDog",
+			"_parseBirdSpawnPointObject",
+			"getDogWayPointOrigin",
+			"print_r",
+			"width",
+			"originForLayer",
+			"_parseDogWayPointObject",
+			"Billboard",
+			"createDog",
+			"_parseDogWayPointObject",
+			"name",
+			"atlas",
+			"setGeometry",
+			"Billboard",
+			"getFrameIndex",
+			"createBillboard",
+			"extractLayersFromName",
+			"dimensions",
+			"\noriginForLayer",
+			"originForLayer",
+			"x",
+			"tile",
+			"x",
+			"getBillboardParams",
+			"createBillboard",
+			"layer_offset",
+			"transformCoordinate",
+			"offset",
+			"_spriteAtlas_debug",
+			"tileDimensions",
+			"print_r",
+			"print",
+			"_spriteAtlas_debug",
+			"setBackgroundColor",
+			"_spriteAtlas_country0",
+			"createBillboard",
+			"_parseBackgroundColor",
+			"createBillboard",
+			"for ",
+			"createBillboard",
+			"createTileNode",
+			"createBillboard",
+			"tileTable",
+			"WorldScale",
+			"WORLD_YOFFSET",
+			"2048",
+			"_parseTileLayer",
+			"extractLayersFromName",
+			"_parseTileLayer",
+			"extractLayersFromName",
+			"_parseTileLayer",
+			"objectLayer",
+			"_parseTileLayer",
+			"currentObjectLayer",
+			"extractLayersFromName",
+			"loadLevel",
+			"instanceCount",
+			"_parseTileLayer",
+			"print",
+			"_parseTileLayer",
+			"wayPointInstanceCount",
+			"_parseObject",
+			"currentLayerCounter",
+			"tileTable",
+			"_parseTileLayer",
+			"tiles",
+			"_parseTileLayer",
+			"_parseObject",
+			"_parseTileLayer",
+			"_parseObject",
+			"_parseTileLayer",
+			"level",
+			"_parseBirdSpawnPointObject",
+			"_parseObject",
+			"_parseTileLayer",
+			"_parseObject",
+			"_parseTileLayer",
+			"level",
+			"_parseTileLayer",
+			"tileInstanceCount",
+			"_parseTileLayer",
+			"_parseTiles",
+			"_parseTileLayer",
+			"_parseObject",
+			"_parseDogWayPointObject",
+			"_parseBirdSpawnPointObject",
+			"_parseObject",
+			"_parseBirdSpawnPointObject",
+			"_parseObject",
+			"_parseBirdSpawnPointObject",
+			"_parseObject",
+			"extractLayersFromName",
+			"_parseDogWayPointObject",
+			"_parseObject",
+			"_parseBirdSpawnPointObject",
+			"_parseObject",
+			"ADD_EXECUTABLE",
+			"offset",
+			"tiles",
+			"loadfile",
 			"MouseMove",
 			"MouseUp",
 			"MouseDown",
 			"TouchCancelled",
-			"TouchMove",
-			"TouchUp",
-			"TouchDown",
-			"TouchesCancelled",
-			"TouchesMove",
-			"TouchesUp",
-			"TouchesDown",
-			"Resize",
-			"Render",
-			"Update",
-			"NodeMouseMove",
-			"NodeMouseUp",
-			"NodeMouseDown",
-			"NodeTouchCancelled",
-			"NodeTouchMove",
-			"NodeTouchUp",
-			"NodeTouchDown",
-			"NodeTouchesCancelled",
-			"NodeTouchesMove",
-			"NodeTouchesUp",
-			"NodeTouchesDown",
-			"NodeGameUnPause",
-			"NodeGamePause",
-			"NodeRenderHUD",
-			"NodeKeyboardReturn",
-			"NodeKeyboardCancel",
-			"NodeKeyboardShow",
-			"NodeRayMouseMissed",
-			"NodeRayMouseMove",
-			"NodeRayMouseUp",
-			"NodeRayMouseDown",
-			"NodeRayTouchMissed",
-			"NodeRayTouchCancelled",
-			"NodeRayTouchMove",
-			"NodeRayTouchUp",
-			"NodeRayTouchDown",
-			"NodeRayTouchesMissed",
-			"NodeRayTouchesCancelled",
-			"NodeRayTouchesMove",
-			"NodeRayTouchesUp",
-			"NodeRayTouchesDown",
-			"NodeActionComplete",
-			"NodeActionUpdate",
-			"NodeNear",
-			"NodeCollide",
-			"NodeOnMessage",
-			"NodeExitState",
-			"NodeUpdateState",
-			"NodeEnterState",
-			"SceneResumeInterrupt",
-			"SceneInterrupt",
-			"SceneWillTerminate",
-			"SceneWillEnterForeground",
-			"SceneDidEnterBackground",
-			"SceneDidBecomeActive",
-			"SceneWillResignActive",
-			"SceneReceivedMemoryWarning",
-			"SceneMouseMove",
-			"SceneMouseUp",
-			"SceneMouseDown",
-			"SceneTouchCancelled",
-			"SceneTouchMove",
-			"SceneTouchUp",
-			"SceneTouchDown",
-			"SceneTouchesCancelled",
-			"SceneTouchesMove",
-			"SceneTouchesUp",
-			"SceneTouchesDown",
-			"SceneGameUnPause",
-			"SceneGamePause",
-			"SceneRenderHUD",
-			"SceneKeyboardReturn",
-			"SceneKeyboardCancel",
-			"SceneKeyboardShow",
-			"SceneOnMessage",
-			"SceneExitState",
-			"SceneUpdateState",
-			"SceneEnterState",
-			"WorldResumeInterrupt",
-			"WorldInterrupt",
-			"WorldWillTerminate",
-			"WorldWillEnterForeground",
-			"WorldDidEnterBackground",
-			"WorldDidBecomeActive(",
-			"WorldWillResignActive",
-			"WorldMouseMove",
-			"WorldMouseUp",
-			"WorldMouseDown",
-			"WorldTouchCancelled",
-			"WorldTouchMove",
-			"WorldTouchUp",
-			"WorldTouchDown",
-			"WorldTouchesCancelled",
-			"WorldTouchesMove",
-			"WorldTouchesUp",
-			"WorldTouchesDown",
-			"WorldRenderHUD",
-			"WorldGameUnPause",
-			"WorldGamePause",
-			"WorldReceivedMemoryWarning",
-			"WorldKeyboardReturn",
-			"WorldKeyboardShow",
-			"WorldKeyboardCancel",
-			"WorldOnMessage",
-			"WorldExitState",
-			"rayMouseDown",
-			"rayTouchDown",
-			"pushState",
-			"__NJLINodeRayMouseDown",
-			"Switch:rayMouseDown",
-			"pushState",
-			"rayTouchMissed",
-			"rayTouchesUp",
-			"pushState",
-			"missed",
-			"pushState",
-			"rayMouseMove",
-			"rayTouchMissed",
-			"_rayTouchMissed",
-			"mouse",
-			"pushState",
-			"rayTouchesDown",
-			"pushState",
-			"NJLI.STATEMACHINE.UI.BUTTON.STATES.Selected"
+			"TouchMove"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -825,6 +814,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"self.level",
 			"Interface",
 			"self:getWorldState():getName()",
 			"self:getWorld():getName()",
@@ -951,8 +941,7 @@
 			"_addStateObject",
 			"NJLINodeEntity",
 			"NJLINodeEntityState",
-			"NJLISceneEntity",
-			"NJLISceneEntityState"
+			"NJLISceneEntity"
 		],
 		"reverse": false,
 		"show_context": true,
@@ -963,23 +952,23 @@
 	"groups":
 	[
 		{
-			"selected": 7,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "yappybirds_game/scripts/main.lua",
+					"file": "yappybirds_game/scripts/NJLI/BitmapFont2.lua",
 					"settings":
 					{
-						"buffer_size": 11226,
+						"buffer_size": 5183,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								3330,
+								3330
 							]
 						],
 						"settings":
@@ -989,45 +978,45 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 5081.0,
+						"translation.y": 1353.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "yappybirds_game/scripts/YAPPYBIRDS/SCENES/MENU/Menu.lua",
 					"settings":
 					{
-						"buffer_size": 15075,
+						"buffer_size": 30838,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1281,
-								1416
+								30838,
+								30838
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Lua/Lua.tmLanguage",
+							"auto_name": "Warning: No joysticks connected!",
+							"syntax": "Packages/Text/Plain text.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 423.0,
+						"translation.y": 18534.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "yappybirds_game/scripts/YAPPYBIRDS/SCENES/GAMEPLAY/Gameplay.lua",
+					"file": "yappybirds_game/scripts/NJLI/ELIAInterfaceFunctions.lua",
 					"settings":
 					{
-						"buffer_size": 10128,
+						"buffer_size": 31930,
 						"regions":
 						{
 						},
@@ -1045,25 +1034,31 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 631.0,
+						"translation.y": 1336.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
-				},
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
 				{
 					"buffer": 3,
-					"file": "yappybirds_game/scripts/YAPPYBIRDS/SCENES/GAMEPLAY/STATES/Loading.lua",
+					"file": "yappybirds_game/scripts/NJLI/BitmapFont.lua",
 					"settings":
 					{
-						"buffer_size": 4912,
+						"buffer_size": 16145,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								9710,
+								9723
 							]
 						],
 						"settings":
@@ -1073,119 +1068,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 558.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "yappybirds_game/scripts/YAPPYBIRDS/NODES/BIRD/Bird.lua",
-					"settings":
-					{
-						"buffer_size": 5727,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Lua/Lua.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 3356.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "yappybirds_game/scripts/YAPPYBIRDS/NODES/BIRD/STATES/Spawn.lua",
-					"settings":
-					{
-						"buffer_size": 5765,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								5765,
-								5765
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Lua/Lua.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 3356.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "yappybirds_game/scripts/NJLI/STATEMACHINE/UI/BUTTON/Button.lua",
-					"settings":
-					{
-						"buffer_size": 16587,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								709,
-								713
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Lua/Lua.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "yappybirds_game/scripts/YAPPYBIRDS/NODES/BILLBOARD/Billboard.lua",
-					"settings":
-					{
-						"buffer_size": 5996,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								5996,
-								5996
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Lua/Lua.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 5887.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1210,11 +1093,18 @@
 				0,
 				1,
 				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
 			]
 		],
 		"cols":
 		[
 			0.0,
+			0.472632966923,
 			1.0
 		],
 		"rows":

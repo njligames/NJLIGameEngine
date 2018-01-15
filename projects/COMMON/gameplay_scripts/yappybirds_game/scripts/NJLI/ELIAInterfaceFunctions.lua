@@ -14,6 +14,9 @@ PerspectiveCameraNode = nil
 MyGame = nil
 gInterface = nil
 
+
+currentNode = nil
+
 local Create = function()
 
 
@@ -98,8 +101,47 @@ local Create = function()
   -- end 
   
   
-  local bitmapfont2_test = BitmapFont2({"Elia_GlyphDesigner"})
+  local ELIAFont = BitmapFont2(
+  {
+    "Elia_GlyphDesigner_Black",
+    "Elia_GlyphDesigner_Blue",
+    "Elia_GlyphDesigner_Green",
+    "Elia_GlyphDesigner_Red",
+    "Elia_GlyphDesigner_Yellow",
+    "Elia_GlyphDesigner",
+    "TimesNewRoman",
+  })
+
+  ELIAFont:show(OrthographicCameraNode:getCamera())
+  ELIAFont:hide(PerspectiveCameraNode:getCamera())
   
+  local vert_margin = njli.SCREEN():y() / 30.0
+  local horiz_margin = njli.SCREEN():x() / 40.0
+
+
+  local text = "JamesGregoryFolk"
+  local fontIndexTable = {}
+  for i=1, string.len(text) do
+    fontIndexTable[i] = 1
+  end
+
+  -- print_r(fontIndexTable)
+
+  local node, rect = ELIAFont:printf({
+    text=text,
+    fontIndexTable=fontIndexTable,
+    align="Left",
+  })
+
+  node:setOrigin(bullet.btVector3(0 + horiz_margin, 0 + vert_margin, -1))
+  currentNode = node
+  print(currentNode:getOrigin())
+  -- node:setOrigin(bullet.btVector3(njli.SCREEN():x() - rect.width - horiz_margin, njli.SCREEN():y() - rect.height - vert_margin, -1))
+  node:setCurrentScene(njli.World.getInstance():getScene())
+  
+  rootNode:addChildNode(node)
+
+
   
   
     
@@ -202,6 +244,10 @@ local Update = function(timeStep)
 --  end
   
  njli.World.getInstance():setBackgroundColor(1.000, 1.000, 1.000)
+ --print("update")
+  if currentNode then
+    print(currentNode:getOrigin(), timeStep)
+  end
 end
 
 local Render = function() end
@@ -596,7 +642,7 @@ end
 
 RegisterCreate("Create",                                         function() pcall(Create) end)
 RegisterDestroy("Destroy",                                       function() pcall(Destroy) end )
-RegisterUpdate("Update",                                         function() pcall(Update) end )
+RegisterUpdate("Update",                                         function(timeStep) pcall(Update, timeStep) end )
 RegisterRender("Render",                                         function() pcall(Render) end )
 RegisterResize("Resize",                                         function(width, height, orientation) pcall(Resize, width, height, orientation) end )
 RegisterTouchesDown("TouchesDown",                               function(touches) pcall(TouchesDown, touches) end )
