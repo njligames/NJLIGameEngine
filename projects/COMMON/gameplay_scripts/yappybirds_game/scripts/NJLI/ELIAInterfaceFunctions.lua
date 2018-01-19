@@ -41,6 +41,10 @@ pointsPerCorrectLetter = 1.0
 pointsNode = nil
 pointsNodeRect = nil
 
+currentAccuracy = 100.0
+accuracyNode = nil
+accuracyNodeRect = nil
+
 --[[
 https://www.speedtypingonline.com/typing-equations
 
@@ -151,7 +155,7 @@ local Create = function()
   local pointsString = string.format("%.4d", tostring(currentNumberOfPoints))
   local pointsFontTable = {}
   for i=1, string.len(pointsString) do
-    pointsFontTable[i] = 1
+    pointsFontTable[i] = 6
   end
 
   pointsNode, pointsNodeRect = ELIAFont:printf({
@@ -173,6 +177,22 @@ local Create = function()
 
 
 
+  local accuracyString = string.format("%.0f", currentAccuracy) .. "%"
+
+  local accuracyFontTable = {}
+  for i=1, string.len(accuracyString) do
+    accuracyFontTable[i] = 6
+  end
+
+  accuracyNode, accuracyNodeRect = ELIAFont:printf({
+    mainNode=nil,
+    text=accuracyString,
+    fontIndexTable=accuracyFontTable,
+    align="Left",
+  })
+
+  accuracyNode:setOrigin(bullet.btVector3(bullet.btVector3((njli.SCREEN():x()) - (accuracyNodeRect.width + horiz_margin), 0 + vert_margin, -1)))
+  accuracyNode:show(OrthographicCameraNode:getCamera())
 
 
 
@@ -282,6 +302,34 @@ local Update = function(timeStep)
 
       currentNumberOfLetters = string.len(currentText)
       totalNumberOfLetters = totalNumberOfLetters + currentNumberOfLetters
+
+
+
+
+
+
+      currentAccuracy = AccuracyPercentage()
+      local accuracyString = string.format("%.0f", currentAccuracy) .. "%"
+
+      local accuracyFontTable = {}
+      for i=1, string.len(accuracyString) do
+        accuracyFontTable[i] = 6
+      end
+
+      accuracyNode, accuracyNodeRect = ELIAFont:printf({
+        mainNode=accuracyNode,
+        text=accuracyString,
+        fontIndexTable=accuracyFontTable,
+        align="Left",
+      })
+
+      accuracyNode:setOrigin(bullet.btVector3(bullet.btVector3((njli.SCREEN():x()) - (accuracyNodeRect.width + horiz_margin), 0 + vert_margin, -1)))
+      accuracyNode:show(OrthographicCameraNode:getCamera())
+
+
+
+
+
 
     end
 
