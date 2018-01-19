@@ -24,10 +24,32 @@ wordArray =
 
 currentWordArrayIndex=1
 currentNode = nil
+currentNodeRect = nil
 currentText = string.upper(wordArray[currentWordArrayIndex])
 fontIndexTable = {}
 currentTypeIndex = string.len(currentText) + 1
 
+totalAccurateTyped=0.0
+totalNumberOfLetters=0.0
+currentNumberOfLetters=0.0
+
+startOrigin = bullet.btVector3(0.0, 0.0, 0.0)
+
+--[[
+Accuracy
+Typing accuracy is defined as the percentage of correct entries out of the total entries typed. To calculate this mathematically, take the number of correct characters typed divided by the total number, multiplied by 100%. So if you typed 90 out of 100 characters correctly you typed with 90% accuracy.
+
+It is interesting to note that all errors, whether corrected or not, should be counted in the accuracy calculation, unlike the net WPM calculation. This is because the calculation is more "live" than typing speed and literally describes the likelihood that the next character will be typed correctly, regardless of whether it will be corrected or not.
+]]--
+
+local AccuracyPercentage = function()
+  local total = (totalNumberOfLetters - currentNumberOfLetters)
+  if total > 0 then
+    local percentage = ((totalAccurateTyped / total)  * 100.0)
+    return math.min(100.0, percentage)
+  end
+  return 100.0
+end
 
 
 local Create = function()
@@ -105,6 +127,11 @@ local Create = function()
 
   ELIAFont:show(OrthographicCameraNode:getCamera())
   ELIAFont:hide(PerspectiveCameraNode:getCamera())
+
+  local vert_margin = njli.SCREEN():y() / 30.0
+  local horiz_margin = njli.SCREEN():x() / 40.0
+
+  startOrigin = bullet.btVector3(bullet.btVector3(njli.SCREEN():x() + horiz_margin, njli.SCREEN():y() - (ELIAFont:maxLineHeight() + vert_margin), -1))
   
 end
   
@@ -144,6 +171,7 @@ local Destroy = function()
 end
 
 local Update = function(timeStep)
+  print(AccuracyPercentage())
 
   if currentNode then
     if (currentTypeIndex <=  string.len(currentText)) then
@@ -152,6 +180,12 @@ local Update = function(timeStep)
       if resetTimer >= 0.5 then
         currentNode:hide(OrthographicCameraNode:getCamera())
       end
+    end
+    local origin = currentNode:getOrigin() - bullet.btVector3(3.0, 0.0, 0.0)
+    currentNode:setOrigin(origin)
+
+    if  origin:x() + currentNodeRect.width  < 0 then
+      currentTypeIndex = string.len(currentText) + 1
     end
   end
 
@@ -179,25 +213,28 @@ local Update = function(timeStep)
       currentText = string.upper(wordArray[currentWordArrayIndex])
       currentTypeIndex = 1
 
-      local vert_margin = njli.SCREEN():y() / 30.0
-      local horiz_margin = njli.SCREEN():x() / 40.0
-
       for i=1, string.len(currentText) do
         fontIndexTable[i] = 1
       end
 
       fontIndexTable[currentTypeIndex] = 2
 
-      currentNode, rect = ELIAFont:printf({
+      currentNode, currentNodeRect = ELIAFont:printf({
         mainNode=currentNode,
         text=currentText,
         fontIndexTable=fontIndexTable,
         align="Left",
       })
+      local vert_margin = njli.SCREEN():y() / 30.0
+      local horiz_margin = njli.SCREEN():x() / 40.0
 
-      currentNode:setOrigin(bullet.btVector3(0 + horiz_margin, njli.SCREEN():y() - (ELIAFont:maxLineHeight() + vert_margin), -1))
+      startOrigin = bullet.btVector3(bullet.btVector3(njli.SCREEN():x() + horiz_margin, njli.SCREEN():y() - (ELIAFont:maxLineHeight() + vert_margin), -1))
+      currentNode:setOrigin(startOrigin)
 
       resetTimer = 0
+
+      currentNumberOfLetters = string.len(currentText)
+      totalNumberOfLetters = totalNumberOfLetters + currentNumberOfLetters
 
     end
 
@@ -228,11 +265,6 @@ local KeyDown = function(keycodeName, withCapsLock, withControl, withShift, with
   local currentChar = string.upper(keycodeName)
   local targetChar = string.upper(string.sub(currentText, currentTypeIndex, currentTypeIndex))
 
-  -- if currentTypeIndex > string.len(currentText) then
-  --   currentTypeIndex = currentTypeIndex + 1
-  --   currentNode:hide(OrthographicCameraNode:getCamera())
-  -- end
-
   if currentChar == targetChar then
     local print_it = false
 
@@ -248,35 +280,49 @@ local KeyDown = function(keycodeName, withCapsLock, withControl, withShift, with
         print_it = true
       end
 
-      currentTypeIndex = currentTypeIndex + 1
+      -- currentTypeIndex = currentTypeIndex + 1
     end
 
     if print_it then
-      currentNode, rect = ELIAFont:printf({
+      currentNode, currentNodeRect = ELIAFont:printf({
         mainNode=currentNode,
         text=currentText,
         fontIndexTable=fontIndexTable,
         align="Left",
       })
     end
+    local vert_margin = njli.SCREEN():y() / 30.0
+    local horiz_margin = njli.SCREEN():x() / 40.0
 
     -- print("yes")
+    totalAccurateTyped = totalAccurateTyped + 1.0
   else
     -- Set the current letter to Red
     fontIndexTable[currentTypeIndex] = 4
 
-    currentNode, rect = ELIAFont:printf({
+    -- Set the current letter to blue
+    if (currentTypeIndex + 1) <= string.len(currentText) then
+      fontIndexTable[currentTypeIndex + 1] = 2
+      print_it = true
+    elseif currentTypeIndex == string.len(currentText) then
+      print_it = true
+    end
+
+    currentNode, currentNodeRect = ELIAFont:printf({
       mainNode=currentNode,
       text=currentText,
       fontIndexTable=fontIndexTable,
       align="Left",
     })
+    local vert_margin = njli.SCREEN():y() / 30.0
+    local horiz_margin = njli.SCREEN():x() / 40.0
+
+    -- startOrigin = bullet.btVector3(bullet.btVector3(njli.SCREEN():x() + horiz_margin, njli.SCREEN():y() - (ELIAFont:maxLineHeight() + vert_margin), -1))
+    -- currentNode:setOrigin(startOrigin)
     -- print("no")
   end
 
-  -- if currentTypeIndex > string.len(currentText) then
-  --   currentNode:hide(OrthographicCameraNode:getCamera())
-  -- end
+  currentTypeIndex = currentTypeIndex + 1
 end
 
 local KeyUp = function(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui) end

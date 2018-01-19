@@ -207,8 +207,6 @@ function BitmapFont2:printf(...)
   local mainNode = arg.mainNode or njli.Node.create()
   mainNode:setName(text)
 
-  local rect = { 0, 0, 0, 0 }
-
   local fontIndexTable = {}
   if arg.fontIndexTable then
     for i=1, #arg.fontIndexTable do
@@ -233,9 +231,9 @@ function BitmapFont2:printf(...)
   local node = nil
   local charData = nil
   local recycleNode = false
+  local xMax, yMax = 0, self._maxLineHeight
+  local lastXAdvance=0
 
-
-  
   for i=0,mainNode:numberOfChildrenNodes() do 
     local letterIndex=i+1
     local paramTable =
@@ -247,23 +245,6 @@ function BitmapFont2:printf(...)
     }
     charData, node, recycleNode = self:_renderLetter(paramTable)
   end
-
-   -- for i=1, i<mainNode:numberOfChildrenNodes() do
-   --   local currentIndex = i + 1
-   --   print(currentIndex)
-   -- end
-
-  -- for i=1, i<=string.len(text) do
-  --   -- local paramTable =
-  --   -- {
-  --   --   mainNode = mainNode,
-  --   --   letterIndex = currentIndex,
-  --   --   charValue = " ",
-  --   --   fontIndex = fontIndexTable[letterIndex]
-  --   -- }
-  --   -- charData, node, recycleNode = self:_renderLetter(paramTable)
-  --   print(i)
-  -- end
 
 	for c in string.gmatch( text .. '\n', '(.)' ) do
     local ascii = string.byte(c)
@@ -287,6 +268,7 @@ function BitmapFont2:printf(...)
       local ypos = (lineHeight - charData.yoffset) - charData.height - (lineHeight - base) - yCurrent
 
       xCurrent = xCurrent + charData.xadvance
+      xMax = math.max(xMax, xCurrent)
 
       if node then
         node:setOrigin(bullet.btVector3(xpos, ypos, 0))
@@ -312,6 +294,9 @@ function BitmapFont2:printf(...)
           local ypos = (lineHeight - charData.yoffset) - charData.height - (lineHeight - base) - yCurrent
 
           xCurrent = xCurrent + charData.xadvance
+          lastXAdvance = charData.xadvance
+
+          xMax = math.max(xMax, xCurrent)
 
           if node then
             node:setOrigin(bullet.btVector3(xpos, ypos, 0))
@@ -325,6 +310,11 @@ function BitmapFont2:printf(...)
 
     letterIndex = letterIndex + 1
 	end
+
+  local rect =
+  {
+    x=xStart, y=yStart, width=(xMax - lastXAdvance), height=yMax
+  }
 
   return mainNode, rect
 end
