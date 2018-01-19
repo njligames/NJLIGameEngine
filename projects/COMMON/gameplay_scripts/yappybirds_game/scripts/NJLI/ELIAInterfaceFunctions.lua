@@ -63,6 +63,46 @@ local AccuracyPercentage = function()
   return 100.0
 end
 
+local DrawPoints = function(points)
+  local pointsString = string.format("%.4d", tostring(points))
+  local pointsFontTable = {}
+  for i=1, string.len(pointsString) do
+    pointsFontTable[i] = 6
+  end
+
+  pointsNode, pointsNodeRect = ELIAFont:printf({
+    mainNode=pointsNode,
+    text=pointsString,
+    fontIndexTable=pointsFontTable,
+    align="Left",
+  })
+  local vert_margin = njli.SCREEN():y() / 30.0
+  local horiz_margin = njli.SCREEN():x() / 40.0
+
+  pointsNode:setOrigin(bullet.btVector3(bullet.btVector3(0 + horiz_margin, 0 + vert_margin, -1)))
+  pointsNode:show(OrthographicCameraNode:getCamera())
+end
+
+local DrawAccuracy = function(accuracy)
+  local accuracyString = string.format("%.0f", accuracy) .. "%"
+
+  local accuracyFontTable = {}
+  for i=1, string.len(accuracyString) do
+    accuracyFontTable[i] = 6
+  end
+
+  accuracyNode, accuracyNodeRect = ELIAFont:printf({
+    mainNode=accuracyNode,
+    text=accuracyString,
+    fontIndexTable=accuracyFontTable,
+    align="Left",
+  })
+  local vert_margin = njli.SCREEN():y() / 30.0
+  local horiz_margin = njli.SCREEN():x() / 40.0
+
+  accuracyNode:setOrigin(bullet.btVector3(bullet.btVector3((njli.SCREEN():x()) - (accuracyNodeRect.width + horiz_margin), 0 + vert_margin, -1)))
+  accuracyNode:show(OrthographicCameraNode:getCamera())
+end
 
 local Create = function()
 
@@ -144,62 +184,9 @@ local Create = function()
   local horiz_margin = njli.SCREEN():x() / 40.0
 
   startOrigin = bullet.btVector3(bullet.btVector3(njli.SCREEN():x() + horiz_margin, njli.SCREEN():y() - (ELIAFont:maxLineHeight() + vert_margin), -1))
-  
 
-
-
-
-
-
-
-  local pointsString = string.format("%.4d", tostring(currentNumberOfPoints))
-  local pointsFontTable = {}
-  for i=1, string.len(pointsString) do
-    pointsFontTable[i] = 6
-  end
-
-  pointsNode, pointsNodeRect = ELIAFont:printf({
-    mainNode=nil,
-    text=pointsString,
-    fontIndexTable=pointsFontTable,
-    align="Left",
-  })
-  local vert_margin = njli.SCREEN():y() / 30.0
-  local horiz_margin = njli.SCREEN():x() / 40.0
-
-  pointsNode:setOrigin(bullet.btVector3(bullet.btVector3(0 + horiz_margin, 0 + vert_margin, -1)))
-  pointsNode:show(OrthographicCameraNode:getCamera())
-
-
-
-
-
-
-
-
-  local accuracyString = string.format("%.0f", currentAccuracy) .. "%"
-
-  local accuracyFontTable = {}
-  for i=1, string.len(accuracyString) do
-    accuracyFontTable[i] = 6
-  end
-
-  accuracyNode, accuracyNodeRect = ELIAFont:printf({
-    mainNode=nil,
-    text=accuracyString,
-    fontIndexTable=accuracyFontTable,
-    align="Left",
-  })
-
-  accuracyNode:setOrigin(bullet.btVector3(bullet.btVector3((njli.SCREEN():x()) - (accuracyNodeRect.width + horiz_margin), 0 + vert_margin, -1)))
-  accuracyNode:show(OrthographicCameraNode:getCamera())
-
-
-
-
-
-
-
+  DrawPoints(currentNumberOfPoints)
+  DrawAccuracy(currentAccuracy)
 
 end
   
@@ -303,33 +290,7 @@ local Update = function(timeStep)
       currentNumberOfLetters = string.len(currentText)
       totalNumberOfLetters = totalNumberOfLetters + currentNumberOfLetters
 
-
-
-
-
-
-      currentAccuracy = AccuracyPercentage()
-      local accuracyString = string.format("%.0f", currentAccuracy) .. "%"
-
-      local accuracyFontTable = {}
-      for i=1, string.len(accuracyString) do
-        accuracyFontTable[i] = 6
-      end
-
-      accuracyNode, accuracyNodeRect = ELIAFont:printf({
-        mainNode=accuracyNode,
-        text=accuracyString,
-        fontIndexTable=accuracyFontTable,
-        align="Left",
-      })
-
-      accuracyNode:setOrigin(bullet.btVector3(bullet.btVector3((njli.SCREEN():x()) - (accuracyNodeRect.width + horiz_margin), 0 + vert_margin, -1)))
-      accuracyNode:show(OrthographicCameraNode:getCamera())
-
-
-
-
-
+      DrawAccuracy(AccuracyPercentage())
 
     end
 
@@ -393,45 +354,15 @@ local KeyDown = function(keycodeName, withCapsLock, withControl, withShift, with
         align="Left",
       })
     end
-    local vert_margin = njli.SCREEN():y() / 30.0
-    local horiz_margin = njli.SCREEN():x() / 40.0
+    -- local vert_margin = njli.SCREEN():y() / 30.0
+    -- local horiz_margin = njli.SCREEN():x() / 40.0
 
     -- print("yes")
     totalAccurateTyped = totalAccurateTyped + 1.0
 
     currentNumberOfPoints = currentNumberOfPoints + pointsPerCorrectLetter
 
-
-  local pointsString = string.format("%.4d", tostring(currentNumberOfPoints))
-  local pointsFontTable = {}
-  for i=1, string.len(pointsString) do
-    pointsFontTable[i] = 6
-  end
-
-  pointsNode, pointsNodeRect = ELIAFont:printf({
-    mainNode=pointsNode,
-    text=pointsString,
-    fontIndexTable=pointsFontTable,
-    align="Left",
-  })
-  local vert_margin = njli.SCREEN():y() / 30.0
-  local horiz_margin = njli.SCREEN():x() / 40.0
-
-  pointsNode:setOrigin(bullet.btVector3(bullet.btVector3(0 + horiz_margin, 0 + vert_margin, -1)))
-  pointsNode:show(OrthographicCameraNode:getCamera())
-
-
-
-
-
-
-
-
-
-
-
-
-
+    DrawPoints(currentNumberOfPoints)
 
   else
     -- Set the current letter to Red
@@ -451,31 +382,13 @@ local KeyDown = function(keycodeName, withCapsLock, withControl, withShift, with
       fontIndexTable=fontIndexTable,
       align="Left",
     })
-    local vert_margin = njli.SCREEN():y() / 30.0
-    local horiz_margin = njli.SCREEN():x() / 40.0
 
-    -- startOrigin = bullet.btVector3(bullet.btVector3(njli.SCREEN():x() + horiz_margin, njli.SCREEN():y() - (ELIAFont:maxLineHeight() + vert_margin), -1))
-    -- currentNode:setOrigin(startOrigin)
     -- print("no")
 
     currentNumberOfPoints=0
-  local pointsString = string.format("%.4d", tostring(currentNumberOfPoints))
-  local pointsFontTable = {}
-  for i=1, string.len(pointsString) do
-    pointsFontTable[i] = 6
-  end
 
-  pointsNode, pointsNodeRect = ELIAFont:printf({
-    mainNode=pointsNode,
-    text=pointsString,
-    fontIndexTable=pointsFontTable,
-    align="Left",
-  })
-  local vert_margin = njli.SCREEN():y() / 30.0
-  local horiz_margin = njli.SCREEN():x() / 40.0
+    DrawPoints(currentNumberOfPoints)
 
-  pointsNode:setOrigin(bullet.btVector3(bullet.btVector3(0 + horiz_margin, 0 + vert_margin, -1)))
-  pointsNode:show(OrthographicCameraNode:getCamera())
   end
 
   currentTypeIndex = currentTypeIndex + 1
