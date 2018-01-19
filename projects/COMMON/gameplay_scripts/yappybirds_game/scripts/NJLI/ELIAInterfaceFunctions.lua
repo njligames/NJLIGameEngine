@@ -457,6 +457,25 @@ local KeyDown = function(keycodeName, withCapsLock, withControl, withShift, with
     -- startOrigin = bullet.btVector3(bullet.btVector3(njli.SCREEN():x() + horiz_margin, njli.SCREEN():y() - (ELIAFont:maxLineHeight() + vert_margin), -1))
     -- currentNode:setOrigin(startOrigin)
     -- print("no")
+
+    currentNumberOfPoints=0
+  local pointsString = string.format("%.4d", tostring(currentNumberOfPoints))
+  local pointsFontTable = {}
+  for i=1, string.len(pointsString) do
+    pointsFontTable[i] = 6
+  end
+
+  pointsNode, pointsNodeRect = ELIAFont:printf({
+    mainNode=pointsNode,
+    text=pointsString,
+    fontIndexTable=pointsFontTable,
+    align="Left",
+  })
+  local vert_margin = njli.SCREEN():y() / 30.0
+  local horiz_margin = njli.SCREEN():x() / 40.0
+
+  pointsNode:setOrigin(bullet.btVector3(bullet.btVector3(0 + horiz_margin, 0 + vert_margin, -1)))
+  pointsNode:show(OrthographicCameraNode:getCamera())
   end
 
   currentTypeIndex = currentTypeIndex + 1
