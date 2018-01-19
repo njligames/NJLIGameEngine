@@ -14,9 +14,40 @@ PerspectiveCameraNode = nil
 MyGame = nil
 gInterface = nil
 
+resetTimer=0
 
+
+
+
+
+
+
+
+
+wordArray = 
+{
+ "Lorem", "ipsum", "dolor", "sit", "amet", "consectetur", "adipiscing", "elit", "Donec", "lobortis", "ac", "elit", "ut", "vehicula", "Nam", "vestibulum", "at", "diam", "eget", "pulvinar", "Nunc", "porta", "odio", "metus", "at", "egestas", "sem", "rhoncus", "eu", "Fusce", "sed", "scelerisque", "quam", "consequat", "mollis", "quam", "Pellentesque", "ut", "turpis", "vel", "mauris", "ultrices", "luctus", "Ut", "lorem", "ante", "dictum", "pharetra", "efficitur", "et", "luctus", "vitae", "ligula", "Cras", "pretium", "dolor", "eu", "fermentum", "fermentum", "Nulla", "quis", "urna", "commodo", "molestie", "velit", "vitae", "varius", "odio", "Nulla", "vitae", "fermentum", "justo", "Mauris", "tincidunt", "convallis", "condimentum", "Donec", "mollis", "laoreet", "purus", "ut", "elementum", "Donec", "consectetur", "vestibulum", "nisi", "a", "condimentum", "Sed", "magna", "ligula", "dapibus", "sed", "sagittis", "sed", "viverra", "ac", "nulla", "Aliquam", "quis", "tempor", "nisl", "nec", "dapibus", "ex", "Proin", "condimentum", "est", "ut", "dui", "iaculis", "in", "feugiat", "mauris", "euismod", "Maecenas", "eu", "laoreet", "purus", "Aenean", "blandit", "fermentum", "ligula", "iaculis", "suscipit", "Vivamus", "sagittis", "a", "tortor", "vitae", "egestas", "Nam", "hendrerit", "metus", "finibus", "molestie", "efficitur", "Nulla", "hendrerit", "nisl", "augue", "quis", "venenatis", "elit", "ultrices", "eget", "Integer", "ac", "mi", "vel", "ex", "sodales", "dignissim", "vitae", "vitae", "nunc", "Mauris", "vel", "dapibus", "urna", "at", "finibus", "massa", "Duis", "imperdiet", "malesuada", "sem", "nec", "imperdiet", "Sed", "commodo", "ex", "lacus", "Proin", "viverra", "turpis", "id", "egestas", "tempor", "Maecenas", "eget", "condimentum", "urna", "quis", "fermentum", "odio", "Donec", "facilisis", "nunc", "neque", "ut", "sodales", "tellus", "volutpat", "quis", "Morbi", "bibendum", "luctus", "sem", "Etiam", "consectetur", "dolor", "luctus", "urna", "tincidunt", "molestie", "Aliquam", "non", "purus", "malesuada", "rhoncus", "lectus", "nec", "fermentum", "eros", "Aliquam", "scelerisque", "leo", "lectus", "quis", "euismod", "velit", "mattis", "vitae", "Fusce", "sit", "amet", "lacus", "in", "enim", "porttitor", "dapibus", "quis", "vel", "tellus", "Nullam", "egestas", "tellus", "eu", "est", "viverra", "porttitor", "Sed", "feugiat", "semper", "libero", "Donec", "euismod", "libero", "vel", "molestie", "eleifend", "dui", "massa", "tincidunt", "sem", "vel", "fringilla", "elit", "eros", "at", "risus", "Nullam", "blandit", "laoreet", "purus", "a", "elementum", "tellus", "Integer", "nec", "dignissim", "quam", "Proin", "laoreet", "sodales", "metus", "a", "viverra", "Suspendisse", "scelerisque", "dapibus", "efficitur", "Pellentesque", "nibh", "tellus", "congue", "quis", "commodo", "a", "sagittis", "a", "orci", "Sed", "mauris", "nisl", "mattis", "at", "tellus", "quis", "tempor", "consectetur", "erat", "Quisque", "dignissim", "sem", "et", "auctor", "iaculis", "Duis", "at", "imperdiet", "massa", "Quisque", "id", "libero", "enim", "Mauris", "molestie", "sit", "amet", "dolor", "rutrum", "varius", "Duis", "ut", "massa", "eu", "orci", "euismod", "hendrerit", "Aliquam", "imperdiet", "commodo", "aliquam", "Ut", "elementum", "porttitor", "dictum", "Vestibulum", "fringilla", "feugiat", "erat", "ut", "mollis", "Vestibulum", "est", "nisi", "mattis", "sed", "facilisis", "mattis", "varius", "id", "nisl", "Etiam", "facilisis", "viverra", "suscipit", "Donec", "in", "risus", "fermentum", "gravida", "est", "at", "bibendum", "arcu", "Nullam", "ut", "purus", "ac", "lectus", "tincidunt", "pharetra", "vitae", "id", "est", "Mauris", "at", "ligula", "bibendum", "lacus", "aliquet", "aliquet", "id", "quis", "orci",
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+currentWordArrayIndex=1
 currentNode = nil
-currentText = "JamesGregoryFolk"
+currentText = string.upper(wordArray[currentWordArrayIndex])
 fontIndexTable = {}
 currentTypeIndex = 1
 
@@ -28,15 +59,9 @@ local Create = function()
   
   local physicsWorld = njli.PhysicsWorld.create()
   scene:setPhysicsWorld(physicsWorld)
-  
   scene:setRootNode(rootNode)
   
   njli.World.getInstance():setScene(scene)
-  
-  
-  
-  
-  
 
   if nil == OrthographicCameraNode then
     OrthographicCameraNode = njli.Node.create()
@@ -89,30 +114,15 @@ local Create = function()
     end
   end
   
-  -- if nil == RanchersFont then
-  --   RanchersFont = BitmapFont({file='Ranchers_GlyphDesigner.fnt'})
-  --   RanchersFont:load()
-  --   RanchersFont:show(OrthographicCameraNode:getCamera())
-  --   RanchersFont:hide(PerspectiveCameraNode:getCamera())
-  -- end
-  -- 
-  -- if nil == ELIAFont then
-  --   ELIAFont = BitmapFont({file='Elia_GlyphDesigner.fnt'})
-  --   ELIAFont:load()
-  --   ELIAFont:show(OrthographicCameraNode:getCamera())
-  --   ELIAFont:hide(PerspectiveCameraNode:getCamera())
-  -- end 
-  
-  
   ELIAFont = BitmapFont2(
   {
-    "Elia_GlyphDesigner_Black",
-    "Elia_GlyphDesigner_Blue",
-    "Elia_GlyphDesigner_Green",
-    "Elia_GlyphDesigner_Red",
-    "Elia_GlyphDesigner_Yellow",
-    "Elia_GlyphDesigner",
-    "TimesNewRoman",
+    "ELIABasic",
+    "ELIABlue",
+    "ELIAGreen",
+    "ELIARed",
+    "ELIAYellow",
+    "ELIABlack",
+    "TimesNewRomanBasic",
   })
 
   ELIAFont:show(OrthographicCameraNode:getCamera())
@@ -231,21 +241,43 @@ local Update = function(timeStep)
         debugging = true
     end
     
-    
+  -- ELIAFont:show(OrthographicCameraNode:getCamera())
+  if currentTypeIndex > string.len(currentText) then
 
---  local pos = bullet.btVector3(100, 100, -1)
---  local color = bullet.btVector4(0.202, 0.643, 0.000, 1)
---  njli.World.getInstance():getDebugDrawer():point(pos, color, 100)--, 100000, 10)
-  
---  if gInterface then
---    gInterface:getDeviceEntity():update(timeStep)
---  end
-  
- njli.World.getInstance():setBackgroundColor(1.000, 1.000, 1.000)
- --print("update")
-  if currentNode then
-    --print(currentNode:getOrigin(), timeStep)
+    resetTimer = resetTimer + timeStep
+
+    if resetTimer > 0.5 then
+
+      currentWordArrayIndex=currentWordArrayIndex+1
+      currentText = string.upper(wordArray[currentWordArrayIndex])
+      currentTypeIndex = 1
+
+      local vert_margin = njli.SCREEN():y() / 30.0
+      local horiz_margin = njli.SCREEN():x() / 40.0
+
+      for i=1, string.len(currentText) do
+        fontIndexTable[i] = 1
+      end
+
+      fontIndexTable[currentTypeIndex] = 2
+
+      currentNode, rect = ELIAFont:printf({
+        mainNode=currentNode,
+        text=currentText,
+        fontIndexTable=fontIndexTable,
+        align="Left",
+      })
+
+      currentNode:setOrigin(bullet.btVector3(0 + horiz_margin, njli.SCREEN():y() - (ELIAFont:maxLineHeight() + vert_margin), -1))
+
+      -- ELIAFont:hide(OrthographicCameraNode:getCamera())
+      resetTimer = 0
+
+    end
+
   end
+  
+   njli.World.getInstance():setBackgroundColor(1.000, 1.000, 1.000)
 end
 
 local Render = function() end
@@ -263,30 +295,45 @@ local MouseUp = function(mouse) end
 local MouseMove = function(mouse) end
 
 local KeyDown = function(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui) 
+  if resetTimer > 0 then
+    return
+  end
+
   local currentChar = string.upper(keycodeName)
   local targetChar = string.upper(string.sub(currentText, currentTypeIndex, currentTypeIndex))
 
-  if currentChar == targetChar then
-    -- Set the correct letter to regular font face
-    fontIndexTable[currentTypeIndex] = 7
-    -- Set the current letter to blue
-    if currentTypeIndex + 1 < string.len(currentText) then
-      fontIndexTable[currentTypeIndex + 1] = 2
-    end
-
-    currentNode, rect = ELIAFont:printf({
-      mainNode=currentNode,
-      text=currentText,
-      fontIndexTable=fontIndexTable,
-      align="Left",
-    })
-
+  if currentTypeIndex > string.len(currentText) then
     currentTypeIndex = currentTypeIndex + 1
-    if currentTypeIndex > string.len(currentText) then
-      currentTypeIndex = 1
+  end
+
+  if currentChar == targetChar then
+    local print_it = false
+
+    if currentTypeIndex <= string.len(currentText) then
+      -- Set the correct letter to regular font face
+      fontIndexTable[currentTypeIndex] = 7
+
+      -- Set the current letter to blue
+      if (currentTypeIndex + 1) <= string.len(currentText) then
+        fontIndexTable[currentTypeIndex + 1] = 2
+        print_it = true
+      elseif currentTypeIndex == string.len(currentText) then
+        print_it = true
+      end
+
+      currentTypeIndex = currentTypeIndex + 1
     end
 
-    print("yes")
+    if print_it then
+      currentNode, rect = ELIAFont:printf({
+        mainNode=currentNode,
+        text=currentText,
+        fontIndexTable=fontIndexTable,
+        align="Left",
+      })
+    end
+
+    -- print("yes")
   else
     -- Set the current letter to Red
     fontIndexTable[currentTypeIndex] = 4
@@ -297,7 +344,7 @@ local KeyDown = function(keycodeName, withCapsLock, withControl, withShift, with
       fontIndexTable=fontIndexTable,
       align="Left",
     })
-    print("no")
+    -- print("no")
   end
 end
 

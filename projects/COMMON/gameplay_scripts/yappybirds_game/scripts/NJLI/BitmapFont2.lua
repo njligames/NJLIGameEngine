@@ -25,7 +25,8 @@ local __ctor = function(self, init)
     local assetPath = njli.ASSET_PATH("fonts/" .. font .. ".lua")
     local data = loadfile(assetPath)()
 
-    self._maxLineHeight = math.max(self._maxLineHeight, data.common.lineHeight)
+    -- self._maxLineHeight = math.max(self._maxLineHeight, data.common.lineHeight)
+    self._maxLineHeight = math.max(self._maxLineHeight, data.info.lineHeight)
 
     local image = njli.Image.create()
     if njli.World.getInstance():getWorldResourceLoader():load("fonts/" .. font .. ".png", image) then
@@ -43,8 +44,9 @@ local __ctor = function(self, init)
 
         local kerningTable = {}
 
-        for kerningIdx=1,#data.kerning do
-          local kerningData = data.kerning[kerningIdx]
+        local kernings = data.kernings or {}
+        for kerningIdx=1,#kernings do
+          local kerningData = kernings[kerningIdx]
           local firstChar = string.char(kerningData.first)
           local secondChar = string.char(kerningData.second)
           local kerningAmt = kerningData.amount
@@ -91,14 +93,14 @@ end
 --############################################################################# 
 
 function BitmapFont2:maxLineHeight()
-  print(self._maxLineHeight)
+  -- print(self._maxLineHeight)
   return self._maxLineHeight
 end
 
 function BitmapFont2:lineHeight(fontIndex)
   local fi = fontIndex or 1
   if fi  <= #self._fonts then
-      return self._fonts[fi].data.common.lineHeight
+      return self._fonts[fi].data.info.lineHeight
   end
 end
 
@@ -112,7 +114,7 @@ function BitmapFont2:_renderLetter(...)
   local fontIndex = arg.fontIndex or 1
 
   local ascii = string.byte(charValue) or error("This should be impossible", 1)
-  local charData = self._fonts[fontIndex].data.chars[ascii - 31]
+  local charData = self._fonts[fontIndex].data.frames[ascii - 31]
 
   local node = nil
   local recycled = false
@@ -232,6 +234,37 @@ function BitmapFont2:printf(...)
   local charData = nil
   local recycleNode = false
 
+
+  
+  for i=0,mainNode:numberOfChildrenNodes() do 
+    local letterIndex=i+1
+    local paramTable =
+    {
+      mainNode = mainNode,
+      letterIndex = letterIndex,
+      charValue = " ",
+      fontIndex = fontIndexTable[letterIndex]
+    }
+    charData, node, recycleNode = self:_renderLetter(paramTable)
+  end
+
+   -- for i=1, i<mainNode:numberOfChildrenNodes() do
+   --   local currentIndex = i + 1
+   --   print(currentIndex)
+   -- end
+
+  -- for i=1, i<=string.len(text) do
+  --   -- local paramTable =
+  --   -- {
+  --   --   mainNode = mainNode,
+  --   --   letterIndex = currentIndex,
+  --   --   charValue = " ",
+  --   --   fontIndex = fontIndexTable[letterIndex]
+  --   -- }
+  --   -- charData, node, recycleNode = self:_renderLetter(paramTable)
+  --   print(i)
+  -- end
+
 	for c in string.gmatch( text .. '\n', '(.)' ) do
     local ascii = string.byte(c)
 
@@ -243,17 +276,12 @@ function BitmapFont2:printf(...)
       fontIndex = fontIndexTable[letterIndex]
     }
 
-    -- if TAB
-    if ascii == 9 then
-      paramTable.charValue = " "
-    end
-
     if (ascii >= 32 and ascii <= 126) then
       charData, node, recycleNode = self:_renderLetter(paramTable)
 
       local fontIndex = paramTable.fontIndex or 1
-      local lineHeight = self._fonts[fontIndex].data.common.lineHeight
-      local base = self._fonts[fontIndex].data.common.base
+      local lineHeight = self._fonts[fontIndex].data.info.lineHeight
+      local base = self._fonts[fontIndex].data.info.base
 
       local xpos = xCurrent + charData.xoffset
       local ypos = (lineHeight - charData.yoffset) - charData.height - (lineHeight - base) - yCurrent
@@ -272,12 +300,13 @@ function BitmapFont2:printf(...)
         -- xOffset, yOffset, xAdvance = self:_renderNewline(paramTable)
       -- if TAB
       elseif  ascii == 9 then
+        paramTable.charValue = " "
         for i=1, spacesInTab do
           charData, node, recycleNode = self:_renderLetter(paramTable)
 
           local fontIndex = paramTable.fontIndex or 1
-          local lineHeight = self._fonts[fontIndex].data.common.lineHeight
-          local base = self._fonts[fontIndex].data.common.base
+          local lineHeight = self._fonts[fontIndex].data.info.lineHeight
+          local base = self._fonts[fontIndex].data.info.base
 
           local xpos = xCurrent + charData.xoffset
           local ypos = (lineHeight - charData.yoffset) - charData.height - (lineHeight - base) - yCurrent
