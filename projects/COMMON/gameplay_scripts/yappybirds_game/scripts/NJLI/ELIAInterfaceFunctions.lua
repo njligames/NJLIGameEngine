@@ -14,45 +14,23 @@ PerspectiveCameraNode = nil
 MyGame = nil
 gInterface = nil
 
-resetTimer=0
-
-
-
-
-
-
-
-
+waitTime=0.5
+resetTimer=waitTime
 
 wordArray = 
 {
  "Lorem", "ipsum", "dolor", "sit", "amet", "consectetur", "adipiscing", "elit", "Donec", "lobortis", "ac", "elit", "ut", "vehicula", "Nam", "vestibulum", "at", "diam", "eget", "pulvinar", "Nunc", "porta", "odio", "metus", "at", "egestas", "sem", "rhoncus", "eu", "Fusce", "sed", "scelerisque", "quam", "consequat", "mollis", "quam", "Pellentesque", "ut", "turpis", "vel", "mauris", "ultrices", "luctus", "Ut", "lorem", "ante", "dictum", "pharetra", "efficitur", "et", "luctus", "vitae", "ligula", "Cras", "pretium", "dolor", "eu", "fermentum", "fermentum", "Nulla", "quis", "urna", "commodo", "molestie", "velit", "vitae", "varius", "odio", "Nulla", "vitae", "fermentum", "justo", "Mauris", "tincidunt", "convallis", "condimentum", "Donec", "mollis", "laoreet", "purus", "ut", "elementum", "Donec", "consectetur", "vestibulum", "nisi", "a", "condimentum", "Sed", "magna", "ligula", "dapibus", "sed", "sagittis", "sed", "viverra", "ac", "nulla", "Aliquam", "quis", "tempor", "nisl", "nec", "dapibus", "ex", "Proin", "condimentum", "est", "ut", "dui", "iaculis", "in", "feugiat", "mauris", "euismod", "Maecenas", "eu", "laoreet", "purus", "Aenean", "blandit", "fermentum", "ligula", "iaculis", "suscipit", "Vivamus", "sagittis", "a", "tortor", "vitae", "egestas", "Nam", "hendrerit", "metus", "finibus", "molestie", "efficitur", "Nulla", "hendrerit", "nisl", "augue", "quis", "venenatis", "elit", "ultrices", "eget", "Integer", "ac", "mi", "vel", "ex", "sodales", "dignissim", "vitae", "vitae", "nunc", "Mauris", "vel", "dapibus", "urna", "at", "finibus", "massa", "Duis", "imperdiet", "malesuada", "sem", "nec", "imperdiet", "Sed", "commodo", "ex", "lacus", "Proin", "viverra", "turpis", "id", "egestas", "tempor", "Maecenas", "eget", "condimentum", "urna", "quis", "fermentum", "odio", "Donec", "facilisis", "nunc", "neque", "ut", "sodales", "tellus", "volutpat", "quis", "Morbi", "bibendum", "luctus", "sem", "Etiam", "consectetur", "dolor", "luctus", "urna", "tincidunt", "molestie", "Aliquam", "non", "purus", "malesuada", "rhoncus", "lectus", "nec", "fermentum", "eros", "Aliquam", "scelerisque", "leo", "lectus", "quis", "euismod", "velit", "mattis", "vitae", "Fusce", "sit", "amet", "lacus", "in", "enim", "porttitor", "dapibus", "quis", "vel", "tellus", "Nullam", "egestas", "tellus", "eu", "est", "viverra", "porttitor", "Sed", "feugiat", "semper", "libero", "Donec", "euismod", "libero", "vel", "molestie", "eleifend", "dui", "massa", "tincidunt", "sem", "vel", "fringilla", "elit", "eros", "at", "risus", "Nullam", "blandit", "laoreet", "purus", "a", "elementum", "tellus", "Integer", "nec", "dignissim", "quam", "Proin", "laoreet", "sodales", "metus", "a", "viverra", "Suspendisse", "scelerisque", "dapibus", "efficitur", "Pellentesque", "nibh", "tellus", "congue", "quis", "commodo", "a", "sagittis", "a", "orci", "Sed", "mauris", "nisl", "mattis", "at", "tellus", "quis", "tempor", "consectetur", "erat", "Quisque", "dignissim", "sem", "et", "auctor", "iaculis", "Duis", "at", "imperdiet", "massa", "Quisque", "id", "libero", "enim", "Mauris", "molestie", "sit", "amet", "dolor", "rutrum", "varius", "Duis", "ut", "massa", "eu", "orci", "euismod", "hendrerit", "Aliquam", "imperdiet", "commodo", "aliquam", "Ut", "elementum", "porttitor", "dictum", "Vestibulum", "fringilla", "feugiat", "erat", "ut", "mollis", "Vestibulum", "est", "nisi", "mattis", "sed", "facilisis", "mattis", "varius", "id", "nisl", "Etiam", "facilisis", "viverra", "suscipit", "Donec", "in", "risus", "fermentum", "gravida", "est", "at", "bibendum", "arcu", "Nullam", "ut", "purus", "ac", "lectus", "tincidunt", "pharetra", "vitae", "id", "est", "Mauris", "at", "ligula", "bibendum", "lacus", "aliquet", "aliquet", "id", "quis", "orci",
  }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 currentWordArrayIndex=1
 currentNode = nil
 currentText = string.upper(wordArray[currentWordArrayIndex])
 fontIndexTable = {}
-currentTypeIndex = 1
+currentTypeIndex = string.len(currentText) + 1
+
+
 
 local Create = function()
-
 
   local scene = njli.Scene.create()
   local rootNode = njli.Node.create()
@@ -128,72 +106,9 @@ local Create = function()
   ELIAFont:show(OrthographicCameraNode:getCamera())
   ELIAFont:hide(PerspectiveCameraNode:getCamera())
   
-  local vert_margin = njli.SCREEN():y() / 30.0
-  local horiz_margin = njli.SCREEN():x() / 40.0
-
-
-  for i=1, string.len(currentText) do
-    fontIndexTable[i] = 1
-  end
-
-  fontIndexTable[currentTypeIndex] = 2
-
-  currentNode, rect = ELIAFont:printf({
-    mainNode=nil,
-    text=currentText,
-    fontIndexTable=fontIndexTable,
-    align="Left",
-  })
-
-  currentNode:setOrigin(bullet.btVector3(0 + horiz_margin, njli.SCREEN():y() - (ELIAFont:maxLineHeight() + vert_margin), -1))
-  rootNode:addChildNode(currentNode)
-
-
-
-  
-  
-    
-    
-    
-  
-  
-  
-  
-  
-  
-    
-  -- -- local points = (arg and arg.points) or 1234567890
-  -- local vert_margin = njli.SCREEN():y() / 30.0
-  -- local horiz_margin = njli.SCREEN():x() / 40.0
-  -- -- local node, rect = ELIAFont:printf(string.format("%.5d", points), njli.SCREEN():x(), 'left')
-  -- local node, rect = ELIAFont:printf("jim", njli.SCREEN():x(), 'left')
-  -- node:setOrigin(bullet.btVector3(njli.SCREEN():x() - rect.width - horiz_margin, njli.SCREEN():y() - rect.height - vert_margin, -1))
-  -- node:show(OrthographicCameraNode:getCamera())
-  -- node:setCurrentScene(njli.World.getInstance():getScene())
-  -- 
-  -- rootNode:addChildNode(node)
-  
-  
-  
-  
-  
-  
-  
---  if nil == MyGame then
---    MyGame = YappyGame(Worlds.yappygame)
---    MyGame:startStateMachine()
---  end
-  
-
 end
   
 local Destroy = function()
-
---  if MyGame then
---    MyGame:stopStateMachine()
---    MyGame = nil
---  end
-  
   
   if RanchersFont then
     RanchersFont:unLoad()
@@ -230,6 +145,14 @@ end
 
 local Update = function(timeStep)
 
+  if currentNode then
+    if (currentTypeIndex <=  string.len(currentText)) then
+      currentNode:show(OrthographicCameraNode:getCamera())
+    else
+      currentNode:hide(OrthographicCameraNode:getCamera())
+    end
+  end
+
   if debugging == nil then
         debugging = false
         return false
@@ -237,16 +160,18 @@ local Update = function(timeStep)
 
     if not debugging then
         require("mobdebug").start()
-        --require("mobdebug").coro()
         debugging = true
     end
     
-  -- ELIAFont:show(OrthographicCameraNode:getCamera())
   if currentTypeIndex > string.len(currentText) then
 
     resetTimer = resetTimer + timeStep
 
-    if resetTimer > 0.5 then
+    if resetTimer >= 0.5 then
+
+      if currentNode then
+        currentNode:hide(OrthographicCameraNode:getCamera())
+      end
 
       currentWordArrayIndex=currentWordArrayIndex+1
       currentText = string.upper(wordArray[currentWordArrayIndex])
@@ -270,7 +195,6 @@ local Update = function(timeStep)
 
       currentNode:setOrigin(bullet.btVector3(0 + horiz_margin, njli.SCREEN():y() - (ELIAFont:maxLineHeight() + vert_margin), -1))
 
-      -- ELIAFont:hide(OrthographicCameraNode:getCamera())
       resetTimer = 0
 
     end
@@ -302,9 +226,10 @@ local KeyDown = function(keycodeName, withCapsLock, withControl, withShift, with
   local currentChar = string.upper(keycodeName)
   local targetChar = string.upper(string.sub(currentText, currentTypeIndex, currentTypeIndex))
 
-  if currentTypeIndex > string.len(currentText) then
-    currentTypeIndex = currentTypeIndex + 1
-  end
+  -- if currentTypeIndex > string.len(currentText) then
+  --   currentTypeIndex = currentTypeIndex + 1
+  --   currentNode:hide(OrthographicCameraNode:getCamera())
+  -- end
 
   if currentChar == targetChar then
     local print_it = false
@@ -346,6 +271,10 @@ local KeyDown = function(keycodeName, withCapsLock, withControl, withShift, with
     })
     -- print("no")
   end
+
+  -- if currentTypeIndex > string.len(currentText) then
+  --   currentNode:hide(OrthographicCameraNode:getCamera())
+  -- end
 end
 
 local KeyUp = function(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui) end
