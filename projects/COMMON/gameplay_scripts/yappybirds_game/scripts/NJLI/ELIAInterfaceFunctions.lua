@@ -35,7 +35,15 @@ currentNumberOfLetters=0.0
 
 startOrigin = bullet.btVector3(0.0, 0.0, 0.0)
 
+
+currentNumberOfPoints = 0.0
+pointsPerCorrectLetter = 1.0
+pointsNode = nil
+pointsNodeRect = nil
+
 --[[
+https://www.speedtypingonline.com/typing-equations
+
 Accuracy
 Typing accuracy is defined as the percentage of correct entries out of the total entries typed. To calculate this mathematically, take the number of correct characters typed divided by the total number, multiplied by 100%. So if you typed 90 out of 100 characters correctly you typed with 90% accuracy.
 
@@ -133,6 +141,46 @@ local Create = function()
 
   startOrigin = bullet.btVector3(bullet.btVector3(njli.SCREEN():x() + horiz_margin, njli.SCREEN():y() - (ELIAFont:maxLineHeight() + vert_margin), -1))
   
+
+
+
+
+
+
+
+  local pointsString = string.format("%.4d", tostring(currentNumberOfPoints))
+  local pointsFontTable = {}
+  for i=1, string.len(pointsString) do
+    pointsFontTable[i] = 1
+  end
+
+  pointsNode, pointsNodeRect = ELIAFont:printf({
+    mainNode=nil,
+    text=pointsString,
+    fontIndexTable=pointsFontTable,
+    align="Left",
+  })
+  local vert_margin = njli.SCREEN():y() / 30.0
+  local horiz_margin = njli.SCREEN():x() / 40.0
+
+  pointsNode:setOrigin(bullet.btVector3(bullet.btVector3(0 + horiz_margin, 0 + vert_margin, -1)))
+  pointsNode:show(OrthographicCameraNode:getCamera())
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 end
   
 local Destroy = function()
@@ -171,7 +219,6 @@ local Destroy = function()
 end
 
 local Update = function(timeStep)
-  print(AccuracyPercentage())
 
   if currentNode then
     if (currentTypeIndex <=  string.len(currentText)) then
@@ -239,7 +286,14 @@ local Update = function(timeStep)
     end
 
   end
-  
+
+
+
+
+
+
+
+
    njli.World.getInstance():setBackgroundColor(1.000, 1.000, 1.000)
 end
 
@@ -296,6 +350,41 @@ local KeyDown = function(keycodeName, withCapsLock, withControl, withShift, with
 
     -- print("yes")
     totalAccurateTyped = totalAccurateTyped + 1.0
+
+    currentNumberOfPoints = currentNumberOfPoints + pointsPerCorrectLetter
+
+
+  local pointsString = string.format("%.4d", tostring(currentNumberOfPoints))
+  local pointsFontTable = {}
+  for i=1, string.len(pointsString) do
+    pointsFontTable[i] = 6
+  end
+
+  pointsNode, pointsNodeRect = ELIAFont:printf({
+    mainNode=pointsNode,
+    text=pointsString,
+    fontIndexTable=pointsFontTable,
+    align="Left",
+  })
+  local vert_margin = njli.SCREEN():y() / 30.0
+  local horiz_margin = njli.SCREEN():x() / 40.0
+
+  pointsNode:setOrigin(bullet.btVector3(bullet.btVector3(0 + horiz_margin, 0 + vert_margin, -1)))
+  pointsNode:show(OrthographicCameraNode:getCamera())
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   else
     -- Set the current letter to Red
     fontIndexTable[currentTypeIndex] = 4
