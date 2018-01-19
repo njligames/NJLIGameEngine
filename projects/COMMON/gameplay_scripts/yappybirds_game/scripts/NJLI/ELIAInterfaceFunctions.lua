@@ -149,7 +149,9 @@ local Update = function(timeStep)
     if (currentTypeIndex <=  string.len(currentText)) then
       currentNode:show(OrthographicCameraNode:getCamera())
     else
-      currentNode:hide(OrthographicCameraNode:getCamera())
+      if resetTimer >= 0.5 then
+        currentNode:hide(OrthographicCameraNode:getCamera())
+      end
     end
   end
 

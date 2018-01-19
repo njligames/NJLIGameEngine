@@ -326,13 +326,6 @@ function BitmapFont2:printf(...)
     letterIndex = letterIndex + 1
 	end
 
-  -- if self._showCamera then
-  --   mainNode:show(self._showCamera)
-  -- end
-  -- if self._hiddenCamera then
-  --   mainNode:hide(self._hiddenCamera)
-  -- end
-
   return mainNode, rect
 end
 
