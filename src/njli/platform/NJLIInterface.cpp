@@ -9,8 +9,8 @@
 #include "NJLIInterface.h"
 #include "Game.h"
 #include <map>
-#include <vector>
 #include <string>
+#include <vector>
 
 std::vector<SDL_Joystick *> gGameJoysticks;
 typedef std::map<int, SDL_Joystick *> JoystickMap;
@@ -63,39 +63,35 @@ void NJLI_HandleJoy(int device_id, int axis, float value) {}
 
 void NJLI_HandleHat(int device_id, int hat_id, int x, int y) {}
 
-void NJLI_HandleKeyDown(const std::string &keycodeName,
-                        bool withCapsLock,
-                        bool withControl,
-                        bool withShift,
-                        bool withAlt,
+void NJLI_HandleKeyDown(const std::string &keycodeName, bool withCapsLock,
+                        bool withControl, bool withShift, bool withAlt,
                         bool withGui)
 {
-    njli::NJLIGameEngine::keyDown(keycodeName.c_str(), withCapsLock, withControl, withShift, withAlt, withGui);
+  njli::NJLIGameEngine::keyDown(keycodeName.c_str(), withCapsLock, withControl,
+                                withShift, withAlt, withGui);
 }
 
-void NJLI_HandleKeyUp(const std::string &keycodeName,
-                      bool withCapsLock,
-                      bool withControl,
-                      bool withShift,
-                      bool withAlt,
+void NJLI_HandleKeyUp(const std::string &keycodeName, bool withCapsLock,
+                      bool withControl, bool withShift, bool withAlt,
                       bool withGui)
 {
-    njli::NJLIGameEngine::keyUp(keycodeName.c_str(), withCapsLock, withControl, withShift, withAlt, withGui);
+  njli::NJLIGameEngine::keyUp(keycodeName.c_str(), withCapsLock, withControl,
+                              withShift, withAlt, withGui);
 }
 
 void NJLI_HandleKeyboardFocusLost()
 {
-//    SDL_Log("NJLI_HandleKeyboardFocusLost: %d", keycode);
+  //    SDL_Log("NJLI_HandleKeyboardFocusLost: %d", keycode);
 }
 
 void NJLI_HandleKeyboardFinish(const unsigned char *state, int numStates)
 {
-    /*
-     *  const Uint8 *state = SDL_GetKeyboardState(NULL);
-     *  if ( state[SDL_SCANCODE_RETURN] )   {
-     *      printf("<RETURN> is pressed.\n");
-     *  }
-     */
+  /*
+   *  const Uint8 *state = SDL_GetKeyboardState(NULL);
+   *  if ( state[SDL_SCANCODE_RETURN] )   {
+   *      printf("<RETURN> is pressed.\n");
+   *  }
+   */
 }
 
 void NJLI_HandleMouse(int button, int eventType, float x, float y, int clicks)

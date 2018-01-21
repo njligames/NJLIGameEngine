@@ -595,22 +595,22 @@ namespace njli
     //        m_FrameNames.insert(btHashString(rect.getTrimmedName().c_str()),
     //        rect);
   }
-    
-    bool SpriteFrameAtlas::hasFrame(const char *name)const
-    {
-        SDL_assert(name);
-        
-        for (s32 i = 0; i < m_Frames.size(); ++i)
-        {
-            const char *s = m_Frames.at(i).getTrimmedName().c_str();
-            if (std::strcmp(s, name) == 0)
-            {
-                return true;
-            }
-        }
-        
-        return false;
-    }
+
+  bool SpriteFrameAtlas::hasFrame(const char *name) const
+  {
+    SDL_assert(name);
+
+    for (s32 i = 0; i < m_Frames.size(); ++i)
+      {
+        const char *s = m_Frames.at(i).getTrimmedName().c_str();
+        if (std::strcmp(s, name) == 0)
+          {
+            return true;
+          }
+      }
+
+    return false;
+  }
 
   const Rect &SpriteFrameAtlas::getFrame(const char *name) const
   {

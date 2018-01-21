@@ -224,20 +224,12 @@ namespace njli
     void mouseDown(const DeviceMouse &touch);
     void mouseUp(const DeviceMouse &touch);
     void mouseMove(const DeviceMouse &touch);
-      
-      void keyUp(const char *keycodeName,
-                 bool withCapsLock,
-                 bool withControl,
-                 bool withShift,
-                 bool withAlt,
-                 bool withGui);
-      
-      void keyDown(const char *keycodeName,
-                   bool withCapsLock,
-                   bool withControl,
-                   bool withShift,
-                   bool withAlt,
-                   bool withGui);
+
+    void keyUp(const char *keycodeName, bool withCapsLock, bool withControl,
+               bool withShift, bool withAlt, bool withGui);
+
+    void keyDown(const char *keycodeName, bool withCapsLock, bool withControl,
+                 bool withShift, bool withAlt, bool withGui);
 
     /**
      <#Description#>
@@ -248,15 +240,15 @@ namespace njli
 
   public:
   protected:
-    void checkRayCollision(DeviceTouch * *touches, const char *code,
-                           bool disableNodeTouched = false);
-    void checkRayCollision(const DeviceTouch &touch, const char *code,
-                           bool disableNodeTouched = false);
-    void checkRayCollision(const DeviceMouse &mouse, const char *code,
-                           bool disableNodeTouched = false);
+    //    void checkRayCollision(DeviceTouch * *touches, const char *code,
+    //                           bool disableNodeTouched = false);
+    //    void checkRayCollision(const DeviceTouch &touch, const char *code,
+    //                           bool disableNodeTouched = false);
+    //    void checkRayCollision(const DeviceMouse &mouse, const char *code,
+    //                           bool disableNodeTouched = false);
 
   private:
-    btAlignedObjectArray<njli::PhysicsRayContact *> m_RayContacts;
+    //    btAlignedObjectArray<njli::PhysicsRayContact *> m_RayContacts;
   };
 }
 

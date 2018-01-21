@@ -505,7 +505,7 @@ namespace njli
 
   static void handleInput()
   {
-      bool callFinishKeys = false;
+    bool callFinishKeys = false;
     SDL_Event event;
     SDL_PumpEvents();
     while (SDL_PollEvent(&event))
@@ -616,44 +616,37 @@ namespace njli
               }
             break;
           case SDL_KEYUP:
-              {
-                  callFinishKeys = true;
-                  int temp = SDL_GetModState();
-                  temp = temp & KMOD_CAPS;
-                  bool withCapsLock = (temp == KMOD_CAPS);
-                  
-                  bool withControl = !!(event.key.keysym.mod & KMOD_CTRL);
-                  bool withShift = !!(event.key.keysym.mod & KMOD_SHIFT);
-                  bool withAlt = !!(event.key.keysym.mod & KMOD_ALT);
-                  bool withGui = !!(event.key.keysym.mod & KMOD_GUI);
-                  
-                  NJLI_HandleKeyUp(SDL_GetScancodeName(event.key.keysym.scancode),
-                                   withCapsLock,
-                                   withControl,
-                                   withShift,
-                                   withAlt,
-                                   withGui);
-              }
-            break;
-          case SDL_KEYDOWN:
             {
-                callFinishKeys = true;
-                int temp = SDL_GetModState();
-                temp = temp & KMOD_CAPS;
-                bool withCapsLock = (temp == KMOD_CAPS);
+              callFinishKeys = true;
+              int temp = SDL_GetModState();
+              temp = temp & KMOD_CAPS;
+              bool withCapsLock = (temp == KMOD_CAPS);
 
               bool withControl = !!(event.key.keysym.mod & KMOD_CTRL);
               bool withShift = !!(event.key.keysym.mod & KMOD_SHIFT);
               bool withAlt = !!(event.key.keysym.mod & KMOD_ALT);
-                bool withGui = !!(event.key.keysym.mod & KMOD_GUI);
-                
-                NJLI_HandleKeyDown(SDL_GetScancodeName(event.key.keysym.scancode),
-                                   withCapsLock,
-                                   withControl,
-                                   withShift,
-                                   withAlt,
-                                   withGui);
-                
+              bool withGui = !!(event.key.keysym.mod & KMOD_GUI);
+
+              NJLI_HandleKeyUp(SDL_GetScancodeName(event.key.keysym.scancode),
+                               withCapsLock, withControl, withShift, withAlt,
+                               withGui);
+            }
+            break;
+          case SDL_KEYDOWN:
+            {
+              callFinishKeys = true;
+              int temp = SDL_GetModState();
+              temp = temp & KMOD_CAPS;
+              bool withCapsLock = (temp == KMOD_CAPS);
+
+              bool withControl = !!(event.key.keysym.mod & KMOD_CTRL);
+              bool withShift = !!(event.key.keysym.mod & KMOD_SHIFT);
+              bool withAlt = !!(event.key.keysym.mod & KMOD_ALT);
+              bool withGui = !!(event.key.keysym.mod & KMOD_GUI);
+
+              NJLI_HandleKeyDown(SDL_GetScancodeName(event.key.keysym.scancode),
+                                 withCapsLock, withControl, withShift, withAlt,
+                                 withGui);
 
               switch (event.key.keysym.sym)
                 {
@@ -1025,10 +1018,10 @@ namespace njli
             break;
           }
       }
-      
-      if(callFinishKeys)
-          NJLI_HandleKeyboardFinish(SDL_GetKeyboardState(NULL), SDL_NUM_SCANCODES);
-      
+
+    if (callFinishKeys)
+      NJLI_HandleKeyboardFinish(SDL_GetKeyboardState(NULL), SDL_NUM_SCANCODES);
+
 #if !(defined(__MACOSX__) && __MACOSX__)
 #endif
   }

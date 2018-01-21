@@ -14,6 +14,7 @@ PerspectiveCameraNode = nil
 MyGame = nil
 gInterface = nil
 
+scrollSpeed=3.0
 waitTime=0.5
 resetTimer=waitTime
 
@@ -63,11 +64,34 @@ local AccuracyPercentage = function()
   return 100.0
 end
 
+local DrawLabel = function(...)
+  local arg=... or {}
+  local text = arg.text or "?"
+  local mainNode = arg.mainNode or nil
+
+  local fontTable = {}
+  for i=1, string.len(text) do
+    fontTable[i] = 8
+  end
+
+  local mainNode, mainNodeRect = ELIAFont:printf({
+    mainNode=mainNode,
+    text=text,
+    fontIndexTable=fontTable,
+    align="Left",
+  })
+
+  mainNode:show(OrthographicCameraNode:getCamera())
+
+  return mainNode, mainNodeRect
+
+end
+
 local DrawPoints = function(points)
-  local pointsString = string.format("%.4d", tostring(points))
+  local pointsString = string.format("%.4d", tostring(points)) .. " Points"
   local pointsFontTable = {}
   for i=1, string.len(pointsString) do
-    pointsFontTable[i] = 6
+    pointsFontTable[i] = 8
   end
 
   pointsNode, pointsNodeRect = ELIAFont:printf({
@@ -78,17 +102,18 @@ local DrawPoints = function(points)
   })
   local vert_margin = njli.SCREEN():y() / 30.0
   local horiz_margin = njli.SCREEN():x() / 40.0
+  local half_horizontal = njli.SCREEN():x() * 0.5
 
-  pointsNode:setOrigin(bullet.btVector3(bullet.btVector3(0 + horiz_margin, 0 + vert_margin, -1)))
+  pointsNode:setOrigin(bullet.btVector3(bullet.btVector3(half_horizontal - (pointsNodeRect.width * 0.5), vert_margin, -1)))
   pointsNode:show(OrthographicCameraNode:getCamera())
 end
 
 local DrawAccuracy = function(accuracy)
-  local accuracyString = string.format("%.0f", accuracy) .. "%"
+  local accuracyString = string.format("%.0f", accuracy) .. "% Accuracy"
 
   local accuracyFontTable = {}
   for i=1, string.len(accuracyString) do
-    accuracyFontTable[i] = 6
+    accuracyFontTable[i] = 8
   end
 
   accuracyNode, accuracyNodeRect = ELIAFont:printf({
@@ -99,8 +124,9 @@ local DrawAccuracy = function(accuracy)
   })
   local vert_margin = njli.SCREEN():y() / 30.0
   local horiz_margin = njli.SCREEN():x() / 40.0
+  local half_horizontal = njli.SCREEN():x() * 0.5
 
-  accuracyNode:setOrigin(bullet.btVector3(bullet.btVector3((njli.SCREEN():x()) - (accuracyNodeRect.width + horiz_margin), 0 + vert_margin, -1)))
+  accuracyNode:setOrigin(bullet.btVector3(bullet.btVector3(half_horizontal - (accuracyNodeRect.width * 0.5), vert_margin * 4, -1)))
   accuracyNode:show(OrthographicCameraNode:getCamera())
 end
 
@@ -130,6 +156,7 @@ local Create = function()
     
     rootNode:addChildNode(OrthographicCameraNode)
   end
+  scene:setTouchCamera(OrthographicCameraNode:getCamera())
   
   if nil == PerspectiveCameraNode then
     PerspectiveCameraNode = njli.Node.create()
@@ -175,6 +202,7 @@ local Create = function()
     "ELIAYellow",
     "ELIABlack",
     "TimesNewRomanBasic",
+    "HUD",
   })
 
   ELIAFont:show(OrthographicCameraNode:getCamera())
@@ -231,11 +259,11 @@ local Update = function(timeStep)
     if (currentTypeIndex <=  string.len(currentText)) then
       currentNode:show(OrthographicCameraNode:getCamera())
     else
-      if resetTimer >= 0.5 then
+      if resetTimer >= waitTime then
         currentNode:hide(OrthographicCameraNode:getCamera())
       end
     end
-    local origin = currentNode:getOrigin() - bullet.btVector3(3.0, 0.0, 0.0)
+    local origin = currentNode:getOrigin() - bullet.btVector3(scrollSpeed, 0.0, 0.0)
     currentNode:setOrigin(origin)
 
     if  origin:x() + currentNodeRect.width  < 0 then
@@ -257,7 +285,7 @@ local Update = function(timeStep)
 
     resetTimer = resetTimer + timeStep
 
-    if resetTimer >= 0.5 then
+    if resetTimer >= waitTime then
 
       if currentNode then
         currentNode:hide(OrthographicCameraNode:getCamera())
@@ -296,14 +324,7 @@ local Update = function(timeStep)
 
   end
 
-
-
-
-
-
-
-
-   njli.World.getInstance():setBackgroundColor(1.000, 1.000, 1.000)
+  njli.World.getInstance():setBackgroundColor(1.000, 1.000, 1.000)
 end
 
 local Render = function() end
@@ -343,7 +364,6 @@ local KeyDown = function(keycodeName, withCapsLock, withControl, withShift, with
         print_it = true
       end
 
-      -- currentTypeIndex = currentTypeIndex + 1
     end
 
     if print_it then
@@ -354,8 +374,6 @@ local KeyDown = function(keycodeName, withCapsLock, withControl, withShift, with
         align="Left",
       })
     end
-    -- local vert_margin = njli.SCREEN():y() / 30.0
-    -- local horiz_margin = njli.SCREEN():x() / 40.0
 
     -- print("yes")
     totalAccurateTyped = totalAccurateTyped + 1.0

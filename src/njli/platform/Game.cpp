@@ -50,7 +50,7 @@ namespace njli
     SDL_LogVerbose(SDL_LOG_CATEGORY_TEST, "Platform Name = `%s`\n", platform);
     SDL_LogVerbose(SDL_LOG_CATEGORY_TEST, "Device Name = `%s`\n", deviceName);
 
-//    printGLInfo();
+    //    printGLInfo();
     initGL();
 
     njli::World::getInstance()->setDeviceName(deviceName);
@@ -1228,7 +1228,8 @@ end
     if (World::getInstance()->getWorldLuaVirtualMachine()->compileString(
             source.c_str()))
       {
-        ret = World::getInstance()->getWorldLuaVirtualMachine()->compileFile("scripts/main.lua");
+        ret = World::getInstance()->getWorldLuaVirtualMachine()->compileFile(
+            "scripts/main.lua");
         njli::World::getInstance()->createScript();
       }
     return ret;
@@ -1313,26 +1314,22 @@ end
     njli::World::getInstance()->getWorldInput()->handleMouse(button, eventType,
                                                              x, y, clicks);
   }
-    
-    void NJLIGameEngine::keyUp(const char *keycodeName,
-                               bool withCapsLock,
-                               bool withControl,
-                               bool withShift,
-                               bool withAlt,
+
+  void NJLIGameEngine::keyUp(const char *keycodeName, bool withCapsLock,
+                             bool withControl, bool withShift, bool withAlt,
+                             bool withGui)
+  {
+    njli::World::getInstance()->getWorldInput()->handleKeyUp(
+        keycodeName, withCapsLock, withControl, withShift, withAlt, withGui);
+  }
+
+  void NJLIGameEngine::keyDown(const char *keycodeName, bool withCapsLock,
+                               bool withControl, bool withShift, bool withAlt,
                                bool withGui)
-    {
-        njli::World::getInstance()->getWorldInput()->handleKeyUp(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui);
-    }
-    
-    void NJLIGameEngine::keyDown(const char *keycodeName,
-                                 bool withCapsLock,
-                                 bool withControl,
-                                 bool withShift,
-                                 bool withAlt,
-                                 bool withGui)
-    {
-        njli::World::getInstance()->getWorldInput()->handleKeyDown(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui);
-    }
+  {
+    njli::World::getInstance()->getWorldInput()->handleKeyDown(
+        keycodeName, withCapsLock, withControl, withShift, withAlt, withGui);
+  }
 
   void NJLIGameEngine::handleEvent(void *event)
   {

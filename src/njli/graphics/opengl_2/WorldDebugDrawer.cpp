@@ -600,7 +600,7 @@ namespace njli
     //	if (textProgram_ScreenDimensions < 0)
     //	{
     //		std::cerr << "Unable to get u_screenDimensions uniform
-    //location!"
+    // location!"
     //<<
     // std::endl;
     //	}

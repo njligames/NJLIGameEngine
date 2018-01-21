@@ -30,6 +30,7 @@ namespace njli
     friend class WorldFactory;
     friend class PhysicsWorld;
     friend class WorldState;
+    friend class World;
 
   protected:
     PhysicsRayContact();

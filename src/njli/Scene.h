@@ -429,20 +429,12 @@ namespace njli
     void mouseDown(const DeviceMouse &mouse);
     void mouseUp(const DeviceMouse &mouse);
     void mouseMove(const DeviceMouse &mouse);
-      
-      void keyUp(const char *keycodeName,
-                 bool withCapsLock,
-                 bool withControl,
-                 bool withShift,
-                 bool withAlt,
-                 bool withGui);
-      
-      void keyDown(const char *keycodeName,
-                   bool withCapsLock,
-                   bool withControl,
-                   bool withShift,
-                   bool withAlt,
-                   bool withGui);
+
+    void keyUp(const char *keycodeName, bool withCapsLock, bool withControl,
+               bool withShift, bool withAlt, bool withGui);
+
+    void keyDown(const char *keycodeName, bool withCapsLock, bool withControl,
+                 bool withShift, bool withAlt, bool withGui);
 
     /**
      <#Description#>
@@ -494,7 +486,7 @@ namespace njli
     const Camera *getTouchCamera() const;
 
   protected:
-    void addActiveCamera(Camera * camera = NULL);
+    void addActiveCamera(Camera *camera = NULL);
     void removeActiveCamera(Camera * camera);
 
     void addActiveNode(Node * node);

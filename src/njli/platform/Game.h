@@ -39,20 +39,14 @@ namespace njli
     //    static void startHandleFingers();
 
     static void mouse(int button, int eventType, float x, float y, int clicks);
-      
-      static void keyUp(const char *keycodeName,
-                        bool withCapsLock,
-                        bool withControl,
-                        bool withShift,
-                        bool withAlt,
+
+    static void keyUp(const char *keycodeName, bool withCapsLock,
+                      bool withControl, bool withShift, bool withAlt,
+                      bool withGui);
+
+    static void keyDown(const char *keycodeName, bool withCapsLock,
+                        bool withControl, bool withShift, bool withAlt,
                         bool withGui);
-      
-      static void keyDown(const char *keycodeName,
-                          bool withCapsLock,
-                          bool withControl,
-                          bool withShift,
-                          bool withAlt,
-                          bool withGui);
 
     static void handleEvent(void *event);
 

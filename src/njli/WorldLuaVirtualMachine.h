@@ -15,9 +15,9 @@
 #include "lua.hpp"
 
 #include "AbstractState.h"
+#include "DeviceKey.h"
 #include "DeviceMouse.h"
 #include "DeviceTouch.h"
-#include "DeviceKey.h"
 #include "Node.h"
 #include "Scene.h"
 #include "btDispatcher.h"
@@ -294,8 +294,8 @@ namespace njli
      @return <#return value description#>
      */
     bool execute(const char *code, DeviceTouch **touches);
-      
-      bool execute(const char *code, DeviceKey **keys);
+
+    bool execute(const char *code, DeviceKey **keys);
 
     /**
      <#Description#>
@@ -469,34 +469,17 @@ namespace njli
      @return <#return value description#>
      */
     bool execute(const char *code, Node *node, const char *str);
-      
-    bool execute(const char *code,
-                 const char *keycodeName,
-                 bool withCapsLock,
-                 bool withControl,
-                 bool withShift,
-                 bool withAlt,
-                 bool withGui);
-      
-      bool execute(const char *code,
-                   Node *pEntity,
-                   const char *keycodeName,
-                   bool withCapsLock,
-                   bool withControl,
-                   bool withShift,
-                   bool withAlt,
-                   bool withGui);
-      
-      bool execute(const char *code,
-                   Scene *pEntity,
-                   const char *keycodeName,
-                   bool withCapsLock,
-                   bool withControl,
-                   bool withShift,
-                   bool withAlt,
-                   bool withGui);
-      
-      
+
+    bool execute(const char *code, const char *keycodeName, bool withCapsLock,
+                 bool withControl, bool withShift, bool withAlt, bool withGui);
+
+    bool execute(const char *code, Node *pEntity, const char *keycodeName,
+                 bool withCapsLock, bool withControl, bool withShift,
+                 bool withAlt, bool withGui);
+
+    bool execute(const char *code, Scene *pEntity, const char *keycodeName,
+                 bool withCapsLock, bool withControl, bool withShift,
+                 bool withAlt, bool withGui);
 
     /**
          *  @author James Folk, 16-02-11 18:02:04
