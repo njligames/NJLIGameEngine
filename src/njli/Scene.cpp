@@ -873,8 +873,7 @@ namespace njli
       }
     else
       {
-        SDL_LogDebug(SDL_LOG_CATEGORY_TEST,
-                     "There is no SceneState in mouseDown\n");
+        //SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState in mouseDown\n");
       }
   }
 
@@ -889,8 +888,7 @@ namespace njli
       }
     else
       {
-        SDL_LogDebug(SDL_LOG_CATEGORY_TEST,
-                     "There is no SceneState in mouseUp\n");
+//        SDL_LogDebug(SDL_LOG_CATEGORY_TEST, "There is no SceneState in mouseUp\n");
       }
   }
 

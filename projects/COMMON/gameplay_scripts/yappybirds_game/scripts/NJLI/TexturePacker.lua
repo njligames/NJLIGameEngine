@@ -59,7 +59,10 @@ end
 
 --############################################################################# 
 
-function TexturePacker:draw(name)
+function TexturePacker:draw(...)
+  local arg = ... or {}
+  local node = arg.node or njli.Node.create()
+  local name = arg.name or "?"
 
   local frameNumber = self._sheetInfo:getFrameIndex(name)
   assert(frameNumber, "no such name in the textrue packer file as " .. name)
@@ -72,7 +75,6 @@ function TexturePacker:draw(name)
   local pivotx = (frame.pivotx / width) or 0
   local pivoty = (frame.pivoty / height) or 0
 
-  local node = njli.Node.create()
   local geometry = self._sheetData.geometry or nil
   geometry:setName(name)
   assert(geometry, "there must be geometry loaded")
@@ -86,7 +88,7 @@ function TexturePacker:draw(name)
     bullet.btVector2( width, height),
     bullet.btVector2( pivotx, pivoty ))
 
-  return node
+  return node, bullet.btVector2(width, height)
 
 end
 

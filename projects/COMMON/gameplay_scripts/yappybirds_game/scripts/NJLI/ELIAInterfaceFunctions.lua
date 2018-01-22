@@ -49,6 +49,9 @@ accuracyNode = nil
 accuracyNodeRect = nil
 
 doneNode = nil
+donePhysicsShape = nil
+donePhysicsBody = nil
+doneButtonDown = false
 
 --[[
 https://www.speedtypingonline.com/typing-equations
@@ -118,13 +121,24 @@ local DrawAccuracy = function(accuracy)
 end
 
 local DrawDoneButton = function(x, y)
-  doneNode = ELIATexturePacker:draw("btn_done_up")
+  doneNode, dimension = ELIATexturePacker:draw({name="btn_done_up", node=doneNode})
+
   local origin = bullet.btVector3(x, y, -1)
   doneNode:setOrigin(origin)
   doneNode:show(OrthographicCameraNode:getCamera())
 
   local scene = njli.World.getInstance():getScene()
   scene:getRootNode():addChildNode(doneNode)
+
+  donePhysicsShape = njli.PhysicsShapeBox.create()
+
+  donePhysicsBody = njli.PhysicsBodyRigid.create()
+  donePhysicsBody:setStaticPhysics()
+  donePhysicsBody:setPhysicsShape(donePhysicsShape)
+
+  doneNode:setPhysicsBody(donePhysicsBody)
+
+  donePhysicsShape:setHalfExtends(bullet.btVector3( dimension:x(), dimension:y(), 1.0 ))
 end
 
 local Create = function()
@@ -471,9 +485,9 @@ local SceneMouseDown = function(scene, mouse) end
 local SceneMouseUp = function(scene, mouse) end
 
 local SceneMouseMove = function(scene, mouse)
-    if gInterface then
-        gInterface:getStateMachine():_sceneMouseMove(scene, mouse)
-    end
+    -- if gInterface then
+    --     gInterface:getStateMachine():_sceneMouseMove(scene, mouse)
+    -- end
 end
 
 
@@ -599,6 +613,7 @@ local NodeRayTouchesDown = function(rayContact)
 end
 
 local NodeRayTouchesUp = function(rayContact)
+  print(touchDown)
     if gInterface then
         gInterface:getStateMachine():_rayTouchesUp(rayContact)
     end
@@ -647,21 +662,23 @@ local NodeRayTouchCancelled = function(rayContact)
 end
 
 local NodeRayMouseDown = function(rayContact)
-    if gInterface then
-        gInterface:getStateMachine():_rayMouseDown(rayContact)
-    end
+  if not doneButtonDown then
+    doneButtonDown = true
+    print("button down (mouse down)")
+    doneNode, dimension = ELIATexturePacker:draw({name="btn_done_down", node=doneNode})
+  end
 end
 
 local NodeRayMouseUp = function(rayContact)
-    if gInterface then
-        gInterface:getStateMachine():_rayMouseUp(rayContact)
-    end
+  if doneButtonDown then
+    doneButtonDown = false
+    print("button up (mouse up)")
+    doneNode, dimension = ELIATexturePacker:draw({name="btn_done_up", node=doneNode})
+  end
 end
 
 local NodeRayMouseMove = function(rayContact)
-    if gInterface then
-        gInterface:getStateMachine():_rayMouseMove(rayContact)
-    end
+  -- print("ray mouse move", tostring(doneButtonDown))
 end
 
 local NodeRayTouchMissed = function(node)
@@ -671,9 +688,12 @@ local NodeRayTouchMissed = function(node)
 end
 
 local NodeRayMouseMissed = function(node)
-    if gInterface then
-        gInterface:getStateMachine():_rayMouseMissed(node)
-    end
+  --print("ray mouse missed", tostring(doneButtonDown))
+  if doneButtonDown then
+    doneButtonDown = false
+    print("button up (mouse missed)")
+    doneNode, dimension = ELIATexturePacker:draw({name="btn_done_up", node=doneNode})
+  end
 end
 
 local NodeKeyboardShow = function(node)
@@ -761,21 +781,24 @@ local NodeTouchCancelled = function(node, touches)
 end
 
 local NodeMouseDown = function(node, mouse)
-    if gInterface then
-        gInterface:getStateMachine():_nodeMouseDown(node, mouse)
-    end
+  print('mouse down')
+    -- if gInterface then
+    --     gInterface:getStateMachine():_nodeMouseDown(node, mouse)
+    -- end
 end
 
 local NodeMouseUp = function(node, mouse)
-    if gInterface then
-        gInterface:getStateMachine():_nodeMouseUp(node, mouse)
-    end
+  print('mouse up')
+    -- if gInterface then
+    --     gInterface:getStateMachine():_nodeMouseUp(node, mouse)
+    -- end
 end
 
 local NodeMouseMove = function(node, mouse)
-    if gInterface then
-        gInterface:getStateMachine():_nodeMouseMove(node, mouse)
-    end
+  print('mouse move')
+    -- if gInterface then
+    --     gInterface:getStateMachine():_nodeMouseMove(node, mouse)
+    -- end
 end
 
 local NodeKeyDown = function(node, keycodeName, withCapsLock, withControl, withShift, withAlt, withGui)
