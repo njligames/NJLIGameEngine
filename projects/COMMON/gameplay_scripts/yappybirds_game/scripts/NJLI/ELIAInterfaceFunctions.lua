@@ -5,6 +5,7 @@ local Interface = require 'NJLI.Interface'
 local BitmapFont = require 'NJLI.BitmapFont'
 local BitmapFont2 = require 'NJLI.BitmapFont2'
 local YappyGame = require "YAPPYBIRDS.YappyGame"
+local TexturePacker = require "NJLI.TexturePacker"
 
 RanchersFont = nil
 ELIAFont = nil
@@ -17,6 +18,8 @@ gInterface = nil
 scrollSpeed=3.0
 waitTime=0.5
 resetTimer=waitTime
+
+ELIATexturePacker = nil
 
 wordArray = 
 {
@@ -36,7 +39,6 @@ currentNumberOfLetters=0.0
 
 startOrigin = bullet.btVector3(0.0, 0.0, 0.0)
 
-
 currentNumberOfPoints = 0.0
 pointsPerCorrectLetter = 1.0
 pointsNode = nil
@@ -45,6 +47,8 @@ pointsNodeRect = nil
 currentAccuracy = 100.0
 accuracyNode = nil
 accuracyNodeRect = nil
+
+doneNode = nil
 
 --[[
 https://www.speedtypingonline.com/typing-equations
@@ -89,45 +93,38 @@ end
 
 local DrawPoints = function(points)
   local pointsString = string.format("%.4d", tostring(points)) .. " Points"
-  local pointsFontTable = {}
-  for i=1, string.len(pointsString) do
-    pointsFontTable[i] = 8
-  end
+  local arg = {mainNode=pointsNode,text=pointsString}
 
-  pointsNode, pointsNodeRect = ELIAFont:printf({
-    mainNode=pointsNode,
-    text=pointsString,
-    fontIndexTable=pointsFontTable,
-    align="Left",
-  })
   local vert_margin = njli.SCREEN():y() / 30.0
   local horiz_margin = njli.SCREEN():x() / 40.0
   local half_horizontal = njli.SCREEN():x() * 0.5
-
+  
+  pointsNode, pointsNodeRect = DrawLabel(arg)
   pointsNode:setOrigin(bullet.btVector3(bullet.btVector3(half_horizontal - (pointsNodeRect.width * 0.5), vert_margin, -1)))
   pointsNode:show(OrthographicCameraNode:getCamera())
 end
 
 local DrawAccuracy = function(accuracy)
   local accuracyString = string.format("%.0f", accuracy) .. "% Accuracy"
+  local arg = {mainNode=accuracyNode, text=accuracyString}
 
-  local accuracyFontTable = {}
-  for i=1, string.len(accuracyString) do
-    accuracyFontTable[i] = 8
-  end
-
-  accuracyNode, accuracyNodeRect = ELIAFont:printf({
-    mainNode=accuracyNode,
-    text=accuracyString,
-    fontIndexTable=accuracyFontTable,
-    align="Left",
-  })
   local vert_margin = njli.SCREEN():y() / 30.0
   local horiz_margin = njli.SCREEN():x() / 40.0
   local half_horizontal = njli.SCREEN():x() * 0.5
-
+  
+  accuracyNode, accuracyNodeRect = DrawLabel(arg)
   accuracyNode:setOrigin(bullet.btVector3(bullet.btVector3(half_horizontal - (accuracyNodeRect.width * 0.5), vert_margin * 4, -1)))
   accuracyNode:show(OrthographicCameraNode:getCamera())
+end
+
+local DrawDoneButton = function(x, y)
+  doneNode = ELIATexturePacker:draw("btn_done_up")
+  local origin = bullet.btVector3(x, y, -1)
+  doneNode:setOrigin(origin)
+  doneNode:show(OrthographicCameraNode:getCamera())
+
+  local scene = njli.World.getInstance():getScene()
+  scene:getRootNode():addChildNode(doneNode)
 end
 
 local Create = function()
@@ -208,6 +205,13 @@ local Create = function()
   ELIAFont:show(OrthographicCameraNode:getCamera())
   ELIAFont:hide(PerspectiveCameraNode:getCamera())
 
+
+  ELIATexturePacker = TexturePacker({file="elia_gameplay0"})
+  -- ELIATexturePacker:show(OrthographicCameraNode:getCamera())
+  -- ELIATexturePacker:hide(PerspectiveCameraNode:getCamera())
+
+
+
   local vert_margin = njli.SCREEN():y() / 30.0
   local horiz_margin = njli.SCREEN():x() / 40.0
 
@@ -216,6 +220,7 @@ local Create = function()
   DrawPoints(currentNumberOfPoints)
   DrawAccuracy(currentAccuracy)
 
+  DrawDoneButton(njli.SCREEN():x() * 0.5, njli.SCREEN():y() * 0.5)
 end
   
 local Destroy = function()

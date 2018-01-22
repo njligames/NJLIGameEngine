@@ -21,6 +21,7 @@ all:
 	@cd $(MAKEFILE_PATH)/debugLevel && make
 	@cd $(MAKEFILE_PATH)/countryLevel && make
 	@cd $(MAKEFILE_PATH)/gameplay && make
+	@cd $(MAKEFILE_PATH)/elia_hud && make
 	@cd $(MAKEFILE_PATH)/interface && make
 	@cd $(MAKEFILE_PATH)/audio && make
 	@cd $(MAKEFILE_PATH)/gameplay_scripts/yappybirds_game && make
@@ -32,6 +33,7 @@ clean:
 	@cd $(MAKEFILE_PATH)/audio && make clean
 	@cd $(MAKEFILE_PATH)/interface && make clean
 	@cd $(MAKEFILE_PATH)/gameplay && make clean
+	@cd $(MAKEFILE_PATH)/elia_hud && make clean
 	@cd $(MAKEFILE_PATH)/countryLevel && make clean
 	@cd $(MAKEFILE_PATH)/debugLevel && make clean
 	@cd $(MAKEFILE_PATH)/fonts && make clean

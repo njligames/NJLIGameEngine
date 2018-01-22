@@ -323,6 +323,14 @@ namespace njli
          *  @param opacity <#opacity description#>
          */
     virtual void setHidden(Node * node, bool hidden = true) = 0;
+      
+      /**
+       <#Description#>
+
+       @param node <#node description#>
+       @param camera <#camera description#>
+       */
+      virtual void setHidden(Node * node, Camera *camera);
 
     /**
          *  <#Description#>
