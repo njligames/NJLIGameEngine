@@ -12,36 +12,15 @@ PerspectiveCameraNode = nil
 SCROLL_SPEED=3.0
 WAIT_TIME=0.5
 
+POINTS_PER_CORRECT_LETTER = 1.0
 
 ELIATexturePacker = nil
 
-wordArray = 
+WORD_ARRAY = 
 {
  "Lorem", "ipsum", "dolor", "sit", "amet", "consectetur", "adipiscing", "elit", "Donec", "lobortis", "ac", "elit", "ut", "vehicula", "Nam", "vestibulum", "at", "diam", "eget", "pulvinar", "Nunc", "porta", "odio", "metus", "at", "egestas", "sem", "rhoncus", "eu", "Fusce", "sed", "scelerisque", "quam", "consequat", "mollis", "quam", "Pellentesque", "ut", "turpis", "vel", "mauris", "ultrices", "luctus", "Ut", "lorem", "ante", "dictum", "pharetra", "efficitur", "et", "luctus", "vitae", "ligula", "Cras", "pretium", "dolor", "eu", "fermentum", "fermentum", "Nulla", "quis", "urna", "commodo", "molestie", "velit", "vitae", "varius", "odio", "Nulla", "vitae", "fermentum", "justo", "Mauris", "tincidunt", "convallis", "condimentum", "Donec", "mollis", "laoreet", "purus", "ut", "elementum", "Donec", "consectetur", "vestibulum", "nisi", "a", "condimentum", "Sed", "magna", "ligula", "dapibus", "sed", "sagittis", "sed", "viverra", "ac", "nulla", "Aliquam", "quis", "tempor", "nisl", "nec", "dapibus", "ex", "Proin", "condimentum", "est", "ut", "dui", "iaculis", "in", "feugiat", "mauris", "euismod", "Maecenas", "eu", "laoreet", "purus", "Aenean", "blandit", "fermentum", "ligula", "iaculis", "suscipit", "Vivamus", "sagittis", "a", "tortor", "vitae", "egestas", "Nam", "hendrerit", "metus", "finibus", "molestie", "efficitur", "Nulla", "hendrerit", "nisl", "augue", "quis", "venenatis", "elit", "ultrices", "eget", "Integer", "ac", "mi", "vel", "ex", "sodales", "dignissim", "vitae", "vitae", "nunc", "Mauris", "vel", "dapibus", "urna", "at", "finibus", "massa", "Duis", "imperdiet", "malesuada", "sem", "nec", "imperdiet", "Sed", "commodo", "ex", "lacus", "Proin", "viverra", "turpis", "id", "egestas", "tempor", "Maecenas", "eget", "condimentum", "urna", "quis", "fermentum", "odio", "Donec", "facilisis", "nunc", "neque", "ut", "sodales", "tellus", "volutpat", "quis", "Morbi", "bibendum", "luctus", "sem", "Etiam", "consectetur", "dolor", "luctus", "urna", "tincidunt", "molestie", "Aliquam", "non", "purus", "malesuada", "rhoncus", "lectus", "nec", "fermentum", "eros", "Aliquam", "scelerisque", "leo", "lectus", "quis", "euismod", "velit", "mattis", "vitae", "Fusce", "sit", "amet", "lacus", "in", "enim", "porttitor", "dapibus", "quis", "vel", "tellus", "Nullam", "egestas", "tellus", "eu", "est", "viverra", "porttitor", "Sed", "feugiat", "semper", "libero", "Donec", "euismod", "libero", "vel", "molestie", "eleifend", "dui", "massa", "tincidunt", "sem", "vel", "fringilla", "elit", "eros", "at", "risus", "Nullam", "blandit", "laoreet", "purus", "a", "elementum", "tellus", "Integer", "nec", "dignissim", "quam", "Proin", "laoreet", "sodales", "metus", "a", "viverra", "Suspendisse", "scelerisque", "dapibus", "efficitur", "Pellentesque", "nibh", "tellus", "congue", "quis", "commodo", "a", "sagittis", "a", "orci", "Sed", "mauris", "nisl", "mattis", "at", "tellus", "quis", "tempor", "consectetur", "erat", "Quisque", "dignissim", "sem", "et", "auctor", "iaculis", "Duis", "at", "imperdiet", "massa", "Quisque", "id", "libero", "enim", "Mauris", "molestie", "sit", "amet", "dolor", "rutrum", "varius", "Duis", "ut", "massa", "eu", "orci", "euismod", "hendrerit", "Aliquam", "imperdiet", "commodo", "aliquam", "Ut", "elementum", "porttitor", "dictum", "Vestibulum", "fringilla", "feugiat", "erat", "ut", "mollis", "Vestibulum", "est", "nisi", "mattis", "sed", "facilisis", "mattis", "varius", "id", "nisl", "Etiam", "facilisis", "viverra", "suscipit", "Donec", "in", "risus", "fermentum", "gravida", "est", "at", "bibendum", "arcu", "Nullam", "ut", "purus", "ac", "lectus", "tincidunt", "pharetra", "vitae", "id", "est", "Mauris", "at", "ligula", "bibendum", "lacus", "aliquet", "aliquet", "id", "quis", "orci",
  }
 
-currentResetTimer=WAIT_TIME
-currentWordArrayIndex=1
-currentNode = nil
-currentNodeRect = nil
-currentText = string.upper(wordArray[currentWordArrayIndex])
-fontIndexTable = {}
-currentTypeIndex = string.len(currentText) + 1
-
-totalAccurateTyped=0.0
-totalNumberOfLetters=0.0
-currentNumberOfLetters=0.0
-
-startOrigin = bullet.btVector3(0.0, 0.0, 0.0)
-
-currentNumberOfPoints = 0.0
-pointsPerCorrectLetter = 1.0
-pointsNode = nil
-
-accuracyNode = nil
-
-doneNode = nil
-doneButtonDown = false
 
 local ELIA = {}
 
@@ -49,25 +28,216 @@ ELIA.states =
 { 
   {
     name="gameplay",
+    vars=
+    {
+      currentResetTimer=WAIT_TIME,
+      currentWordArrayIndex=1,
+      currentNode = nil,
+      currentNodeRect = nil,
+      currentText = "",
+      fontIndexTable = {},
+      currentTypeIndex = 1,
+      totalAccurateTyped=0.0,
+      totalNumberOfLetters=0.0,
+      currentNumberOfLetters=0.0,
+      startOrigin = bullet.btVector3(0.0, 0.0, 0.0),
+      currentNumberOfPoints = 0.0,
+      pointsNode = nil,
+      accuracyNode = nil,
+      doneNode = nil,
+      doneButtonDown = false,
+      created=false
+    },
     create = function()
+      ELIA.states[1].vars.currentText = string.upper(WORD_ARRAY[ELIA.states[1].vars.currentWordArrayIndex])
+
+      ELIA.states[1].vars.currentTypeIndex = string.len(ELIA.states[1].vars.currentText) + 1
+
+      local vert_margin = njli.SCREEN():y() / 30.0
+      local horiz_margin = njli.SCREEN():x() / 40.0
+
+      ELIA.states[1].vars.startOrigin = bullet.btVector3(njli.SCREEN():x() + horiz_margin, njli.SCREEN():y() - (ELIAFont:maxLineHeight() + vert_margin), -1)
+
+      ELIA.states[1].vars.pointsNode = DrawPoints(ELIA.states[1].vars.currentNumberOfPoints, ELIA.states[1].vars.pointsNode)
+      ELIA.states[1].vars.accuracyNode = DrawAccuracy(100.0, ELIA.states[1].vars.accuracyNode)
+
+      ELIA.states[1].vars.doneNode = DrawDoneButton(njli.SCREEN():x() * 0.5, njli.SCREEN():y() * 0.5, ELIA.states[1].vars.doneNode)
+
+      ELIA.states[1].vars.created = true
     end,
     update = function(timeStep)
+      njli.World.getInstance():setBackgroundColor(1.000, 1.000, 1.000)
+      if not ELIA.states[1].vars.created then
+        return
+      end
+
+      if ELIA.states[1].vars.currentNode then
+        if (ELIA.states[1].vars.currentTypeIndex <=  string.len(ELIA.states[1].vars.currentText)) then
+          ELIA.states[1].vars.currentNode:show(OrthographicCameraNode:getCamera())
+        else
+          if ELIA.states[1].vars.currentResetTimer >= WAIT_TIME then
+            ELIA.states[1].vars.currentNode:hide(OrthographicCameraNode:getCamera())
+          end
+        end
+        local origin = ELIA.states[1].vars.currentNode:getOrigin() - bullet.btVector3(SCROLL_SPEED, 0.0, 0.0)
+        ELIA.states[1].vars.currentNode:setOrigin(origin)
+
+        if  origin:x() + currentNodeRect.width  < 0 then
+          ELIA.states[1].vars.currentTypeIndex = string.len(ELIA.states[1].vars.currentText) + 1
+        end
+      end
+        
+      if ELIA.states[1].vars.currentTypeIndex > string.len(ELIA.states[1].vars.currentText) then
+
+        ELIA.states[1].vars.currentResetTimer = ELIA.states[1].vars.currentResetTimer + timeStep
+
+        if ELIA.states[1].vars.currentResetTimer >= WAIT_TIME then
+
+          if ELIA.states[1].vars.currentNode then
+            ELIA.states[1].vars.currentNode:hide(OrthographicCameraNode:getCamera())
+          end
+
+          ELIA.states[1].vars.currentWordArrayIndex=ELIA.states[1].vars.currentWordArrayIndex+1
+          ELIA.states[1].vars.currentText = string.upper(WORD_ARRAY[ELIA.states[1].vars.currentWordArrayIndex])
+          ELIA.states[1].vars.currentTypeIndex = 1
+
+          for i=1, string.len(ELIA.states[1].vars.currentText) do
+            ELIA.states[1].vars.fontIndexTable[i] = 1
+          end
+
+          ELIA.states[1].vars.fontIndexTable[ELIA.states[1].vars.currentTypeIndex] = 2
+
+          ELIA.states[1].vars.currentNode, currentNodeRect = ELIAFont:printf({
+            mainNode=ELIA.states[1].vars.currentNode,
+            text=ELIA.states[1].vars.currentText,
+            fontIndexTable=ELIA.states[1].vars.fontIndexTable,
+            align="Left",
+          })
+
+          ELIA.states[1].vars.currentNode:setOrigin(ELIA.states[1].vars.startOrigin)
+
+          ELIA.states[1].vars.currentResetTimer = 0
+
+          ELIA.states[1].vars.currentNumberOfLetters = string.len(ELIA.states[1].vars.currentText)
+          ELIA.states[1].vars.totalNumberOfLetters = ELIA.states[1].vars.totalNumberOfLetters + ELIA.states[1].vars.currentNumberOfLetters
+
+          ELIA.states[1].vars.accuracyNode = DrawAccuracy(AccuracyPercentage(ELIA.states[1].vars.totalNumberOfLetters, ELIA.states[1].vars.currentNumberOfLetters, ELIA.states[1].vars.totalAccurateTyped), ELIA.states[1].vars.accuracyNode)
+
+        end
+
+      end
     end,
     destroy = function()
+      ELIA.states[1].vars.created = false
+
+      njli.Node.destroy(ELIA.states[1].vars.pointsNode)
+      ELIA.states[1].vars.pointsNode = nil
+
+      njli.Node.destroy(ELIA.states[1].vars.accuracyNode)
+      ELIA.states[1].vars.accuracyNode = nil
+
+      local physicsBody = ELIA.states[1].vars.doneNode:getPhysicsBody()
+      local physicsShape = physicsBody:getPhysicsShape()
+      njli.PhysicsShapeBox.destroy(physicsShape)
+      physicsShape = nil
+
+      njli.PhysicsBodyRigid.destroy(physicsBody)
+      physicsBody = nil
+
+      njli.Node.destroy(ELIA.states[1].vars.doneNode)
+      ELIA.states[1].vars.doneNode = nil
     end,
     mouseDown = function(rayContact)
+      if not ELIA.states[1].vars.created then
+        return
+      end
+
+      if not ELIA.states[1].vars.doneButtonDown then
+        ELIA.states[1].vars.doneButtonDown = true
+        ELIA.states[1].vars.doneNode, dimension = ELIATexturePacker:draw({name="btn_done_down", node=ELIA.states[1].vars.doneNode})
+      end
     end,
     mouseUp = function(rayContact)
+      if not ELIA.states[1].vars.created then
+        return
+      end
+
+      if ELIA.states[1].vars.doneButtonDown then
+        ELIA.states[1].vars.doneButtonDown = false
+        ELIA.states[1].vars.doneNode, dimension = ELIATexturePacker:draw({name="btn_done_up", node=ELIA.states[1].vars.doneNode})
+      end
     end,
-    mouseMissed = function(rayContact)
+    mouseMissed = function(node)
+      if not ELIA.states[1].vars.created then
+        return
+      end
+
+      if ELIA.states[1].vars.doneButtonDown then
+        ELIA.states[1].vars.doneButtonDown = false
+        ELIA.states[1].vars.doneNode, dimension = ELIATexturePacker:draw({name="btn_done_up", node=ELIA.states[1].vars.doneNode})
+      end
+    end,
+    keyDown = function(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui)
+      if not ELIA.states[1].vars.created then
+        return
+      end
+
+      if ELIA.states[1].vars.currentResetTimer > 0 then
+        return
+      end
+
+      local currentChar = string.upper(keycodeName)
+      local targetChar = string.upper(string.sub(ELIA.states[1].vars.currentText, ELIA.states[1].vars.currentTypeIndex, ELIA.states[1].vars.currentTypeIndex))
+
+      local correctlyTyped = (currentChar == targetChar)
+
+      if correctlyTyped then
+        ELIA.states[1].vars.fontIndexTable[ELIA.states[1].vars.currentTypeIndex] = 7
+
+        ELIA.states[1].vars.totalAccurateTyped = ELIA.states[1].vars.totalAccurateTyped + 1.0
+
+        ELIA.states[1].vars.currentNumberOfPoints = ELIA.states[1].vars.currentNumberOfPoints + POINTS_PER_CORRECT_LETTER
+      else
+        ELIA.states[1].vars.fontIndexTable[ELIA.states[1].vars.currentTypeIndex] = 4
+        ELIA.states[1].vars.currentNumberOfPoints=0
+      end
+
+      ELIA.states[1].vars.currentTypeIndex = ELIA.states[1].vars.currentTypeIndex + 1
+
+      if ELIA.states[1].vars.currentTypeIndex <= string.len(ELIA.states[1].vars.currentText) then
+        ELIA.states[1].vars.fontIndexTable[ELIA.states[1].vars.currentTypeIndex] = 2
+      end
+
+      ELIA.states[1].vars.pointsNode = DrawPoints(ELIA.states[1].vars.currentNumberOfPoints, ELIA.states[1].vars.pointsNode)
+      ELIA.states[1].vars.currentNode, ELIA.states[1].vars.currentNodeRect = ELIAFont:printf({
+        mainNode=ELIA.states[1].vars.currentNode,
+        text=ELIA.states[1].vars.currentText,
+        fontIndexTable=ELIA.states[1].vars.fontIndexTable,
+        align="Left",
+      })
     end,
   },
-
   {
     name="splash",
+    vars=
+    {
+      titleNode = nil,
+      titleNodeRect = {},
+    },
     create = function()
+
+      ELIA.states[2].vars.titleNode, currentNodeRect = ELIAFont:printf({
+        mainNode=ELIA.states[2].vars.titleNode,
+        text="ELIA",
+        align="Left",
+      })
+
+      local titleOrigin = bullet.btVector3(njli.SCREEN():x() * 0.5, njli.SCREEN():y() * 0.5, -1),
+      ELIA.states[1].vars.titleNode:setOrigin(titleOrigin)
+      ELIA.states[2].vars.titleNode:show(OrthographicCameraNode:getCamera())
     end,
     update = function(timeStep)
+      njli.World.getInstance():setBackgroundColor(1.000, 1.000, 1.000)
     end,
     destroy = function()
     end,
@@ -153,16 +323,17 @@ Typing accuracy is defined as the percentage of correct entries out of the total
 It is interesting to note that all errors, whether corrected or not, should be counted in the accuracy calculation, unlike the net WPM calculation. This is because the calculation is more "live" than typing speed and literally describes the likelihood that the next character will be typed correctly, regardless of whether it will be corrected or not.
 ]]--
 
-local AccuracyPercentage = function()
-  local total = (totalNumberOfLetters - currentNumberOfLetters)
+
+local AccuracyPercentage = function(totalLetters, numberOfLetters, accurateTyped)
+  local total = (totalLetters - numberOfLetters)
   if total > 0 then
-    local percentage = ((totalAccurateTyped / total)  * 100.0)
+    local percentage = ((accurateTyped / total)  * 100.0)
     return math.min(100.0, percentage)
   end
   return 100.0
 end
 
-local DrawLabel = function(...)
+function DrawLabel(...)
   local arg=... or {}
   local text = arg.text or "?"
   local mainNode = arg.mainNode or nil
@@ -185,7 +356,7 @@ local DrawLabel = function(...)
 
 end
 
-local DrawPoints = function(points, node)
+function DrawPoints(points, node)
   local pointsString = string.format("%.4d", tostring(points)) .. " Points"
   local arg = {mainNode=node,text=pointsString}
 
@@ -200,7 +371,7 @@ local DrawPoints = function(points, node)
   return node_ret
 end
 
-local DrawAccuracy = function(accuracy, node)
+function DrawAccuracy(accuracy, node)
   local accuracyString = string.format("%.0f", accuracy) .. "% Accuracy"
   local arg = {mainNode=node, text=accuracyString}
 
@@ -215,7 +386,7 @@ local DrawAccuracy = function(accuracy, node)
   return node_ret
 end
 
-local DrawDoneButton = function(x, y, node)
+function DrawDoneButton(x, y, node)
   local node, dimension = ELIATexturePacker:draw({name="btn_done_up", node=node})
 
   local origin = bullet.btVector3(x, y, -1)
@@ -292,20 +463,12 @@ local Create = function()
     "HUD",
   })
 
-  ELIAFont:show(OrthographicCameraNode:getCamera())
-  ELIAFont:hide(PerspectiveCameraNode:getCamera())
 
   ELIATexturePacker = TexturePacker({file="elia_gameplay0"})
 
-  local vert_margin = njli.SCREEN():y() / 30.0
-  local horiz_margin = njli.SCREEN():x() / 40.0
+  ELIA:getGameplayState().create()
+  -- ELIA:getSplashState().create()
 
-  startOrigin = bullet.btVector3(njli.SCREEN():x() + horiz_margin, njli.SCREEN():y() - (ELIAFont:maxLineHeight() + vert_margin), -1)
-
-  pointsNode = DrawPoints(currentNumberOfPoints, pointsNode)
-  accuracyNode = DrawAccuracy(100.0, accuracyNode)
-
-  doneNode = DrawDoneButton(njli.SCREEN():x() * 0.5, njli.SCREEN():y() * 0.5, doneNode)
 end
   
 local Destroy = function()
@@ -325,78 +488,27 @@ local Destroy = function()
     njli.Node.destroy(OrthographicCameraNode)
     OrthographicCameraNode = nil
   end
+
+  ELIA:getGameplayState().destroy()
+  -- ELIA:getSplashState().destroy()
   
 end
 
 local Update = function(timeStep)
 
-  if currentNode then
-    if (currentTypeIndex <=  string.len(currentText)) then
-      currentNode:show(OrthographicCameraNode:getCamera())
-    else
-      if currentResetTimer >= WAIT_TIME then
-        currentNode:hide(OrthographicCameraNode:getCamera())
-      end
-    end
-    local origin = currentNode:getOrigin() - bullet.btVector3(SCROLL_SPEED, 0.0, 0.0)
-    currentNode:setOrigin(origin)
-
-    if  origin:x() + currentNodeRect.width  < 0 then
-      currentTypeIndex = string.len(currentText) + 1
-    end
-  end
-
   if debugging == nil then
-        debugging = false
-        return false
-    end
-
-    if not debugging then
-        require("mobdebug").start()
-        debugging = true
-    end
-    
-  if currentTypeIndex > string.len(currentText) then
-
-    currentResetTimer = currentResetTimer + timeStep
-
-    if currentResetTimer >= WAIT_TIME then
-
-      if currentNode then
-        currentNode:hide(OrthographicCameraNode:getCamera())
-      end
-
-      currentWordArrayIndex=currentWordArrayIndex+1
-      currentText = string.upper(wordArray[currentWordArrayIndex])
-      currentTypeIndex = 1
-
-      for i=1, string.len(currentText) do
-        fontIndexTable[i] = 1
-      end
-
-      fontIndexTable[currentTypeIndex] = 2
-
-      currentNode, currentNodeRect = ELIAFont:printf({
-        mainNode=currentNode,
-        text=currentText,
-        fontIndexTable=fontIndexTable,
-        align="Left",
-      })
-
-      currentNode:setOrigin(startOrigin)
-
-      currentResetTimer = 0
-
-      currentNumberOfLetters = string.len(currentText)
-      totalNumberOfLetters = totalNumberOfLetters + currentNumberOfLetters
-
-      accuracyNode = DrawAccuracy(AccuracyPercentage(), accuracyNode)
-
-    end
-
+    debugging = false
+    return false
   end
 
-  njli.World.getInstance():setBackgroundColor(1.000, 1.000, 1.000)
+  if not debugging then
+    require("mobdebug").start()
+    debugging = true
+  end
+
+  ELIA:getGameplayState().update(timeStep)
+  -- ELIA:getSplashState().update(timeStep)
+
 end
 
 local Render = function() end
@@ -414,74 +526,8 @@ local MouseUp = function(mouse) end
 local MouseMove = function(mouse) end
 
 local KeyDown = function(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui) 
-  if currentResetTimer > 0 then
-    return
-  end
-
-  local currentChar = string.upper(keycodeName)
-  local targetChar = string.upper(string.sub(currentText, currentTypeIndex, currentTypeIndex))
-
-  if currentChar == targetChar then
-    local print_it = false
-
-    if currentTypeIndex <= string.len(currentText) then
-      -- Set the correct letter to regular font face
-      fontIndexTable[currentTypeIndex] = 7
-
-      -- Set the current letter to blue
-      if (currentTypeIndex + 1) <= string.len(currentText) then
-        fontIndexTable[currentTypeIndex + 1] = 2
-        print_it = true
-      elseif currentTypeIndex == string.len(currentText) then
-        print_it = true
-      end
-
-    end
-
-    if print_it then
-      currentNode, currentNodeRect = ELIAFont:printf({
-        mainNode=currentNode,
-        text=currentText,
-        fontIndexTable=fontIndexTable,
-        align="Left",
-      })
-    end
-
-    -- print("yes")
-    totalAccurateTyped = totalAccurateTyped + 1.0
-
-    currentNumberOfPoints = currentNumberOfPoints + pointsPerCorrectLetter
-
-    pointsNode = DrawPoints(currentNumberOfPoints, pointsNode)
-
-  else
-    -- Set the current letter to Red
-    fontIndexTable[currentTypeIndex] = 4
-
-    -- Set the current letter to blue
-    if (currentTypeIndex + 1) <= string.len(currentText) then
-      fontIndexTable[currentTypeIndex + 1] = 2
-      print_it = true
-    elseif currentTypeIndex == string.len(currentText) then
-      print_it = true
-    end
-
-    currentNode, currentNodeRect = ELIAFont:printf({
-      mainNode=currentNode,
-      text=currentText,
-      fontIndexTable=fontIndexTable,
-      align="Left",
-    })
-
-    -- print("no")
-
-    currentNumberOfPoints=0
-
-    pointsNode = DrawPoints(currentNumberOfPoints, pointsNode)
-
-  end
-
-  currentTypeIndex = currentTypeIndex + 1
+  ELIA:getGameplayState().keyDown(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui)
+  -- ELIA:getSplashState().keyDown(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui)
 end
 
 local KeyUp = function(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui) end
@@ -566,27 +612,21 @@ local NodeRayTouchMove = function(rayContact) end
 local NodeRayTouchCancelled = function(rayContact) end 
 
 local NodeRayMouseDown = function(rayContact)
-  if not doneButtonDown then
-    doneButtonDown = true
-    doneNode, dimension = ELIATexturePacker:draw({name="btn_done_down", node=doneNode})
-  end
+  ELIA:getGameplayState().mouseDown(rayContact)
+  -- ELIA:getSplashState().mouseDown(rayContact)
 end
 
 local NodeRayMouseUp = function(rayContact)
-  if doneButtonDown then
-    doneButtonDown = false
-    doneNode, dimension = ELIATexturePacker:draw({name="btn_done_up", node=doneNode})
-  end
+  ELIA:getGameplayState().mouseUp(rayContact)
+  -- ELIA:getSplashState().mouseUp(rayContact)
 end
 
 local NodeRayMouseMove = function(rayContact) end 
 local NodeRayTouchMissed = function(node) end
 
 local NodeRayMouseMissed = function(node)
-  if doneButtonDown then
-    doneButtonDown = false
-    doneNode, dimension = ELIATexturePacker:draw({name="btn_done_up", node=doneNode})
-  end
+  ELIA:getGameplayState().mouseMissed(node)
+  -- ELIA:getSplashState().mouseMissed(node)
 end
 
 local NodeKeyboardShow = function(node) end 
