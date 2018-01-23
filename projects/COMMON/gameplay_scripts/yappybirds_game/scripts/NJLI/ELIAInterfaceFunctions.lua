@@ -13,7 +13,6 @@ Geometry2D = nil
 OrthographicCameraNode = nil
 PerspectiveCameraNode = nil
 MyGame = nil
-gInterface = nil
 
 scrollSpeed=3.0
 waitTime=0.5
@@ -42,11 +41,11 @@ startOrigin = bullet.btVector3(0.0, 0.0, 0.0)
 currentNumberOfPoints = 0.0
 pointsPerCorrectLetter = 1.0
 pointsNode = nil
-pointsNodeRect = nil
+-- pointsNodeRect = nil
 
 currentAccuracy = 100.0
 accuracyNode = nil
-accuracyNodeRect = nil
+--accuracyNodeRect = nil
 
 doneNode = nil
 donePhysicsShape = nil
@@ -94,51 +93,57 @@ local DrawLabel = function(...)
 
 end
 
-local DrawPoints = function(points)
+local DrawPoints = function(points, node)
   local pointsString = string.format("%.4d", tostring(points)) .. " Points"
-  local arg = {mainNode=pointsNode,text=pointsString}
+  local arg = {mainNode=node,text=pointsString}
 
   local vert_margin = njli.SCREEN():y() / 30.0
   local horiz_margin = njli.SCREEN():x() / 40.0
   local half_horizontal = njli.SCREEN():x() * 0.5
   
-  pointsNode, pointsNodeRect = DrawLabel(arg)
-  pointsNode:setOrigin(bullet.btVector3(bullet.btVector3(half_horizontal - (pointsNodeRect.width * 0.5), vert_margin, -1)))
-  pointsNode:show(OrthographicCameraNode:getCamera())
+  local node_ret, rect = DrawLabel(arg)
+  node_ret:setOrigin(bullet.btVector3(bullet.btVector3(half_horizontal - (rect.width * 0.5), vert_margin, -1)))
+  node_ret:show(OrthographicCameraNode:getCamera())
+
+  return node_ret
 end
 
-local DrawAccuracy = function(accuracy)
+local DrawAccuracy = function(accuracy, node)
   local accuracyString = string.format("%.0f", accuracy) .. "% Accuracy"
-  local arg = {mainNode=accuracyNode, text=accuracyString}
+  local arg = {mainNode=node, text=accuracyString}
 
   local vert_margin = njli.SCREEN():y() / 30.0
   local horiz_margin = njli.SCREEN():x() / 40.0
   local half_horizontal = njli.SCREEN():x() * 0.5
   
-  accuracyNode, accuracyNodeRect = DrawLabel(arg)
-  accuracyNode:setOrigin(bullet.btVector3(bullet.btVector3(half_horizontal - (accuracyNodeRect.width * 0.5), vert_margin * 4, -1)))
-  accuracyNode:show(OrthographicCameraNode:getCamera())
+  local node_ret, rect = DrawLabel(arg)
+  node_ret:setOrigin(bullet.btVector3(bullet.btVector3(half_horizontal - (rect.width * 0.5), vert_margin * 4, -1)))
+  node_ret:show(OrthographicCameraNode:getCamera())
+
+  return node_ret
 end
 
-local DrawDoneButton = function(x, y)
-  doneNode, dimension = ELIATexturePacker:draw({name="btn_done_up", node=doneNode})
+local DrawDoneButton = function(x, y, node)
+  local node, dimension = ELIATexturePacker:draw({name="btn_done_up", node=node})
 
   local origin = bullet.btVector3(x, y, -1)
-  doneNode:setOrigin(origin)
-  doneNode:show(OrthographicCameraNode:getCamera())
+  node:setOrigin(origin)
+  node:show(OrthographicCameraNode:getCamera())
 
   local scene = njli.World.getInstance():getScene()
-  scene:getRootNode():addChildNode(doneNode)
+  scene:getRootNode():addChildNode(node)
 
-  donePhysicsShape = njli.PhysicsShapeBox.create()
+  local donePhysicsShape = njli.PhysicsShapeBox.create()
 
-  donePhysicsBody = njli.PhysicsBodyRigid.create()
+  local donePhysicsBody = njli.PhysicsBodyRigid.create()
   donePhysicsBody:setStaticPhysics()
   donePhysicsBody:setPhysicsShape(donePhysicsShape)
 
-  doneNode:setPhysicsBody(donePhysicsBody)
+  node:setPhysicsBody(donePhysicsBody)
 
   donePhysicsShape:setHalfExtends(bullet.btVector3( dimension:x(), dimension:y(), 1.0 ))
+
+  return node
 end
 
 local Create = function()
@@ -221,20 +226,16 @@ local Create = function()
 
 
   ELIATexturePacker = TexturePacker({file="elia_gameplay0"})
-  -- ELIATexturePacker:show(OrthographicCameraNode:getCamera())
-  -- ELIATexturePacker:hide(PerspectiveCameraNode:getCamera())
-
-
 
   local vert_margin = njli.SCREEN():y() / 30.0
   local horiz_margin = njli.SCREEN():x() / 40.0
 
   startOrigin = bullet.btVector3(bullet.btVector3(njli.SCREEN():x() + horiz_margin, njli.SCREEN():y() - (ELIAFont:maxLineHeight() + vert_margin), -1))
 
-  DrawPoints(currentNumberOfPoints)
-  DrawAccuracy(currentAccuracy)
+  pointsNode = DrawPoints(currentNumberOfPoints, pointsNode)
+  accuracyNode = DrawAccuracy(currentAccuracy, accuracyNode)
 
-  DrawDoneButton(njli.SCREEN():x() * 0.5, njli.SCREEN():y() * 0.5)
+  doneNode = DrawDoneButton(njli.SCREEN():x() * 0.5, njli.SCREEN():y() * 0.5, doneNode)
 end
   
 local Destroy = function()
@@ -337,7 +338,7 @@ local Update = function(timeStep)
       currentNumberOfLetters = string.len(currentText)
       totalNumberOfLetters = totalNumberOfLetters + currentNumberOfLetters
 
-      DrawAccuracy(AccuracyPercentage())
+      accuracyNode = DrawAccuracy(AccuracyPercentage(), accuracyNode)
 
     end
 
@@ -399,7 +400,7 @@ local KeyDown = function(keycodeName, withCapsLock, withControl, withShift, with
 
     currentNumberOfPoints = currentNumberOfPoints + pointsPerCorrectLetter
 
-    DrawPoints(currentNumberOfPoints)
+    pointsNode = DrawPoints(currentNumberOfPoints, pointsNode)
 
   else
     -- Set the current letter to Red
@@ -424,7 +425,7 @@ local KeyDown = function(keycodeName, withCapsLock, withControl, withShift, with
 
     currentNumberOfPoints=0
 
-    DrawPoints(currentNumberOfPoints)
+    pointsNode = DrawPoints(currentNumberOfPoints, pointsNode)
 
   end
 
@@ -483,188 +484,38 @@ local SceneTouchMove = function(scene, touch) end
 local SceneTouchCancelled = function(scene, touch) end
 local SceneMouseDown = function(scene, mouse) end
 local SceneMouseUp = function(scene, mouse) end
-
-local SceneMouseMove = function(scene, mouse)
-    -- if gInterface then
-    --     gInterface:getStateMachine():_sceneMouseMove(scene, mouse)
-    -- end
-end
-
-
-
-
-
-local SceneKeyDown = function(scene, keycodeName, withCapsLock, withControl, withShift, withAlt, withGui)
---    print('SceneKeyDown')
--- if gInterface then
---   gInterface:getDeviceEntity():mouseMove(mouse)
--- end
-end
-
-local SceneKeyUp = function(scene, keycodeName, withCapsLock, withControl, withShift, withAlt, withGui)
---    print('SceneKeyUp')
--- if gInterface then
---   gInterface:getDeviceEntity():mouseMove(mouse)
--- end
-end
-
-
-
-local SceneReceivedMemoryWarning = function(scene)
-    if gInterface then
-        gInterface:getStateMachine():_sceneReceivedMemoryWarning(scene)
-    end
-end
-
-local SceneWillResignActive = function(scene)
-    if gInterface then
-        gInterface:getStateMachine():_sceneWillResignActive(scene)
-    end
-end
-
-local SceneDidBecomeActive = function(scene)
-    if gInterface then
-        gInterface:getStateMachine():_sceneDidBecomeActive(scene)
-    end
-end
-
-local SceneDidEnterBackground = function(scene)
-    if gInterface then
-        gInterface:getStateMachine():_sceneDidEnterBackground(scene)
-    end
-end
-
-local SceneWillEnterForeground = function(scene)
-    if gInterface then
-        gInterface:getStateMachine():_sceneWillEnterForeground(scene)
-    end
-end
-
-local SceneWillTerminate = function(scene)
-    if gInterface then
-        gInterface:getStateMachine():_sceneWillTerminate(scene)
-    end
-end
-
-local SceneInterrupt = function(scene)
-    if gInterface then
-        gInterface:getStateMachine():_sceneInterrupt(scene)
-    end
-end
-
-local SceneResumeInterrupt = function(scene)
-    if gInterface then
-        gInterface:getStateMachine():_sceneResumeInterrupt(scene)
-    end
-end
-
-local NodeEnterState = function(node)
-    if gInterface then
-        gInterface:getStateMachine():_nodeEnterState(node)
-    end
-end
-
-local NodeUpdateState = function(node, timeStep)
-    if gInterface then
-        gInterface:getStateMachine():_nodeUpdateState(node, timeStep)
-    end
-end
-
-local NodeExitState = function(node)
-    if gInterface then
-        gInterface:getStateMachine():_nodeExitState(node)
-    end
-end
-
-local NodeOnMessage = function(node, message)
-    if gInterface then
-        gInterface:getStateMachine():_nodeOnMessage(node, message)
-    end
-end
-
-local NodeCollide = function(node, otherNode, collisionPoint)
-    if gInterface then
-        gInterface:getStateMachine():_nodeCollide(node, otherNode, collisionPoint)
-    end
-end
-
-local NodeNear = function(node, otherNode)
-    if gInterface then
-        gInterface:getStateMachine():_nodeNear(node, otherNode)
-    end
-end
-
-local NodeActionUpdate = function(action, timeStep)
-    if gInterface then
-        gInterface:getStateMachine():_nodeActionUpdate(action, timeStep)
-    end
-end
-
-local NodeActionComplete = function(action)
-    if gInterface then
-        gInterface:getStateMachine():_nodeActionComplete(action)
-    end
-end
-
-local NodeRayTouchesDown = function(rayContact)
-    if gInterface then
-        gInterface:getStateMachine():_rayTouchesDown(rayContact)
-    end
-end
-
-local NodeRayTouchesUp = function(rayContact)
-  print(touchDown)
-    if gInterface then
-        gInterface:getStateMachine():_rayTouchesUp(rayContact)
-    end
-end
-
-local NodeRayTouchesMove = function(rayContact)
-    if gInterface then
-        gInterface:getStateMachine():_rayTouchesMove(rayContact)
-    end
-end
-
-local NodeRayTouchesCancelled = function(rayContact)
-    if gInterface then
-        gInterface:getStateMachine():_rayTouchesCancelled(rayContact)
-    end
-end
-
-local NodeRayTouchesMissed = function(node)
-    if gInterface then
-        gInterface:getStateMachine():_rayTouchesMissed(node)
-    end
-end
-
-local NodeRayTouchDown = function(rayContact)
-    if gInterface then
-        gInterface:getStateMachine():_rayTouchDown(rayContact)
-    end
-end
-
-local NodeRayTouchUp = function(rayContact)
-    if gInterface then
-        gInterface:getStateMachine():_rayTouchUp(rayContact)
-    end
-end
-
-local NodeRayTouchMove = function(rayContact)
-    if gInterface then
-        gInterface:getStateMachine():_rayTouchMove(rayContact)
-    end
-end
-
-local NodeRayTouchCancelled = function(rayContact)
-    if gInterface then
-        gInterface:getStateMachine():_rayTouchCancelled(rayContact)
-    end
-end
+local SceneMouseMove = function(scene, mouse) end 
+local SceneKeyDown = function(scene, keycodeName, withCapsLock, withControl, withShift, withAlt, withGui) end 
+local SceneKeyUp = function(scene, keycodeName, withCapsLock, withControl, withShift, withAlt, withGui) end 
+local SceneReceivedMemoryWarning = function(scene) end 
+local SceneWillResignActive = function(scene) end 
+local SceneDidBecomeActive = function(scene) end 
+local SceneDidEnterBackground = function(scene) end 
+local SceneWillEnterForeground = function(scene) end 
+local SceneWillTerminate = function(scene) end 
+local SceneInterrupt = function(scene) end 
+local SceneResumeInterrupt = function(scene) end 
+local NodeEnterState = function(node) end 
+local NodeUpdateState = function(node, timeStep) end 
+local NodeExitState = function(node) end 
+local NodeOnMessage = function(node, message) end
+local NodeCollide = function(node, otherNode, collisionPoint) end 
+local NodeNear = function(node, otherNode) end 
+local NodeActionUpdate = function(action, timeStep) end 
+local NodeActionComplete = function(action) end 
+local NodeRayTouchesDown = function(rayContact) end 
+local NodeRayTouchesUp = function(rayContact) end
+local NodeRayTouchesMove = function(rayContact) end 
+local NodeRayTouchesCancelled = function(rayContact) end 
+local NodeRayTouchesMissed = function(node) end 
+local NodeRayTouchDown = function(rayContact) end 
+local NodeRayTouchUp = function(rayContact) end 
+local NodeRayTouchMove = function(rayContact) end 
+local NodeRayTouchCancelled = function(rayContact) end 
 
 local NodeRayMouseDown = function(rayContact)
   if not doneButtonDown then
     doneButtonDown = true
-    print("button down (mouse down)")
     doneNode, dimension = ELIATexturePacker:draw({name="btn_done_down", node=doneNode})
   end
 end
@@ -672,148 +523,39 @@ end
 local NodeRayMouseUp = function(rayContact)
   if doneButtonDown then
     doneButtonDown = false
-    print("button up (mouse up)")
     doneNode, dimension = ELIATexturePacker:draw({name="btn_done_up", node=doneNode})
   end
 end
 
-local NodeRayMouseMove = function(rayContact)
-  -- print("ray mouse move", tostring(doneButtonDown))
-end
-
-local NodeRayTouchMissed = function(node)
-    if gInterface then
-        gInterface:getStateMachine():_rayTouchMissed(node)
-    end
-end
+local NodeRayMouseMove = function(rayContact) end 
+local NodeRayTouchMissed = function(node) end
 
 local NodeRayMouseMissed = function(node)
-  --print("ray mouse missed", tostring(doneButtonDown))
   if doneButtonDown then
     doneButtonDown = false
-    print("button up (mouse missed)")
     doneNode, dimension = ELIATexturePacker:draw({name="btn_done_up", node=doneNode})
   end
 end
 
-local NodeKeyboardShow = function(node)
-    if gInterface then
-        gInterface:getStateMachine():_nodeKeyboardShow(node)
-    end
-end
-
-local NodeKeyboardCancel = function(node)
-    if gInterface then
-        gInterface:getStateMachine():_nodeKeyboardCancel(node)
-    end
-end
-
-local NodeKeyboardReturn = function(node)
-    if gInterface then
-        gInterface:getStateMachine():_nodeKeyboardReturn(node)
-    end
-end
-
-local NodeRenderHUD = function(node)
-    if gInterface then
-        gInterface:getStateMachine():_nodeRenderHUD(node)
-    end
-end
-
-local NodeGamePause = function(node)
-    if gInterface then
-        gInterface:getStateMachine():_nodeGamePause(node)
-    end
-end
-
-local NodeGameUnPause = function(node)
-    if gInterface then
-        gInterface:getStateMachine():_nodeGameUnPause(node)
-    end
-end
-
-local NodeTouchesDown = function(node, touches)
-    if gInterface then
-        gInterface:getStateMachine():_nodeTouchesDown(node, touches)
-    end
-end
-
-local NodeTouchesUp = function(node, touches)
-    if gInterface then
-        gInterface:getStateMachine():_nodeTouchesUp(node, touches)
-    end
-end
-
-local NodeTouchesMove = function(node, touches)
-    if gInterface then
-        gInterface:getStateMachine():_nodeTouchesMove(node, touches)
-    end
-end
-
-local NodeTouchesCancelled = function(node, touches)
-    if gInterface then
-        gInterface:getStateMachine():_nodeTouchesCancelled(node, touches)
-    end
-end
-
-local NodeTouchDown = function(node, touch)
-    if gInterface then
-        gInterface:getStateMachine():_nodeTouchDown(node, touch)
-    end
-end
-
-local NodeTouchUp = function(node, touch)
-    if gInterface then
-        gInterface:getStateMachine():_nodeTouchUp(node, touch)
-    end
-end
-
-local NodeTouchMove = function(node, touch)
-    if gInterface then
-        gInterface:getStateMachine():_nodeTouchMove(node, touch)
-    end
-end
-
-local NodeTouchCancelled = function(node, touches)
-    if gInterface then
-        gInterface:getStateMachine():_nodeTouchCancelled(node, touches)
-    end
-end
-
-local NodeMouseDown = function(node, mouse)
-  print('mouse down')
-    -- if gInterface then
-    --     gInterface:getStateMachine():_nodeMouseDown(node, mouse)
-    -- end
-end
-
-local NodeMouseUp = function(node, mouse)
-  print('mouse up')
-    -- if gInterface then
-    --     gInterface:getStateMachine():_nodeMouseUp(node, mouse)
-    -- end
-end
-
-local NodeMouseMove = function(node, mouse)
-  print('mouse move')
-    -- if gInterface then
-    --     gInterface:getStateMachine():_nodeMouseMove(node, mouse)
-    -- end
-end
-
-local NodeKeyDown = function(node, keycodeName, withCapsLock, withControl, withShift, withAlt, withGui)
---    print('NodeKeyDown')
--- if gInterface then
---   gInterface:getDeviceEntity():mouseMove(mouse)
--- end
-end
-
-local NodeKeyUp = function(node, keycodeName, withCapsLock, withControl, withShift, withAlt, withGui)
---    print('NodeKeyUp')
--- if gInterface then
---   gInterface:getDeviceEntity():mouseMove(mouse)
--- end
-end
+local NodeKeyboardShow = function(node) end 
+local NodeKeyboardCancel = function(node) end 
+local NodeKeyboardReturn = function(node) end 
+local NodeRenderHUD = function(node) end 
+local NodeGamePause = function(node) end 
+local NodeGameUnPause = function(node) end 
+local NodeTouchesDown = function(node, touches) end 
+local NodeTouchesUp = function(node, touches) end 
+local NodeTouchesMove = function(node, touches) end 
+local NodeTouchesCancelled = function(node, touches) end 
+local NodeTouchDown = function(node, touch) end 
+local NodeTouchUp = function(node, touch) end 
+local NodeTouchMove = function(node, touch) end 
+local NodeTouchCancelled = function(node, touches) end 
+local NodeMouseDown = function(node, mouse) end 
+local NodeMouseUp = function(node, mouse) end 
+local NodeMouseMove = function(node, mouse) end 
+local NodeKeyDown = function(node, keycodeName, withCapsLock, withControl, withShift, withAlt, withGui) end 
+local NodeKeyUp = function(node, keycodeName, withCapsLock, withControl, withShift, withAlt, withGui) end
 
 
 RegisterCreate("Create",                                         function() pcall(Create) end)
@@ -955,5 +697,4 @@ RegisterNodeKeyDown("NodeKeyDown",                              function(node, k
 RegisterNodeKeyUp("NodeKeyUp",                                   function(node, keycodeName, withCapsLock, withControl, withShift, withAlt, withGui) pcall(NodeKeyUp, keycodeName, withCapsLock, withControl, withShift, withAlt, withGui) end )
 
 
---return gInterface
 
