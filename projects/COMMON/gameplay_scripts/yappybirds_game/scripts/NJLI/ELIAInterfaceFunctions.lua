@@ -2,21 +2,16 @@
 debugging = nil
 
 local Interface = require 'NJLI.Interface'
-local BitmapFont = require 'NJLI.BitmapFont'
 local BitmapFont2 = require 'NJLI.BitmapFont2'
-local YappyGame = require "YAPPYBIRDS.YappyGame"
 local TexturePacker = require "NJLI.TexturePacker"
 
-RanchersFont = nil
 ELIAFont = nil
-Geometry2D = nil
 OrthographicCameraNode = nil
 PerspectiveCameraNode = nil
-MyGame = nil
 
-scrollSpeed=3.0
-waitTime=0.5
-resetTimer=waitTime
+SCROLL_SPEED=3.0
+WAIT_TIME=0.5
+
 
 ELIATexturePacker = nil
 
@@ -25,6 +20,7 @@ wordArray =
  "Lorem", "ipsum", "dolor", "sit", "amet", "consectetur", "adipiscing", "elit", "Donec", "lobortis", "ac", "elit", "ut", "vehicula", "Nam", "vestibulum", "at", "diam", "eget", "pulvinar", "Nunc", "porta", "odio", "metus", "at", "egestas", "sem", "rhoncus", "eu", "Fusce", "sed", "scelerisque", "quam", "consequat", "mollis", "quam", "Pellentesque", "ut", "turpis", "vel", "mauris", "ultrices", "luctus", "Ut", "lorem", "ante", "dictum", "pharetra", "efficitur", "et", "luctus", "vitae", "ligula", "Cras", "pretium", "dolor", "eu", "fermentum", "fermentum", "Nulla", "quis", "urna", "commodo", "molestie", "velit", "vitae", "varius", "odio", "Nulla", "vitae", "fermentum", "justo", "Mauris", "tincidunt", "convallis", "condimentum", "Donec", "mollis", "laoreet", "purus", "ut", "elementum", "Donec", "consectetur", "vestibulum", "nisi", "a", "condimentum", "Sed", "magna", "ligula", "dapibus", "sed", "sagittis", "sed", "viverra", "ac", "nulla", "Aliquam", "quis", "tempor", "nisl", "nec", "dapibus", "ex", "Proin", "condimentum", "est", "ut", "dui", "iaculis", "in", "feugiat", "mauris", "euismod", "Maecenas", "eu", "laoreet", "purus", "Aenean", "blandit", "fermentum", "ligula", "iaculis", "suscipit", "Vivamus", "sagittis", "a", "tortor", "vitae", "egestas", "Nam", "hendrerit", "metus", "finibus", "molestie", "efficitur", "Nulla", "hendrerit", "nisl", "augue", "quis", "venenatis", "elit", "ultrices", "eget", "Integer", "ac", "mi", "vel", "ex", "sodales", "dignissim", "vitae", "vitae", "nunc", "Mauris", "vel", "dapibus", "urna", "at", "finibus", "massa", "Duis", "imperdiet", "malesuada", "sem", "nec", "imperdiet", "Sed", "commodo", "ex", "lacus", "Proin", "viverra", "turpis", "id", "egestas", "tempor", "Maecenas", "eget", "condimentum", "urna", "quis", "fermentum", "odio", "Donec", "facilisis", "nunc", "neque", "ut", "sodales", "tellus", "volutpat", "quis", "Morbi", "bibendum", "luctus", "sem", "Etiam", "consectetur", "dolor", "luctus", "urna", "tincidunt", "molestie", "Aliquam", "non", "purus", "malesuada", "rhoncus", "lectus", "nec", "fermentum", "eros", "Aliquam", "scelerisque", "leo", "lectus", "quis", "euismod", "velit", "mattis", "vitae", "Fusce", "sit", "amet", "lacus", "in", "enim", "porttitor", "dapibus", "quis", "vel", "tellus", "Nullam", "egestas", "tellus", "eu", "est", "viverra", "porttitor", "Sed", "feugiat", "semper", "libero", "Donec", "euismod", "libero", "vel", "molestie", "eleifend", "dui", "massa", "tincidunt", "sem", "vel", "fringilla", "elit", "eros", "at", "risus", "Nullam", "blandit", "laoreet", "purus", "a", "elementum", "tellus", "Integer", "nec", "dignissim", "quam", "Proin", "laoreet", "sodales", "metus", "a", "viverra", "Suspendisse", "scelerisque", "dapibus", "efficitur", "Pellentesque", "nibh", "tellus", "congue", "quis", "commodo", "a", "sagittis", "a", "orci", "Sed", "mauris", "nisl", "mattis", "at", "tellus", "quis", "tempor", "consectetur", "erat", "Quisque", "dignissim", "sem", "et", "auctor", "iaculis", "Duis", "at", "imperdiet", "massa", "Quisque", "id", "libero", "enim", "Mauris", "molestie", "sit", "amet", "dolor", "rutrum", "varius", "Duis", "ut", "massa", "eu", "orci", "euismod", "hendrerit", "Aliquam", "imperdiet", "commodo", "aliquam", "Ut", "elementum", "porttitor", "dictum", "Vestibulum", "fringilla", "feugiat", "erat", "ut", "mollis", "Vestibulum", "est", "nisi", "mattis", "sed", "facilisis", "mattis", "varius", "id", "nisl", "Etiam", "facilisis", "viverra", "suscipit", "Donec", "in", "risus", "fermentum", "gravida", "est", "at", "bibendum", "arcu", "Nullam", "ut", "purus", "ac", "lectus", "tincidunt", "pharetra", "vitae", "id", "est", "Mauris", "at", "ligula", "bibendum", "lacus", "aliquet", "aliquet", "id", "quis", "orci",
  }
 
+currentResetTimer=WAIT_TIME
 currentWordArrayIndex=1
 currentNode = nil
 currentNodeRect = nil
@@ -41,15 +37,10 @@ startOrigin = bullet.btVector3(0.0, 0.0, 0.0)
 currentNumberOfPoints = 0.0
 pointsPerCorrectLetter = 1.0
 pointsNode = nil
--- pointsNodeRect = nil
 
-currentAccuracy = 100.0
 accuracyNode = nil
---accuracyNodeRect = nil
 
 doneNode = nil
-donePhysicsShape = nil
-donePhysicsBody = nil
 doneButtonDown = false
 
 --[[
@@ -188,27 +179,6 @@ local Create = function()
     rootNode:addChildNode(PerspectiveCameraNode)
   end
   
-  if nil == Geometry2D then
-    Geometry2D = {}
-    
-    for i=1,5 do
-      Geometry2D[i] = njli.Sprite2D.create()
-      Geometry2D[i]:setName("YappyBird Geometry " .. i)
-      
-      local material = njli.Material.create()
-      material:setName("YappyBird Material "  .. i)
-      
-      local shader = njli.ShaderProgram.create()
-      shader:setName("YappyBird Shader " .. i)
-      njli.World.getInstance():getWorldResourceLoader():load("shaders/objectShader.vsh", "shaders/objectShader.fsh", shader)
-      
-      Geometry2D[i]:setMaterial(material)
-      Geometry2D[i]:setShaderProgram(shader)
-      Geometry2D[i]:show(OrthographicCameraNode:getCamera())
-      Geometry2D[i]:show(PerspectiveCameraNode:getCamera())
-    end
-  end
-  
   ELIAFont = BitmapFont2(
   {
     "ELIABasic",
@@ -230,30 +200,15 @@ local Create = function()
   local vert_margin = njli.SCREEN():y() / 30.0
   local horiz_margin = njli.SCREEN():x() / 40.0
 
-  startOrigin = bullet.btVector3(bullet.btVector3(njli.SCREEN():x() + horiz_margin, njli.SCREEN():y() - (ELIAFont:maxLineHeight() + vert_margin), -1))
+  startOrigin = bullet.btVector3(njli.SCREEN():x() + horiz_margin, njli.SCREEN():y() - (ELIAFont:maxLineHeight() + vert_margin), -1)
 
   pointsNode = DrawPoints(currentNumberOfPoints, pointsNode)
-  accuracyNode = DrawAccuracy(currentAccuracy, accuracyNode)
+  accuracyNode = DrawAccuracy(100.0, accuracyNode)
 
   doneNode = DrawDoneButton(njli.SCREEN():x() * 0.5, njli.SCREEN():y() * 0.5, doneNode)
 end
   
 local Destroy = function()
-  
-  if RanchersFont then
-    RanchersFont:unLoad()
-    RanchersFont = nil
-  end
-  
-  if Geometry2D[1] then
-    local material = Geometry2D[1]:getMaterial()
-    njli.Material.destroy(material)
-    
-    local shader = Geometry2D[1]:getShaderProgram()
-    njli.ShaderProgram.destroy(shader)
-    
-    njli.Sprite2D.destroy(Geometry2D[1])
-  end
   
   if PerspectiveCameraNode then
     local camera = PerspectiveCameraNode:getCamera()
@@ -279,11 +234,11 @@ local Update = function(timeStep)
     if (currentTypeIndex <=  string.len(currentText)) then
       currentNode:show(OrthographicCameraNode:getCamera())
     else
-      if resetTimer >= waitTime then
+      if currentResetTimer >= WAIT_TIME then
         currentNode:hide(OrthographicCameraNode:getCamera())
       end
     end
-    local origin = currentNode:getOrigin() - bullet.btVector3(scrollSpeed, 0.0, 0.0)
+    local origin = currentNode:getOrigin() - bullet.btVector3(SCROLL_SPEED, 0.0, 0.0)
     currentNode:setOrigin(origin)
 
     if  origin:x() + currentNodeRect.width  < 0 then
@@ -303,9 +258,9 @@ local Update = function(timeStep)
     
   if currentTypeIndex > string.len(currentText) then
 
-    resetTimer = resetTimer + timeStep
+    currentResetTimer = currentResetTimer + timeStep
 
-    if resetTimer >= waitTime then
+    if currentResetTimer >= WAIT_TIME then
 
       if currentNode then
         currentNode:hide(OrthographicCameraNode:getCamera())
@@ -330,10 +285,10 @@ local Update = function(timeStep)
       local vert_margin = njli.SCREEN():y() / 30.0
       local horiz_margin = njli.SCREEN():x() / 40.0
 
-      startOrigin = bullet.btVector3(bullet.btVector3(njli.SCREEN():x() + horiz_margin, njli.SCREEN():y() - (ELIAFont:maxLineHeight() + vert_margin), -1))
+      --startOrigin = bullet.btVector3(bullet.btVector3(njli.SCREEN():x() + horiz_margin, njli.SCREEN():y() - (ELIAFont:maxLineHeight() + vert_margin), -1))
       currentNode:setOrigin(startOrigin)
 
-      resetTimer = 0
+      currentResetTimer = 0
 
       currentNumberOfLetters = string.len(currentText)
       totalNumberOfLetters = totalNumberOfLetters + currentNumberOfLetters
@@ -362,7 +317,7 @@ local MouseUp = function(mouse) end
 local MouseMove = function(mouse) end
 
 local KeyDown = function(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui) 
-  if resetTimer > 0 then
+  if currentResetTimer > 0 then
     return
   end
 
