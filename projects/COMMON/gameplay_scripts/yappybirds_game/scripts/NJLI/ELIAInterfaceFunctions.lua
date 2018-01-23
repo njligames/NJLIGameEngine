@@ -43,6 +43,107 @@ accuracyNode = nil
 doneNode = nil
 doneButtonDown = false
 
+local ELIA = {}
+
+ELIA.states =
+{ 
+  {
+    name="gameplay",
+    create = function()
+    end,
+    update = function(timeStep)
+    end,
+    destroy = function()
+    end,
+    mouseDown = function(rayContact)
+    end,
+    mouseUp = function(rayContact)
+    end,
+    mouseMissed = function(rayContact)
+    end,
+  },
+
+  {
+    name="splash",
+    create = function()
+    end,
+    update = function(timeStep)
+    end,
+    destroy = function()
+    end,
+    mouseDown = function(rayContact)
+    end,
+    mouseUp = function(rayContact)
+    end,
+    mouseMissed = function(rayContact)
+    end,
+  },
+
+  {
+    name="result",
+    create = function()
+    end,
+    update = function(timeStep)
+    end,
+    destroy = function()
+    end,
+    mouseDown = function(rayContact)
+    end,
+    mouseUp = function(rayContact)
+    end,
+    mouseMissed = function(rayContact)
+    end,
+  },
+
+  {
+    name="leaderboard",
+    create = function()
+    end,
+    update = function(timeStep)
+    end,
+    destroy = function()
+    end,
+    mouseDown = function(rayContact)
+    end,
+    mouseUp = function(rayContact)
+    end,
+    mouseMissed = function(rayContact)
+    end,
+  },
+}
+
+ELIA.frameIndex =
+{
+  ["gameplay"] = 1,
+  ["splash"] = 2,
+  ["result"] = 3,
+  ["leaderboard"] = 4,
+}
+
+function ELIA:getFrameIndex(name)
+    return self.frameIndex[name];
+end
+
+function ELIA:getGameplayState()
+  local frameIndex = ELIA:getFrameIndex("gameplay")
+  return ELIA.states[frameIndex]
+end
+
+function ELIA:getSplashState()
+  local frameIndex = ELIA:getFrameIndex("splash")
+  return ELIA.states[frameIndex]
+end
+
+function ELIA:getResultState()
+  local frameIndex = ELIA:getFrameIndex("result")
+  return ELIA.states[frameIndex]
+end
+
+function ELIA:getLeaderboardState()
+  local frameIndex = ELIA:getFrameIndex("leaderboard")
+  return ELIA.states[frameIndex]
+end
+
 --[[
 https://www.speedtypingonline.com/typing-equations
 
@@ -194,7 +295,6 @@ local Create = function()
   ELIAFont:show(OrthographicCameraNode:getCamera())
   ELIAFont:hide(PerspectiveCameraNode:getCamera())
 
-
   ELIATexturePacker = TexturePacker({file="elia_gameplay0"})
 
   local vert_margin = njli.SCREEN():y() / 30.0
@@ -282,10 +382,7 @@ local Update = function(timeStep)
         fontIndexTable=fontIndexTable,
         align="Left",
       })
-      local vert_margin = njli.SCREEN():y() / 30.0
-      local horiz_margin = njli.SCREEN():x() / 40.0
 
-      --startOrigin = bullet.btVector3(bullet.btVector3(njli.SCREEN():x() + horiz_margin, njli.SCREEN():y() - (ELIAFont:maxLineHeight() + vert_margin), -1))
       currentNode:setOrigin(startOrigin)
 
       currentResetTimer = 0
