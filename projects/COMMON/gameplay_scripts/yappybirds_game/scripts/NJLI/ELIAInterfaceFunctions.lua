@@ -57,6 +57,10 @@ ELIA.states =
       doneButtonDown = false,
       created=false
     },
+    showAll = function()
+    end,
+    hideAll = function()
+    end,
     create = function()
       ELIA.states[1].vars.currentText = string.upper(WORD_ARRAY[ELIA.states[1].vars.currentWordArrayIndex])
 
@@ -236,6 +240,10 @@ ELIA.states =
       endlessLetterNode = nil,
       learnMoreNode = nil,
     },
+    showAll = function()
+    end,
+    hideAll = function()
+    end,
     create = function()
       ELIA.states[2].vars.titleNode = DrawTitle(nil, "ELIA")
       ELIA.states[2].vars.endlessLetterNode = DrawEndlessLetterButton(njli.SCREEN():x() * 0.5, (njli.SCREEN():y() * 0.5) - 100, ELIA.states[2].vars.endlessLetterNode)
@@ -266,6 +274,10 @@ ELIA.states =
       accuracyNode = nil,
       placeGraphic = nil,
     },
+    showAll = function()
+    end,
+    hideAll = function()
+    end,
     create = function()
       ELIA.states[3].vars.titleNode = DrawTitle(nil, previousGameplayStateName)
       ELIA.states[3].vars.learnMoreNode = DrawLearnMoreButton(njli.SCREEN():x() * 0.5, (njli.SCREEN():y() * 0.5) + 95, ELIA.states[3].vars.learnMoreNode)
@@ -302,6 +314,10 @@ ELIA.states =
     {
       highScoreNodes = {},
     },
+    showAll = function()
+    end,
+    hideAll = function()
+    end,
     create = function()
       local highScores = {0000, 1111, 2222, 3333, 4444, 5555, 6666, 7777, 8888, 9999}
 
@@ -312,34 +328,35 @@ ELIA.states =
       local half_horizontal = njli.SCREEN():x() * 0.5
 
       ELIA.states[4].vars.highScoreNodes[1], rect = DrawHighscorePoints(highScores[1], ELIA.states[4].vars.highScoreNodes[1], 1)
-      ELIA.states[4].vars.highScoreNodes[1]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5), 575, -1))
+      ELIA.states[4].vars.highScoreNodes[1]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5) - (half_horizontal * 0.5), 575 - 120, -1))
 
       ELIA.states[4].vars.highScoreNodes[2], rect = DrawHighscorePoints(highScores[2], ELIA.states[4].vars.highScoreNodes[2], 2)
-      ELIA.states[4].vars.highScoreNodes[2]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5), 575 - 60, -1))
+      ELIA.states[4].vars.highScoreNodes[2]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5) - (half_horizontal * 0.5), 575 - 200, -1))
 
       ELIA.states[4].vars.highScoreNodes[3], rect = DrawHighscorePoints(highScores[3], ELIA.states[4].vars.highScoreNodes[3], 3)
-      ELIA.states[4].vars.highScoreNodes[3]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5), 575 - 120, -1))
+      ELIA.states[4].vars.highScoreNodes[3]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5) - (half_horizontal * 0.5), 575 - 280, -1))
 
       ELIA.states[4].vars.highScoreNodes[4], rect = DrawHighscorePoints(highScores[4], ELIA.states[4].vars.highScoreNodes[4], 4)
-      ELIA.states[4].vars.highScoreNodes[4]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5), 575 - 180, -1))
+      ELIA.states[4].vars.highScoreNodes[4]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5) - (half_horizontal * 0.5), 575 - 360, -1))
 
       ELIA.states[4].vars.highScoreNodes[5], rect = DrawHighscorePoints(highScores[5], ELIA.states[4].vars.highScoreNodes[5], 5)
-      ELIA.states[4].vars.highScoreNodes[5]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5), 575 - 240, -1))
+      ELIA.states[4].vars.highScoreNodes[5]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5) - (half_horizontal * 0.5), 575 - 440, -1))
+
 
       ELIA.states[4].vars.highScoreNodes[6], rect = DrawHighscorePoints(highScores[6], ELIA.states[4].vars.highScoreNodes[6], 6)
-      ELIA.states[4].vars.highScoreNodes[6]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5), 575 - 300, -1))
+      ELIA.states[4].vars.highScoreNodes[6]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5) + (half_horizontal * 0.5), 575 - 120, -1))
 
       ELIA.states[4].vars.highScoreNodes[7], rect = DrawHighscorePoints(highScores[7], ELIA.states[4].vars.highScoreNodes[7], 7)
-      ELIA.states[4].vars.highScoreNodes[7]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5), 575 - 360, -1))
+      ELIA.states[4].vars.highScoreNodes[7]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5) + (half_horizontal * 0.5), 575 - 200, -1))
 
       ELIA.states[4].vars.highScoreNodes[8], rect = DrawHighscorePoints(highScores[8], ELIA.states[4].vars.highScoreNodes[8], 8)
-      ELIA.states[4].vars.highScoreNodes[8]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5), 575 - 420, -1))
+      ELIA.states[4].vars.highScoreNodes[8]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5) + (half_horizontal * 0.5), 575 - 280, -1))
 
       ELIA.states[4].vars.highScoreNodes[9], rect = DrawHighscorePoints(highScores[9], ELIA.states[4].vars.highScoreNodes[9], 9)
-      ELIA.states[4].vars.highScoreNodes[9]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5), 575 - 480, -1))
+      ELIA.states[4].vars.highScoreNodes[9]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5) + (half_horizontal * 0.5), 575 - 360, -1))
 
       ELIA.states[4].vars.highScoreNodes[10], rect = DrawHighscorePoints(highScores[10], ELIA.states[4].vars.highScoreNodes[10], 10)
-      ELIA.states[4].vars.highScoreNodes[10]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5), 575 - 540, -1))
+      ELIA.states[4].vars.highScoreNodes[10]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5) + (half_horizontal * 0.5), 575 - 440, -1))
     end,
     update = function(timeStep)
       njli.World.getInstance():setBackgroundColor(1.000, 1.000, 1.000)
@@ -390,8 +407,8 @@ end
 
 -- currentStateName = STATE_GAMEPLAY
 -- currentStateName = STATE_SPLASH 
-currentStateName = STATE_RESULT 
--- currentStateName = STATE_LEADERBOARD 
+-- currentStateName = STATE_RESULT 
+currentStateName = STATE_LEADERBOARD 
 
 --[[
 https://www.speedtypingonline.com/typing-equations
@@ -474,7 +491,7 @@ function DrawPoints(points, node)
 end
 
 function DrawHighscorePoints(points, node, place)
-  local pointsString = string.format("%d. %.4d", place, tostring(points)) 
+  local pointsString = string.format("#%d. %.4d", place, tostring(points)) 
   local arg = {mainNode=node,text=pointsString}
 
   local vert_margin = njli.SCREEN():y() / 30.0
