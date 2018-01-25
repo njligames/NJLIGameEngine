@@ -16,18 +16,27 @@ POINTS_PER_CORRECT_LETTER = 1.0
 
 ELIATexturePacker = nil
 
+previousGameplayStateName = "Endless Letter"
+finalPointsAccumulated = 0
+finalAccuracy = 100.0
+
 WORD_ARRAY = 
 {
  "Lorem", "ipsum", "dolor", "sit", "amet", "consectetur", "adipiscing", "elit", "Donec", "lobortis", "ac", "elit", "ut", "vehicula", "Nam", "vestibulum", "at", "diam", "eget", "pulvinar", "Nunc", "porta", "odio", "metus", "at", "egestas", "sem", "rhoncus", "eu", "Fusce", "sed", "scelerisque", "quam", "consequat", "mollis", "quam", "Pellentesque", "ut", "turpis", "vel", "mauris", "ultrices", "luctus", "Ut", "lorem", "ante", "dictum", "pharetra", "efficitur", "et", "luctus", "vitae", "ligula", "Cras", "pretium", "dolor", "eu", "fermentum", "fermentum", "Nulla", "quis", "urna", "commodo", "molestie", "velit", "vitae", "varius", "odio", "Nulla", "vitae", "fermentum", "justo", "Mauris", "tincidunt", "convallis", "condimentum", "Donec", "mollis", "laoreet", "purus", "ut", "elementum", "Donec", "consectetur", "vestibulum", "nisi", "a", "condimentum", "Sed", "magna", "ligula", "dapibus", "sed", "sagittis", "sed", "viverra", "ac", "nulla", "Aliquam", "quis", "tempor", "nisl", "nec", "dapibus", "ex", "Proin", "condimentum", "est", "ut", "dui", "iaculis", "in", "feugiat", "mauris", "euismod", "Maecenas", "eu", "laoreet", "purus", "Aenean", "blandit", "fermentum", "ligula", "iaculis", "suscipit", "Vivamus", "sagittis", "a", "tortor", "vitae", "egestas", "Nam", "hendrerit", "metus", "finibus", "molestie", "efficitur", "Nulla", "hendrerit", "nisl", "augue", "quis", "venenatis", "elit", "ultrices", "eget", "Integer", "ac", "mi", "vel", "ex", "sodales", "dignissim", "vitae", "vitae", "nunc", "Mauris", "vel", "dapibus", "urna", "at", "finibus", "massa", "Duis", "imperdiet", "malesuada", "sem", "nec", "imperdiet", "Sed", "commodo", "ex", "lacus", "Proin", "viverra", "turpis", "id", "egestas", "tempor", "Maecenas", "eget", "condimentum", "urna", "quis", "fermentum", "odio", "Donec", "facilisis", "nunc", "neque", "ut", "sodales", "tellus", "volutpat", "quis", "Morbi", "bibendum", "luctus", "sem", "Etiam", "consectetur", "dolor", "luctus", "urna", "tincidunt", "molestie", "Aliquam", "non", "purus", "malesuada", "rhoncus", "lectus", "nec", "fermentum", "eros", "Aliquam", "scelerisque", "leo", "lectus", "quis", "euismod", "velit", "mattis", "vitae", "Fusce", "sit", "amet", "lacus", "in", "enim", "porttitor", "dapibus", "quis", "vel", "tellus", "Nullam", "egestas", "tellus", "eu", "est", "viverra", "porttitor", "Sed", "feugiat", "semper", "libero", "Donec", "euismod", "libero", "vel", "molestie", "eleifend", "dui", "massa", "tincidunt", "sem", "vel", "fringilla", "elit", "eros", "at", "risus", "Nullam", "blandit", "laoreet", "purus", "a", "elementum", "tellus", "Integer", "nec", "dignissim", "quam", "Proin", "laoreet", "sodales", "metus", "a", "viverra", "Suspendisse", "scelerisque", "dapibus", "efficitur", "Pellentesque", "nibh", "tellus", "congue", "quis", "commodo", "a", "sagittis", "a", "orci", "Sed", "mauris", "nisl", "mattis", "at", "tellus", "quis", "tempor", "consectetur", "erat", "Quisque", "dignissim", "sem", "et", "auctor", "iaculis", "Duis", "at", "imperdiet", "massa", "Quisque", "id", "libero", "enim", "Mauris", "molestie", "sit", "amet", "dolor", "rutrum", "varius", "Duis", "ut", "massa", "eu", "orci", "euismod", "hendrerit", "Aliquam", "imperdiet", "commodo", "aliquam", "Ut", "elementum", "porttitor", "dictum", "Vestibulum", "fringilla", "feugiat", "erat", "ut", "mollis", "Vestibulum", "est", "nisi", "mattis", "sed", "facilisis", "mattis", "varius", "id", "nisl", "Etiam", "facilisis", "viverra", "suscipit", "Donec", "in", "risus", "fermentum", "gravida", "est", "at", "bibendum", "arcu", "Nullam", "ut", "purus", "ac", "lectus", "tincidunt", "pharetra", "vitae", "id", "est", "Mauris", "at", "ligula", "bibendum", "lacus", "aliquet", "aliquet", "id", "quis", "orci",
  }
 
 
+STATE_GAMEPLAY="gameplay"
+STATE_SPLASH="splash"
+STATE_RESULT="result"
+STATE_LEADERBOARD="leaderboard"
+
 local ELIA = {}
 
 ELIA.states =
 { 
   {
-    name="gameplay",
+    name=STATE_GAMEPLAY,
     vars=
     {
       currentResetTimer=WAIT_TIME,
@@ -63,10 +72,12 @@ ELIA.states =
 
       ELIA.states[1].vars.doneNode = DrawDoneButton(njli.SCREEN():x() * 0.5, njli.SCREEN():y() * 0.5, ELIA.states[1].vars.doneNode)
 
+
       ELIA.states[1].vars.created = true
     end,
     update = function(timeStep)
       njli.World.getInstance():setBackgroundColor(1.000, 1.000, 1.000)
+
       if not ELIA.states[1].vars.created then
         return
       end
@@ -218,23 +229,18 @@ ELIA.states =
     end,
   },
   {
-    name="splash",
+    name=STATE_SPLASH,
     vars=
     {
       titleNode = nil,
-      titleNodeRect = {},
+      endlessLetterNode = nil,
+      learnMoreNode = nil,
     },
     create = function()
+      ELIA.states[2].vars.titleNode = DrawTitle(nil, "ELIA")
+      ELIA.states[2].vars.endlessLetterNode = DrawEndlessLetterButton(njli.SCREEN():x() * 0.5, (njli.SCREEN():y() * 0.5) - 100, ELIA.states[2].vars.endlessLetterNode)
+      ELIA.states[2].vars.learnMoreNode = DrawLearnMoreButton(njli.SCREEN():x() * 0.5, (njli.SCREEN():y() * 0.5) - 195, ELIA.states[2].vars.learnMoreNode)
 
-      ELIA.states[2].vars.titleNode, currentNodeRect = ELIAFont:printf({
-        mainNode=ELIA.states[2].vars.titleNode,
-        text="ELIA",
-        align="Left",
-      })
-
-      local titleOrigin = bullet.btVector3(njli.SCREEN():x() * 0.5, njli.SCREEN():y() * 0.5, -1),
-      ELIA.states[1].vars.titleNode:setOrigin(titleOrigin)
-      ELIA.states[2].vars.titleNode:show(OrthographicCameraNode:getCamera())
     end,
     update = function(timeStep)
       njli.World.getInstance():setBackgroundColor(1.000, 1.000, 1.000)
@@ -250,10 +256,26 @@ ELIA.states =
   },
 
   {
-    name="result",
+    name=STATE_RESULT,
+    vars=
+    {
+      titleNode = nil,
+      learnMoreNode = nil,
+      quitNode = nil,
+      pointsNode = nil,
+      accuracyNode = nil,
+    },
     create = function()
+      ELIA.states[3].vars.titleNode = DrawTitle(nil, previousGameplayStateName)
+      ELIA.states[3].vars.learnMoreNode = DrawLearnMoreButton(njli.SCREEN():x() * 0.5, (njli.SCREEN():y() * 0.5) + 95, ELIA.states[3].vars.learnMoreNode)
+      ELIA.states[3].vars.replayNode = DrawReplayButton(njli.SCREEN():x() * 0.5, (njli.SCREEN():y() * 0.5) , ELIA.states[3].vars.replayNode)
+      ELIA.states[3].vars.quitNode = DrawQuitButton(njli.SCREEN():x() * 0.5, (njli.SCREEN():y() * 0.5) - 95, ELIA.states[3].vars.quitNode)
+
+      ELIA.states[3].vars.pointsNode = DrawPoints(finalPointsAccumulated, ELIA.states[3].vars.pointsNode)
+      ELIA.states[3].vars.accuracyNode = DrawAccuracy(finalAccuracy, ELIA.states[3].vars.accuracyNode)
     end,
     update = function(timeStep)
+      njli.World.getInstance():setBackgroundColor(1.000, 1.000, 1.000)
     end,
     destroy = function()
     end,
@@ -266,10 +288,51 @@ ELIA.states =
   },
 
   {
-    name="leaderboard",
+    name=STATE_LEADERBOARD,
+    vars =
+    {
+      highScoreNodes = {},
+    },
     create = function()
+      local highScores = {0000, 1111, 2222, 3333, 4444, 5555, 6666, 7777, 8888, 9999}
+      ELIA.states[4].vars.titleNode = DrawTitle(nil, "Leaderboard")
+
+      local vert_margin = njli.SCREEN():y() / 30.0
+      local horiz_margin = njli.SCREEN():x() / 40.0
+      local half_horizontal = njli.SCREEN():x() * 0.5
+
+      ELIA.states[4].vars.highScoreNodes[1], rect = DrawHighscorePoints(highScores[1], ELIA.states[4].vars.highScoreNodes[1], 1)
+      ELIA.states[4].vars.highScoreNodes[1]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5), 575, -1))
+
+      ELIA.states[4].vars.highScoreNodes[2], rect = DrawHighscorePoints(highScores[2], ELIA.states[4].vars.highScoreNodes[2], 2)
+      ELIA.states[4].vars.highScoreNodes[2]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5), 575 - 60, -1))
+
+      ELIA.states[4].vars.highScoreNodes[3], rect = DrawHighscorePoints(highScores[3], ELIA.states[4].vars.highScoreNodes[3], 3)
+      ELIA.states[4].vars.highScoreNodes[3]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5), 575 - 120, -1))
+
+      ELIA.states[4].vars.highScoreNodes[4], rect = DrawHighscorePoints(highScores[4], ELIA.states[4].vars.highScoreNodes[4], 4)
+      ELIA.states[4].vars.highScoreNodes[4]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5), 575 - 180, -1))
+
+      ELIA.states[4].vars.highScoreNodes[5], rect = DrawHighscorePoints(highScores[5], ELIA.states[4].vars.highScoreNodes[5], 5)
+      ELIA.states[4].vars.highScoreNodes[5]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5), 575 - 240, -1))
+
+      ELIA.states[4].vars.highScoreNodes[6], rect = DrawHighscorePoints(highScores[6], ELIA.states[4].vars.highScoreNodes[6], 6)
+      ELIA.states[4].vars.highScoreNodes[6]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5), 575 - 300, -1))
+
+      ELIA.states[4].vars.highScoreNodes[7], rect = DrawHighscorePoints(highScores[7], ELIA.states[4].vars.highScoreNodes[7], 7)
+      ELIA.states[4].vars.highScoreNodes[7]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5), 575 - 360, -1))
+
+      ELIA.states[4].vars.highScoreNodes[8], rect = DrawHighscorePoints(highScores[8], ELIA.states[4].vars.highScoreNodes[8], 8)
+      ELIA.states[4].vars.highScoreNodes[8]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5), 575 - 420, -1))
+
+      ELIA.states[4].vars.highScoreNodes[9], rect = DrawHighscorePoints(highScores[9], ELIA.states[4].vars.highScoreNodes[9], 9)
+      ELIA.states[4].vars.highScoreNodes[9]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5), 575 - 480, -1))
+
+      ELIA.states[4].vars.highScoreNodes[10], rect = DrawHighscorePoints(highScores[10], ELIA.states[4].vars.highScoreNodes[10], 10)
+      ELIA.states[4].vars.highScoreNodes[10]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5), 575 - 540, -1))
     end,
     update = function(timeStep)
+      njli.World.getInstance():setBackgroundColor(1.000, 1.000, 1.000)
     end,
     destroy = function()
     end,
@@ -284,35 +347,41 @@ ELIA.states =
 
 ELIA.frameIndex =
 {
-  ["gameplay"] = 1,
-  ["splash"] = 2,
-  ["result"] = 3,
-  ["leaderboard"] = 4,
+  [STATE_GAMEPLAY] = 1,
+  [STATE_SPLASH] = 2,
+  [STATE_RESULT] = 3,
+  [STATE_LEADERBOARD] = 4,
 }
 
 function ELIA:getFrameIndex(name)
     return self.frameIndex[name];
 end
 
-function ELIA:getGameplayState()
-  local frameIndex = ELIA:getFrameIndex("gameplay")
-  return ELIA.states[frameIndex]
-end
+-- function ELIA:getGameplayState()
+--   local frameIndex = ELIA:getFrameIndex("gameplay")
+--   return ELIA.states[frameIndex]
+-- end
+-- 
+-- function ELIA:getSplashState()
+--   local frameIndex = ELIA:getFrameIndex("splash")
+--   return ELIA.states[frameIndex]
+-- end
+-- 
+-- function ELIA:getResultState()
+--   local frameIndex = ELIA:getFrameIndex("result")
+--   return ELIA.states[frameIndex]
+-- end
+-- 
+-- function ELIA:getLeaderboardState()
+--   local frameIndex = ELIA:getFrameIndex("leaderboard")
+--   return ELIA.states[frameIndex]
+-- end
 
-function ELIA:getSplashState()
-  local frameIndex = ELIA:getFrameIndex("splash")
-  return ELIA.states[frameIndex]
-end
 
-function ELIA:getResultState()
-  local frameIndex = ELIA:getFrameIndex("result")
-  return ELIA.states[frameIndex]
-end
-
-function ELIA:getLeaderboardState()
-  local frameIndex = ELIA:getFrameIndex("leaderboard")
-  return ELIA.states[frameIndex]
-end
+-- currentStateName = STATE_GAMEPLAY
+-- currentStateName = STATE_SPLASH 
+-- currentStateName = STATE_RESULT 
+currentStateName = STATE_LEADERBOARD 
 
 --[[
 https://www.speedtypingonline.com/typing-equations
@@ -356,6 +425,29 @@ function DrawLabel(...)
 
 end
 
+function DrawTitleHelper(...)
+  local arg=... or {}
+  local text = arg.text or "?"
+  local mainNode = arg.mainNode or nil
+
+  local fontTable = {}
+  for i=1, string.len(text) do
+    fontTable[i] = 9
+  end
+
+  local mainNode, mainNodeRect = ELIAFont:printf({
+    mainNode=mainNode,
+    text=text,
+    fontIndexTable=fontTable,
+    align="Left",
+  })
+
+  mainNode:show(OrthographicCameraNode:getCamera())
+
+  return mainNode, mainNodeRect
+
+end
+
 function DrawPoints(points, node)
   local pointsString = string.format("%.4d", tostring(points)) .. " Points"
   local arg = {mainNode=node,text=pointsString}
@@ -368,7 +460,22 @@ function DrawPoints(points, node)
   node_ret:setOrigin(bullet.btVector3(bullet.btVector3(half_horizontal - (rect.width * 0.5), vert_margin, -1)))
   node_ret:show(OrthographicCameraNode:getCamera())
 
-  return node_ret
+  return node_ret, rect
+end
+
+function DrawHighscorePoints(points, node, place)
+  local pointsString = string.format("%d. %.4d", place, tostring(points)) 
+  local arg = {mainNode=node,text=pointsString}
+
+  local vert_margin = njli.SCREEN():y() / 30.0
+  local horiz_margin = njli.SCREEN():x() / 40.0
+  local half_horizontal = njli.SCREEN():x() * 0.5
+  
+  local node_ret, rect = DrawLabel(arg)
+  -- node_ret:setOrigin(bullet.btVector3(bullet.btVector3(half_horizontal - (rect.width * 0.5), vert_margin, -1)))
+  node_ret:show(OrthographicCameraNode:getCamera())
+
+  return node_ret, rect
 end
 
 function DrawAccuracy(accuracy, node)
@@ -408,6 +515,172 @@ function DrawDoneButton(x, y, node)
 
   return node
 end
+
+function DrawTitle(node, str)
+  local accuracyString = str
+  local arg = {mainNode=node, text=accuracyString}
+
+  local vert_margin = njli.SCREEN():y() / 30.0
+  local horiz_margin = njli.SCREEN():x() / 40.0
+  local half_horizontal = njli.SCREEN():x() * 0.5
+  local half_vertical = njli.SCREEN():y() * 0.5
+  
+  local node_ret, rect = DrawTitleHelper(arg)
+  node_ret:setOrigin(bullet.btVector3(bullet.btVector3(half_horizontal - (rect.width * 0.5), njli.SCREEN():y() - rect.height - vert_margin, -1)))
+  node_ret:show(OrthographicCameraNode:getCamera())
+
+  return node_ret
+end
+
+function DrawEndlessLetterButton(x, y, node)
+  local node, dimension = ELIATexturePacker:draw({name="btn_endless_letter_up", node=node})
+
+  local origin = bullet.btVector3(x, y, -1)
+  node:setOrigin(origin)
+  node:show(OrthographicCameraNode:getCamera())
+
+  local scene = njli.World.getInstance():getScene()
+  scene:getRootNode():addChildNode(node)
+
+  local donePhysicsShape = njli.PhysicsShapeBox.create()
+
+  local donePhysicsBody = njli.PhysicsBodyRigid.create()
+  donePhysicsBody:setStaticPhysics()
+  donePhysicsBody:setPhysicsShape(donePhysicsShape)
+
+  node:setPhysicsBody(donePhysicsBody)
+
+  donePhysicsShape:setHalfExtends(bullet.btVector3( dimension:x(), dimension:y(), 1.0 ))
+
+  return node
+end
+
+function DrawLearnMoreButton(x, y, node)
+  local node, dimension = ELIATexturePacker:draw({name="btn_learn_more_up", node=node})
+
+  local origin = bullet.btVector3(x, y, -1)
+  node:setOrigin(origin)
+  node:show(OrthographicCameraNode:getCamera())
+
+  local scene = njli.World.getInstance():getScene()
+  scene:getRootNode():addChildNode(node)
+
+  local donePhysicsShape = njli.PhysicsShapeBox.create()
+
+  local donePhysicsBody = njli.PhysicsBodyRigid.create()
+  donePhysicsBody:setStaticPhysics()
+  donePhysicsBody:setPhysicsShape(donePhysicsShape)
+
+  node:setPhysicsBody(donePhysicsBody)
+
+  donePhysicsShape:setHalfExtends(bullet.btVector3( dimension:x(), dimension:y(), 1.0 ))
+
+  return node
+end
+
+function DrawQuitButton(x, y, node)
+  local node, dimension = ELIATexturePacker:draw({name="btn_quit_up", node=node})
+
+  local origin = bullet.btVector3(x, y, -1)
+  node:setOrigin(origin)
+  node:show(OrthographicCameraNode:getCamera())
+
+  local scene = njli.World.getInstance():getScene()
+  scene:getRootNode():addChildNode(node)
+
+  local donePhysicsShape = njli.PhysicsShapeBox.create()
+
+  local donePhysicsBody = njli.PhysicsBodyRigid.create()
+  donePhysicsBody:setStaticPhysics()
+  donePhysicsBody:setPhysicsShape(donePhysicsShape)
+
+  node:setPhysicsBody(donePhysicsBody)
+
+  donePhysicsShape:setHalfExtends(bullet.btVector3( dimension:x(), dimension:y(), 1.0 ))
+
+  return node
+end
+
+function DrawReplayButton(x, y, node)
+  local node, dimension = ELIATexturePacker:draw({name="btn_replay_up", node=node})
+
+  local origin = bullet.btVector3(x, y, -1)
+  node:setOrigin(origin)
+  node:show(OrthographicCameraNode:getCamera())
+
+  local scene = njli.World.getInstance():getScene()
+  scene:getRootNode():addChildNode(node)
+
+  local donePhysicsShape = njli.PhysicsShapeBox.create()
+
+  local donePhysicsBody = njli.PhysicsBodyRigid.create()
+  donePhysicsBody:setStaticPhysics()
+  donePhysicsBody:setPhysicsShape(donePhysicsShape)
+
+  node:setPhysicsBody(donePhysicsBody)
+
+  donePhysicsShape:setHalfExtends(bullet.btVector3( dimension:x(), dimension:y(), 1.0 ))
+
+  return node
+end
+
+
+function DrawPlaceGraphic(x, y, node, place)
+  local graphicName = "gfg_10th"
+
+  if place == 1 then
+    graphicName = "gfg_1st"
+  elseif place == 2 then
+    graphicName = "gfg_2nd"
+  elseif place == 3 then
+    graphicName = "gfg_3rd"
+  elseif place == 4 then
+    graphicName = "gfg_4th"
+  elseif place == 5 then
+    graphicName = "gfg_5th"
+  elseif place == 6 then
+    graphicName = "gfg_6th"
+  elseif place == 7 then
+    graphicName = "gfg_7nd"
+  elseif place == 8 then
+    graphicName = "gfg_8th"
+  elseif place == 9 then
+    graphicName = "gfg_9th"
+  elseif place == 10 then
+    graphicName = "gfg_10th"
+  end
+
+  local node, dimension = ELIATexturePacker:draw({name=graphicName, node=node})
+
+  local origin = bullet.btVector3(x, y, -1)
+  node:setOrigin(origin)
+  node:show(OrthographicCameraNode:getCamera())
+
+  local scene = njli.World.getInstance():getScene()
+  scene:getRootNode():addChildNode(node)
+
+  -- local donePhysicsShape = njli.PhysicsShapeBox.create()
+
+  -- local donePhysicsBody = njli.PhysicsBodyRigid.create()
+  -- donePhysicsBody:setStaticPhysics()
+  -- donePhysicsBody:setPhysicsShape(donePhysicsShape)
+
+  -- node:setPhysicsBody(donePhysicsBody)
+
+  -- donePhysicsShape:setHalfExtends(bullet.btVector3( dimension:x(), dimension:y(), 1.0 ))
+
+  return node
+end
+
+
+
+
+
+
+
+
+
+
 
 local Create = function()
 
@@ -461,13 +734,13 @@ local Create = function()
     "ELIABlack",
     "TimesNewRomanBasic",
     "HUD",
+    "Title",
   })
 
 
   ELIATexturePacker = TexturePacker({file="elia_gameplay0"})
 
-  ELIA:getGameplayState().create()
-  -- ELIA:getSplashState().create()
+  ELIA.states[ELIA:getFrameIndex(currentStateName)].create()
 
 end
   
@@ -489,8 +762,7 @@ local Destroy = function()
     OrthographicCameraNode = nil
   end
 
-  ELIA:getGameplayState().destroy()
-  -- ELIA:getSplashState().destroy()
+  ELIA.states[ELIA:getFrameIndex(currentStateName)].destroy()
   
 end
 
@@ -506,8 +778,7 @@ local Update = function(timeStep)
     debugging = true
   end
 
-  ELIA:getGameplayState().update(timeStep)
-  -- ELIA:getSplashState().update(timeStep)
+  ELIA.states[ELIA:getFrameIndex(currentStateName)].update(timeStep)
 
 end
 
@@ -526,8 +797,7 @@ local MouseUp = function(mouse) end
 local MouseMove = function(mouse) end
 
 local KeyDown = function(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui) 
-  ELIA:getGameplayState().keyDown(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui)
-  -- ELIA:getSplashState().keyDown(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui)
+  ELIA.states[ELIA:getFrameIndex(currentStateName)].keyDown(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui)
 end
 
 local KeyUp = function(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui) end
@@ -612,21 +882,18 @@ local NodeRayTouchMove = function(rayContact) end
 local NodeRayTouchCancelled = function(rayContact) end 
 
 local NodeRayMouseDown = function(rayContact)
-  ELIA:getGameplayState().mouseDown(rayContact)
-  -- ELIA:getSplashState().mouseDown(rayContact)
+  ELIA.states[ELIA:getFrameIndex(currentStateName)].mouseDown(rayContact)
 end
 
 local NodeRayMouseUp = function(rayContact)
-  ELIA:getGameplayState().mouseUp(rayContact)
-  -- ELIA:getSplashState().mouseUp(rayContact)
+  ELIA.states[ELIA:getFrameIndex(currentStateName)].mouseUp(rayContact)
 end
 
 local NodeRayMouseMove = function(rayContact) end 
 local NodeRayTouchMissed = function(node) end
 
 local NodeRayMouseMissed = function(node)
-  ELIA:getGameplayState().mouseMissed(node)
-  -- ELIA:getSplashState().mouseMissed(node)
+  ELIA.states[ELIA:getFrameIndex(currentStateName)].mouseMissed(node)
 end
 
 local NodeKeyboardShow = function(node) end 
