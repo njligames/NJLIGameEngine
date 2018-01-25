@@ -264,6 +264,7 @@ ELIA.states =
       quitNode = nil,
       pointsNode = nil,
       accuracyNode = nil,
+      placeGraphic = nil,
     },
     create = function()
       ELIA.states[3].vars.titleNode = DrawTitle(nil, previousGameplayStateName)
@@ -271,8 +272,16 @@ ELIA.states =
       ELIA.states[3].vars.replayNode = DrawReplayButton(njli.SCREEN():x() * 0.5, (njli.SCREEN():y() * 0.5) , ELIA.states[3].vars.replayNode)
       ELIA.states[3].vars.quitNode = DrawQuitButton(njli.SCREEN():x() * 0.5, (njli.SCREEN():y() * 0.5) - 95, ELIA.states[3].vars.quitNode)
 
-      ELIA.states[3].vars.pointsNode = DrawPoints(finalPointsAccumulated, ELIA.states[3].vars.pointsNode)
+      ELIA.states[3].vars.pointsNode, rect = DrawPoints(finalPointsAccumulated, ELIA.states[3].vars.pointsNode)
       ELIA.states[3].vars.accuracyNode = DrawAccuracy(finalAccuracy, ELIA.states[3].vars.accuracyNode)
+
+      local place = 10
+      if place >= 1 and place <= 10 then
+        local vert_margin = njli.SCREEN():y() / 30.0
+        ELIA.states[3].vars.placeGraphic = DrawPlaceGraphic((njli.SCREEN():x() * 0.5) + (rect.width * 0.5) + 70, vert_margin + vert_margin + 5, ELIA.states[3].vars.placeGraphic, place)
+      end
+
+--function DrawPlaceGraphic(x, y, node, place)
     end,
     update = function(timeStep)
       njli.World.getInstance():setBackgroundColor(1.000, 1.000, 1.000)
@@ -295,6 +304,7 @@ ELIA.states =
     },
     create = function()
       local highScores = {0000, 1111, 2222, 3333, 4444, 5555, 6666, 7777, 8888, 9999}
+
       ELIA.states[4].vars.titleNode = DrawTitle(nil, "Leaderboard")
 
       local vert_margin = njli.SCREEN():y() / 30.0
@@ -380,8 +390,8 @@ end
 
 -- currentStateName = STATE_GAMEPLAY
 -- currentStateName = STATE_SPLASH 
--- currentStateName = STATE_RESULT 
-currentStateName = STATE_LEADERBOARD 
+currentStateName = STATE_RESULT 
+-- currentStateName = STATE_LEADERBOARD 
 
 --[[
 https://www.speedtypingonline.com/typing-equations
