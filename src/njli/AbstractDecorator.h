@@ -60,6 +60,9 @@ namespace njli
      */
     const char *getName() const;
 
+    void setTag(const char *tag);
+    const char *getTag() const;
+
   private:
     AbstractDecorator(const AbstractDecorator &);
     AbstractDecorator &operator=(const AbstractDecorator &rhs);
@@ -68,6 +71,7 @@ namespace njli
     AbstractDecorator *m_pParent;
 
     std::string m_Name;
+    std::string m_Tag;
   };
 }
 

@@ -1700,15 +1700,15 @@ namespace njli
                 for (unsigned int i = 0; i < untouchedNodes.size(); i++)
                   {
                     Node *n = untouchedNodes[i];
-                      std::string name = n->getName();
+                    std::string name = n->getName();
 
-                      if(n->getPhysicsBody() != NULL)
+                    if (n->getPhysicsBody() != NULL)
                       {
-                          char buffer[BUFFER_SIZE];
-                          sprintf(buffer, "%s", "__NJLINodeRayMouseMissed");
-                          njli::World::getInstance()
-                          ->getWorldLuaVirtualMachine()
-                          ->execute(buffer, n);
+                        char buffer[BUFFER_SIZE];
+                        sprintf(buffer, "%s", "__NJLINodeRayMouseMissed");
+                        njli::World::getInstance()
+                            ->getWorldLuaVirtualMachine()
+                            ->execute(buffer, n);
                       }
                   }
               }

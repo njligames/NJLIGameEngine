@@ -10,7 +10,10 @@
 
 namespace njli
 {
-  AbstractDecorator::AbstractDecorator() : m_pParent(NULL), m_Name("<UNSET>") {}
+  AbstractDecorator::AbstractDecorator()
+      : m_pParent(NULL), m_Name("<UNSET>"), m_Tag("")
+  {
+  }
 
   AbstractDecorator::~AbstractDecorator() { removeFromParent(); }
 
@@ -235,4 +238,11 @@ namespace njli
   }
 
   const char *AbstractDecorator::getName() const { return m_Name.c_str(); }
+
+  void AbstractDecorator::setTag(const char *tag)
+  {
+    SDL_assert(tag != NULL);
+    m_Tag = tag;
+  }
+  const char *AbstractDecorator::getTag() const { return m_Tag.c_str(); }
 }

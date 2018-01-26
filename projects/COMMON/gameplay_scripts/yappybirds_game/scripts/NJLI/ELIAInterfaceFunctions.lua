@@ -55,7 +55,7 @@ ELIA.states =
       accuracyNode = nil,
       doneNode = nil,
       doneButtonDown = false,
-      created=false
+      created=false,
     },
     showAll = function()
     end,
@@ -163,23 +163,31 @@ ELIA.states =
       ELIA.states[1].vars.doneNode = nil
     end,
     mouseDown = function(rayContact)
+
       if not ELIA.states[1].vars.created then
         return
       end
 
-      if not ELIA.states[1].vars.doneButtonDown then
-        ELIA.states[1].vars.doneButtonDown = true
-        ELIA.states[1].vars.doneNode, dimension = ELIATexturePacker:draw({name="btn_done_down", node=ELIA.states[1].vars.doneNode})
+      local nodeTag = rayContact:getHitNode():getTag()
+      if nodeTag == "done node" then
+        if not ELIA.states[1].vars.doneButtonDown then
+          ELIA.states[1].vars.doneButtonDown = true
+          ELIA.states[1].vars.doneNode, dimension = ELIATexturePacker:draw({name="btn_done_down", node=ELIA.states[1].vars.doneNode})
+        end
       end
+
     end,
     mouseUp = function(rayContact)
       if not ELIA.states[1].vars.created then
         return
       end
 
-      if ELIA.states[1].vars.doneButtonDown then
-        ELIA.states[1].vars.doneButtonDown = false
-        ELIA.states[1].vars.doneNode, dimension = ELIATexturePacker:draw({name="btn_done_up", node=ELIA.states[1].vars.doneNode})
+      local nodeTag = rayContact:getHitNode():getTag()
+      if nodeTag == "done node" then
+        if ELIA.states[1].vars.doneButtonDown then
+          ELIA.states[1].vars.doneButtonDown = false
+          ELIA.states[1].vars.doneNode, dimension = ELIATexturePacker:draw({name="btn_done_up", node=ELIA.states[1].vars.doneNode})
+        end
       end
     end,
     mouseMissed = function(node)
@@ -187,9 +195,12 @@ ELIA.states =
         return
       end
 
-      if ELIA.states[1].vars.doneButtonDown then
-        ELIA.states[1].vars.doneButtonDown = false
-        ELIA.states[1].vars.doneNode, dimension = ELIATexturePacker:draw({name="btn_done_up", node=ELIA.states[1].vars.doneNode})
+      local nodeTag = rayContact:getHitNode():getTag()
+      if nodeTag == "done node" then
+        if ELIA.states[1].vars.doneButtonDown then
+          ELIA.states[1].vars.doneButtonDown = false
+          ELIA.states[1].vars.doneNode, dimension = ELIATexturePacker:draw({name="btn_done_up", node=ELIA.states[1].vars.doneNode})
+        end
       end
     end,
     keyDown = function(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui)
@@ -239,27 +250,89 @@ ELIA.states =
       titleNode = nil,
       endlessLetterNode = nil,
       learnMoreNode = nil,
+      created=false,
+      endlessLetterButtonDown = false,
+      learnMoreButtonDown = false,
+      endlessLetterButtonDown = false,
+      learnMoreButtonDown = false,
     },
     showAll = function()
     end,
     hideAll = function()
     end,
     create = function()
+
       ELIA.states[2].vars.titleNode = DrawTitle(nil, "ELIA")
       ELIA.states[2].vars.endlessLetterNode = DrawEndlessLetterButton(njli.SCREEN():x() * 0.5, (njli.SCREEN():y() * 0.5) - 100, ELIA.states[2].vars.endlessLetterNode)
       ELIA.states[2].vars.learnMoreNode = DrawLearnMoreButton(njli.SCREEN():x() * 0.5, (njli.SCREEN():y() * 0.5) - 195, ELIA.states[2].vars.learnMoreNode)
 
+      ELIA.states[2].vars.created = true
+
     end,
     update = function(timeStep)
       njli.World.getInstance():setBackgroundColor(1.000, 1.000, 1.000)
+      if not ELIA.states[2].vars.created then
+        return
+      end
     end,
     destroy = function()
+      ELIA.states[2].vars.created = false
     end,
     mouseDown = function(rayContact)
+
+      if not ELIA.states[2].vars.created then
+        return
+      end
+
+      local nodeTag = rayContact:getHitNode():getTag()
+      if nodeTag == "endless letter node" then
+        if not ELIA.states[2].vars.endlessLetterButtonDown then
+          ELIA.states[2].vars.endlessLetterButtonDown = true
+          ELIA.states[2].vars.endlessLetterNode, dimension = ELIATexturePacker:draw({name="btn_endless_letter_down", node=ELIA.states[2].vars.endlessLetterNode})
+        end
+      elseif nodeTag == "learn more node" then
+        if not ELIA.states[2].vars.learnMoreButtonDown then
+          ELIA.states[2].vars.learnMoreButtonDown = true
+          ELIA.states[2].vars.learnMoreNode, dimension = ELIATexturePacker:draw({name="btn_learn_more_down", node=ELIA.states[2].vars.learnMoreNode})
+        end
+      end
+
     end,
     mouseUp = function(rayContact)
+      if not ELIA.states[2].vars.created then
+        return
+      end
+
+      local nodeTag = rayContact:getHitNode():getTag()
+      if nodeTag == "endless letter node" then
+        if ELIA.states[2].vars.endlessLetterButtonDown then
+          ELIA.states[2].vars.endlessLetterButtonDown = false
+          ELIA.states[2].vars.endlessLetterNode, dimension = ELIATexturePacker:draw({name="btn_endless_letter_up", node=ELIA.states[2].vars.endlessLetterNode})
+        end
+      elseif nodeTag == "learn more node" then
+        if ELIA.states[2].vars.learnMoreButtonDown then
+          ELIA.states[2].vars.learnMoreButtonDown = false
+          ELIA.states[2].vars.learnMoreNode, dimension = ELIATexturePacker:draw({name="btn_learn_more_up", node=ELIA.states[2].vars.learnMoreNode})
+        end
+      end
     end,
-    mouseMissed = function(rayContact)
+    mouseMissed = function(node)
+      if not ELIA.states[2].vars.created then
+        return
+      end
+
+      local nodeTag = rayContact:getHitNode():getTag()
+      if nodeTag == "endless letter node" then
+        if ELIA.states[2].vars.endlessLetterButtonDown then
+          ELIA.states[2].vars.endlessLetterButtonDown = false
+          ELIA.states[2].vars.endlessLetterNode, dimension = ELIATexturePacker:draw({name="btn_endless_letter_up", node=ELIA.states[2].vars.endlessLetterNode})
+        end
+      elseif nodeTag == "learn more node" then
+        if ELIA.states[2].vars.learnMoreButtonDown then
+          ELIA.states[2].vars.learnMoreButtonDown = false
+          ELIA.states[2].vars.learnMoreNode, dimension = ELIATexturePacker:draw({name="btn_learn_more_up", node=ELIA.states[2].vars.learnMoreNode})
+        end
+      end
     end,
   },
 
@@ -273,12 +346,17 @@ ELIA.states =
       pointsNode = nil,
       accuracyNode = nil,
       placeGraphic = nil,
+      created=false,
+      replayButtonDown = false,
+      learnMoreButtonDown = false,
+      quitButtonDown = false,
     },
     showAll = function()
     end,
     hideAll = function()
     end,
     create = function()
+
       ELIA.states[3].vars.titleNode = DrawTitle(nil, previousGameplayStateName)
       ELIA.states[3].vars.learnMoreNode = DrawLearnMoreButton(njli.SCREEN():x() * 0.5, (njli.SCREEN():y() * 0.5) + 95, ELIA.states[3].vars.learnMoreNode)
       ELIA.states[3].vars.replayNode = DrawReplayButton(njli.SCREEN():x() * 0.5, (njli.SCREEN():y() * 0.5) , ELIA.states[3].vars.replayNode)
@@ -293,18 +371,87 @@ ELIA.states =
         ELIA.states[3].vars.placeGraphic = DrawPlaceGraphic((njli.SCREEN():x() * 0.5) + (rect.width * 0.5) + 70, vert_margin + vert_margin + 5, ELIA.states[3].vars.placeGraphic, place)
       end
 
---function DrawPlaceGraphic(x, y, node, place)
+      ELIA.states[3].vars.created = true
+
     end,
     update = function(timeStep)
       njli.World.getInstance():setBackgroundColor(1.000, 1.000, 1.000)
+
+      if not ELIA.states[3].vars.created then
+        return
+      end
     end,
     destroy = function()
+      ELIA.states[3].vars.created = false
     end,
     mouseDown = function(rayContact)
+      if not ELIA.states[3].vars.created then
+        return
+      end
+
+      local nodeTag = rayContact:getHitNode():getTag()
+      if nodeTag == "replay node" then
+        if not ELIA.states[3].vars.replayButtonDown then
+          ELIA.states[3].vars.replayButtonDown = true
+          ELIA.states[3].vars.replayNode, dimension = ELIATexturePacker:draw({name="btn_replay_down", node=ELIA.states[3].vars.replayNode})
+        end
+      elseif nodeTag == "learn more node" then
+        if not ELIA.states[3].vars.learnMoreButtonDown then
+          ELIA.states[3].vars.learnMoreButtonDown = true
+          ELIA.states[3].vars.learnMoreNode, dimension = ELIATexturePacker:draw({name="btn_learn_more_down", node=ELIA.states[3].vars.learnMoreNode})
+        end
+      elseif nodeTag == "quit node" then
+        if not ELIA.states[3].vars.quitButtonDown then
+          ELIA.states[3].vars.quitButtonDown = true
+          ELIA.states[3].vars.quitNode, dimension = ELIATexturePacker:draw({name="btn_quit_down", node=ELIA.states[3].vars.quitNode})
+        end
+      end
     end,
     mouseUp = function(rayContact)
+      if not ELIA.states[3].vars.created then
+        return
+      end
+
+      local nodeTag = rayContact:getHitNode():getTag()
+      if nodeTag == "replay node" then
+        if ELIA.states[3].vars.replayButtonDown then
+          ELIA.states[3].vars.replayButtonDown = false
+          ELIA.states[3].vars.replayNode, dimension = ELIATexturePacker:draw({name="btn_replay_up", node=ELIA.states[3].vars.replayNode})
+        end
+      elseif nodeTag == "learn more node" then
+        if ELIA.states[3].vars.learnMoreButtonDown then
+          ELIA.states[3].vars.learnMoreButtonDown = false
+          ELIA.states[3].vars.learnMoreNode, dimension = ELIATexturePacker:draw({name="btn_learn_more_up", node=ELIA.states[3].vars.learnMoreNode})
+        end
+      elseif nodeTag == "quit node" then
+        if ELIA.states[3].vars.quitButtonDown then
+          ELIA.states[3].vars.quitButtonDown = false
+          ELIA.states[3].vars.quitNode, dimension = ELIATexturePacker:draw({name="btn_quit_up", node=ELIA.states[3].vars.quitNode})
+        end
+      end
     end,
     mouseMissed = function(rayContact)
+      if not ELIA.states[3].vars.created then
+        return
+      end
+
+      local nodeTag = rayContact:getHitNode():getTag()
+      if nodeTag == "replay node" then
+        if ELIA.states[3].vars.replayButtonDown then
+          ELIA.states[3].vars.replayButtonDown = false
+          ELIA.states[3].vars.replayNode, dimension = ELIATexturePacker:draw({name="btn_replay_up", node=ELIA.states[3].vars.replayNode})
+        end
+      elseif nodeTag == "learn more node" then
+        if ELIA.states[3].vars.learnMoreButtonDown then
+          ELIA.states[3].vars.learnMoreButtonDown = false
+          ELIA.states[3].vars.learnMoreNode, dimension = ELIATexturePacker:draw({name="btn_learn_more_up", node=ELIA.states[3].vars.learnMoreNode})
+        end
+      elseif nodeTag == "quit node" then
+        if ELIA.states[3].vars.quitButtonDown then
+          ELIA.states[3].vars.quitButtonDown = false
+          ELIA.states[3].vars.quitNode, dimension = ELIATexturePacker:draw({name="btn_quit_up", node=ELIA.states[3].vars.quitNode})
+        end
+      end
     end,
   },
 
@@ -313,6 +460,7 @@ ELIA.states =
     vars =
     {
       highScoreNodes = {},
+      created=false,
     },
     showAll = function()
     end,
@@ -357,17 +505,33 @@ ELIA.states =
 
       ELIA.states[4].vars.highScoreNodes[10], rect = DrawHighscorePoints(highScores[10], ELIA.states[4].vars.highScoreNodes[10], 10)
       ELIA.states[4].vars.highScoreNodes[10]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5) + (half_horizontal * 0.5), 575 - 440, -1))
+
+      ELIA.states[4].vars.created = true
     end,
     update = function(timeStep)
       njli.World.getInstance():setBackgroundColor(1.000, 1.000, 1.000)
     end,
     destroy = function()
+      ELIA.states[4].vars.created = false
     end,
     mouseDown = function(rayContact)
+      if not ELIA.states[4].vars.created then
+        return
+      end
+
+      local nodeTag = rayContact:getHitNode():getTag()
     end,
     mouseUp = function(rayContact)
+      if not ELIA.states[4].vars.created then
+        return
+      end
+      local nodeTag = rayContact:getHitNode():getTag()
     end,
     mouseMissed = function(rayContact)
+      if not ELIA.states[4].vars.created then
+        return
+      end
+      local nodeTag = rayContact:getHitNode():getTag()
     end,
   },
 }
@@ -407,8 +571,8 @@ end
 
 -- currentStateName = STATE_GAMEPLAY
 -- currentStateName = STATE_SPLASH 
--- currentStateName = STATE_RESULT 
-currentStateName = STATE_LEADERBOARD 
+currentStateName = STATE_RESULT 
+-- currentStateName = STATE_LEADERBOARD 
 
 --[[
 https://www.speedtypingonline.com/typing-equations
@@ -499,7 +663,6 @@ function DrawHighscorePoints(points, node, place)
   local half_horizontal = njli.SCREEN():x() * 0.5
   
   local node_ret, rect = DrawLabel(arg)
-  -- node_ret:setOrigin(bullet.btVector3(bullet.btVector3(half_horizontal - (rect.width * 0.5), vert_margin, -1)))
   node_ret:show(OrthographicCameraNode:getCamera())
 
   return node_ret, rect
@@ -539,6 +702,8 @@ function DrawDoneButton(x, y, node)
   node:setPhysicsBody(donePhysicsBody)
 
   donePhysicsShape:setHalfExtends(bullet.btVector3( dimension:x(), dimension:y(), 1.0 ))
+  
+  node:setTag("done node")
 
   return node
 end
@@ -579,6 +744,9 @@ function DrawEndlessLetterButton(x, y, node)
 
   donePhysicsShape:setHalfExtends(bullet.btVector3( dimension:x(), dimension:y(), 1.0 ))
 
+  node:setTag("endless letter node")
+
+
   return node
 end
 
@@ -601,6 +769,8 @@ function DrawLearnMoreButton(x, y, node)
   node:setPhysicsBody(donePhysicsBody)
 
   donePhysicsShape:setHalfExtends(bullet.btVector3( dimension:x(), dimension:y(), 1.0 ))
+
+  node:setTag("learn more node")
 
   return node
 end
@@ -625,6 +795,8 @@ function DrawQuitButton(x, y, node)
 
   donePhysicsShape:setHalfExtends(bullet.btVector3( dimension:x(), dimension:y(), 1.0 ))
 
+  node:setTag("quit node")
+
   return node
 end
 
@@ -647,6 +819,8 @@ function DrawReplayButton(x, y, node)
   node:setPhysicsBody(donePhysicsBody)
 
   donePhysicsShape:setHalfExtends(bullet.btVector3( dimension:x(), dimension:y(), 1.0 ))
+
+  node:setTag("replay node")
 
   return node
 end
