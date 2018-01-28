@@ -22,8 +22,7 @@ finalAccuracy = 100.0
 
 WORD_ARRAY = 
 {
- "Lorem", "ipsum", "dolor", "sit", "amet", "consectetur", "adipiscing", "elit", "Donec", "lobortis", "ac", "elit", "ut", "vehicula", "Nam", "vestibulum", "at", "diam", "eget", "pulvinar", "Nunc", "porta", "odio", "metus", "at", "egestas", "sem", "rhoncus", "eu", "Fusce", "sed", "scelerisque", "quam", "consequat", "mollis", "quam", "Pellentesque", "ut", "turpis", "vel", "mauris", "ultrices", "luctus", "Ut", "lorem", "ante", "dictum", "pharetra", "efficitur", "et", "luctus", "vitae", "ligula", "Cras", "pretium", "dolor", "eu", "fermentum", "fermentum", "Nulla", "quis", "urna", "commodo", "molestie", "velit", "vitae", "varius", "odio", "Nulla", "vitae", "fermentum", "justo", "Mauris", "tincidunt", "convallis", "condimentum", "Donec", "mollis", "laoreet", "purus", "ut", "elementum", "Donec", "consectetur", "vestibulum", "nisi", "a", "condimentum", "Sed", "magna", "ligula", "dapibus", "sed", "sagittis", "sed", "viverra", "ac", "nulla", "Aliquam", "quis", "tempor", "nisl", "nec", "dapibus", "ex", "Proin", "condimentum", "est", "ut", "dui", "iaculis", "in", "feugiat", "mauris", "euismod", "Maecenas", "eu", "laoreet", "purus", "Aenean", "blandit", "fermentum", "ligula", "iaculis", "suscipit", "Vivamus", "sagittis", "a", "tortor", "vitae", "egestas", "Nam", "hendrerit", "metus", "finibus", "molestie", "efficitur", "Nulla", "hendrerit", "nisl", "augue", "quis", "venenatis", "elit", "ultrices", "eget", "Integer", "ac", "mi", "vel", "ex", "sodales", "dignissim", "vitae", "vitae", "nunc", "Mauris", "vel", "dapibus", "urna", "at", "finibus", "massa", "Duis", "imperdiet", "malesuada", "sem", "nec", "imperdiet", "Sed", "commodo", "ex", "lacus", "Proin", "viverra", "turpis", "id", "egestas", "tempor", "Maecenas", "eget", "condimentum", "urna", "quis", "fermentum", "odio", "Donec", "facilisis", "nunc", "neque", "ut", "sodales", "tellus", "volutpat", "quis", "Morbi", "bibendum", "luctus", "sem", "Etiam", "consectetur", "dolor", "luctus", "urna", "tincidunt", "molestie", "Aliquam", "non", "purus", "malesuada", "rhoncus", "lectus", "nec", "fermentum", "eros", "Aliquam", "scelerisque", "leo", "lectus", "quis", "euismod", "velit", "mattis", "vitae", "Fusce", "sit", "amet", "lacus", "in", "enim", "porttitor", "dapibus", "quis", "vel", "tellus", "Nullam", "egestas", "tellus", "eu", "est", "viverra", "porttitor", "Sed", "feugiat", "semper", "libero", "Donec", "euismod", "libero", "vel", "molestie", "eleifend", "dui", "massa", "tincidunt", "sem", "vel", "fringilla", "elit", "eros", "at", "risus", "Nullam", "blandit", "laoreet", "purus", "a", "elementum", "tellus", "Integer", "nec", "dignissim", "quam", "Proin", "laoreet", "sodales", "metus", "a", "viverra", "Suspendisse", "scelerisque", "dapibus", "efficitur", "Pellentesque", "nibh", "tellus", "congue", "quis", "commodo", "a", "sagittis", "a", "orci", "Sed", "mauris", "nisl", "mattis", "at", "tellus", "quis", "tempor", "consectetur", "erat", "Quisque", "dignissim", "sem", "et", "auctor", "iaculis", "Duis", "at", "imperdiet", "massa", "Quisque", "id", "libero", "enim", "Mauris", "molestie", "sit", "amet", "dolor", "rutrum", "varius", "Duis", "ut", "massa", "eu", "orci", "euismod", "hendrerit", "Aliquam", "imperdiet", "commodo", "aliquam", "Ut", "elementum", "porttitor", "dictum", "Vestibulum", "fringilla", "feugiat", "erat", "ut", "mollis", "Vestibulum", "est", "nisi", "mattis", "sed", "facilisis", "mattis", "varius", "id", "nisl", "Etiam", "facilisis", "viverra", "suscipit", "Donec", "in", "risus", "fermentum", "gravida", "est", "at", "bibendum", "arcu", "Nullam", "ut", "purus", "ac", "lectus", "tincidunt", "pharetra", "vitae", "id", "est", "Mauris", "at", "ligula", "bibendum", "lacus", "aliquet", "aliquet", "id", "quis", "orci",
- }
+ "Lorem", "ipsum", "dolor", "sit", "amet", "consectetur", "adipiscing", "elit", "Donec", "lobortis", "ac", "elit", "ut", "vehicula", "Nam", "vestibulum", "at", "diam", "eget", "pulvinar", "Nunc", "porta", "odio", "metus", "at", "egestas", "sem", "rhoncus", "eu", "Fusce", "sed", "scelerisque", "quam", "consequat", "mollis", "quam", "Pellentesque", "ut", "turpis", "vel", "mauris", "ultrices", "luctus", "Ut", "lorem", "ante", "dictum", "pharetra", "efficitur", "et", "luctus", "vitae", "ligula", "Cras", "pretium", "dolor", "eu", "fermentum", "fermentum", "Nulla", "quis", "urna", "commodo", "molestie", "velit", "vitae", "varius", "odio", "Nulla", "vitae", "fermentum", "justo", "Mauris", "tincidunt", "convallis", "condimentum", "Donec", "mollis", "laoreet", "purus", "ut", "elementum", "Donec", "consectetur", "vestibulum", "nisi", "a", "condimentum", "Sed", "magna", "ligula", "dapibus", "sed", "sagittis", "sed", "viverra", "ac", "nulla", "Aliquam", "quis", "tempor", "nisl", "nec", "dapibus", "ex", "Proin", "condimentum", "est", "ut", "dui", "iaculis", "in", "feugiat", "mauris", "euismod", "Maecenas", "eu", "laoreet", "purus", "Aenean", "blandit", "fermentum", "ligula", "iaculis", "suscipit", "Vivamus", "sagittis", "a", "tortor", "vitae", "egestas", "Nam", "hendrerit", "metus", "finibus", "molestie", "efficitur", "Nulla", "hendrerit", "nisl", "augue", "quis", "venenatis", "elit", "ultrices", "eget", "Integer", "ac", "mi", "vel", "ex", "sodales", "dignissim", "vitae", "vitae", "nunc", "Mauris", "vel", "dapibus", "urna", "at", "finibus", "massa", "Duis", "imperdiet", "malesuada", "sem", "nec", "imperdiet", "Sed", "commodo", "ex", "lacus", "Proin", "viverra", "turpis", "id", "egestas", "tempor", "Maecenas", "eget", "condimentum", "urna", "quis", "fermentum", "odio", "Donec", "facilisis", "nunc", "neque", "ut", "sodales", "tellus", "volutpat", "quis", "Morbi", "bibendum", "luctus", "sem", "Etiam", "consectetur", "dolor", "luctus", "urna", "tincidunt", "molestie", "Aliquam", "non", "purus", "malesuada", "rhoncus", "lectus", "nec", "fermentum", "eros", "Aliquam", "scelerisque", "leo", "lectus", "quis", "euismod", "velit", "mattis", "vitae", "Fusce", "sit", "amet", "lacus", "in", "enim", "porttitor", "dapibus", "quis", "vel", "tellus", "Nullam", "egestas", "tellus", "eu", "est", "viverra", "porttitor", "Sed", "feugiat", "semper", "libero", "Donec", "euismod", "libero", "vel", "molestie", "eleifend", "dui", "massa", "tincidunt", "sem", "vel", "fringilla", "elit", "eros", "at", "risus", "Nullam", "blandit", "laoreet", "purus", "a", "elementum", "tellus", "Integer", "nec", "dignissim", "quam", "Proin", "laoreet", "sodales", "metus", "a", "viverra", "Suspendisse", "scelerisque", "dapibus", "efficitur", "Pellentesque", "nibh", "tellus", "congue", "quis", "commodo", "a", "sagittis", "a", "orci", "Sed", "mauris", "nisl", "mattis", "at", "tellus", "quis", "tempor", "consectetur", "erat", "Quisque", "dignissim", "sem", "et", "auctor", "iaculis", "Duis", "at", "imperdiet", "massa", "Quisque", "id", "libero", "enim", "Mauris", "molestie", "sit", "amet", "dolor", "rutrum", "varius", "Duis", "ut", "massa", "eu", "orci", "euismod", "hendrerit", "Aliquam", "imperdiet", "commodo", "aliquam", "Ut", "elementum", "porttitor", "dictum", "Vestibulum", "fringilla", "feugiat", "erat", "ut", "mollis", "Vestibulum", "est", "nisi", "mattis", "sed", "facilisis", "mattis", "varius", "id", "nisl", "Etiam", "facilisis", "viverra", "suscipit", "Donec", "in", "risus", "fermentum", "gravida", "est", "at", "bibendum", "arcu", "Nullam", "ut", "purus", "ac", "lectus", "tincidunt", "pharetra", "vitae", "id", "est", "Mauris", "at", "ligula", "bibendum", "lacus", "aliquet", "aliquet", "id", "quis", "orci"}
 
 
 STATE_GAMEPLAY="gameplay"
@@ -56,10 +55,35 @@ ELIA.states =
       doneNode = nil,
       doneButtonDown = false,
       created=false,
+      nodes = {},
     },
-    showAll = function()
+    enter = function()
+      print('enter gameplay')
+      for k, v in pairs(ELIA.states[1].vars.nodes) do
+        ELIA.states[1].vars.nodes[k]:show(OrthographicCameraNode:getCamera())
+      end
+      ELIA.states[1].vars.currentWordArrayIndex = 1
+      ELIA.states[1].vars.currentText = string.upper(WORD_ARRAY[ELIA.states[1].vars.currentWordArrayIndex])
+      ELIA.states[1].vars.startOrigin = bullet.btVector3(njli.SCREEN():x() + horiz_margin, njli.SCREEN():y() - (ELIAFont:maxLineHeight() + vert_margin), -1)
+      for i=1, string.len(ELIA.states[1].vars.currentText) do
+        ELIA.states[1].vars.fontIndexTable[i] = 1
+      end
+
+      ELIA.states[1].vars.fontIndexTable[ELIA.states[1].vars.currentTypeIndex] = 2
+
+      ELIA.states[1].vars.currentNode, currentNodeRect = ELIAFont:printf({
+        mainNode=ELIA.states[1].vars.currentNode,
+        text=ELIA.states[1].vars.currentText,
+        fontIndexTable=ELIA.states[1].vars.fontIndexTable,
+        align="Left",
+      })
+
     end,
-    hideAll = function()
+    exit = function()
+      print('exit gameplay')
+      for k, v in pairs(ELIA.states[1].vars.nodes) do
+        ELIA.states[1].vars.nodes[k]:hide(OrthographicCameraNode:getCamera())
+      end
     end,
     create = function()
       ELIA.states[1].vars.currentText = string.upper(WORD_ARRAY[ELIA.states[1].vars.currentWordArrayIndex])
@@ -72,23 +96,40 @@ ELIA.states =
       ELIA.states[1].vars.startOrigin = bullet.btVector3(njli.SCREEN():x() + horiz_margin, njli.SCREEN():y() - (ELIAFont:maxLineHeight() + vert_margin), -1)
 
       ELIA.states[1].vars.pointsNode = DrawPoints(ELIA.states[1].vars.currentNumberOfPoints, ELIA.states[1].vars.pointsNode)
+      table.insert(ELIA.states[1].vars.nodes, ELIA.states[1].vars.pointsNode)
+
       ELIA.states[1].vars.accuracyNode = DrawAccuracy(100.0, ELIA.states[1].vars.accuracyNode)
+      table.insert(ELIA.states[1].vars.nodes, ELIA.states[1].vars.accuracyNode)
 
       ELIA.states[1].vars.doneNode = DrawDoneButton(njli.SCREEN():x() * 0.5, njli.SCREEN():y() * 0.5, ELIA.states[1].vars.doneNode)
+      table.insert(ELIA.states[1].vars.nodes, ELIA.states[1].vars.doneNode)
 
+      for i=1, string.len(ELIA.states[1].vars.currentText) do
+        ELIA.states[1].vars.fontIndexTable[i] = 1
+      end
+
+      ELIA.states[1].vars.fontIndexTable[ELIA.states[1].vars.currentTypeIndex] = 2
+
+      ELIA.states[1].vars.currentNode, currentNodeRect = ELIAFont:printf({
+        mainNode=ELIA.states[1].vars.currentNode,
+        text=ELIA.states[1].vars.currentText,
+        fontIndexTable=ELIA.states[1].vars.fontIndexTable,
+        align="Left",
+      })
+      table.insert(ELIA.states[1].vars.nodes, ELIA.states[1].vars.currentNode)
 
       ELIA.states[1].vars.created = true
     end,
     update = function(timeStep)
-      njli.World.getInstance():setBackgroundColor(1.000, 1.000, 1.000)
-
       if not ELIA.states[1].vars.created then
-        return
+        ELIA.states[1].create()
       end
+
+      njli.World.getInstance():setBackgroundColor(1.000, 1.000, 1.000)
 
       if ELIA.states[1].vars.currentNode then
         if (ELIA.states[1].vars.currentTypeIndex <=  string.len(ELIA.states[1].vars.currentText)) then
-          ELIA.states[1].vars.currentNode:show(OrthographicCameraNode:getCamera())
+          --ELIA.states[1].vars.currentNode:show(OrthographicCameraNode:getCamera())
         else
           if ELIA.states[1].vars.currentResetTimer >= WAIT_TIME then
             ELIA.states[1].vars.currentNode:hide(OrthographicCameraNode:getCamera())
@@ -128,6 +169,7 @@ ELIA.states =
             fontIndexTable=ELIA.states[1].vars.fontIndexTable,
             align="Left",
           })
+          ELIA.states[1].vars.currentNode:show(OrthographicCameraNode:getCamera())
 
           ELIA.states[1].vars.currentNode:setOrigin(ELIA.states[1].vars.startOrigin)
 
@@ -187,6 +229,7 @@ ELIA.states =
         if ELIA.states[1].vars.doneButtonDown then
           ELIA.states[1].vars.doneButtonDown = false
           ELIA.states[1].vars.doneNode, dimension = ELIATexturePacker:draw({name="btn_done_up", node=ELIA.states[1].vars.doneNode})
+          SwitchStates(STATE_SPLASH)
         end
       end
     end,
@@ -255,25 +298,41 @@ ELIA.states =
       learnMoreButtonDown = false,
       endlessLetterButtonDown = false,
       learnMoreButtonDown = false,
+      nodes = {},
     },
-    showAll = function()
+    enter = function()
+      print('enter splash')
+      for k, v in pairs(ELIA.states[2].vars.nodes) do
+        print(k)
+        ELIA.states[2].vars.nodes[k]:show(OrthographicCameraNode:getCamera())
+      end
     end,
-    hideAll = function()
+    exit = function()
+      print('exit splash')
+      for k, v in pairs(ELIA.states[2].vars.nodes) do
+        ELIA.states[2].vars.nodes[k]:hide(OrthographicCameraNode:getCamera())
+      end
     end,
     create = function()
 
       ELIA.states[2].vars.titleNode = DrawTitle(nil, "ELIA")
+      table.insert(ELIA.states[2].vars.nodes, ELIA.states[2].vars.titleNode)
+
       ELIA.states[2].vars.endlessLetterNode = DrawEndlessLetterButton(njli.SCREEN():x() * 0.5, (njli.SCREEN():y() * 0.5) - 100, ELIA.states[2].vars.endlessLetterNode)
+      table.insert(ELIA.states[2].vars.nodes, ELIA.states[2].vars.endlessLetterNode)
+
       ELIA.states[2].vars.learnMoreNode = DrawLearnMoreButton(njli.SCREEN():x() * 0.5, (njli.SCREEN():y() * 0.5) - 195, ELIA.states[2].vars.learnMoreNode)
+      table.insert(ELIA.states[2].vars.nodes, ELIA.states[2].vars.learnMoreNode)
 
       ELIA.states[2].vars.created = true
 
     end,
     update = function(timeStep)
-      njli.World.getInstance():setBackgroundColor(1.000, 1.000, 1.000)
       if not ELIA.states[2].vars.created then
-        return
+        ELIA.states[2].create()
       end
+
+      njli.World.getInstance():setBackgroundColor(1.000, 1.000, 1.000)
     end,
     destroy = function()
       ELIA.states[2].vars.created = false
@@ -308,6 +367,7 @@ ELIA.states =
         if ELIA.states[2].vars.endlessLetterButtonDown then
           ELIA.states[2].vars.endlessLetterButtonDown = false
           ELIA.states[2].vars.endlessLetterNode, dimension = ELIATexturePacker:draw({name="btn_endless_letter_up", node=ELIA.states[2].vars.endlessLetterNode})
+          SwitchStates(STATE_GAMEPLAY)
         end
       elseif nodeTag == "learn more node" then
         if ELIA.states[2].vars.learnMoreButtonDown then
@@ -350,20 +410,37 @@ ELIA.states =
       replayButtonDown = false,
       learnMoreButtonDown = false,
       quitButtonDown = false,
+      nodes = {},
     },
-    showAll = function()
+    enter = function()
+      for k, v in pairs(ELIA.states[1].vars.nodes) do
+        ELIA.states[3].vars.nodes[k]:show(OrthographicCameraNode:getCamera())
+      end
     end,
-    hideAll = function()
+    exit = function()
+      for k, v in pairs(ELIA.states[1].vars.nodes) do
+        ELIA.states[3].vars.nodes[k]:hide(OrthographicCameraNode:getCamera())
+      end
     end,
     create = function()
 
       ELIA.states[3].vars.titleNode = DrawTitle(nil, previousGameplayStateName)
+      table.insert(ELIA.states[3].vars.nodes, ELIA.states[3].vars.titleNode)
+
       ELIA.states[3].vars.learnMoreNode = DrawLearnMoreButton(njli.SCREEN():x() * 0.5, (njli.SCREEN():y() * 0.5) + 95, ELIA.states[3].vars.learnMoreNode)
+      table.insert(ELIA.states[3].vars.nodes, ELIA.states[3].vars.learnMoreNode)
+
       ELIA.states[3].vars.replayNode = DrawReplayButton(njli.SCREEN():x() * 0.5, (njli.SCREEN():y() * 0.5) , ELIA.states[3].vars.replayNode)
+      table.insert(ELIA.states[3].vars.nodes, ELIA.states[3].vars.replayNode)
+
       ELIA.states[3].vars.quitNode = DrawQuitButton(njli.SCREEN():x() * 0.5, (njli.SCREEN():y() * 0.5) - 95, ELIA.states[3].vars.quitNode)
+      table.insert(ELIA.states[3].vars.nodes, ELIA.states[3].vars.quitNode)
 
       ELIA.states[3].vars.pointsNode, rect = DrawPoints(finalPointsAccumulated, ELIA.states[3].vars.pointsNode)
+      table.insert(ELIA.states[3].vars.nodes, ELIA.states[3].vars.pointsNode)
+
       ELIA.states[3].vars.accuracyNode = DrawAccuracy(finalAccuracy, ELIA.states[3].vars.accuracyNode)
+      table.insert(ELIA.states[3].vars.nodes, ELIA.states[3].vars.accuracyNode)
 
       local place = 10
       if place >= 1 and place <= 10 then
@@ -375,11 +452,11 @@ ELIA.states =
 
     end,
     update = function(timeStep)
-      njli.World.getInstance():setBackgroundColor(1.000, 1.000, 1.000)
-
       if not ELIA.states[3].vars.created then
-        return
+        ELIA.states[3].create()
       end
+
+      njli.World.getInstance():setBackgroundColor(1.000, 1.000, 1.000)
     end,
     destroy = function()
       ELIA.states[3].vars.created = false
@@ -462,9 +539,15 @@ ELIA.states =
       highScoreNodes = {},
       created=false,
     },
-    showAll = function()
+    enter = function()
+      for k, v in pairs(ELIA.states[1].vars.nodes) do
+        ELIA.states[4].vars.nodes[k]:show(OrthographicCameraNode:getCamera())
+      end
     end,
-    hideAll = function()
+    exit = function()
+      for k, v in pairs(ELIA.states[1].vars.nodes) do
+        ELIA.states[4].vars.nodes[k]:hide(OrthographicCameraNode:getCamera())
+      end
     end,
     create = function()
       local highScores = {0000, 1111, 2222, 3333, 4444, 5555, 6666, 7777, 8888, 9999}
@@ -509,6 +592,10 @@ ELIA.states =
       ELIA.states[4].vars.created = true
     end,
     update = function(timeStep)
+      if not ELIA.states[4].vars.created then
+        ELIA.states[4].create()
+      end
+
       njli.World.getInstance():setBackgroundColor(1.000, 1.000, 1.000)
     end,
     destroy = function()
@@ -548,6 +635,12 @@ function ELIA:getFrameIndex(name)
     return self.frameIndex[name];
 end
 
+function SwitchStates(newState)
+  ELIA.states[ELIA:getFrameIndex(currentStateName)].exit()
+  currentStateName = newState
+  ELIA.states[ELIA:getFrameIndex(currentStateName)].enter()
+end
+
 -- function ELIA:getGameplayState()
 --   local frameIndex = ELIA:getFrameIndex("gameplay")
 --   return ELIA.states[frameIndex]
@@ -570,8 +663,8 @@ end
 
 
 -- currentStateName = STATE_GAMEPLAY
--- currentStateName = STATE_SPLASH 
-currentStateName = STATE_RESULT 
+currentStateName = STATE_SPLASH 
+-- currentStateName = STATE_RESULT 
 -- currentStateName = STATE_LEADERBOARD 
 
 --[[

@@ -354,7 +354,8 @@ namespace njli
             Geometry *geometry = node->getGeometry();
             if (geometry)
               {
-                geometry->setHidden(node, camera);
+//                geometry->setHidden(node, camera);
+                  geometry->setHidden(node, node->isHidden(camera));
                 if (m_ActiveGeometries.end() ==
                     std::find(m_ActiveGeometries.begin(),
                               m_ActiveGeometries.end(), geometry))
@@ -366,7 +367,7 @@ namespace njli
           {
             Geometry *geometry = m_ActiveGeometries.at(j);
 
-            if (geometry && !geometry->isHidden(camera))
+            if (geometry)// && !geometry->isHidden(camera))
               {
                 //                    geometry->sort(cameraOrigin);
                 geometry->render(camera);
