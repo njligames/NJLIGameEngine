@@ -58,29 +58,23 @@ ELIA.states =
       nodes = {},
     },
     enter = function()
-      print('enter gameplay')
-      for k, v in pairs(ELIA.states[1].vars.nodes) do
+
+      ELIA.states[1].vars.currentResetTimer=WAIT_TIME
+      ELIA.states[1].vars.currentWordArrayIndex=1
+      ELIA.states[1].vars.currentText = ""
+      ELIA.states[1].vars.currentTypeIndex = 1
+      ELIA.states[1].vars.totalAccurateTyped=0.0
+      ELIA.states[1].vars.totalNumberOfLetters=0.0
+      ELIA.states[1].vars.currentNumberOfLetters=0.0
+      ELIA.states[1].vars.currentNumberOfPoints = 0.0
+      ELIA.states[1].vars.doneButtonDown = false
+
+      for k, v in pairs(ELIA.states[2].vars.nodes) do
+        print(k)
         ELIA.states[1].vars.nodes[k]:show(OrthographicCameraNode:getCamera())
       end
-      ELIA.states[1].vars.currentWordArrayIndex = 1
-      ELIA.states[1].vars.currentText = string.upper(WORD_ARRAY[ELIA.states[1].vars.currentWordArrayIndex])
-      ELIA.states[1].vars.startOrigin = bullet.btVector3(njli.SCREEN():x() + horiz_margin, njli.SCREEN():y() - (ELIAFont:maxLineHeight() + vert_margin), -1)
-      for i=1, string.len(ELIA.states[1].vars.currentText) do
-        ELIA.states[1].vars.fontIndexTable[i] = 1
-      end
-
-      ELIA.states[1].vars.fontIndexTable[ELIA.states[1].vars.currentTypeIndex] = 2
-
-      ELIA.states[1].vars.currentNode, currentNodeRect = ELIAFont:printf({
-        mainNode=ELIA.states[1].vars.currentNode,
-        text=ELIA.states[1].vars.currentText,
-        fontIndexTable=ELIA.states[1].vars.fontIndexTable,
-        align="Left",
-      })
-
     end,
     exit = function()
-      print('exit gameplay')
       for k, v in pairs(ELIA.states[1].vars.nodes) do
         ELIA.states[1].vars.nodes[k]:hide(OrthographicCameraNode:getCamera())
       end
@@ -229,7 +223,7 @@ ELIA.states =
         if ELIA.states[1].vars.doneButtonDown then
           ELIA.states[1].vars.doneButtonDown = false
           ELIA.states[1].vars.doneNode, dimension = ELIATexturePacker:draw({name="btn_done_up", node=ELIA.states[1].vars.doneNode})
-          SwitchStates(STATE_SPLASH)
+          SwitchStates(STATE_RESULT)
         end
       end
     end,
@@ -413,12 +407,12 @@ ELIA.states =
       nodes = {},
     },
     enter = function()
-      for k, v in pairs(ELIA.states[1].vars.nodes) do
+      for k, v in pairs(ELIA.states[3].vars.nodes) do
         ELIA.states[3].vars.nodes[k]:show(OrthographicCameraNode:getCamera())
       end
     end,
     exit = function()
-      for k, v in pairs(ELIA.states[1].vars.nodes) do
+      for k, v in pairs(ELIA.states[3].vars.nodes) do
         ELIA.states[3].vars.nodes[k]:hide(OrthographicCameraNode:getCamera())
       end
     end,
@@ -446,6 +440,7 @@ ELIA.states =
       if place >= 1 and place <= 10 then
         local vert_margin = njli.SCREEN():y() / 30.0
         ELIA.states[3].vars.placeGraphic = DrawPlaceGraphic((njli.SCREEN():x() * 0.5) + (rect.width * 0.5) + 70, vert_margin + vert_margin + 5, ELIA.states[3].vars.placeGraphic, place)
+        table.insert(ELIA.states[3].vars.nodes, ELIA.states[3].vars.placeGraphic)
       end
 
       ELIA.states[3].vars.created = true
@@ -494,6 +489,7 @@ ELIA.states =
         if ELIA.states[3].vars.replayButtonDown then
           ELIA.states[3].vars.replayButtonDown = false
           ELIA.states[3].vars.replayNode, dimension = ELIATexturePacker:draw({name="btn_replay_up", node=ELIA.states[3].vars.replayNode})
+          SwitchStates(STATE_GAMEPLAY)
         end
       elseif nodeTag == "learn more node" then
         if ELIA.states[3].vars.learnMoreButtonDown then
@@ -504,6 +500,7 @@ ELIA.states =
         if ELIA.states[3].vars.quitButtonDown then
           ELIA.states[3].vars.quitButtonDown = false
           ELIA.states[3].vars.quitNode, dimension = ELIATexturePacker:draw({name="btn_quit_up", node=ELIA.states[3].vars.quitNode})
+          SwitchStates(STATE_SPLASH)
         end
       end
     end,
@@ -540,12 +537,12 @@ ELIA.states =
       created=false,
     },
     enter = function()
-      for k, v in pairs(ELIA.states[1].vars.nodes) do
+      for k, v in pairs(ELIA.states[4].vars.nodes) do
         ELIA.states[4].vars.nodes[k]:show(OrthographicCameraNode:getCamera())
       end
     end,
     exit = function()
-      for k, v in pairs(ELIA.states[1].vars.nodes) do
+      for k, v in pairs(ELIA.states[4].vars.nodes) do
         ELIA.states[4].vars.nodes[k]:hide(OrthographicCameraNode:getCamera())
       end
     end,
@@ -1020,6 +1017,8 @@ local Create = function()
   
   ELIAFont = BitmapFont2(
   {
+    names=
+    {
     "ELIABasic",
     "ELIABlue",
     "ELIAGreen",
@@ -1029,6 +1028,8 @@ local Create = function()
     "TimesNewRomanBasic",
     "HUD",
     "Title",
+    },
+    maxadvance=160
   })
 
 

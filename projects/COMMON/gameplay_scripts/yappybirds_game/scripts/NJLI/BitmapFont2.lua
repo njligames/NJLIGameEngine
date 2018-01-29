@@ -14,10 +14,13 @@ BitmapFont2.__index = BitmapFont2
 --  __unLoad()
 --#############################################################################
 
-local __ctor = function(self, init)
+local __ctor = function(self, ...)
+  local init = ... or {}
 
-  local fonts = init or {}
+  local fonts = init.names
+  local maxadvance=init.maxadvance
 
+  self._maxAdvance = {}
   self._fonts = {}
   self._maxLineHeight = 0
   for i=1,#fonts do
@@ -42,6 +45,13 @@ local __ctor = function(self, init)
 
         table.insert(self._fonts, {font=font, image=image, data=data, material=material, shader=shader, geometry=geometry})
 
+        local maxXAdvance = 0
+        for k, v in pairs(data.frames) do
+          local char = data.frames[k]
+          maxXAdvance = math.max(maxXAdvance, char.xadvance)
+        end
+        self._maxAdvance[data.info.fontface] = maxXAdvance
+
         local kerningTable = {}
 
         local kernings = data.kernings or {}
@@ -63,7 +73,7 @@ local __ctor = function(self, init)
       njli.Image.destroy(image)
     end
   end
-
+  print_r(self._maxAdvance)
 end
 
 local __dtor = function(self)
@@ -219,7 +229,6 @@ function BitmapFont2:printf(...)
   end
   self._fontIndexTable = fontIndexTable
 
-
   local spacesInTab = arg.spacesInTab or 2
 
   local xStart, yStart = 0, 0
@@ -267,7 +276,8 @@ function BitmapFont2:printf(...)
       local xpos = xCurrent + charData.xoffset
       local ypos = (lineHeight - charData.yoffset) - charData.height - (lineHeight - base) - yCurrent
 
-      xCurrent = xCurrent + charData.xadvance
+      local advance = maxadvance or charData.xadvance
+      xCurrent = xCurrent + advance
       xMax = math.max(xMax, xCurrent)
 
       if node then
@@ -293,8 +303,9 @@ function BitmapFont2:printf(...)
           local xpos = xCurrent + charData.xoffset
           local ypos = (lineHeight - charData.yoffset) - charData.height - (lineHeight - base) - yCurrent
 
-          xCurrent = xCurrent + charData.xadvance
-          lastXAdvance = charData.xadvance
+          local advance = maxadvance or charData.xadvance
+          xCurrent = xCurrent + advance
+          lastXAdvance = advance
 
           xMax = math.max(xMax, xCurrent)
 
