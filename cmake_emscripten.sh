@@ -64,7 +64,7 @@ build_emscripten_sublime()
         #emmake make -j8 lua
         #emmake make -j8 luac
 
-      emmake make -j8
+      # emmake make -j8
       emmake make -j8 install
 
       cpack ../.. --config CPackSourceConfig.cmake

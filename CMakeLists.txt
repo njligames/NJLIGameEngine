@@ -4294,7 +4294,7 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
     # OPTIMIZING: https://kripken.github.io/emscripten-site/docs/optimizing/Optimizing-Code.html
     # SEPERATE ASM: https://kripken.github.io/emscripten-site/docs/optimizing/Optimizing-Code.html#avoid-memory-spikes-by-separating-out-asm-js
 
-    LIST(APPEND EXTRA_PLATFORM_LIBS "-s -O2 --llvm-opts 2")
+    LIST(APPEND EXTRA_PLATFORM_LIBS "-s -O2 --llvm-opts 2 --closure 1")
 
     #LIST(APPEND EXTRA_PLATFORM_LIBS "--shell-file ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/emscripten/release_shell.html")
 

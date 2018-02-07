@@ -428,18 +428,18 @@ namespace njli
 
   u32 Geometry::getMaxMeshes() const { return MAX_SPRITES; }
 
-  void Geometry::setHidden(Node *node, Camera *camera)
-  {
-    if (node->isHidden(camera))
-      {
-        this->hide(camera);
-      }
-    else if (!node->isHidden(camera))
-      {
-        this->show(camera);
-      }
-    this->setHidden(node, node->isHidden(camera));
-  }
+//  void Geometry::setHidden(Node *node, Camera *camera)
+//  {
+//    if (node->isHidden(camera))
+//      {
+//        this->hide(camera);
+//      }
+//    else if (!node->isHidden(camera))
+//      {
+//        this->show(camera);
+//      }
+//    this->setHidden(node, node->isHidden(camera));
+//  }
 
   void Geometry::setBlendSource(s32 source) { m_blendFuncSource = source; }
 

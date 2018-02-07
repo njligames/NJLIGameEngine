@@ -44,6 +44,10 @@ ImVec4 clear_color = ImColor(114, 144, 154);
 
 #define MAX_CONTACTS (100)
 
+#if defined(__EMSCRIPTEN__)
+#include "emscripten/emscripten.h"
+#endif
+
 namespace njli
 {
   World *World::s_Instance = NULL;
@@ -1241,6 +1245,14 @@ namespace njli
 #endif
     return false;
   }
+    bool World::runJavascript(const char *script)
+    {
+#if defined(__EMSCRIPTEN__)
+        emscripten_run_script(script);
+        return true;
+#endif
+        return false;
+    }
 
   //    void World::addNode(Node *node)
   //    {

@@ -58,6 +58,8 @@ ELIA.states =
       nodes = {},
     },
     enter = function()
+      finalPointsAccumulated = 0
+      finalAccuracy = 100
 
       ELIA.states[1].vars.currentResetTimer=WAIT_TIME
       ELIA.states[1].vars.currentWordArrayIndex=1
@@ -70,11 +72,16 @@ ELIA.states =
       ELIA.states[1].vars.doneButtonDown = false
 
       for k, v in pairs(ELIA.states[2].vars.nodes) do
-        print(k)
         ELIA.states[1].vars.nodes[k]:show(OrthographicCameraNode:getCamera())
       end
+
+      ELIA.states[1].vars.pointsNode = DrawPoints(ELIA.states[1].vars.currentNumberOfPoints, ELIA.states[1].vars.pointsNode)
+      table.insert(ELIA.states[1].vars.nodes, ELIA.states[1].vars.pointsNode)
     end,
     exit = function()
+      finalPointsAccumulated = ELIA.states[1].vars.currentNumberOfPoints
+      --finalAccuracy = AccuracyPercentage(ELIA.states[1].vars.totalNumberOfLetters, ELIA.states[1].vars.currentNumberOfLetters, ELIA.states[1].vars.totalAccurateTyped)
+
       for k, v in pairs(ELIA.states[1].vars.nodes) do
         ELIA.states[1].vars.nodes[k]:hide(OrthographicCameraNode:getCamera())
       end
@@ -92,7 +99,8 @@ ELIA.states =
       ELIA.states[1].vars.pointsNode = DrawPoints(ELIA.states[1].vars.currentNumberOfPoints, ELIA.states[1].vars.pointsNode)
       table.insert(ELIA.states[1].vars.nodes, ELIA.states[1].vars.pointsNode)
 
-      ELIA.states[1].vars.accuracyNode = DrawAccuracy(100.0, ELIA.states[1].vars.accuracyNode)
+      finalAccuracy = 100.0
+      ELIA.states[1].vars.accuracyNode = DrawAccuracy(finalAccuracy, ELIA.states[1].vars.accuracyNode)
       table.insert(ELIA.states[1].vars.nodes, ELIA.states[1].vars.accuracyNode)
 
       ELIA.states[1].vars.doneNode = DrawDoneButton(njli.SCREEN():x() * 0.5, njli.SCREEN():y() * 0.5, ELIA.states[1].vars.doneNode)
@@ -172,7 +180,8 @@ ELIA.states =
           ELIA.states[1].vars.currentNumberOfLetters = string.len(ELIA.states[1].vars.currentText)
           ELIA.states[1].vars.totalNumberOfLetters = ELIA.states[1].vars.totalNumberOfLetters + ELIA.states[1].vars.currentNumberOfLetters
 
-          ELIA.states[1].vars.accuracyNode = DrawAccuracy(AccuracyPercentage(ELIA.states[1].vars.totalNumberOfLetters, ELIA.states[1].vars.currentNumberOfLetters, ELIA.states[1].vars.totalAccurateTyped), ELIA.states[1].vars.accuracyNode)
+          finalAccuracy = AccuracyPercentage(ELIA.states[1].vars.totalNumberOfLetters, ELIA.states[1].vars.currentNumberOfLetters, ELIA.states[1].vars.totalAccurateTyped)
+          ELIA.states[1].vars.accuracyNode = DrawAccuracy(finalAccuracy, ELIA.states[1].vars.accuracyNode)
 
         end
 
@@ -287,22 +296,21 @@ ELIA.states =
       titleNode = nil,
       endlessLetterNode = nil,
       learnMoreNode = nil,
+      leaderboardNode = nil,
       created=false,
       endlessLetterButtonDown = false,
       learnMoreButtonDown = false,
       endlessLetterButtonDown = false,
       learnMoreButtonDown = false,
+      leaderboardButtonDown = false,
       nodes = {},
     },
     enter = function()
-      print('enter splash')
       for k, v in pairs(ELIA.states[2].vars.nodes) do
-        print(k)
         ELIA.states[2].vars.nodes[k]:show(OrthographicCameraNode:getCamera())
       end
     end,
     exit = function()
-      print('exit splash')
       for k, v in pairs(ELIA.states[2].vars.nodes) do
         ELIA.states[2].vars.nodes[k]:hide(OrthographicCameraNode:getCamera())
       end
@@ -317,6 +325,9 @@ ELIA.states =
 
       ELIA.states[2].vars.learnMoreNode = DrawLearnMoreButton(njli.SCREEN():x() * 0.5, (njli.SCREEN():y() * 0.5) - 195, ELIA.states[2].vars.learnMoreNode)
       table.insert(ELIA.states[2].vars.nodes, ELIA.states[2].vars.learnMoreNode)
+
+      ELIA.states[2].vars.leaderboardNode = DrawLeaderboardButton(njli.SCREEN():x() * 0.5, (njli.SCREEN():y() * 0.5) - 290, ELIA.states[2].vars.leaderboardNode)
+      table.insert(ELIA.states[2].vars.nodes, ELIA.states[2].vars.leaderboardNode)
 
       ELIA.states[2].vars.created = true
 
@@ -348,6 +359,11 @@ ELIA.states =
           ELIA.states[2].vars.learnMoreButtonDown = true
           ELIA.states[2].vars.learnMoreNode, dimension = ELIATexturePacker:draw({name="btn_learn_more_down", node=ELIA.states[2].vars.learnMoreNode})
         end
+      elseif nodeTag == "leaderboard node" then
+        if not ELIA.states[2].vars.leaderboardButtonDown then
+          ELIA.states[2].vars.leaderboardButtonDown = true
+          ELIA.states[2].vars.leaderboardNode, dimension = ELIATexturePacker:draw({name="btn_leaderboard_down", node=ELIA.states[2].vars.leaderboardNode})
+        end
       end
 
     end,
@@ -368,6 +384,12 @@ ELIA.states =
           ELIA.states[2].vars.learnMoreButtonDown = false
           ELIA.states[2].vars.learnMoreNode, dimension = ELIATexturePacker:draw({name="btn_learn_more_up", node=ELIA.states[2].vars.learnMoreNode})
         end
+      elseif nodeTag == "leaderboard node" then
+        if ELIA.states[2].vars.leaderboardButtonDown then
+          ELIA.states[2].vars.leaderboardButtonDown = false
+          ELIA.states[2].vars.leaderboardNode, dimension = ELIATexturePacker:draw({name="btn_leaderboard_up", node=ELIA.states[2].vars.leaderboardNode})
+          SwitchStates(STATE_LEADERBOARD)
+        end
       end
     end,
     mouseMissed = function(node)
@@ -385,6 +407,11 @@ ELIA.states =
         if ELIA.states[2].vars.learnMoreButtonDown then
           ELIA.states[2].vars.learnMoreButtonDown = false
           ELIA.states[2].vars.learnMoreNode, dimension = ELIATexturePacker:draw({name="btn_learn_more_up", node=ELIA.states[2].vars.learnMoreNode})
+        end
+      elseif nodeTag == "leaderboard node" then
+        if not ELIA.states[2].vars.leaderboardButtonDown then
+          ELIA.states[2].vars.leaderboardButtonDown = false
+          ELIA.states[2].vars.leaderboardNode, dimension = ELIATexturePacker:draw({name="btn_leaderboard_up", node=ELIA.states[2].vars.leaderboardNode})
         end
       end
     end,
@@ -407,9 +434,23 @@ ELIA.states =
       nodes = {},
     },
     enter = function()
+
       for k, v in pairs(ELIA.states[3].vars.nodes) do
         ELIA.states[3].vars.nodes[k]:show(OrthographicCameraNode:getCamera())
       end
+
+      if ELIA.states[3].vars.placeGraphic then
+        local place = PerformHighScoreFeature(finalPointsAccumulated)
+        if place >= 1 and place <= 10 then
+          local vert_margin = njli.SCREEN():y() / 30.0
+          ELIA.states[3].vars.placeGraphic = DrawPlaceGraphic((njli.SCREEN():x() * 0.5) + (rect.width * 0.5) + 70, vert_margin + vert_margin + 5, ELIA.states[3].vars.placeGraphic, place)
+        else
+          ELIA.states[3].vars.placeGraphic:hide(OrthographicCameraNode:getCamera())
+        end
+      end
+
+      ELIA.states[3].vars.pointsNode, rect = DrawPoints(finalPointsAccumulated, ELIA.states[3].vars.pointsNode)
+      ELIA.states[3].vars.accuracyNode = DrawAccuracy(finalAccuracy, ELIA.states[3].vars.accuracyNode)
     end,
     exit = function()
       for k, v in pairs(ELIA.states[3].vars.nodes) do
@@ -436,7 +477,7 @@ ELIA.states =
       ELIA.states[3].vars.accuracyNode = DrawAccuracy(finalAccuracy, ELIA.states[3].vars.accuracyNode)
       table.insert(ELIA.states[3].vars.nodes, ELIA.states[3].vars.accuracyNode)
 
-      local place = 10
+      local place = PerformHighScoreFeature(finalPointsAccumulated)
       if place >= 1 and place <= 10 then
         local vert_margin = njli.SCREEN():y() / 30.0
         ELIA.states[3].vars.placeGraphic = DrawPlaceGraphic((njli.SCREEN():x() * 0.5) + (rect.width * 0.5) + 70, vert_margin + vert_margin + 5, ELIA.states[3].vars.placeGraphic, place)
@@ -534,7 +575,10 @@ ELIA.states =
     vars =
     {
       highScoreNodes = {},
+      doneNode = nil,
+      doneButtonDown = false,
       created=false,
+      nodes = {},
     },
     enter = function()
       for k, v in pairs(ELIA.states[4].vars.nodes) do
@@ -547,9 +591,12 @@ ELIA.states =
       end
     end,
     create = function()
-      local highScores = {0000, 1111, 2222, 3333, 4444, 5555, 6666, 7777, 8888, 9999}
+      local highScores = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+      local highScores = ReadHighScores()
+      print_r(highScores)
 
       ELIA.states[4].vars.titleNode = DrawTitle(nil, "Leaderboard")
+      table.insert(ELIA.states[4].vars.nodes, ELIA.states[4].vars.titleNode)
 
       local vert_margin = njli.SCREEN():y() / 30.0
       local horiz_margin = njli.SCREEN():x() / 40.0
@@ -557,34 +604,46 @@ ELIA.states =
 
       ELIA.states[4].vars.highScoreNodes[1], rect = DrawHighscorePoints(highScores[1], ELIA.states[4].vars.highScoreNodes[1], 1)
       ELIA.states[4].vars.highScoreNodes[1]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5) - (half_horizontal * 0.5), 575 - 120, -1))
+      table.insert(ELIA.states[4].vars.nodes, ELIA.states[4].vars.highScoreNodes[1])
 
       ELIA.states[4].vars.highScoreNodes[2], rect = DrawHighscorePoints(highScores[2], ELIA.states[4].vars.highScoreNodes[2], 2)
       ELIA.states[4].vars.highScoreNodes[2]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5) - (half_horizontal * 0.5), 575 - 200, -1))
+      table.insert(ELIA.states[4].vars.nodes, ELIA.states[4].vars.highScoreNodes[2])
 
       ELIA.states[4].vars.highScoreNodes[3], rect = DrawHighscorePoints(highScores[3], ELIA.states[4].vars.highScoreNodes[3], 3)
       ELIA.states[4].vars.highScoreNodes[3]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5) - (half_horizontal * 0.5), 575 - 280, -1))
+      table.insert(ELIA.states[4].vars.nodes, ELIA.states[4].vars.highScoreNodes[3])
 
       ELIA.states[4].vars.highScoreNodes[4], rect = DrawHighscorePoints(highScores[4], ELIA.states[4].vars.highScoreNodes[4], 4)
       ELIA.states[4].vars.highScoreNodes[4]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5) - (half_horizontal * 0.5), 575 - 360, -1))
+      table.insert(ELIA.states[4].vars.nodes, ELIA.states[4].vars.highScoreNodes[4])
 
       ELIA.states[4].vars.highScoreNodes[5], rect = DrawHighscorePoints(highScores[5], ELIA.states[4].vars.highScoreNodes[5], 5)
       ELIA.states[4].vars.highScoreNodes[5]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5) - (half_horizontal * 0.5), 575 - 440, -1))
-
+      table.insert(ELIA.states[4].vars.nodes, ELIA.states[4].vars.highScoreNodes[5])
 
       ELIA.states[4].vars.highScoreNodes[6], rect = DrawHighscorePoints(highScores[6], ELIA.states[4].vars.highScoreNodes[6], 6)
       ELIA.states[4].vars.highScoreNodes[6]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5) + (half_horizontal * 0.5), 575 - 120, -1))
+      table.insert(ELIA.states[4].vars.nodes, ELIA.states[4].vars.highScoreNodes[6])
 
       ELIA.states[4].vars.highScoreNodes[7], rect = DrawHighscorePoints(highScores[7], ELIA.states[4].vars.highScoreNodes[7], 7)
       ELIA.states[4].vars.highScoreNodes[7]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5) + (half_horizontal * 0.5), 575 - 200, -1))
+      table.insert(ELIA.states[4].vars.nodes, ELIA.states[4].vars.highScoreNodes[7])
 
       ELIA.states[4].vars.highScoreNodes[8], rect = DrawHighscorePoints(highScores[8], ELIA.states[4].vars.highScoreNodes[8], 8)
       ELIA.states[4].vars.highScoreNodes[8]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5) + (half_horizontal * 0.5), 575 - 280, -1))
+      table.insert(ELIA.states[4].vars.nodes, ELIA.states[4].vars.highScoreNodes[8])
 
       ELIA.states[4].vars.highScoreNodes[9], rect = DrawHighscorePoints(highScores[9], ELIA.states[4].vars.highScoreNodes[9], 9)
       ELIA.states[4].vars.highScoreNodes[9]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5) + (half_horizontal * 0.5), 575 - 360, -1))
+      table.insert(ELIA.states[4].vars.nodes, ELIA.states[4].vars.highScoreNodes[9])
 
       ELIA.states[4].vars.highScoreNodes[10], rect = DrawHighscorePoints(highScores[10], ELIA.states[4].vars.highScoreNodes[10], 10)
       ELIA.states[4].vars.highScoreNodes[10]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5) + (half_horizontal * 0.5), 575 - 440, -1))
+      table.insert(ELIA.states[4].vars.nodes, ELIA.states[4].vars.highScoreNodes[10])
+
+      ELIA.states[4].vars.doneNode = DrawDoneButton((njli.SCREEN():x() * 0.5), 0 + vert_margin + vert_margin, ELIA.states[4].vars.doneNode)
+      table.insert(ELIA.states[4].vars.nodes, ELIA.states[4].vars.doneNode)
 
       ELIA.states[4].vars.created = true
     end,
@@ -604,18 +663,39 @@ ELIA.states =
       end
 
       local nodeTag = rayContact:getHitNode():getTag()
+      if nodeTag == "done node" then
+        if not ELIA.states[4].vars.doneButtonDown then
+          ELIA.states[4].vars.doneButtonDown = true
+          ELIA.states[4].vars.doneNode, dimension = ELIATexturePacker:draw({name="btn_done_down", node=ELIA.states[4].vars.doneNode})
+        end
+      end
     end,
     mouseUp = function(rayContact)
       if not ELIA.states[4].vars.created then
         return
       end
+
       local nodeTag = rayContact:getHitNode():getTag()
+      if nodeTag == "done node" then
+        if ELIA.states[4].vars.doneButtonDown then
+          ELIA.states[4].vars.doneButtonDown = false
+          ELIA.states[4].vars.doneNode, dimension = ELIATexturePacker:draw({name="btn_done_up", node=ELIA.states[4].vars.doneNode})
+          SwitchStates(STATE_SPLASH)
+        end
+      end
     end,
     mouseMissed = function(rayContact)
       if not ELIA.states[4].vars.created then
         return
       end
+
       local nodeTag = rayContact:getHitNode():getTag()
+      if nodeTag == "done node" then
+        if ELIA.states[4].vars.doneButtonDown then
+          ELIA.states[4].vars.doneButtonDown = false
+          ELIA.states[4].vars.doneNode, dimension = ELIATexturePacker:draw({name="btn_done_up", node=ELIA.states[4].vars.doneNode})
+        end
+      end
     end,
   },
 }
@@ -865,6 +945,39 @@ function DrawLearnMoreButton(x, y, node)
   return node
 end
 
+
+
+function DrawLeaderboardButton(x, y, node)
+  local node, dimension = ELIATexturePacker:draw({name="btn_leaderboard_up", node=node})
+
+  local origin = bullet.btVector3(x, y, -1)
+  node:setOrigin(origin)
+  node:show(OrthographicCameraNode:getCamera())
+
+  local scene = njli.World.getInstance():getScene()
+  scene:getRootNode():addChildNode(node)
+
+  local donePhysicsShape = njli.PhysicsShapeBox.create()
+
+  local donePhysicsBody = njli.PhysicsBodyRigid.create()
+  donePhysicsBody:setStaticPhysics()
+  donePhysicsBody:setPhysicsShape(donePhysicsShape)
+
+  node:setPhysicsBody(donePhysicsBody)
+
+  donePhysicsShape:setHalfExtends(bullet.btVector3( dimension:x(), dimension:y(), 1.0 ))
+
+  node:setTag("leaderboard node")
+
+  return node
+end
+
+
+
+
+
+
+
 function DrawQuitButton(x, y, node)
   local node, dimension = ELIATexturePacker:draw({name="btn_quit_up", node=node})
 
@@ -964,17 +1077,86 @@ function DrawPlaceGraphic(x, y, node, place)
 end
 
 
+function string:split( inSplitPattern, outResults )
+  if not outResults then
+    outResults = { }
+  end
+  local theStart = 1
+  local theSplitStart, theSplitEnd = string.find( self, inSplitPattern, theStart )
+  while theSplitStart do
+    table.insert( outResults, string.sub( self, theStart, theSplitStart-1 ) )
+    theStart = theSplitEnd + 1
+    theSplitStart, theSplitEnd = string.find( self, inSplitPattern, theStart )
+  end
+  table.insert( outResults, string.sub( self, theStart ) )
+  return outResults
+end
 
+function ResetHighScores(fname)
+  WriteHighScores(fname, "0,0,0,0,0,0,0,0,0,0")
+end
 
+function WriteHighScores(fname, str)
+  local filename = fname or "highscores.lst"
+  local f = io.open(filename, "w")
+  f:write(str)
+  f:close()
+end
 
+function ReadHighScores(fname)
+  local filename = fname or "highscores.lst"
 
+  local file = io.open(filename, "r")
+  if not file then
+    ResetHighScores(filename)
+    file = io.open(filename, "r")
+  end
 
+  local data = file:read()
+  local tbl = data:split(",")
+  return tbl
+end
 
+function AddHighScore(score)
+  local highscores = ReadHighScores()
+  
+  table.insert(highscores, tonumber(score))
+  table.sort(highscores, function(a,b) return a>b end)
+  
+  local str = ""
+  for i=1,9 do
+    str = str .. tostring(highscores[i]) .. ","
+  end
+  str = str .. tostring(highscores[10])
+  WriteHighScores(nil, str)
+end
 
+function HighScorePlace(score)
+  local highscores = ReadHighScores()
 
+  local place = 1
+  for i=1,#highscores do
+    if tonumber(highscores[i]) < score then
+      return place
+    end
+    place = place + 1
+  end
+
+  return place
+end
+
+function PerformHighScoreFeature(score)
+  return 100
+
+  -- local place = HighScorePlace(score)
+  -- if place >= 1 and place <= 10 then
+  --   AddHighScore(score)
+  --   return place
+  -- end
+  -- return place
+end
 
 local Create = function()
-
   local scene = njli.Scene.create()
   local rootNode = njli.Node.create()
   

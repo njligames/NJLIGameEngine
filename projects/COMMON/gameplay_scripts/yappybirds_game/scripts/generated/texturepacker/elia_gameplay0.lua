@@ -1,7 +1,7 @@
 --
 -- created with TexturePacker (http://www.codeandweb.com/texturepacker)
 --
--- $TexturePacker:SmartUpdate:01313a6715f0951833c3e566f73cd2d1:3b53b914b7538146a0a4f77d48c1e635:27f404314cae31fea28c9269b2111f42$
+-- $TexturePacker:SmartUpdate:ee37113946bb8e551b83b4e8aada742d:c6619d4b25042f572576ff7444ebaebe:27f404314cae31fea28c9269b2111f42$
 --
 -- local sheetInfo = require("mysheet")
 -- local myImageSheet = graphics.newImageSheet( "mysheet.png", sheetInfo:getSheet() )
@@ -15,344 +15,386 @@ SheetInfo.sheet =
     frames = {
     
         {
-            x=471,
-            y=556,
+            x=654,
+            y=523,
             
-            width=241,
-            height=106,
+            width=179,
+            height=109,
 
-	        widthFile=241,
-	        heightFile=106,
+	        widthFile=179,
+	        heightFile=109,
 
-            pivotx=120.5,
-            pivoty=53,
+            pivotx=89.5,
+            pivoty=54.5,
 
             sourceX = 0,
             sourceY = 0,
-            sourceWidth = 241,
-            sourceHeight = 106,
+            sourceWidth = 179,
+            sourceHeight = 109,
 
             trimmedName = "btn_done_down",
         },
     
         {
-            x=535,
-            y=335,
+            x=835,
+            y=523,
             
-            width=247,
-            height=111,
+            width=175,
+            height=105,
 
-	        widthFile=247,
-	        heightFile=111,
+	        widthFile=175,
+	        heightFile=105,
 
-            pivotx=123.5,
-            pivoty=55.5,
+            pivotx=87.5,
+            pivoty=52.5,
 
             sourceX = 0,
             sourceY = 0,
-            sourceWidth = 247,
-            sourceHeight = 111,
+            sourceWidth = 175,
+            sourceHeight = 105,
 
             trimmedName = "btn_done_up",
         },
     
         {
             x=1,
-            y=227,
+            y=1,
             
-            width=541,
-            height=105,
+            width=435,
+            height=109,
 
-	        widthFile=541,
-	        heightFile=105,
+	        widthFile=435,
+	        heightFile=109,
 
-            pivotx=270.5,
-            pivoty=52.5,
+            pivotx=217.5,
+            pivoty=54.5,
 
             sourceX = 0,
             sourceY = 0,
-            sourceWidth = 541,
-            sourceHeight = 105,
+            sourceWidth = 435,
+            sourceHeight = 109,
 
             trimmedName = "btn_endless_letter_down",
         },
     
         {
-            x=1,
+            x=438,
             y=1,
             
-            width=569,
-            height=111,
+            width=431,
+            height=105,
 
-	        widthFile=569,
-	        heightFile=111,
+	        widthFile=431,
+	        heightFile=105,
 
-            pivotx=284.5,
-            pivoty=55.5,
+            pivotx=215.5,
+            pivoty=52.5,
 
             sourceX = 0,
             sourceY = 0,
-            sourceWidth = 569,
-            sourceHeight = 111,
+            sourceWidth = 431,
+            sourceHeight = 105,
 
             trimmedName = "btn_endless_letter_up",
         },
     
         {
-            x=1,
-            y=334,
+            x=438,
+            y=108,
             
-            width=532,
-            height=106,
+            width=423,
+            height=109,
 
-	        widthFile=532,
-	        heightFile=106,
+	        widthFile=423,
+	        heightFile=109,
 
-            pivotx=266,
-            pivoty=53,
+            pivotx=211.5,
+            pivoty=54.5,
 
             sourceX = 0,
             sourceY = 0,
-            sourceWidth = 532,
-            sourceHeight = 106,
+            sourceWidth = 423,
+            sourceHeight = 109,
 
             trimmedName = "btn_endless_word_down",
         },
     
         {
             x=1,
-            y=114,
+            y=112,
             
-            width=538,
-            height=111,
+            width=419,
+            height=105,
 
-	        widthFile=538,
-	        heightFile=111,
+	        widthFile=419,
+	        heightFile=105,
 
-            pivotx=269,
-            pivoty=55.5,
+            pivotx=209.5,
+            pivoty=52.5,
 
             sourceX = 0,
             sourceY = 0,
-            sourceWidth = 538,
-            sourceHeight = 111,
+            sourceWidth = 419,
+            sourceHeight = 105,
 
             trimmedName = "btn_endless_word_up",
         },
     
         {
-            x=1,
-            y=442,
+            x=275,
+            y=219,
             
-            width=484,
-            height=106,
+            width=389,
+            height=109,
 
-	        widthFile=484,
-	        heightFile=106,
+	        widthFile=389,
+	        heightFile=109,
 
-            pivotx=242,
-            pivoty=53,
+            pivotx=194.5,
+            pivoty=54.5,
 
             sourceX = 0,
             sourceY = 0,
-            sourceWidth = 484,
-            sourceHeight = 106,
+            sourceWidth = 389,
+            sourceHeight = 109,
+
+            trimmedName = "btn_leaderboard_down",
+        },
+    
+        {
+            x=275,
+            y=330,
+            
+            width=385,
+            height=105,
+
+	        widthFile=385,
+	        heightFile=105,
+
+            pivotx=192.5,
+            pivoty=52.5,
+
+            sourceX = 0,
+            sourceY = 0,
+            sourceWidth = 385,
+            sourceHeight = 105,
+
+            trimmedName = "btn_leaderboard_up",
+        },
+    
+        {
+            x=666,
+            y=305,
+            
+            width=353,
+            height=109,
+
+	        widthFile=353,
+	        heightFile=109,
+
+            pivotx=176.5,
+            pivoty=54.5,
+
+            sourceX = 0,
+            sourceY = 0,
+            sourceWidth = 353,
+            sourceHeight = 109,
 
             trimmedName = "btn_learn_more_down",
         },
     
         {
-            x=1,
-            y=550,
+            x=662,
+            y=416,
             
-            width=468,
-            height=111,
+            width=349,
+            height=105,
 
-	        widthFile=468,
-	        heightFile=111,
+	        widthFile=349,
+	        heightFile=105,
 
-            pivotx=234,
-            pivoty=55.5,
+            pivotx=174.5,
+            pivoty=52.5,
 
             sourceX = 0,
             sourceY = 0,
-            sourceWidth = 468,
-            sourceHeight = 111,
+            sourceWidth = 349,
+            sourceHeight = 105,
 
             trimmedName = "btn_learn_more_up",
         },
     
         {
-            x=844,
-            y=1,
+            x=835,
+            y=630,
             
-            width=178,
-            height=106,
+            width=143,
+            height=109,
 
-	        widthFile=178,
-	        heightFile=106,
+	        widthFile=143,
+	        heightFile=109,
 
-            pivotx=89,
-            pivoty=53,
+            pivotx=71.5,
+            pivoty=54.5,
 
             sourceX = 0,
             sourceY = 0,
-            sourceWidth = 178,
-            sourceHeight = 106,
+            sourceWidth = 143,
+            sourceHeight = 109,
 
             trimmedName = "btn_quit_down",
         },
     
         {
-            x=427,
-            y=884,
+            x=683,
+            y=634,
             
-            width=184,
-            height=111,
+            width=139,
+            height=105,
 
-	        widthFile=184,
-	        heightFile=111,
+	        widthFile=139,
+	        heightFile=105,
 
-            pivotx=92,
-            pivoty=55.5,
+            pivotx=69.5,
+            pivoty=52.5,
 
             sourceX = 0,
             sourceY = 0,
-            sourceWidth = 184,
-            sourceHeight = 111,
+            sourceWidth = 139,
+            sourceHeight = 105,
 
             trimmedName = "btn_quit_up",
         },
     
         {
-            x=541,
-            y=114,
+            x=275,
+            y=437,
             
-            width=264,
-            height=106,
+            width=225,
+            height=109,
 
-	        widthFile=264,
-	        heightFile=106,
+	        widthFile=225,
+	        heightFile=109,
 
-            pivotx=132,
-            pivoty=53,
+            pivotx=112.5,
+            pivoty=54.5,
 
             sourceX = 0,
             sourceY = 0,
-            sourceWidth = 264,
-            sourceHeight = 106,
+            sourceWidth = 225,
+            sourceHeight = 109,
 
             trimmedName = "btn_replay_down",
         },
     
         {
-            x=572,
-            y=1,
+            x=275,
+            y=548,
             
-            width=270,
-            height=111,
+            width=221,
+            height=105,
 
-	        widthFile=270,
-	        heightFile=111,
+	        widthFile=221,
+	        heightFile=105,
 
-            pivotx=135,
-            pivoty=55.5,
+            pivotx=110.5,
+            pivoty=52.5,
 
             sourceX = 0,
             sourceY = 0,
-            sourceWidth = 270,
-            sourceHeight = 111,
+            sourceWidth = 221,
+            sourceHeight = 105,
 
             trimmedName = "btn_replay_up",
         },
     
         {
-            x=451,
-            y=777,
+            x=481,
+            y=655,
             
-            width=219,
-            height=105,
+            width=200,
+            height=109,
 
-	        widthFile=219,
-	        heightFile=105,
+	        widthFile=200,
+	        heightFile=109,
 
-            pivotx=109.5,
-            pivoty=52.5,
+            pivotx=100,
+            pivoty=54.5,
 
             sourceX = 0,
             sourceY = 0,
-            sourceWidth = 219,
-            sourceHeight = 105,
+            sourceWidth = 200,
+            sourceHeight = 109,
 
             trimmedName = "btn_rsvp_down",
         },
     
         {
-            x=451,
-            y=664,
+            x=609,
+            y=848,
             
-            width=225,
-            height=111,
+            width=196,
+            height=105,
 
-	        widthFile=225,
-	        heightFile=111,
+	        widthFile=196,
+	        heightFile=105,
 
-            pivotx=112.5,
-            pivoty=55.5,
+            pivotx=98,
+            pivoty=52.5,
 
             sourceX = 0,
             sourceY = 0,
-            sourceWidth = 225,
-            sourceHeight = 111,
+            sourceWidth = 196,
+            sourceHeight = 105,
 
             trimmedName = "btn_rsvp_up",
         },
     
         {
-            x=487,
-            y=448,
+            x=1,
+            y=579,
             
-            width=247,
-            height=106,
+            width=201,
+            height=109,
 
-	        widthFile=247,
-	        heightFile=106,
+	        widthFile=201,
+	        heightFile=109,
 
-            pivotx=123.5,
-            pivoty=53,
+            pivotx=100.5,
+            pivoty=54.5,
 
             sourceX = 0,
             sourceY = 0,
-            sourceWidth = 247,
-            sourceHeight = 106,
+            sourceWidth = 201,
+            sourceHeight = 109,
 
             trimmedName = "btn_timed_down",
         },
     
         {
-            x=544,
-            y=222,
+            x=683,
+            y=741,
             
-            width=253,
-            height=111,
+            width=197,
+            height=105,
 
-	        widthFile=253,
-	        heightFile=111,
+	        widthFile=197,
+	        heightFile=105,
 
-            pivotx=126.5,
-            pivoty=55.5,
+            pivotx=98.5,
+            pivoty=52.5,
 
             sourceX = 0,
             sourceY = 0,
-            sourceWidth = 253,
-            sourceHeight = 111,
+            sourceWidth = 197,
+            sourceHeight = 105,
 
             trimmedName = "btn_timed_up",
         },
     
         {
-            x=275,
-            y=663,
+            x=1,
+            y=690,
             
             width=174,
             height=174,
@@ -372,8 +414,8 @@ SheetInfo.sheet =
         },
     
         {
-            x=275,
-            y=839,
+            x=871,
+            y=1,
             
             width=150,
             height=150,
@@ -393,8 +435,8 @@ SheetInfo.sheet =
         },
     
         {
-            x=844,
-            y=109,
+            x=863,
+            y=153,
             
             width=150,
             height=150,
@@ -414,8 +456,8 @@ SheetInfo.sheet =
         },
     
         {
-            x=799,
-            y=261,
+            x=502,
+            y=437,
             
             width=150,
             height=150,
@@ -435,8 +477,8 @@ SheetInfo.sheet =
         },
     
         {
-            x=784,
-            y=413,
+            x=1,
+            y=866,
             
             width=150,
             height=150,
@@ -456,8 +498,8 @@ SheetInfo.sheet =
         },
     
         {
-            x=714,
-            y=565,
+            x=153,
+            y=866,
             
             width=150,
             height=150,
@@ -477,8 +519,8 @@ SheetInfo.sheet =
         },
     
         {
-            x=866,
-            y=565,
+            x=177,
+            y=690,
             
             width=150,
             height=150,
@@ -498,8 +540,8 @@ SheetInfo.sheet =
         },
     
         {
-            x=678,
-            y=717,
+            x=305,
+            y=842,
             
             width=150,
             height=150,
@@ -519,8 +561,8 @@ SheetInfo.sheet =
         },
     
         {
-            x=830,
-            y=717,
+            x=329,
+            y=655,
             
             width=150,
             height=150,
@@ -540,8 +582,8 @@ SheetInfo.sheet =
         },
     
         {
-            x=672,
-            y=869,
+            x=457,
+            y=807,
             
             width=150,
             height=150,
@@ -562,7 +604,7 @@ SheetInfo.sheet =
     
         {
             x=1,
-            y=663,
+            y=305,
             
             width=272,
             height=272,
@@ -599,7 +641,7 @@ SheetInfo.sheet =
 
 
 
-    -- smartUpdateKey = $TexturePacker:SmartUpdate:01313a6715f0951833c3e566f73cd2d1:3b53b914b7538146a0a4f77d48c1e635:27f404314cae31fea28c9269b2111f42$,
+    -- smartUpdateKey = $TexturePacker:SmartUpdate:ee37113946bb8e551b83b4e8aada742d:c6619d4b25042f572576ff7444ebaebe:27f404314cae31fea28c9269b2111f42$,
     -- settings_autoSDSettings = {
     -- 
     --     {
@@ -661,27 +703,29 @@ SheetInfo.frameIndex =
     ["btn_endless_letter_up"] = 4,
     ["btn_endless_word_down"] = 5,
     ["btn_endless_word_up"] = 6,
-    ["btn_learn_more_down"] = 7,
-    ["btn_learn_more_up"] = 8,
-    ["btn_quit_down"] = 9,
-    ["btn_quit_up"] = 10,
-    ["btn_replay_down"] = 11,
-    ["btn_replay_up"] = 12,
-    ["btn_rsvp_down"] = 13,
-    ["btn_rsvp_up"] = 14,
-    ["btn_timed_down"] = 15,
-    ["btn_timed_up"] = 16,
-    ["gfg_10th"] = 17,
-    ["gfg_1st"] = 18,
-    ["gfg_2nd"] = 19,
-    ["gfg_3rd"] = 20,
-    ["gfg_4th"] = 21,
-    ["gfg_5th"] = 22,
-    ["gfg_6th"] = 23,
-    ["gfg_7nd"] = 24,
-    ["gfg_8th"] = 25,
-    ["gfg_9th"] = 26,
-    ["gfg_top_ten"] = 27,
+    ["btn_leaderboard_down"] = 7,
+    ["btn_leaderboard_up"] = 8,
+    ["btn_learn_more_down"] = 9,
+    ["btn_learn_more_up"] = 10,
+    ["btn_quit_down"] = 11,
+    ["btn_quit_up"] = 12,
+    ["btn_replay_down"] = 13,
+    ["btn_replay_up"] = 14,
+    ["btn_rsvp_down"] = 15,
+    ["btn_rsvp_up"] = 16,
+    ["btn_timed_down"] = 17,
+    ["btn_timed_up"] = 18,
+    ["gfg_10th"] = 19,
+    ["gfg_1st"] = 20,
+    ["gfg_2nd"] = 21,
+    ["gfg_3rd"] = 22,
+    ["gfg_4th"] = 23,
+    ["gfg_5th"] = 24,
+    ["gfg_6th"] = 25,
+    ["gfg_7nd"] = 26,
+    ["gfg_8th"] = 27,
+    ["gfg_9th"] = 28,
+    ["gfg_top_ten"] = 29,
 }
 
 function SheetInfo:getSheet()
