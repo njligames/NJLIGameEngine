@@ -760,6 +760,7 @@ function __NJLITouchCancelled(touch)
 end
 
 function __NJLIMouseDown(mouse)
+        print("__NJLIMouseDown")
     for k, v in pairs(Runtime.MouseDown) do v(mouse) end
 end
 

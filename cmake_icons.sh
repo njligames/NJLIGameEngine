@@ -26,6 +26,9 @@ cp -r ${OUTPUT}/watchkit/* cmake.in/Platform.in/watchOS/
 rm -rf cmake.in/Platform.in/android/icons/*
 cp -r ${OUTPUT}/android/* cmake.in/Platform.in/android/icons/
 
+rm -rf cmake.in/Platform.in/facebook/*
+cp -r ${OUTPUT}/facebook/* cmake.in/Platform.in/facebook/
+
 sips -Z 32 `pwd`/src/lua/etc/lua.ico --out `pwd`/cmake.in/Platform.in/emscripten/lua/favicon-32x32.ico
 sips -Z 32 `pwd`/src/lua/etc/lua_lang.ico --out `pwd`/cmake.in/Platform.in/emscripten/luac/favicon-32x32.ico
 

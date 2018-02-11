@@ -591,9 +591,9 @@ ELIA.states =
       end
     end,
     create = function()
-      local highScores = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
       local highScores = ReadHighScores()
-      print_r(highScores)
+      print("create - highscores")
+      print_r(highscores)
 
       ELIA.states[4].vars.titleNode = DrawTitle(nil, "Leaderboard")
       table.insert(ELIA.states[4].vars.nodes, ELIA.states[4].vars.titleNode)
@@ -739,8 +739,8 @@ end
 -- end
 
 
--- currentStateName = STATE_GAMEPLAY
-currentStateName = STATE_SPLASH 
+currentStateName = STATE_GAMEPLAY
+-- currentStateName = STATE_SPLASH 
 -- currentStateName = STATE_RESULT 
 -- currentStateName = STATE_LEADERBOARD 
 
@@ -860,8 +860,9 @@ function DrawDoneButton(x, y, node)
   node:setOrigin(origin)
   node:show(OrthographicCameraNode:getCamera())
 
-  local scene = njli.World.getInstance():getScene()
-  scene:getRootNode():addChildNode(node)
+  if not njli.World.getInstance():getScene():getRootNode():hasChildNode(node) then
+    njli.World.getInstance():getScene():getRootNode():addChildNode(node)
+  end
 
   local donePhysicsShape = njli.PhysicsShapeBox.create()
 
@@ -901,8 +902,9 @@ function DrawEndlessLetterButton(x, y, node)
   node:setOrigin(origin)
   node:show(OrthographicCameraNode:getCamera())
 
-  local scene = njli.World.getInstance():getScene()
-  scene:getRootNode():addChildNode(node)
+  if not njli.World.getInstance():getScene():getRootNode():hasChildNode(node) then
+    njli.World.getInstance():getScene():getRootNode():addChildNode(node)
+  end
 
   local donePhysicsShape = njli.PhysicsShapeBox.create()
 
@@ -927,8 +929,9 @@ function DrawLearnMoreButton(x, y, node)
   node:setOrigin(origin)
   node:show(OrthographicCameraNode:getCamera())
 
-  local scene = njli.World.getInstance():getScene()
-  scene:getRootNode():addChildNode(node)
+  if not njli.World.getInstance():getScene():getRootNode():hasChildNode(node) then
+    njli.World.getInstance():getScene():getRootNode():addChildNode(node)
+  end
 
   local donePhysicsShape = njli.PhysicsShapeBox.create()
 
@@ -954,8 +957,9 @@ function DrawLeaderboardButton(x, y, node)
   node:setOrigin(origin)
   node:show(OrthographicCameraNode:getCamera())
 
-  local scene = njli.World.getInstance():getScene()
-  scene:getRootNode():addChildNode(node)
+  if not njli.World.getInstance():getScene():getRootNode():hasChildNode(node) then
+    njli.World.getInstance():getScene():getRootNode():addChildNode(node)
+  end
 
   local donePhysicsShape = njli.PhysicsShapeBox.create()
 
@@ -985,8 +989,9 @@ function DrawQuitButton(x, y, node)
   node:setOrigin(origin)
   node:show(OrthographicCameraNode:getCamera())
 
-  local scene = njli.World.getInstance():getScene()
-  scene:getRootNode():addChildNode(node)
+  if not njli.World.getInstance():getScene():getRootNode():hasChildNode(node) then
+    njli.World.getInstance():getScene():getRootNode():addChildNode(node)
+  end
 
   local donePhysicsShape = njli.PhysicsShapeBox.create()
 
@@ -1010,8 +1015,9 @@ function DrawReplayButton(x, y, node)
   node:setOrigin(origin)
   node:show(OrthographicCameraNode:getCamera())
 
-  local scene = njli.World.getInstance():getScene()
-  scene:getRootNode():addChildNode(node)
+  if not njli.World.getInstance():getScene():getRootNode():hasChildNode(node) then
+    njli.World.getInstance():getScene():getRootNode():addChildNode(node)
+  end
 
   local donePhysicsShape = njli.PhysicsShapeBox.create()
 
@@ -1060,8 +1066,9 @@ function DrawPlaceGraphic(x, y, node, place)
   node:setOrigin(origin)
   node:show(OrthographicCameraNode:getCamera())
 
-  local scene = njli.World.getInstance():getScene()
-  scene:getRootNode():addChildNode(node)
+  if not njli.World.getInstance():getScene():getRootNode():hasChildNode(node) then
+    njli.World.getInstance():getScene():getRootNode():addChildNode(node)
+  end
 
   -- local donePhysicsShape = njli.PhysicsShapeBox.create()
 
@@ -1114,14 +1121,23 @@ function ReadHighScores(fname)
 
   local data = file:read()
   local tbl = data:split(",")
-  return tbl
+
+  local ret = {}
+  for i=1,#tbl do
+    ret[i] = tonumber(tbl[i])
+  end
+
+  return ret
 end
 
 function AddHighScore(score)
+  print('AddHighScore', score)
+
   local highscores = ReadHighScores()
+  print_r(highscores)
   
   table.insert(highscores, tonumber(score))
-  table.sort(highscores, function(a,b) return a>b end)
+  table.sort(highscores, function(a,b) return tonumber(a)>tonumber(b) end)
   
   local str = ""
   for i=1,9 do
@@ -1146,17 +1162,18 @@ function HighScorePlace(score)
 end
 
 function PerformHighScoreFeature(score)
-  return 100
+  -- return 100
 
-  -- local place = HighScorePlace(score)
-  -- if place >= 1 and place <= 10 then
-  --   AddHighScore(score)
-  --   return place
-  -- end
-  -- return place
+  local place = HighScorePlace(score)
+  if place >= 1 and place <= 10 then
+    AddHighScore(score)
+    return place
+  end
+  return place
 end
 
 local Create = function()
+ResetHighScores()
   local scene = njli.Scene.create()
   local rootNode = njli.Node.create()
   

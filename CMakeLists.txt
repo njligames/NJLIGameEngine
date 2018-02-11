@@ -4286,28 +4286,52 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
     LIST(APPEND EXTRA_PLATFORM_LIBS "--profiling-funcs")
     LIST(APPEND EXTRA_PLATFORM_LIBS "--tracing")
     LIST(APPEND EXTRA_PLATFORM_LIBS "--emit-symbol-map")
-    LIST(APPEND EXTRA_PLATFORM_LIBS "-g4")
 
-    #LIST(APPEND EXTRA_PLATFORM_LIBS "--shell-file ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/emscripten/debug_shell.html")
+    #LIST(APPEND EXTRA_PLATFORM_LIBS "--js-opts 0")
+    #LIST(APPEND EXTRA_PLATFORM_LIBS "-s ALLOW_MEMORY_GROWTH=1")
+    #LIST(APPEND EXTRA_PLATFORM_LIBS "-s FULL_ES2=1")
+    LIST(APPEND EXTRA_PLATFORM_LIBS "--separate-asm")
+    ## LIST(APPEND EXTRA_PLATFORM_LIBS "-g")
+    #LIST(APPEND EXTRA_PLATFORM_LIBS "-s DEMANGLE_SUPPORT=1")
+    #LIST(APPEND EXTRA_PLATFORM_LIBS "-s ASSERTIONS=2")
+    ## LIST(APPEND EXTRA_PLATFORM_LIBS "-s -O2")
+
+    ##LIST(APPEND EXTRA_PLATFORM_LIBS "--shell-file ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/emscripten/debug_shell.html")
+
+
+
+    #SET (CMAKE_EXE_LINKER_FLAGS "--memory-init-file 1 --embed-file  ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/common/assets" )
+
+    ADD_DEFINITIONS(-DEMCC_DEBUG=1)
+    #ADD_DEFINITIONS(-DDEBUG=1)
+    LIST(APPEND EXTRA_PLATFORM_LIBS "-O0")
+    LIST(APPEND EXTRA_PLATFORM_LIBS "--js-opts 0")
+    LIST(APPEND EXTRA_PLATFORM_LIBS "-g3")
+    LIST(APPEND EXTRA_PLATFORM_LIBS "-s ALLOW_MEMORY_GROWTH=1")
+    LIST(APPEND EXTRA_PLATFORM_LIBS "-s FULL_ES2=1")
+
+
+
 
   ELSE()
     # OPTIMIZING: https://kripken.github.io/emscripten-site/docs/optimizing/Optimizing-Code.html
     # SEPERATE ASM: https://kripken.github.io/emscripten-site/docs/optimizing/Optimizing-Code.html#avoid-memory-spikes-by-separating-out-asm-js
 
-    LIST(APPEND EXTRA_PLATFORM_LIBS "-s -O2 --llvm-opts 2 --closure 1")
+    LIST(APPEND EXTRA_PLATFORM_LIBS "-O3")
+    LIST(APPEND EXTRA_PLATFORM_LIBS "--llvm-opts 2")
+    LIST(APPEND EXTRA_PLATFORM_LIBS "--closure 1")
 
-    #LIST(APPEND EXTRA_PLATFORM_LIBS "--shell-file ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/Platform.in/emscripten/release_shell.html")
+    LIST(APPEND EXTRA_PLATFORM_LIBS "--js-opts 0")
+    LIST(APPEND EXTRA_PLATFORM_LIBS "-s TOTAL_MEMORY=256*1024*1024")
+    LIST(APPEND EXTRA_PLATFORM_LIBS "-s FULL_ES2=1")
+    #LIST(APPEND EXTRA_PLATFORM_LIBS "-s USE_PTHREADS=2")
+    #LIST(APPEND EXTRA_PLATFORM_LIBS "-s PTHREAD_POOL_SIZE=8")
+    LIST(APPEND EXTRA_PLATFORM_LIBS "--separate-asm")
+    #LIST(APPEND EXTRA_PLATFORM_LIBS "-s WASM=1")
+    #LIST(APPEND EXTRA_PLATFORM_LIBS "--closure 1")
 
   ENDIF( IS_DEBUG)
 
-  LIST(APPEND EXTRA_PLATFORM_LIBS "--js-opts 0")
-  LIST(APPEND EXTRA_PLATFORM_LIBS "-s TOTAL_MEMORY=256*1024*1024")
-  LIST(APPEND EXTRA_PLATFORM_LIBS "-s FULL_ES2=1")
-  #LIST(APPEND EXTRA_PLATFORM_LIBS "-s USE_PTHREADS=2")
-  #LIST(APPEND EXTRA_PLATFORM_LIBS "-s PTHREAD_POOL_SIZE=8")
-  LIST(APPEND EXTRA_PLATFORM_LIBS "--separate-asm")
-  #LIST(APPEND EXTRA_PLATFORM_LIBS "-s WASM=1")
-  #LIST(APPEND EXTRA_PLATFORM_LIBS "--closure 1")
 
   #https://kripken.github.io/emscripten-site/docs/porting/files/packaging_files.html
   SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -DSWIG_TYPE_TABLE=myprojectname --memory-init-file 1 --embed-file  ${NJLIGameEngine_COMMON_DIRECTORY}/assets@/" )
@@ -5026,17 +5050,18 @@ IF( ${NJLI_BUILD_PLATFORM} STREQUAL "android" )
 ELSE()
   IF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten")
 
-    IF(IS_DEBUG)
-      ADD_LIBRARY( libnjli_bytecode_shared SHARED
-        ${njli_generated_swig_embind}
-        ${njli_generated_swig_embind_platform}
-      )
-      SET_TARGET_PROPERTIES( libnjli_bytecode_shared PROPERTIES OUTPUT_NAME libnjli )
-      SET_TARGET_PROPERTIES( libnjli_bytecode_shared PROPERTIES PREFIX "")
-      TARGET_LINK_LIBRARIES( libnjli_bytecode_shared ${EXTRA_PLATFORM_LIBS} ${THIRD_PARTY_LIBS} ${NJLIGameEngine_LBY} )
-      SET_TARGET_PROPERTIES( libnjli_bytecode_shared PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
-      ADD_DEPENDENCIES(libnjli_bytecode_shared WrapSWIG)
-    ENDIF(IS_DEBUG)
+    # TODO: fix embind...
+    # IF(IS_DEBUG)
+    #   ADD_LIBRARY( libnjli_bytecode_shared SHARED
+    #     ${njli_generated_swig_embind}
+    #     ${njli_generated_swig_embind_platform}
+    #   )
+    #   SET_TARGET_PROPERTIES( libnjli_bytecode_shared PROPERTIES OUTPUT_NAME libnjli )
+    #   SET_TARGET_PROPERTIES( libnjli_bytecode_shared PROPERTIES PREFIX "")
+    #   TARGET_LINK_LIBRARIES( libnjli_bytecode_shared ${EXTRA_PLATFORM_LIBS} ${THIRD_PARTY_LIBS} ${NJLIGameEngine_LBY} )
+    #   SET_TARGET_PROPERTIES( libnjli_bytecode_shared PROPERTIES VERSION ${NJLIGameEngine_VERSION} SOVERSION ${NJLIGameEngine_VERSION_MAJOR})
+    #   ADD_DEPENDENCIES(libnjli_bytecode_shared WrapSWIG)
+    # ENDIF(IS_DEBUG)
 
   ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
 
@@ -5394,9 +5419,10 @@ IF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
 IF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
-  IF(IS_DEBUG)
-    TARGET_LINK_LIBRARIES( ${NJLI_PRODUCT_NAME} libnjli_bytecode_shared)
-  ENDIF(IS_DEBUG)
+  # TODO: fix embind...
+  # IF(IS_DEBUG)
+  #   TARGET_LINK_LIBRARIES( ${NJLI_PRODUCT_NAME} libnjli_bytecode_shared)
+  # ENDIF(IS_DEBUG)
 
   SET_TARGET_PROPERTIES( lua PROPERTIES OUTPUT_NAME index )
   SET_TARGET_PROPERTIES( luac PROPERTIES OUTPUT_NAME index )
@@ -5478,7 +5504,7 @@ ELSE()
   #TARGET_LINK_LIBRARIES( ${NJLI_PRODUCT_NAME} ${NJLIGameEngine_LBY} ${EXTRA_PLATFORM_LIBS} ${THIRD_PARTY_LIBS} NJLI)
 ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
 
-IF (APPLE)
+IF (APPLE OR ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten")
   ADD_CUSTOM_COMMAND(TARGET ${NJLI_PRODUCT_NAME}
     PRE_BUILD
     COMMAND export NJLI_GAME_ENGINE_ASSET_DIR=${NJLIGameEngine_COMMON_DIRECTORY} && export NJLI_BUILD_PLATFORM=${NJLI_BUILD_PLATFORM} && export NJLI_GRAPHICS_PLATFORM=${NJLI_GRAPHICS_PLATFORM} && export NJLI_SOUND_PLATFORM=${NJLI_SOUND_PLATFORM} && make
@@ -5488,7 +5514,7 @@ IF (APPLE)
     COMMAND export NJLI_GAME_ENGINE_ASSET_DIR=${NJLIGameEngine_COMMON_DIRECTORY} && export NJLI_BUILD_PLATFORM=${NJLI_BUILD_PLATFORM} && export NJLI_GRAPHICS_PLATFORM=${NJLI_GRAPHICS_PLATFORM} && export NJLI_SOUND_PLATFORM=${NJLI_SOUND_PLATFORM} && make clean
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/projects/COMMON
   )
-ENDIF (APPLE)
+ENDIF (APPLE OR ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten")
 
 IF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" OR ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" OR ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
   INSTALL(TARGETS NJLI

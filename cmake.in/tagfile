@@ -1659,6 +1659,7 @@
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/lua/src/</path>
     <filename>lauxlib_8h</filename>
     <includes id="lua_8h" name="lua.h" local="yes" imported="no">lua.h</includes>
+    <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <class kind="struct">luaL_Reg</class>
     <class kind="struct">luaL_Buffer</class>
     <class kind="struct">luaL_Stream</class>
@@ -9189,8 +9190,8 @@
     <name>AbstractObject.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/</path>
     <filename>_abstract_object_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_decorator_8h" name="AbstractDecorator.h" local="yes" imported="no">AbstractDecorator.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::AbstractObject</class>
     <namespace>njli</namespace>
   </compound>
@@ -9253,8 +9254,8 @@
     <name>ActionBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_action_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::ActionBuilder</class>
     <namespace>njli</namespace>
   </compound>
@@ -9262,8 +9263,8 @@
     <name>CameraBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_camera_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::CameraBuilder</class>
     <namespace>njli</namespace>
   </compound>
@@ -9271,8 +9272,8 @@
     <name>ClockBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_clock_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::ClockBuilder</class>
     <namespace>njli</namespace>
   </compound>
@@ -9280,8 +9281,8 @@
     <name>CollisionResponseBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_collision_response_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::CollisionResponseBuilder</class>
     <namespace>njli</namespace>
   </compound>
@@ -9289,8 +9290,8 @@
     <name>FontBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_font_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::FontBuilder</class>
     <namespace>njli</namespace>
   </compound>
@@ -9298,8 +9299,8 @@
     <name>ButtonHUDBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/graphics/</path>
     <filename>_button_h_u_d_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::ButtonHUDBuilder</class>
     <namespace>njli</namespace>
   </compound>
@@ -9307,8 +9308,8 @@
     <name>CheckboxHUDBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/graphics/</path>
     <filename>_checkbox_h_u_d_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::CheckboxHUDBuilder</class>
     <namespace>njli</namespace>
   </compound>
@@ -9316,8 +9317,8 @@
     <name>DropdownHUDBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/graphics/</path>
     <filename>_dropdown_h_u_d_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::DropdownHUDBuilder</class>
     <namespace>njli</namespace>
   </compound>
@@ -9325,8 +9326,8 @@
     <name>LabelHUDBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/graphics/</path>
     <filename>_label_h_u_d_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::LabelHUDBuilder</class>
     <namespace>njli</namespace>
   </compound>
@@ -9334,8 +9335,8 @@
     <name>MaterialBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/graphics/</path>
     <filename>_material_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::MaterialBuilder</class>
     <namespace>njli</namespace>
   </compound>
@@ -9343,8 +9344,8 @@
     <name>MaterialPropertyBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/graphics/</path>
     <filename>_material_property_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::MaterialPropertyBuilder</class>
     <namespace>njli</namespace>
   </compound>
@@ -9352,8 +9353,8 @@
     <name>ShaderProgramBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/graphics/</path>
     <filename>_shader_program_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::ShaderProgramBuilder</class>
     <namespace>njli</namespace>
   </compound>
@@ -9361,8 +9362,8 @@
     <name>SliderHUDBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/graphics/</path>
     <filename>_slider_h_u_d_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::SliderHUDBuilder</class>
     <namespace>njli</namespace>
   </compound>
@@ -9370,8 +9371,8 @@
     <name>Sprite2DBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/graphics/</path>
     <filename>_sprite2_d_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::Sprite2DBuilder</class>
     <namespace>njli</namespace>
   </compound>
@@ -9379,8 +9380,8 @@
     <name>TextboxHUDBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/graphics/</path>
     <filename>_textbox_h_u_d_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::TextboxHUDBuilder</class>
     <namespace>njli</namespace>
   </compound>
@@ -9388,8 +9389,8 @@
     <name>ImageBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_image_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::ImageBuilder</class>
     <namespace>njli</namespace>
   </compound>
@@ -9397,8 +9398,8 @@
     <name>JsonJLIBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_json_j_l_i_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::JsonJLIBuilder</class>
     <namespace>njli</namespace>
   </compound>
@@ -9406,8 +9407,8 @@
     <name>LevelOfDetailBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_level_of_detail_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::LevelOfDetailBuilder</class>
     <namespace>njli</namespace>
   </compound>
@@ -9415,8 +9416,8 @@
     <name>LightBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_light_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::LightBuilder</class>
     <namespace>njli</namespace>
   </compound>
@@ -9424,8 +9425,8 @@
     <name>NodeBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_node_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::NodeBuilder</class>
     <namespace>njli</namespace>
   </compound>
@@ -9433,8 +9434,8 @@
     <name>NodeStateBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_node_state_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::NodeStateBuilder</class>
     <namespace>njli</namespace>
   </compound>
@@ -9442,8 +9443,8 @@
     <name>NodeStateMachineBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_node_state_machine_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::NodeStateMachineBuilder</class>
     <namespace>njli</namespace>
   </compound>
@@ -9451,8 +9452,8 @@
     <name>ParticleEmitterBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_particle_emitter_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::ParticleEmitterBuilder</class>
     <namespace>njli</namespace>
   </compound>
@@ -9460,8 +9461,8 @@
     <name>PhysicsBodyGhostBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/body/</path>
     <filename>_physics_body_ghost_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::PhysicsBodyGhostBuilder</class>
     <namespace>njli</namespace>
   </compound>
@@ -9469,8 +9470,8 @@
     <name>PhysicsBodyRigidBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/body/</path>
     <filename>_physics_body_rigid_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::PhysicsBodyRigidBuilder</class>
     <namespace>njli</namespace>
   </compound>
@@ -9478,8 +9479,8 @@
     <name>PhysicsBodySoftBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/body/</path>
     <filename>_physics_body_soft_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::PhysicsBodySoftBuilder</class>
     <namespace>njli</namespace>
   </compound>
@@ -9487,8 +9488,8 @@
     <name>PhysicsConstraintBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/constraint/</path>
     <filename>_physics_constraint_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <class kind="class">njli::PhysicsConstraintBuilder</class>
     <namespace>njli</namespace>
@@ -9497,8 +9498,8 @@
     <name>PhysicsConstraintConeTwistBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/constraint/</path>
     <filename>_physics_constraint_cone_twist_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <class kind="class">njli::PhysicsConstraintConeTwistBuilder</class>
     <namespace>njli</namespace>
@@ -9507,8 +9508,8 @@
     <name>PhysicsConstraintFixedBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/constraint/</path>
     <filename>_physics_constraint_fixed_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <class kind="class">njli::PhysicsConstraintFixedBuilder</class>
     <namespace>njli</namespace>
@@ -9517,8 +9518,8 @@
     <name>PhysicsConstraintGeneric6DofBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/constraint/</path>
     <filename>_physics_constraint_generic6_dof_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <class kind="class">njli::PhysicsConstraintGeneric6DofBuilder</class>
     <namespace>njli</namespace>
@@ -9527,8 +9528,8 @@
     <name>PhysicsConstraintGeneric6DofSpringBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/constraint/</path>
     <filename>_physics_constraint_generic6_dof_spring_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <class kind="class">njli::PhysicsConstraintGeneric6DofSpringBuilder</class>
     <namespace>njli</namespace>
@@ -9537,8 +9538,8 @@
     <name>PhysicsConstraintHingeBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/constraint/</path>
     <filename>_physics_constraint_hinge_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <class kind="class">njli::PhysicsConstraintHingeBuilder</class>
     <namespace>njli</namespace>
@@ -9547,8 +9548,8 @@
     <name>PhysicsConstraintPointToPointBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/constraint/</path>
     <filename>_physics_constraint_point_to_point_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <class kind="class">njli::PhysicsConstraintPointToPointBuilder</class>
     <namespace>njli</namespace>
@@ -9557,8 +9558,8 @@
     <name>PhysicsConstraintSliderBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/constraint/</path>
     <filename>_physics_constraint_slider_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <class kind="class">njli::PhysicsConstraintSliderBuilder</class>
     <namespace>njli</namespace>
@@ -9567,8 +9568,8 @@
     <name>PhysicsCloseContactBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/</path>
     <filename>_physics_close_contact_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::PhysicsCloseContactBuilder</class>
     <namespace>njli</namespace>
   </compound>
@@ -9576,8 +9577,8 @@
     <name>PhysicsContactBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/</path>
     <filename>_physics_contact_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::PhysicsContactBuilder</class>
     <namespace>njli</namespace>
   </compound>
@@ -9585,8 +9586,8 @@
     <name>PhysicsFieldBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/</path>
     <filename>_physics_field_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::PhysicsFieldBuilder</class>
     <namespace>njli</namespace>
   </compound>
@@ -9594,8 +9595,8 @@
     <name>PhysicsRayContactBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/</path>
     <filename>_physics_ray_contact_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::PhysicsRayContactBuilder</class>
     <namespace>njli</namespace>
   </compound>
@@ -9603,8 +9604,8 @@
     <name>PhysicsWorldBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/</path>
     <filename>_physics_world_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::PhysicsWorldBuilder</class>
     <namespace>njli</namespace>
   </compound>
@@ -9612,8 +9613,8 @@
     <name>PhysicsShapeBox2DBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/shape/</path>
     <filename>_physics_shape_box2_d_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::PhysicsShapeBox2DBuilder</class>
     <namespace>njli</namespace>
   </compound>
@@ -9621,8 +9622,8 @@
     <name>PhysicsShapeBoxBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/shape/</path>
     <filename>_physics_shape_box_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::PhysicsShapeBoxBuilder</class>
     <namespace>njli</namespace>
   </compound>
@@ -9630,8 +9631,8 @@
     <name>PhysicsShapeBvhTriangleMeshBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/shape/</path>
     <filename>_physics_shape_bvh_triangle_mesh_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <class kind="class">njli::PhysicsShapeBvhTriangleMeshBuilder</class>
     <namespace>njli</namespace>
@@ -9640,8 +9641,8 @@
     <name>PhysicsShapeCapsuleBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/shape/</path>
     <filename>_physics_shape_capsule_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <class kind="class">njli::PhysicsShapeCapsuleBuilder</class>
     <namespace>njli</namespace>
@@ -9650,8 +9651,8 @@
     <name>PhysicsShapeConeBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/shape/</path>
     <filename>_physics_shape_cone_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <class kind="class">njli::PhysicsShapeConeBuilder</class>
     <namespace>njli</namespace>
@@ -9660,8 +9661,8 @@
     <name>PhysicsShapeConvexHullBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/shape/</path>
     <filename>_physics_shape_convex_hull_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <class kind="class">njli::PhysicsShapeConvexHullBuilder</class>
     <namespace>njli</namespace>
@@ -9670,8 +9671,8 @@
     <name>PhysicsShapeConvexTriangleMeshBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/shape/</path>
     <filename>_physics_shape_convex_triangle_mesh_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <class kind="class">njli::PhysicsShapeConvexTriangleMeshBuilder</class>
     <namespace>njli</namespace>
@@ -9680,8 +9681,8 @@
     <name>PhysicsShapeCylinderBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/shape/</path>
     <filename>_physics_shape_cylinder_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <class kind="class">njli::PhysicsShapeCylinderBuilder</class>
     <namespace>njli</namespace>
@@ -9690,8 +9691,8 @@
     <name>PhysicsShapeHeightfieldTerrainBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/shape/</path>
     <filename>_physics_shape_heightfield_terrain_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <class kind="class">njli::PhysicsShapeHeightfieldTerrainBuilder</class>
     <namespace>njli</namespace>
@@ -9700,8 +9701,8 @@
     <name>PhysicsShapeMultiSphereBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/shape/</path>
     <filename>_physics_shape_multi_sphere_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <class kind="class">njli::PhysicsShapeMultiSphereBuilder</class>
     <namespace>njli</namespace>
@@ -9710,8 +9711,8 @@
     <name>PhysicsShapeSphereBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/shape/</path>
     <filename>_physics_shape_sphere_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <class kind="class">njli::PhysicsShapeSphereBuilder</class>
     <namespace>njli</namespace>
@@ -9720,8 +9721,8 @@
     <name>PhysicsShapeStaticPlaneBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/physics/shape/</path>
     <filename>_physics_shape_static_plane_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <class kind="class">njli::PhysicsShapeStaticPlaneBuilder</class>
     <namespace>njli</namespace>
@@ -9730,8 +9731,8 @@
     <name>PlaneBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_plane_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::PlaneBuilder</class>
     <namespace>njli</namespace>
   </compound>
@@ -9739,8 +9740,8 @@
     <name>SceneBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_scene_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::SceneBuilder</class>
     <namespace>njli</namespace>
   </compound>
@@ -9748,8 +9749,8 @@
     <name>SceneStateBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_scene_state_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::SceneStateBuilder</class>
     <namespace>njli</namespace>
   </compound>
@@ -9757,8 +9758,8 @@
     <name>SceneStateMachineBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_scene_state_machine_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::SceneStateMachineBuilder</class>
     <namespace>njli</namespace>
   </compound>
@@ -9766,8 +9767,8 @@
     <name>SkinnerBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_skinner_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::SkinnerBuilder</class>
     <namespace>njli</namespace>
   </compound>
@@ -9775,8 +9776,8 @@
     <name>SoundBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/sound/</path>
     <filename>_sound_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::SoundBuilder</class>
     <namespace>njli</namespace>
   </compound>
@@ -9784,8 +9785,8 @@
     <name>SpriteFrameAtlasBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_sprite_frame_atlas_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::SpriteFrameAtlasBuilder</class>
     <namespace>njli</namespace>
   </compound>
@@ -9793,8 +9794,8 @@
     <name>SteeringBehaviorAlignmentBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/steering/behavior/</path>
     <filename>_steering_behavior_alignment_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <class kind="class">njli::SteeringBehaviorAlignmentBuilder</class>
     <namespace>njli</namespace>
@@ -9803,8 +9804,8 @@
     <name>SteeringBehaviorArriveBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/steering/behavior/</path>
     <filename>_steering_behavior_arrive_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <class kind="class">njli::SteeringBehaviorArriveBuilder</class>
     <namespace>njli</namespace>
@@ -9813,8 +9814,8 @@
     <name>SteeringBehaviorBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/steering/behavior/</path>
     <filename>_steering_behavior_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <class kind="class">njli::SteeringBehaviorBuilder</class>
     <namespace>njli</namespace>
@@ -9823,8 +9824,8 @@
     <name>SteeringBehaviorCohesionBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/steering/behavior/</path>
     <filename>_steering_behavior_cohesion_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <class kind="class">njli::SteeringBehaviorCohesionBuilder</class>
     <namespace>njli</namespace>
@@ -9833,8 +9834,8 @@
     <name>SteeringBehaviorEvadeBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/steering/behavior/</path>
     <filename>_steering_behavior_evade_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <class kind="class">njli::SteeringBehaviorEvadeBuilder</class>
     <namespace>njli</namespace>
@@ -9843,8 +9844,8 @@
     <name>SteeringBehaviorFleeBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/steering/behavior/</path>
     <filename>_steering_behavior_flee_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <class kind="class">njli::SteeringBehaviorFleeBuilder</class>
     <namespace>njli</namespace>
@@ -9853,8 +9854,8 @@
     <name>SteeringBehaviorFollowPathBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/steering/behavior/</path>
     <filename>_steering_behavior_follow_path_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <class kind="class">njli::SteeringBehaviorFollowPathBuilder</class>
     <namespace>njli</namespace>
@@ -9863,8 +9864,8 @@
     <name>SteeringBehaviorHideBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/steering/behavior/</path>
     <filename>_steering_behavior_hide_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <class kind="class">njli::SteeringBehaviorHideBuilder</class>
     <namespace>njli</namespace>
@@ -9873,8 +9874,8 @@
     <name>SteeringBehaviorInterposeBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/steering/behavior/</path>
     <filename>_steering_behavior_interpose_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <class kind="class">njli::SteeringBehaviorInterposeBuilder</class>
     <namespace>njli</namespace>
@@ -9883,8 +9884,8 @@
     <name>SteeringBehaviorObstacleAvoidanceBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/steering/behavior/</path>
     <filename>_steering_behavior_obstacle_avoidance_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <class kind="class">njli::SteeringBehaviorObstacleAvoidanceBuilder</class>
     <namespace>njli</namespace>
@@ -9893,8 +9894,8 @@
     <name>SteeringBehaviorOffsetPursuitBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/steering/behavior/</path>
     <filename>_steering_behavior_offset_pursuit_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <class kind="class">njli::SteeringBehaviorOffsetPursuitBuilder</class>
     <namespace>njli</namespace>
@@ -9903,8 +9904,8 @@
     <name>SteeringBehaviorPursuitBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/steering/behavior/</path>
     <filename>_steering_behavior_pursuit_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <class kind="class">njli::SteeringBehaviorPursuitBuilder</class>
     <namespace>njli</namespace>
@@ -9913,8 +9914,8 @@
     <name>SteeringBehaviorSeekBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/steering/behavior/</path>
     <filename>_steering_behavior_seek_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <class kind="class">njli::SteeringBehaviorSeekBuilder</class>
     <namespace>njli</namespace>
@@ -9923,8 +9924,8 @@
     <name>SteeringBehaviorSeparationBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/steering/behavior/</path>
     <filename>_steering_behavior_separation_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <class kind="class">njli::SteeringBehaviorSeparationBuilder</class>
     <namespace>njli</namespace>
@@ -9933,8 +9934,8 @@
     <name>SteeringBehaviorWallAvoidanceBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/steering/behavior/</path>
     <filename>_steering_behavior_wall_avoidance_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <class kind="class">njli::SteeringBehaviorWallAvoidanceBuilder</class>
     <namespace>njli</namespace>
@@ -9943,8 +9944,8 @@
     <name>SteeringBehaviorWanderBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/steering/behavior/</path>
     <filename>_steering_behavior_wander_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <class kind="class">njli::SteeringBehaviorWanderBuilder</class>
     <namespace>njli</namespace>
@@ -9953,8 +9954,8 @@
     <name>SteeringBehaviorMachineBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/steering/</path>
     <filename>_steering_behavior_machine_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <class kind="class">njli::SteeringBehaviorMachineBuilder</class>
     <namespace>njli</namespace>
@@ -9963,8 +9964,8 @@
     <name>SteeringBehaviorMachineDitheredBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/steering/</path>
     <filename>_steering_behavior_machine_dithered_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <class kind="class">njli::SteeringBehaviorMachineDitheredBuilder</class>
     <namespace>njli</namespace>
@@ -9973,8 +9974,8 @@
     <name>SteeringBehaviorMachinePrioritizedBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/steering/</path>
     <filename>_steering_behavior_machine_prioritized_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <class kind="class">njli::SteeringBehaviorMachinePrioritizedBuilder</class>
     <namespace>njli</namespace>
@@ -9983,8 +9984,8 @@
     <name>SteeringBehaviorMachineWeightedBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/steering/</path>
     <filename>_steering_behavior_machine_weighted_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <class kind="class">njli::SteeringBehaviorMachineWeightedBuilder</class>
     <namespace>njli</namespace>
@@ -9993,8 +9994,8 @@
     <name>StopWatchBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_stop_watch_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::StopWatchBuilder</class>
     <namespace>njli</namespace>
   </compound>
@@ -10002,8 +10003,8 @@
     <name>ThreadBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_thread_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <class kind="class">njli::ThreadBuilder</class>
     <namespace>njli</namespace>
@@ -10012,8 +10013,8 @@
     <name>TimerBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_timer_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::TimerBuilder</class>
     <namespace>njli</namespace>
   </compound>
@@ -10021,8 +10022,8 @@
     <name>WorldStateBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_world_state_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::WorldStateBuilder</class>
     <namespace>njli</namespace>
   </compound>
@@ -10030,8 +10031,8 @@
     <name>WorldStateMachineBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_world_state_machine_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::WorldStateMachineBuilder</class>
     <namespace>njli</namespace>
   </compound>
@@ -10039,8 +10040,8 @@
     <name>XmlBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/builders/</path>
     <filename>_xml_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::XmlBuilder</class>
     <namespace>njli</namespace>
   </compound>
@@ -10077,8 +10078,8 @@
     <name>CubeBuilder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/</path>
     <filename>_cube_builder_8h</filename>
-    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <class kind="class">njli::CubeBuilder</class>
     <namespace>njli</namespace>
   </compound>
@@ -10122,8 +10123,8 @@
     <name>swig_runtime.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/generated/swig/lua/</path>
     <filename>swig__runtime_8h</filename>
-    <includes id="lua_8h" name="lua.h" local="yes" imported="no">lua.h</includes>
     <includes id="lauxlib_8h" name="lauxlib.h" local="yes" imported="no">lauxlib.h</includes>
+    <includes id="lua_8h" name="lua.h" local="yes" imported="no">lua.h</includes>
     <class kind="struct">swig_type_info</class>
     <class kind="struct">swig_cast_info</class>
     <class kind="struct">swig_module_info</class>
@@ -11349,8 +11350,8 @@
     <name>Cube.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/graphics/</path>
     <filename>_cube_8h</filename>
-    <includes id="_geometry_8h" name="Geometry.h" local="yes" imported="no">Geometry.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_geometry_8h" name="Geometry.h" local="yes" imported="no">Geometry.h</includes>
     <class kind="class">njli::Cube</class>
     <class kind="struct">njli::Cube::CubeVerts</class>
     <namespace>njli</namespace>
@@ -11371,8 +11372,8 @@
     <filename>_geometry_8h</filename>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
-    <includes id="bt_vector2_8h" name="btVector2.h" local="yes" imported="no">btVector2.h</includes>
     <includes id="_j_l_i_factory_types_8h" name="JLIFactoryTypes.h" local="yes" imported="no">JLIFactoryTypes.h</includes>
+    <includes id="bt_vector2_8h" name="btVector2.h" local="yes" imported="no">btVector2.h</includes>
     <class kind="class">njli::Geometry</class>
     <class kind="struct">njli::Geometry::TexturedColoredVertex</class>
     <class kind="struct">njli::Geometry::TexturedNormaledColoredVertex</class>
@@ -11606,8 +11607,8 @@
     <name>Sprite2D.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/graphics/</path>
     <filename>_sprite2_d_8h</filename>
-    <includes id="_geometry_8h" name="Geometry.h" local="yes" imported="no">Geometry.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_geometry_8h" name="Geometry.h" local="yes" imported="no">Geometry.h</includes>
     <includes id="_sprite_frame_atlas_8h" name="SpriteFrameAtlas.h" local="yes" imported="no">SpriteFrameAtlas.h</includes>
     <class kind="class">njli::Sprite2D</class>
     <class kind="class">njli::Sprite2D::SpriteQuad</class>
@@ -11662,9 +11663,9 @@
     <filename>_image_8h</filename>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
     <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
-    <includes id="bt_vector2_8h" name="btVector2.h" local="yes" imported="no">btVector2.h</includes>
     <includes id="_j_l_i_factory_types_8h" name="JLIFactoryTypes.h" local="yes" imported="no">JLIFactoryTypes.h</includes>
     <includes id="_world_resource_loader_8h" name="WorldResourceLoader.h" local="yes" imported="no">WorldResourceLoader.h</includes>
+    <includes id="bt_vector2_8h" name="btVector2.h" local="yes" imported="no">btVector2.h</includes>
     <class kind="class">njli::Image</class>
     <namespace>njli</namespace>
   </compound>
@@ -11681,17 +11682,17 @@
     <includes id="_abstract_object_8h" name="AbstractObject.h" local="yes" imported="no">AbstractObject.h</includes>
     <includes id="_abstract_state_8h" name="AbstractState.h" local="yes" imported="no">AbstractState.h</includes>
     <includes id="_abstract_state_machine_8h" name="AbstractStateMachine.h" local="yes" imported="no">AbstractStateMachine.h</includes>
-    <includes id="_physics_body_8h" name="PhysicsBody.h" local="yes" imported="no">PhysicsBody.h</includes>
     <includes id="_j_l_i_factory_types_8h" name="JLIFactoryTypes.h" local="yes" imported="no">JLIFactoryTypes.h</includes>
-    <includes id="_physics_shape_8h" name="PhysicsShape.h" local="yes" imported="no">PhysicsShape.h</includes>
+    <includes id="_physics_body_8h" name="PhysicsBody.h" local="yes" imported="no">PhysicsBody.h</includes>
     <includes id="_geometry_8h" name="Geometry.h" local="yes" imported="no">Geometry.h</includes>
+    <includes id="_physics_shape_8h" name="PhysicsShape.h" local="yes" imported="no">PhysicsShape.h</includes>
     <includes id="_world_8h" name="World.h" local="yes" imported="no">World.h</includes>
     <includes id="_world_factory_8h" name="WorldFactory.h" local="yes" imported="no">WorldFactory.h</includes>
     <includes id="_world_lua_virtual_machine_8h" name="WorldLuaVirtualMachine.h" local="yes" imported="no">WorldLuaVirtualMachine.h</includes>
-    <includes id="_world_resource_loader_8h" name="WorldResourceLoader.h" local="yes" imported="no">WorldResourceLoader.h</includes>
     <includes id="_world_clock_8h" name="WorldClock.h" local="yes" imported="no">WorldClock.h</includes>
-    <includes id="_world_socket_8h" name="WorldSocket.h" local="yes" imported="no">WorldSocket.h</includes>
     <includes id="_world_debug_drawer_8h" name="WorldDebugDrawer.h" local="yes" imported="no">WorldDebugDrawer.h</includes>
+    <includes id="_world_resource_loader_8h" name="WorldResourceLoader.h" local="yes" imported="no">WorldResourceLoader.h</includes>
+    <includes id="_world_socket_8h" name="WorldSocket.h" local="yes" imported="no">WorldSocket.h</includes>
     <includes id="_action_8h" name="Action.h" local="yes" imported="no">Action.h</includes>
     <includes id="_action_builder_8h" name="ActionBuilder.h" local="yes" imported="no">ActionBuilder.h</includes>
     <includes id="_camera_8h" name="Camera.h" local="yes" imported="no">Camera.h</includes>
@@ -11708,10 +11709,10 @@
     <includes id="_image_builder_8h" name="ImageBuilder.h" local="yes" imported="no">ImageBuilder.h</includes>
     <includes id="_json_j_l_i_8h" name="JsonJLI.h" local="yes" imported="no">JsonJLI.h</includes>
     <includes id="_json_j_l_i_builder_8h" name="JsonJLIBuilder.h" local="yes" imported="no">JsonJLIBuilder.h</includes>
-    <includes id="_light_8h" name="Light.h" local="yes" imported="no">Light.h</includes>
-    <includes id="_light_builder_8h" name="LightBuilder.h" local="yes" imported="no">LightBuilder.h</includes>
     <includes id="_level_of_detail_8h" name="LevelOfDetail.h" local="yes" imported="no">LevelOfDetail.h</includes>
     <includes id="_level_of_detail_builder_8h" name="LevelOfDetailBuilder.h" local="yes" imported="no">LevelOfDetailBuilder.h</includes>
+    <includes id="_light_8h" name="Light.h" local="yes" imported="no">Light.h</includes>
+    <includes id="_light_builder_8h" name="LightBuilder.h" local="yes" imported="no">LightBuilder.h</includes>
     <includes id="_material_8h" name="Material.h" local="yes" imported="no">Material.h</includes>
     <includes id="_material_builder_8h" name="MaterialBuilder.h" local="yes" imported="no">MaterialBuilder.h</includes>
     <includes id="_material_property_8h" name="MaterialProperty.h" local="yes" imported="no">MaterialProperty.h</includes>
@@ -11738,8 +11739,6 @@
     <includes id="_physics_constraint_hinge_builder_8h" name="PhysicsConstraintHingeBuilder.h" local="yes" imported="no">PhysicsConstraintHingeBuilder.h</includes>
     <includes id="_physics_constraint_point_to_point_8h" name="PhysicsConstraintPointToPoint.h" local="yes" imported="no">PhysicsConstraintPointToPoint.h</includes>
     <includes id="_physics_constraint_point_to_point_builder_8h" name="PhysicsConstraintPointToPointBuilder.h" local="yes" imported="no">PhysicsConstraintPointToPointBuilder.h</includes>
-    <includes id="_physics_constraint_slider_8h" name="PhysicsConstraintSlider.h" local="yes" imported="no">PhysicsConstraintSlider.h</includes>
-    <includes id="_physics_constraint_slider_builder_8h" name="PhysicsConstraintSliderBuilder.h" local="yes" imported="no">PhysicsConstraintSliderBuilder.h</includes>
     <includes id="_physics_constraint_cone_twist_8h" name="PhysicsConstraintConeTwist.h" local="yes" imported="no">PhysicsConstraintConeTwist.h</includes>
     <includes id="_physics_constraint_cone_twist_builder_8h" name="PhysicsConstraintConeTwistBuilder.h" local="yes" imported="no">PhysicsConstraintConeTwistBuilder.h</includes>
     <includes id="_physics_constraint_fixed_8h" name="PhysicsConstraintFixed.h" local="yes" imported="no">PhysicsConstraintFixed.h</includes>
@@ -11748,6 +11747,8 @@
     <includes id="_physics_constraint_generic6_dof_builder_8h" name="PhysicsConstraintGeneric6DofBuilder.h" local="yes" imported="no">PhysicsConstraintGeneric6DofBuilder.h</includes>
     <includes id="_physics_constraint_generic6_dof_spring_8h" name="PhysicsConstraintGeneric6DofSpring.h" local="yes" imported="no">PhysicsConstraintGeneric6DofSpring.h</includes>
     <includes id="_physics_constraint_generic6_dof_spring_builder_8h" name="PhysicsConstraintGeneric6DofSpringBuilder.h" local="yes" imported="no">PhysicsConstraintGeneric6DofSpringBuilder.h</includes>
+    <includes id="_physics_constraint_slider_8h" name="PhysicsConstraintSlider.h" local="yes" imported="no">PhysicsConstraintSlider.h</includes>
+    <includes id="_physics_constraint_slider_builder_8h" name="PhysicsConstraintSliderBuilder.h" local="yes" imported="no">PhysicsConstraintSliderBuilder.h</includes>
     <includes id="_physics_contact_8h" name="PhysicsContact.h" local="yes" imported="no">PhysicsContact.h</includes>
     <includes id="_physics_contact_builder_8h" name="PhysicsContactBuilder.h" local="yes" imported="no">PhysicsContactBuilder.h</includes>
     <includes id="_physics_field_8h" name="PhysicsField.h" local="yes" imported="no">PhysicsField.h</includes>
@@ -11755,27 +11756,27 @@
     <includes id="_physics_ray_contact_8h" name="PhysicsRayContact.h" local="yes" imported="no">PhysicsRayContact.h</includes>
     <includes id="_physics_ray_contact_builder_8h" name="PhysicsRayContactBuilder.h" local="yes" imported="no">PhysicsRayContactBuilder.h</includes>
     <includes id="_physics_shape_box_8h" name="PhysicsShapeBox.h" local="yes" imported="no">PhysicsShapeBox.h</includes>
-    <includes id="_physics_shape_box_builder_8h" name="PhysicsShapeBoxBuilder.h" local="yes" imported="no">PhysicsShapeBoxBuilder.h</includes>
     <includes id="_physics_shape_box2_d_8h" name="PhysicsShapeBox2D.h" local="yes" imported="no">PhysicsShapeBox2D.h</includes>
     <includes id="_physics_shape_box2_d_builder_8h" name="PhysicsShapeBox2DBuilder.h" local="yes" imported="no">PhysicsShapeBox2DBuilder.h</includes>
-    <includes id="_physics_shape_sphere_8h" name="PhysicsShapeSphere.h" local="yes" imported="no">PhysicsShapeSphere.h</includes>
-    <includes id="_physics_shape_sphere_builder_8h" name="PhysicsShapeSphereBuilder.h" local="yes" imported="no">PhysicsShapeSphereBuilder.h</includes>
-    <includes id="_physics_shape_cylinder_8h" name="PhysicsShapeCylinder.h" local="yes" imported="no">PhysicsShapeCylinder.h</includes>
-    <includes id="_physics_shape_cylinder_builder_8h" name="PhysicsShapeCylinderBuilder.h" local="yes" imported="no">PhysicsShapeCylinderBuilder.h</includes>
+    <includes id="_physics_shape_box_builder_8h" name="PhysicsShapeBoxBuilder.h" local="yes" imported="no">PhysicsShapeBoxBuilder.h</includes>
+    <includes id="_physics_shape_bvh_triangle_mesh_8h" name="PhysicsShapeBvhTriangleMesh.h" local="yes" imported="no">PhysicsShapeBvhTriangleMesh.h</includes>
+    <includes id="_physics_shape_bvh_triangle_mesh_builder_8h" name="PhysicsShapeBvhTriangleMeshBuilder.h" local="yes" imported="no">PhysicsShapeBvhTriangleMeshBuilder.h</includes>
     <includes id="_physics_shape_capsule_8h" name="PhysicsShapeCapsule.h" local="yes" imported="no">PhysicsShapeCapsule.h</includes>
     <includes id="_physics_shape_capsule_builder_8h" name="PhysicsShapeCapsuleBuilder.h" local="yes" imported="no">PhysicsShapeCapsuleBuilder.h</includes>
     <includes id="_physics_shape_cone_8h" name="PhysicsShapeCone.h" local="yes" imported="no">PhysicsShapeCone.h</includes>
     <includes id="_physics_shape_cone_builder_8h" name="PhysicsShapeConeBuilder.h" local="yes" imported="no">PhysicsShapeConeBuilder.h</includes>
-    <includes id="_physics_shape_multi_sphere_8h" name="PhysicsShapeMultiSphere.h" local="yes" imported="no">PhysicsShapeMultiSphere.h</includes>
-    <includes id="_physics_shape_multi_sphere_builder_8h" name="PhysicsShapeMultiSphereBuilder.h" local="yes" imported="no">PhysicsShapeMultiSphereBuilder.h</includes>
     <includes id="_physics_shape_convex_hull_8h" name="PhysicsShapeConvexHull.h" local="yes" imported="no">PhysicsShapeConvexHull.h</includes>
     <includes id="_physics_shape_convex_hull_builder_8h" name="PhysicsShapeConvexHullBuilder.h" local="yes" imported="no">PhysicsShapeConvexHullBuilder.h</includes>
     <includes id="_physics_shape_convex_triangle_mesh_8h" name="PhysicsShapeConvexTriangleMesh.h" local="yes" imported="no">PhysicsShapeConvexTriangleMesh.h</includes>
     <includes id="_physics_shape_convex_triangle_mesh_builder_8h" name="PhysicsShapeConvexTriangleMeshBuilder.h" local="yes" imported="no">PhysicsShapeConvexTriangleMeshBuilder.h</includes>
-    <includes id="_physics_shape_bvh_triangle_mesh_8h" name="PhysicsShapeBvhTriangleMesh.h" local="yes" imported="no">PhysicsShapeBvhTriangleMesh.h</includes>
-    <includes id="_physics_shape_bvh_triangle_mesh_builder_8h" name="PhysicsShapeBvhTriangleMeshBuilder.h" local="yes" imported="no">PhysicsShapeBvhTriangleMeshBuilder.h</includes>
+    <includes id="_physics_shape_cylinder_8h" name="PhysicsShapeCylinder.h" local="yes" imported="no">PhysicsShapeCylinder.h</includes>
+    <includes id="_physics_shape_cylinder_builder_8h" name="PhysicsShapeCylinderBuilder.h" local="yes" imported="no">PhysicsShapeCylinderBuilder.h</includes>
     <includes id="_physics_shape_heightfield_terrain_8h" name="PhysicsShapeHeightfieldTerrain.h" local="yes" imported="no">PhysicsShapeHeightfieldTerrain.h</includes>
     <includes id="_physics_shape_heightfield_terrain_builder_8h" name="PhysicsShapeHeightfieldTerrainBuilder.h" local="yes" imported="no">PhysicsShapeHeightfieldTerrainBuilder.h</includes>
+    <includes id="_physics_shape_multi_sphere_8h" name="PhysicsShapeMultiSphere.h" local="yes" imported="no">PhysicsShapeMultiSphere.h</includes>
+    <includes id="_physics_shape_multi_sphere_builder_8h" name="PhysicsShapeMultiSphereBuilder.h" local="yes" imported="no">PhysicsShapeMultiSphereBuilder.h</includes>
+    <includes id="_physics_shape_sphere_8h" name="PhysicsShapeSphere.h" local="yes" imported="no">PhysicsShapeSphere.h</includes>
+    <includes id="_physics_shape_sphere_builder_8h" name="PhysicsShapeSphereBuilder.h" local="yes" imported="no">PhysicsShapeSphereBuilder.h</includes>
     <includes id="_physics_shape_static_plane_8h" name="PhysicsShapeStaticPlane.h" local="yes" imported="no">PhysicsShapeStaticPlane.h</includes>
     <includes id="_physics_shape_static_plane_builder_8h" name="PhysicsShapeStaticPlaneBuilder.h" local="yes" imported="no">PhysicsShapeStaticPlaneBuilder.h</includes>
     <includes id="_physics_world_8h" name="PhysicsWorld.h" local="yes" imported="no">PhysicsWorld.h</includes>
@@ -11799,11 +11800,11 @@
     <includes id="_sprite_frame_atlas_8h" name="SpriteFrameAtlas.h" local="yes" imported="no">SpriteFrameAtlas.h</includes>
     <includes id="_sprite_frame_atlas_builder_8h" name="SpriteFrameAtlasBuilder.h" local="yes" imported="no">SpriteFrameAtlasBuilder.h</includes>
     <includes id="_steering_behavior_8h" name="SteeringBehavior.h" local="yes" imported="no">SteeringBehavior.h</includes>
-    <includes id="_steering_behavior_builder_8h" name="SteeringBehaviorBuilder.h" local="yes" imported="no">SteeringBehaviorBuilder.h</includes>
     <includes id="_steering_behavior_alignment_8h" name="SteeringBehaviorAlignment.h" local="yes" imported="no">SteeringBehaviorAlignment.h</includes>
     <includes id="_steering_behavior_alignment_builder_8h" name="SteeringBehaviorAlignmentBuilder.h" local="yes" imported="no">SteeringBehaviorAlignmentBuilder.h</includes>
     <includes id="_steering_behavior_arrive_8h" name="SteeringBehaviorArrive.h" local="yes" imported="no">SteeringBehaviorArrive.h</includes>
     <includes id="_steering_behavior_arrive_builder_8h" name="SteeringBehaviorArriveBuilder.h" local="yes" imported="no">SteeringBehaviorArriveBuilder.h</includes>
+    <includes id="_steering_behavior_builder_8h" name="SteeringBehaviorBuilder.h" local="yes" imported="no">SteeringBehaviorBuilder.h</includes>
     <includes id="_steering_behavior_cohesion_8h" name="SteeringBehaviorCohesion.h" local="yes" imported="no">SteeringBehaviorCohesion.h</includes>
     <includes id="_steering_behavior_cohesion_builder_8h" name="SteeringBehaviorCohesionBuilder.h" local="yes" imported="no">SteeringBehaviorCohesionBuilder.h</includes>
     <includes id="_steering_behavior_evade_8h" name="SteeringBehaviorEvade.h" local="yes" imported="no">SteeringBehaviorEvade.h</includes>
@@ -14038,9 +14039,9 @@
     <name>NodeStateMachine.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/</path>
     <filename>_node_state_machine_8h</filename>
-    <includes id="_node_8h" name="Node.h" local="yes" imported="no">Node.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
     <includes id="_abstract_state_machine_8h" name="AbstractStateMachine.h" local="yes" imported="no">AbstractStateMachine.h</includes>
+    <includes id="_node_8h" name="Node.h" local="yes" imported="no">Node.h</includes>
     <class kind="class">njli::NodeStateMachine</class>
     <namespace>njli</namespace>
   </compound>
@@ -14058,8 +14059,8 @@
     <name>PhysicsBodyGhost.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/body/</path>
     <filename>_physics_body_ghost_8h</filename>
-    <includes id="_physics_body_8h" name="PhysicsBody.h" local="yes" imported="no">PhysicsBody.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_physics_body_8h" name="PhysicsBody.h" local="yes" imported="no">PhysicsBody.h</includes>
     <class kind="class">njli::PhysicsBodyGhost</class>
     <namespace>njli</namespace>
   </compound>
@@ -14067,8 +14068,8 @@
     <name>PhysicsBodyRigid.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/body/</path>
     <filename>_physics_body_rigid_8h</filename>
-    <includes id="_physics_body_8h" name="PhysicsBody.h" local="yes" imported="no">PhysicsBody.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_physics_body_8h" name="PhysicsBody.h" local="yes" imported="no">PhysicsBody.h</includes>
     <class kind="class">njli::PhysicsBodyRigid</class>
     <class kind="class">njli::PhysicsBodyRigid::ForceAndPosition</class>
     <namespace>njli</namespace>
@@ -14077,8 +14078,8 @@
     <name>PhysicsBodySoft.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/body/</path>
     <filename>_physics_body_soft_8h</filename>
-    <includes id="_physics_body_8h" name="PhysicsBody.h" local="yes" imported="no">PhysicsBody.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_physics_body_8h" name="PhysicsBody.h" local="yes" imported="no">PhysicsBody.h</includes>
     <class kind="class">njli::PhysicsBodySoft</class>
     <namespace>njli</namespace>
   </compound>
@@ -14096,8 +14097,8 @@
     <name>PhysicsConstraintConeTwist.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/constraint/</path>
     <filename>_physics_constraint_cone_twist_8h</filename>
-    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <includes id="_physics_constraint_8h" name="PhysicsConstraint.h" local="yes" imported="no">PhysicsConstraint.h</includes>
     <class kind="class">njli::PhysicsConstraintConeTwist</class>
@@ -14107,8 +14108,8 @@
     <name>PhysicsConstraintFixed.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/constraint/</path>
     <filename>_physics_constraint_fixed_8h</filename>
-    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <includes id="_physics_constraint_8h" name="PhysicsConstraint.h" local="yes" imported="no">PhysicsConstraint.h</includes>
     <class kind="class">njli::PhysicsConstraintFixed</class>
@@ -14118,8 +14119,8 @@
     <name>PhysicsConstraintGeneric6Dof.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/constraint/</path>
     <filename>_physics_constraint_generic6_dof_8h</filename>
-    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <includes id="_physics_constraint_8h" name="PhysicsConstraint.h" local="yes" imported="no">PhysicsConstraint.h</includes>
     <class kind="class">njli::PhysicsConstraintGeneric6Dof</class>
@@ -14129,8 +14130,8 @@
     <name>PhysicsConstraintGeneric6DofSpring.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/constraint/</path>
     <filename>_physics_constraint_generic6_dof_spring_8h</filename>
-    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <includes id="_physics_constraint_generic6_dof_8h" name="PhysicsConstraintGeneric6Dof.h" local="yes" imported="no">PhysicsConstraintGeneric6Dof.h</includes>
     <class kind="class">njli::PhysicsConstraintGeneric6DofSpring</class>
@@ -14140,8 +14141,8 @@
     <name>PhysicsConstraintHinge.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/constraint/</path>
     <filename>_physics_constraint_hinge_8h</filename>
-    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <includes id="_physics_constraint_8h" name="PhysicsConstraint.h" local="yes" imported="no">PhysicsConstraint.h</includes>
     <class kind="class">njli::PhysicsConstraintHinge</class>
@@ -14151,8 +14152,8 @@
     <name>PhysicsConstraintPointToPoint.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/constraint/</path>
     <filename>_physics_constraint_point_to_point_8h</filename>
-    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <includes id="_physics_constraint_8h" name="PhysicsConstraint.h" local="yes" imported="no">PhysicsConstraint.h</includes>
     <class kind="class">njli::PhysicsConstraintPointToPoint</class>
@@ -14162,8 +14163,8 @@
     <name>PhysicsConstraintSlider.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/constraint/</path>
     <filename>_physics_constraint_slider_8h</filename>
-    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <includes id="_physics_constraint_8h" name="PhysicsConstraint.h" local="yes" imported="no">PhysicsConstraint.h</includes>
     <class kind="class">njli::PhysicsConstraintSlider</class>
@@ -14251,8 +14252,8 @@
     <name>PhysicsShapeBox.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/shape/</path>
     <filename>_physics_shape_box_8h</filename>
-    <includes id="_physics_shape_8h" name="PhysicsShape.h" local="yes" imported="no">PhysicsShape.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_physics_shape_8h" name="PhysicsShape.h" local="yes" imported="no">PhysicsShape.h</includes>
     <class kind="class">njli::PhysicsShapeBox</class>
     <namespace>njli</namespace>
   </compound>
@@ -14260,8 +14261,8 @@
     <name>PhysicsShapeBox2D.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/shape/</path>
     <filename>_physics_shape_box2_d_8h</filename>
-    <includes id="_physics_shape_8h" name="PhysicsShape.h" local="yes" imported="no">PhysicsShape.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_physics_shape_8h" name="PhysicsShape.h" local="yes" imported="no">PhysicsShape.h</includes>
     <class kind="class">njli::PhysicsShapeBox2D</class>
     <namespace>njli</namespace>
   </compound>
@@ -14269,8 +14270,8 @@
     <name>PhysicsShapeBvhTriangleMesh.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/shape/</path>
     <filename>_physics_shape_bvh_triangle_mesh_8h</filename>
-    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <includes id="_physics_shape_8h" name="PhysicsShape.h" local="yes" imported="no">PhysicsShape.h</includes>
     <class kind="class">njli::PhysicsShapeBvhTriangleMesh</class>
@@ -14280,8 +14281,8 @@
     <name>PhysicsShapeCapsule.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/shape/</path>
     <filename>_physics_shape_capsule_8h</filename>
-    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <includes id="_physics_shape_8h" name="PhysicsShape.h" local="yes" imported="no">PhysicsShape.h</includes>
     <class kind="class">njli::PhysicsShapeCapsule</class>
@@ -14291,8 +14292,8 @@
     <name>PhysicsShapeCone.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/shape/</path>
     <filename>_physics_shape_cone_8h</filename>
-    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <includes id="_physics_shape_8h" name="PhysicsShape.h" local="yes" imported="no">PhysicsShape.h</includes>
     <class kind="class">njli::PhysicsShapeCone</class>
@@ -14302,8 +14303,8 @@
     <name>PhysicsShapeConvexHull.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/shape/</path>
     <filename>_physics_shape_convex_hull_8h</filename>
-    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <includes id="_physics_shape_8h" name="PhysicsShape.h" local="yes" imported="no">PhysicsShape.h</includes>
     <class kind="class">njli::PhysicsShapeConvexHull</class>
@@ -14313,8 +14314,8 @@
     <name>PhysicsShapeConvexTriangleMesh.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/shape/</path>
     <filename>_physics_shape_convex_triangle_mesh_8h</filename>
-    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <includes id="_physics_shape_8h" name="PhysicsShape.h" local="yes" imported="no">PhysicsShape.h</includes>
     <class kind="class">njli::PhysicsShapeConvexTriangleMesh</class>
@@ -14324,8 +14325,8 @@
     <name>PhysicsShapeCylinder.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/shape/</path>
     <filename>_physics_shape_cylinder_8h</filename>
-    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <includes id="_physics_shape_8h" name="PhysicsShape.h" local="yes" imported="no">PhysicsShape.h</includes>
     <class kind="class">njli::PhysicsShapeCylinder</class>
@@ -14335,8 +14336,8 @@
     <name>PhysicsShapeHeightfieldTerrain.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/shape/</path>
     <filename>_physics_shape_heightfield_terrain_8h</filename>
-    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <includes id="_physics_shape_8h" name="PhysicsShape.h" local="yes" imported="no">PhysicsShape.h</includes>
     <class kind="class">njli::PhysicsShapeHeightfieldTerrain</class>
@@ -14346,8 +14347,8 @@
     <name>PhysicsShapeMultiSphere.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/shape/</path>
     <filename>_physics_shape_multi_sphere_8h</filename>
-    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <includes id="_physics_shape_8h" name="PhysicsShape.h" local="yes" imported="no">PhysicsShape.h</includes>
     <class kind="class">njli::PhysicsShapeMultiSphere</class>
@@ -14357,8 +14358,8 @@
     <name>PhysicsShapeSphere.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/shape/</path>
     <filename>_physics_shape_sphere_8h</filename>
-    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <includes id="_physics_shape_8h" name="PhysicsShape.h" local="yes" imported="no">PhysicsShape.h</includes>
     <class kind="class">njli::PhysicsShapeSphere</class>
@@ -14368,8 +14369,8 @@
     <name>PhysicsShapeStaticPlane.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/physics/shape/</path>
     <filename>_physics_shape_static_plane_8h</filename>
-    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <includes id="_physics_shape_8h" name="PhysicsShape.h" local="yes" imported="no">PhysicsShape.h</includes>
     <class kind="class">njli::PhysicsShapeStaticPlane</class>
@@ -14566,6 +14567,16 @@
     <namespace>njli</namespace>
   </compound>
   <compound kind="file">
+    <name>DeviceKey.h</name>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/platform/</path>
+    <filename>_device_key_8h</filename>
+    <includes id="_device_input_time_8h" name="DeviceInputTime.h" local="yes" imported="no">DeviceInputTime.h</includes>
+    <includes id="_game_8h" name="Game.h" local="yes" imported="no">Game.h</includes>
+    <includes id="bt_vector2_8h" name="btVector2.h" local="yes" imported="no">btVector2.h</includes>
+    <class kind="class">njli::DeviceKey</class>
+    <namespace>njli</namespace>
+  </compound>
+  <compound kind="file">
     <name>DeviceMouse.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/platform/</path>
     <filename>_device_mouse_8h</filename>
@@ -14579,8 +14590,8 @@
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/platform/</path>
     <filename>_device_touch_8h</filename>
     <includes id="_device_input_time_8h" name="DeviceInputTime.h" local="yes" imported="no">DeviceInputTime.h</includes>
-    <includes id="bt_vector2_8h" name="btVector2.h" local="yes" imported="no">btVector2.h</includes>
     <includes id="_game_8h" name="Game.h" local="yes" imported="no">Game.h</includes>
+    <includes id="bt_vector2_8h" name="btVector2.h" local="yes" imported="no">btVector2.h</includes>
     <class kind="class">njli::DeviceTouch</class>
     <namespace>njli</namespace>
   </compound>
@@ -14589,6 +14600,40 @@
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/platform/</path>
     <filename>_device_util_8h</filename>
     <class kind="class">DeviceUtil</class>
+  </compound>
+  <compound kind="file">
+    <name>Engine.h</name>
+    <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/platform/</path>
+    <filename>_engine_8h</filename>
+    <namespace>njli</namespace>
+    <member kind="define">
+      <type>#define</type>
+      <name>NJLIGameEngine_VERSION_MAJOR</name>
+      <anchorfile>_engine_8h.html</anchorfile>
+      <anchor>a90a7149ee8d93d85cfc2880b4292918a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>NJLIGameEngine_VERSION_MINOR</name>
+      <anchorfile>_engine_8h.html</anchorfile>
+      <anchor>a7e530e1df9671d0dbdf343a0a9620ecf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>NJLIGameEngine_VERSION_RELEASE</name>
+      <anchorfile>_engine_8h.html</anchorfile>
+      <anchor>a33646c1b30c8c9f65c230fa1a9b27259</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>run_main</name>
+      <anchorfile>namespacenjli.html</anchorfile>
+      <anchor>a763b51626ae6d3f240198aa15876fbf1</anchor>
+      <arglist>(int argc, char **argv)</arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>File.h</name>
@@ -14718,10 +14763,17 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>njli_luawrite</name>
+      <anchorfile>_log_8h.html</anchorfile>
+      <anchor>a4ae434427436c69e2d65f41208958ce0</anchor>
+      <arglist>(c, l)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>SCRIPT_ERROR</name>
       <anchorfile>_log_8h.html</anchorfile>
-      <anchor>af909ee72ae8c24f9af92ce0046ebf1d6</anchor>
-      <arglist>(fmt,...)</arglist>
+      <anchor>af14a46f6f51a3142c39994ac6354b57f</anchor>
+      <arglist>(tag, fmt,...)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -14762,15 +14814,15 @@
       <type>#define</type>
       <name>SDL_assertCheck</name>
       <anchorfile>_log_8h.html</anchorfile>
-      <anchor>a978167583aaf4c2a1dac0d79b4503aa9</anchor>
-      <arglist>(condition, fmt,...)</arglist>
+      <anchor>ad5ee87790648f8d2f260fab5fcb164b1</anchor>
+      <arglist>(condition, fmt, args...)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>SDL_assertPrint</name>
       <anchorfile>_log_8h.html</anchorfile>
-      <anchor>a608d34a4bb088c07115e5bafae14769f</anchor>
-      <arglist>(condition, fmt,...)</arglist>
+      <anchor>abc93d4c7479c9cfe34fd99c5d47d42ad</anchor>
+      <arglist>(condition, fmt, args...)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -15087,14 +15139,14 @@
       <type>std::map&lt; int, SDL_Joystick * &gt;</type>
       <name>JoystickMap</name>
       <anchorfile>_n_j_l_i_interface_8h.html</anchorfile>
-      <anchor>ada9fd1c9869a427aceb750e959c0a27e</anchor>
+      <anchor>a2642a79c3f661b171d671a8faca552c4</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>std::pair&lt; int, SDL_Joystick * &gt;</type>
       <name>JoystickPair</name>
       <anchorfile>_n_j_l_i_interface_8h.html</anchorfile>
-      <anchor>a587b12aa1e7e74156e8b1709ce05a5c9</anchor>
+      <anchor>a49256682c3474ea60e1aa3e4f3726f1d</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
@@ -15185,15 +15237,15 @@
       <type>void</type>
       <name>NJLI_HandleKeyDown</name>
       <anchorfile>_n_j_l_i_interface_8h.html</anchorfile>
-      <anchor>a0851f85d3ea0608bda67304553f6a4f4</anchor>
-      <arglist>(int keycode)</arglist>
+      <anchor>a68c675ef4b67a621a9b07956a87f164c</anchor>
+      <arglist>(const std::string &amp;keycodeName, bool withCapsLock, bool withControl, bool withShift, bool withAlt, bool withGui)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>NJLI_HandleKeyUp</name>
       <anchorfile>_n_j_l_i_interface_8h.html</anchorfile>
-      <anchor>af50d64e68b52a29568c089cd19e8642e</anchor>
-      <arglist>(int keycode)</arglist>
+      <anchor>aae7e9403cfa5ccc5fd54012350fd153d</anchor>
+      <arglist>(const std::string &amp;keycodeName, bool withCapsLock, bool withControl, bool withShift, bool withAlt, bool withGui)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -15201,6 +15253,13 @@
       <anchorfile>_n_j_l_i_interface_8h.html</anchorfile>
       <anchor>af76d7bc62254b701c7266713652b1578</anchor>
       <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>NJLI_HandleKeyboardFinish</name>
+      <anchorfile>_n_j_l_i_interface_8h.html</anchorfile>
+      <anchor>ad3d8b0648b78539ef5da05c66816fdde</anchor>
+      <arglist>(const unsigned char *state, int numStates)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -15283,7 +15342,7 @@
       <type>std::vector&lt; SDL_Joystick * &gt;</type>
       <name>gGameJoysticks</name>
       <anchorfile>_n_j_l_i_interface_8h.html</anchorfile>
-      <anchor>a697cce88e66e5fd7a4955dbb2db83497</anchor>
+      <anchor>ad44d313c047589b11b13ed2b86b8c4db</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -15531,8 +15590,8 @@
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/platform/</path>
     <filename>_world_input_8h</filename>
     <includes id="_abstract_object_8h" name="AbstractObject.h" local="yes" imported="no">AbstractObject.h</includes>
-    <includes id="_device_touch_8h" name="DeviceTouch.h" local="yes" imported="no">DeviceTouch.h</includes>
     <includes id="_device_mouse_8h" name="DeviceMouse.h" local="yes" imported="no">DeviceMouse.h</includes>
+    <includes id="_device_touch_8h" name="DeviceTouch.h" local="yes" imported="no">DeviceTouch.h</includes>
     <class kind="class">njli::WorldInput</class>
     <namespace>njli</namespace>
   </compound>
@@ -15552,8 +15611,8 @@
     <filename>_scene_state_8h</filename>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
     <includes id="_abstract_state_8h" name="AbstractState.h" local="yes" imported="no">AbstractState.h</includes>
-    <includes id="_scene_8h" name="Scene.h" local="yes" imported="no">Scene.h</includes>
     <includes id="_device_touch_8h" name="DeviceTouch.h" local="yes" imported="no">DeviceTouch.h</includes>
+    <includes id="_scene_8h" name="Scene.h" local="yes" imported="no">Scene.h</includes>
     <class kind="class">njli::SceneState</class>
     <namespace>njli</namespace>
   </compound>
@@ -15561,9 +15620,9 @@
     <name>SceneStateMachine.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/</path>
     <filename>_scene_state_machine_8h</filename>
-    <includes id="_scene_8h" name="Scene.h" local="yes" imported="no">Scene.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
     <includes id="_abstract_state_machine_8h" name="AbstractStateMachine.h" local="yes" imported="no">AbstractStateMachine.h</includes>
+    <includes id="_scene_8h" name="Scene.h" local="yes" imported="no">Scene.h</includes>
     <class kind="class">njli::SceneStateMachine</class>
     <namespace>njli</namespace>
   </compound>
@@ -15693,8 +15752,8 @@
     <name>SteeringBehavior.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/steering/behavior/</path>
     <filename>_steering_behavior_8h</filename>
-    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <class kind="class">njli::SteeringBehavior</class>
     <namespace>njli</namespace>
@@ -15703,8 +15762,8 @@
     <name>SteeringBehaviorAlignment.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/steering/behavior/</path>
     <filename>_steering_behavior_alignment_8h</filename>
-    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <includes id="_steering_behavior_8h" name="SteeringBehavior.h" local="yes" imported="no">SteeringBehavior.h</includes>
     <class kind="class">njli::SteeringBehaviorAlignment</class>
@@ -15714,8 +15773,8 @@
     <name>SteeringBehaviorArrive.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/steering/behavior/</path>
     <filename>_steering_behavior_arrive_8h</filename>
-    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <includes id="_steering_behavior_8h" name="SteeringBehavior.h" local="yes" imported="no">SteeringBehavior.h</includes>
     <class kind="class">njli::SteeringBehaviorArrive</class>
@@ -15725,8 +15784,8 @@
     <name>SteeringBehaviorCohesion.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/steering/behavior/</path>
     <filename>_steering_behavior_cohesion_8h</filename>
-    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <includes id="_steering_behavior_8h" name="SteeringBehavior.h" local="yes" imported="no">SteeringBehavior.h</includes>
     <class kind="class">njli::SteeringBehaviorCohesion</class>
@@ -15736,8 +15795,8 @@
     <name>SteeringBehaviorEvade.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/steering/behavior/</path>
     <filename>_steering_behavior_evade_8h</filename>
-    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <includes id="_steering_behavior_8h" name="SteeringBehavior.h" local="yes" imported="no">SteeringBehavior.h</includes>
     <class kind="class">njli::SteeringBehaviorEvade</class>
@@ -15747,8 +15806,8 @@
     <name>SteeringBehaviorFlee.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/steering/behavior/</path>
     <filename>_steering_behavior_flee_8h</filename>
-    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <includes id="_steering_behavior_8h" name="SteeringBehavior.h" local="yes" imported="no">SteeringBehavior.h</includes>
     <class kind="class">njli::SteeringBehaviorFlee</class>
@@ -15758,8 +15817,8 @@
     <name>SteeringBehaviorFollowPath.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/steering/behavior/</path>
     <filename>_steering_behavior_follow_path_8h</filename>
-    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <includes id="_steering_behavior_8h" name="SteeringBehavior.h" local="yes" imported="no">SteeringBehavior.h</includes>
     <class kind="class">njli::SteeringBehaviorFollowPath</class>
@@ -15769,8 +15828,8 @@
     <name>SteeringBehaviorHide.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/steering/behavior/</path>
     <filename>_steering_behavior_hide_8h</filename>
-    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <includes id="_steering_behavior_8h" name="SteeringBehavior.h" local="yes" imported="no">SteeringBehavior.h</includes>
     <class kind="class">njli::SteeringBehaviorHide</class>
@@ -15780,8 +15839,8 @@
     <name>SteeringBehaviorInterpose.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/steering/behavior/</path>
     <filename>_steering_behavior_interpose_8h</filename>
-    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <includes id="_steering_behavior_8h" name="SteeringBehavior.h" local="yes" imported="no">SteeringBehavior.h</includes>
     <class kind="class">njli::SteeringBehaviorInterpose</class>
@@ -15791,8 +15850,8 @@
     <name>SteeringBehaviorObstacleAvoidance.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/steering/behavior/</path>
     <filename>_steering_behavior_obstacle_avoidance_8h</filename>
-    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <includes id="_steering_behavior_8h" name="SteeringBehavior.h" local="yes" imported="no">SteeringBehavior.h</includes>
     <class kind="class">njli::SteeringBehaviorObstacleAvoidance</class>
@@ -15802,8 +15861,8 @@
     <name>SteeringBehaviorOffsetPursuit.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/steering/behavior/</path>
     <filename>_steering_behavior_offset_pursuit_8h</filename>
-    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <includes id="_steering_behavior_8h" name="SteeringBehavior.h" local="yes" imported="no">SteeringBehavior.h</includes>
     <class kind="class">njli::SteeringBehaviorOffsetPursuit</class>
@@ -15813,8 +15872,8 @@
     <name>SteeringBehaviorPursuit.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/steering/behavior/</path>
     <filename>_steering_behavior_pursuit_8h</filename>
-    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <includes id="_steering_behavior_8h" name="SteeringBehavior.h" local="yes" imported="no">SteeringBehavior.h</includes>
     <class kind="class">njli::SteeringBehaviorPursuit</class>
@@ -15824,8 +15883,8 @@
     <name>SteeringBehaviorSeek.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/steering/behavior/</path>
     <filename>_steering_behavior_seek_8h</filename>
-    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <includes id="_steering_behavior_8h" name="SteeringBehavior.h" local="yes" imported="no">SteeringBehavior.h</includes>
     <class kind="class">njli::SteeringBehaviorSeek</class>
@@ -15835,8 +15894,8 @@
     <name>SteeringBehaviorSeparation.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/steering/behavior/</path>
     <filename>_steering_behavior_separation_8h</filename>
-    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <includes id="_steering_behavior_8h" name="SteeringBehavior.h" local="yes" imported="no">SteeringBehavior.h</includes>
     <class kind="class">njli::SteeringBehaviorSeparation</class>
@@ -15846,8 +15905,8 @@
     <name>SteeringBehaviorWallAvoidance.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/steering/behavior/</path>
     <filename>_steering_behavior_wall_avoidance_8h</filename>
-    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <includes id="_steering_behavior_8h" name="SteeringBehavior.h" local="yes" imported="no">SteeringBehavior.h</includes>
     <class kind="class">njli::SteeringBehaviorWallAvoidance</class>
@@ -15857,8 +15916,8 @@
     <name>SteeringBehaviorWander.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/steering/behavior/</path>
     <filename>_steering_behavior_wander_8h</filename>
-    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <includes id="_steering_behavior_8h" name="SteeringBehavior.h" local="yes" imported="no">SteeringBehavior.h</includes>
     <class kind="class">njli::SteeringBehaviorWander</class>
@@ -15868,8 +15927,8 @@
     <name>SteeringBehaviorMachine.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/steering/</path>
     <filename>_steering_behavior_machine_8h</filename>
-    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <class kind="class">njli::SteeringBehaviorMachine</class>
     <namespace>njli</namespace>
@@ -15878,8 +15937,8 @@
     <name>SteeringBehaviorMachineDithered.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/steering/</path>
     <filename>_steering_behavior_machine_dithered_8h</filename>
-    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <includes id="_steering_behavior_machine_8h" name="SteeringBehaviorMachine.h" local="yes" imported="no">SteeringBehaviorMachine.h</includes>
     <class kind="class">njli::SteeringBehaviorMachineDithered</class>
@@ -15889,8 +15948,8 @@
     <name>SteeringBehaviorMachinePrioritized.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/steering/</path>
     <filename>_steering_behavior_machine_prioritized_8h</filename>
-    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <includes id="_steering_behavior_machine_8h" name="SteeringBehaviorMachine.h" local="yes" imported="no">SteeringBehaviorMachine.h</includes>
     <class kind="class">njli::SteeringBehaviorMachinePrioritized</class>
@@ -15900,8 +15959,8 @@
     <name>SteeringBehaviorMachineWeighted.h</name>
     <path>/Users/jamesfolk/Documents/NJLI/Engine/src/njli/steering/</path>
     <filename>_steering_behavior_machine_weighted_8h</filename>
-    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
+    <includes id="_abstract_factory_object_8h" name="AbstractFactoryObject.h" local="yes" imported="no">AbstractFactoryObject.h</includes>
     <includes id="_log_8h" name="Log.h" local="yes" imported="no">Log.h</includes>
     <includes id="_steering_behavior_machine_8h" name="SteeringBehaviorMachine.h" local="yes" imported="no">SteeringBehaviorMachine.h</includes>
     <class kind="class">njli::SteeringBehaviorMachineWeighted</class>
@@ -16059,8 +16118,9 @@
     <filename>_world_lua_virtual_machine_8h</filename>
     <includes id="_util_8h" name="Util.h" local="yes" imported="no">Util.h</includes>
     <includes id="_abstract_state_8h" name="AbstractState.h" local="yes" imported="no">AbstractState.h</includes>
-    <includes id="_device_touch_8h" name="DeviceTouch.h" local="yes" imported="no">DeviceTouch.h</includes>
+    <includes id="_device_key_8h" name="DeviceKey.h" local="yes" imported="no">DeviceKey.h</includes>
     <includes id="_device_mouse_8h" name="DeviceMouse.h" local="yes" imported="no">DeviceMouse.h</includes>
+    <includes id="_device_touch_8h" name="DeviceTouch.h" local="yes" imported="no">DeviceTouch.h</includes>
     <includes id="_node_8h" name="Node.h" local="yes" imported="no">Node.h</includes>
     <includes id="_scene_8h" name="Scene.h" local="yes" imported="no">Scene.h</includes>
     <includes id="_action_8h" name="Action.h" local="yes" imported="no">Action.h</includes>
@@ -16094,8 +16154,8 @@
     <filename>_world_state_8h</filename>
     <includes id="_abstract_builder_8h" name="AbstractBuilder.h" local="yes" imported="no">AbstractBuilder.h</includes>
     <includes id="_abstract_state_8h" name="AbstractState.h" local="yes" imported="no">AbstractState.h</includes>
-    <includes id="_device_touch_8h" name="DeviceTouch.h" local="yes" imported="no">DeviceTouch.h</includes>
     <includes id="_device_mouse_8h" name="DeviceMouse.h" local="yes" imported="no">DeviceMouse.h</includes>
+    <includes id="_device_touch_8h" name="DeviceTouch.h" local="yes" imported="no">DeviceTouch.h</includes>
     <class kind="class">njli::WorldState</class>
     <namespace>njli</namespace>
   </compound>
@@ -16209,14 +16269,14 @@
       <type>std::vector&lt; ActionableAction * &gt;</type>
       <name>m_Actions</name>
       <anchorfile>classnjli_1_1_abstract_actionable.html</anchorfile>
-      <anchor>ab26c1fab1197b15bb2ecc21c4ac03463</anchor>
+      <anchor>a17bc44206dd13cb179bafdf0cd2bbda9</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
       <type>std::queue&lt; ActionableAction * &gt;</type>
       <name>m_ActionMemoryQueue</name>
       <anchorfile>classnjli_1_1_abstract_actionable.html</anchorfile>
-      <anchor>ae1df3f83b726e71662f560cee9b273ed</anchor>
+      <anchor>a230d6ee2c4c2cd3f7d4e716ea238dbfc</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -16384,6 +16444,20 @@
       <name>getName</name>
       <anchorfile>classnjli_1_1_abstract_decorator.html</anchorfile>
       <anchor>ad41266885be835f3ee602311e20877a4</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setTag</name>
+      <anchorfile>classnjli_1_1_abstract_decorator.html</anchorfile>
+      <anchor>a45a6af60b195efd39b1b56f19a8ef14a</anchor>
+      <arglist>(const char *tag)</arglist>
+    </member>
+    <member kind="function">
+      <type>const char *</type>
+      <name>getTag</name>
+      <anchorfile>classnjli_1_1_abstract_decorator.html</anchorfile>
+      <anchor>a1892eb8a5216ffbbe937e747a0d1d141</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function" protection="protected">
@@ -16565,7 +16639,7 @@
       <type>std::vector&lt; AbstractDecorator * &gt;</type>
       <name>m_Children</name>
       <anchorfile>classnjli_1_1_abstract_decorator.html</anchorfile>
-      <anchor>a75043f7e8dfcfe3621a9cf2b89f46e6c</anchor>
+      <anchor>aef424061af4840eaf18ea3d955ce92c5</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
@@ -16580,6 +16654,13 @@
       <name>m_Name</name>
       <anchorfile>classnjli_1_1_abstract_decorator.html</anchorfile>
       <anchor>aa985f5baca6581f7cfa49d20e444b40c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>std::string</type>
+      <name>m_Tag</name>
+      <anchorfile>classnjli_1_1_abstract_decorator.html</anchorfile>
+      <anchor>a2a7abd533134461d07b660eba804cf48</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -17682,7 +17763,7 @@
       <type>std::queue&lt; AbstractState&lt; OWNER_TYPE &gt; * &gt;</type>
       <name>m_StateQueue</name>
       <anchorfile>classnjli_1_1_abstract_state_machine.html</anchorfile>
-      <anchor>a818a97119dc08a5239497e323067c483</anchor>
+      <anchor>afc1c0619e024e807c01802979d5ef3db</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -17820,7 +17901,7 @@
       <type>std::queue&lt; AbstractState&lt; Node &gt; *&gt;</type>
       <name>m_StateQueue</name>
       <anchorfile>classnjli_1_1_abstract_state_machine.html</anchorfile>
-      <anchor>a818a97119dc08a5239497e323067c483</anchor>
+      <anchor>afc1c0619e024e807c01802979d5ef3db</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -17958,7 +18039,7 @@
       <type>std::queue&lt; AbstractState&lt; Scene &gt; *&gt;</type>
       <name>m_StateQueue</name>
       <anchorfile>classnjli_1_1_abstract_state_machine.html</anchorfile>
-      <anchor>a818a97119dc08a5239497e323067c483</anchor>
+      <anchor>afc1c0619e024e807c01802979d5ef3db</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -18096,7 +18177,7 @@
       <type>std::queue&lt; AbstractState&lt; void &gt; *&gt;</type>
       <name>m_StateQueue</name>
       <anchorfile>classnjli_1_1_abstract_state_machine.html</anchorfile>
-      <anchor>a818a97119dc08a5239497e323067c483</anchor>
+      <anchor>afc1c0619e024e807c01802979d5ef3db</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -18785,7 +18866,7 @@
       <type>std::vector&lt; Sequence * &gt;</type>
       <name>m_ActionGroups</name>
       <anchorfile>classnjli_1_1_action.html</anchorfile>
-      <anchor>a2873cb857d3cce8da14e57c72135cc7f</anchor>
+      <anchor>a12cae1b645280c6811d664183c63600b</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
@@ -22830,6 +22911,102 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>njli::DeviceKey</name>
+    <filename>classnjli_1_1_device_key.html</filename>
+    <base>njli::DeviceInputTime</base>
+    <member kind="function">
+      <type></type>
+      <name>DeviceKey</name>
+      <anchorfile>classnjli_1_1_device_key.html</anchorfile>
+      <anchor>a6c0ce8411a06487b2d23b6d5a527aa25</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>DeviceKey</name>
+      <anchorfile>classnjli_1_1_device_key.html</anchorfile>
+      <anchor>a97f655c0ede86cf0fe3806108517dbad</anchor>
+      <arglist>(const DeviceKey &amp;rhs)</arglist>
+    </member>
+    <member kind="function">
+      <type>DeviceKey &amp;</type>
+      <name>operator=</name>
+      <anchorfile>classnjli_1_1_device_key.html</anchorfile>
+      <anchor>a24bc97579381b1f0c3dadf46be045c27</anchor>
+      <arglist>(const DeviceKey &amp;rhs)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>DeviceKey</name>
+      <anchorfile>classnjli_1_1_device_key.html</anchorfile>
+      <anchor>ab7f6d643ded11dc722c507ce6171c58a</anchor>
+      <arglist>(int scanCode, const std::string &amp;scanCodeName)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~DeviceKey</name>
+      <anchorfile>classnjli_1_1_device_key.html</anchorfile>
+      <anchor>a06bc979d7804180fd4e383798ee308ab</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual const char *</type>
+      <name>getClassName</name>
+      <anchorfile>classnjli_1_1_device_key.html</anchorfile>
+      <anchor>a14f6e0865bbf44c100b34448e9d67f24</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual s32</type>
+      <name>getType</name>
+      <anchorfile>classnjli_1_1_device_key.html</anchorfile>
+      <anchor>aa7b5696085bd6c8a1a935d422ae51e1f</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>operator std::string</name>
+      <anchorfile>classnjli_1_1_device_key.html</anchorfile>
+      <anchor>a49edcb4af0e6bc5e9830e770c85437f1</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>set</name>
+      <anchorfile>classnjli_1_1_device_key.html</anchorfile>
+      <anchor>a9bf8e7ef5d2038aefc61d8732ee1169a</anchor>
+      <arglist>(int scanCode, const std::string &amp;scanCodeName)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>getScanCode</name>
+      <anchorfile>classnjli_1_1_device_key.html</anchorfile>
+      <anchor>ab75e19e17395f72ec633f491ad502784</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string</type>
+      <name>getScanCodeName</name>
+      <anchorfile>classnjli_1_1_device_key.html</anchorfile>
+      <anchor>a1e9dfe1c89d373a70d12a81de08c29e3</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>m_ScanCode</name>
+      <anchorfile>classnjli_1_1_device_key.html</anchorfile>
+      <anchor>a326eb4f8f1b7abc2b916c8ed11d8dca6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>std::string</type>
+      <name>m_ScanCodeName</name>
+      <anchorfile>classnjli_1_1_device_key.html</anchorfile>
+      <anchor>ac619bfe3e166c9f9ddda4e308f4315d9</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>njli::DeviceMouse</name>
     <filename>classnjli_1_1_device_mouse.html</filename>
     <base>njli::DeviceInputTime</base>
@@ -25484,7 +25661,7 @@
       <type>std::vector&lt; LevelOfDetail * &gt;</type>
       <name>m_LevelOfDetailList</name>
       <anchorfile>classnjli_1_1_geometry.html</anchorfile>
-      <anchor>a027133a39cf09c8f61b77df39e1e7347</anchor>
+      <anchor>aadc21c7eaa17ae0bd48895e0b805e926</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
@@ -30381,6 +30558,20 @@
       <anchor>a6cc6f82863c4a24f7ce7fd987d79621d</anchor>
       <arglist></arglist>
     </member>
+    <member kind="variable" protection="private" static="yes">
+      <type>static u64</type>
+      <name>s_MaxTextureUnits</name>
+      <anchorfile>classnjli_1_1_material_property.html</anchorfile>
+      <anchor>a2171d36a9f88b3a13ae5076d4260bd35</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private" static="yes">
+      <type>static u64</type>
+      <name>s_MaxTextureSize</name>
+      <anchorfile>classnjli_1_1_material_property.html</anchorfile>
+      <anchor>a4a448748254555524066ca2806a6b66d</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="friend" protection="private">
       <type>friend class</type>
       <name>WorldFactory</name>
@@ -30715,8 +30906,8 @@
       <type>static bool</type>
       <name>start</name>
       <anchorfile>classnjli_1_1_n_j_l_i_game_engine.html</anchorfile>
-      <anchor>a3fb448489058fc132790309b6a8f0bdd</anchor>
-      <arglist>()</arglist>
+      <anchor>a9b08da977237bdf3b47bc4796c6a62e2</anchor>
+      <arglist>(int argc, char **argv)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
@@ -30759,6 +30950,20 @@
       <anchorfile>classnjli_1_1_n_j_l_i_game_engine.html</anchorfile>
       <anchor>a73a62c2624ce57bf6ba7493c096c2c21</anchor>
       <arglist>(int button, int eventType, float x, float y, int clicks)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>keyUp</name>
+      <anchorfile>classnjli_1_1_n_j_l_i_game_engine.html</anchorfile>
+      <anchor>aae0cb673e9330ca776cca5edb369ef8b</anchor>
+      <arglist>(const char *keycodeName, bool withCapsLock, bool withControl, bool withShift, bool withAlt, bool withGui)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>keyDown</name>
+      <anchorfile>classnjli_1_1_n_j_l_i_game_engine.html</anchorfile>
+      <anchor>a3b56f22140c20e3459824f3239182cf3</anchor>
+      <arglist>(const char *keycodeName, bool withCapsLock, bool withControl, bool withShift, bool withAlt, bool withGui)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
@@ -31825,21 +32030,21 @@
       <type>std::vector&lt; PhysicsConstraint * &gt;</type>
       <name>m_PhysicsConstraintList</name>
       <anchorfile>classnjli_1_1_node.html</anchorfile>
-      <anchor>adf6b3dcaa5073b5f7747fb6e4f3b768f</anchor>
+      <anchor>a90d39973dc81175e6adca0d979c96e8b</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
       <type>std::vector&lt; ParticleEmitter * &gt;</type>
       <name>m_ParticleEmitterList</name>
       <anchorfile>classnjli_1_1_node.html</anchorfile>
-      <anchor>a61a2eea1ed1dc91b1ade45a7a008d59d</anchor>
+      <anchor>a11d81ddc7960f5357631c4ab873eac09</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
       <type>std::vector&lt; Sound * &gt;</type>
       <name>m_SoundList</name>
       <anchorfile>classnjli_1_1_node.html</anchorfile>
-      <anchor>a9f388091d2645c59778ff4a9b76aa233</anchor>
+      <anchor>a968bedfe579efae3b70fd75400ba8d94</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
@@ -31902,7 +32107,7 @@
       <type>std::vector&lt; Node * &gt;</type>
       <name>m_Children</name>
       <anchorfile>classnjli_1_1_node.html</anchorfile>
-      <anchor>a5ae2628d22bd6b10a2a4466337d6ff83</anchor>
+      <anchor>a0cc4f40e2cdc109e1dddb57a2282f4c7</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
@@ -34086,7 +34291,7 @@
       <type>std::vector&lt; Particle * &gt;</type>
       <name>m_ActiveParticles</name>
       <anchorfile>classnjli_1_1_particle_emitter.html</anchorfile>
-      <anchor>aba30a6d103d4b2648e32923b15762537</anchor>
+      <anchor>a0fcf8fb984e5c2af28afd8f539e2ba5b</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
@@ -34733,7 +34938,7 @@
       <type>std::vector&lt; PhysicsConstraint * &gt;</type>
       <name>m_PhysicsConstraintList</name>
       <anchorfile>classnjli_1_1_physics_body.html</anchorfile>
-      <anchor>a1f9dcb4ea6c3105da907b84082929110</anchor>
+      <anchor>ae940a11c675d6434564f8deebbfe45b7</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
@@ -35666,7 +35871,7 @@
       <type>btAlignedObjectArray&lt; ForceAndPosition * &gt;</type>
       <name>m_LinearForceAndPositionArray</name>
       <anchorfile>classnjli_1_1_physics_body_rigid.html</anchorfile>
-      <anchor>adc4b8999e49b7b5277fa018c9de2ba0f</anchor>
+      <anchor>a9af7b03d6c6ef5aa06807ac323ad9007</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
@@ -35680,7 +35885,7 @@
       <type>btAlignedObjectArray&lt; ForceAndPosition * &gt;</type>
       <name>m_AngularForceAndPositionArray</name>
       <anchorfile>classnjli_1_1_physics_body_rigid.html</anchorfile>
-      <anchor>a13066e9090fd37f4774e18c845f3ac65</anchor>
+      <anchor>a08b68126e5e77a81c7b4da2d618ecfe5</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
@@ -41229,6 +41434,13 @@
       <name>WorldState</name>
       <anchorfile>classnjli_1_1_physics_ray_contact.html</anchorfile>
       <anchor>a59cdb6fe5b378389e35b8b2a2f4e990e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="friend" protection="private">
+      <type>friend class</type>
+      <name>World</name>
+      <anchorfile>classnjli_1_1_physics_ray_contact.html</anchorfile>
+      <anchor>a7b4bcdf992c21ae83363f25df05b1d25</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -46950,7 +47162,7 @@
       <type>btAlignedObjectArray&lt; btPairCachingGhostObject * &gt; *</type>
       <name>m_GhostObjects</name>
       <anchorfile>classnjli_1_1_physics_world.html</anchorfile>
-      <anchor>a96f434e076cb213b93c168a436b392cb</anchor>
+      <anchor>aee336d653cf084185323fcd280daf9ef</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
@@ -46964,14 +47176,14 @@
       <type>btAlignedObjectArray&lt; struct btBroadphaseProxy * &gt;</type>
       <name>m_proxies</name>
       <anchorfile>classnjli_1_1_physics_world.html</anchorfile>
-      <anchor>abf48b2f5696f3de7ab98019c98747f92</anchor>
+      <anchor>a068f9b23b65b403bec6743ee123a6a39</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
       <type>btAlignedObjectArray&lt; Node * &gt;</type>
       <name>m_collisionNodes</name>
       <anchorfile>classnjli_1_1_physics_world.html</anchorfile>
-      <anchor>a9eb1521fc832cf6109eccd1dde751e26</anchor>
+      <anchor>a8f68c492c26e09fa5dcc538c5c63b587</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
@@ -48384,6 +48596,20 @@
     </member>
     <member kind="function">
       <type>void</type>
+      <name>keyUp</name>
+      <anchorfile>classnjli_1_1_scene.html</anchorfile>
+      <anchor>a37ce7fc85fdb926bc66835ebd9f927b9</anchor>
+      <arglist>(const char *keycodeName, bool withCapsLock, bool withControl, bool withShift, bool withAlt, bool withGui)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>keyDown</name>
+      <anchorfile>classnjli_1_1_scene.html</anchorfile>
+      <anchor>a4404a903bf1230b4933891bae10a9c86</anchor>
+      <arglist>(const char *keycodeName, bool withCapsLock, bool withControl, bool withShift, bool withAlt, bool withGui)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
       <name>touchCancelled</name>
       <anchorfile>classnjli_1_1_scene.html</anchorfile>
       <anchor>ad517760d7c2c0de588cfffb99bc225a6</anchor>
@@ -48645,8 +48871,8 @@
       <type>void</type>
       <name>addActiveCamera</name>
       <anchorfile>classnjli_1_1_scene.html</anchorfile>
-      <anchor>af8678a1d8c84d02cda6029f4afdaf484</anchor>
-      <arglist>(Camera *camera)</arglist>
+      <anchor>a8dadc66e35d70f7d51bceee337aa268d</anchor>
+      <arglist>(Camera *camera=NULL)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
@@ -48764,49 +48990,49 @@
       <type>std::vector&lt; Clock * &gt;</type>
       <name>m_ClockList</name>
       <anchorfile>classnjli_1_1_scene.html</anchorfile>
-      <anchor>a23ab43beff4af464ec9ea551aa892a84</anchor>
+      <anchor>a43c89f420568172383a0a74dd4a4a2e0</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
       <type>std::vector&lt; Geometry * &gt;</type>
       <name>m_ActiveGeometries</name>
       <anchorfile>classnjli_1_1_scene.html</anchorfile>
-      <anchor>a41a8ee42401a0e68da0820a980b9b042</anchor>
+      <anchor>a35add44afe6bc1cffcfad5d4485598a7</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
       <type>btAlignedObjectArray&lt; Camera * &gt; *</type>
       <name>m_ActiveCameras</name>
       <anchorfile>classnjli_1_1_scene.html</anchorfile>
-      <anchor>abe73b94214ffe8887d59a09a94bd4ec6</anchor>
+      <anchor>a848fbc8e44f9607cf718c3873733303c</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
       <type>btAlignedObjectArray&lt; Node * &gt; *</type>
       <name>m_ActiveNodes</name>
       <anchorfile>classnjli_1_1_scene.html</anchorfile>
-      <anchor>a076af6349b415c06d86800ded39d0880</anchor>
+      <anchor>a24a8ee9f086038177024f3302ec4da55</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
       <type>btAlignedObjectArray&lt; ParticleEmitter * &gt; *</type>
       <name>m_ActiveParticleEmitters</name>
       <anchorfile>classnjli_1_1_scene.html</anchorfile>
-      <anchor>a9e2632db11c766c01c3895648d8dc3d6</anchor>
+      <anchor>ae7fde2d5a6e6cff7000aa4c452c78fb9</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
       <type>btAlignedObjectArray&lt; Clock * &gt; *</type>
       <name>m_ActiveClocks</name>
       <anchorfile>classnjli_1_1_scene.html</anchorfile>
-      <anchor>a52406da635df8eccbda23477113a472d</anchor>
+      <anchor>a68d32e9cc141536aa783b34ba13ff82f</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
       <type>btAlignedObjectArray&lt; Geometry * &gt; *</type>
       <name>m_ActiveGeometry</name>
       <anchorfile>classnjli_1_1_scene.html</anchorfile>
-      <anchor>ab32ba0913f59d782b2b9bbeea39be250</anchor>
+      <anchor>a996289861e836e52dff177d6198b084b</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
@@ -49133,6 +49359,20 @@
       <anchorfile>classnjli_1_1_scene_state.html</anchorfile>
       <anchor>a2dc269f881e2685742813f56f412d36a</anchor>
       <arglist>(Scene *object, const DeviceMouse &amp;touch)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>keyUp</name>
+      <anchorfile>classnjli_1_1_scene_state.html</anchorfile>
+      <anchor>a0285084af113825bd125b559f408c9f7</anchor>
+      <arglist>(Scene *scene, const char *keycodeName, bool withCapsLock, bool withControl, bool withShift, bool withAlt, bool withGui)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>keyDown</name>
+      <anchorfile>classnjli_1_1_scene_state.html</anchorfile>
+      <anchor>a411685b6b560bd62977c53cb1fc78961</anchor>
+      <arglist>(Scene *scene, const char *keycodeName, bool withCapsLock, bool withControl, bool withShift, bool withAlt, bool withGui)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -49812,7 +50052,7 @@
       <type>std::queue&lt; Action * &gt; *</type>
       <name>sequenceQueue</name>
       <anchorfile>structnjli_1_1_action_1_1_sequence.html</anchorfile>
-      <anchor>a5ca50a24ca873500db513b5793d60ef5</anchor>
+      <anchor>a58e1fef231bba3b8b0f2a679cd0e6abf</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -52212,6 +52452,13 @@
       <arglist>(Rect rect)</arglist>
     </member>
     <member kind="function">
+      <type>bool</type>
+      <name>hasFrame</name>
+      <anchorfile>classnjli_1_1_sprite_frame_atlas.html</anchorfile>
+      <anchor>a9febd69e673836a7ec521c26f63df543</anchor>
+      <arglist>(const char *name) const</arglist>
+    </member>
+    <member kind="function">
       <type>const Rect &amp;</type>
       <name>getFrame</name>
       <anchorfile>classnjli_1_1_sprite_frame_atlas.html</anchorfile>
@@ -52754,7 +53001,7 @@
       <type>std::vector&lt; Node * &gt;</type>
       <name>TargetVector</name>
       <anchorfile>classnjli_1_1_steering_behavior.html</anchorfile>
-      <anchor>a84c6f7f5b334777cd352059da083fecf</anchor>
+      <anchor>ab7a7224d97d2e392e5ae75108a6c160a</anchor>
       <arglist></arglist>
     </member>
     <member kind="function" protection="protected">
@@ -53025,7 +53272,7 @@
       <type>std::vector&lt; Node * &gt;</type>
       <name>m_TargetList</name>
       <anchorfile>classnjli_1_1_steering_behavior_alignment.html</anchorfile>
-      <anchor>a8b4c0fde260326e5c9066ef07b673892</anchor>
+      <anchor>a602bca83019d945502324777d7243dfd</anchor>
       <arglist></arglist>
     </member>
     <member kind="friend" protection="private">
@@ -53336,7 +53583,7 @@
       <type>std::vector&lt; Node * &gt;</type>
       <name>m_TargetList</name>
       <anchorfile>classnjli_1_1_steering_behavior_arrive.html</anchorfile>
-      <anchor>a68464ba24346ec2de6a87c40dbeaf7f2</anchor>
+      <anchor>a0e8b5e159c8ad606a7fae7e2ad67b1af</anchor>
       <arglist></arglist>
     </member>
     <member kind="friend" protection="private">
@@ -53785,7 +54032,7 @@
       <type>std::vector&lt; Node * &gt;</type>
       <name>m_TargetList</name>
       <anchorfile>classnjli_1_1_steering_behavior_cohesion.html</anchorfile>
-      <anchor>a8e4c54d870f3f8e1b0e8241ed55d1feb</anchor>
+      <anchor>a1e7a72418342e530082f3477ad4f52c6</anchor>
       <arglist></arglist>
     </member>
     <member kind="friend" protection="private">
@@ -54096,7 +54343,7 @@
       <type>std::vector&lt; Node * &gt;</type>
       <name>m_TargetList</name>
       <anchorfile>classnjli_1_1_steering_behavior_evade.html</anchorfile>
-      <anchor>a8b823420a079c2539dea0fee24005cbc</anchor>
+      <anchor>acada4d21166aa029aec597546182c44b</anchor>
       <arglist></arglist>
     </member>
     <member kind="friend" protection="private">
@@ -54407,7 +54654,7 @@
       <type>std::vector&lt; Node * &gt;</type>
       <name>m_TargetList</name>
       <anchorfile>classnjli_1_1_steering_behavior_flee.html</anchorfile>
-      <anchor>a2d266cc1087403d681480f240cb7b086</anchor>
+      <anchor>afd424808278925f423752d3ce2e7a13e</anchor>
       <arglist></arglist>
     </member>
     <member kind="friend" protection="private">
@@ -54718,7 +54965,7 @@
       <type>std::vector&lt; Node * &gt;</type>
       <name>m_TargetList</name>
       <anchorfile>classnjli_1_1_steering_behavior_follow_path.html</anchorfile>
-      <anchor>a0b8168c42960c362f4f922acd8be4c7c</anchor>
+      <anchor>a420b4cfcf8d7956a60f915a8c1db53cb</anchor>
       <arglist></arglist>
     </member>
     <member kind="friend" protection="private">
@@ -55029,7 +55276,7 @@
       <type>std::vector&lt; Node * &gt;</type>
       <name>m_TargetList</name>
       <anchorfile>classnjli_1_1_steering_behavior_hide.html</anchorfile>
-      <anchor>a28827986536fce130a6fb700996a72d5</anchor>
+      <anchor>a6932c0546c4373a1e0b3f7d877f8123c</anchor>
       <arglist></arglist>
     </member>
     <member kind="friend" protection="private">
@@ -55340,7 +55587,7 @@
       <type>std::vector&lt; Node * &gt;</type>
       <name>m_TargetList</name>
       <anchorfile>classnjli_1_1_steering_behavior_interpose.html</anchorfile>
-      <anchor>ae2d094d971d2be6da1c92eefe87ed4aa</anchor>
+      <anchor>ab3b1b3d85102e5a29b6ba57e99acb160</anchor>
       <arglist></arglist>
     </member>
     <member kind="friend" protection="private">
@@ -55707,14 +55954,14 @@
       <type>std::pair&lt; SteeringBehavior *, f32 &gt;</type>
       <name>SteeringPair</name>
       <anchorfile>classnjli_1_1_steering_behavior_machine.html</anchorfile>
-      <anchor>a2713ace429453ecfaa3cd8d77c2e21c2</anchor>
+      <anchor>a1a02a6c877a13e3d51d91e0636cfff97</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef" protection="protected">
       <type>std::map&lt; SteeringBehavior *, f32 &gt;</type>
       <name>SteeringMap</name>
       <anchorfile>classnjli_1_1_steering_behavior_machine.html</anchorfile>
-      <anchor>a5dffbd4a96d9536349911da297e552b3</anchor>
+      <anchor>a4140175f3174e6e8d22e977a72220b5d</anchor>
       <arglist></arglist>
     </member>
     <member kind="function" protection="protected">
@@ -57035,7 +57282,7 @@
       <type>std::vector&lt; Node * &gt;</type>
       <name>m_TargetList</name>
       <anchorfile>classnjli_1_1_steering_behavior_obstacle_avoidance.html</anchorfile>
-      <anchor>a24fc41251d18ccae5ec238b136187094</anchor>
+      <anchor>a31b86ef77f3be59af3613d48b8ed073b</anchor>
       <arglist></arglist>
     </member>
     <member kind="friend" protection="private">
@@ -57346,7 +57593,7 @@
       <type>std::vector&lt; Node * &gt;</type>
       <name>m_TargetList</name>
       <anchorfile>classnjli_1_1_steering_behavior_offset_pursuit.html</anchorfile>
-      <anchor>a8328147e3f3d7899c0849eba63a1b900</anchor>
+      <anchor>a4b74fabcf3d8ef81079735964251b081</anchor>
       <arglist></arglist>
     </member>
     <member kind="friend" protection="private">
@@ -57657,7 +57904,7 @@
       <type>std::vector&lt; Node * &gt;</type>
       <name>m_TargetList</name>
       <anchorfile>classnjli_1_1_steering_behavior_pursuit.html</anchorfile>
-      <anchor>a802aeb66185af542aec4746b72dbfb61</anchor>
+      <anchor>a283043aaa5ea2a7998baf38565fca847</anchor>
       <arglist></arglist>
     </member>
     <member kind="friend" protection="private">
@@ -57968,7 +58215,7 @@
       <type>std::vector&lt; Node * &gt;</type>
       <name>m_TargetList</name>
       <anchorfile>classnjli_1_1_steering_behavior_seek.html</anchorfile>
-      <anchor>a74abb68880f87e9ca809d329e8725421</anchor>
+      <anchor>a76ef2bc86a59cbbba22ab57c0d0ffce9</anchor>
       <arglist></arglist>
     </member>
     <member kind="friend" protection="private">
@@ -58279,7 +58526,7 @@
       <type>std::vector&lt; Node * &gt;</type>
       <name>m_TargetList</name>
       <anchorfile>classnjli_1_1_steering_behavior_separation.html</anchorfile>
-      <anchor>a52529209dacda8b290e7c0ab3937d19e</anchor>
+      <anchor>a06801f704eb22a588613cbc1e5fc51a2</anchor>
       <arglist></arglist>
     </member>
     <member kind="friend" protection="private">
@@ -58590,7 +58837,7 @@
       <type>std::vector&lt; Node * &gt;</type>
       <name>m_TargetList</name>
       <anchorfile>classnjli_1_1_steering_behavior_wall_avoidance.html</anchorfile>
-      <anchor>afaab5c32e3701825a93311a784581bdc</anchor>
+      <anchor>ab4d5409727efe6c76c7b19834187f117</anchor>
       <arglist></arglist>
     </member>
     <member kind="friend" protection="private">
@@ -58901,7 +59148,7 @@
       <type>std::vector&lt; Node * &gt;</type>
       <name>m_TargetList</name>
       <anchorfile>classnjli_1_1_steering_behavior_wander.html</anchorfile>
-      <anchor>a32740ef01049d507adb0468f8cce774c</anchor>
+      <anchor>a23de8191e1cbf049343510609f059702</anchor>
       <arglist></arglist>
     </member>
     <member kind="friend" protection="private">
@@ -59762,7 +60009,7 @@
       <type>swig_type_info **</type>
       <name>types</name>
       <anchorfile>structswig__module__info.html</anchorfile>
-      <anchor>ad658c7738e9a035ef8eea865322fbf13</anchor>
+      <anchor>abda310ff2462f8a1ebfc8dc7552206f2</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -59783,14 +60030,14 @@
       <type>swig_type_info **</type>
       <name>type_initial</name>
       <anchorfile>structswig__module__info.html</anchorfile>
-      <anchor>a76c7d5b0fc10371748616d0b6c815a17</anchor>
+      <anchor>af5e826d0f0c1698f7404543a7d5b258a</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>swig_cast_info **</type>
       <name>cast_initial</name>
       <anchorfile>structswig__module__info.html</anchorfile>
-      <anchor>a15f6b50a41f144afb1148fc412dc01f7</anchor>
+      <anchor>a281dac542d1af6af141b8366ecc4de92</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -62084,6 +62331,20 @@
     </member>
     <member kind="function">
       <type>void</type>
+      <name>keyUp</name>
+      <anchorfile>classnjli_1_1_world.html</anchorfile>
+      <anchor>ad64c93b5f93db6e9df3ce7b9869d12d4</anchor>
+      <arglist>(const char *keycodeName, bool withCapsLock, bool withControl, bool withShift, bool withAlt, bool withGui)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>keyDown</name>
+      <anchorfile>classnjli_1_1_world.html</anchorfile>
+      <anchor>a6fc507c345272128f64cd5c6d4e6ca08</anchor>
+      <arglist>(const char *keycodeName, bool withCapsLock, bool withControl, bool withShift, bool withAlt, bool withGui)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
       <name>keyboardShow</name>
       <anchorfile>classnjli_1_1_world.html</anchorfile>
       <anchor>abd97ee22f8fbfa29ace0f4859b16d6e0</anchor>
@@ -62348,6 +62609,13 @@
       <anchor>a6470e58e64be02c4bf71a201417bcbbc</anchor>
       <arglist>() const</arglist>
     </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>runJavascript</name>
+      <anchorfile>classnjli_1_1_world.html</anchorfile>
+      <anchor>a72aa272f2e66633642e069106f09c9e9</anchor>
+      <arglist>(const char *script)</arglist>
+    </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>createInstance</name>
@@ -62390,6 +62658,27 @@
       <anchor>a322956de68eb15d43bfb39083942edee</anchor>
       <arglist>()</arglist>
     </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>checkRayCollision</name>
+      <anchorfile>classnjli_1_1_world.html</anchorfile>
+      <anchor>a9e884bc811dcdf6821f2d5a2edccf669</anchor>
+      <arglist>(DeviceTouch **touches, const char *code, bool disableNodeTouched=false)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>checkRayCollision</name>
+      <anchorfile>classnjli_1_1_world.html</anchorfile>
+      <anchor>a3e3cfdf16d875d3fc64c7428c07d23d7</anchor>
+      <arglist>(const DeviceTouch &amp;touch, const char *code, bool disableNodeTouched=false)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>checkRayCollision</name>
+      <anchorfile>classnjli_1_1_world.html</anchorfile>
+      <anchor>ae023b659a2be3ea9dd38ff1fdef93bd6</anchor>
+      <arglist>(const DeviceMouse &amp;mouse, const char *code, bool disableNodeTouched=false)</arglist>
+    </member>
     <member kind="function" protection="private">
       <type></type>
       <name>World</name>
@@ -62417,6 +62706,13 @@
       <anchorfile>classnjli_1_1_world.html</anchorfile>
       <anchor>a2fe83dc2d899a91ef21ac20220e2ada4</anchor>
       <arglist>(const World &amp;)</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>btAlignedObjectArray&lt; njli::PhysicsRayContact * &gt;</type>
+      <name>m_RayContacts</name>
+      <anchorfile>classnjli_1_1_world.html</anchorfile>
+      <anchor>a96897049ea6e799e334d53f8e8735e35</anchor>
+      <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
       <type>WorldFactory *</type>
@@ -63109,14 +63405,14 @@
       <type>std::vector&lt; AbstractFactoryObject * &gt;</type>
       <name>ObjectList</name>
       <anchorfile>classnjli_1_1_world_factory.html</anchorfile>
-      <anchor>a4783e795a32a2feb5b07db0cbddb9371</anchor>
+      <anchor>a987ddbccec6101d2a0ca72f9ecfc0249</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>std::vector&lt; AbstractFactoryObject ** &gt;</type>
       <name>ObjectArrayList</name>
       <anchorfile>classnjli_1_1_world_factory.html</anchorfile>
-      <anchor>a3cf9fde8a3186340fdec7f81de21f0bc</anchor>
+      <anchor>a0b1357052d11887d1561fbd882acd177</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
@@ -63438,28 +63734,28 @@
       <type>std::vector&lt; AbstractFactoryObject * &gt;</type>
       <name>m_ObjectsToDelete</name>
       <anchorfile>classnjli_1_1_world_factory.html</anchorfile>
-      <anchor>a9f786a2b7ca464a3a1a391283d8e4b23</anchor>
+      <anchor>ad703b2808e6be7e94ba5b61211c949c1</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
       <type>std::vector&lt; AbstractFactoryObject ** &gt;</type>
       <name>m_ArrayObjectsToDelete</name>
       <anchorfile>classnjli_1_1_world_factory.html</anchorfile>
-      <anchor>a8ed01a184e70e5f80d442af0dbe24c5e</anchor>
+      <anchor>a821440f3468d369e02db2c330a8a7f66</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
       <type>std::vector&lt; AbstractFactoryObject * &gt;</type>
       <name>m_ObjectsToDelete_GPU</name>
       <anchorfile>classnjli_1_1_world_factory.html</anchorfile>
-      <anchor>a5cb1fb329965dbb78c19e16092b9ed52</anchor>
+      <anchor>acca9a185d035f2608b88c7b9c23251cd</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
       <type>std::vector&lt; AbstractFactoryObject ** &gt;</type>
       <name>m_ArrayObjectsToDelete_GPU</name>
       <anchorfile>classnjli_1_1_world_factory.html</anchorfile>
-      <anchor>a6c68af6211ab6c9daac880ee67d6eb07</anchor>
+      <anchor>a86927dab3f098606f3ccdc8e6c1c341d</anchor>
       <arglist></arglist>
     </member>
     <member kind="friend">
@@ -65711,7 +66007,7 @@
       <type>std::vector&lt; AbstractFrameBufferObject * &gt;</type>
       <name>m_FBOvector</name>
       <anchorfile>classnjli_1_1_world_h_u_d.html</anchorfile>
-      <anchor>ae18bda94c395047c80f499acaf6dd61e</anchor>
+      <anchor>a40102c8e6ba84985645c942f75481197</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
@@ -65840,6 +66136,20 @@
     </member>
     <member kind="function">
       <type>void</type>
+      <name>handleKeyUp</name>
+      <anchorfile>classnjli_1_1_world_input.html</anchorfile>
+      <anchor>aa63d0257cecc72faedd01402d9f1df9c</anchor>
+      <arglist>(const char *keycodeName, bool withCapsLock, bool withControl, bool withShift, bool withAlt, bool withGui)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>handleKeyDown</name>
+      <anchorfile>classnjli_1_1_world_input.html</anchorfile>
+      <anchor>acf44c953918ba64ec4aa0973fcc16ce2</anchor>
+      <arglist>(const char *keycodeName, bool withCapsLock, bool withControl, bool withShift, bool withAlt, bool withGui)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
       <name>keyboardShow</name>
       <anchorfile>classnjli_1_1_world_input.html</anchorfile>
       <anchor>ab184e4e367239a869380a20df466317b</anchor>
@@ -65926,21 +66236,21 @@
       <type>std::unordered_map&lt; int, DeviceTouch * &gt;</type>
       <name>m_FingerDownMap</name>
       <anchorfile>classnjli_1_1_world_input.html</anchorfile>
-      <anchor>aab2178238be912d9a24f0795ff3587f8</anchor>
+      <anchor>ab84a5dd501740fc57be6241b4f3f0167</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
       <type>std::unordered_map&lt; int, DeviceTouch * &gt;</type>
       <name>m_FingerUpMap</name>
       <anchorfile>classnjli_1_1_world_input.html</anchorfile>
-      <anchor>a3ab73e4cff5a8e63367aa0c42e966576</anchor>
+      <anchor>ac561e0ce2eda4b5a85599f93103b3094</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
       <type>std::unordered_map&lt; int, DeviceTouch * &gt;</type>
       <name>m_FingerMoveMap</name>
       <anchorfile>classnjli_1_1_world_input.html</anchorfile>
-      <anchor>ab0ddcb103197f9d8c7caaa5aad68bb03</anchor>
+      <anchor>a10c8c7d66c9c87244aa93b058b91b748</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
@@ -66141,6 +66451,13 @@
       <type>bool</type>
       <name>execute</name>
       <anchorfile>classnjli_1_1_world_lua_virtual_machine.html</anchorfile>
+      <anchor>afd80dd6a43e8f7579ee9cd91ab2dc5e2</anchor>
+      <arglist>(const char *code, DeviceKey **keys)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>execute</name>
+      <anchorfile>classnjli_1_1_world_lua_virtual_machine.html</anchorfile>
       <anchor>ab0a3f94a9fe51d41d8c8cef35c6295e5</anchor>
       <arglist>(const char *code, const DeviceTouch &amp;touch)</arglist>
     </member>
@@ -66248,6 +66565,27 @@
       <anchorfile>classnjli_1_1_world_lua_virtual_machine.html</anchorfile>
       <anchor>ad12a6636f0f41cdf9bff6b5db1862f8d</anchor>
       <arglist>(const char *code, Node *node, const char *str)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>execute</name>
+      <anchorfile>classnjli_1_1_world_lua_virtual_machine.html</anchorfile>
+      <anchor>ad0fbb36053be2f50906af392d3d3f378</anchor>
+      <arglist>(const char *code, const char *keycodeName, bool withCapsLock, bool withControl, bool withShift, bool withAlt, bool withGui)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>execute</name>
+      <anchorfile>classnjli_1_1_world_lua_virtual_machine.html</anchorfile>
+      <anchor>ad08f708d623dbd72a3a57768c2857eaa</anchor>
+      <arglist>(const char *code, Node *pEntity, const char *keycodeName, bool withCapsLock, bool withControl, bool withShift, bool withAlt, bool withGui)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>execute</name>
+      <anchorfile>classnjli_1_1_world_lua_virtual_machine.html</anchorfile>
+      <anchor>a5a4a0d3957888c3095c691a7a4731599</anchor>
+      <arglist>(const char *code, Scene *pEntity, const char *keycodeName, bool withCapsLock, bool withControl, bool withShift, bool withAlt, bool withGui)</arglist>
     </member>
     <member kind="function">
       <type>double</type>
@@ -66484,13 +66822,6 @@
       <type>bool</type>
       <name>load</name>
       <anchorfile>classnjli_1_1_world_resource_loader.html</anchorfile>
-      <anchor>a7bc64cf33159a03c3fa1775b6945fe70</anchor>
-      <arglist>(const char *file, Lua *lua)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>load</name>
-      <anchorfile>classnjli_1_1_world_resource_loader.html</anchorfile>
       <anchor>a5841d6c7619db6821d2bad70dc34bd2b</anchor>
       <arglist>(const char *file, Xml *xml)</arglist>
     </member>
@@ -66610,14 +66941,14 @@
       <type>std::map&lt; std::string, FileData * &gt;</type>
       <name>FileDataMap</name>
       <anchorfile>classnjli_1_1_world_resource_loader.html</anchorfile>
-      <anchor>a5ca35a3c64751ba2affd5de176350c89</anchor>
+      <anchor>a5a3b461a48cb2119251464a5e117533d</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef" protection="private">
       <type>std::pair&lt; std::string, FileData * &gt;</type>
       <name>FileDataPair</name>
       <anchorfile>classnjli_1_1_world_resource_loader.html</anchorfile>
-      <anchor>afbeff6143eafbe14520148f0c2fafe6b</anchor>
+      <anchor>a4c3e96bc649a040e1c74c71e5fab3b8b</anchor>
       <arglist></arglist>
     </member>
     <member kind="function" protection="private">
@@ -67036,6 +67367,20 @@
     </member>
     <member kind="function">
       <type>void</type>
+      <name>keyUp</name>
+      <anchorfile>classnjli_1_1_world_state.html</anchorfile>
+      <anchor>aae2e57b0dc2729fea3a20359deea8279</anchor>
+      <arglist>(const char *keycodeName, bool withCapsLock, bool withControl, bool withShift, bool withAlt, bool withGui)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>keyDown</name>
+      <anchorfile>classnjli_1_1_world_state.html</anchorfile>
+      <anchor>a92e70a36e927a44a8eefc6039505ed24</anchor>
+      <arglist>(const char *keycodeName, bool withCapsLock, bool withControl, bool withShift, bool withAlt, bool withGui)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
       <name>touchCancelled</name>
       <anchorfile>classnjli_1_1_world_state.html</anchorfile>
       <anchor>a2c8b22b216dc3652fe8f5185365a6a20</anchor>
@@ -67145,34 +67490,6 @@
       <anchorfile>classnjli_1_1_world_state.html</anchorfile>
       <anchor>a512bad5b9134e2e54361f6fadd3781ed</anchor>
       <arglist>(const WorldState &amp;)</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>checkRayCollision</name>
-      <anchorfile>classnjli_1_1_world_state.html</anchorfile>
-      <anchor>a59f8baceaf2cbec09966e017e48edc04</anchor>
-      <arglist>(DeviceTouch **touches, const char *code, bool disableNodeTouched=false)</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>checkRayCollision</name>
-      <anchorfile>classnjli_1_1_world_state.html</anchorfile>
-      <anchor>ae558466acdf678e0899a6fba9d153d4b</anchor>
-      <arglist>(const DeviceTouch &amp;touch, const char *code, bool disableNodeTouched=false)</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>checkRayCollision</name>
-      <anchorfile>classnjli_1_1_world_state.html</anchorfile>
-      <anchor>a1aaf8b5c43ecff0db1295bc6fe220601</anchor>
-      <arglist>(const DeviceMouse &amp;mouse, const char *code, bool disableNodeTouched=false)</arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>btAlignedObjectArray&lt; njli::PhysicsRayContact * &gt;</type>
-      <name>m_RayContacts</name>
-      <anchorfile>classnjli_1_1_world_state.html</anchorfile>
-      <anchor>a1fa3cdf26038f5a61d5846d3a3b8a3bf</anchor>
-      <arglist></arglist>
     </member>
     <member kind="friend" protection="private">
       <type>friend class</type>
@@ -68483,6 +68800,7 @@
     <class kind="class">njli::Cube</class>
     <class kind="class">njli::CubeBuilder</class>
     <class kind="class">njli::DeviceInputTime</class>
+    <class kind="class">njli::DeviceKey</class>
     <class kind="class">njli::DeviceMouse</class>
     <class kind="class">njli::DeviceTouch</class>
     <class kind="class">njli::DropdownHUD</class>
@@ -70885,6 +71203,13 @@
       <anchorfile>namespacenjli.html</anchorfile>
       <anchor>a805528e68206342abc780b53e418030d</anchor>
       <arglist>(btDynamicsWorld *world, btScalar timeStep)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>run_main</name>
+      <anchorfile>namespacenjli.html</anchorfile>
+      <anchor>a763b51626ae6d3f240198aa15876fbf1</anchor>
+      <arglist>(int argc, char **argv)</arglist>
     </member>
     <member kind="function">
       <type>btVector2</type>
