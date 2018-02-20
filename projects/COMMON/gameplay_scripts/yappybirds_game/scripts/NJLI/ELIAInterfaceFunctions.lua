@@ -264,7 +264,7 @@ ELIA.states =
       local correctlyTyped = (currentChar == targetChar)
 
       if correctlyTyped then
-        ELIA.states[1].vars.fontIndexTable[ELIA.states[1].vars.currentTypeIndex] = 7
+        ELIA.states[1].vars.fontIndexTable[ELIA.states[1].vars.currentTypeIndex] = 5
 
         ELIA.states[1].vars.totalAccurateTyped = ELIA.states[1].vars.totalAccurateTyped + 1.0
 
@@ -770,7 +770,7 @@ function DrawLabel(...)
 
   local fontTable = {}
   for i=1, string.len(text) do
-    fontTable[i] = 8
+    fontTable[i] = 6
   end
 
   local mainNode, mainNodeRect = ELIAFont:printf({
@@ -793,7 +793,7 @@ function DrawTitleHelper(...)
 
   local fontTable = {}
   for i=1, string.len(text) do
-    fontTable[i] = 9
+    fontTable[i] = 7
   end
 
   local mainNode, mainNodeRect = ELIAFont:printf({
@@ -1218,15 +1218,15 @@ ResetHighScores()
   {
     names=
     {
-    "ELIABasic",
-    "ELIABlue",
-    "ELIAGreen",
-    "ELIARed",
-    "ELIAYellow",
-    "ELIABlack",
-    "TimesNewRomanBasic",
-    "HUD",
-    "Title",
+    "ELIABasic",          -- 1
+    "ELIABlue",           -- 2
+    "ELIAGreen",          -- 3(x)
+    "ELIARed",            -- 4
+    --"ELIAYellow",         -- 5(x)
+    --"ELIABlack",          -- 6(x)
+    "TimesNewRomanBasic", -- 7
+    "HUD",                -- 8
+    "Title",              -- 9
     },
     maxadvance=160
   })
@@ -1268,7 +1268,7 @@ local Update = function(timeStep)
   end
 
   if not debugging then
-    require("mobdebug").start()
+    -- require("mobdebug").start()
     debugging = true
   end
 

@@ -1617,12 +1617,12 @@ namespace njli
         glCompileShader(g_VertHandle);
         
 #if !(defined(NDEBUG))
-        GLint logLength;
+        GLint logLength=0;
         glGetShaderiv( g_VertHandle, GL_INFO_LOG_LENGTH, &logLength);
         if (logLength > 0) {
             GLchar *log = (GLchar *)malloc(logLength);
             glGetShaderInfoLog(g_VertHandle, logLength, &logLength, log);
-            SDL_LogInfo(SDL_LOG_CATEGORY_TEST, "%s", log);
+            SDL_LogInfo(SDL_LOG_CATEGORY_TEST, "(%d) - %s", logLength, log);
             free(log);
         }
 #endif
@@ -1634,7 +1634,7 @@ namespace njli
         if (logLength > 0) {
             GLchar *log = (GLchar *)malloc(logLength);
             glGetShaderInfoLog(g_FragHandle, logLength, &logLength, log);
-            SDL_LogInfo(SDL_LOG_CATEGORY_TEST, "%s", log);
+            SDL_LogInfo(SDL_LOG_CATEGORY_TEST, "(%d) - %s", logLength, log);
             free(log);
         }
 #endif

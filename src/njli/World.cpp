@@ -1686,13 +1686,16 @@ namespace njli
                       }
                   }
 
+                  PhysicsRayContact *contact = m_RayContacts.at(0);
                 s32 numContacts = 0;
                 if (physicsWorld->rayTestAll(from, to, m_RayContacts,
                                              numContacts))
                   {
+                      SDL_LogInfo(SDL_LOG_CATEGORY_TEST,
+                                  "RayTest Hit (all).\n");
                     for (s32 i = 0; i < numContacts; ++i)
                       {
-                        PhysicsRayContact *contact = m_RayContacts.at(i);
+                          contact = m_RayContacts.at(i);
 
                         if (disableNodeTouched)
                           {
@@ -1707,6 +1710,29 @@ namespace njli
                             ->execute(buffer, *contact);
                         touched = true;
                       }
+                  }
+                  else if(physicsWorld->rayTestClosest(from, to, *contact))
+                  {
+                      SDL_LogInfo(SDL_LOG_CATEGORY_TEST,
+                                  "RayTest Hit (closest).\n");
+                      
+                      if (disableNodeTouched)
+                      {
+                          contact->getHitNode()->enableTouched(false);
+                      }
+                      untouchedNodes.remove(contact->getHitNode());
+                      contact->screenPosition(btVector2(from.x(), from.y()));
+                      char buffer[BUFFER_SIZE];
+                      sprintf(buffer, "%s%s", "__NJLINodeRay", code);
+                      njli::World::getInstance()
+                      ->getWorldLuaVirtualMachine()
+                      ->execute(buffer, *contact);
+                      touched = true;
+                  }
+                  else
+                  {
+                      SDL_LogInfo(SDL_LOG_CATEGORY_TEST,
+                                  "RayTest Missed.\n");
                   }
 
                 for (unsigned int i = 0; i < untouchedNodes.size(); i++)

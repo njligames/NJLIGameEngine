@@ -1,6 +1,6 @@
 *.DS_Store
 .build
-*.swp
+#*.swp
 cmake.in/docbook/
 cmake.in/html/
 cmake.in/latex/
