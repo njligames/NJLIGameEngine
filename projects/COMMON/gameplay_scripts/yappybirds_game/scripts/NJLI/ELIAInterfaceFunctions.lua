@@ -20,6 +20,7 @@ previousGameplayStateName = "Endless Letter"
 finalPointsAccumulated = 0
 finalAccuracy = 100.0
 backgroundSound = nil
+learn_more_url="http://www.theeliaidea.com/learning/"
 
 WORD_ARRAY = 
 {
@@ -384,6 +385,7 @@ ELIA.states =
         if ELIA.states[2].vars.learnMoreButtonDown then
           ELIA.states[2].vars.learnMoreButtonDown = false
           ELIA.states[2].vars.learnMoreNode, dimension = ELIATexturePacker:draw({name="btn_learn_more_up", node=ELIA.states[2].vars.learnMoreNode})
+          njli.World.getInstance():getWorldResourceLoader():openBrowser(learn_more_url)
         end
       elseif nodeTag == "leaderboard node" then
         if ELIA.states[2].vars.leaderboardButtonDown then
@@ -537,6 +539,7 @@ ELIA.states =
         if ELIA.states[3].vars.learnMoreButtonDown then
           ELIA.states[3].vars.learnMoreButtonDown = false
           ELIA.states[3].vars.learnMoreNode, dimension = ELIATexturePacker:draw({name="btn_learn_more_up", node=ELIA.states[3].vars.learnMoreNode})
+          njli.World.getInstance():getWorldResourceLoader():openBrowser(learn_more_url)
         end
       elseif nodeTag == "quit node" then
         if ELIA.states[3].vars.quitButtonDown then

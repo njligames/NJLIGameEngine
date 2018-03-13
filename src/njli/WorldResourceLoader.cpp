@@ -42,6 +42,7 @@
 #include "SDL_log.h"
 #include "android_file.h"
 
+#include <stdlib.h>
 //#include "PVRTTexture.h"
 
 namespace njli
@@ -1149,6 +1150,15 @@ exists: %s - size: %lu\n", name, _size);
 
     return true;
   }
+    
+    void WorldResourceLoader::openBrowser(const char *url)
+    {
+        std::string s("open ");
+        s = s + url;
+#if defined(__MACOSX__)
+        std::system(s.c_str());
+#endif
+    }
 
   WorldResourceLoader::ImageFileData *
   WorldResourceLoader::addImageFileData(const char *filePath)
