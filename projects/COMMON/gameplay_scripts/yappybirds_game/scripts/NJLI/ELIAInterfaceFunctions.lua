@@ -19,6 +19,7 @@ ELIATexturePacker = nil
 previousGameplayStateName = "Endless Letter"
 finalPointsAccumulated = 0
 finalAccuracy = 100.0
+backgroundSound = nil
 
 WORD_ARRAY = 
 {
@@ -584,6 +585,17 @@ ELIA.states =
       for k, v in pairs(ELIA.states[4].vars.nodes) do
         ELIA.states[4].vars.nodes[k]:show(OrthographicCameraNode:getCamera())
       end
+
+      local highScores = ReadHighScores()
+      print("Read the Highscores:")
+      print_r(highScores)
+      for i=1,5 do
+
+        ELIA.states[4].vars.highScoreNodes[i], rect = DrawHighscorePoints(highScores[i], ELIA.states[4].vars.highScoreNodes[i], i)
+        j = i + 5
+        ELIA.states[4].vars.highScoreNodes[j], rect = DrawHighscorePoints(highScores[j], ELIA.states[4].vars.highScoreNodes[j], j)
+
+      end
     end,
     exit = function()
       for k, v in pairs(ELIA.states[4].vars.nodes) do
@@ -591,9 +603,14 @@ ELIA.states =
       end
     end,
     create = function()
-      local highScores = ReadHighScores()
-      print("create - highscores")
-      print_r(highscores)
+      local highScores = {}
+      for i=1,10 do
+        highScores[i] = 0
+      end
+
+      highScores = ReadHighScores()
+      print("Read the Highscores:")
+      print_r(highScores)
 
       ELIA.states[4].vars.titleNode = DrawTitle(nil, "Leaderboard")
       table.insert(ELIA.states[4].vars.nodes, ELIA.states[4].vars.titleNode)
@@ -602,45 +619,22 @@ ELIA.states =
       local horiz_margin = njli.SCREEN():x() / 40.0
       local half_horizontal = njli.SCREEN():x() * 0.5
 
-      ELIA.states[4].vars.highScoreNodes[1], rect = DrawHighscorePoints(highScores[1], ELIA.states[4].vars.highScoreNodes[1], 1)
-      ELIA.states[4].vars.highScoreNodes[1]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5) - (half_horizontal * 0.5), 575 - 120, -1))
-      table.insert(ELIA.states[4].vars.nodes, ELIA.states[4].vars.highScoreNodes[1])
+      local y_margin = 80
+      local y_increase = y_margin
+      for i=1,5 do
 
-      ELIA.states[4].vars.highScoreNodes[2], rect = DrawHighscorePoints(highScores[2], ELIA.states[4].vars.highScoreNodes[2], 2)
-      ELIA.states[4].vars.highScoreNodes[2]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5) - (half_horizontal * 0.5), 575 - 200, -1))
-      table.insert(ELIA.states[4].vars.nodes, ELIA.states[4].vars.highScoreNodes[2])
+        ELIA.states[4].vars.highScoreNodes[i], rect = DrawHighscorePoints(highScores[i], ELIA.states[4].vars.highScoreNodes[i], i)
+        ELIA.states[4].vars.highScoreNodes[i]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5) - (half_horizontal * 0.5), 575 - (40 + y_increase), -1))
+        table.insert(ELIA.states[4].vars.nodes, ELIA.states[4].vars.highScoreNodes[i])
 
-      ELIA.states[4].vars.highScoreNodes[3], rect = DrawHighscorePoints(highScores[3], ELIA.states[4].vars.highScoreNodes[3], 3)
-      ELIA.states[4].vars.highScoreNodes[3]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5) - (half_horizontal * 0.5), 575 - 280, -1))
-      table.insert(ELIA.states[4].vars.nodes, ELIA.states[4].vars.highScoreNodes[3])
+        j = i + 5
+        ELIA.states[4].vars.highScoreNodes[j], rect = DrawHighscorePoints(highScores[j], ELIA.states[4].vars.highScoreNodes[j], j)
+        ELIA.states[4].vars.highScoreNodes[j]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5) + (half_horizontal * 0.5), 575 - (40 + y_increase), -1))
+        table.insert(ELIA.states[4].vars.nodes, ELIA.states[4].vars.highScoreNodes[j])
 
-      ELIA.states[4].vars.highScoreNodes[4], rect = DrawHighscorePoints(highScores[4], ELIA.states[4].vars.highScoreNodes[4], 4)
-      ELIA.states[4].vars.highScoreNodes[4]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5) - (half_horizontal * 0.5), 575 - 360, -1))
-      table.insert(ELIA.states[4].vars.nodes, ELIA.states[4].vars.highScoreNodes[4])
+        y_increase = y_increase + y_margin
 
-      ELIA.states[4].vars.highScoreNodes[5], rect = DrawHighscorePoints(highScores[5], ELIA.states[4].vars.highScoreNodes[5], 5)
-      ELIA.states[4].vars.highScoreNodes[5]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5) - (half_horizontal * 0.5), 575 - 440, -1))
-      table.insert(ELIA.states[4].vars.nodes, ELIA.states[4].vars.highScoreNodes[5])
-
-      ELIA.states[4].vars.highScoreNodes[6], rect = DrawHighscorePoints(highScores[6], ELIA.states[4].vars.highScoreNodes[6], 6)
-      ELIA.states[4].vars.highScoreNodes[6]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5) + (half_horizontal * 0.5), 575 - 120, -1))
-      table.insert(ELIA.states[4].vars.nodes, ELIA.states[4].vars.highScoreNodes[6])
-
-      ELIA.states[4].vars.highScoreNodes[7], rect = DrawHighscorePoints(highScores[7], ELIA.states[4].vars.highScoreNodes[7], 7)
-      ELIA.states[4].vars.highScoreNodes[7]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5) + (half_horizontal * 0.5), 575 - 200, -1))
-      table.insert(ELIA.states[4].vars.nodes, ELIA.states[4].vars.highScoreNodes[7])
-
-      ELIA.states[4].vars.highScoreNodes[8], rect = DrawHighscorePoints(highScores[8], ELIA.states[4].vars.highScoreNodes[8], 8)
-      ELIA.states[4].vars.highScoreNodes[8]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5) + (half_horizontal * 0.5), 575 - 280, -1))
-      table.insert(ELIA.states[4].vars.nodes, ELIA.states[4].vars.highScoreNodes[8])
-
-      ELIA.states[4].vars.highScoreNodes[9], rect = DrawHighscorePoints(highScores[9], ELIA.states[4].vars.highScoreNodes[9], 9)
-      ELIA.states[4].vars.highScoreNodes[9]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5) + (half_horizontal * 0.5), 575 - 360, -1))
-      table.insert(ELIA.states[4].vars.nodes, ELIA.states[4].vars.highScoreNodes[9])
-
-      ELIA.states[4].vars.highScoreNodes[10], rect = DrawHighscorePoints(highScores[10], ELIA.states[4].vars.highScoreNodes[10], 10)
-      ELIA.states[4].vars.highScoreNodes[10]:setOrigin(bullet.btVector3(half_horizontal - (rect.width * 0.5) + (half_horizontal * 0.5), 575 - 440, -1))
-      table.insert(ELIA.states[4].vars.nodes, ELIA.states[4].vars.highScoreNodes[10])
+      end
 
       ELIA.states[4].vars.doneNode = DrawDoneButton((njli.SCREEN():x() * 0.5), 0 + vert_margin + vert_margin, ELIA.states[4].vars.doneNode)
       table.insert(ELIA.states[4].vars.nodes, ELIA.states[4].vars.doneNode)
@@ -739,8 +733,8 @@ end
 -- end
 
 
-currentStateName = STATE_GAMEPLAY
--- currentStateName = STATE_SPLASH 
+-- currentStateName = STATE_GAMEPLAY
+currentStateName = STATE_SPLASH 
 -- currentStateName = STATE_RESULT 
 -- currentStateName = STATE_LEADERBOARD 
 
@@ -1099,52 +1093,83 @@ function string:split( inSplitPattern, outResults )
   return outResults
 end
 
-function ResetHighScores(fname)
-  WriteHighScores(fname, "0,0,0,0,0,0,0,0,0,0")
-end
 
-function WriteHighScores(fname, str)
-  local filename = fname or "highscores.lst"
-  local f = io.open(filename, "w")
-  f:write(str)
-  f:close()
-end
-
-function ReadHighScores(fname)
-  local filename = fname or "highscores.lst"
-
-  local file = io.open(filename, "r")
-  if not file then
-    ResetHighScores(filename)
-    file = io.open(filename, "r")
+function HighScore_TableToString(tbl)
+  assert(type(tbl) == "table")
+  local table = {}
+  for i=1,10 do
+    table[i] = tbl[i] or 0.0
   end
 
-  local data = file:read()
-  local tbl = data:split(",")
+  local str = ""
+  for k, v in pairs(table) do
+    print(tostring(v))
+    str = str .. tostring(v) .. ","
+  end
 
+  return str
+end
+
+function HighScore_StringToTable(str)
+  local inputStr = str or ""
   local ret = {}
-  for i=1,#tbl do
-    ret[i] = tonumber(tbl[i])
+  local tbl = inputStr:split(",")
+  for i=1,10 do
+    ret[i] = tonumber(tbl[i]) or tonumber(0)
   end
-
   return ret
 end
 
-function AddHighScore(score)
-  print('AddHighScore', score)
-
-  local highscores = ReadHighScores()
-  print_r(highscores)
-  
-  table.insert(highscores, tonumber(score))
-  table.sort(highscores, function(a,b) return tonumber(a)>tonumber(b) end)
-  
-  local str = ""
-  for i=1,9 do
-    str = str .. tostring(highscores[i]) .. ","
+function WriteHighScores(tbl)
+  local t = {}
+  if type(tbl) == "table" then
+    t = tbl
   end
-  str = str .. tostring(highscores[10])
-  WriteHighScores(nil, str)
+  local data = HighScore_TableToString(t)
+  print("WriteHighScores writing", data)
+
+  local filename = "elia_highscores.lst"
+  local f = io.open(filename, "w")
+  f:write(data)
+  f:close()
+  f = nil
+end
+
+function ReadHighScores()
+  local filename = "elia_highscores.lst"
+
+  if io.open(filename, "r") == nil then
+    WriteHighScores({})
+  end
+
+  local f = io.open(filename, "r")
+  local data = f:read()
+  f:close()
+  f = nil
+
+  local ret  = HighScore_StringToTable(data)
+  return ret
+end
+
+function ResetHighScores()
+  WriteHighScores({})
+end
+
+function AddHighScore(score)
+  local highscores = ReadHighScores()
+
+  print("AddHighScore", "ReadHighScores()")
+  print_r(highscores)
+
+  table.insert(highscores, tonumber(score))
+  print("AddHighScore", "inserted")
+  print_r(highscores)
+
+  table.sort(highscores, function(a,b) return tonumber(a)>tonumber(b) end)
+  print("AddHighScore", "sorted")
+  print_r(highscores)
+
+  WriteHighScores(highscores)
 end
 
 function HighScorePlace(score)
@@ -1162,18 +1187,13 @@ function HighScorePlace(score)
 end
 
 function PerformHighScoreFeature(score)
-  -- return 100
-
   local place = HighScorePlace(score)
-  if place >= 1 and place <= 10 then
-    AddHighScore(score)
-    return place
-  end
+  AddHighScore(score)
   return place
-end
+end  
 
 local Create = function()
-ResetHighScores()
+  -- ResetHighScores()
   local scene = njli.Scene.create()
   local rootNode = njli.Node.create()
   
@@ -1231,6 +1251,10 @@ ResetHighScores()
     maxadvance=160
   })
 
+  backgroundSound = njli.Sound.create()
+  backgroundSound:setName("background sound")
+  njli.World.getInstance():getWorldResourceLoader():load("sounds/elia.ogg", backgroundSound)
+  backgroundSound:play()
 
   ELIATexturePacker = TexturePacker({file="elia_gameplay0"})
 
@@ -1240,6 +1264,9 @@ end
   
 local Destroy = function()
   
+  njli.Sound.destroy(backgroundSound)
+  backgroundSound = nil
+
   if PerspectiveCameraNode then
     local camera = PerspectiveCameraNode:getCamera()
     njli.Camera.destroy(camera)
