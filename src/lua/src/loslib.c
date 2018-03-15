@@ -21,6 +21,9 @@
 #include "lauxlib.h"
 #include "lualib.h"
 
+#if defined(__EMSCRIPTEN__)
+#include "emscripten/emscripten.h"
+#endif
 
 /*
 ** {==================================================================
@@ -369,7 +372,11 @@ static int os_exit (lua_State *L) {
     status = (int)luaL_optinteger(L, 1, EXIT_SUCCESS);
   if (lua_toboolean(L, 2))
     lua_close(L);
-  if (L) exit(status);  /* 'if' to avoid warnings for unreachable 'return' */
+#if defined(__EMSCRIPTEN__)
+    if (L) emscripten_force_exit(status);
+#else
+    if (L) exit(status);  /* 'if' to avoid warnings for unreachable 'return' */
+#endif
   return 0;
 }
 

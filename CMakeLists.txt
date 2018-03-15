@@ -5419,6 +5419,7 @@ IF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
 IF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
+  # SET_TARGET_PROPERTIES(${NJLI_PRODUCT_NAME} PROPERTIES LINK_FLAGS "-DSWIG_TYPE_TABLE=myprojectname --memory-init-file 1 --embed-file  ${NJLIGameEngine_COMMON_DIRECTORY}/assets@/ -g4 -O2 --js-opts 0 -s NO_EXIT_RUNTIME=0 -s TOTAL_MEMORY=1024*1024*1024 -s FULL_ES2=1 --separate-asm --emit-symbol-map")
   # TODO: fix embind...
   # IF(IS_DEBUG)
   #   TARGET_LINK_LIBRARIES( ${NJLI_PRODUCT_NAME} libnjli_bytecode_shared)

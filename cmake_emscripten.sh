@@ -34,6 +34,7 @@ build_emscripten_sublime()
     #export EMCC_AUTODEBUG=0
   fi
 
+        #-DCMAKE_BUILD_TYPE=${BUILD_TYPE} \
     emcmake cmake -G "Sublime Text 2 - Unix Makefiles" ../.. \
         -DCMAKE_INSTALL_PREFIX=${NJLI_INSTALL_PREFIX} \
         -DNJLI_THIRDPARTY_DIRECTORY:STRING=${MY_THIRDPARTY_DIR} \
@@ -42,7 +43,6 @@ build_emscripten_sublime()
         -DNJLI_BUILD_PLATFORM="emscripten" \
         -DNJLI_BUILD_DIR="emscripten" \
         -DNJLI_PACKAGE_DIR=${NJLI_INSTALL_PREFIX} \
-        -DCMAKE_BUILD_TYPE=${BUILD_TYPE} \
         -DNJLI_SOUND_PLATFORM=openal \
         -DNJLI_UNITY_BUILD:BOOL=OFF \
         -DCMAKE_AR=${EMSCRIPTEN_LOCATION}/emar \

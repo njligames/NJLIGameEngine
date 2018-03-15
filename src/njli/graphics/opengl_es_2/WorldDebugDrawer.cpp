@@ -152,12 +152,15 @@ namespace njli
     
     void WorldDebugDrawer::beginDraw()
     {
-        newFrameImgui();
+#if !defined(__EMSCRIPTEN__)
+newFrameImgui();
+#endif
     }
     
     void WorldDebugDrawer::endDraw()
     {
-        renderImgui();
+#if !defined(__EMSCRIPTEN__)
+renderImgui();
         
         if(_synergyActive)
         {
@@ -165,6 +168,7 @@ namespace njli
             _synergyCtx.m_clientHeight = ImGui::GetIO().DisplaySize.y;
             uSynergyUpdate( &_synergyCtx );
         }
+#endif
     }
     
     void WorldDebugDrawer::drawPointList(const dd::DrawVertex * points, int count, bool depthEnabled)
