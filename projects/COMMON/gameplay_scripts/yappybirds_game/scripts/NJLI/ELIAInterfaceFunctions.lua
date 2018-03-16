@@ -1,7 +1,7 @@
 
 debugging = nil
 
-local Interface = require 'NJLI.Interface'
+require "NJLI.util"
 local BitmapFont2 = require 'NJLI.BitmapFont2'
 local TexturePacker = require "NJLI.TexturePacker"
 
