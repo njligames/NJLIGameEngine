@@ -105,18 +105,20 @@ namespace njli
     )";
     
     WorldDebugDrawer::WorldDebugDrawer() :
-    m_DebugMode(btIDebugDraw::DBG_MAX_DEBUG_DRAW_MODE),
-    m_mvpMatrix(glm::mat4(1.0f)),
-    linePointProgram(0),
-    linePointProgram_MvpMatrixLocation(-1),
-    textProgram(0),
-    textProgram_GlyphTextureLocation(-1),
-    textProgram_ScreenDimensions(-1),
-    linePointVAO(0),
-    linePointVBO(0),
-    textVAO(0),
-    textVBO(0),
-    _synergyActive(false)
+     m_DebugMode(btIDebugDraw::DBG_MAX_DEBUG_DRAW_MODE)
+    , m_mvpMatrix(glm::mat4(1.0f))
+    , linePointProgram(0)
+    , linePointProgram_MvpMatrixLocation(-1)
+    , textProgram(0)
+    , textProgram_GlyphTextureLocation(-1)
+    , textProgram_ScreenDimensions(-1)
+    , linePointVAO(0)
+    , linePointVBO(0)
+    , textVAO(0)
+    , textVBO(0)
+#if defined(USE_USYNERGY_LIBRARY)
+    , _synergyActive(false)
+#endif
     {
         
     }
@@ -153,21 +155,23 @@ namespace njli
     void WorldDebugDrawer::beginDraw()
     {
 #if !defined(__EMSCRIPTEN__)
-newFrameImgui();
+      newFrameImgui();
 #endif
     }
     
     void WorldDebugDrawer::endDraw()
     {
 #if !defined(__EMSCRIPTEN__)
-renderImgui();
+      renderImgui();
         
+#if defined(USE_USYNERGY_LIBRARY)
         if(_synergyActive)
         {
             _synergyCtx.m_clientWidth = ImGui::GetIO().DisplaySize.x;
             _synergyCtx.m_clientHeight = ImGui::GetIO().DisplaySize.y;
             uSynergyUpdate( &_synergyCtx );
         }
+#endif
 #endif
     }
     
@@ -1239,6 +1243,7 @@ renderImgui();
         ImGui::NewFrame();
     }
     
+#if defined(USE_USYNERGY_LIBRARY)
     static uSynergyBool ImGui_ConnectFunc(uSynergyCookie cookie)
     {
         // NOTE: You need to turn off "Use SSL Encryption" in Synergy preferences, since
@@ -1398,6 +1403,7 @@ renderImgui();
 //        });
 //        _synergyQueue.join();
     }
+#endif
     
     bool WorldDebugDrawer::processSdlEvent(SDL_Event* event)
     {

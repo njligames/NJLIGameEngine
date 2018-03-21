@@ -485,8 +485,8 @@ namespace njli
     bool isPausedGame() const;
 
     bool isDebug() const;
-      
-      bool runJavascript(const char *script);
+
+    bool runJavascript(const char *script);
 
   protected:
     //        void parseSocketMessage(const char *msg);

@@ -364,7 +364,8 @@ namespace njli
     //    bool loadDataFromFile(const char* filePath, void** buff, unsigned
     //    long* length);
 
-      void openBrowser(const char *url);
+    void openBrowser(const char *url);
+
   protected:
     FileData *loadFileData(const char *filePath);
     ImageFileData *loadImageFileData(const char *filePath);

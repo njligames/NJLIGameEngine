@@ -1245,14 +1245,14 @@ namespace njli
 #endif
     return false;
   }
-    bool World::runJavascript(const char *script)
-    {
+  bool World::runJavascript(const char *script)
+  {
 #if defined(__EMSCRIPTEN__)
-        emscripten_run_script(script);
-        return true;
+    emscripten_run_script(script);
+    return true;
 #endif
-        return false;
-    }
+    return false;
+  }
 
   //    void World::addNode(Node *node)
   //    {
@@ -1686,16 +1686,16 @@ namespace njli
                       }
                   }
 
-                  PhysicsRayContact *contact = m_RayContacts.at(0);
+                PhysicsRayContact *contact = m_RayContacts.at(0);
                 s32 numContacts = 0;
                 if (physicsWorld->rayTestAll(from, to, m_RayContacts,
                                              numContacts))
                   {
-                      SDL_LogInfo(SDL_LOG_CATEGORY_TEST,
-                                  "RayTest Hit (all).\n");
+                    //                      SDL_LogInfo(SDL_LOG_CATEGORY_TEST,
+                    //                                  "RayTest Hit (all).\n");
                     for (s32 i = 0; i < numContacts; ++i)
                       {
-                          contact = m_RayContacts.at(i);
+                        contact = m_RayContacts.at(i);
 
                         if (disableNodeTouched)
                           {
@@ -1711,28 +1711,29 @@ namespace njli
                         touched = true;
                       }
                   }
-                  else if(physicsWorld->rayTestClosest(from, to, *contact))
+                else if (physicsWorld->rayTestClosest(from, to, *contact))
                   {
-                      SDL_LogInfo(SDL_LOG_CATEGORY_TEST,
-                                  "RayTest Hit (closest).\n");
-                      
-                      if (disableNodeTouched)
+                    //                      SDL_LogInfo(SDL_LOG_CATEGORY_TEST,
+                    //                                  "RayTest Hit
+                    //                                  (closest).\n");
+
+                    if (disableNodeTouched)
                       {
-                          contact->getHitNode()->enableTouched(false);
+                        contact->getHitNode()->enableTouched(false);
                       }
-                      untouchedNodes.remove(contact->getHitNode());
-                      contact->screenPosition(btVector2(from.x(), from.y()));
-                      char buffer[BUFFER_SIZE];
-                      sprintf(buffer, "%s%s", "__NJLINodeRay", code);
-                      njli::World::getInstance()
-                      ->getWorldLuaVirtualMachine()
-                      ->execute(buffer, *contact);
-                      touched = true;
+                    untouchedNodes.remove(contact->getHitNode());
+                    contact->screenPosition(btVector2(from.x(), from.y()));
+                    char buffer[BUFFER_SIZE];
+                    sprintf(buffer, "%s%s", "__NJLINodeRay", code);
+                    njli::World::getInstance()
+                        ->getWorldLuaVirtualMachine()
+                        ->execute(buffer, *contact);
+                    touched = true;
                   }
-                  else
+                else
                   {
-                      SDL_LogInfo(SDL_LOG_CATEGORY_TEST,
-                                  "RayTest Missed.\n");
+                    //                      SDL_LogInfo(SDL_LOG_CATEGORY_TEST,
+                    //                                  "RayTest Missed.\n");
                   }
 
                 for (unsigned int i = 0; i < untouchedNodes.size(); i++)

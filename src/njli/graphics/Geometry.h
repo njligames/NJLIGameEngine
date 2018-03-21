@@ -330,7 +330,7 @@ namespace njli
      @param node <#node description#>
      @param camera <#camera description#>
      */
-//    virtual void setHidden(Node * node, Camera * camera);
+    //    virtual void setHidden(Node * node, Camera * camera);
 
     /**
          *  <#Description#>

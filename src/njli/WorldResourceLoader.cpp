@@ -45,6 +45,10 @@
 #include <stdlib.h>
 //#include "PVRTTexture.h"
 
+#if defined(__EMSCRIPTEN__)
+#include "emscripten/emscripten.h"
+#endif
+
 namespace njli
 {
   WorldResourceLoader::FileData::FileData()
@@ -1150,15 +1154,23 @@ exists: %s - size: %lu\n", name, _size);
 
     return true;
   }
+
+  void WorldResourceLoader::openBrowser(const char *url)
+  {
     
-    void WorldResourceLoader::openBrowser(const char *url)
-    {
-        std::string s("open ");
-        s = s + url;
 #if defined(__MACOSX__)
-        std::system(s.c_str());
+      std::string s("open ");
+      s = s + url;
+    std::system(s.c_str());
 #endif
-    }
+#if defined(__EMSCRIPTEN__)
+      std::string s("open(\"");
+      s = s + url;
+      s = s + "\");";
+
+      emscripten_run_script(s.c_str());
+#endif
+  }
 
   WorldResourceLoader::ImageFileData *
   WorldResourceLoader::addImageFileData(const char *filePath)

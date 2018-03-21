@@ -656,6 +656,8 @@ namespace njli
     rayCallback.m_collisionFilterMask = collisionMask;
     rayCallback.m_flags = 0;
 
+      m_dynamicsWorld->updateAabbs();
+      m_dynamicsWorld->computeOverlappingPairs();
     m_dynamicsWorld->rayTest(rayFromWorld, rayToWorld, rayCallback);
 
     if (rayCallback.hasHit())
@@ -681,10 +683,31 @@ namespace njli
 
     btCollisionWorld::AllHitsRayResultCallback rayCallback(rayFromWorld,
                                                            rayToWorld);
-    rayCallback.m_collisionFilterGroup = collisionGroup;
-    rayCallback.m_collisionFilterMask = collisionMask;
+    rayCallback.m_collisionFilterGroup = (int)collisionGroup;
+    rayCallback.m_collisionFilterMask = (int)collisionMask;
     rayCallback.m_flags = 0;
 
+    /*SDL_LogError(SDL_LOG_CATEGORY_TEST, "START\n");
+
+    SDL_LogError(SDL_LOG_CATEGORY_TEST, "rayTest rayFromWorld %f,%f,%f\n",
+                 rayFromWorld.x(), rayFromWorld.y(), rayFromWorld.z());
+    SDL_LogError(SDL_LOG_CATEGORY_TEST, "rayTest rayToWorld %f,%f,%f\n",
+                 rayToWorld.x(), rayToWorld.y(), rayToWorld.z());
+    btCollisionObjectArray _btCollisionObjectArray =
+        m_dynamicsWorld->getCollisionObjectArray();
+    for (int i = 0; i < _btCollisionObjectArray.size(); i++)
+      {
+        btCollisionObject *_btCollisionObject = _btCollisionObjectArray.at(i);
+        Node *_Node = (Node *)_btCollisionObject->getUserPointer();
+        SDL_LogError(SDL_LOG_CATEGORY_TEST,
+                     "rayTest node.getOrigin() %f,%f,%f\n",
+                     _Node->getWorldTransform().getOrigin().x(),
+                     _Node->getWorldTransform().getOrigin().y(),
+                     _Node->getWorldTransform().getOrigin().z());
+      }*/
+
+    m_dynamicsWorld->updateAabbs();
+    m_dynamicsWorld->computeOverlappingPairs();
     m_dynamicsWorld->rayTest(rayFromWorld, rayToWorld, rayCallback);
 
     if (rayCallback.hasHit())
@@ -709,8 +732,10 @@ namespace njli
                     i, rayContacts.size());
               }
           }
+        //SDL_LogError(SDL_LOG_CATEGORY_TEST, "HIT - END\n");
         return true;
       }
+    //SDL_LogError(SDL_LOG_CATEGORY_TEST, "MISSED\n");
     return false;
   }
 
@@ -727,8 +752,8 @@ namespace njli
         if (!body->isInWorld())
           {
             m_dynamicsWorld->addRigidBody(body->getBody(),
-                                          body->getCollisionGroup(),
-                                          body->getCollisionMask());
+                                          (int)body->getCollisionGroup(),
+                                          (int)body->getCollisionMask());
 
             body->getCollisionObject()->setUserPointer(body->getParent());
           }
