@@ -14,7 +14,7 @@
 #include "btIDebugDraw.h"
 #include "debug_draw.hpp"
 #include "glm/glm.hpp"
-#if defined(DUSE_USYNERGY_LIBRARY)
+#if defined(USE_USYNERGY_LIBRARY)
 #include "uSynergy.h"
 #endif
 #include <thread>
@@ -373,7 +373,7 @@ namespace njli
     GLuint textVAO;
     GLuint textVBO;
 
-#if defined(DUSE_USYNERGY_LIBRARY)
+#if defined(USE_USYNERGY_LIBRARY)
     uSynergyContext _synergyCtx;
     std::thread _synergyQueue;
     std::string _serverName;
