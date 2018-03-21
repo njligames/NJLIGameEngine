@@ -1,5 +1,7 @@
 #!/bin/sh
 
+export JAVA_HEAP_SIZE=4096m
+
 export EMSCRIPTEN_LOCATION=/Applications/Developer/emsdk_portable/emscripten/1.37.9
 export EMSCRIPTEN_INCLUDE_LOCATION=${EMSCRIPTEN_LOCATION}/system/include 
 
@@ -34,12 +36,12 @@ build_emscripten_sublime()
     #export EMCC_AUTODEBUG=0
   fi
 
-        #-DCMAKE_BUILD_TYPE=${BUILD_TYPE} \
     emcmake cmake -G "Sublime Text 2 - Unix Makefiles" ../.. \
         -DCMAKE_INSTALL_PREFIX=${NJLI_INSTALL_PREFIX} \
         -DNJLI_THIRDPARTY_DIRECTORY:STRING=${MY_THIRDPARTY_DIR} \
         -DNJLI_GRAPHICS_PLATFORM=opengl_es_2 \
         -DCMAKE_CXX_FLAGS="-std=gnu++11" \
+        -DCMAKE_BUILD_TYPE=${BUILD_TYPE} \
         -DNJLI_BUILD_PLATFORM="emscripten" \
         -DNJLI_BUILD_DIR="emscripten" \
         -DNJLI_PACKAGE_DIR=${NJLI_INSTALL_PREFIX} \
