@@ -56,12 +56,14 @@ build_emscripten_sublime()
       mkdir -p ../../generated/ERRORS
       echo "" > ../../generated/ERRORS/${MY_PLATFORM}.log
 
-      make -j8 install
+      make NJLIGameEngine
+
+      # make -j8 install
       
       #emmake make -j8 install
       #emmake make -j8
 
-      cpack ../.. --config CPackSourceConfig.cmake
+      # cpack ../.. --config CPackSourceConfig.cmake
 
     fi
 }
@@ -75,8 +77,8 @@ rm -rf emscripten_Sublime
 mkdir -p emscripten_Sublime
 cd emscripten_Sublime
 
-build_emscripten_sublime Debug
-#build_emscripten_sublime
+# build_emscripten_sublime Debug
+build_emscripten_sublime
 
 cd ..
 

@@ -12,6 +12,15 @@
   div.emscripten_border { border: 0px solid black; }
   /* the canvas *must not* have any border or padding, or mouse coords will be wrong */
   canvas.emscripten { border: 0px none; }
+  #gameArea {
+    position: absolute;
+    left:     50%;
+    top:      50%;
+  }
+  #gameCanvas {
+    width: 100%;
+    height: 100%;
+  }
 
   .spinner {
     height: 50px;
@@ -97,8 +106,8 @@
 <!-- <div class="emscripten">
   <progress value="0" max="100" id="progress" hidden=1></progress>
 </div> -->
-<div class="emscripten_border">
-  <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()"></canvas>
+<div class="emscripten_border" id="gameArea">
+  <canvas class="emscripten" id="gameCanvas" oncontextmenu="event.preventDefault()"></canvas>
 </div>
 <!-- <hr/> -->
 <!-- <div class="emscripten">
@@ -113,13 +122,42 @@
 <textarea class="emscripten" id="output" rows="8"></textarea>
 <hr> -->
 <script type='text/javascript'>
+
+function resizeGame() {
+    var gameArea = document.getElementById('gameArea');
+    var widthToHeight = 16 / 9;
+    var newWidth = window.innerWidth;
+    var newHeight = window.innerHeight;
+    var newWidthToHeight = newWidth / newHeight;
+
+    if (newWidthToHeight > widthToHeight) {
+        newWidth = newHeight * widthToHeight;
+        gameArea.style.height = newHeight + 'px';
+        gameArea.style.width = newWidth + 'px';
+    } else {
+        newHeight = newWidth / widthToHeight;
+        gameArea.style.width = newWidth + 'px';
+        gameArea.style.height = newHeight + 'px';
+    }
+
+    gameArea.style.marginTop = (-newHeight / 2) + 'px';
+    gameArea.style.marginLeft = (-newWidth / 2) + 'px';
+
+    var gameCanvas = document.getElementById('gameCanvas');
+    gameCanvas.width = newWidth;
+    gameCanvas.height = newHeight;
+}
+
 var statusElement = document.getElementById('status');
 var progressElement = document.getElementById('progress');
 var spinnerElement = document.getElementById('spinner');
 
 var Module = {
   preRun: [],
-  postRun: [],
+  postRun: [
+    function() {
+      resizeGame();
+    }],
   print: (function() {
     var element = document.getElementById('output');
     if (element) element.value = ''; // clear browser cache
@@ -146,7 +184,7 @@ var Module = {
     }
   },
   canvas: (function() {
-    var canvas = document.getElementById('canvas');
+    var canvas = document.getElementById('gameCanvas');
 
     // As a default initial behavior, pop up an alert when webgl context is lost. To make your
     // application robust, you may want to override this behavior before shipping!
@@ -156,6 +194,7 @@ var Module = {
     return canvas;
   })(),
   setStatus: function(text) {
+
     if (!Module.setStatus.last) Module.setStatus.last = { time: Date.now(), text: '' };
     if (text === Module.setStatus.text) return;
     var m = text.match(/([^(]+)\((\d+(\.\d+)?)\/(\d+)\)/);
@@ -207,6 +246,12 @@ window.onerror = function() {
     if (text) Module.printErr('[post-exception status] ' + text);
   };
 };
+
+
+
+window.addEventListener('resize', resizeGame, false);
+window.addEventListener('orientationchange', resizeGame, false);
+
 </script>
 {{{ SCRIPT }}}
 </body>
