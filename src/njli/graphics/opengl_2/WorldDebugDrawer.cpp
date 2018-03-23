@@ -1227,6 +1227,7 @@ namespace njli
     //        ImGuizmo::BeginFrame();
   }
 
+#if defined(USE_USYNERGY_LIBRARY)
   void WorldDebugDrawer::connectSynergyServer(const std::string serverName)
   {
     //        self.serverName = serverName;
@@ -1263,6 +1264,7 @@ namespace njli
     //            }
     //        });
   }
+#endif
 
   bool WorldDebugDrawer::processSdlEvent(SDL_Event *event)
   {
