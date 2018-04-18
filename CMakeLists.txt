@@ -4318,7 +4318,7 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
     # SEPERATE ASM: https://kripken.github.io/emscripten-site/docs/optimizing/Optimizing-Code.html#avoid-memory-spikes-by-separating-out-asm-js
 
     LIST(APPEND EXTRA_PLATFORM_LIBS "-O3")
-    LIST(APPEND EXTRA_PLATFORM_LIBS "--llvm-opts 0")
+    # LIST(APPEND EXTRA_PLATFORM_LIBS "--llvm-opts 0")
     LIST(APPEND EXTRA_PLATFORM_LIBS "--closure 1")
 
     LIST(APPEND EXTRA_PLATFORM_LIBS "--js-opts 0")
