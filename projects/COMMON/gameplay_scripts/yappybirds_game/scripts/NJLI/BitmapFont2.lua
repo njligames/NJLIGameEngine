@@ -178,7 +178,7 @@ end
 
 function BitmapFont2:show(camera)
   self._showCamera=camera
-
+print("BitmapFont2:show(camera)")
   for i=1,#self._fonts do
     local geometry = self._fonts[i].geometry
     if geometry then

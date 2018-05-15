@@ -139,6 +139,8 @@ namespace njli
     bool isPlaying();
     void play(bool isPaused = false);
     void stop();
+      
+      void enableLooping(bool loop = true);
 
     bool isPaused();
     void pause();
@@ -220,6 +222,8 @@ namespace njli
     float GetBufferedTime(int buffersCount) const;
 
     bool mLoaded;
+      
+      bool mLooping;
 
   private:
 //    typedef struct{

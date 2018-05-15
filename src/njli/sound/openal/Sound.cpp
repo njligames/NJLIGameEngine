@@ -120,6 +120,7 @@ namespace njli
 
     mSpinLock = false;
     mLoaded = false;
+      mLooping = false;
   }
 
   Sound::Sound(const AbstractBuilder &builder) : AbstractFactoryObject(this)
@@ -295,6 +296,11 @@ namespace njli
     if (mLoaded)
       Stop();
   }
+    
+    void Sound::enableLooping(bool loop)
+    {
+        mLooping = loop;
+    }
 
   bool Sound::isPaused() { return (mState == PAUSED); }
 
@@ -370,7 +376,10 @@ namespace njli
 
   const SoundInfo &Sound::GetInfo() const { return mSoundInfo; }
 
-  void Sound::PlayInLoop(bool val) { mSettings.loop = val; }
+  void Sound::PlayInLoop(bool val) {
+      mSettings.loop = val;
+      
+  }
 
   float Sound::GetTime() const
   {
@@ -825,10 +834,14 @@ namespace njli
         return;
       }
 
+//      SDL_Log("Sound %s Time: %f of %f\n", getName(), getTimePosition(), getTimeLength());
+//      if(mLooping && (getTimePosition() >= getTimeLength()))
+//      {
+//          Play();
+//      }
     mSpinLock = true;
-
-    //        SDL_Log("Sound %s Time: %f of %f\n", getName(), getTimePosition(),
-    //        getTimeLength());
+      
+      
 
     //        float result = this->GetTime();
     //        if (lastTimeTmp != result)
@@ -888,7 +901,15 @@ namespace njli
     mSpinLock = false;
     if (mRemainBuffers <= 0)
       {
-        this->Stop();
+          this->Stop();
+          if(mLooping)
+          {
+              this->Play();
+          }
+          else
+          {
+              
+          }
       }
   }
 

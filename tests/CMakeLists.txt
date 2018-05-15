@@ -35,7 +35,7 @@ set_xcode_property(${TEST_NAME} USES_XCTRUNNER "YES")
 set_xcode_property(${TEST_NAME} TEST_TARGET_NAME "${NJLI_PRODUCT_NAME}")
 set_xcode_property(${TEST_NAME} FRAMEWORK_SEARCH_PATHS "\$(inherited)")
 set_target_properties(${TEST_NAME} PROPERTIES XCODE_PRODUCT_TYPE "com.apple.product-type.bundle.ui-testing")
-set_target_properties(${TEST_NAME} PROPERTIES XCODE_ATTRIBUTE_DEVELOPMENT_TEAM $ENV{NJLI_DEVELOPMENT_TEAM})
+# set_target_properties(${TEST_NAME} PROPERTIES XCODE_ATTRIBUTE_DEVELOPMENT_TEAM $ENV{NJLI_DEVELOPMENT_TEAM})
 IF( ${NJLI_BUILD_PLATFORM} STREQUAL "appletv" OR ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
   set_target_properties (
     ${TEST_NAME} PROPERTIES

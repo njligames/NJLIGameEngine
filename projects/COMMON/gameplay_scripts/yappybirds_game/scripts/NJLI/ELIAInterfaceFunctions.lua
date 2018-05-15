@@ -11,7 +11,7 @@ OrthographicCameraNode = nil
 PerspectiveCameraNode = nil
 
 SCROLL_SPEED=3.0
-WAIT_TIME=0.5
+WAIT_TIME=1.5
 
 POINTS_PER_CORRECT_LETTER = 1.0
 
@@ -41,30 +41,59 @@ QUOTES =
 }
 
 function GrabNewWordArray()
+  math.randomseed(os.time())
+  math.random()
+  math.random()
+  math.random()
+
   local idx0 = math.random (8)
 
   if idx0 == 1 then
+    math.random()
+    math.random()
+    math.random()
     local idx = math.random (#QUOTES.AnselAdams)
     WORD_ARRAY = QUOTES.AnselAdams[idx]
   elseif idx0 == 2 then
+    math.random()
+    math.random()
+    math.random()
     local idx = math.random (#QUOTES.BenjaminFranklin)
     WORD_ARRAY = QUOTES.BenjaminFranklin[idx]
   elseif idx0 == 3 then
+    math.random()
+    math.random()
+    math.random()
     local idx = math.random (#QUOTES.MarkTwain)
     WORD_ARRAY = QUOTES.MarkTwain[idx]
   elseif idx0 == 4 then
+    math.random()
+    math.random()
+    math.random()
     local idx = math.random (#QUOTES.Roman)
     WORD_ARRAY = QUOTES.Roman[idx]
   elseif idx0 == 5 then
+    math.random()
+    math.random()
+    math.random()
     local idx = math.random (#QUOTES.TeddyRoosevelt)
     WORD_ARRAY = QUOTES.TeddyRoosevelt[idx]
   elseif idx0 == 6 then
+    math.random()
+    math.random()
+    math.random()
     local idx = math.random (#QUOTES.ThomasJefferson)
     WORD_ARRAY = QUOTES.ThomasJefferson[idx]
   elseif idx0 == 7 then
+    math.random()
+    math.random()
+    math.random()
     local idx = math.random (#QUOTES.WillRogers)
     WORD_ARRAY = QUOTES.WillRogers[idx]
   elseif idx0 == 8 then
+    math.random()
+    math.random()
+    math.random()
     local idx = math.random (#QUOTES.WinstonChurchill)
     WORD_ARRAY = QUOTES.WinstonChurchill[idx]
   end
@@ -84,7 +113,8 @@ ELIA.states =
     name=STATE_GAMEPLAY,
     vars=
     {
-      currentResetTimer=WAIT_TIME,
+      resultTextNode = nil,
+      currentResetTimer=1.5,
       currentWordArrayIndex=1,
       currentNode = nil,
       currentNodeRect = nil,
@@ -102,13 +132,15 @@ ELIA.states =
       doneButtonDown = false,
       created=false,
       nodes = {},
+      finishedWord = false,
+      justFinishedShowingWord = true,
     },
     enter = function()
-      -- print('enter')
+      print('enter')
       finalPointsAccumulated = 0
       finalAccuracy = 100
 
-      ELIA.states[1].vars.currentResetTimer=WAIT_TIME
+      ELIA.states[1].vars.currentResetTimer=1.5
       ELIA.states[1].vars.currentWordArrayIndex=1
       ELIA.states[1].vars.currentText = ""
       ELIA.states[1].vars.currentTypeIndex = 1
@@ -118,14 +150,20 @@ ELIA.states =
       ELIA.states[1].vars.currentNumberOfPoints = 0.0
       ELIA.states[1].vars.doneButtonDown = false
 
-      GrabNewWordArray()
-
       for k, v in pairs(ELIA.states[2].vars.nodes) do
         ELIA.states[1].vars.nodes[k]:show(OrthographicCameraNode:getCamera())
       end
 
       ELIA.states[1].vars.pointsNode = DrawPoints(ELIA.states[1].vars.currentNumberOfPoints, ELIA.states[1].vars.pointsNode)
       table.insert(ELIA.states[1].vars.nodes, ELIA.states[1].vars.pointsNode)
+
+      GrabNewWordArray()
+      ELIA.states[1].vars.currentText = string.upper(WORD_ARRAY[ELIA.states[1].vars.currentWordArrayIndex])
+      ELIA.states[1].vars.currentResetTimer = 0.0
+      ELIA.states[1].vars.finishedWord = false
+      ELIA.states[1].vars.justFinishedShowingWord = true
+
+      
     end,
     exit = function()
 
@@ -137,10 +175,16 @@ ELIA.states =
       end
     end,
     create = function()
-      -- print('create')
+      print('create')
+
+      GrabNewWordArray()
       ELIA.states[1].vars.currentText = string.upper(WORD_ARRAY[ELIA.states[1].vars.currentWordArrayIndex])
 
-      ELIA.states[1].vars.currentTypeIndex = string.len(ELIA.states[1].vars.currentText) + 1
+      ELIA.states[1].vars.resultTextNode = DrawResultWord(nil, ELIA.states[1].vars.currentText)
+      table.insert(ELIA.states[1].vars.nodes, ELIA.states[1].vars.resultTextNode)
+      ELIA.states[1].vars.resultTextNode:hide(OrthographicCameraNode:getCamera())
+
+      ELIA.states[1].vars.currentTypeIndex = 1 -- string.len(ELIA.states[1].vars.currentText) + 1
 
       local vert_margin = njli.SCREEN():y() / 30.0
       local horiz_margin = njli.SCREEN():x() / 40.0
@@ -170,91 +214,188 @@ ELIA.states =
         align="Left",
       })
       table.insert(ELIA.states[1].vars.nodes, ELIA.states[1].vars.currentNode)
-      if ELIA.states[1].vars.currentNode then
-        ELIA.states[1].vars.currentNode:hide(OrthographicCameraNode:getCamera())
-      end
+      ELIA.states[1].vars.currentNode:setOrigin(ELIA.states[1].vars.startOrigin)
+
+      ELIA.states[1].vars.currentResetTimer = 0.0
+
+      ELIA.states[1].vars.finishedWord = false
+
+      
 
       ELIA.states[1].vars.created = true
     end,
     update = function(timeStep)
-      if ELIA.states[1].vars.currentResetTimer == 0 then
-        ELIA.states[1].vars.currentNode:show(OrthographicCameraNode:getCamera())
-      end
-
-      -- print('update')
+    
       if not ELIA.states[1].vars.created then
         ELIA.states[1].create()
-        ELIA.states[1].vars.currentWordArrayIndex=0
+        ELIA.states[1].vars.currentWordArrayIndex=1
       end
 
-      njli.World.getInstance():setBackgroundColor(1.000, 1.000, 1.000)
+      -- print('ELIA.states[1].vars.currentTypeIndex ' .. ELIA.states[1].vars.currentTypeIndex)
 
-      if ELIA.states[1].vars.currentNode then
-        if (ELIA.states[1].vars.currentTypeIndex <=  string.len(ELIA.states[1].vars.currentText)) then
-          --ELIA.states[1].vars.currentNode:show(OrthographicCameraNode:getCamera())
-        else
-          if ELIA.states[1].vars.currentResetTimer >= WAIT_TIME then
-            ELIA.states[1].vars.currentNode:hide(OrthographicCameraNode:getCamera())
+      if not ELIA.states[1].vars.finishedWord then
+
+        ELIA.states[1].vars.currentNode, currentNodeRect = ELIAFont:printf({
+          mainNode=ELIA.states[1].vars.currentNode,
+          text=ELIA.states[1].vars.currentText,
+          fontIndexTable=ELIA.states[1].vars.fontIndexTable,
+          align="Left",
+        })
+        
+
+        if ELIA.states[1].vars.currentNode then
+
+          local origin = ELIA.states[1].vars.currentNode:getOrigin() - bullet.btVector3(SCROLL_SPEED, 0.0, 0.0)
+          ELIA.states[1].vars.currentNode:setOrigin(origin)
+
+          if ELIA.states[1].vars.justFinishedShowingWord then
+            ELIA.states[1].vars.justFinishedShowingWord = false
+          else
+            ELIA.states[1].vars.currentNode:show(OrthographicCameraNode:getCamera())
+          end
+
+          if  origin:x() + currentNodeRect.width  < 0 then
+            ELIA.states[1].vars.resultTextNode = DrawResultWord(ELIA.states[1].vars.resultTextNode, ELIA.states[1].vars.currentText)
+            ELIA.states[1].vars.resultTextNode:show(OrthographicCameraNode:getCamera())
+            ELIA.states[1].vars.finishedWord = true
+            print("hit end")
           end
         end
-        local origin = ELIA.states[1].vars.currentNode:getOrigin() - bullet.btVector3(SCROLL_SPEED, 0.0, 0.0)
-        ELIA.states[1].vars.currentNode:setOrigin(origin)
-
-        if  origin:x() + currentNodeRect.width  < 0 then
-          ELIA.states[1].vars.currentTypeIndex = string.len(ELIA.states[1].vars.currentText) + 1
+      else
+        if ELIA.states[1].vars.currentNode then
+          ELIA.states[1].vars.currentNode:hide(OrthographicCameraNode:getCamera())
         end
-      end
-        
-      if ELIA.states[1].vars.currentTypeIndex > string.len(ELIA.states[1].vars.currentText) then
 
-        ELIA.states[1].vars.currentResetTimer = ELIA.states[1].vars.currentResetTimer + timeStep
+
+        local step = 1.0 / 60.0
+        -- print("ELIA.states[1].vars.currentResetTimer " .. ELIA.states[1].vars.currentResetTimer)
+        -- print("timeStep " .. step)
+
+        -- print("finished word.. do some count down, then when it reaches end of countdown, respawn....")
+        ELIA.states[1].vars.currentResetTimer = ELIA.states[1].vars.currentResetTimer + step
 
         if ELIA.states[1].vars.currentResetTimer >= WAIT_TIME then
-
-          if ELIA.states[1].vars.currentNode then
-            ELIA.states[1].vars.currentNode:hide(OrthographicCameraNode:getCamera())
-          end
+          print("repsawn, biatch")
+          ELIA.states[1].vars.resultTextNode:hide(OrthographicCameraNode:getCamera())
 
           ELIA.states[1].vars.currentWordArrayIndex=ELIA.states[1].vars.currentWordArrayIndex+1
           if ELIA.states[1].vars.currentWordArrayIndex > #WORD_ARRAY then
             GrabNewWordArray()
             ELIA.states[1].vars.currentWordArrayIndex = 1
           end
+
           ELIA.states[1].vars.currentText = string.upper(WORD_ARRAY[ELIA.states[1].vars.currentWordArrayIndex])
+          ELIA.states[1].vars.currentResetTimer = 0.0
+          ELIA.states[1].vars.finishedWord = false
+          ELIA.states[1].vars.justFinishedShowingWord = true
+
+          ELIA.states[1].vars.currentNode:setOrigin(ELIA.states[1].vars.startOrigin)
+          
           ELIA.states[1].vars.currentTypeIndex = 1
 
           for i=1, string.len(ELIA.states[1].vars.currentText) do
             ELIA.states[1].vars.fontIndexTable[i] = 1
           end
-
           ELIA.states[1].vars.fontIndexTable[ELIA.states[1].vars.currentTypeIndex] = 2
-
-          ELIA.states[1].vars.currentNode, currentNodeRect = ELIAFont:printf({
-            mainNode=ELIA.states[1].vars.currentNode,
-            text=ELIA.states[1].vars.currentText,
-            fontIndexTable=ELIA.states[1].vars.fontIndexTable,
-            align="Left",
-          })
-          if ELIA.states[1].vars.currentNode then
-            ELIA.states[1].vars.currentNode:hide(OrthographicCameraNode:getCamera())
-          end
-          -- ELIA.states[1].vars.currentNode:show(OrthographicCameraNode:getCamera())
-
-          ELIA.states[1].vars.currentNode:setOrigin(ELIA.states[1].vars.startOrigin)
-
-          ELIA.states[1].vars.currentResetTimer = 0
-
-          ELIA.states[1].vars.currentNumberOfLetters = string.len(ELIA.states[1].vars.currentText)
-          ELIA.states[1].vars.totalNumberOfLetters = ELIA.states[1].vars.totalNumberOfLetters + ELIA.states[1].vars.currentNumberOfLetters
-
-          finalAccuracy = AccuracyPercentage(ELIA.states[1].vars.totalNumberOfLetters, ELIA.states[1].vars.currentNumberOfLetters, ELIA.states[1].vars.totalAccurateTyped)
-          ELIA.states[1].vars.accuracyNode = DrawAccuracy(finalAccuracy, ELIA.states[1].vars.accuracyNode)
-
         end
 
       end
+      
+
     end,
+--     update = function(timeStep)
+-- 
+--       ELIA.states[1].vars.resultTextNode = DrawResultWord(ELIA.states[1].vars.resultTextNode, ELIA.states[1].vars.currentText)
+--       ELIA.states[1].vars.resultTextNode:show(OrthographicCameraNode:getCamera())
+--       print(ELIA.states[1].vars.currentResetTimer)
+--       -- print('up')
+-- 
+-- 
+--       if ELIA.states[1].vars.currentResetTimer == 0.0 then
+--         ELIA.states[1].vars.currentNode:show(OrthographicCameraNode:getCamera())
+--         --- ELIA.states[1].vars.resultTextNode:hide(OrthographicCameraNode:getCamera())
+--       else
+--         ELIA.states[1].vars.resultTextNode:show(OrthographicCameraNode:getCamera())
+--       end
+-- 
+--       -- print('update')
+--       if not ELIA.states[1].vars.created then
+--         ELIA.states[1].create()
+--         ELIA.states[1].vars.currentWordArrayIndex=0
+--       end
+-- 
+--       njli.World.getInstance():setBackgroundColor(1.000, 1.000, 1.000)
+-- 
+--       if ELIA.states[1].vars.currentNode then
+--         if (ELIA.states[1].vars.currentTypeIndex <=  string.len(ELIA.states[1].vars.currentText)) then
+--           --ELIA.states[1].vars.currentNode:show(OrthographicCameraNode:getCamera())
+--         else
+--           -- if ELIA.states[1].vars.currentResetTimer >= WAIT_TIME then
+--           --   ELIA.states[1].vars.currentNode:hide(OrthographicCameraNode:getCamera())
+--           -- end
+--         end
+-- 
+--         local origin = ELIA.states[1].vars.currentNode:getOrigin() - bullet.btVector3(SCROLL_SPEED, 0.0, 0.0)
+--         ELIA.states[1].vars.currentNode:setOrigin(origin)
+-- 
+--         if  origin:x() + currentNodeRect.width  < 0 then
+--           ELIA.states[1].vars.currentTypeIndex = string.len(ELIA.states[1].vars.currentText) + 1
+--         end
+--       end
+--         
+--       if ELIA.states[1].vars.currentTypeIndex > string.len(ELIA.states[1].vars.currentText) then
+-- 
+--         ELIA.states[1].vars.currentNode:hide(OrthographicCameraNode:getCamera())
+-- 
+--         ELIA.states[1].vars.currentResetTimer = ELIA.states[1].vars.currentResetTimer + timeStep
+-- 
+--         if ELIA.states[1].vars.currentResetTimer >= WAIT_TIME then
+-- 
+--           -- if ELIA.states[1].vars.currentNode then
+--           --   ELIA.states[1].vars.currentNode:hide(OrthographicCameraNode:getCamera())
+--           -- end
+-- 
+--           ELIA.states[1].vars.currentWordArrayIndex=ELIA.states[1].vars.currentWordArrayIndex+1
+--           if ELIA.states[1].vars.currentWordArrayIndex > #WORD_ARRAY then
+--             GrabNewWordArray()
+--             ELIA.states[1].vars.currentWordArrayIndex = 1
+--           end
+--           ELIA.states[1].vars.currentText = string.upper(WORD_ARRAY[ELIA.states[1].vars.currentWordArrayIndex])
+--           ELIA.states[1].vars.currentTypeIndex = 1
+-- 
+--           for i=1, string.len(ELIA.states[1].vars.currentText) do
+--             ELIA.states[1].vars.fontIndexTable[i] = 1
+--           end
+-- 
+--           ELIA.states[1].vars.fontIndexTable[ELIA.states[1].vars.currentTypeIndex] = 2
+-- 
+--           ELIA.states[1].vars.currentNode, currentNodeRect = ELIAFont:printf({
+--             mainNode=ELIA.states[1].vars.currentNode,
+--             text=ELIA.states[1].vars.currentText,
+--             fontIndexTable=ELIA.states[1].vars.fontIndexTable,
+--             align="Left",
+--           })
+--           -- if ELIA.states[1].vars.currentNode then
+--           --   ELIA.states[1].vars.currentNode:hide(OrthographicCameraNode:getCamera())
+--           -- end
+--           -- ELIA.states[1].vars.currentNode:show(OrthographicCameraNode:getCamera())
+-- 
+--           ELIA.states[1].vars.currentNode:setOrigin(ELIA.states[1].vars.startOrigin)
+-- 
+--           ELIA.states[1].vars.currentResetTimer = 0.0
+-- 
+--           ELIA.states[1].vars.currentNumberOfLetters = string.len(ELIA.states[1].vars.currentText)
+--           ELIA.states[1].vars.totalNumberOfLetters = ELIA.states[1].vars.totalNumberOfLetters + ELIA.states[1].vars.currentNumberOfLetters
+-- 
+--           finalAccuracy = AccuracyPercentage(ELIA.states[1].vars.totalNumberOfLetters, ELIA.states[1].vars.currentNumberOfLetters, ELIA.states[1].vars.totalAccurateTyped)
+--           ELIA.states[1].vars.accuracyNode = DrawAccuracy(finalAccuracy, ELIA.states[1].vars.accuracyNode)
+-- 
+--         end
+-- 
+--       end
+--     end,
     destroy = function()
+      print('destroy')
       ELIA.states[1].vars.created = false
 
       njli.Node.destroy(ELIA.states[1].vars.pointsNode)
@@ -275,7 +416,7 @@ ELIA.states =
       ELIA.states[1].vars.doneNode = nil
     end,
     mouseDown = function(rayContact)
-
+      print('mouseDown')
       if not ELIA.states[1].vars.created then
         return
       end
@@ -290,6 +431,7 @@ ELIA.states =
 
     end,
     mouseUp = function(rayContact)
+      print('mouseUp')
       if not ELIA.states[1].vars.created then
         return
       end
@@ -304,6 +446,7 @@ ELIA.states =
       end
     end,
     mouseMissed = function(node)
+      -- print('mouseMissed')
       if not ELIA.states[1].vars.created then
         return
       end
@@ -317,12 +460,16 @@ ELIA.states =
       end
     end,
     keyDown = function(keycodeName, withCapsLock, withControl, withShift, withAlt, withGui)
+      print('keyDown')
       if not ELIA.states[1].vars.created then
         return
       end
 
       if ELIA.states[1].vars.currentResetTimer > 0 then
+        print("ELIA.states[1].vars.currentResetTimer " .. ELIA.states[1].vars.currentResetTimer)
         return
+      else
+
       end
 
       local currentChar = string.upper(keycodeName)
@@ -330,13 +477,22 @@ ELIA.states =
 
       local correctlyTyped = (currentChar == targetChar)
 
+      -- print("currentChar " .. currentChar)
+      -- print("ELIA.states[1].vars.currentText " .. ELIA.states[1].vars.currentText)
+      -- print("ELIA.states[1].vars.currentTypeIndex " .. ELIA.states[1].vars.currentTypeIndex)
+      -- print("targetChar " .. targetChar)
+
       if correctlyTyped then
+        -- print("correctly Typed")
+
         ELIA.states[1].vars.fontIndexTable[ELIA.states[1].vars.currentTypeIndex] = 5
 
         ELIA.states[1].vars.totalAccurateTyped = ELIA.states[1].vars.totalAccurateTyped + 1.0
 
         ELIA.states[1].vars.currentNumberOfPoints = ELIA.states[1].vars.currentNumberOfPoints + POINTS_PER_CORRECT_LETTER
       else
+        -- print("incorrectly Typed")
+
         ELIA.states[1].vars.fontIndexTable[ELIA.states[1].vars.currentTypeIndex] = 4
         ELIA.states[1].vars.currentNumberOfPoints=0
       end
@@ -348,14 +504,23 @@ ELIA.states =
       end
 
       ELIA.states[1].vars.pointsNode = DrawPoints(ELIA.states[1].vars.currentNumberOfPoints, ELIA.states[1].vars.pointsNode)
+
       ELIA.states[1].vars.currentNode, ELIA.states[1].vars.currentNodeRect = ELIAFont:printf({
         mainNode=ELIA.states[1].vars.currentNode,
         text=ELIA.states[1].vars.currentText,
         fontIndexTable=ELIA.states[1].vars.fontIndexTable,
         align="Left",
       })
-      if ELIA.states[1].vars.currentNode then
-        ELIA.states[1].vars.currentNode:hide(OrthographicCameraNode:getCamera())
+      ELIA.states[1].vars.currentNode:show(OrthographicCameraNode:getCamera())
+
+      if ELIA.states[1].vars.currentTypeIndex > string.len(ELIA.states[1].vars.currentText) then
+
+        ELIA.states[1].vars.resultTextNode = DrawResultWord(ELIA.states[1].vars.resultTextNode, ELIA.states[1].vars.currentText)
+        ELIA.states[1].vars.resultTextNode:show(OrthographicCameraNode:getCamera())
+
+        print("finished typing word")
+        ELIA.states[1].vars.finishedWord = true
+
       end
     end,
   },
@@ -874,6 +1039,29 @@ function DrawTitleHelper(...)
 
 end
 
+function DrawResultWordHelper(...)
+  local arg=... or {}
+  local text = arg.text or "?"
+  local mainNode = arg.mainNode or nil
+
+  local fontTable = {}
+  for i=1, string.len(text) do
+    fontTable[i] = 5
+  end
+
+  local mainNode, mainNodeRect = ELIAFont:printf({
+    mainNode=mainNode,
+    text=text,
+    fontIndexTable=fontTable,
+    align="Left",
+  })
+
+  mainNode:show(OrthographicCameraNode:getCamera())
+
+  return mainNode, mainNodeRect
+
+end
+
 function DrawPoints(points, node)
   local pointsString = string.format("%.4d", tostring(points)) .. " Points"
   local arg = {mainNode=node,text=pointsString}
@@ -954,6 +1142,22 @@ function DrawTitle(node, str)
   local half_vertical = njli.SCREEN():y() * 0.5
   
   local node_ret, rect = DrawTitleHelper(arg)
+  node_ret:setOrigin(bullet.btVector3(bullet.btVector3(half_horizontal - (rect.width * 0.5), njli.SCREEN():y() - rect.height - vert_margin, -1)))
+  node_ret:show(OrthographicCameraNode:getCamera())
+
+  return node_ret
+end
+
+function DrawResultWord(node, str)
+  local accuracyString = str
+  local arg = {mainNode=node, text=accuracyString}
+
+  local vert_margin = njli.SCREEN():y() / 30.0
+  local horiz_margin = njli.SCREEN():x() / 40.0
+  local half_horizontal = njli.SCREEN():x() * 0.5
+  local half_vertical = njli.SCREEN():y() * 0.5
+  
+  local node_ret, rect = DrawResultWordHelper(arg)
   node_ret:setOrigin(bullet.btVector3(bullet.btVector3(half_horizontal - (rect.width * 0.5), njli.SCREEN():y() - rect.height - vert_margin, -1)))
   node_ret:show(OrthographicCameraNode:getCamera())
 
@@ -1265,8 +1469,8 @@ end
 
 local Create = function()
 
-  print("t")
-  print_r(QUOTES.Roman[2])
+  -- print("t")
+  -- print_r(QUOTES.Roman[2])
   
   -- ResetHighScores()
   local scene = njli.Scene.create()
@@ -1319,7 +1523,7 @@ local Create = function()
     "ELIARed",            -- 4
     --"ELIAYellow",         -- 5(x)
     --"ELIABlack",          -- 6(x)
-    "TimesNewRomanBasic", -- 7
+    "ELIADISPLAYBasic", -- 7
     "HUD",                -- 8
     "Title",              -- 9
     },
@@ -1328,8 +1532,31 @@ local Create = function()
 
   backgroundSound = njli.Sound.create()
   backgroundSound:setName("background sound")
-  njli.World.getInstance():getWorldResourceLoader():load("sounds/elia.ogg", backgroundSound)
+
+  math.randomseed(os.time())
+  math.random()
+  math.random()
+  math.random()
+
+  local idx_backround_sound_names = math.random (5)
+
+  local backround_sound_names =
+  {
+  "sounds/Daniel_Veesey_-_01_-_Sonata_No_1_in_F_Minor_Op_2_No_1_-_I_Allegro.ogg",
+  "sounds/Daniel_Veesey_-_02_-_Sonata_No_1_in_F_Minor_Op_2_No_1_-_II_Adagio.ogg",
+  "sounds/Daniel_Veesey_-_03_-_Sonata_No_1_in_F_Minor_Op_2_No_1_-_III_Menuetto_Allegretto.ogg",
+  "sounds/Daniel_Veesey_-_04_-_Sonata_No_1_in_F_Minor_Op_2_No_1_-_IV_Prestissimo.ogg",
+  "sounds/elia.ogg"
+  }
+
+
+  -- njli.World.getInstance():getWorldResourceLoader():load("sounds/elia.ogg", backgroundSound)
+  njli.World.getInstance():getWorldResourceLoader():load(backround_sound_names[idx_backround_sound_names], backgroundSound)
+  -- njli.World.getInstance():getWorldResourceLoader():load("sounds/428480__erokia__one-shot-sfx-8.ogg", backgroundSound)
+
+  backgroundSound:enableLooping(true)
   backgroundSound:play()
+
 
   ELIATexturePacker = TexturePacker({file="elia_gameplay0"})
 

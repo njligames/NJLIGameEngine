@@ -1,7 +1,7 @@
 CP=cp
 
 OBJDIR=$(NJLI_GAME_ENGINE_ASSET_DIR)/assets/scripts
-SRCDIR=scripts
+SRCDIR=$(MAKEFILE_PATH)/gameplay_scripts/yappybirds_game/scripts
 
 STRUCTURE := $(shell find $(SRCDIR) -type d)
 CODEFILES := $(addsuffix /*, $(STRUCTURE))

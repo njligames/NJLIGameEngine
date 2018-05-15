@@ -12,9 +12,9 @@
 #ifndef Engine_h
 #define Engine_h
 
-#define NJLIGameEngine_VERSION_MAJOR 
-#define NJLIGameEngine_VERSION_MINOR 
-#define NJLIGameEngine_VERSION_RELEASE 
+#define NJLIGameEngine_VERSION_MAJOR 1
+#define NJLIGameEngine_VERSION_MINOR 0
+#define NJLIGameEngine_VERSION_RELEASE 0
 
 #include "SDL.h"
 
