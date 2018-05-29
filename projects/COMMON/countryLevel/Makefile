@@ -2,7 +2,7 @@ MAKEFILE_PATH := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 
 LEVEL_NAME     := country
 
-TILED          := /Applications/Developer/Tiled.app/Contents/MacOS/Tiled
+TILED          := /Applications/Tiled.app/Contents/MacOS/Tiled
 TILED_SRCDIR   := .
 TILED_SRCFILES := $(addsuffix /*, $(TILED_SRCDIR))
 TILED_SRCFILES := $(wildcard $(TILED_SRCFILES))
@@ -17,7 +17,7 @@ $(TILED_OBJDIR)/%.lua: $(addprefix $(TILED_SRCDIR)/, %.tmx)
 
 
 
-TEXTUREPACKER              := /Applications/Developer/TexturePacker.app/Contents/MacOS/TexturePacker
+TEXTUREPACKER              := /Applications/TexturePacker.app/Contents/MacOS/TexturePacker
 TEXTUREPACKER_OPTIONS      := --format corona-imagesheet --texture-format "png" --opt RGBA8888  --reduce-border-artifacts  --max-size 4096 --size-constraints POT --force-squared --multipack --disable-rotation --trim-mode None --force-publish
 
 TEXTUREPACKER_SRCDIR       := ./images

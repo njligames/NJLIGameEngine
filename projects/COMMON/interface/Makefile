@@ -1,5 +1,5 @@
 CONVERT := convert
-TEXTUREPACKER := /Applications/Developer/TexturePacker.app/Contents/MacOS/TexturePacker
+TEXTUREPACKER := /Applications/TexturePacker.app/Contents/MacOS/TexturePacker
 TEXTUREPACKER_OPTIONS := \
 	--format corona-imagesheet \
 	--texture-format "png" \
