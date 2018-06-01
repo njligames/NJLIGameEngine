@@ -163,6 +163,16 @@ ELIA.states =
       ELIA.states[1].vars.finishedWord = false
       ELIA.states[1].vars.justFinishedShowingWord = true
 
+      for i=1, string.len(ELIA.states[1].vars.currentText) do
+        ELIA.states[1].vars.fontIndexTable[i] = 1
+      end
+
+      -- ELIA.states[1].vars.resultTextNode = DrawResultWord(nil, ELIA.states[1].vars.currentText)
+      -- table.insert(ELIA.states[1].vars.nodes, ELIA.states[1].vars.resultTextNode)
+      ELIA.states[1].vars.resultTextNode:hide(OrthographicCameraNode:getCamera())
+
+      ELIA.states[1].vars.currentNode:setOrigin(ELIA.states[1].vars.startOrigin)
+
       
     end,
     exit = function()

@@ -1,6 +1,5 @@
 export MAKEFILE_PATH = $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 
-#export ASSET_DIR = /Users/jamesfolk/Dropbox/Developer/NJLI/Engine/cmake.in/Platform.in/common
 #export ASSET_DIR=/Users/jamesfolk/Documents/NJLI/Engine/cmake.in/Platform.in/common
 
 all: 
