@@ -5,7 +5,7 @@ export JAVA_HEAP_SIZE=4096m
 source /Users/jamesfolk/Work/tools/emsdk/emsdk_env.sh
 
 # export EMSCRIPTEN_LOCATION=/Applications/Developer/emsdk_portable/emscripten/1.37.9
-export EMSCRIPTEN_LOCATION=/Users/jamesfolk/Work/tools/emsdk/emscripten/1.37.9 
+export EMSCRIPTEN_LOCATION=/Users/jamesfolk/Work/tools/emsdk/emscripten/1.37.40
 export EMSCRIPTEN_INCLUDE_LOCATION=${EMSCRIPTEN_LOCATION}/system/include 
 
 if IFS= read -r var
@@ -61,8 +61,8 @@ build_emscripten_sublime()
 
       # make -j8 NJLIGameEngine install
 
-      # make -j8 install
-	make -j8 NJLIGameEngine
+       # make -j8 install
+	 make -j8 NJLIGameEngine
       
       #emmake make -j8 install
       #emmake make -j8
