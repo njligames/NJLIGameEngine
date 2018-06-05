@@ -166,6 +166,7 @@ ELIA.states =
       for i=1, string.len(ELIA.states[1].vars.currentText) do
         ELIA.states[1].vars.fontIndexTable[i] = 1
       end
+      ELIA.states[1].vars.fontIndexTable[ELIA.states[1].vars.currentTypeIndex] = 2
 
       -- ELIA.states[1].vars.resultTextNode = DrawResultWord(nil, ELIA.states[1].vars.currentText)
       -- table.insert(ELIA.states[1].vars.nodes, ELIA.states[1].vars.resultTextNode)

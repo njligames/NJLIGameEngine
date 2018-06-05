@@ -2,10 +2,12 @@
 
 export JAVA_HEAP_SIZE=4096m
 
-source /Users/jamesfolk/Work/tools/emsdk/emsdk_env.sh
+# source /Users/jamesfolk/Work/tools/emsdk/emsdk_env.sh
+source ~/.bash_profile
 
-# export EMSCRIPTEN_LOCATION=/Applications/Developer/emsdk_portable/emscripten/1.37.9
-export EMSCRIPTEN_LOCATION=/Users/jamesfolk/Work/tools/emsdk/emscripten/1.37.40
+export EMSCRIPTEN_VERSION=1.37.9
+# export EMSCRIPTEN_VERSION=1.37.40
+export EMSCRIPTEN_LOCATION=/Users/jamesfolk/Work/tools/emsdk/emscripten/${EMSCRIPTEN_VERSION}
 export EMSCRIPTEN_INCLUDE_LOCATION=${EMSCRIPTEN_LOCATION}/system/include 
 
 if IFS= read -r var
