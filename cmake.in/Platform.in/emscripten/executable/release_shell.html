@@ -45,9 +45,28 @@
         to {transform: rotate(360deg);}
       }
 
+      #warning-focus {
+            background: #C45949;
+            bottom: 0;
+            color: #FFF;
+            cursor: pointer;
+            font-family: pixel, sans-serif;
+            font-size: 30px;
+            height: 60px;
+            left: 0;
+            line-height: 30px;
+            margin: auto;
+            padding: 10px;
+            position: absolute;
+            right: 0;
+            text-align: center;
+            top: 0;
+            width: 550px;
+        }
+
     </style>
   </head>
-  <body>
+  <body onkeydown="preventUseOfDefaultKeys(event);" onfocus="onFocus()" onblur="onBlur()">
     <hr/>
     <figure style="overflow:visible;" id="spinner"><div class="spinner"></div><center style="margin-top:0.5em"><strong>emscripten</strong></center></figure>
     <div class="emscripten" id="status">Downloading...</div>
@@ -70,6 +89,23 @@
     <textarea class="emscripten" id="output" rows="8"></textarea>
     <hr>
     <script type='text/javascript'>
+      window.focus();
+
+      function preventUseOfDefaultKeys(event) {
+        if (event.keyCode === 27 || event.keyCode === 32) {
+          event.preventDefault();
+        }
+      }
+
+      function onFocus() {
+        document.getElementById('warning-focus').style.display = 'none';
+        document.getElementById('canvas').style.opacity = 1.0.toString();
+      }
+      function onBlur() {
+          document.getElementById('warning-focus').style.display = 'block';
+          document.getElementById('canvas').style.opacity = .2.toString();
+      }
+
       var statusElement = document.getElementById('status');
       var progressElement = document.getElementById('progress');
       var spinnerElement = document.getElementById('spinner');

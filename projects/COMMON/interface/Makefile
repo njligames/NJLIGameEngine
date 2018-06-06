@@ -1,7 +1,7 @@
 CONVERT := convert
 TEXTUREPACKER := /Applications/TexturePacker.app/Contents/MacOS/TexturePacker
 TEXTUREPACKER_OPTIONS := \
-	--format corona-imagesheet \
+	--format njlic-imagesheet \
 	--texture-format "png" \
 	--opt RGBA8888  \
 	--reduce-border-artifacts  \

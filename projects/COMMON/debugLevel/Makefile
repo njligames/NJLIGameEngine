@@ -18,7 +18,7 @@ $(TILED_OBJDIR)/%.lua: $(addprefix $(TILED_SRCDIR)/, %.tmx)
 
 
 TEXTUREPACKER              := /Applications/TexturePacker.app/Contents/MacOS/TexturePacker
-TEXTUREPACKER_OPTIONS      := --format corona-imagesheet --texture-format "png" --opt RGBA8888  --reduce-border-artifacts  --max-size 4096 --size-constraints POT --force-squared --multipack --disable-rotation --trim-mode None --force-publish
+TEXTUREPACKER_OPTIONS      := --format njlic-imagesheet --texture-format "png" --opt RGBA8888  --reduce-border-artifacts  --max-size 4096 --size-constraints POT --force-squared --multipack --disable-rotation --trim-mode None --force-publish
 
 TEXTUREPACKER_SRCDIR       := ./images
 TEXTUREPACKER_SRCFILES     := $(addsuffix /*, $(TEXTUREPACKER_SRCDIR))
