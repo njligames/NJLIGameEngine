@@ -17,14 +17,9 @@ all:
 	@mkdir -p $(NJLI_GAME_ENGINE_ASSET_DIR)/assets/sounds
 	@mkdir -p $(NJLI_GAME_ENGINE_ASSET_DIR)/assets/strings
 
-	# @cd $(MAKEFILE_PATH)/debugLevel && make
-	# @cd $(MAKEFILE_PATH)/countryLevel && make
-	# @cd $(MAKEFILE_PATH)/gameplay && make
-	@cd $(MAKEFILE_PATH)/elia_hud && make
-	# @cd $(MAKEFILE_PATH)/interface && make
-	@cd $(MAKEFILE_PATH)/audio && make
-	@cd $(MAKEFILE_PATH)/gameplay_scripts/yappybirds_game && make
-	# @cd $(MAKEFILE_PATH)/fonts && make
+	cd $(MAKEFILE_PATH)/elia_hud && make
+	cd $(MAKEFILE_PATH)/audio && make
+	cd $(MAKEFILE_PATH)/gameplay_scripts/yappybirds_game && make
 	cd $(MAKEFILE_PATH)/shaders && make clean && make
 
 clean: 
