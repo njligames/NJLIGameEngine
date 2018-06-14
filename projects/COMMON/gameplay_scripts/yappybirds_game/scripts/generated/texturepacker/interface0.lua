@@ -2,7 +2,7 @@
 -- created with TexturePacker - https://www.codeandweb.com/texturepacker
 --
 -- TODO: Change this exmaple to make sense for NJLICEngine
--- $TexturePacker:SmartUpdate:8de5e5daec76cead8a0e1c21a1b32792:5353b4cb97d5879e0d8b427285df1d13:7c7b926951ecd55be01c75913320eada$
+-- $TexturePacker:SmartUpdate:829bbbd6c6f228d89d74d7ed5b798719:5353b4cb97d5879e0d8b427285df1d13:7c7b926951ecd55be01c75913320eada$
 --
 -- local sheetInfo = require("mysheet")
 -- local myImageSheet = graphics.newImageSheet( "mysheet.png", sheetInfo:getSheet() )
@@ -1563,6 +1563,18 @@ frames = {
   maxTextureSizeHeight = 4096,
   fixedTextureSizeWidth = -1,
   fixedTextureSizeHeight = -1
+
+  -- _variantParams.scale = 1,
+  -- _variantParams.shapePadding = 0,
+  -- _variantParams.borderPadding = 0,
+  -- _variantParams.commonDivisorX = 1,
+  -- _variantParams.commonDivisorY = 1,
+  -- _variantParams.extrude = 1,
+  -- _variantParams.baseFactor = 1,
+  -- _variantParams_maxTextureSize_width = 4096,
+  -- _variantParams_maxTextureSize_height = 4096,
+  -- _variantParams_fixedTextureSize_width = -1,
+  -- _variantParams_fixedTextureSize_height = -1
 }
 
 SheetInfo.frameIndex =

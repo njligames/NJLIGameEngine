@@ -331,6 +331,15 @@ function LevelLoader:numSpawnPoints()
   return #self.spawnPointTable
 end
 
+function LevelLoader:getSpawnPoint(index)
+
+  local spawnPoint = self.spawnPointTable[index]
+  spawnPoint.origin = self:getSpawnPointOrigin(index)
+  spawnPoint.dimensions = self.Params:tileDimensions({width=256, height=256}, spawnPoint.origin:z())
+
+  return spawnPoint
+end
+
 --############################################################################# 
 --End Custom Code
 --#############################################################################

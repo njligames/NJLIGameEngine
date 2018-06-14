@@ -61,6 +61,9 @@ local __ctor = function(self, init)
   self.levelLoader = LevelLoader()
   self.levelLoader:loadLevel({debug=debug})
 
+  local SpawnMachine = require "YAPPYBIRDS.SpawnMachine"
+  self.spawnMachine = SpawnMachine()
+
 
   for i = 1, self.levelLoader:numTiles() do
 
@@ -77,6 +80,20 @@ local __ctor = function(self, init)
   end
 
   njli.World.getInstance():setBackgroundColor(self.levelLoader.backgroundColor)
+
+
+
+
+
+
+  for i = 1, self.levelLoader:numSpawnPoints() do
+    local point = self.levelLoader:getSpawnPoint(i)
+
+    self.spawnMachine:addArcadeSpawnPoint(point)
+
+    print_r(point)
+  end
+
 
   -- print_r(self.levelLoader:getDogWayPointParams(1))
 
@@ -568,6 +585,8 @@ end
 
 function Gameplay:update(timeStep)
   BaseClass.update(self, timeStep)
+
+  self.spawnMachine:tick(timeStep, self)
 
 --  print("updating gameplay")
 end

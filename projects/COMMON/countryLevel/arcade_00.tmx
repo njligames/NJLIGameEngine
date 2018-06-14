@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-up" width="64" height="64" tilewidth="32" tileheight="32" backgroundcolor="#9eceef" nextobjectid="18">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-up" width="64" height="64" tilewidth="32" tileheight="32" infinite="0" backgroundcolor="#9eceef" nextobjectid="18">
  <tileset firstgid="1" source="images/country.tsx"/>
- <imagelayer name="DebugArea" opacity="0.05">
+ <imagelayer name="DebugArea" visible="0">
   <image source="../debugLevel/debugArea.png" width="2048" height="2048"/>
  </imagelayer>
  <objectgroup color="#22ff0e" name="Bird Spawnpoint">
-  <object id="8" name="chubiBird" type="birdSpawnPoint" x="2224.24" y="1442.42">
+  <object id="8" name="chubi" type="birdSpawnPoint" x="1843.36" y="1442.42" width="40.5186" height="4.05186">
    <properties>
-    <property name="birdType" value="chubiBird"/>
+    <property name="birdType" value="chubi"/>
     <property name="initialVelocity" type="float" value="1.2"/>
     <property name="spawnAmount" type="int" value="4"/>
     <property name="timeFrequency" type="int" value="5"/>
@@ -15,9 +15,9 @@
    </properties>
    <ellipse/>
   </object>
-  <object id="13" name="chubiBird" type="birdSpawnPoint" x="-190.91" y="1445.45">
+  <object id="13" name="chubi" type="birdSpawnPoint" x="271.002" y="1445.45" width="24.3112">
    <properties>
-    <property name="birdType" value="chubiBird"/>
+    <property name="birdType" value="chubi"/>
     <property name="initialVelocity" type="float" value="1.2"/>
     <property name="spawnAmount" type="int" value="4"/>
     <property name="timeFrequency" type="int" value="5"/>
