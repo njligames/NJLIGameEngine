@@ -958,8 +958,8 @@ ENDIF( ${NJLI_SOUND_PLATFORM} STREQUAL "fmod" )
 
 IF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
   LIST(APPEND NJLIGameEngine_HDRS
-    $ENV{EMSCRIPTEN_LOCATION}/system/include
-    $ENV{EMSCRIPTEN_LOCATION}/system/include/emscripten
+    $ENV{EMSCRIPTEN}/system/include
+    $ENV{EMSCRIPTEN}/system/include/emscripten
   )
 ENDIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
 
@@ -2198,14 +2198,14 @@ SET(emscripten_include "")
 SET(emscripten_include_emscripten "")
 IF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
   FILE( GLOB emscripten_include
-    $ENV{EMSCRIPTEN_LOCATION}/system/include/*.h
-    $ENV{EMSCRIPTEN_LOCATION}/system/include/*.inl
-    $ENV{EMSCRIPTEN_LOCATION}/system/include/*.hpp
+    $ENV{EMSCRIPTEN}/system/include/*.h
+    $ENV{EMSCRIPTEN}/system/include/*.inl
+    $ENV{EMSCRIPTEN}/system/include/*.hpp
   )
   FILE( GLOB emscripten_include_emscripten
-    $ENV{EMSCRIPTEN_LOCATION}/system/include/emscripten/*.h
-    $ENV{EMSCRIPTEN_LOCATION}/system/include/emscripten/*.inl
-    $ENV{EMSCRIPTEN_LOCATION}/system/include/emscripten/*.hpp
+    $ENV{EMSCRIPTEN}/system/include/emscripten/*.h
+    $ENV{EMSCRIPTEN}/system/include/emscripten/*.inl
+    $ENV{EMSCRIPTEN}/system/include/emscripten/*.hpp
   )
 
   LIST(APPEND NJLIGameEngine_THIRDPARTY_INC
@@ -4123,6 +4123,7 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "ios" )
 
 ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
 
+  
   SET(imported_assimp_location                      "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/assimp/${NJLI_BUILD_PLATFORM}/10.12/Release/lib/libassimp${NJLI_ASSIMP_POSTFIX}.a" )
   SET(imported_Bullet2FileLoader_location          "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.12/Release/lib/libBullet2FileLoader.a")
   SET(imported_Bullet3Collision_location           "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/10.12/Release/lib/libBullet3Collision.a")
@@ -4171,7 +4172,8 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
   SET(imported_stb_location                         "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/stb/${NJLI_BUILD_PLATFORM}/10.12/Release/libstb.a" )
   #SET(imported_tinyxml2_location                   "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/tinyxml2/${NJLI_BUILD_PLATFORM}/10.12/Release/libtinyxml2.a" )
   SET(imported_fmod_location                        "${CMAKE_SOURCE_DIR}/../External/thirdparty/fmod/lib/${NJLI_BUILD_PLATFORM}/10.12/Release/libfmod.dylib" )
-  SET(imported_SDL2_location                        "${CMAKE_SOURCE_DIR}/../External/thirdparty/SDL2/lib/${NJLI_BUILD_PLATFORM}/10.12/Release/libSDL2.a" )
+  # SET(imported_SDL2_location                        "${CMAKE_SOURCE_DIR}/../External/thirdparty/SDL2/lib/${NJLI_BUILD_PLATFORM}/10.12/Release/libSDL2.a" )
+  SET(imported_SDL2_location                        "/Users/jamesfolk/Desktop/Documents_4.18.18/NJLI/External/thirdparty/BUILD/lib/SDL/macOS/10.13/Release/lib/libSDL2.a")
   SET(imported_uSynergy_location                    "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/usynergy/${NJLI_BUILD_PLATFORM}/10.12/Release/libuSynergy.a")
 
   SET(imported_openal_location                      "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/openal/${NJLI_BUILD_PLATFORM}/10.12/libopenal.a")
@@ -4199,6 +4201,7 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
     "-framework CoreFoundation"
     "-framework AudioUnit"
     "-framework Carbon"
+    iconv
   )
 
   IF( ${NJLI_SOUND_PLATFORM} STREQUAL "openal" )
@@ -4218,67 +4221,134 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "macOS" )
   SET( NJLI_RESOURCES_FILES ${ASSET_CATALOGUE_FILES} ${GAME_ASSETS_FILES} )
 
 ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
-  LIST(APPEND NJLIGameEngine_HDRS $ENV{EMSCRIPTEN_LOCATION}/system/include )
-  LIST(APPEND NJLIGameEngine_HDRS $ENV{EMSCRIPTEN_LOCATION}/system/include/emscripten )
+  LIST(APPEND NJLIGameEngine_HDRS $ENV{EMSCRIPTEN}/system/include )
+  LIST(APPEND NJLIGameEngine_HDRS $ENV{EMSCRIPTEN}/system/include/emscripten )
 
-  
+  set(EMSCRIPTEN_VERSION "1.38.13")
 
-  SET(imported_assimp_location "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/assimp/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/lib/libassimp${NJLI_ASSIMP_POSTFIX}.a" )
-  SET(imported_Bullet2FileLoader_location          "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/lib/libBullet2FileLoader.a")
-  SET(imported_Bullet3Collision_location           "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/lib/libBullet3Collision.a")
-  SET(imported_Bullet3Common_location              "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/lib/libBullet3Common.a")
-  SET(imported_Bullet3Dynamics_location            "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/lib/libBullet3Dynamics.a")
-  SET(imported_Bullet3Geometry_location            "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/lib/libBullet3Geometry.a")
-  SET(imported_Bullet3OpenCL_clew_location         "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/lib/libBullet3OpenCL_clew.a")
-  SET(imported_BulletCollision_location            "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/lib/libBulletCollision.a" )
-  SET(imported_BulletDynamics_location             "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/lib/libBulletDynamics.a" )
-  SET(imported_BulletFileLoader_location           "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/lib/libBulletFileLoader.a" )
-  SET(imported_BulletInverseDynamics_location      "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/lib/libBulletInverseDynamics.a")
-  SET(imported_BulletInverseDynamicsUtils_location "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/lib/libBulletInverseDynamicsUtils.a")
-  SET(imported_BulletSoftBody_location             "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/lib/libBulletSoftBody.a" )
-  SET(imported_BulletWorldImporter_location        "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/lib/libBulletWorldImporter.a" )
-  SET(imported_BulletXmlWorldImporter_location     "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/lib/libBulletXmlWorldImporter.a" )
-  SET(imported_ConvexDecomposition_location        "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/lib/libConvexDecomposition.a" )
-  SET(imported_GIMPACTUtils_location               "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/lib/libGIMPACTUtils.a" )
-  SET(imported_HACD_location                       "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/lib/libHACD.a" )
-  SET(imported_LinearMath_location                 "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/lib/libLinearMath.a" )
-  SET(imported_flatbuffers_location                "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/flatbuffers/${NJLI_BUILD_PLATFORM}/Release/lib/libflatbuffers.a")
-  SET(imported_imgui_location                      "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/imgui/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/libimgui-static.a" )
-  SET(imported_ImGuizmo_location                   "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/ImGuizmo/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/libImGuizmo.a" )
-  SET(imported_jsoncpp_location                    "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/jsoncpp/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/libjsoncpp.a")
-  SET(imported_nanovg_location                     "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/nanovg/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/libnanovg-static.a" )
-  SET(imported_ogg_location                        "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/ogg/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/libogg.so" )
-  SET(imported_opencv_calib3d_location             "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_calib3d.a")
-  SET(imported_opencv_core_location                "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_core.a")
-  SET(imported_opencv_features2d_location          "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_features2d.a")
-  SET(imported_opencv_flann_location               "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_flann.a")
-  SET(imported_opencv_imgcodecs_location           "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_imgcodecs.a")
-  SET(imported_opencv_imgproc_location             "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_imgproc.a")
-  SET(imported_opencv_ml_location                  "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_ml.a")
-  SET(imported_opencv_objdetect_location           "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_objdetect.a")
-  SET(imported_opencv_photo_location               "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_photo.a")
-  SET(imported_opencv_shape_location               "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_shape.a")
-  SET(imported_opencv_stitching_location           "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_stitching.a")
-  SET(imported_opencv_video_location               "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_video.a")
-  SET(imported_opencv_videostab_location           "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_videostab.a")
+
+  SET(imported_assimp_location                      "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/assimp/${NJLI_BUILD_PLATFORM}/Release/lib/libassimp${NJLI_ASSIMP_POSTFIX}.so" )
+
+  SET(imported_Bullet2FileLoader_location          "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/emscripten/${EMSCRIPTEN_VERSION}/Release/lib/libBullet2FileLoader.a")
+  SET(imported_Bullet3Collision_location           "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/emscripten/${EMSCRIPTEN_VERSION}/Release/lib/libBullet3Collision.a")
+  SET(imported_Bullet3Common_location              "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/emscripten/${EMSCRIPTEN_VERSION}/Release/lib/libBullet3Common.a")
+  SET(imported_Bullet3Dynamics_location            "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/emscripten/${EMSCRIPTEN_VERSION}/Release/lib/libBullet3Dynamics.a")
+  SET(imported_Bullet3Geometry_location            "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/emscripten/${EMSCRIPTEN_VERSION}/Release/lib/libBullet3Geometry.a")
+  SET(imported_Bullet3OpenCL_clew_location         "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/emscripten/${EMSCRIPTEN_VERSION}/Release/lib/libBullet3OpenCL_clew.a")
+  SET(imported_BulletCollision_location            "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/emscripten/${EMSCRIPTEN_VERSION}/Release/lib/libBulletCollision.a" )
+  SET(imported_BulletDynamics_location             "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/emscripten/${EMSCRIPTEN_VERSION}/Release/lib/libBulletDynamics.a" )
+  SET(imported_BulletFileLoader_location           "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/emscripten/${EMSCRIPTEN_VERSION}/Release/lib/libBulletFileLoader.a" )
+  SET(imported_BulletInverseDynamics_location      "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/emscripten/${EMSCRIPTEN_VERSION}/Release/lib/libBulletInverseDynamics.a")
+  SET(imported_BulletInverseDynamicsUtils_location "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/emscripten/${EMSCRIPTEN_VERSION}/Release/lib/libBulletInverseDynamicsUtils.a")
+  SET(imported_BulletSoftBody_location             "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/emscripten/${EMSCRIPTEN_VERSION}/Release/lib/libBulletSoftBody.a" )
+  SET(imported_BulletWorldImporter_location        "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/emscripten/${EMSCRIPTEN_VERSION}/Release/lib/libBulletWorldImporter.a" )
+  SET(imported_BulletXmlWorldImporter_location     "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/emscripten/${EMSCRIPTEN_VERSION}/Release/lib/libBulletXmlWorldImporter.a" )
+  SET(imported_ConvexDecomposition_location        "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/emscripten/${EMSCRIPTEN_VERSION}/Release/lib/libConvexDecomposition.a" )
+  SET(imported_GIMPACTUtils_location               "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/emscripten/${EMSCRIPTEN_VERSION}/Release/lib/libGIMPACTUtils.a" )
+  SET(imported_HACD_location                       "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/emscripten/${EMSCRIPTEN_VERSION}/Release/lib/libHACD.a" )
+  SET(imported_LinearMath_location                 "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/emscripten/${EMSCRIPTEN_VERSION}/Release/lib/libLinearMath.a" )
+
+  SET(imported_flatbuffers_location                "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/flatbuffers/emscripten/${EMSCRIPTEN_VERSION}/Release/lib/libflatbuffers.a")
+
+  SET(imported_imgui_location                "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/imgui/emscripten/${EMSCRIPTEN_VERSION}/Release/libimgui.a")
+
+  #SET(imported_ImGuizmo_location                    "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/ImGuizmo/${NJLI_BUILD_PLATFORM}/Release/libImGuizmo.a" )
+  SET(imported_jsoncpp_location                "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/jsoncpp/emscripten/${EMSCRIPTEN_VERSION}/Release/libjsoncpp.a")
+  SET(imported_nanovg_location                "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/nanovg/emscripten/${EMSCRIPTEN_VERSION}/Release/libnanovg-static.a")
+  SET(imported_ogg_location                "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/ogg/emscripten/${EMSCRIPTEN_VERSION}/Release/libogg.a")
+
+  SET(imported_opencv_calib3d_location              "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/emscripten/${EMSCRIPTEN_VERSION}/Release/lib/libopencv_calib3d.a")
+  SET(imported_opencv_core_location                 "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/emscripten/${EMSCRIPTEN_VERSION}/Release/lib/libopencv_core.a")
+  SET(imported_opencv_features2d_location           "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/emscripten/${EMSCRIPTEN_VERSION}/Release/lib/libopencv_features2d.a")
+  SET(imported_opencv_flann_location                "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/emscripten/${EMSCRIPTEN_VERSION}/Release/lib/libopencv_flann.a")
+  SET(imported_opencv_imgcodecs_location            "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/emscripten/${EMSCRIPTEN_VERSION}/Release/lib/libopencv_imgcodecs.a")
+  SET(imported_opencv_imgproc_location              "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/emscripten/${EMSCRIPTEN_VERSION}/Release/lib/libopencv_imgproc.a")
+  SET(imported_opencv_ml_location                   "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/emscripten/${EMSCRIPTEN_VERSION}/Release/lib/libopencv_ml.a")
+  SET(imported_opencv_objdetect_location            "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/emscripten/${EMSCRIPTEN_VERSION}/Release/lib/libopencv_objdetect.a")
+  SET(imported_opencv_photo_location                "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/emscripten/${EMSCRIPTEN_VERSION}/Release/lib/libopencv_photo.a")
+  SET(imported_opencv_shape_location                "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/emscripten/${EMSCRIPTEN_VERSION}/Release/lib/libopencv_shape.a")
+  SET(imported_opencv_stitching_location            "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/emscripten/${EMSCRIPTEN_VERSION}/Release/lib/libopencv_stitching.a")
+  SET(imported_opencv_video_location                "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/emscripten/${EMSCRIPTEN_VERSION}/Release/lib/libopencv_video.a")
+  SET(imported_opencv_videostab_location            "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/emscripten/${EMSCRIPTEN_VERSION}/Release/lib/libopencv_videostab.a")
   #SET(imported_IlmImf_location "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/share/OpenCV/3rdparty/lib/libIlmImf.a")
   #SET(imported_libjasper_location "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/share/OpenCV/3rdparty/lib/liblibjasper.a")
   #SET(imported_libjpeg_location "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/share/OpenCV/3rdparty/lib/liblibjpeg.a")
   #SET(imported_libtiff_location "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/share/OpenCV/3rdparty/lib/liblibtiff.a")
   #SET(imported_libwebp_location "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/share/OpenCV/3rdparty/lib/liblibwebp.a")
   #SET(imported_zlib_location "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/share/OpenCV/3rdparty/lib/libzlib.a")
-  SET(imported_sqlite_location                     "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/sqlite/${NJLI_BUILD_PLATFORM}/Release/libsqlite3.a")
-  SET(imported_stb_location                        "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/stb/${NJLI_BUILD_PLATFORM}/Release/libstb.a" )
-  #SET(imported_tinyxml2_location                  "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/tinyxml2/${NJLI_BUILD_PLATFORM}/Release/libtinyxml2.a" )
-  SET(imported_fmod_location                       "" )
-  SET(imported_SDL2_location                       "${CMAKE_SOURCE_DIR}/../External/thirdparty/SDL2/lib/${NJLI_BUILD_PLATFORM}/Release/libSDL2.a" )
-  SET(imported_uSynergy_location                   "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/usynergy/${NJLI_BUILD_PLATFORM}/Release/libuSynergy.a")
 
-  SET(imported_openal_location                     "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/openal/${NJLI_BUILD_PLATFORM}/Release/libopenal.a")
-  #SET(imported_alut_location                      "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/alut/${NJLI_BUILD_PLATFORM}/Release/libalut.a")
-  SET(imported_vorbis_location                     "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/libvorbis.a")
-  SET(imported_vorbisenc_location                  "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/libvorbisenc.a")
-  SET(imported_vorbisfile_location                 "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/libvorbisfile.a")
+  SET(imported_sqlite_location                      "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/sqlite/emscripten/${EMSCRIPTEN_VERSION}/Release/libsqlite3.so")
+  SET(imported_stb_location                         "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/stb/emscripten/${EMSCRIPTEN_VERSION}/Release/libstb.so" )
+  #SET(imported_tinyxml2_location                   "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/tinyxml2/${NJLI_BUILD_PLATFORM}/Release/libtinyxml2.a" )
+  SET(imported_fmod_location                        "" )
+  SET(imported_SDL2_location                        "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/SDL2/emscripten/${EMSCRIPTEN_VERSION}/Release/lib/libSDL2.a")
+  SET(imported_uSynergy_location                    "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/usynergy/emscripten/${EMSCRIPTEN_VERSION}/Release/libuSynergy.so")
+
+
+  # SET(imported_openal_location                      "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/openal/${NJLI_BUILD_PLATFORM}/Release/libopenal.a")
+  #SET(imported_alut_location                        "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/alut/${NJLI_BUILD_PLATFORM}/Release/libalut.a")
+  SET(imported_vorbis_location                      "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/vorbis/emscripten/${EMSCRIPTEN_VERSION}/Release/libvorbis.a")
+  SET(imported_vorbisenc_location                   "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/vorbis/emscripten/${EMSCRIPTEN_VERSION}/Release/libvorbisenc.a")
+  SET(imported_vorbisfile_location                   "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/vorbis/emscripten/${EMSCRIPTEN_VERSION}/Release/libvorbisfile.a")
+
+  
+
+  #               SET(imported_assimp_location "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/assimp/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/lib/libassimp${NJLI_ASSIMP_POSTFIX}.a" )
+  #               SET(imported_Bullet2FileLoader_location          "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/lib/libBullet2FileLoader.a")
+  #               SET(imported_Bullet3Collision_location           "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/lib/libBullet3Collision.a")
+  #               SET(imported_Bullet3Common_location              "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/lib/libBullet3Common.a")
+  #               SET(imported_Bullet3Dynamics_location            "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/lib/libBullet3Dynamics.a")
+  #               SET(imported_Bullet3Geometry_location            "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/lib/libBullet3Geometry.a")
+  #               SET(imported_Bullet3OpenCL_clew_location         "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/lib/libBullet3OpenCL_clew.a")
+  #               SET(imported_BulletCollision_location            "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/lib/libBulletCollision.a" )
+  #               SET(imported_BulletDynamics_location             "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/lib/libBulletDynamics.a" )
+  #               SET(imported_BulletFileLoader_location           "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/lib/libBulletFileLoader.a" )
+  #               SET(imported_BulletInverseDynamics_location      "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/lib/libBulletInverseDynamics.a")
+  #               SET(imported_BulletInverseDynamicsUtils_location "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/lib/libBulletInverseDynamicsUtils.a")
+  #               SET(imported_BulletSoftBody_location             "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/lib/libBulletSoftBody.a" )
+  #               SET(imported_BulletWorldImporter_location        "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/lib/libBulletWorldImporter.a" )
+  #               SET(imported_BulletXmlWorldImporter_location     "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/lib/libBulletXmlWorldImporter.a" )
+  #               SET(imported_ConvexDecomposition_location        "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/lib/libConvexDecomposition.a" )
+  #               SET(imported_GIMPACTUtils_location               "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/lib/libGIMPACTUtils.a" )
+  #               SET(imported_HACD_location                       "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/lib/libHACD.a" )
+  #               SET(imported_LinearMath_location                 "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/bullet3/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/lib/libLinearMath.a" )
+  #               SET(imported_flatbuffers_location                "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/flatbuffers/${NJLI_BUILD_PLATFORM}/Release/lib/libflatbuffers.a")
+  #               SET(imported_imgui_location                      "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/imgui/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/libimgui-static.a" )
+  #               SET(imported_ImGuizmo_location                   "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/ImGuizmo/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/libImGuizmo.a" )
+  #               SET(imported_jsoncpp_location                    "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/jsoncpp/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/libjsoncpp.a")
+  #               SET(imported_nanovg_location                     "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/nanovg/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/libnanovg-static.a" )
+  #               SET(imported_ogg_location                        "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/ogg/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/libogg.so" )
+  #               SET(imported_opencv_calib3d_location             "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_calib3d.a")
+  #               SET(imported_opencv_core_location                "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_core.a")
+  #               SET(imported_opencv_features2d_location          "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_features2d.a")
+  #               SET(imported_opencv_flann_location               "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_flann.a")
+  #               SET(imported_opencv_imgcodecs_location           "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_imgcodecs.a")
+  #               SET(imported_opencv_imgproc_location             "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_imgproc.a")
+  #               SET(imported_opencv_ml_location                  "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_ml.a")
+  #               SET(imported_opencv_objdetect_location           "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_objdetect.a")
+  #               SET(imported_opencv_photo_location               "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_photo.a")
+  #               SET(imported_opencv_shape_location               "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_shape.a")
+  #               SET(imported_opencv_stitching_location           "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_stitching.a")
+  #               SET(imported_opencv_video_location               "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_video.a")
+  #               SET(imported_opencv_videostab_location           "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/lib/libopencv_videostab.a")
+  #               #SET(imported_IlmImf_location "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/share/OpenCV/3rdparty/lib/libIlmImf.a")
+  #               #SET(imported_libjasper_location "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/share/OpenCV/3rdparty/lib/liblibjasper.a")
+  #               #SET(imported_libjpeg_ljcation "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/share/OpenCV/3rdparty/lib/liblibjpeg.a")
+  #               #SET(imported_libtiff_location "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/share/OpenCV/3rdparty/lib/liblibtiff.a")
+  #               #SET(imported_libwebp_location "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/share/OpenCV/3rdparty/lib/liblibwebp.a")
+  #               #SET(imported_zlib_location "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/opencv/${NJLI_BUILD_PLATFORM}/Release/share/OpenCV/3rdparty/lib/libzlib.a")
+  #               SET(imported_sqlite_location                     "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/sqlite/${NJLI_BUILD_PLATFORM}/Release/libsqlite3.a")
+  #               SET(imported_stb_location                        "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/stb/${NJLI_BUILD_PLATFORM}/Release/libstb.a" )
+  #               #SET(imported_tinyxml2_location                  "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/tinyxml2/${NJLI_BUILD_PLATFORM}/Release/libtinyxml2.a" )
+  #               SET(imported_fmod_location                       "" )
+  #               SET(imported_SDL2_location                       "${CMAKE_SOURCE_DIR}/../External/thirdparty/SDL2/lib/${NJLI_BUILD_PLATFORM}/Release/libSDL2.a" )
+  #               SET(imported_uSynergy_location                   "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/usynergy/${NJLI_BUILD_PLATFORM}/Release/libuSynergy.a")
+
+  #               SET(imported_openal_location                     "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/openal/${NJLI_BUILD_PLATFORM}/Release/libopenal.a")
+  #               #SET(imported_alut_location                      "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/alut/${NJLI_BUILD_PLATFORM}/Release/libalut.a")
+  #               SET(imported_vorbis_location                     "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/libvorbis.a")
+  #               SET(imported_vorbisenc_location                  "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/libvorbisenc.a")
+  #               SET(imported_vorbisfile_location                 "${CMAKE_SOURCE_DIR}/../External/thirdparty/BUILD/lib/vorbis/${NJLI_BUILD_PLATFORM}/$ENV{EMSCRIPTEN_VERSION}/Release/libvorbisfile.a")
 
   IF( IS_DEBUG)
     # DEBUGGING: https://kripken.github.io/emscripten-site/docs/porting/Debugging.html#debugging-emcc-debug
@@ -4288,11 +4358,12 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
     LIST(APPEND EXTRA_PLATFORM_LIBS "--profiling-funcs")
     LIST(APPEND EXTRA_PLATFORM_LIBS "--tracing")
     LIST(APPEND EXTRA_PLATFORM_LIBS "--emit-symbol-map")
+    # LIST(APPEND EXTRA_PLATFORM_LIBS "--clear-cache")
 
     #LIST(APPEND EXTRA_PLATFORM_LIBS "--js-opts 0")
     #LIST(APPEND EXTRA_PLATFORM_LIBS "-s ALLOW_MEMORY_GROWTH=1")
     #LIST(APPEND EXTRA_PLATFORM_LIBS "-s FULL_ES2=1")
-    LIST(APPEND EXTRA_PLATFORM_LIBS "--separate-asm")
+    # LIST(APPEND EXTRA_PLATFORM_LIBS "--separate-asm")
     ## LIST(APPEND EXTRA_PLATFORM_LIBS "-g")
     #LIST(APPEND EXTRA_PLATFORM_LIBS "-s DEMANGLE_SUPPORT=1")
     #LIST(APPEND EXTRA_PLATFORM_LIBS "-s ASSERTIONS=2")
@@ -4311,6 +4382,20 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
     LIST(APPEND EXTRA_PLATFORM_LIBS "-g3")
     LIST(APPEND EXTRA_PLATFORM_LIBS "-s ALLOW_MEMORY_GROWTH=1")
     LIST(APPEND EXTRA_PLATFORM_LIBS "-s FULL_ES2=1")
+    LIST(APPEND EXTRA_PLATFORM_LIBS "-s ERROR_ON_UNDEFINED_SYMBOLS=0")
+
+    list(APPEND EXTRA_PLATFORM_LIBS "-s WASM=1")
+    list(APPEND EXTRA_PLATFORM_LIBS "-s EXTRA_EXPORTED_RUNTIME_METHODS=['Pointer_stringify']")
+    list(APPEND EXTRA_PLATFORM_LIBS "-s DISABLE_EXCEPTION_CATCHING=1")
+    list(APPEND EXTRA_PLATFORM_LIBS "-s BINARYEN=1")
+    list(APPEND EXTRA_PLATFORM_LIBS "-s BINARYEN_TRAP_MODE='clamp'")
+    list(APPEND EXTRA_PLATFORM_LIBS "-v")
+    list(APPEND EXTRA_PLATFORM_LIBS "--emrun")
+    list(APPEND EXTRA_PLATFORM_LIBS "-Werror")
+    list(APPEND EXTRA_PLATFORM_LIBS "-s ALIASING_FUNCTION_POINTERS=0")
+    list(APPEND EXTRA_PLATFORM_LIBS "-s SAFE_HEAP=1")
+    list(APPEND EXTRA_PLATFORM_LIBS "-s ASSERTIONS=2")
+
 
 
 
@@ -4328,8 +4413,9 @@ ELSEIF( ${NJLI_BUILD_PLATFORM} STREQUAL "emscripten" )
     LIST(APPEND EXTRA_PLATFORM_LIBS "-s FULL_ES2=1")
     #LIST(APPEND EXTRA_PLATFORM_LIBS "-s USE_PTHREADS=2")
     #LIST(APPEND EXTRA_PLATFORM_LIBS "-s PTHREAD_POOL_SIZE=8")
-    LIST(APPEND EXTRA_PLATFORM_LIBS "--separate-asm")
-    #LIST(APPEND EXTRA_PLATFORM_LIBS "-s WASM=1")
+    # LIST(APPEND EXTRA_PLATFORM_LIBS "--separate-asm")
+    LIST(APPEND EXTRA_PLATFORM_LIBS "-s WASM=0")
+    LIST(APPEND EXTRA_PLATFORM_LIBS "-s ERROR_ON_UNDEFINED_SYMBOLS=0")
 
   ENDIF( IS_DEBUG)
 
@@ -4965,43 +5051,43 @@ IF(NJLI_USE_SQLITE_LIBRARY)
   ADD_DEFINITIONS(-DUSE_SQLITE_LIBRARY=1)
 ENDIF(NJLI_USE_SQLITE_LIBRARY)
 
-ADD_CUSTOM_COMMAND(
-  OUTPUT
-  ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/ldoc/index.html
-  COMMAND
-  ldoc ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/ldoc.in/
-  WORKING_DIRECTORY
-  ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in
-  COMMENT
-  "Generating API documentation with LDoc"
-  VERBATIM
-)
-
-ADD_CUSTOM_TARGET(Ldoc ALL
-  DEPENDS
-  ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/ldoc/index.html
-)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-SET_SOURCE_FILES_PROPERTIES( ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/ldoc/index.html PROPERTIES GENERATED TRUE )
+#        ADD_CUSTOM_COMMAND(
+#          OUTPUT
+#          ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/ldoc/index.html
+#          COMMAND
+#          ldoc ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/ldoc.in/
+#          WORKING_DIRECTORY
+#          ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in
+#          COMMENT
+#          "Generating API documentation with LDoc"
+#          VERBATIM
+#        )
+#        
+#        ADD_CUSTOM_TARGET(Ldoc ALL
+#          DEPENDS
+#          ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/ldoc/index.html
+#        )
+#        
+#        
+#        
+#        
+#        
+#        
+#        
+#        
+#        
+#        
+#        
+#        
+#        
+#        
+#        
+#        
+#        
+#        
+#        
+#        
+#        SET_SOURCE_FILES_PROPERTIES( ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/ldoc/index.html PROPERTIES GENERATED TRUE )
 
 ADD_CUSTOM_COMMAND(
   OUTPUT
@@ -5629,7 +5715,7 @@ else()
 
 endif()
 
-INSTALL(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/ldoc DESTINATION ${CMAKE_INSTALL_DOCDIR})
+# INSTALL(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/ldoc DESTINATION ${CMAKE_INSTALL_DOCDIR})
 INSTALL(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/cmake.in/html DESTINATION ${CMAKE_INSTALL_DOCDIR})
 INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/lnjli.xml DESTINATION ${CMAKE_INSTALL_DATADIR}/swig/lua)
 INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/lbullet.xml DESTINATION ${CMAKE_INSTALL_DATADIR}/swig/lua)

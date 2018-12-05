@@ -2,13 +2,14 @@
 
 export JAVA_HEAP_SIZE=4096m
 
-# source /Users/jamesfolk/Work/tools/emsdk/emsdk_env.sh
-source ~/.bash_profile
+source /Users/jamesfolk/Work/tools/emsdk/emsdk_env.sh
+# emcc --clear-cache
+# source ~/.bash_profile
 
-export EMSCRIPTEN_VERSION=1.37.9
+# export EMSCRIPTEN_VERSION=1.37.9
 # export EMSCRIPTEN_VERSION=1.37.40
-export EMSCRIPTEN_LOCATION=/Users/jamesfolk/Work/tools/emsdk/emscripten/${EMSCRIPTEN_VERSION}
-export EMSCRIPTEN_INCLUDE_LOCATION=${EMSCRIPTEN_LOCATION}/system/include 
+# export EMSCRIPTEN_LOCATION=/Users/jamesfolk/Work/tools/emsdk/emscripten/${EMSCRIPTEN_VERSION}
+# export EMSCRIPTEN_INCLUDE_LOCATION=${EMSCRIPTEN_LOCATION}/system/include 
 
 if IFS= read -r var
 then
@@ -51,10 +52,11 @@ build_emscripten_sublime()
         -DNJLI_BUILD_DIR="emscripten" \
         -DNJLI_PACKAGE_DIR=${NJLI_INSTALL_PREFIX} \
         -DNJLI_SOUND_PLATFORM=openal \
-        -DNJLI_UNITY_BUILD:BOOL=OFF \
-        -DCMAKE_AR=${EMSCRIPTEN_LOCATION}/emar \
-        -DCMAKE_CXX_COMPILER=${EMSCRIPTEN_LOCATION}/em++ \
-        -DCMAKE_C_COMPILER=${EMSCRIPTEN_LOCATION}/emcc
+        -DNJLI_UNITY_BUILD:BOOL=OFF #\
+
+        # -DCMAKE_AR=${EMSCRIPTEN_LOCATION}/emar \
+        # -DCMAKE_CXX_COMPILER=${EMSCRIPTEN_LOCATION}/em++ \
+        # -DCMAKE_C_COMPILER=${EMSCRIPTEN_LOCATION}/emcc
 
     if [ ! -z ${BUILD} ]
     then
@@ -84,8 +86,8 @@ rm -rf emscripten_Sublime
 mkdir -p emscripten_Sublime
 cd emscripten_Sublime
 
-# build_emscripten_sublime Debug
-build_emscripten_sublime
+build_emscripten_sublime Debug
+# build_emscripten_sublime
 
 cd ..
 
